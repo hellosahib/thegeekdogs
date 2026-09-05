@@ -166,12 +166,53 @@ const steps = stageSteps(stage);
     }
   }
 
-  /* >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9). */
+  /*
+    >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9).
+
+    **The axis takes its block's own inner edges (§E.2 round 12, review item W1).**
+    Run A item 6 asked for a track that answers the grid instead of a fixed 567px object,
+    and giving the pitch a column span was the mechanism. The composition did not follow:
+    with five equal columns and a node centred in each, the first and last node centres
+    sit half a column inside the block, which rendered as 48px of dead margin at each end
+    of a --band block at 1440 and as a vertical track in the left 250px of an 866-wide
+    block at 930. 48px of dead margin at each end is what makes a diagram look dropped in
+    rather than laid out.
+
+    §E.2's rule, verbatim: *the first node centre sits at the block's left inner edge + 9
+    (the ring), and the last at `min(block right inner edge − 9, 100vw − 300)` — the
+    block, or the plate's band less 24px, whichever is smaller. The pitch is whatever
+    those two ends and five nodes make it.*
+
+    Both terms are one expression. The block term is `100% − 18`, a percentage of this
+    list's own containing block, which the page has already sized to the block's border
+    box. The band term needs the block's LEFT edge in viewport coordinates, and that is
+    always §B.5's content left — every block that carries this track starts at column 1 —
+    so it is `50vw − min(50vw, 660px) + --outer`, and the whole right-hand term reduces to
+    `50vw + min(50vw, 660px) − --outer − 318`. One declaration, no breakpoints inside it,
+    and it hands over between the two terms wherever they cross.
+
+    | vw | Block | Axis | Last node | Pitch | Clear of band |
+    |---|---|---|---|---|---|
+    | 931 | 32 → 899 | 581 | 622 | 145.3 | 24 |
+    | 1024 | 48 → 738 | 658 | 715 | 164.5 | 24 |
+    | 1440 | 120 → 1014 | 876 | 1005 | 219.0 | 150 |
+
+    The list is then 1.25 axes wide and starts an eighth of an axis before it, because
+    with five equal columns a node centre sits half a column in: 5w = 1.25 x 4w, and
+    w/2 = axis/8. That is the whole of the arithmetic, and it puts the first node's ring
+    tangent to the block's left edge and the last node's ring on the smaller of the two
+    right-hand limits.
+  */
   @media (min-width: 931px) {
     .full-track__list {
+      --axis-span: min(
+        calc(100% - 18px),
+        calc(50vw + min(50vw, 660px) - var(--outer) - 318px)
+      );
       margin-block-start: 0;
+      margin-inline-start: calc(9px - 0.125 * var(--axis-span));
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      inline-size: min(100%, var(--track-span, calc(5 * var(--track-pitch))));
+      inline-size: calc(1.25 * var(--axis-span));
     }
 
     .full-track__step {

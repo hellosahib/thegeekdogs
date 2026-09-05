@@ -137,14 +137,16 @@ if (products.length === 0) {
   }
 
   /*
-    §E.2's horizontal form starts at 931. Between 931 and 1023 the block is the full
-    eight columns but the plate's band begins at 100vw - 276, which is x 655 at 931, so
-    the axis takes §B.10's own five-times-100px pitch and its right edge lands at 580 —
-    75px clear at the tightest width in this range, and looser at every width above it.
+    §E.2 round 12, review item W1 and §J's `/work/` row: **the track's ends are its
+    block's ends.** The axis anchors on the block's own border box — not inside the
+    block's 48px padding, which is where the 48px of dead margin at each end came from —
+    so the track escapes that padding and StageTrack's own expression measures `100%`
+    against the right box. The axis's right-hand limit is the plate's band less 24px,
+    which is what the component computes; nothing here caps it.
   */
   @media (min-width: 931px) {
     .work-entry__track {
-      --track-span: calc(5 * var(--track-pitch));
+      margin-inline: calc(-1 * var(--space-48));
     }
   }
 
@@ -165,10 +167,6 @@ if (products.length === 0) {
 
     .work-entry {
       grid-column: 1 / span 9;
-    }
-
-    .work-entry__track {
-      --track-span: 100%;
     }
   }
 </style>
