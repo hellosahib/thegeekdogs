@@ -551,22 +551,20 @@ That sentence is out of this section and out of §2.7, in any wording. The "in b
 on the three remaining facts and the closing line, which is the one that was doing the argument's
 work anyway: a person ends it.
 
-### 5.5 Email capture, optional
+### 5.5 Screenshots
 
-Include only if a real form service is wired up. A form that goes nowhere does not ship on this
-site of all sites.
+The email-capture section that stood here is cut: item 11 was answered no, so this page collects
+no address, ships no field, and posts to no endpoint.
 
-`[FILL: which form service, and its endpoint. Formspree, Tally or a Google Form. QA tests an end-to-end submission and confirms it is received before this section goes live.]`
+What ships instead is images. Item 10 cleared the five real-device screenshots and the store icon
+from `assets/brand/store/`. The feature graphic is excluded, because it carries the placeholder
+wordmark and no asset on this site prints that name.
 
-- **Heading:** `Hear about it once`
-- **Body:** `Leave an email and you'll get one message when it's in the store. Nothing else, and no list.`
-- **Field label:** `Email address`
-- **Field hint:** `We'll use it once.`
-- **Submit button:** `Tell me when it's out`
-- **Success state:** `That's saved. You'll get one email when it's in the store.`
-- **Failure state:** `That didn't send. Email thegeekdogs@gmail.com and we'll add you by hand.`
-- **Validation error, empty:** `Enter an email address.`
-- **Validation error, malformed:** `That doesn't look like an email address.`
+- **Alt, planning board:** `The planning board, with each function of the wedding on its own row, carrying its own guest list and its own headcount.`
+- **Alt pattern for the other four:** `{What the screen shows}, in the app's own words.` Each line
+  is written against the image that ships and names only features the §5.3 list already names. A
+  screenshot showing anything outside that list is not used, because describing it here would
+  describe the feature §5.3 forbids describing.
 
 ### 5.6 Meta
 
@@ -583,6 +581,8 @@ product's internal working title.
 
 ## 6. `/sahib/`
 
+`[CONFIRM: every title, date boundary and stack attribution on this page, against Sahib's own resume, once it is supplied. QUESTIONS.md item 61 is open. Tanya's page was cross-checked against a document; this one rests on the brief's paraphrase and one-line owner answers, which is a weaker source for the same kind of claim.]`
+
 ### 6.1 Intro
 
 **Spine: breadth. Finance is the texture.** In one line, the case for the reverse: finance is the
@@ -594,16 +594,16 @@ that makes the studio's delivery model credible.
 - **Role line:** `AVP, Mobile. Native iOS, native Android, KMP and Flutter, with production work shipped in all four.`
 - **Body:** `Seven years, four companies, and no single platform to narrow him to. At Keenai Global he's a Builder: features end to end, backend through testing, with AI, in wealth-tech for Indian HNIs, UHNIs and family offices. That matters here more than anything else on this page. The delivery model this studio sells isn't a theory he's trying out on clients. It's how he already works every day, in a regulated domain with real money and real auditors attached.`
 - **Map lead-in**, the one line above the coverage map (DESIGN.md §F.7, ≤ 14 words): `Five surfaces, five places. A filled cell means a product we can name.`
-- **Honest line, printed beneath the map:** `Two columns are outlined rather than filled. The native iOS and KMP work is production work, and neither has a product this page can name yet.` `[CONFIRM: prints only if Q45 in QUESTIONS.md is unanswered]`
 - **Texture line, placed after the work cards:** `One more thing worth noticing about the list above: travel bookings, then investing, then wealth, with fleet telematics the one exception. Three of the four put him next to other people's money, which is not a place anyone lands by accident.`
 
-Note on both lines. The lead-in is 13 words and names the axes, not a claim: five surfaces against
-five places, and a filled cell is one with a product behind it. It attributes nothing to native iOS
-or KMP, because DESIGN.md §F.1 records that neither column has a product against it. The honest
-line is the one DESIGN.md §F.1 asks for in the case where those two columns ship in the outlined
-state. It states the gap in the page's own words rather than leaving a reader to notice two blank
-columns and draw a worse conclusion. If Q45 comes back with a nameable product for either stack,
-the cell fills, the line comes out, and nothing else on the page changes.
+Note on the lead-in. It is 13 words and names the axes, not a claim: five surfaces against five
+places, and a filled cell is one with a product behind it.
+
+Item 45 came back with employers for both open columns, which is the case DESIGN.md §F.1 designed
+for and the better of the two outcomes it planned around. Native iOS is Motive and smallcase; KMP
+is Motive. Both cells fill, and the honest line that was drafted for the outlined state comes out
+of the page entirely: it existed to name a gap, and the gap is closed. Nothing else on the page
+changed with it.
 
 ### 6.2 Work cards
 
@@ -614,11 +614,13 @@ company largest, then what they do, then the years, then the small print.
 
 - **Company:** `Keenai Global`
 - **What they do:** `Wealth-tech, Singapore and Bengaluru. Built with Lighthouse Canton, for accredited investors and family offices.`
-- `[CONFIRM: Keenai's Bengaluru office; the company site names only Singapore.]`
 - **Years:** `2025 – now`
 - **Role:** `Builder (AVP, Mobile)`
-- **Products and stack:** `Keenai Wealth, a multi-asset platform covering 50+ global markets with custody at BNY Pershing. Flutter, Dart. And end-to-end feature work, backend through testing, with AI.`
-- `[CONFIRM: whether Keenai Pulse, which Keenai runs for single-family offices, should be listed on this card. §7 marks it confirm: the company makes it, the profile doesn't say he worked on it.]`
+- **Products and stack:** `Keenai Wealth, a multi-asset platform covering 50+ global markets with custody at BNY Pershing, and Keenai Pulse, which the firm runs for single-family offices. Flutter, Dart. And end-to-end feature work, backend through testing, with AI.`
+
+Item 37 cleared "Singapore and Bengaluru" and item 25 cleared Keenai Pulse. Both now print without
+a marker, on the owners' authorisation: the company's own site names only Singapore, and it names
+Pulse as a product without naming who builds it.
 
 **Card 2: Motive**
 
@@ -626,7 +628,7 @@ company largest, then what they do, then the years, then the small print.
 - **What they do:** `Fleet management, US. Formerly KeepTruckin. AI dashcams, ELD compliance, telematics.`
 - **Years:** `2023 – 2025`
 - **Role:** `Android Engineer`
-- **Products and stack:** `Motive Fleet App, the fleet-manager side: live GPS, hours of service, vehicle health, dashcam review. Kotlin.`
+- **Products and stack:** `Motive Fleet App, the fleet-manager side: live GPS, hours of service, vehicle health, dashcam review. Kotlin, native iOS, and KMP. This is the card that carries the KMP column of the map, and one of the two that carry native iOS.`
 
 **Card 3: smallcase**
 
@@ -634,8 +636,10 @@ company largest, then what they do, then the years, then the small print.
 - **What they do:** `Investing platform, India. Curated portfolios of stocks and ETFs.`
 - **Years:** `2020 – 2023`
 - **Role:** `SDE 1 to SDE 2 to Senior Software Engineer`
-- **Products and stack:** `Android first, then Dart and Flutter.`
-- `[CONFIRM: which smallcase surface he worked on: the smallcase app, Tickertape, or gateway. §7 marks this confirm. The card prints no product name until it is answered.]`
+- **Products and stack:** `Tickertape. Android first, then Dart and Flutter, and native iOS.`
+
+Item 24 named the surface: Tickertape, not the smallcase app and not gateway. Item 45 put the
+second half of his native iOS work here.
 
 **Card 4: Cleartrip**
 
@@ -658,7 +662,8 @@ company largest, then what they do, then the years, then the small print.
 
 - **Heading:** `He writes it down`
 - **Body:** `Sahib writes Android posts regularly and they land: channelFlow versus callbackFlow, Android 16 dropping orientation locks and the duplicate-fragment bug it caused, ViewModel versus onSaveInstanceState versus SavedStateHandle. The Android 16 post drew 283 reactions and 13 reposts. Before any of that he founded PyHour at Chitkara, a student initiative running free Python classes for juniors.`
-- `[CONFIRM: URLs for the three posts and the reaction figure; none are publicly findable, so they print only if the owners supply links.]`
+- `[CONFIRM: which supplied URL belongs to which post title. Item 38 gave four LinkedIn URLs for the three posts named above and did not map them; QUESTIONS.md item 62 asks which is which and what the fourth one is. Three titles print with three links or none of them link.]`
+- `[CONFIRM: "283 reactions and 13 reposts", permanently. LinkedIn blocks every fetch, so this figure is the owners' own count and cannot be checked from any URL they supply. FACTS.md (e)3 records it as a standing limitation, not a pending question. It prints as their figure or it comes out.]`
 - **Closing line:** `Someone who can explain a thing clearly to strangers is usually the person who can explain it to a reviewer.`
 
 ### 6.4 Background
@@ -675,10 +680,20 @@ company largest, then what they do, then the years, then the small print.
 
 - **GitHub link label:** `Sahib on GitHub`
 - **Accessible name:** `Sahib Singh on GitHub. Opens a new tab.`
-- `[CONFIRM: placement. The Fact Checker's read of github.com/hellosahib is that the account is real and in use and the repos do span the four stacks, but what's publicly visible is mostly older learning work, so it supports a plain link and not a "see my code" moment. Recommended: a plain link in this section, no prominence beyond it. Never print contribution counts, streaks or repo numbers. Owners decide placement.]`
 - **LinkedIn link label:** `Sahib on LinkedIn`
+- **Accessible name:** `Sahib Singh on LinkedIn. Opens a new tab.`
+- **Email link label:** `sahiboffc@gmail.com`
+- **Accessible name:** `Email Sahib at sahiboffc@gmail.com`
 - **Back link:** `Back to the studio`
-- `[FILL: any socials beyond GitHub and LinkedIn: X, a personal blog, a direct email. §5.4 lists this as open.]`
+
+Item 39 put the GitHub link on this page, which is what the Fact Checker recommended: the account
+is real and in use and the repos do span the four stacks, though what is publicly visible is mostly
+older learning work. It is a plain link in this section and nothing more prominent. Never print
+contribution counts, streaks or repo numbers.
+
+The LinkedIn link is plain too, labelled for what it is rather than dressed as an invitation. Item
+40 asked for a link CTA and this is the honest shape of one; a resume link joins it when a resume
+exists. Items 17 and 18 closed everything else, so these three and the back link are the section.
 
 ### 6.6 Meta
 
@@ -699,7 +714,8 @@ misrepresents what she does; nothing below depends on one.
 
 - **Headline:** `Tanya Jain`
 - **Role line:** `Mobile engineer. Native Android and KMP, and the iOS side too.`
-- **Body:** `Software engineer on Android at Motive. Her subject is the shape underneath the features: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
+- **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Three of the four gates this studio refuses to hand to an agent are hers, and so is the spec that starts the work and the ASO that ends it. Code review she shares with Sahib.`
+- **Second paragraph:** `Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
 - **Quote, verbatim from Sahib's recommendation of her, 3 July 2026:** `"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices"`
 - **Second quote, same source:** `"go-to person for KMP-related discussions"`
 - **Quote attribution line:** `Sahib Singh, who worked alongside her at Motive.`
@@ -713,32 +729,44 @@ material on the site and they must read as quotation, not as pull-quote decorati
 Every *confirm* marker preserved. Do not pad this list to match Sahib's length; a shorter, denser
 history is not a weaker one and visible padding says otherwise.
 
+Dates and titles on all three cards are the resume's, not the brief's. The brief was wrong in three
+places and `FACTS.md` rows 47, 48 and 50 caught each one: her Naskay title, her Motive title, and
+the Naskay-to-HSBC boundary, which is August 2021 on both sides rather than a July handover.
+
 **Card 1: Motive**
 
 - **Company:** `Motive`
 - **What they do:** `Fleet management, US.`
-- **Years:** `2024 – now`
-- **Role:** `Software Engineer, Android`
-- **Products and stack:** `Kotlin, Coroutines, KMP.`
-- `[CONFIRM: which Motive app she works on, Driver or Fleet. §7 marks this confirm. The card names no app until it is answered.]`
+- **Years:** `Jan 2024 – now`
+- **Role:** `Software Engineer 2`
+- **Products and stack:** `Motive Fleet App. Kotlin, Coroutines, Compose, and KMP business-logic modules under Clean Architecture. Bluetooth device-verification flows, CI/CD and workflow automation.`
+- **Ownership line:** `She owns app releases there: phased rollouts, crash and ANR monitoring, and the fixes that follow.`
+- **Her own account, attributed:** `By her account, a 99.8% crash-free rate held and about 20% off startup time, from cold-start and dependency work.`
+
+The two figures print only in that attributed form. `FACTS.md` row 52 clears them for publication
+and is explicit about why the attribution is not optional: Motive does not publish the numbers, so
+nobody outside the company can check them, and a studio arguing for review gates does not print an
+uncheckable statistic as if it had checked it.
 
 **Card 2: HSBC**
 
 - **Company:** `HSBC`
 - **What they do:** `Global bank.`
-- **Years:** `2021 – 2023`
+- **Years:** `Aug 2021 – Dec 2023`
 - **Role:** `Software Engineer`
-- **Products and stack:** `REST APIs, Retrofit.`
-- `[CONFIRM: which HSBC product. §7 is explicit: don't guess at a bank. The card names no product until it is answered.]`
+- **Products and stack:** `Mobile banking. Migration to MVVM, UI performance work, and diagnosis of production issues.`
+
+No product name on this card. Her resume names one; item 27 says not to print it, and the owners'
+answer wins over the document.
 
 **Card 3: Naskay Technologies**
 
 - **Company:** `Naskay Technologies`
 - **What they do:** `Mobile and product studio, Noida. Around 20 people, client work.`
-- **Years:** `2020 – 2021`
-- **Role:** `Android Developer`
-- **Products and stack:** `Retrofit, MVVM.`
-- `[CONFIRM: whether any Naskay client project can be named at all. §7: agency work is often under NDA, so ask rather than reading their case studies and assuming.]`
+- **Years:** `Nov 2020 – Aug 2021`
+- **Role:** `Android Intern`
+- **Products and stack:** `Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring.`
+- **Project line:** `[CONFIRM: how to describe the Naskay project. Item 28 cleared naming it and her resume names it, but it is a real US personality's trademarked fitness brand rather than Naskay's own product. QUESTIONS.md item 63 asks the owners to choose: name the brand, or print "a fitness app for a US client". The card carries no project line until they pick one.]`
 
 ### 7.3 How the work gets made
 
@@ -750,7 +778,7 @@ The section that connects her to the home page's pitch.
 - **Gates link, 360** (DESIGN.md line 1227, ~25 words): the same string, unchanged. The two markers
   are one slot at two breakpoints, not two slots. The 360 wireframe restates the 1440 line rather
   than replacing it, so one string serves both, on the same rule as §10.4's stage labels.
-- **Body, long form:** `The four gates on the home page are not a marketing device we bolted onto an agent pipeline. They're developer practice, which is the thing she spends her time improving: what gets reviewed, in what order, by whom, and what the shared core has to guarantee so the platform code at the edges stays small. A studio selling "agents write it, humans review it" is selling exactly this, and it needs someone whose subject it already is.`
+- **Body, long form:** `Most of the gates on the home page are hers. She writes the spec that says what the thing deliberately won't do, she runs the build on physical phones, and she reads what it collects and what the listing says about it before anyone outside sees either. At Motive she owns releases the same way: phased rollouts, crash and ANR monitoring, and CI/CD work so the path from merge to store is one a person can repeat. A studio selling "agents write it, humans review it" needs someone whose subject that already is, and the shared core is the same argument one layer down: agree the data, the rules and the order of the work once, and the platform code at the edges stays small enough to review.`
 
 The long form is still the section's paragraph where a paragraph fits. The two short fields above
 are the strings DESIGN.md §G.3 has slots for: the core statement sits inside the shared-core field
@@ -758,30 +786,54 @@ and says what a shared core is, and the gates link sits under the core column at
 page and makes the §9.3 connection back to `/` explicit. Neither repeats the other; the first is
 about the layer, the second is about the gates.
 
+The long form was rewritten in round 4 so that ownership carries the section and subject matter
+follows it. Item 19 gave her four of the things a person has to do on every build; the resume gave
+evidence that she already does them where more is at stake, with releases owned, rollouts phased,
+crashes and ANRs watched and the pipeline improved. The shared core stayed in, at the end, as the
+layer under the gates rather than as the page's opening claim.
+
 ### 7.4 Background
 
 - **Heading:** `Background`
 - Items:
-  - `BTech, Computer Science, APJ Abdul Kalam Technological University, 2017 to 2021.`
+  - `BTech, Computer Science and Engineering. Meerut Institute of Engineering and Technology, affiliated to Dr. A.P.J. Abdul Kalam Technical University, Lucknow. 2017 to 2021.`
   - `Udacity Android Developer Nanodegree.`
   - `HackerRank Java problem solving.`
   - `TCS CodeVita Season 9 pre-qualifier, all-India rank 2023.`
+  - `Task Manager, an open-source multi-module Android app: github.com/Tanya-jain99/TaskManager.`
+
+The education line is a correction, not an edit for style. `FACTS.md` row 36 marks the brief's
+version contradicted: it named a state university in Kerala, and her resume names a college in
+Meerut affiliated to a different university in Lucknow that shares the same namesake. Do not print
+"Kerala" or "Technological University" on this page. The Task Manager line prints because the
+repository was fetched and exists; it is the one item on this page verified at a primary source
+rather than on the resume's word.
 
 ### 7.5 Links
 
 - **GitHub link label:** `Tanya on GitHub`
 - **Accessible name:** `Tanya Jain on GitHub. Opens a new tab.`
-- `[CONFIRM: placement. The Fact Checker's read of github.com/Tanya-jain99 is that the profile is sparse and carries no KMP or iOS repo, so a visitor clicking it from here finds less than this page's shared-core argument promises. Recommended: the footer link only, and no GitHub link in this section. The recommendation quote in §7.1 carries the evidence instead. Never print contribution counts, streaks or repo numbers. Owners decide placement.]`
 - **LinkedIn link label:** `Tanya on LinkedIn`
+- **Accessible name:** `Tanya Jain on LinkedIn. Opens a new tab.`
+- **Email link label:** `jaintanya999@gmail.com`
+- **Accessible name:** `Email Tanya at jaintanya999@gmail.com`
 - **Back link:** `Back to the studio`
-- `[FILL: any socials beyond GitHub and LinkedIn. §5.4 lists this as open.]`
+
+Item 39 overrode the Fact Checker's placement recommendation and put the GitHub link on this page
+as well as his. The caveat behind that recommendation is still true and worth writing down: the
+public profile is sparse and carries no KMP or iOS repo, so a visitor arriving from this page finds
+less than the section above describes. What answers it is the Task Manager repository in §7.4,
+which is on that account and is real, and the recommendation quotes in §7.1. Never print
+contribution counts, streaks or repo numbers.
+
+The LinkedIn link is the CTA item 40 asked for, labelled plainly. Items 17 and 18 closed the rest.
 
 ### 7.6 Meta
 
 - **Meta title:** `Tanya Jain | TheGeekDogs`
-- **Meta description:** `Mobile engineer in native Android and KMP, working on the iOS side too. Software engineer at Motive, and the person who improves how the work gets made.`
+- **Meta description:** `Mobile engineer in native Android and KMP, working on the iOS side too. Software Engineer 2 at Motive, where she owns releases, and the owner of most of this studio's review gates.`
 - **OG title:** `Tanya Jain`
-- **OG description:** `KMP shared core, native at the edges, and the practices that keep them from drifting. The review gates are her subject.`
+- **OG description:** `The product spec, QA on real devices, and the security and privacy review are hers. So are releases at Motive, phased and monitored.`
 - **OG image text:** `Tanya Jain` and, under it, `Native Android, KMP, and how the work gets made.`
 
 ---
@@ -802,44 +854,37 @@ about the layer, the second is about the gates.
 - **Label:** `The studio`
 - **Address:** `thegeekdogs@gmail.com`
 - **Line:** `Everything starts here. Both of us read it.`
-- `[FILL: the real intake address if it isn't this one, plus whether the owners want a phone or WhatsApp number listed, a timezone, and whether they take client work full-time or alongside their own products. §5.1. The last of those changes how confidently this page can talk about availability.]`
 
 **Route 2: Sahib**
 
 - **Label:** `Sahib`
 - **Line:** `Architecture, the release cut, and anything about how a build would actually be structured.`
-- **Address:** `[FILL: Sahib's direct route: a direct email, or his LinkedIn if he'd rather not print a second address. §5.4 lists socials as open. If there is no second route, this block comes out rather than pointing back at the studio inbox.]`
+- **Address:** `sahiboffc@gmail.com`
 
 **Route 3: Tanya**
 
 - **Label:** `Tanya`
-- **Line:** `Practices, workflow, and cross-platform architecture: what the shared core carries and what stays native.`
-- **Address:** `[FILL: Tanya's direct route: a direct email, or her LinkedIn. Same rule as above: no route, no block.]`
+- **Line:** `The spec, device QA, the security and privacy pass, and what the shared core carries versus what stays native.`
+- **Address:** `jaintanya999@gmail.com`
+
+All three addresses print in full, per item 53. The plate and the routes are `mailto:` links over
+the visible address, not a label over a hidden one.
 
 **Engagement line, under the three routes**
 
-- `[FILL: engagement model, typical first-deliverable timeline, a starting price if the owners will state one, and the capacity ceiling. §5.1. This is the same fill as the home page's "What you get" and answering it once resolves both.]`
+- **Line:** `Fixed-scope projects and retainers, both. It starts with a short written brief rather than a call, a first MVP follows a few days after the go-ahead, and we work in IST. There's no phone number: email is the route, and you'll usually hear back within a couple of days.`
 
-### 8.3 Form, if a form is used
+Items 2, 3, 5, 6, 8 and 43. The capacity answer, item 4, is on the home page in §2.9 and is not
+repeated here. No starting price prints anywhere, per item 7.
 
-The form is optional. A `mailto:` link is a legitimate answer and it is what the persistent
-affordance uses. If a form ships, it posts to a real endpoint and QA tests a submission end to end.
+### 8.3 No form
 
-`[FILL: whether a form is wanted at all, and if so which service and endpoint. Same decision as §5.5's capture form; one service should serve both.]`
-
-- **Form heading:** `Or write it here`
-- **Field label:** `Your name`
-- **Field label:** `Email address`
-- **Field hint:** `So we can reply.`
-- **Field label:** `What you're building`
-- **Field hint:** `Platforms, rough scope, and when you need it. A paragraph is plenty.`
-- **Submit button:** `Send it`
-- **Sending state:** `Sending.`
-- **Success state:** `That's with us. You'll hear back from Sahib or Tanya, usually within a couple of days.`
-  - `[CONFIRM: "usually within a couple of days" as a response-time promise. Two people with full-time roles should agree the number before it is printed. If they won't commit to one, the success state drops the clause and reads "That's with us. You'll hear back from Sahib or Tanya."]`
-- **Failure state:** `That didn't send. Email thegeekdogs@gmail.com directly and it reaches the same two people.`
-- **Validation error, empty required field:** `This one's needed.`
-- **Validation error, malformed email:** `That doesn't look like an email address.`
+There is no contact form on this site, and none on the wedding planner page either. Items 11 and 13
+settled it: email is the whole intake, nothing posts to an endpoint, and a page about not shipping
+things that aren't wired up does not ship a field that goes nowhere. The form heading, its four
+fields, its two hints, the submit label, the sending, success and failure states and both
+validation errors are cut, and the response-time clause they carried now sits in §8.2's engagement
+line, where item 43 put a number behind it.
 
 ### 8.4 Meta
 
@@ -869,13 +914,13 @@ visual joke kills the joke and doubles the page.
 
 ### 10.1 Headshots
 
-Both lines describe the portraits §5.5 specifies. They are provisional by definition: the photo
-does not exist yet and the route (real photo, likeness-trained tool, or an illustrated treatment)
-is not settled.
+Item 23 settled the route: portraits from a headshot tool trained on each person's own selfies,
+images to be supplied. The two lines below describe what that route produces and stay provisional
+until the images arrive, because an alt line has to describe the image that actually ships.
 
 - **Alt, Sahib:** `Sahib Singh, chest-up, turned three-quarters towards the camera with his eyes to it, in soft daylight falling from the left.`
 - **Alt, Tanya:** `Tanya Jain, chest-up, square to the camera with her eyes to it, in soft even daylight against a light background.`
-- `[CONFIRM: both headshot alt lines after the photo is chosen and approved. §5.5 requires both people to approve their own image before it publishes, and the alt must describe the image that actually ships. If the illustrated or halftone route is taken, both lines are rewritten to say so. An illustration described as a photograph is a small lie on a site about not telling them.]`
+- `[CONFIRM: both headshot alt lines, once the owners supply the images item 23 chose. Only they can produce them, and each person approves their own before it publishes. If a portrait comes back looking like something other than a photograph, the line says so; an illustration described as a photograph is a small lie on a site about not telling them.]`
 
 ### 10.2 The studio floor
 
@@ -883,8 +928,8 @@ is not settled.
 
 `An isometric studio floor seen from above: two desks with people working at them, a group of more schematic desks around them where the agents work, and one empty chair with a nameplate reading Ship approval.`
 
-Do not print a desk count in this sentence. §7 permits cutting the floor to five agent desks and a
-count would go stale.
+Do not print a desk count in this sentence. Item 32 settled the floor at seven agent desks, and a
+count written into an alt line goes stale the day the roster changes.
 
 **Note for the Engineer.** The floor is built as a semantic roster first (§6). Where the roster is
 real text, the SVG scene layered on top is decorative and takes `aria-hidden="true"`; the alt above
@@ -896,13 +941,17 @@ name, read in order.
 
 | Desk type | Accessible name pattern | Example |
 |---|---|---|
-| Human | `{Name}. Open their card.` | `Sahib Singh. Open their card.` |
-| Agent | `{Agent name}, agent. Checked by {gate name}. Open its card.` | `Security Auditor, agent. Checked by security review. Open its card.` |
+| Human | `{Name}. Open {his, her} card.` | `Sahib Singh. Open his card.` and `Tanya Jain. Open her card.` |
+| Agent | `{Agent name}, agent. Checked by {gate name}. Open its card.` | `Security Auditor, agent. Checked by security and privacy review. Open its card.` |
 | Empty chair | `Ship approval. The empty chair. Open the card.` | (as written) |
 
 The gate name is spoken in the button name deliberately: on a screen reader, a visitor tabbing the
 floor without opening a single card still hears that every agent has a human checking it. That is
 the page's whole argument, delivered by the tab key.
+
+The gate name spoken here is the same string as the `Checked by` field in §2.4, which is the same
+string as the gate's own heading in §2.6. Six strings, used everywhere they appear, and the
+pronouns are the ones items 20 and 21 gave: he and him for Sahib, she and her for Tanya.
 
 **Card close control**
 

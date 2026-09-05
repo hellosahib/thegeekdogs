@@ -1,6 +1,6 @@
 # DESIGN.md — TheGeekDogs.com
 
-Design Lead, Pass 1. Proposal only. Nothing here is approved; the Direction human gate (§14 of the brief) decides.
+Design Lead, Pass 2 (round 3). Pass 1 cleared the Direction human gate; the owners' answers are in `QUESTIONS.md` items 45–55 and are applied here in place. Structure and voice are Pass 1's; what changed is marked in the section that changed.
 
 Scope of this document: art direction, three token systems, layout, hierarchy, responsive behaviour, the studio floor composition, the work-card treatment, the build-stage indicator, motion spec. No application code. No user-facing copy — drafted copy from §7 is quoted only to size the boxes, and copy that does not exist yet is marked `[COPY NEEDED]`. Facts that do not exist in §5 are marked `[BLOCKED]` and never guessed.
 
@@ -11,6 +11,8 @@ Contrast arithmetic is done, not estimated. Method is printed in §B.2 so anyone
 ## A. Reference study (§5.6)
 
 Five URLs were fetched, then a second targeted round. Two returned usable design content. Two returned a directory listing rather than the portfolio. One returned nothing.
+
+**Round 3 note.** Item 55's answer says the Orchestrator opened the three unreachable references in Chrome and left plain descriptions at `docs/scratch/references.md`. **That file does not exist** as of this pass, so nothing in §A.1–§A.3 has been rewritten and the direction still stands on the two references that resolved (§A.4, §A.5), exactly as Pass 1 said it would. This is recorded rather than quietly skipped: if the notes arrive, §A.1–§A.3 get redone and §A.6 gets re-checked against them.
 
 ### A.1 `dribbble.com/shots/26995447-Personal-Portfolio-Website-Animations` — **not seen**
 
@@ -337,8 +339,8 @@ Content 320, margins 20. Sections in §7 order.
 │░  │ Pocket Manager               │    ░│      mobile form: name, 5-node
 │░  │ ●─●─●─●─◉        Live        │    ░│      mini track, current stage
 │░  ├──────────────────────────────┤    ░│      named as text.
-│░  │ [second app]                 │    ░│      [BLOCKED: does product 2
-│░  │ ●─●─◉╌○╌○   Final touches    │    ░│       appear at all? Q9]
+│░  │ [second app]                 │    ░│      product 2 SHIPS (item 9a):
+│░  │ ●─●─◉╌○╌○   Final touches    │    ░│      a full name-agnostic page.
 │░  └──────────────────────────────┘    ░│
 │░                                      ░│  24
 │░  A second app is in final touches    ░│      body --muted
@@ -1242,11 +1244,11 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │  │ Motive ...                       │  │      tilt +0.8 deg
 │  └──────────────────────────────────┘  │      ... and so on, §D.4
 │                                        │
-│  github.com/hellosahib                 │      [BLOCKED: prominence depends
-│                                        │       on the Fact Checker's read
-│  Tell us what you're building.         │       of the profile]
-│  thegeekdogs@gmail.com                 │
-└────────────────────────────────────────┘
+│  github.com/hellosahib                 │      item 39: GitHub links go on
+│                                        │      both person pages.
+│  Tell us what you're building.         │
+│  sahiboffc@gmail.com                   │      HIS address, not the studio's
+└────────────────────────────────────────┘      (§B.10, item 53)
 ```
 
 ### F.8 Sahib, 1440
@@ -1316,7 +1318,7 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │ └──────────────┘  └──────────────┘                                       │
 │                                                                     128  │
 ├──────────────────────────────────────────────────────────────────────────┤
-│ Tell us what you're building.   thegeekdogs@gmail.com   github.com/...   │
+│ Tell us what you're building.   sahiboffc@gmail.com   github.com/...     │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -1441,7 +1443,7 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
-**T1 at 360** — the three columns collapse to one, and the structure survives as **indentation depth plus a rule**, not as horizontal position. Core content is full width on `--t-core`; edge content is inset 24px with a 2px `--t-ink` left rule and a condensed platform label above it. The reader still learns which things are shared and which are platform-specific, which is the only thing the layout has to survive.
+**T1 at 360** — the three columns collapse to one, and the structure survives as **indentation depth plus a rule**, not as horizontal position. Core content is full width on `--t-core`; edge content is inset 24px with a 2px `--t-ink` left rule and a condensed platform label above it. The two ticks out of the Motive card rotate from left-and-right to **down-and-down**, pointing at the two edge blocks that now sit below rather than beside — the same 2px stroke, the same labels, the same claim. The reader still learns which things are shared, which are platform-specific, and that one product is all three, which is the only thing the layout has to survive.
 
 ```
 ┌────────────────────────────────────────┐ 360  --t-ground
@@ -1454,54 +1456,88 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 │  gets made.                            │
 │                                        │  24
 │  ┌──────────────────────────────────┐  │      portrait slot 320 x 320
-│  │ [BLOCKED: headshot route, Q23]   │  │      reserved
+│  │ [PENDING: AI headshot, item 23   │  │      reserved
+│  │  option 2. image to be supplied] │  │
 │  └──────────────────────────────────┘  │
 │                                        │  56
 │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │      4px --lamp-ink cap: the ONLY
 │ ▒  SHARED                            ▒ │      colour on the page, marking
 │ ▒                                    ▒ │      the core. label Anek wdth 75.
-│ ▒  What belongs to everyone          ▒ │
-│ ▒                                    ▒ │      --t-core field, full bleed to
-│ ▒  The practice. The review gate.    ▒ │      the content edges. 20px pad.
-│ ▒  The workflow rule.                ▒ │
+│ ▒  [COPY NEEDED: core statement,    ▒ │
+│ ▒   ~40 words]                       ▒ │      --t-core field, full bleed to
+│ ▒                                    ▒ │      the content edges. 20px pad.
+│ ▒  99.8%          ~20%               ▒ │
+│ ▒  crash-free     faster start       ▒ │      numeral-large, tabular.
+│ ▒  [CONFIRM: resume-sourced]         ▒ │
 │ ▒                                    ▒ │
 │ ▒  ┌──────────────────────────────┐  ▒ │      the Motive card sits INSIDE
 │ ▒  │ Motive                       │  ▒ │      the core field, because the
 │ ▒  │ Fleet management, US         │  ▒ │      KMP work is shared work.
 │ ▒  │ 2024 - now                   │  ▒ │      white @82% on --t-core,
 │ ▒  │ ─────────────────────────────│  ▒ │      surface #F9F9F9, 15.66:1
-│ ▒  │ Software Engineer, Android   │  ▒ │
-│ ▒  │ Kotlin, Coroutines, KMP      │  ▒ │
+│ ▒  │ Software Engineer 2          │  ▒ │
+│ ▒  │ Motive Fleet App             │  ▒ │
+│ ▒  │ Kotlin, KMP business logic,  │  ▒ │
+│ ▒  │ Clean Architecture           │  ▒ │
 │ ▒  └──────────────────────────────┘  ▒ │
+│ ▒     │                       │      ▒ │      the two TICKS out of the card
+│ ▒     ▼ to Android            ▼ to   ▒ │      survive the collapse: at 360
+│ ▒       edge                    iOS  ▒ │      they point DOWN to the two
+│ ▒                                    ▒ │      edge blocks instead of left
+│ ▒  CI/CD and workflow automation.    ▒ │      and right. same 2px --t-ink.
+│ ▒  Releases: phased rollouts, crash  ▒ │
+│ ▒  and ANR monitoring. Bluetooth     ▒ │
+│ ▒  device verification flows.        ▒ │
+│ ▒                                    ▒ │
+│ ▒  THE GATES SHE OWNS                ▒ │      item 19, in the CORE
+│ ▒  Product spec, code review,        ▒ │
+│ ▒  device QA, security and privacy,  ▒ │
+│ ▒  ASO                               ▒ │
 │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
 │                                        │  40
 │  │ ANDROID EDGE                        │      inset 24px + 2px --t-ink
 │  │                                     │      left rule. depth replaces
 │  │ ┌────────────────────────────────┐  │      horizontal position.
+│  │ │ Motive                         │  │
+│  │ │ 2024 - now                     │  │      Motive appears here too, as
+│  │ │ ───────────────────────────────│  │      the Compose migration -- the
+│  │ │ Jetpack Compose migration      │  │      Android-only half of the same
+│  │ └────────────────────────────────┘  │      job. that is the layout doing
+│  │      ▁▁▁▁▁▁▁▁▁▁▁                    │      its work, not a duplicate.
+│  │ ┌────────────────────────────────┐  │
 │  │ │ HSBC                           │  │
 │  │ │ Global bank                    │  │
 │  │ │ 2021 - 2023                    │  │
 │  │ │ ───────────────────────────────│  │
 │  │ │ Software Engineer              │  │
-│  │ │ REST APIs, Retrofit            │  │
+│  │ │ [no product name -- item 27]   │  │
+│  │ │ MVVM migration, REST, Retrofit │  │
 │  │ └────────────────────────────────┘  │
 │  │      ▁▁▁▁▁▁▁▁▁▁▁                    │
 │  │ ┌────────────────────────────────┐  │
 │  │ │ Naskay Technologies            │  │
-│  │ │ ...                            │  │
+│  │ │ 2020 - 2021                    │  │
+│  │ │ ───────────────────────────────│  │
+│  │ │ Android Intern                 │  │
+│  │ │ Kotlin, Glide, Retrofit        │  │
 │  │ └────────────────────────────────┘  │
 │                                        │  40
 │  │ iOS EDGE                            │
-│  │ [BLOCKED: what iOS work can be      │
-│  │  named? §5.4 says she works the     │
-│  │  iOS side; §7's table names none]   │
+│  │ ┌────────────────────────────────┐  │      item 46. the column is no
+│  │ │ Motive Fleet App               │  │      longer structure with nothing
+│  │ │ 2024 - now                     │  │      in it.
+│  │ │ ───────────────────────────────│  │
+│  │ │ [COPY NEEDED: <= 12 words. no  │  │      MUST NOT claim Swift or UIKit
+│  │ │  Swift/UIKit claim]            │  │      work -- the resume names KMP
+│  │ └────────────────────────────────┘  │      shared modules, not Swift.
 │                                        │  56
-│  The review gates below are hers.      │      the §9.3 home-page link,
-│  [COPY NEEDED: ~25 words]              │      restated here
+│  Those are the same four gates the     │      the §9.3 home-page link,
+│  home page names.                      │      restated here
+│  [COPY NEEDED: ~25 words]              │
 │                                        │
 │  github.com/Tanya-jain99               │
-│  Tell us what you're building.         │
-└────────────────────────────────────────┘
+│  jaintanya999@gmail.com                │      her address, not the studio's
+└────────────────────────────────────────┘      (§B.10, item 53)
 ```
 
 ### G.4 Direction T2 — the pipeline she owns *(unblocked, buildable, still not recommended)*
@@ -1533,7 +1569,7 @@ Combined with item 19, every node would carry both a gate she owns and a named p
 │ ← thegeekdogs                                                        72  │
 ├──────────────────────────────────────────────────────────────────────────┤
 │ Tanya Jain                       ┌───────────────────────────────────┐   │
-│ She owns how the work gets made. │ [BLOCKED: headshot route]         │   │
+│ She owns how the work gets made. │ [PENDING: AI headshot, item 23]   │   │
 │                    (cols 1-5)    └───────────────────────────────────┘   │
 ├──────────────────────────────────────────────────────────────────────────┤
 │  THE GRAPH  (cols 1-8)                       │  PANEL (cols 9-12)        │
@@ -1586,7 +1622,7 @@ Pass 1 recommended T1 for one reason only: T2's content did not exist. `docs/tan
 
 **What would flip it.** If the floor were ever cut back to five agent desks, argument 1 evaporates and T2 becomes the stronger page. Tanya's sign-off comes after the build (§9.3), and T2 is now a live, unblocked option at that review rather than a documented might-have-been — which is a materially better position than it was in Pass 1. The swap remains a layout-module change and touches no token and no shared component (§G.4).
 
-On equality: her page carries the harder layout problem of the two (a three-field structure that has to survive collapse to one column while keeping its meaning, versus Sahib's matrix which collapses by rotation), and it does not pad. §7 warns against padding her row count to match his; she has three companies and gets three cards, and the page does not compensate by inflating anything. Nothing on her page is softer, rounder, paler or more decorative than his; if anything hers is the stricter of the two.
+On equality: her page carries the harder layout problem of the two (a three-field structure that has to survive collapse to one column while keeping its meaning, versus Sahib's matrix which collapses by rotation), and it does not pad. §7 warns against padding her row count to match his; she has three companies and gets four cards — three companies plus the iOS-edge card, and the fourth exists because Motive genuinely lands on two layers, not because his page has five. The test is whether removing the iOS-edge card would remove information: it would, because item 46 is the answer to a question §I asked, so it stays. Nothing on her page is softer, rounder, paler or more decorative than his; if anything hers is the stricter of the two.
 
 ---
 
@@ -1647,34 +1683,35 @@ Library choice is not mine. The only thing this spec requires of it: the one loo
 
 ## I. Open questions
 
-Each answerable in one sentence. These are design decisions that need a human; factual and copy gaps are already in `QUESTIONS.md` and are not repeated here. Item 4 below expands `QUESTIONS.md` item 32.
+Round 3. Items 1–7 and 9–11 of Pass 1 are answered in `QUESTIONS.md` (items 45–55) and have been applied in place above; they are not repeated here. What is left is one carry-over and eight new ones, each answerable in one sentence. Factual and copy gaps live in `QUESTIONS.md` and `COPY.md` and are not duplicated here.
 
-1. **Dark mode:** do we ship a `prefers-color-scheme: dark` variant, or lock the site to one appearance per world? *(Recommendation: lock it. Three worlds × two schemes is six palettes to keep at AA and it doubles the review surface for no stated benefit.)*
-2. **The compressed work-card strip on the home page** (§6.1 permits it "only if it earns its place"): include or omit? *(Recommendation: omit. The floor already spent the boldness, and the strip would put the same component on four of seven pages.)*
-3. **Omitting the Designer desk from the visible floor** (§C.2): acceptable, or does it read as the studio quietly admitting it has no design discipline given §5.4? *(If it is a problem, the fix is to swap Spec Writer out for Designer, which costs nothing but breaks the one-desk-per-gate mapping.)*
-4. **Floor station count:** five agent desks confirmed, or six? *(Recommendation: five. §6 asks for five to six; five keeps every touch target above 88 × 72 at 360 and lets every one of the four human gates be represented.)*
-5. **Does a TheGeekDogs wordmark or logo exist, and may we use it?** Nothing in §5 names one, so the header currently sets the studio name in the display face. *(This is a real gap: a site with no mark at all is a choice, and it should be a deliberate one.)*
-6. **Sahib's native-iOS and KMP attribution** (§F.1): can a company or product be named for each, or does the coverage map ship with two columns carrying the "asserted" state and an honest line beneath? *(This is the largest hole in his page's argument.)*
-7. **Tanya's iOS work** (§G.3): is there anything nameable for the iOS edge column, or does that column carry the structure with no card in it? *(§5.4 says she works the iOS side; §7's table names nothing there.)*
-8. **Hero subhead length** (§B.7): may the Copywriter cut variant A's subhead from 33 words to ≤ 26 so the primary CTA stays above the fold at 360 on a 640-tall viewport?
-9. **The persistent contact plate** (§B.10): does it print the email address in plain text — scrapeable — or carry a label over a `mailto:`? *(Design prefers the plain address; it is more credible on a page arguing you will get a real reply.)*
-10. **Do the person pages print with the studio floor omitted entirely** (recommended) **or with the roster as a text list?** Somebody will PDF these.
-11. **Two of the five §5.6 references were unreachable** (§A.1–A.3). Can anyone supply the Dribbble shot as an image, and the two designers' actual portfolio URLs? *(Not blocking; the direction stands on the two references that resolved.)*
-
----
+1. **`[APPROVE: prop list]` — the two cabins' contents** (§C.4). Item 52 asked for persona-specific items plus a painting or a whiteboard; these are proposals, they are decor and not facts, and they need a yes or a swap:
+   - **Sahib's cabin:** a whiteboard on the far wall carrying a three-box architecture sketch with no text; a second monitor turned portrait, drawn dark; a desk plant.
+   - **Tanya's cabin:** a painting on the far wall, one frame with a two-band abstract inside it; a device shelf holding three phones on a riser; a stack of three books.
+   - Either prop in either cabin can be swapped for another at the same segment cost. What cannot happen without redrawing the budget is a third prop.
+2. **The Designer desk's checking gate** (§C.2). COPY.md §2.4 says "Design review"; item 42 mapped design review onto architecture review back when the desk was off the floor. Now that it is visible, does its card say design review, architecture review, or something else?
+3. **The Release Watcher desk's gate, and its collision with the empty chair** (§C.2). Item 42 mapped the release gate onto the chair's Ship approval. With both on the floor, the chair is the decision to ship and the Release Watcher needs a gate of its own — most likely something covering what happens *after* the release, since that is what the role's own card describes.
+4. **The two-owner gates on the human cards** (§C.6). Code review is Sahib's and Tanya's; the Spec Writer's architecture review is Sahib's while item 19 gives the product spec to Tanya. Do the cards simply list both names, or does a shared gate get a treatment of its own? A one-line copy fix may be enough; if it is not, this is a card-design change and it should be decided before the card slot's min-height is locked.
+5. **The mobile floor section is now ~1180px tall** (§C.7) — up from ~1000 at eight stations, because ten stations added 50px of room and the two human cards' gate lists pushed the card panel from 168 to 320. Accept it, or shorten the two human card bodies (COPY.md §2.3) so the panel comes back down? The station count and the target sizes are not on the table.
+6. **Pocket Manager's stack**, for the TheGeekDogs row of Sahib's coverage map (§F.7, §F.8). Item 44 sends this to the local codebase rather than answering it, so the cell currently rests on item 44's own phrase "Android Studio project" and needs the Fact Checker's read before publish.
+7. **T2 is now unblocked** (§G.4, §G.5). The resume supplies six named practices with places and item 19 supplies the gates, so Tanya's alternative direction could be built honestly today. §G.5 recommends T1 anyway, on a new argument: the floor at ten stations has made the home page the site's pipeline diagram and T2 would be the second one. Confirm T1 stands until her post-build review, or ask for the swap now.
+8. **Person pages' closing line** (§B.10). The plate prints the person's own address on `/sahib/` and `/tanya/` per item 53; the spec extends that to each page's own closing CTA so the plate and the page never disagree. Is that right, or should the closing line still route to the studio inbox?
+9. **Hero subhead length** (§B.7) — carried over unanswered. May the Copywriter cut variant A's subhead from 33 words to ≤ 26 so the primary CTA stays above the fold at 360 on a 640-tall viewport?
 
 ## J. Before-ship: remove one thing (§9.4)
 
-Per page, the thing to cut in the final pass. These are pre-committed so the decision is not relitigated when everyone is attached to the work.
+Per page, the thing to cut in the final pass. These are pre-committed so the decision is not relitigated when everyone is attached to the work. Every row below was re-checked against the round-3 decisions; three moved.
 
-| Page | Remove |
-|---|---|
-| `/` | The compressed work-card strip, if open question 2 came back as "include". If it did not ship, remove the floor's faint floor-seam lines instead — the desks define the room without them. |
-| `/work/` | The one-line description under each product name. The product name and its stage track say enough on an index page. |
-| `/work/pocket-manager/` | The Play Store badge graphic. The 4.3 / 24 / 1K+ figures already carry it, and the badge is Google's chrome sitting inside our composition. |
-| `/work/wedding-planner/` | The second device screenshot. One real screen of the multi-function view is the differentiator (§5.3); a second one dilutes it. |
-| `/sahib/` | The finance-domain annotation running down the map's row labels. It is texture competing with the map, and the work cards below already carry the domains. |
-| `/tanya/` | The platform glyphs at the edge columns. The words "Android" and "iOS" are shorter, clearer and cheaper than any icon. |
-| `/contact/` | The second call to action. One email, one link, one answer. |
-| `/404` | Everything except the line and the link home. The empty room is the joke; a nav menu underneath it is not. |
-| everywhere | The noise texture on the work-card surface (§D.6). The base, the edge and the tilt carry the object; the noise is the fourth thing propping up three that already work. |
+| Page | Remove | Changed this round? |
+|---|---|---|
+| `/` | **The floor's faint floor-seam lines.** The desks, the cabin walls and the empty modules define the room without them, and at 6 × 5 there are 30 of them rather than 20. | **Yes.** Pass 1's answer was the work-card strip, which item 50 has now put in the page on purpose. A pre-committed cut cannot be the thing the owners just asked for, so the fallback becomes the commitment. |
+| `/work/` | The one-line description under each product name. The product name and its stage track say enough on an index page. | No. |
+| `/work/pocket-manager/` | The Play Store badge graphic. The 4.3 / 24 / 1K+ figures already carry it, and the badge is Google's chrome sitting inside our composition. | No. |
+| `/work/wedding-planner/` | The second device screenshot. One real screen of the multi-function view is the differentiator (§5.3); a second one dilutes it. | No — and the row is now live rather than conditional, since item 9a ships the page. |
+| `/sahib/` | The finance-domain annotation running down the map's row labels. It is texture competing with the map, and the work cards below already carry the domains. | No, and the case is **stronger**: item 45 took the map from 6 filled cells to 10, every one now printing a product name. The map got busier, so the second annotation running down its left edge has less room to earn than it did. |
+| `/tanya/` | The platform glyphs at the edge columns. The words "Android" and "iOS" are shorter, clearer and cheaper than any icon. | No, and the case is **stronger**: Motive now appears on all three layers (§G.3), so the edge labels are carrying a real distinction and an icon would blur exactly the thing the layout is arguing. |
+| `/contact/` | The second call to action. One email, one link, one answer. | No — and with item 11 removing the form, the page is now three addresses, which makes the cut easier rather than harder. |
+| `/404` | Everything except the line and the link home. The empty room is the joke; a nav menu underneath it is not. | No. |
+| everywhere | The noise texture on the work-card surface (§D.6). The base, the edge and the tilt carry the object; the noise is the fourth thing propping up three that already work. | No, and it now applies to four more objects: the compressed strip's cards use the same surface. |
+
+**Not on this list, and deliberately.** The two cabins' props (§C.4) are not a "remove one thing" candidate, because item 52 asked for them by name. If the floor ever has to lose weight the order is in §C.10 — seam lines, then the second prop in each cabin, then the cabin walls — and a station is never the cut.
