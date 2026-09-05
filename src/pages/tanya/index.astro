@@ -48,7 +48,17 @@ const schema = await personGraph(person);
             <h1>{person.data.name}</h1>
             <p class="intro__role">{TANYA.roleLine}</p>
             <p class="muted">{TANYA.body}</p>
-            <p class="muted">{TANYA.secondParagraph}</p>
+            <!--
+              §J round 12, `/tanya/`'s "remove one thing": **the intro's second paragraph**
+              (COPY §7.1: "Underneath that is the shape she works on: a shared core, native
+              code at the edges, and the developer practices that keep the two from
+              drifting apart."). Her page IS that sentence — §G.3's whole argument is that
+              the visitor learns the shape of KMP by reading a page built in it — and
+              saying it as well as building it is the one place on this page where the
+              layout explains its own joke before the reader gets it. The run-B reviewer
+              nominated the two full-height edge rules and §G.3 cuts those by rule instead,
+              so they were not available. The string stays in `copy.ts`, unplaced.
+            -->
             <p class="print-address">{TANYA.links.email.address}</p>
           </div>
           <div class="intro__portrait">
