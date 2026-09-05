@@ -12,6 +12,18 @@ export const WORDMARK_ACCESSIBLE_NAME = 'TheGeekDogs, home';
 
 export const SKIP_LINK = 'Skip to main content';
 
+/**
+ * COPY.md §1, the persistent contact plate's visible label below 768 (DESIGN.md §B.10
+ * round 10). Five characters against the ~73px of type a 112px plate leaves. One string
+ * for all three worlds: it carries no pronoun, because `us` would name the studio while
+ * the `mailto:` names one person.
+ *
+ * Its accessible name is not a second string — it is `Email <address>. Opens a new
+ * message about a project.`, the same pattern the >= 768 plate uses, built in
+ * ContactPlate.astro from the page's own address.
+ */
+export const PLATE_LABEL = 'Email';
+
 /** COPY.md §1, persistent contact affordance. One affordance, one destination. */
 export const CONTACT_AFFORDANCE = {
   label: 'Start a project',

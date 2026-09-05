@@ -1,5 +1,5 @@
 ---
-import { STUDIO_EMAIL } from '../lib/copy';
+import { PLATE_LABEL, STUDIO_EMAIL } from '../lib/copy';
 
 /**
  * DESIGN.md §B.10 — `position: sticky; bottom: 0` on an element inside a wrapper
@@ -20,24 +20,30 @@ import { STUDIO_EMAIL } from '../lib/copy';
  * address substituted, so the spoken name and the printed label never name different
  * people.
  *
- * **Below 768 the plate does not render, and that is a copy blocker rather than a
- * decision.** §B.10 round 10 withdrew the 260px address plate at that width on measured
- * evidence — at 360 it covered 236 of the card panel's 280px measure, 84% of the line —
- * and replaced it with a 112 x 56 plate carrying a LABEL rather than the address, since
- * 112 with its padding leaves ~73px of type against the 169px the shortest address
- * needs. Both of that label's strings are `[COPY NEEDED]` in §B.10 and neither is in
- * COPY.md: not the <= 9-character label, not the <= 8-word accessible name that has to
- * speak the address the plate links to. An amber box with nothing in it and no
- * accessible name is not a smaller failure than the one round 10 fixed, so the element
- * is held until the strings land, exactly as the strip's row links and §B.8's pipeline
- * label were held until COPY.md carried them.
+ * **Below 768 the plate is 112 x 56 and prints a LABEL rather than the address.**
+ * §B.10 round 10 withdrew the 260px address plate at that width on measured evidence —
+ * at 360 it covered 236 of the card panel's 280px measure, 84% of the line — because 112
+ * with its padding leaves ~73px of type against the 169px the shortest address needs.
+ * Both strings were `[COPY NEEDED]` through run B and the element was held; COPY.md §1
+ * now carries them, so the plate renders at every width.
  *
- * Nothing is lost that is not recoverable: §B.10's own note is that below 768 what the
- * plate gives up is being THE printed proof, and the address still prints in the page's
- * final CTA, three times on /contact/, and in each person page's closing block. The
- * 112px width and the 72px reserve are already in `tokens.css`, and §B.10's composition
- * rule is honoured at the narrower 128px band, so the day the two strings arrive this
- * is one `display` declaration.
+ * - Visible label below 768: `Email`. One string for all three worlds; it carries no
+ *   pronoun on purpose, because `us` would name the studio while the `mailto:` names one
+ *   person, and §B.10 requires that the plate and the page never disagree about who is
+ *   being written to.
+ * - Accessible name, one pattern at BOTH widths: `Email <address>. Opens a new message
+ *   about a project.` with the page's own address substituted. It is unchanged from the
+ *   >= 768 plate on purpose — below 768 it is the only place the address is spoken, so
+ *   the pattern does not shorten with the plate.
+ *
+ * Both visible forms are contained in that one name — `Email` is its first word and the
+ * address is its second — so SC 2.5.3, Label in Name, holds at both widths without a
+ * second string.
+ *
+ * Item 53 is amended below 768, not overturned: the address still prints in plain text
+ * in the page's own final CTA, three times on /contact/, and in each person page's
+ * closing block. What the plate gives up at that width is being THE printed proof; what
+ * it keeps is being the way to act.
  */
 interface Props {
   address?: string;
@@ -50,12 +56,30 @@ const { address = STUDIO_EMAIL } = Astro.props;
   class="plate"
   data-cta="contact-plate"
   href={`mailto:${address}`}
-  aria-label={`Email ${address}. Opens a new message about a project.`}>{address}</a>
+  aria-label={`Email ${address}. Opens a new message about a project.`}
+  ><span class="plate__label">{PLATE_LABEL}</span><span class="plate__address">{address}</span></a
+>
 
 <style>
-  /* See the note above: held below 768 until §B.10 round 10's two strings exist. */
+  /*
+    §B.10 round 10 — two widths, ONE object. Nothing but which of the two strings is
+    rendered changes here: the fill, the border, the radius, the type size, the inset,
+    the focus ring and the print rule are all on `.plate` in global.css and are shared.
+    The width itself is `--plate-width`, which tokens.css already switches at 768.
+
+    Exactly one of the two spans is in the box at any width, so the visible label is
+    never both and never neither.
+  */
+  .plate__label {
+    display: none;
+  }
+
   @media (max-width: 767px) {
-    .plate {
+    .plate__label {
+      display: inline;
+    }
+
+    .plate__address {
       display: none;
     }
   }
