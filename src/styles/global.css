@@ -509,6 +509,37 @@
   .section--reserve {
     padding-block-end: calc(var(--section-pad) + var(--plate-reserve));
   }
+
+  /*
+    DESIGN.md §D.1 round 12, ruled: **no work card is wider than 420px, at any width, on
+    any page, in any world — and where the grid gives more, the card is left-aligned in
+    its column and the remaining space is left as space.**
+
+    §D.1's table had a 360 row and a 1024 row and no 768 row, and the build filled the gap
+    with "full width": a compressed strip card rendered 704 x 112 on `/` and a full card
+    710 x 250-330 on `/sahib/` (review items H8 and S3). Both of this section's own
+    arguments break there. §D.2's stand is 56% of the card's width, so a 710px card
+    overhangs its own lip by ~155px at each end and reads as a slab balanced on a wedge
+    rather than as a thing resting on a counter — which §D.2 says is the entire illusion.
+    And §D.5's shelf-talker hierarchy needs the date in the price position at the right of
+    a NARROW object; at 710 the company and the date sit together at the left with ~500px
+    of white beside them and the price position stops being a position.
+
+    420 is the width at which the stand is 235, the company still sets on one line at
+    §D.5's 24/28, and the date's right edge is close enough to the company's to read as
+    the same object. It is one number rather than a per-page fix, and it binds only at
+    768-1023 and on the strip's 2-up above 1024 — 360 is 320 by content width, 1024 is 316
+    by the two-column grid and 1440 is 328 by the three-column grid, all already inside it.
+
+    It is stated once, here, because the two card components (`.card` on the person pages,
+    `.work-card` on the strip) are two DOM shapes of one object and §D.1 rules on the
+    object. `max-inline-size` in a grid cell leaves the item at the start of its area,
+    which is the left-alignment half of the ruling.
+  */
+  .card,
+  .work-card {
+    max-inline-size: 420px;
+  }
 }
 
 /*
@@ -604,5 +635,17 @@
      where the scoped selector can actually outrank the component's own `display: flex`. */
   .site-footer nav {
     display: none;
+  }
+
+  /*
+    §D.1's 420 cap is about §D.2's stand and §D.5's price position, and §D.8 removes both:
+    on paper the card has no stand, no shadow, no tilt and no padding, and the company and
+    the date set on one line with the date right-aligned so a printed column of dates
+    scans. Capping that line at 420 in a ~700px printable width would put the dates in the
+    middle of the page. The cap is a screen rule and it says so here.
+  */
+  .card,
+  .work-card {
+    max-inline-size: none;
   }
 }
