@@ -13,7 +13,7 @@
     "check": "astro check",
     "fonts:sync": "node scripts/sync-fonts.mjs",
     "icons": "node scripts/build-icons.mjs",
-    "qa": "npm run qa:build && npm run qa:no-slop && npm run qa:images && npm run qa:links && npm run qa:console && npm run qa:contrast && npm run qa:floor && npm run qa:weight",
+    "qa": "npm run qa:build && npm run qa:no-slop && npm run qa:images && npm run qa:links && npm run qa:console && npm run qa:contrast && npm run qa:worlds && npm run qa:floor && npm run qa:weight",
     "qa:build": "node scripts/qa-build.mjs",
     "qa:no-slop": "node scripts/qa-no-slop.mjs",
     "qa:links": "node scripts/qa-links.mjs",
@@ -23,7 +23,8 @@
     "qa:floor": "npm run qa:floor:budget && npm run qa:floor:pointer",
     "qa:floor:budget": "node scripts/check-floor-budget.mjs",
     "qa:floor:pointer": "node scripts/check-floor-pointer.mjs",
-    "qa:weight": "node scripts/measure-bundles.mjs"
+    "qa:weight": "node scripts/measure-bundles.mjs",
+    "qa:worlds": "node scripts/qa-worlds.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

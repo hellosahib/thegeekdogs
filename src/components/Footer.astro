@@ -133,4 +133,22 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     font-weight: 600;
     color: var(--tgd-on-room-muted);
   }
+
+  /*
+    DESIGN.md §D.8 — paper cannot follow a link, so the nav repeat and the Elsewhere
+    group do not print. The studio line, the location, the address and the employer note
+    do: brief §5.4 requires the note wherever an employer name is printed, and a person
+    page prints five of them.
+  */
+  @media print {
+    .site-footer__links,
+    .site-footer__heading {
+      display: none;
+    }
+
+    .site-footer {
+      padding-block-start: var(--space-16);
+      padding-block-end: 0;
+    }
+  }
 </style>

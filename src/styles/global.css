@@ -1,10 +1,21 @@
 /*
   global.css — Tailwind v4 entry.
 
-  Order matters: tokens.css first, so every custom property exists before @theme
-  points at it, and before any base rule consumes it.
+  Order matters twice over.
+
+  1. tokens.css first, so every custom property exists before @theme points at it and
+     before any base rule consumes it.
+  2. Every world partial AFTER tokens.css. `:root` and `[data-world="…"]` have the SAME
+     specificity — a pseudo-class and an attribute selector are both (0,1,0) — so the
+     later block wins, and a world partial imported ahead of `:root` loses every one of
+     its --tgd-* remaps to the studio's. That is not theoretical: it happened the moment
+     Tanya's tokens moved into their own file (PLAN.md §1.2's swappable partial) with the
+     import at the top of tokens.css, and her whole page rendered the studio palette. The
+     import lives here, in order, and `qa:worlds` measures the result in a browser so the
+     next arrangement of these files cannot break it silently.
 */
 @import './tokens.css';
+@import './worlds/tanya.css';
 @import 'tailwindcss';
 
 /*
@@ -528,10 +539,9 @@
     border-block-end-color: var(--floor);
   }
 
-  /* Links to places paper cannot go. The employer note and the rights line stay, because
-     brief §5.4 requires the note wherever an employer name is printed. */
-  .site-footer nav,
-  .site-footer__links {
+  /* Links to places paper cannot go. The footer's own print rules live in Footer.astro,
+     where the scoped selector can actually outrank the component's own `display: flex`. */
+  .site-footer nav {
     display: none;
   }
 }

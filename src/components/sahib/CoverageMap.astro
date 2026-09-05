@@ -468,9 +468,23 @@ function productFor(place: (typeof places)[number], key: string): string | undef
       animation: none;
     }
 
+    /*
+      §D.8 — --lamp never prints, so the lit cell keeps its 2px boundary and loses its
+      fill. Its text has to come back to the page ink with it: --s-lamp-ink is the ink
+      that reads ON the amber, and with the amber gone it would be a light grey on white,
+      which is the silently-unreadable failure §D.8's whole light-token rule removes.
+    */
     .map__cell[data-filled][data-lamp] {
       background-color: transparent;
       border-color: currentColor;
+    }
+
+    .map__cell[data-filled][data-lamp] .map__cell-surface {
+      color: #444;
+    }
+
+    .map__cell[data-filled][data-lamp] .map__cell-product {
+      color: inherit;
     }
   }
 </style>

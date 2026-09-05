@@ -19,6 +19,25 @@ import { STUDIO_EMAIL } from '../lib/copy';
  * COPY.md §1 gives one accessible-name pattern for all three, with the page's own
  * address substituted, so the spoken name and the printed label never name different
  * people.
+ *
+ * **Below 768 the plate does not render, and that is a copy blocker rather than a
+ * decision.** §B.10 round 10 withdrew the 260px address plate at that width on measured
+ * evidence — at 360 it covered 236 of the card panel's 280px measure, 84% of the line —
+ * and replaced it with a 112 x 56 plate carrying a LABEL rather than the address, since
+ * 112 with its padding leaves ~73px of type against the 169px the shortest address
+ * needs. Both of that label's strings are `[COPY NEEDED]` in §B.10 and neither is in
+ * COPY.md: not the <= 9-character label, not the <= 8-word accessible name that has to
+ * speak the address the plate links to. An amber box with nothing in it and no
+ * accessible name is not a smaller failure than the one round 10 fixed, so the element
+ * is held until the strings land, exactly as the strip's row links and §B.8's pipeline
+ * label were held until COPY.md carried them.
+ *
+ * Nothing is lost that is not recoverable: §B.10's own note is that below 768 what the
+ * plate gives up is being THE printed proof, and the address still prints in the page's
+ * final CTA, three times on /contact/, and in each person page's closing block. The
+ * 112px width and the 72px reserve are already in `tokens.css`, and §B.10's composition
+ * rule is honoured at the narrower 128px band, so the day the two strings arrive this
+ * is one `display` declaration.
  */
 interface Props {
   address?: string;
@@ -32,3 +51,12 @@ const { address = STUDIO_EMAIL } = Astro.props;
   data-cta="contact-plate"
   href={`mailto:${address}`}
   aria-label={`Email ${address}. Opens a new message about a project.`}>{address}</a>
+
+<style>
+  /* See the note above: held below 768 until §B.10 round 10's two strings exist. */
+  @media (max-width: 767px) {
+    .plate {
+      display: none;
+    }
+  }
+</style>

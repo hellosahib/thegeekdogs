@@ -274,21 +274,32 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
       align-items: stretch;
     }
 
+    /*
+      The three fields are one row, and the row is explicit. DOM order is core, Android,
+      iOS (§G.3's 360 collapse), so auto-placement would put the core in row 1 and then
+      refuse to backtrack to col 1 for the Android edge — which rendered the band as
+      three stacked blocks at every width above 1024. `grid-row` on each field is the
+      whole fix, and it is what lets the source order stay the reading order.
+    */
     .edge--android {
       grid-column: 1 / span 3;
+      grid-row: 1;
     }
 
     .core {
       grid-column: 4 / span 4;
+      grid-row: 1;
       padding: var(--space-32) var(--space-24) var(--space-48);
     }
 
     .edge--ios {
       grid-column: 8 / span 2;
+      grid-row: 1;
     }
 
     .core-band__gates-link {
       grid-column: 4 / span 4;
+      grid-row: 2;
     }
 
     .edge__note {

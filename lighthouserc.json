@@ -5,6 +5,8 @@
       "url": [
         "http://localhost/index.html",
         "http://localhost/work/index.html",
+        "http://localhost/sahib/index.html",
+        "http://localhost/tanya/index.html",
         "http://localhost/work/pocket-manager/index.html",
         "http://localhost/work/wedding-planner/index.html",
         "http://localhost/contact/index.html"
@@ -18,16 +20,66 @@
     },
     "assert": {
       "assertions": {
-        "resource-summary:script:size": ["error", { "maxNumericValue": 102400 }],
-        "resource-summary:stylesheet:size": ["error", { "maxNumericValue": 40960 }],
-        "resource-summary:total:size": ["error", { "maxNumericValue": 1258291 }],
-        "largest-contentful-paint": ["error", { "maxNumericValue": 2000 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
-        "total-blocking-time": ["warn", { "maxNumericValue": 200 }],
-        "categories:performance": ["error", { "minScore": 0.95 }],
-        "categories:accessibility": ["error", { "minScore": 1 }],
-        "categories:best-practices": ["error", { "minScore": 0.95 }],
-        "categories:seo": ["error", { "minScore": 1 }]
+        "resource-summary:script:size": [
+          "error",
+          {
+            "maxNumericValue": 102400
+          }
+        ],
+        "resource-summary:stylesheet:size": [
+          "error",
+          {
+            "maxNumericValue": 40960
+          }
+        ],
+        "resource-summary:total:size": [
+          "error",
+          {
+            "maxNumericValue": 1258291
+          }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 2000
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.05
+          }
+        ],
+        "total-blocking-time": [
+          "warn",
+          {
+            "maxNumericValue": 200
+          }
+        ],
+        "categories:performance": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 1
+          }
+        ],
+        "categories:best-practices": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ],
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 1
+          }
+        ]
       }
     },
     "upload": {
