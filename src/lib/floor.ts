@@ -33,6 +33,15 @@ export const OWNS_LABEL = 'Owns';
 /** COPY.md §2.4 — the roster line's label. §B.8's own wireframe string. */
 export const ROSTER = { label: 'The full pipeline' } as const;
 
+/**
+ * COPY.md §10.2's one-sentence alt for the whole scene. §10.2 is explicit that it is
+ * for the static-image and OG cases only: on the page the SVG is decorative and takes
+ * `aria-hidden`, because the roster is real text and a screen reader must not meet it
+ * twice. It is used here on `og:image:alt` and nowhere else.
+ */
+export const FLOOR_ALT =
+  'An isometric studio floor seen from above: two desks with people working at them, a group of more schematic desks around them where the agents work, and one empty chair with a nameplate reading Ship approval.';
+
 /** COPY.md §2.2 — the lead-in and the instruction line, in that order. */
 export const FLOOR_INTRO = {
   leadIn: 'Two desks have people at them. The rest are agents.',

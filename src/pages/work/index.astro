@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactPlate from '../../components/ContactPlate.astro';
 import StageTrack from '../../components/StageTrack.astro';
 import { WORK_INDEX } from '../../lib/copy';
+import { workIndexGraph } from '../../lib/jsonld';
 
 /*
   DESIGN.md §B.11: two entries, each a --band block — product name, one line, the full
@@ -15,6 +16,7 @@ import { WORK_INDEX } from '../../lib/copy';
   short intro is what prints and the long body is not placed.
 */
 const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+const schema = await workIndexGraph();
 
 if (products.length === 0) {
   throw new Error('/work/ has no products; src/data/products must carry both entries.');
@@ -26,6 +28,8 @@ if (products.length === 0) {
   description={WORK_INDEX.meta.description}
   ogTitle={WORK_INDEX.meta.ogTitle}
   ogDescription={WORK_INDEX.meta.ogDescription}
+  ogImage="work"
+  schema={schema}
 >
   <div class="plate-span plate-span--page">
     <section class="section section--reserve work-section">

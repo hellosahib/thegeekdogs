@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactPlate from '../../components/ContactPlate.astro';
 import { CONTACT } from '../../lib/copy';
+import { studioGraph } from '../../lib/jsonld';
 
 /*
   COPY.md §8 and DESIGN.md §B.11. Three addressed blocks as a 3-up at >=1024, stacked at
@@ -12,6 +13,7 @@ import { CONTACT } from '../../lib/copy';
 
   There is no orchestrated moment here. A contact page's job is to be answered.
 */
+const schema = await studioGraph();
 ---
 
 <BaseLayout
@@ -19,6 +21,8 @@ import { CONTACT } from '../../lib/copy';
   description={CONTACT.meta.description}
   ogTitle={CONTACT.meta.ogTitle}
   ogDescription={CONTACT.meta.ogDescription}
+  ogImage="contact"
+  schema={schema}
 >
   <div class="plate-span plate-span--page">
     <section class="section">

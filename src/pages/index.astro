@@ -6,6 +6,8 @@ import StageTrackCompact from '../components/StageTrackCompact.astro';
 import StudioFloor from '../components/floor/StudioFloor.astro';
 import WorkCardStrip from '../components/WorkCardStrip.astro';
 import { STUDIO_EMAIL, CONTACT_AFFORDANCE, FINAL_CTA } from '../lib/copy';
+import { studioGraph } from '../lib/jsonld';
+import { FLOOR_ALT } from '../lib/floor';
 
 /*
   COPY.md §2, in §7's section order: hero, the floor, the work-card strip, the four
@@ -50,6 +52,8 @@ if (!stats || stats.rating !== 4.3 || stats.ratingCount !== 24) {
     "Pocket Manager's store stats no longer match COPY.md §2.7's figures; the proof block must be re-transcribed.",
   );
 }
+const schema = await studioGraph();
+
 const figures = [
   { figure: '4.3', label: 'stars' },
   { figure: '24', label: 'reviews' },
@@ -62,6 +66,9 @@ const figures = [
   description="Two-person mobile studio. Agents write most of the build; a person reviews the architecture, tests on real phones, and signs off before anything ships."
   ogTitle="AI writes a lot of our code. It doesn't get the last word."
   ogDescription="A two-person mobile studio with four human gates between the code and your users. Pocket Manager is live in the Play Store."
+  ogImage="home"
+  ogImageAlt={FLOOR_ALT}
+  schema={schema}
 >
   <section class="section hero">
     <div class="shell grid">

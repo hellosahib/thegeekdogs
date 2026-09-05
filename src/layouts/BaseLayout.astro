@@ -12,6 +12,16 @@ interface Props {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  /**
+   * The slug of this route's build-time OG card (`src/pages/og/[slug].png.ts`). A page
+   * with no card — /404, which COPY.md §9 gives no OG fields and which is `noindex` —
+   * emits no `og:image` rather than borrowing another page's.
+   */
+  ogImage?: string;
+  /** COPY.md §10.2's sentence, on the one card that is a picture of something. */
+  ogImageAlt?: string;
+  /** Structured data for this route, already serialised (see src/lib/jsonld.ts). */
+  schema?: string;
   /** PLAN.md §1.2 — one attribute picks which token set is live. */
   world?: 'studio' | 'sahib' | 'tanya';
   noindex?: boolean;
@@ -22,11 +32,15 @@ const {
   description,
   ogTitle = title,
   ogDescription = description,
+  ogImage,
+  ogImageAlt,
+  schema,
   world = 'studio',
   noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = ogImage ? new URL(`/og/${ogImage}.png`, Astro.site).href : undefined;
 
 /**
  * DESIGN.md §I item 4 — `theme-color` ships as two entries keyed to
@@ -110,7 +124,32 @@ const themeColor = THEME_COLOR[world];
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
-    <meta name="twitter:card" content="summary" />
+
+    <!--
+      PLAN.md §1.7 — the card is generated at build time from the same content this page
+      renders, so it cannot drift from the copy. `summary_large_image` is the card type
+      that matches a 1200 x 630 image; a route with no image stays on `summary`, which is
+      the type that does not promise one.
+    -->
+    {
+      ogImageUrl ? (
+        <Fragment>
+          <meta property="og:image" content={ogImageUrl} />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={ogImageUrl} />
+        </Fragment>
+      ) : (
+        <meta name="twitter:card" content="summary" />
+      )
+    }
+
+    <!-- Brief §12's structured data. `is:inline` because this is not a script Astro
+         should process or bundle: it is a JSON payload the crawler reads in place. -->
+    {schema && <script is:inline type="application/ld+json" set:html={schema} />}
 
     <Analytics />
   </head>

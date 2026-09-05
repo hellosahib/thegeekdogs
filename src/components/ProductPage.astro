@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactPlate from './ContactPlate.astro';
 import StageTrack from './StageTrack.astro';
+import { productGraph } from '../lib/jsonld';
 
 /**
  * The shell both `/work/*` case studies use, per DESIGN.md §B.11. Identical on both
@@ -33,6 +34,8 @@ const d = product.data;
   560 real pixels against a 1206-1440px source, so the pipeline is always downscaling.
 */
 const SHOT_WIDTH = 280;
+
+const schema = productGraph(product);
 ---
 
 <BaseLayout
@@ -40,6 +43,8 @@ const SHOT_WIDTH = 280;
   description={d.meta.description}
   ogTitle={d.meta.ogTitle}
   ogDescription={d.meta.ogDescription}
+  ogImage={d.slug}
+  schema={schema}
 >
   <div class="plate-span plate-span--page">
     <section class="section section--reserve page-section">
