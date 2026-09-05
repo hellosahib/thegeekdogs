@@ -548,9 +548,9 @@ nav links (their routes do not exist); the OG image; the work strip's two row li
 
 | Thing | Number |
 |---|---|
-| JS shipped, home page | **714 B gzip** (1,712 B raw, two inline modules) — the 4 KB line holds |
-| CSS shipped, home page | 40,343 B raw / **8,467 B gzip** (21% of the 40 KB line) |
-| Home HTML | 8,830 B gzip |
+| JS shipped, home page | **891 B gzip** (2,243 B raw, two inline modules, no external chunk) — the 4 KB line holds |
+| CSS shipped, home page | 39,235 B raw / **8,499 B gzip** (21% of the 40 KB line) |
+| Home HTML | 9,876 B gzip |
 | **Floor section + its script** | 32,574 B raw / **5,125 B gzip — 6.3% of the 80 KB line** |
 | Home page total | **152,227 B gzip** (12% of the 1.2 MB line) |
 | Lighthouse mobile, 3 runs, light | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
