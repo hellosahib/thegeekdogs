@@ -473,7 +473,7 @@ const b = BOX;
     --fl-lit: rgba(232, 237, 233, 0.22);
     --fl-shadow: #0a1e21;
     --fl-glow: var(--chalk);
-    /* §C.8 — a selected or focused desk's top surface lifts to --chalk @ 34%. */
+    /* §C.8 — a selected or focused desk's top surface lifts to --chalk @ 52% (round 12). */
     --fl-desk-top: var(--fl-lit);
 
     position: relative;
@@ -616,8 +616,18 @@ const b = BOX;
     font-size: var(--fl-plate-size);
   }
 
+  /*
+    DESIGN.md §C.8 round 12 — the selected fill is --chalk @ 52%, up from 34%. Review
+    item H9: 34% was built exactly and could not be seen. Pixel-differenced under
+    `reduce` so only the state differs, 34% moved 13.4% of the desk's pixels at a
+    maximum channel delta of 27 at 1440 and 3.0% at 360, and at 1:1 the two frames were
+    indistinguishable. The amplitude was the spec's and it was too small. 52% roughly
+    doubles the step over §C.1's unlit desk top (--chalk @ 22%) and stays below the
+    monitor glow's 55-85%, so the brightest thing in the room is still a screen and not
+    a table.
+  */
   .fl-st[data-on] {
-    --fl-desk-top: rgba(232, 237, 233, 0.34);
+    --fl-desk-top: rgba(232, 237, 233, 0.52);
   }
 
   /*
@@ -843,12 +853,24 @@ const b = BOX;
     font-weight: 600;
   }
 
-  /* §C.6's four reservations, each derived there from the longest card at that
-     breakpoint's measure: 320 below 768, 344 at 768-1023, 392 at 1024-1439 (the
-     narrower cols 9-12 costs height, not the arrangement), 344 again at 1440. */
+  /*
+    §C.6's four reservations. Round 12 re-derives three of the four against MEASUREMENT
+    rather than against arithmetic (review item H6, `measure-floor.json`): 320 below 768,
+    **264** at 768-1023, **416** at 1024-1439 and **352** at 1440.
+
+    The old numbers came out of Tanya's card, computed before design review and the
+    release cut had owners; COPY §2.3 round 12 put both names on both lists and Sahib's
+    gate line is now the long one. Measured with each card forced visible in the slot, the
+    tallest card is 406.7 at 1024 against a 392 reservation — 15px SHORT of its own
+    longest card — 339.2 at 1440 against 344, and 251.3 at 768 against 344, which is 93px
+    of reserved void under a two-line card. Every number here is the measured maximum
+    rounded up to the next 8px step with at least one step of slack, and §C.6's own rule
+    is what it applies: the fix is the copy or the padding, never a shorter reservation —
+    and reserving 93px of nothing is as much a defect as reserving 15px too few.
+  */
   @media (min-width: 768px) {
     .floor__slot {
-      min-block-size: 344px;
+      min-block-size: 264px;
     }
   }
 
@@ -884,14 +906,14 @@ const b = BOX;
     }
 
     .floor__slot {
-      min-block-size: 392px;
+      min-block-size: 416px;
       padding-inline: var(--space-24);
     }
   }
 
   @media (min-width: 1440px) {
     .floor__slot {
-      min-block-size: 344px;
+      min-block-size: 352px;
     }
   }
 
