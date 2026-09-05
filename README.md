@@ -2,7 +2,7 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: gates 1 and 3 passed. Every route in brief §8 is built — home with the isometric floor, `/work/` and both case studies, `/contact/`, `/sahib/`, `/tanya/` and `/404` — in both schemes, with OG cards, structured data and a print stylesheet. Lighthouse 100/100/100/100 on all seven routes. Open: font subsetting (step 8), and the contact plate below 768, which waits on two COPY.md strings (DESIGN.md §B.10, round 10).** Local commits only; a human pushes.
+**Status: gates 1 and 3 passed. Every route in brief §8 is built — home with the isometric floor, `/work/` and both case studies, `/contact/`, `/sahib/`, `/tanya/` and `/404` — in both schemes, with OG cards, structured data and a print stylesheet. `/404` is the empty room DESIGN.md §B.11 asks for — the floor's own slab and lamp, no desks, no chair — and the contact plate now prints its label below 768 (DESIGN.md §B.10, round 10). Lighthouse 100/100/100/100 on all eight routes in both schemes, `/404.html`'s SEO excepted, which is `is-crawlable` on a `noindex` page. Open: font subsetting and fallback-metric matching (step 8), and both headshots.** Local commits only; a human pushes.
 
 ## What needs you now
 
@@ -68,11 +68,18 @@ The QA scripts run against the **built output**, never against source, so build 
 | `npm run qa:floor` | the studio floor over 80KB gzipped (passes trivially until the floor exists) |
 | `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
 
-Lighthouse runs the same assertions the brief's budget table states:
+Lighthouse runs the same assertions the brief's budget table states, over all eight routes:
 
 ```bash
 npm run build && npx lhci autorun --config=lighthouserc.json
 ```
+
+`/404.html` is asserted separately, and only on one line. COPY.md §9 requires the page to
+be `noindex`, so Lighthouse's `is-crawlable` audit fails there by design — it is weight
+4.04 of the SEO category's 12.04, so a correct 404 scores 0.66 and always will. Rather
+than relax `categories:seo` to a number that means nothing, the config asserts the eight
+SEO audits that do apply to that page, each at `minScore: 1`. Every other assertion is
+identical to the other seven routes'.
 
 ### Adding content
 
