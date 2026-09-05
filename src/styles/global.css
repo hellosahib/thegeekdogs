@@ -397,55 +397,49 @@
   }
 
   /*
-    DESIGN.md §B.10 round 10, change three — below 768 the plate's wrapper on `/` begins
-    at the END OF THE FLOOR SECTION rather than at the end of the hero. The width change
-    alone still left 88 of the card panel's 280px measure under the plate, and the
-    standard for that panel is `never covered`, not `exempt`.
+    DESIGN.md §B.10 round 12 — **the plate's wrapper on `/` begins at the END OF THE FLOOR
+    SECTION, at every width.** Round 10 made this true below 768 and priced it there;
+    round 12 removes the width condition, and it removes it because reserve 3's two
+    sentences could not both stand.
 
-    A `position: sticky` element is constrained by its own containing block, which is its
-    parent's padding box, so the span is expressed as a nested wrapper and switched by one
-    declaration: below 768 this div is a real box and the plate cannot rise above the
-    strip; at >= 768 it is `display: contents`, generates no box at all, and the plate's
-    containing block is `.plate-span` again — floor included, exactly as it was.
+    Reserve 3 promised "the panel's text is never covered — not at rest, not mid-scroll,
+    not at any scroll position, at any width" and the same section exempted the card slot
+    from the band as prose. The promise wins, verbatim and unconditional: **the plate never
+    covers content — not a load-bearing mark, not a card, not prose, at any scroll
+    position, at any width, on any route; where a region cannot be kept clear by where its
+    marks go, the wrapper does not span that region.**
 
-    `display: contents` on a plain <div> removes the box and nothing else: the div carries
-    no role, no name and no styles of its own, the sections inside stay children of the
-    same grid-less block, and the accessibility tree is identical either way.
+    The evidence at >= 768 was worse than the evidence below it. At 768-1023 the plate
+    covered the whole Designer station, artwork and nameplate together (blocker B2); at
+    768, 1024 AND 1440 it struck through the card's `Owns` line so that the page said Sahib
+    owns "architecture review, code review, design review, the releas" (blocker B3). The
+    room is the site's one bold moment (§9.4), a station is a mark read as a unit, and the
+    `Owns` line is §6's answer to *which human checks it*. A contact plate over the room is
+    the definition of obtrusive at 1440 as much as at 360, and §8 asks for unobtrusive
+    first.
 
-    Still no JS, no scroll listener, no `view-timeline` and no scroll-driven animation —
-    which is the point, because each of those would have needed a fallback that landed
-    back on the defect. Reduced motion, forced colours and no-JS all render this.
+    So this wrapper is a real box at every width and there is no `display: contents`
+    branch. §C.6's card slot needs no exemption any more: it is out of the wrapper's reach,
+    and the promise is kept by geometry rather than by an argument about what counts as
+    prose.
+
+    The margin, which measuring found rather than reading: the plate's own
+    `margin-block-start: -56px` is what stops it adding height at the end of its wrapper,
+    but a sticky element is clamped by its MARGIN box, so that same -56 buys it 56px of
+    travel ABOVE the wrapper's own top edge — and swept in 80px steps the plate's box was
+    over the floor at 17 of 88 scroll positions. The saving moves off the plate and onto
+    the wrapper: identical arithmetic, and the plate's margin box is now its border box,
+    which is what the clamp reads.
+
+    Still no JS, no scroll listener, no `view-timeline` and no scroll-driven animation, so
+    reduced motion, forced colours and no-JS all render exactly this.
   */
-  @media (min-width: 768px) {
-    .plate-span__after-floor {
-      display: contents;
-    }
+  .plate-span__after-floor {
+    margin-block-end: calc(-1 * var(--plate-height));
   }
 
-  /*
-    ...and one more declaration, which measuring found rather than reading.
-
-    The plate's own `margin-block-start: -56px` (below) is what stops it adding height at
-    the end of its wrapper. But a sticky element is clamped by its MARGIN box, not its
-    border box, so a -56px top margin also buys it 56px of travel ABOVE its wrapper's own
-    top edge. On every other route that edge is a section's bottom padding and nothing is
-    seen. Here it is the floor: swept in 80px steps at 360 and 390, the plate's box was
-    over the floor section at 17 of 88 scroll positions — an amber plate on the room, over
-    the section round 10's change three exists to keep it off.
-
-    So below 768 the saving moves off the plate and onto this wrapper. The arithmetic is
-    identical — the wrapper is 56px taller and pulls the next 56px back — and the plate's
-    margin box is now its border box, which is what the clamp reads. Measured again after:
-    0 of 88.
-  */
-  @media (max-width: 767px) {
-    .plate-span__after-floor {
-      margin-block-end: calc(-1 * var(--plate-height));
-    }
-
-    .plate-span__after-floor > .plate {
-      margin-block-start: 0;
-    }
+  .plate-span__after-floor > .plate {
+    margin-block-start: 0;
   }
 
   /*
