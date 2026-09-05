@@ -24,7 +24,7 @@ import { BACK_TO_STUDIO } from '../lib/copy';
   description="That page isn't here. One link back to the studio, and nothing else on it."
   noindex
 >
-  <div class="plate-span room-404">
+  <div class="plate-span plate-span--page">
     <section class="section">
       <div class="shell stack">
         <h1>This page isn't here.</h1>
@@ -40,15 +40,9 @@ import { BACK_TO_STUDIO } from '../lib/copy';
 </BaseLayout>
 
 <style>
-  /* The wrapper has to be at least as tall as the space main gives it, or a sticky
-     plate inside a short page has nothing to stick within. */
-  .room-404 {
-    display: flex;
-    flex-direction: column;
-    min-block-size: 100%;
-  }
-
-  .room-404 > .section {
+  /* The wrapper is the page here, so the one section it holds takes the growth and the
+     footer stays on the viewport's bottom edge (step-1 review item 15). */
+  .section {
     flex: 1 0 auto;
   }
 </style>

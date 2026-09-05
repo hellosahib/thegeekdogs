@@ -11,10 +11,9 @@ import { STUDIO_EMAIL, CONTACT_AFFORDANCE, FINAL_CTA } from '../lib/copy';
   COPY.md §2, in §7's section order: hero, the floor, the work-card strip, the four
   gates, proof, what you get, the final CTA.
 
-  Still deliberately absent, because the destination does not exist yet:
-  - §2.7's secondary link ("Read how it gets built") -> /work/pocket-manager/;
-  - §B.8's one link per work-strip row -> /sahib/ and /tanya/, whose labels are also
-    an open [COPY NEEDED].
+  Still deliberately absent, because the destination does not exist yet: §B.8's one link
+  per work-strip row, which points at /sahib/ and /tanya/. Both labels are written now
+  (COPY.md §2.9a) and both routes land in build run B, so the links land with them.
 */
 
 const gates = (await getCollection('gates')).sort((a, b) => a.data.order - b.data.order);
@@ -169,6 +168,10 @@ const figures = [
               </p>
             )
           }
+          <!-- COPY.md §2.7's secondary link. Its destination ships from this step. -->
+          <p>
+            <a class="link" href="/work/pocket-manager/">Read how it gets built</a>
+          </p>
         </div>
 
         <div class="proof__track">

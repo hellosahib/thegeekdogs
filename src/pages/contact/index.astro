@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPlate from '../../components/ContactPlate.astro';
+import { CONTACT } from '../../lib/copy';
+
+/*
+  COPY.md §8 and DESIGN.md §B.11. Three addressed blocks as a 3-up at >=1024, stacked at
+  360, and no form: QUESTIONS.md items 11 and 69 both answered email only, so there is
+  no field, no endpoint, no success state and no validation design on this page. All
+  three addresses print in full (item 53) as `mailto:` links over the visible address,
+  never a label over a hidden one.
+
+  There is no orchestrated moment here. A contact page's job is to be answered.
+*/
+---
+
+<BaseLayout
+  title={CONTACT.meta.title}
+  description={CONTACT.meta.description}
+  ogTitle={CONTACT.meta.ogTitle}
+  ogDescription={CONTACT.meta.ogDescription}
+>
+  <div class="plate-span plate-span--page">
+    <section class="section">
+      <div class="shell stack">
+        <h1>{CONTACT.headline}</h1>
+        <p class="muted">{CONTACT.body}</p>
+      </div>
+    </section>
+
+    <section class="section section--reserve routes-section">
+      <div class="shell">
+        <h2>{CONTACT.routesHeading}</h2>
+        <ul class="routes">
+          {
+            CONTACT.routes.map((route) => (
+              <li class="routes__item">
+                <h3 class="routes__label">{route.label}</h3>
+                <p class="routes__line muted">{route.line}</p>
+                <p class="routes__address">
+                  <a class="link" href={`mailto:${route.address}`}>
+                    {route.address}
+                  </a>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="routes__engagement muted">{CONTACT.engagementLine}</p>
+      </div>
+    </section>
+
+    <ContactPlate />
+  </div>
+</BaseLayout>
+
+<style>
+  .routes-section {
+    flex: 1 0 auto;
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+  }
+
+  .routes {
+    margin-block-start: var(--space-40);
+    list-style: none;
+    display: grid;
+    gap: var(--space-40);
+  }
+
+  .routes__label {
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+  }
+
+  .routes__line {
+    margin-block-start: var(--space-12);
+  }
+
+  .routes__address {
+    margin-block-start: var(--space-16);
+  }
+
+  .routes__address a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    font-weight: 600;
+  }
+
+  .routes__engagement {
+    margin-block-start: var(--space-48);
+  }
+
+  /* §B.11 — a 3-up at >=1024, stacked below it. */
+  @media (min-width: 1024px) {
+    .routes {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      align-items: start;
+    }
+
+    .routes__engagement {
+      margin-block-start: var(--space-64);
+    }
+  }
+</style>

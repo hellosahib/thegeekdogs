@@ -1,0 +1,17 @@
+---
+import { getEntry } from 'astro:content';
+import ProductPage from '../../../components/ProductPage.astro';
+
+/*
+  COPY.md §4. Every fact on this page traces to brief §5.2 and to the read-only audit of
+  the app's own repository in FACTS.md section (d).
+
+  §4.6: there is no privacy section here, and its absence is deliberate rather than
+  pending — item 14 settled that the site makes no privacy, encryption or deletion claim
+  for this app, so there is no heading to add and no flag to turn on later.
+*/
+const product = await getEntry('products', 'pocket-manager');
+if (!product) throw new Error('src/data/products/pocket-manager.json is missing.');
+---
+
+<ProductPage product={product} />

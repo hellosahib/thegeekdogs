@@ -105,6 +105,29 @@ const agentsCollection = defineCollection({
 export const STAGES = ['specced', 'building', 'final-touches', 'submitted', 'live'] as const;
 export type Stage = (typeof STAGES)[number];
 
+/**
+ * A link whose label and accessible name are both COPY.md's. COPY.md §10.5 requires any
+ * outbound link that opens a new tab to say so in its own name, so the two differ and
+ * both are written down rather than one being derived from the other.
+ */
+const labelledLink = z.object({
+  label: z.string().min(1),
+  accessibleName: z.string().min(1),
+});
+
+/**
+ * One heading and what sits under it, per COPY.md §4.2 to §4.5 and §5.2 to §5.4. A
+ * section may carry a body, a closing line, both or neither; `showFeatures` prints the
+ * product's own feature list under it, which is the only place that list renders, so
+ * there is still exactly one field on this schema that a feature string can come from.
+ */
+const productSection = z.object({
+  heading: z.string().min(1),
+  body: z.string().min(1).optional(),
+  closingLine: z.string().min(1).optional(),
+  showFeatures: z.boolean().default(false),
+});
+
 const products = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/data/products' }),
   schema: ({ image }) =>
@@ -113,7 +136,13 @@ const products = defineCollection({
       // null until a final name is chosen. Never a placeholder string.
       name: z.string().min(1).nullable(),
       // Always present; what renders in headings, nav, OG and JSON-LD while name is null.
-      descriptiveName: z.string().min(1),
+      // DESIGN.md §E.3 caps this at 18 characters: it is the row label on a shared axis.
+      descriptiveName: z.string().min(1).max(18),
+      // COPY.md §3.2 / §3.3's "Product name" as the /work/ index card prints it, which
+      // is the longer descriptive form where the two differ (§2.8 says so explicitly).
+      indexName: z.string().min(1),
+      // The order the two products appear in on /work/ and in the compact stage view.
+      order: z.number().int().nonnegative(),
       stage: z.enum(STAGES),
       storeUrl: z.url().nullable(),
       storeStats: z
@@ -129,7 +158,48 @@ const products = defineCollection({
       // Only reachable, shippable features belong here. There is no field for
       // unreachable functionality, so it structurally cannot leak.
       features: z.array(z.string().min(1)),
-      screenshots: z.array(image()).default([]),
+
+      // --- COPY.md §3.2 / §3.3, the /work/ index card ---
+      oneLine: z.string().min(1),
+      indexLink: labelledLink,
+      /*
+        COPY.md §3.2's "Secondary link label". It is a shorter string than the product
+        page's own store link because the card above it has already named the product,
+        and COPY.md gives no accessible name for it — so §10.5's rule applies instead
+        and `Opens a new tab.` is appended to the link's own name in the markup.
+      */
+      indexStoreLabel: z.string().min(1).nullable().default(null),
+
+      // --- COPY.md §4 / §5, the product page ---
+      headline: z.string().min(1),
+      subhead: z.string().min(1),
+      // Null where the app has not been submitted: no store link renders and no label
+      // is shown, because a link to nothing is worse than no link (COPY.md §5.1).
+      storeLink: labelledLink.nullable(),
+      // The full listing title, quoted only where the page quotes it (COPY.md §4.1).
+      storeListingName: z.string().min(1).nullable().default(null),
+      sections: z.array(productSection).default([]),
+      /*
+        PLAN.md §1.6 — every shipped screenshot goes through Astro's image pipeline, so
+        the source lives in src/assets and carries explicit dimensions. Alt is required
+        by the schema: COPY.md writes one line per screen and an image whose alt is not
+        written yet does not get an entry here at all, which is how the wedding
+        planner's two money screens stay out until QUESTIONS.md item 73 answers.
+      */
+      screenshots: z
+        .array(z.object({ src: image(), alt: z.string().min(1) }))
+        .default([]),
+
+      // --- COPY.md §3.4 / §4.8 / §5.6, the page's own metadata ---
+      meta: z.object({
+        title: z.string().min(1),
+        description: z.string().min(1),
+        ogTitle: z.string().min(1),
+        ogDescription: z.string().min(1),
+        // COPY.md's "OG image text": the card's own two lines, generated at build time.
+        ogImageTitle: z.string().min(1),
+        ogImageLine: z.string().min(1),
+      }),
     }),
 });
 

@@ -2,6 +2,8 @@
   "slug": "wedding-planner",
   "name": null,
   "descriptiveName": "Wedding planner",
+  "indexName": "A wedding planner",
+  "order": 2,
   "stage": "final-touches",
   "storeUrl": null,
   "storeStats": null,
@@ -15,5 +17,43 @@
     "A Hindi interface.",
     "No ads. Everything in the first version is free."
   ],
-  "screenshots": []
+  "oneLine": "Works offline, and handles a wedding that's more than one event.",
+  "indexLink": {
+    "label": "See what's in build",
+    "accessibleName": "See what's in build on the wedding planner"
+  },
+  "headline": "The second one, in build.",
+  "subhead": "A wedding planner that works offline, never sells your data, and handles a wedding with more than one function.",
+  "storeLink": null,
+  "storeListingName": null,
+  "sections": [
+    {
+      "heading": "One wedding, several functions, one screen.",
+      "body": "A wedding isn't one event. It's a Sangeet, a Mehendi, a Haldi and the wedding itself, each with a different guest list and a different headcount, and the numbers don't match. Every competitor's store screenshots show the same three screens: a checklist, a budget, a countdown. None of them show the thing that actually makes the planning hard.",
+      "closingLine": "The planning board puts every function on one screen, with its own list and its own count."
+    },
+    {
+      "heading": "What's in it",
+      "showFeatures": true
+    },
+    {
+      "heading": "Why it isn't out yet",
+      "body": "The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the name isn't final, and the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.",
+      "closingLine": "It goes to the store when a person says it's ready, and not before."
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "../../assets/wedding-planner/01-planning-board-functions.png",
+      "alt": "The planning board, with a card for each function of the wedding, each carrying its own date and its own colour."
+    }
+  ],
+  "meta": {
+    "title": "A wedding planner, in build | TheGeekDogs",
+    "description": "Our second app, in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.",
+    "ogTitle": "One wedding, several functions, one screen.",
+    "ogDescription": "The second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.",
+    "ogImageTitle": "In build",
+    "ogImageLine": "A wedding planner for more than one function."
+  }
 }

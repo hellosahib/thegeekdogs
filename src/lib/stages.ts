@@ -30,6 +30,14 @@ export const STAGE_LABELS: Record<Stage, { label: string; meaning: string }> = {
   },
 };
 
+/** COPY.md §10.4 — the list's accessible name, prefixed by the product it belongs to. */
+export const TRACK_GROUP_LABEL = 'build stage';
+
+/** COPY.md §10.4 — the visible summary line above a track that hides its labels. */
+export function stageSummary(current: Stage): string {
+  return `Stage: ${STAGE_LABELS[current].label}`;
+}
+
 /** COPY.md §10.4 — state is spoken as well as shown, so it survives greyscale. */
 export const STATE_WORDS = {
   complete: 'Done',

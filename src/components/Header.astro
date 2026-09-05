@@ -91,7 +91,13 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     text-decoration: none;
   }
 
-  /* §B.10a — right-aligned to the content edge, last in the tab order. */
+  /*
+    §B.10a — right-aligned to the content edge, last in the tab order. At 360 it is the
+    fifth and last item on the nav row, so it takes the free space itself; at >= 768 the
+    NAV takes it and the toggle sits 24px after `Contact`, which is where §B.10a's
+    arithmetic puts it. Step-2 review item 10: two `auto` start margins split the free
+    space between them, which left the nav floating in the middle of the header.
+  */
   .site-header__toggle {
     margin-inline-start: auto;
     display: flex;
@@ -109,6 +115,15 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
 
     .site-header__nav {
       flex: 0 0 auto;
+      margin-inline-start: auto;
+    }
+
+    .site-header__toggle {
+      margin-inline-start: 0;
+    }
+
+    /* The wordmark keeps the free space when there is no nav to take it. */
+    .site-header__inner:not(:has(.site-header__nav)) .site-header__toggle {
       margin-inline-start: auto;
     }
   }

@@ -130,8 +130,17 @@
     font-synthesis-weight: none;
   }
 
+  /*
+    Step-1 review item 15, extended to the routes that landed in run A: `main` grows to
+    fill a short page, and it is a column so that a page whose whole body is one wrapper
+    (every route with a sticky plate but no hero and no final CTA) can hand that growth
+    down to a filled section. Without it the wrapper stays content-height and the space
+    `main` gained shows as bare --sheet under the last block.
+  */
   main {
     flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   h1,
@@ -382,6 +391,19 @@
   .plate-span {
     position: relative;
     pointer-events: none;
+  }
+
+  /*
+    A route with no hero to leave and no final CTA to retire into — /work/, both case
+    studies, /contact/ and /404. The wrapper is the whole page there, so it takes
+    `main`'s growth and hands it on to whichever of its sections carries `flex: 1 0 auto`,
+    which is what keeps the plate on the viewport's bottom edge on a short page and
+    keeps a bare --sheet strip from opening up above the footer.
+  */
+  .plate-span--page {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .plate {

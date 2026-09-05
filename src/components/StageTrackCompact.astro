@@ -1,6 +1,12 @@
 ---
 import { STAGES } from '../content.config';
-import { STAGE_LABELS, STATE_WORDS, stageSteps } from '../lib/stages';
+import {
+  STAGE_LABELS,
+  STATE_WORDS,
+  stageSteps,
+  stageSummary,
+  TRACK_GROUP_LABEL,
+} from '../lib/stages';
 import type { Stage } from '../content.config';
 
 /**
@@ -52,12 +58,11 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
   {
     runners.map((runner) => {
       const steps = stageSteps(runner.stage);
-      const current = STAGE_LABELS[runner.stage].label;
       return (
         <div class="track__runner">
           <p class="track__product">{runner.label}</p>
-          <p class="track__now small" aria-hidden="true">{`Stage: ${current}`}</p>
-          <ol class="track__list" aria-label={`${runner.label} build stage`}>
+          <p class="track__now small" aria-hidden="true">{stageSummary(runner.stage)}</p>
+          <ol class="track__list" aria-label={`${runner.label} ${TRACK_GROUP_LABEL}`}>
             {steps.map((step) => (
               <li
                 class="track__step"

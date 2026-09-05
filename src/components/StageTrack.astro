@@ -1,0 +1,196 @@
+---
+import { STAGE_LABELS, STATE_WORDS, stageSteps, TRACK_GROUP_LABEL, stageSummary } from '../lib/stages';
+import type { Stage } from '../content.config';
+
+/**
+ * The full, labelled build-stage track (DESIGN.md §E.1, §E.1a, §E.2; COPY.md §2.8,
+ * §10.4). One product, five stages, labels on every node.
+ *
+ * §B.11 puts it directly under each product page's h1, because "Live" is the strongest
+ * fact on that page, and on /work/ under each product's one-line description.
+ *
+ * §E.2, >= 768: horizontal, five nodes evenly spaced, labels beneath, and the label row
+ * reserves two lines of height for all five so nothing shifts when `Submitted for
+ * review` wraps. < 768: vertical, because five labels across 320px gives 64px each and
+ * that label cannot set — nodes in a column, connector vertical, label to the right,
+ * 44px rows.
+ *
+ * The three states differ on three redundant channels — size, internal structure and
+ * the pattern of the connector leaving the node — so the component survives greyscale,
+ * and COPY.md §10.4's state word is spoken on every item as well, so nothing rests on
+ * the graphic at all. Every value that is --floor in light resolves through --ink, so
+ * there is one declaration per property and no second component in dark.
+ */
+interface Props {
+  stage: Stage;
+  /** Names the list, so a page carrying two tracks says which is which (COPY.md §10.4). */
+  label: string;
+}
+
+const { stage, label } = Astro.props;
+const steps = stageSteps(stage);
+---
+
+<div class="full-track">
+  <p class="full-track__now small" aria-hidden="true">{stageSummary(stage)}</p>
+  <ol class="full-track__list" aria-label={`${label} ${TRACK_GROUP_LABEL}`}>
+    {
+      steps.map((step) => (
+        <li
+          class="full-track__step"
+          data-state={step.state}
+          aria-current={step.state === 'current' ? 'step' : undefined}
+        >
+          <span class="sr-only">{`${step.label}. ${STATE_WORDS[step.state]}.`}</span>
+          <span class="full-track__node" aria-hidden="true" />
+          <span class="full-track__label" aria-hidden="true">
+            {STAGE_LABELS[step.key].label}
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .full-track__now {
+    color: var(--tgd-muted);
+  }
+
+  /* < 768 — vertical. 44px rows, connector vertical, label to the right. */
+  .full-track__list {
+    margin-block-start: var(--space-12);
+    list-style: none;
+    display: grid;
+  }
+
+  .full-track__step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    column-gap: var(--space-16);
+    align-items: center;
+    min-block-size: 44px;
+  }
+
+  .full-track__node {
+    position: relative;
+    z-index: 1;
+    justify-self: center;
+    inline-size: 10px;
+    block-size: 10px;
+    border-radius: 50%;
+  }
+
+  /* DESIGN.md §E.1 — a connector belongs to the node it leaves, so the segment out of
+     the current node is solid and the dashes begin at the first future node. */
+  .full-track__step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: 10px;
+    inset-block-start: 50%;
+    block-size: 100%;
+    inline-size: 0;
+    border-inline-start: 2px solid var(--tgd-ink);
+  }
+
+  .full-track__step[data-state='upcoming']:not(:last-child)::after {
+    border-inline-start-style: dashed;
+    border-inline-start-color: var(--node-future-connector);
+  }
+
+  .full-track__step[data-state='complete'] .full-track__node {
+    background-color: var(--tgd-ink);
+  }
+
+  .full-track__step[data-state='upcoming'] .full-track__node {
+    background-color: transparent;
+    border: 1.5px solid var(--node-future-stroke);
+  }
+
+  /* The current node: 18px, a ring with a concentric 8px core and a 4px clear gap.
+     The only node on the track with two parts. */
+  .full-track__step[data-state='current'] .full-track__node {
+    inline-size: 18px;
+    block-size: 18px;
+    border: 3px solid var(--tgd-ink);
+    background-color: transparent;
+  }
+
+  .full-track__step[data-state='current'] .full-track__node::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
+    background-color: var(--node-current-core);
+  }
+
+  .full-track__label {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-muted);
+  }
+
+  .full-track__step[data-state='current'] .full-track__label {
+    font-weight: 600;
+    color: var(--tgd-ink);
+  }
+
+  .full-track__step[data-state='complete'] .full-track__label {
+    font-weight: 500;
+  }
+
+  /* >= 768 — horizontal, five even columns, labels beneath. */
+  @media (min-width: 768px) {
+    /* The five labels are all visible here, so the summary line would say a second time
+       what the track's own largest mark already says (step-1 review item 17). */
+    .full-track__now {
+      display: none;
+    }
+
+    .full-track__list {
+      margin-block-start: 0;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      max-inline-size: 620px;
+    }
+
+    .full-track__step {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-12);
+      min-block-size: 0;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .full-track__step:not(:last-child)::after {
+      inset-inline-start: 50%;
+      inset-block-start: 9px;
+      inline-size: 100%;
+      block-size: 0;
+      border-inline-start: 0;
+      border-block-start: 2px solid var(--tgd-ink);
+    }
+
+    .full-track__step[data-state='upcoming']:not(:last-child)::after {
+      border-block-start-style: dashed;
+      border-block-start-color: var(--node-future-connector);
+      border-inline-start: 0;
+    }
+
+    /* §E.2 — two lines reserved for all five, so `Submitted for review` wrapping
+       shifts nothing. */
+    .full-track__label {
+      padding-inline: var(--space-4);
+      min-block-size: calc(2 * var(--step-small) * var(--step-small-lh));
+    }
+
+    /* The 18px current node is centred in its column like every other, so its size
+       pushes nothing rightward; the 4px of extra height is absorbed here. */
+    .full-track__step[data-state='current'] .full-track__node {
+      margin-block: -4px;
+    }
+  }
+</style>

@@ -2,6 +2,8 @@
   "slug": "pocket-manager",
   "name": "Pocket Manager",
   "descriptiveName": "Pocket Manager",
+  "indexName": "Pocket Manager",
+  "order": 1,
   "stage": "live",
   "storeUrl": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
   "storeStats": {
@@ -15,7 +17,66 @@
     "A simple interface with multiple categories.",
     "A calendar screen showing a chosen day's records, with the daily and monthly balance.",
     "A statistics screen with graphs and date ranges up to 90 days.",
-    "Transaction export."
+    "Export to CSV from settings."
   ],
-  "screenshots": []
+  "oneLine": "A personal expense tracker: categories, a calendar of any day's records, statistics with graphs, and export.",
+  "indexLink": {
+    "label": "Read the case study",
+    "accessibleName": "Read the Pocket Manager case study"
+  },
+  "indexStoreLabel": "Open in the Play Store",
+  "headline": "Pocket Manager",
+  "subhead": "A personal expense tracker, in the Play Store since 2020 and still shipping updates.",
+  "storeLink": {
+    "label": "Open Pocket Manager in the Play Store",
+    "accessibleName": "Open Pocket Manager in the Google Play Store. Opens a new tab."
+  },
+  "storeListingName": "Pocket Manager | Finance Manager",
+  "sections": [
+    {
+      "heading": "Problem",
+      "body": "An expense tracker earns its place only if logging something takes seconds and the answer is on screen before you put the phone down. Pocket Manager is built around two questions: what did I spend today, and what does the month come to. The calendar screen answers the first, showing a chosen day's records with the daily and monthly balance beside them. The statistics screen answers the second, with graphs over date ranges up to 90 days."
+    },
+    {
+      "heading": "Build",
+      "body": "Kotlin, and Jetpack Compose for every screen. The migration off XML layouts is finished, and a test in the repository fails the build if a layout file comes back. Hilt wires the app together, Room holds the data with no network layer behind it, and WorkManager runs the scheduled work. The home-screen widgets are Glance, the app lock is the platform biometric API, and the charts on the statistics screen are our own code rather than a charting library. Export runs through a vendored SQLite-to-Excel module. Analytics and crash reporting are Firebase. minSdk 23, so it still installs on a phone running Android 6.",
+      "closingLine": "The repository's first commit is dated November 2020.",
+      "showFeatures": true
+    },
+    {
+      "heading": "Review process",
+      "body": "An autonomous run picks up Pocket Manager every two hours on our own machine, and the rule it runs under is written into the repository: a human cuts every release, and the agent never pushes. The release workflow is manual-trigger only, so no scheduled run can start one. A separate workflow runs the unit tests on every push. The same four gates apply here as to client work: a person decides the architecture, reads the diffs, runs QA on physical phones, and checks what the app collects against what the listing says. There is no version of this where an agent decides the app is ready.",
+      "closingLine": "The process being sold on the home page is the process running on this app."
+    },
+    {
+      "heading": "Outcome",
+      "body": "4.3 stars from 24 reviews. 1,000+ downloads. Reviews on the listing go back to early 2021, so the app has been live and maintained for roughly five years, and the last update was 29 August 2025."
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "../../assets/pocket-manager/01-home.png",
+      "alt": "The Pocket Manager home screen, showing September's balance with the month's income and spending under it, above the day's transactions."
+    },
+    {
+      "src": "../../assets/pocket-manager/02-calendar.png",
+      "alt": "The Pocket Manager calendar screen, with 3 September picked out on the month grid and that day's three records below it, beside the day's balance and the month's."
+    },
+    {
+      "src": "../../assets/pocket-manager/04-categories.png",
+      "alt": "The Pocket Manager statistics screen, showing seven days of spending as a bar chart and, further down the same screen, each category's share of it as a percentage."
+    },
+    {
+      "src": "../../assets/pocket-manager/05-export.png",
+      "alt": "The Pocket Manager settings screen, scrolled to the rows that export the data, import it and share it as a CSV file, each of the three tagged Beta."
+    }
+  ],
+  "meta": {
+    "title": "Pocket Manager | TheGeekDogs",
+    "description": "Our own expense tracker, live in the Play Store since 2020. 4.3 stars from 24 reviews, still updated, and maintained by the same agent pipeline and human review gates we sell.",
+    "ogTitle": "Pocket Manager",
+    "ogDescription": "Live in the Play Store since 2020. Maintained by the same pipeline and the same four human gates as client work.",
+    "ogImageTitle": "Pocket Manager",
+    "ogImageLine": "Live. 4.3 stars, five years, still shipping."
+  }
 }

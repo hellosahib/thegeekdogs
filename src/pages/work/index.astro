@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPlate from '../../components/ContactPlate.astro';
+import StageTrack from '../../components/StageTrack.astro';
+import { WORK_INDEX } from '../../lib/copy';
+
+/*
+  DESIGN.md §B.11: two entries, each a --band block — product name, one line, the full
+  labelled build-stage track (§E), and a store link where one exists. No hero image.
+  COPY.md §3.
+
+  COPY.md §3.1 gives a short intro and a long body and says the short one is what prints
+  if only one can; §B.11 caps the slot at 20 words and the short intro is 17, so the
+  short intro is what prints and the long body is not placed.
+*/
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+
+if (products.length === 0) {
+  throw new Error('/work/ has no products; src/data/products must carry both entries.');
+}
+---
+
+<BaseLayout
+  title={WORK_INDEX.meta.title}
+  description={WORK_INDEX.meta.description}
+  ogTitle={WORK_INDEX.meta.ogTitle}
+  ogDescription={WORK_INDEX.meta.ogDescription}
+>
+  <div class="plate-span plate-span--page">
+    <section class="section section--reserve work-section">
+      <div class="shell">
+        <div class="stack">
+          <h1>{WORK_INDEX.headline}</h1>
+          <p class="muted">{WORK_INDEX.intro}</p>
+        </div>
+
+        <ul class="work-list">
+          {
+            products.map((product) => (
+              <li class="work-entry">
+                <div class="work-entry__inner">
+                  <h2 class="work-entry__name">{product.data.indexName}</h2>
+                  <p class="work-entry__line muted">{product.data.oneLine}</p>
+                  <div class="work-entry__track">
+                    <StageTrack stage={product.data.stage} label={product.data.descriptiveName} />
+                  </div>
+                  <p class="work-entry__links cluster">
+                    <a
+                      class="link"
+                      href={`/work/${product.data.slug}/`}
+                      aria-label={product.data.indexLink.accessibleName}
+                    >
+                      {product.data.indexLink.label}
+                    </a>
+                    {product.data.storeUrl && product.data.indexStoreLabel && (
+                      <a
+                        class="link"
+                        href={product.data.storeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {product.data.indexStoreLabel}
+                        <span class="sr-only"> Opens a new tab.</span>
+                      </a>
+                    )}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <ContactPlate />
+  </div>
+</BaseLayout>
+
+<style>
+  .work-section {
+    flex: 1 0 auto;
+  }
+
+  .work-list {
+    margin-block-start: var(--space-64);
+    list-style: none;
+    display: grid;
+    gap: var(--space-48);
+  }
+
+  /* §B.11 — each entry is its own --band block. The gap between them is the page's own
+     --sheet, so two blocks read as two rather than merging into one long band. */
+  .work-entry__inner {
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+    padding: var(--space-32) var(--space-24);
+  }
+
+  .work-entry__line {
+    margin-block-start: var(--space-12);
+  }
+
+  .work-entry__track {
+    margin-block-start: var(--space-32);
+  }
+
+  .work-entry__links {
+    margin-block-start: var(--space-32);
+    column-gap: var(--space-32);
+  }
+
+  .work-entry__links a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+  }
+
+  @media (min-width: 768px) {
+    .work-entry__inner {
+      padding: var(--space-48);
+    }
+  }
+</style>

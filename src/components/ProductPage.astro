@@ -1,0 +1,219 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactPlate from './ContactPlate.astro';
+import StageTrack from './StageTrack.astro';
+
+/**
+ * The shell both `/work/*` case studies use, per DESIGN.md §B.11. Identical on both
+ * routes — the wedding planner is not a reduced version of the Pocket Manager page, it
+ * is the same page with a different entry behind it, which is what item 9a's "full
+ * name-agnostic page" means in practice.
+ *
+ * §B.11: the full stage track sits directly under the h1, because on the shipped
+ * product "Live" is the strongest fact on the page and on the other one the stage is
+ * the whole answer to "when". Screenshots are in the real device aspect ratio (portrait
+ * 9:19.5) with explicit dimensions, and there is no hero image.
+ *
+ * Nothing here renders a field that is empty. No store link where there is nothing to
+ * link to (COPY.md §5.1), no product name where a human has not picked one (§5.6), no
+ * screenshot whose alt line is not written (§5.5, QUESTIONS.md item 73).
+ */
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+
+const { product } = Astro.props;
+const d = product.data;
+
+/*
+  PLAN.md §1.6 — one display width, so the four portrait captures form a column of
+  equal objects and every one of them carries explicit dimensions. 280 CSS px at 2x is
+  560 real pixels against a 1206-1440px source, so the pipeline is always downscaling.
+*/
+const SHOT_WIDTH = 280;
+---
+
+<BaseLayout
+  title={d.meta.title}
+  description={d.meta.description}
+  ogTitle={d.meta.ogTitle}
+  ogDescription={d.meta.ogDescription}
+>
+  <div class="plate-span plate-span--page">
+    <section class="section section--reserve page-section">
+      <div class="shell">
+        <div class="product-head">
+          <h1>{d.headline}</h1>
+          <p class="product-head__subhead muted">{d.subhead}</p>
+          <div class="product-head__track">
+            <StageTrack stage={d.stage} label={d.descriptiveName} />
+          </div>
+          {
+            d.storeUrl && d.storeLink && (
+              <p class="product-head__store">
+                <a
+                  class="link"
+                  href={d.storeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={d.storeLink.accessibleName}
+                >
+                  {d.storeLink.label}
+                </a>
+              </p>
+            )
+          }
+        </div>
+
+        {
+          d.screenshots.length > 0 && (
+            <ul class="shots">
+              {d.screenshots.map((shot) => (
+                <li class="shots__item">
+                  <Picture
+                    src={shot.src}
+                    alt={shot.alt}
+                    formats={['avif', 'webp']}
+                    width={SHOT_WIDTH}
+                    densities={[1, 2]}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
+        <div class="product-body">
+          {
+            d.sections.map((section) => (
+              <section class="product-section">
+                <h2>{section.heading}</h2>
+                {section.body && <p class="product-section__body">{section.body}</p>}
+                {section.showFeatures && d.features.length > 0 && (
+                  <ul class="product-section__features">
+                    {d.features.map((feature) => (
+                      <li>{feature}</li>
+                    ))}
+                  </ul>
+                )}
+                {section.closingLine && (
+                  <p class="product-section__closing">{section.closingLine}</p>
+                )}
+              </section>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactPlate />
+  </div>
+</BaseLayout>
+
+<style>
+  .page-section {
+    flex: 1 0 auto;
+  }
+
+  .product-head__subhead {
+    margin-block-start: var(--space-24);
+  }
+
+  /* §B.11 — directly under the h1. */
+  .product-head__track {
+    margin-block-start: var(--space-32);
+  }
+
+  .product-head__store {
+    margin-block-start: var(--space-24);
+  }
+
+  .product-head__store a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+  }
+
+  .shots {
+    margin-block-start: var(--space-64);
+    list-style: none;
+    display: grid;
+    gap: var(--space-24);
+    justify-items: start;
+  }
+
+  .shots :global(img) {
+    display: block;
+    block-size: auto;
+    max-inline-size: 100%;
+    border-radius: 3px;
+  }
+
+  .product-body {
+    margin-block-start: var(--space-96);
+  }
+
+  .product-section + .product-section {
+    margin-block-start: var(--space-64);
+  }
+
+  .product-section__body,
+  .product-section__closing {
+    margin-block-start: var(--space-16);
+  }
+
+  .product-section__closing {
+    font-weight: 600;
+  }
+
+  /* A list of items, rendered as a list. Tailwind's preflight strips the marker, and an
+     indented block with no marker reads as a mistake rather than as a list; the marker
+     takes --muted so it stays quieter than the text it belongs to. */
+  .product-section__features {
+    margin-block-start: var(--space-16);
+    padding-inline-start: var(--space-24);
+    max-inline-size: var(--measure-body);
+    list-style: disc;
+  }
+
+  .product-section__features > li::marker {
+    color: var(--tgd-muted);
+  }
+
+  .product-section__features > li + li {
+    margin-block-start: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .shots {
+      grid-template-columns: repeat(2, max-content);
+      column-gap: var(--gutter);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-head {
+      max-inline-size: none;
+    }
+
+    .shots {
+      grid-template-columns: repeat(4, max-content);
+    }
+
+    .product-body {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--gutter);
+    }
+
+    /* §B.5's grid, and §B.4's body measure: the prose runs cols 1-8 and the right
+       third stays empty rather than the paragraphs setting to the full 1200. */
+    .product-section {
+      grid-column: 1 / span 8;
+    }
+  }
+</style>
