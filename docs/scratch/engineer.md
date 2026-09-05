@@ -937,3 +937,247 @@ Evidence in `docs/reviews/floor2/engineer/`: the floor section at 360, 390, 768,
 and `lighthouse.json`. Every one was opened and looked at; the black scene, the missing
 chair, the invisible occupants, the clipped `Release Watcher` plate, the portrait chair
 hung below its own cell and the OG card's stale crop were all found that way and fixed.
+
+---
+
+## Build run B — the two person pages, the run A items, the round 10 plate (2026-09-05)
+
+Scope per brief §14 step 6: `/sahib/` and `/tanya/`, the thirteen items from
+`docs/reviews/runA-design-review.md`, copy round 12, the full nav and the work strip's
+two row links, the §J cuts, and §D.8's print stylesheet for both person pages.
+
+### The thirteen run A items, and how each was closed
+
+| # | Fix |
+|---|---|
+| B1 | Already closed by floor pass 2, and verified here rather than assumed: the scene instantiates `#fl-cone`, `#fl-seat`, `#fl-agent` and both cabins, and `qa:floor:pointer` still returns 10 of 10 stations at six widths in both schemes. |
+| B2 | `/contact/`'s three routes are a 3-up **inside cols 1–9** at ≥ 1024, per §B.11 as amended in round 9. Measured on the rendered page: the third column runs x 524–738 at 1024 against a band beginning at 748, and x 732–1014 at 1440 against 1164; the third address's own ink ends at 715 and 930. |
+| B3 | §E.2's vertical track runs to 930 and the horizontal form starts at 931. The breakpoint moved and nothing else about the component did. |
+| 4 | `--node-future-stroke` is `rgba(15,42,46,.60)` in `tokens.css` and in the print block that re-declares the light values. `qa:contrast` gained alpha-composite pairs, so the stroke is now checked at the colour it renders as: **4.02 : 1** on `--sheet`, **3.84 : 1** on `--band`, against §E.1's published 4.01 and 3.83. The dark twin stays at `.45` and is asserted at 3.75 / 3.50. |
+| 5 | Every route that was one 530px measure in a 1200px page is now on §B.5's grid: `/work/`'s headline and intro are cols 1–5 and 7–12; both case studies split the same way and set each section as a heading rail (cols 1–3) beside its prose (cols 4–9); `/contact/`'s header splits and its routes take cols 1–9. **The home page's four are §B.9's own drawn arrangement** — the hero's void is the one §B.9 allows, the offer section is drawn as "the quietest section on the site", and the CTA's wireframe says "cols 8–12 empty" — so they are not changed. |
+| 6 | The full track's width is `--track-span`, which a page sets to the column span it wants filled; the default is five times §B.10's own `--track-pitch`. `/work/` uses the pitch between 931 and 1023 and the cols 1–9 span above it; both case studies fill cols 1–9. The axis has a stated width instead of a max-width nobody chose. |
+| 7 | The screenshot row is capped at two columns from 768 up, so no page puts more than §B.11's two above the fold. Nothing was cut to achieve it — the review's "remove one thing" nomination for that route is still available to spend. |
+| 8 | The four sections on both case studies alternate `--sheet` and `--band`. The fill carrier pads 16px and pulls the same 16px back as a negative margin, so its content box is the content width and the grid inside it stays on §B.5's columns. |
+| 9 | The screenshot grid's column count is the screenshot count, capped at two, so `/work/wedding-planner/` is laid out for the one screenshot it has rather than as four tracks with three collapsed. |
+| 10 | The compact track's label row is half a pitch wider than the axis it labels. The three middle labels stay centred on their nodes; the two end labels take half a pitch of padding on their outer side and align to the ends of the **axis**, so the row's ink runs x 732 → 1132 at 1440, which is §B.10's axis exactly. See the deviation below: §B.10 as amended in round 9 says the labels ride the axis, so the other half of item 10 — that the row should reach col 12 — is refused, because reaching col 12 puts a mark inside the plate's band. |
+| 11 | The four non-home OG cards lose the empty 135px band and the card is the sheet. §B.12 rules out the review's other suggestion in terms — the favicon's cone "never appears … in an OG card", and putting it there would make it a logo. The home card keeps its floor, because the floor is in it. |
+| 12 | Already closed by floor pass 2, verified: both cabin plates are horizontal, on the near half of their own cabin floor, at §C.3's coordinates. `qa:floor` re-checks nameplate disjointness at six widths. |
+| 13 | §J's pre-committed cut for `/work/` is spent: the one-line description under each product name does not print. COPY.md §3.2's and §3.3's strings are untouched; they are simply not placed. |
+
+### What the two person pages are built as
+
+**The coverage map is a real `<table>`**, with `scope` on both header axes and every table
+element carrying its ARIA role explicitly — because below 1024 the rows are restyled into
+stacked blocks and changing `display` on a table element drops its implicit role in every
+engine. That is the documented mitigation, not a hack. One DOM, two layouts: the matrix
+at ≥ 1024 with the product name inside its cell, and at < 1024 §F.7's rotation, where the
+row header carries the company, its years and a five-mark strip and the product names
+move onto the row's own lines. The strip is `aria-hidden` because the cells beneath it
+carry the truth; the inline surface label is `aria-hidden` because the column header has
+already been announced. Nothing is written twice.
+
+The map asserts §F.1's own arithmetic at build time — ten filled cells, no empty row, no
+empty column, exactly one lit column — because §H.3's moment only reads as four columns
+filling and one arriving if every column has a cell to fill.
+
+**T1 is one file**, `src/layouts/tanya/LayoutA.astro`, selected by one import in
+`src/pages/tanya/index.astro`; her tokens are one partial, `src/styles/worlds/tanya.css`;
+and every component both pages share — the header, the footer, the plate, the work card,
+the links block — consumes only the generic `--tgd-*` names. Swapping to T2 touches
+neither. The core is a continuous field with a 4px `--lamp-ink` cap; Android and iOS are
+the two edge columns, narrower and indented; the Motive card sits in the core with the KMP
+work and a 2px tick carries the Fleet App into the iOS edge. DOM order is core, Android,
+iOS — §G.3's own 360 collapse, and the reading order at every width.
+
+### Where this run had to argue with the spec, and the arithmetic
+
+1. **Every mark on every route now lives in cols 1–9, and cols 10–12 are the plate's
+   rest.** §B.11 states that allocation for `/contact/` and derives it; the same
+   arithmetic forces it everywhere. At 1024 the band begins at x 748 and col 9 ends at
+   738, so nothing load-bearing can sit right of col 9 at the tightest width on the site.
+   §G.3 draws Tanya's iOS edge at cols 10–12; at 1024 col 10 *starts* at 762, inside the
+   band. Her three fields are Android 1–3, core 4–7, iOS 8–9, which keeps §G.3's
+   hierarchy exactly — the core is the widest field, the edges narrower and indented.
+2. **§B.9's split proof band cannot engage at 1024.** §B.10 computes the band at 1440 and
+   nowhere else. At 1024 col 7 starts at x 524 and the plate's band at 748, leaving 224px
+   for an axis that needs 500 at the 100px pitch that makes §E.2's two-line label
+   reservation hold; shrinking the pitch to 56 is the three-line `Submitted for review`
+   step 2 raised as item 7. Measured before the change, the last three nodes and three
+   labels all ended inside the band at 1024. The section stacks from 1024 to 1439 and
+   splits at 1440 — the same remedy §B.10 chose for `/work/`, the form with no right-hand
+   extent rather than a narrower pitch. **§B.5 says every split engages at 1024. Flagged
+   for the Design Lead.**
+3. **§G.3's two numeral slots in the core are not filled as drawn.** COPY.md §7.2 says in
+   terms that the 99.8% and ~20% figures "print only in that attributed form", so the
+   attributed sentence prints on her Motive card and the core carries no bare figures.
+4. **§6.5's and §7.5's written accessible names for the two profile links are not used.**
+   `Sahib Singh on GitHub. Opens a new tab.` does not contain its own visible label
+   `Sahib on GitHub`, which is SC 2.5.3, Label in Name; Lighthouse's
+   `label-content-name-mismatch` audit caught it and took `/sahib/` to 98. COPY.md §10.5's
+   general rule — append `Opens a new tab.` to the link's own name — produces a name that
+   contains the label by construction, so the general rule wins over the two written-out
+   strings. Both are still in `copy.ts` so the conflict is visible.
+5. **The work card's company is a `<p>`, not an `<h3>`.** On `/sahib/` the cards follow
+   the map, which COPY.md gives no heading — §F.7's and §F.8's section labels are
+   wireframe labels, not COPY.md strings — so an `<h3>` skipped a level and
+   `heading-order` was right. PLAN.md §5.5 describes a list of roles; the list carries the
+   structure and the type carries the hierarchy.
+6. **§F.7's and §F.8's `Tell us what you're building.` above the closing address is not
+   printed.** It is COPY.md §2.10's home-page CTA headline and COPY.md writes no
+   person-page equivalent, so each person page closes with that person's address alone,
+   under §6.5's and §7.5's own label and accessible name.
+
+### DESIGN.md §B.10, round 10 — landed, and applied except for one bullet
+
+Re-read at the end of the run, as asked. The sub-768 ruling **has** landed. Three of its
+four changes are in:
+
+- **The reserve is +72, not +56.** The plate is 56 tall and sits 16 above the viewport's
+  bottom edge, so 56 alone left a section's last line 16px inside its lowest rest
+  position.
+- **Two widths, one object:** 260 × 56 at ≥ 768, 112 × 56 below it, with the band at 276
+  and 128.
+- **The composition rule binds at every width**, at whichever band applies.
+
+**Change two — the label below 768 — is a copy blocker and the plate is held there.**
+Round 10 replaces the address with a label at that width because 112px leaves ~73px of
+type against the 169px the shortest address needs. Both of that label's strings are
+`[COPY NEEDED]` in §B.10 and neither is in COPY.md: not the ≤ 9-character label, not the
+≤ 8-word accessible name that has to speak the address the plate links to. An amber box
+with nothing in it and no accessible name is not a smaller failure than the 84%-of-the-line
+one round 10 fixed, so the element waits for its strings, exactly as the strip's row links
+and §B.8's pipeline label waited for theirs. The 112px width and the 72px reserve are
+already in `tokens.css` and the 128px band is already enforced, so the day the two strings
+arrive this is one `display` declaration. **Change three — the wrapper on `/` starting
+after the floor below 768 — is not built either, because with no plate below 768 there is
+nothing for it to change.** Both return together.
+
+### Two regressions this run caused and found by measuring, not by reading
+
+1. **Moving Tanya's tokens into their own partial rendered her entire page in the studio
+   palette.** PLAN.md §1.2 asks for a swappable token partial; the `@import` went at the
+   top of `tokens.css`, which puts `[data-world="tanya"]` **before** `:root` — and both
+   selectors are specificity (0,1,0), a pseudo-class and an attribute selector weighing
+   the same, so `:root` won on source order. Nothing failed: the build was clean, `astro
+   check` was clean, `qa:contrast` was clean because it layers by selector name rather
+   than by document order, and a pale achromatic page is what hers is supposed to look
+   like. Measured `--tgd-surface` in a browser: `#f1f3f0`, the studio sheet. The import
+   moved to `global.css`, in order, after `tokens.css`.
+2. **The T1 band rendered as three stacked blocks above 1024.** With DOM order core,
+   Android, iOS, grid auto-placement will not backtrack to column 1, so the core took row
+   1 and both edges went below it. Explicit `grid-row: 1` on each field.
+
+Both are the same lesson the floor's `set:html` scoping bug taught one layer up: a fault
+that only a rendered page shows needs a check that reads a rendered page. Hence the two
+new gates below.
+
+### Two new QA gates
+
+**`qa:worlds`** asks the browser what actually computed, on the real page, in both
+schemes: `--tgd-surface`, `--tgd-surface-alt`, `--tgd-ink` and `--tgd-accent` on four
+routes, against DESIGN.md's published hex. **32 computed values.** It is the check that
+would have caught regression 1 in seconds.
+
+**`qa:plate`** is §B.10's composition rule, measured. The rule has been enforced three
+times by three people reading screenshots and broken three times the same way; it is
+arithmetic on a rendered box, so it is a script. Every mark the rule names by name — a
+card's price line, a stage node, a stage label, a printed address, a CTA, the map's lit
+cell, an edge annotation — is measured against the band at eight widths on all eight
+routes, inside the plate's own wrapper. **432 marks.** It measures **ink**, through a
+`Range` over each element's contents, not element boxes: a vertical track's label lives in
+a full-width grid cell and a card's date in a full-width block, so boxes over-report by
+500px and the first run produced 80 false failures on top of the real ones.
+
+It found six real failures, three of them pre-existing:
+
+- the home strip's and Sahib's cards went 2-up at 768, putting the right-hand card's date
+  line at x 522 against a band beginning at 492. §D.1's own table is one column then two,
+  with no 768 row, so the 2-up now arrives with the twelve-column grid;
+- the map's lit cell was a full-width block below 1024, ending at x 706 against 492 — it
+  shrinks to its content now, which is also the picture §F.1 describes, "the newest,
+  smallest" region;
+- §B.9's proof band at 1024, above.
+
+### Deferred, deliberately — the run A list, updated
+
+Closed this run: the four nav links (all of them), the work strip's two row links, and
+§D.8's print stylesheet.
+
+Still open:
+
+1. **Font subsetting and the `wdth` range restriction.** Step 8. `public/fonts/` still
+   carries the full unsubsetted binaries, 133,852 B.
+2. **Fallback-metric matching for `font-display: swap`.** Still the fix for `/contact/`'s
+   CLS, and still step 8's.
+3. **The plate below 768**, above — two COPY.md strings.
+4. **Both headshots.** QUESTIONS.md item 23's images do not exist and COPY.md §10.1's two
+   alt lines are still `[CONFIRM]`-marked against them. The slot is reserved at §F.7's
+   320 × 320 and §F.8's 366 × 440 with **no image and no placeholder** — no frame, no
+   fill, no label, no icon — so filling it later causes no reflow and nothing on the page
+   pretends a picture is coming.
+5. **§C.4's 6% warm offset**, the floor's.
+6. **§B.11's empty room on `/404`.** Seen while shooting this run's evidence and recorded
+   rather than fixed, because it is outside run B's scope: §B.11 gives `/404` "the floor
+   slab and the lamp, no desks, no chair", reusing the floor's own slab symbol and lamp
+   gradient for "roughly zero new bytes". The page today is the headline, the link home,
+   the plate and the site chrome, and no room. No review has raised it — the run A review
+   did not include `/404` in its routes — so it is on this list rather than in a commit.
+
+### Other decisions made this run
+
+- **`scripts/screenshots.mjs` dropped its own output directory on every run without
+  `--el`.** `elIndex` is −1 when the flag is absent and `-1 + 1` is 0, so the filter
+  removed `argv[0]`. Fixed; it is the script run A left for run B to use.
+- **The years rule is shared.** COPY.md §7.2 round 12 prints years only on both person
+  pages as well as in the strip, so `yearsOnly` and its assertion moved to
+  `src/lib/person.ts` and the card asserts against it. Every card printed a month before
+  this — `Jan 2024 – now`, `Aug 2021 – Dec 2023`. The months stay in the data, where they
+  are the source that settles which card a boundary belongs to.
+- **The lit cell's ink is one token, `--s-lamp-ink`.** `--s-ink` on `--lamp` is 8.10 : 1
+  in light (§F.4a) and `--s-ground` on `--lamp` is 8.48 : 1 in dark (§F.4's own pair read
+  the other way round). Both are published; `--s-ink` on `--lamp` in *dark* would be
+  1.66 : 1, which is why this is a token and not one declaration.
+- **The print sheet closed two failures §D.8's own light-token rule exists to remove, one
+  layer down.** The closing address printed amber on a `--floor` ground the browser
+  suppresses — 1.79 : 1 on white — and the two inverted regions printed `--chalk` on
+  white at 1.20 : 1. Both are ink on paper now. The map's lit cell keeps its 2px boundary
+  and loses its fill, and its text comes back to the page ink with it.
+- **Below 1024 a single work card is the full content width** — 704px at 768. §D.1 caps
+  nothing and nothing is covered, but it is a wide object for a shelf-talker and the
+  Design Lead may want a cap. Recorded rather than invented.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| JS shipped, `/sahib/` and `/tanya/` | **0 B external**; 450 B gzip of inline module script (1,028 B raw — the theme toggle's, and nothing else) |
+| CSS shipped, all routes | 69,020 B raw / **12,352 B gzip** (30% of the 40 KB line) |
+| `/sahib/` HTML | 6,486 B gzip |
+| `/tanya/` HTML | 5,982 B gzip |
+| Home HTML | 11,944 B gzip |
+| Home page total | **158,221 B gzip** (13% of the 1.2 MB line) |
+| Contrast pairs checked | **62** across six palettes, including four alpha composites |
+| Computed world tokens checked in a browser | **32**, four routes × two schemes |
+| Load-bearing marks measured against §B.10's band | **432**, eight routes × eight widths, 0 inside the band |
+| §C.11 pointer acceptance | **10 of 10** stations, six widths, both schemes |
+| "The map fills", instrumented per 100ms | columns 1–4 up in order at a 120ms stagger, complete at ~560ms; **nothing from 560 to 860**; the lamp column alone from 860, complete ~1,500ms — §H.3's 300ms hold, measured |
+| "The core draws" | exactly **one** animation on the page, `core-draws`, 900ms |
+| Reduced motion | the complete map and the complete band at first paint, both schemes |
+| Lighthouse mobile, 3 runs, **light**, all seven routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| LCP, light | 1,415-1,511 ms across the seven routes (line is 2,000); `/sahib/` 1,439-1,448, `/tanya/` 1,438-1,441 |
+| CLS | **0** on six routes; **0.030** on `/contact/`, unchanged from run A and still the font swap (line is 0.05) |
+| TBT | **0 ms** on every route |
+
+**Keyless build.** No `.env`, no `PUBLIC_FIREBASE_*` in the environment: the build
+succeeds, **0 external `<script>` files in `dist/`**, and no file in `dist/` mentions
+Firebase.
+
+Evidence in `docs/reviews/runB/engineer/`: both person pages at 360, 768, 1024 and 1440 in
+both schemes; the same two under `reduce` at 360 and 1440 in both; keyboard focus on the
+first three stops at 360 and 1440 in both; the map zoomed at four widths; the six fixed
+routes at 360 and 1440 in both; and the print stylesheet as PDF and PNG for both person
+pages and `/`, taken from a context seeded **dark** so that §D.8's light-token rule is
+what the PDF proves. Every one was opened and looked at; the studio palette on Tanya's
+page, the three stacked T1 fields, the months on every card date, the shrink-wrapped map
+caption, the centred `th`s, the missing field fill at 360, the map's lit cell inside the
+plate's band and the invisible lit-cell text in print were all found that way and fixed.
