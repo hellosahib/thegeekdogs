@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { STRIP_ROW_LINKS, BUILT_ROUTES } from '../lib/copy';
 
 /**
  * The compressed work-card strip (QUESTIONS.md item 50, DESIGN.md §B.8 and §B.9 as
@@ -16,9 +17,10 @@ import { getCollection } from 'astro:content';
  * option 2 — a static translucent white, no `backdrop-filter` anywhere. Section ground
  * is `--band`, which is one of the two backdrops §D.7 permits behind a card.
  *
- * COPY.md §2.9a now supplies both row link labels and their accessible names, but
- * /sahib/ and /tanya/ do not exist until build run B, so the link is still not rendered
- * and nothing stands in for one. It lands the step its route does.
+ * COPY.md §2.9a's one link per row, to that person's own page. Both routes land in build
+ * run B, so both links are live. "In full" is the honest promise: the strip shows two of
+ * Sahib's five companies and two of Tanya's three, with two of the four card levels
+ * dropped, and the person page is where all of it prints.
  *
  * COPY.md §2.9a: neither wireframe draws a heading above the strip and adding a printed
  * line would take height the strip was included on the condition of not taking, so
@@ -45,6 +47,9 @@ const rows = order.map((slug) => {
   if (!person) throw new Error(`The work-card strip needs src/data/people/${slug}.json.`);
   return {
     name: person.data.name,
+    link: STRIP_ROW_LINKS[slug] && BUILT_ROUTES.has(STRIP_ROW_LINKS[slug].href)
+      ? STRIP_ROW_LINKS[slug]
+      : undefined,
     cards: person.data.workHistory
       .filter((entry) => entry.confirmed)
       .slice(0, 2)
@@ -81,6 +86,13 @@ let tiltIndex = 0;
               </li>
             ))}
           </ul>
+          {row.link && (
+            <p class="strip__link">
+              <a class="link" href={row.link.href} aria-label={row.link.accessibleName}>
+                {row.link.label}
+              </a>
+            </p>
+          )}
         </div>
       ))
     }
@@ -100,6 +112,18 @@ let tiltIndex = 0;
   .strip__name {
     font-size: var(--step-title);
     line-height: var(--step-title-lh);
+  }
+
+  /* COPY.md §2.9a — one link per row. It sits under the row's cards at every width, so
+     the row reads name, objects, then where the rest of them are. */
+  .strip__link {
+    margin-block-start: var(--space-24);
+  }
+
+  .strip__link a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
   }
 
   .strip__cards {
@@ -183,6 +207,29 @@ let tiltIndex = 0;
 
     .strip__cards {
       margin-block-start: 0;
+    }
+
+    /* §B.9 puts the row label outside the content and the objects run out from it; the
+       link belongs to the row, so it sits under the label rather than under the objects
+       at this width. Two rows in the label column, one cell for the cards. */
+    .strip__row {
+      grid-template-rows: auto 1fr;
+    }
+
+    .strip__name {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .strip__link {
+      grid-column: 1;
+      grid-row: 2;
+      margin-block-start: var(--space-16);
+    }
+
+    .strip__cards {
+      grid-column: 2;
+      grid-row: 1 / -1;
     }
   }
 

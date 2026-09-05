@@ -485,12 +485,53 @@
     --lamp-ink: #8a5a08;
   }
 
+  /*
+    §D.8 — `--muted` resolves to #444 on paper, in every world, so the small print on a
+    flattened card is ink rather than a screen grey. 9.74 : 1 on white.
+  */
+  html {
+    --muted: #444;
+    --card-ink-2: #444;
+    --s-dim: #444;
+    --t-edge: #444;
+    --chalk-72: #444;
+  }
+
   /* A sticky amber bar is not a thing that belongs on paper, and a control that
-     cannot be pressed is not either. */
+     cannot be pressed is not either. §D.8 also omits the floor entirely (item 54):
+     scene, buttons, card slot and roster, with no text substitute in its place. */
   .plate,
   .skip-link,
   .theme-toggle,
+  .site-header__nav,
   #studio-floor {
     display: none !important;
+  }
+
+  /*
+    §D.8 — `--lamp` never prints. Two places would otherwise try: the closing address,
+    which is amber text on a --floor ground, and the inverted regions themselves. A
+    browser suppresses the ground and leaves amber on white at 1.79 : 1 and --chalk on
+    white at 1.20 : 1 — both invisible, produced silently, which is the failure class
+    §D.8 exists to remove. The inverted regions print as ink on paper instead.
+  */
+  .room {
+    background-color: transparent !important;
+    color: var(--floor) !important;
+    box-shadow: none;
+    --tgd-on-room: var(--floor);
+    --tgd-on-room-muted: #444;
+  }
+
+  .lamp-address {
+    color: var(--floor);
+    border-block-end-color: var(--floor);
+  }
+
+  /* Links to places paper cannot go. The employer note and the rights line stay, because
+     brief §5.4 requires the note wherever an employer name is printed. */
+  .site-footer nav,
+  .site-footer__links {
+    display: none;
   }
 }
