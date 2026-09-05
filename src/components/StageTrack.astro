@@ -9,11 +9,21 @@ import type { Stage } from '../content.config';
  * §B.11 puts it directly under each product page's h1, because "Live" is the strongest
  * fact on that page, and on /work/ under each product's one-line description.
  *
- * §E.2, >= 768: horizontal, five nodes evenly spaced, labels beneath, and the label row
- * reserves two lines of height for all five so nothing shifts when `Submitted for
- * review` wraps. < 768: vertical, because five labels across 320px gives 64px each and
- * that label cannot set — nodes in a column, connector vertical, label to the right,
- * 44px rows.
+ * §E.2 as amended in round 9: **horizontal at >= 931, vertical at <= 930.** Below 768
+ * five labels across 320px give 64px each and `Submitted for review` cannot set; from
+ * 768 to 930 the horizontal axis ends inside the plate's 276px band and the last two
+ * nodes — the two that say the product is not out yet — are covered, which §B.10's
+ * amended rule forbids. The vertical form has no right-hand extent, so it is the remedy
+ * rather than a narrower pitch: capping the axis at `band - 16` gives an 85px pitch at
+ * 768, which drops `Submitted for review` to three lines and breaks §E.2's two-line
+ * label reservation. Nothing else about the component changes at the new breakpoint.
+ *
+ * Run A item 6: the horizontal axis is no longer a fixed 567px object that never
+ * answers the grid. Its width is `--track-span`, which a page sets to the column span
+ * it wants the axis to fill; the default is five times §B.10's own `--track-pitch`,
+ * which is the pitch that makes the two-line label reservation hold. Either way the
+ * axis has a stated width rather than an accidental one, and the page is what decides
+ * where its right edge lands relative to the plate's band.
  *
  * The three states differ on three redundant channels — size, internal structure and
  * the pattern of the connector leaving the node — so the component survives greyscale,
@@ -143,8 +153,8 @@ const steps = stageSteps(stage);
     font-weight: 500;
   }
 
-  /* >= 768 — horizontal, five even columns, labels beneath. */
-  @media (min-width: 768px) {
+  /* >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9). */
+  @media (min-width: 931px) {
     /* The five labels are all visible here, so the summary line would say a second time
        what the track's own largest mark already says (step-1 review item 17). */
     .full-track__now {
@@ -154,7 +164,7 @@ const steps = stageSteps(stage);
     .full-track__list {
       margin-block-start: 0;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      max-inline-size: 620px;
+      inline-size: min(100%, var(--track-span, calc(5 * var(--track-pitch))));
     }
 
     .full-track__step {

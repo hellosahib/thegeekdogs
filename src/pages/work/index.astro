@@ -7,13 +7,23 @@ import { WORK_INDEX } from '../../lib/copy';
 import { workIndexGraph } from '../../lib/jsonld';
 
 /*
-  DESIGN.md §B.11: two entries, each a --band block — product name, one line, the full
-  labelled build-stage track (§E), and a store link where one exists. No hero image.
-  COPY.md §3.
+  DESIGN.md §B.11: two entries, each a --band block — product name, the full labelled
+  build-stage track (§E), and a store link where one exists. No hero image. COPY.md §3.
 
   COPY.md §3.1 gives a short intro and a long body and says the short one is what prints
   if only one can; §B.11 caps the slot at 20 words and the short intro is 17, so the
   short intro is what prints and the long body is not placed.
+
+  Run A item 13, §J's pre-committed cut for this route, taken here: the one-line
+  description under each product name does not print. The name and its stage track say
+  enough on an index page, and the entry now has one job per row. COPY.md §3.2's and
+  §3.3's strings are untouched; they are simply not placed on this page.
+
+  Run A item 5: the intro is a split — the headline in cols 1-5 and the intro line in
+  cols 7-12 — and each entry block is placed on cols 1-9. Cols 10-12 are this page's one
+  §B.9 void, which is where the plate rests, and it is the same allocation §B.11 gives
+  /contact/ for the same reason: at 1024 a mark whose right edge passes x 748 is inside
+  the plate's band, and §B.10's amended rule forbids that for a stage node by name.
 */
 const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
 const schema = await workIndexGraph();
@@ -34,18 +44,17 @@ if (products.length === 0) {
   <div class="plate-span plate-span--page">
     <section class="section section--reserve work-section">
       <div class="shell">
-        <div class="stack">
-          <h1>{WORK_INDEX.headline}</h1>
-          <p class="muted">{WORK_INDEX.intro}</p>
+        <div class="grid work-intro">
+          <h1 class="work-intro__headline">{WORK_INDEX.headline}</h1>
+          <p class="work-intro__line muted">{WORK_INDEX.intro}</p>
         </div>
 
-        <ul class="work-list">
+        <ul class="grid work-list">
           {
             products.map((product) => (
               <li class="work-entry">
                 <div class="work-entry__inner">
                   <h2 class="work-entry__name">{product.data.indexName}</h2>
-                  <p class="work-entry__line muted">{product.data.oneLine}</p>
                   <div class="work-entry__track">
                     <StageTrack stage={product.data.stage} label={product.data.descriptiveName} />
                   </div>
@@ -86,11 +95,16 @@ if (products.length === 0) {
     flex: 1 0 auto;
   }
 
+  /* Run A item 5 — the headline and the intro line are two columns from 1024 up, on
+     §B.5's own grid. Below that they stack in DOM order, as §B.5 says every split does. */
+  .work-intro {
+    row-gap: var(--space-24);
+  }
+
   .work-list {
     margin-block-start: var(--space-64);
     list-style: none;
-    display: grid;
-    gap: var(--space-48);
+    row-gap: var(--space-48);
   }
 
   /* §B.11 — each entry is its own --band block. The gap between them is the page's own
@@ -99,10 +113,6 @@ if (products.length === 0) {
     background-color: var(--tgd-surface-alt);
     color: var(--tgd-ink);
     padding: var(--space-32) var(--space-24);
-  }
-
-  .work-entry__line {
-    margin-block-start: var(--space-12);
   }
 
   .work-entry__track {
@@ -123,6 +133,42 @@ if (products.length === 0) {
   @media (min-width: 768px) {
     .work-entry__inner {
       padding: var(--space-48);
+    }
+  }
+
+  /*
+    §E.2's horizontal form starts at 931. Between 931 and 1023 the block is the full
+    eight columns but the plate's band begins at 100vw - 276, which is x 655 at 931, so
+    the axis takes §B.10's own five-times-100px pitch and its right edge lands at 580 —
+    75px clear at the tightest width in this range, and looser at every width above it.
+  */
+  @media (min-width: 931px) {
+    .work-entry__track {
+      --track-span: calc(5 * var(--track-pitch));
+    }
+  }
+
+  /*
+    From 1024 the twelve-column grid arrives and every split in DESIGN.md engages with
+    it (§B.5). The entry block takes cols 1-9 and the axis fills it, so the track has a
+    column span rather than a max-width (item 6): its right edge is x 738 at 1024 and
+    x 930 at 1440, against a band beginning at 748 and 1164.
+  */
+  @media (min-width: 1024px) {
+    .work-intro__headline {
+      grid-column: 1 / span 5;
+    }
+
+    .work-intro__line {
+      grid-column: 7 / span 6;
+    }
+
+    .work-entry {
+      grid-column: 1 / span 9;
+    }
+
+    .work-entry__track {
+      --track-span: 100%;
     }
   }
 </style>
