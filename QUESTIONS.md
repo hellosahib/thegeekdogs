@@ -140,24 +140,32 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
 ## J. Raised by the answers · 2026-09-05
 
 56. Ship approval, the empty chair: who cuts the release, Sahib or Tanya or both? Item 19 named every gate except this one.
-    Answer:
+    Answer: Both.
 57. Firebase Analytics needs the web app config (apiKey, projectId, appId, measurementId) from the Firebase console. Paste them here or add them to `.env` locally; the build runs without them and the analytics script is omitted until they exist.
-    Answer:
+    Answer: Owner adds the keys to .env locally. The site must build and run without them; analytics is simply omitted.
 58. GitHub repo name under your personal account. Orchestrator assumes `thegeekdogs.com`. Confirm, and say when to create the remote and push; nothing is pushed until you do.
-    Answer:
+    Answer: Repo name thegeekdogs.com confirmed. Agents commit locally only; a human adds the remote and pushes.
 59. Three adjectives each (items 20 and 21 were answered with pronouns). Not blocking.
-    Answer:
+    Answer: Sahib: go-getter, smart, executer. Tanya: thinker, planner, user compassion.
 60. Pocket Manager screenshots (item 16): who captures them from the local build, and on which device or emulator size? The case study needs at least the calendar and statistics screens.
-    Answer:
+    Answer: An agent runs the latest build on an emulator or simulator and captures screenshots; adjust locally if needed, or with a free browser-based tool.
 61. Sahib's resume or CV, so his titles, dates and the iOS/KMP specifics can be cross-checked the way Tanya's were.
-    Answer:
+    Answer: Sahib's older resume supplied at docs/sahib-singh-resume.pdf; no newer one exists.
 62. Item 38 gave four LinkedIn URLs for three named posts. Which URL is which, and what is the fourth post?
-    Answer:
+    Answer: Orchestrator verified the four posts in Chrome; notes in docs/scratch/references.md. All four are Sahib's Android posts on LinkedIn.
 63. Tanya's Naskay project is "Jillian Michaels | Fitness App", a third-party trademark. Name it, or describe it as "a fitness app for a US client"?
-    Answer:
+    Answer: Name it.
 64. Cabin props to approve (DESIGN.md §C.4). Sahib: whiteboard with a textless three-box architecture sketch, a portrait second monitor drawn dark, a desk plant. Tanya: a painting with a two-band abstract, a device shelf with three phones, a stack of three books. Any prop can be swapped one for one; a third prop per cabin costs budget.
-    Answer:
+    Answer: Approved.
 65. The mobile floor section is now about 1180px tall with ten stations and the two human cards' gate lists. Accept, or shorten the two human card bodies so the panel comes down?
-    Answer:
+    Answer: Accept the height.
 66. On /sahib/ and /tanya/, the closing call to action and the contact plate print that person's own address (sahiboffc@gmail.com, jaintanya999@gmail.com), not the studio inbox. Correct?
+    Answer: Yes.
+67. Astro version. The brief specifies Astro 5. The installed 5.18.2 carries eight high-severity advisories with no patched 5.x release; all concern server rendering this static build never does, but the 5 line no longer receives fixes. Engineer recommends moving to the current major (Astro 7) before launch; it is a stack change and needs your sign-off. Recommendation: yes.
+    Answer: Yes, move to Astro 7.
+68. Is the wedding planner built and maintained through the same agent pipeline and review gates as Pocket Manager? The audit only covered the Pocket Manager repo. If yes, the home page and /work/ say so; until then they say "in final touches" without the pipeline claim.
+    Answer: Yes, same pipeline. The variant text ships.
+69. Contact form: none, email only (current assumption, matching "a short written brief"), or a real form via Formspree? Nobody was asked directly.
+    Answer: Email only. No form.
+70. Design review owner. Item 19 named every gate except who reviews the Designer agent's output. Recommendation: Tanya, as the product and marketing owner. Confirm or name Sahib.
     Answer:

@@ -30,3 +30,16 @@ Also an embedded site. Inside the frame:
 - Then a two-column CV: tiny uppercase labels in the left column ("EDUCATION", "CERTIFICATIONS"), entries at the right in bold uppercase with the institution beneath in grey and dates in a lighter weight. Row spacing is generous; no rules between entries.
 
 Not observed: interaction, motion beyond the clocks ticking, any colour outside the photographs and the green dot.
+
+# LinkedIn posts (QUESTIONS.md items 38 and 62), verified by the Orchestrator in a logged-in Chrome session, 2026-09-05
+
+All four are authored by Sahib Singh (headline "AVP – Mobile | Driven by Engineering Collaboration"). Figures read off the post pages as of today.
+
+| URL (activity id) | Subject | Reactions | Comments | Reposts | Age shown |
+|---|---|---|---|---|---|
+| 7430310577153011712 | channelFlow vs callbackFlow cheat sheet | 110 | 1 | not shown | 6 months |
+| 7421603431334932481 | Android 16 ignoring orientation locks; the duplicate-fragment bug and the savedInstanceState null check | **283** | 12 | **13** | 7 months |
+| 7420752263364796416 | ViewModel vs onSaveInstanceState vs SavedStateHandle, three tiers of state | 92 | 1 | 5 | 7 months |
+| 7419068733480022016 | Coroutine cancellation is cooperative: cancel() inside withContext, does the suspend function still run | 17 | 1 | not shown | 7 months |
+
+The "283 reactions and 13 reposts" figure in the brief matches the Android 16 post exactly. The fourth post is a coroutine-cancellation quiz not named in the brief.

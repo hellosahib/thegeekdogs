@@ -129,3 +129,43 @@ Verdict: **APPROVED.** Education corrected to Dr. A.P.J. Abdul Kalam Technical U
 
 Verdict: **APPROVED.** Ten stations re-planned at both breakpoints (360: 3 × 6 portrait room, smallest target 101 × 64; 1440: 6 × 5); cabins with two props plus one wall piece each, crossed so the pair does not read as the stereotype §9.4 forbids; card-slot min-height now computed (344px at ≥ 1024, 320px below 768) from the longest card; floor accounting ~20.5 KB raw / ~7.8 KB gzipped against the 80 KB line; Sahib's map filled; T1 stands with a new argument (the ten-station floor is already the site's pipeline diagram, so T2 would duplicate it). No rating errors remain.
 Of the nine §I items: 1 (prop approval), 5 (mobile floor height), 8 (person-page closing CTA) → `QUESTIONS.md` 64 to 66. 2, 3, 4 → Copywriter round 4 is mapping the gates. 6 → resolved by `FACTS.md` §(d). 7 → T1 stands (item 31 blank means the recommendation). 9 → stale; the subhead was cut to 24 words in copy round 3. Design Lead round 4 removes the stale items and adds the dark scheme and toggle.
+
+## 2026-09-05 · Build step 1 · Engineer report, Orchestrator verification
+
+Engineer delivered 8 local commits on `main`, no remote. Orchestrator re-ran `npm run build` and `qa:no-slop`, `qa:images`, `qa:contrast`, `qa:weight`: all pass; `dist/` holds `index.html` and `404.html`; zero `placeholder=` attributes. Engineer's Lighthouse (3 mobile runs): Perf 100, A11y 100, Best Practices 96 (missing favicon only), SEO 100; LCP 1.3 to 1.5 s; CLS 0; JS 0 B gzipped; CSS 5.7 KB gzipped; fonts 134 KB unsubsetted (subsetting is step 8); Firebase Analytics measured at 15.8 KB gzipped, idle-loaded, consent-mode denied by default. Tailwind `@theme` indirection needed `@theme inline`; recorded in `docs/scratch/engineer.md`.
+Routed: rendered-page review → Design Lead reviewer (writes `docs/reviews/step1-design-review.md`). Favicon → Design Lead round 5 (artwork, not the Engineer's to invent). Astro 5 out of security support → `QUESTIONS.md` 67. Omitted-for-copy items → Engineer step 2 once `COPY.md` round 5 lands.
+
+## 2026-09-05 · COPY.md round 4 · Orchestrator
+
+Verdict: **CHANGES REQUESTED**, 4 items (round 5): "reads code review with" → "shares code review with" on both human cards; Tanya's floor card body tightened to ≤ 30 words; §4.4 names three gates while claiming four, add the security review clause; §7.1 "both ends of the work either side of them" rewritten. Approved as-is: engagement copy with "One project at a time" opening §2.9's second paragraph; the four gates with owners; §4.3 Build and §4.4 Review process from the codebase audit; proof paragraph 2 and §5.4 rewritten without the cut-feature line per item 12; privacy variants deleted per item 14; markers down from 33 to 8, all mapped to open questions.
+
+## 2026-09-05 · COPY.md round 5 · Orchestrator
+
+Verdict: **APPROVED for the Fact Checker's line-by-line pass and human gate 3.** Four lines tightened as requested; scans zero. Copy is now complete except eight `[CONFIRM]` markers, each tied to an open `QUESTIONS.md` item (56, 60, 61, 62, 63, the design-review owner, the permanent reaction-count caveat, and the headshots).
+
+## 2026-09-05 · Step 1 rendered review · Design Lead reviewer → Engineer
+
+Verdict: **CHANGES REQUESTED, 17 items**, `docs/reviews/step1-design-review.md`, 26 screenshots at 360/390/768/1024/1440 plus focus, reduced-motion and mid-scroll states in `docs/reviews/step1/`. Orchestrator read all 17: every item cites a screenshot and a DESIGN.md section; none contradicts a standing arbitration. Item 14 (a fourth amber on the final CTA button) resolved for the wireframe: the address is lamp text on the floor with a rule, not a filled button. Item 16 is the Design Lead's own inconsistency (§E.1 table vs §E.2/§E.3 wireframes) → Design Lead round 5. Items 1 to 15 and 17 → Engineer step 2. Passed: focus rings, reduced motion, greyscale legibility of the track, plate release point, grid and section padding.
+
+## 2026-09-05 · DESIGN.md round 4 (dark scheme, toggle) · Orchestrator
+
+Verdict: **APPROVED.** Six dark/light pairs recomputed by script (5.06, 7.54, 1.21, 12.71, 14.09, 5.15) and matching. Sahib's existing palette is his dark scheme; his world carries the `[data-theme="light"]` overrides. Toggle is the fifth nav item at 360, lamp glyph, shape-distinguished states. Two findings ruled: the light future-node stroke at 2.65:1 fails the 3:1 line for a meaningful graphic, so the priced fix is applied (Perf & A11y rule outranks palette preference); OG images render in the light scheme only and `theme-color` is emitted per scheme with a `media` attribute (Engineer decision).
+
+## 2026-09-05 · FACTS.md round 3 (line-by-line copy pass) · Fact Checker → Orchestrator
+
+Fact Checker verdict: **CHANGES REQUESTED**, 76 rows, 2 CONTRADICTED, 3 UNVERIFIABLE, 8 must-cut-or-confirm. Orchestrator rulings:
+- "50+ global markets" → "50 global markets" (source says 20+ currencies, 50 markets). Upheld.
+- "Same pipeline" extended to the second product: unaudited. Upheld; shipping copy drops the clause, `QUESTIONS.md` 68 asks, the clause returns if yes.
+- "283 reactions and 13 reposts" printed bare while Tanya's figures are attributed. Upheld; attribute.
+- "Items 11 and 13 settled the no-form decision": wrong citation; no item authorises it. Upheld as a doc fix; `QUESTIONS.md` 69 asks; mailto-only stands as the stated assumption meanwhile.
+- "Flutter, Dart" at Keenai: **overruled.** Brief §7 row marks it confirmed from his own profile, and the owners reviewed that row. OWNER-PROVIDED, printable.
+- Motive Fleet App feature list: **overruled.** It is the brief §7 row's product description, marked confirmed; copy already frames it as the product, not his tasks. Printable.
+Copywriter round 6 applies the four upheld items.
+
+## 2026-09-05 · COPY.md round 6 · Orchestrator
+
+Verdict: **APPROVED. COPY.md is at human gate 3 (Copy).** Four fact-check items applied: "50 global markets"; the second product's "same pipeline" clause moved to a variant pending `QUESTIONS.md` 68; the reaction count attributed ("By his account … on LinkedIn"); the no-form note corrected to cite item 69. Scans zero. Remaining `[CONFIRM]` markers all map to open questions 56, 60 to 63, the design-review owner, and the headshots.
+
+## 2026-09-05 · DESIGN.md round 5 · Orchestrator
+
+Verdict: **APPROVED.** Connector rule settled (solid out of the current node; the table was normative, the build already matched). Future-node stroke raised to `rgba(15,42,46,.60)` in light: 4.01 on sheet and 3.83 on band, recomputed by the Orchestrator and matching. OG light-only and per-scheme `theme-color` recorded. New §B.12 favicon: the lamp cone alone, `--lamp` on `--floor`, one SVG plus 32/180/512 PNGs, never on the page. → Engineer step 3 produces the files.

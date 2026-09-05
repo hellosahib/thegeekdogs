@@ -254,3 +254,25 @@ Scan after editing: zero banned words, zero em-dashes, zero "isn't X, it's Y", z
 "groom" or "Milan", zero occurrences of the phone number on the resume, and zero of the
 "nothing leaves the device" phrasing including in the notes that forbid it. "Slop" still zero. The
 one triple negation is still §2.9's, still once on `/`.
+
+Round 5. Four sent-back lines fixed in place, nothing else touched. §2.3 both human cards now
+"shares code review with", matching §7.1. Tanya's §2.3 body split into three sentences at exactly
+30 words; "QA on real devices" became "real-device QA" to fit the count without dropping the
+real-hardware fact. §4.4 gained its missing fourth gate ("checks what the app collects against what
+the listing says"), a process statement not an outcome, so item 14 holds; body is 106 words. §7.1's
+either-side-of-them clause is now its own 15-word sentence. Scan after editing: zero banned words,
+zero em-dashes. "Slop" still zero.
+
+Round 6. Four upheld Fact Checker items applied in place, nothing else touched. Keenai card 1 now
+reads "50 global markets"; the source sentence puts the plus on currencies, not markets. The
+"same pipeline / same gates" clause came out of every line that extends it to the second product,
+which is §2.7 paragraph 2, §3.1 short intro and long body, and both §3.4 descriptions. Each keeps
+its pipeline wording directly beneath as "Variant if item 68 is yes:", so nothing has to be
+rewritten if the owners confirm. The shipping versions stand on the frame that was already
+audited: in final touches, no date, a person decides when it ends. §2.8's body carried no pipeline
+claim, so it needed no change. Pocket Manager's own pipeline sentences (§2.7 paragraph 1, §4.9 OG)
+are audited against FACTS §(d) and stay as written. §6.3 now attributes the LinkedIn figure the
+way §7.2 attributes Tanya's: "By his account ... on LinkedIn", four added words, C6 kept. §8.3 and
+Appendix B no longer cite items 11 and 13 for the no-form decision; item 13 is the release year.
+Both now say the decision is the shipping one, with item 69 asking the owners and a form added
+only if they say yes. Scan after editing: zero banned words, zero em-dashes. "Slop" still zero.

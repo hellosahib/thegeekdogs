@@ -164,12 +164,12 @@ Equal weight. Neither is the assistant. Each card names what that person owns, f
 **Sahib Singh**
 
 - **Role line:** `Mobile across all four stacks: native iOS, native Android, KMP, Flutter.`
-- **Body:** `Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and reads code review with Tanya.`
+- **Body:** `Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and shares code review with Tanya.`
 
 **Tanya Jain**
 
 - **Role line:** `Native Android and KMP, and the iOS side too.`
-- **Body:** `Software Engineer 2 at Motive, where she owns releases. She owns the product spec here, QA on real devices, and the security, privacy and ASO review, and reads code review with Sahib.`
+- **Body:** `Software Engineer 2 at Motive, where she owns releases. Here she owns the product spec, real-device QA, and the security, privacy and ASO review. She shares code review with Sahib.`
 
 Item 19 assigned every gate but one, and it assigned them unevenly: two of the four are hers
 outright, code review is shared, architecture is his, and the product spec, which is not one of the
@@ -254,12 +254,17 @@ against a live Data Safety declaration is the same listing-policy risk as a hard
 
 **Paragraph 2.**
 
-`A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
+`A second app sits behind it in final touches. There's no date on it. The list of what's left is short, and a person decides when it ends.`
+
+**Variant if item 68 is yes:** `A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
+
+The pipeline audit in `FACTS.md` §(d) read the Pocket Manager repository only. Until item 68 comes
+back yes, the second app's pipeline is unaudited and the shipping paragraph does not claim it.
 
 Item 12 was answered no: the site does not say publicly that a feature was cut from the second
-app's own store listing. The paragraph above carries the "in build" frame without it, on the two
-facts that survive: same pipeline, and a person ends it. Do not reinstate the cut-feature sentence
-here or in §5.4 in any wording.
+app's own store listing. The paragraph above carries the "in build" frame without it, on the one
+fact that survives: a person ends it. Do not reinstate the cut-feature sentence here or in §5.4 in
+any wording.
 
 ### 2.8 The shared build-stage view
 
@@ -344,10 +349,15 @@ anywhere, per item 7.
 ### 3.1 Intro
 
 - **Headline:** `Two products, both ours.`
+- **Short intro:** `The two apps this studio builds and maintains. One is in the Play Store, one is in final touches.`
+- **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains. One is in the Play Store. One is in final touches.`
+
+**Variant if item 68 is yes:**
+
 - **Short intro:** `The two apps this studio builds and maintains, with the same review gates a client would get.`
 - **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains with the same pipeline and the same review gates a client would get. One is in the Play Store. One is in final touches.`
 
-The short intro is 17 words, against DESIGN.md §B.11's 20. It is the one that prints if only one
+The short intro is 18 words, against DESIGN.md §B.11's 20. It is the one that prints if only one
 can. The long body is the Design Lead's to place or cut; the headline already carries the "both
 ours" fact, so cutting the long body costs the page nothing it cannot survive.
 
@@ -379,8 +389,13 @@ nothing is invented here.
 ### 3.4 Meta
 
 - **Meta title:** `Work | TheGeekDogs`
-- **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches. Both built and maintained by the pipeline this studio sells.`
+- **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches, with no date on it and a person deciding when it ends.`
 - **OG title:** `Two products, both ours.`
+- **OG description:** `One shipped and still updated. One in final touches. No date on the second, and a person decides when it ends.`
+
+**Variant if item 68 is yes:**
+
+- **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches. Both built and maintained by the pipeline this studio sells.`
 - **OG description:** `One shipped and still updated. One in final touches. Built with the same review gates a client would get.`
 
 ---
@@ -440,7 +455,7 @@ files, audited in `FACTS.md` section (d): the scheduled task, the repository con
 CI workflows.
 
 - **Heading:** `Review process`
-- **Body:** `An autonomous run picks up Pocket Manager every two hours on our own machine, and the rule it runs under is written into the repository: a human cuts every release, and the agent never pushes. The release workflow is manual-trigger only, so no scheduled run can start one. A separate workflow runs the unit tests on every push. The same four gates apply here as to client work: a person decides the architecture, reads the diffs, and runs QA on physical phones. There is no version of this where an agent decides the app is ready.`
+- **Body:** `An autonomous run picks up Pocket Manager every two hours on our own machine, and the rule it runs under is written into the repository: a human cuts every release, and the agent never pushes. The release workflow is manual-trigger only, so no scheduled run can start one. A separate workflow runs the unit tests on every push. The same four gates apply here as to client work: a person decides the architecture, reads the diffs, runs QA on physical phones, and checks what the app collects against what the listing says. There is no version of this where an agent decides the app is ready.`
 - **Closing line:** `The process being sold on the home page is the process running on this app.`
 
 Note on the fourth gate. The security and privacy review runs on this app like any other, but this
@@ -617,7 +632,7 @@ company largest, then what they do, then the years, then the small print.
 - **What they do:** `Wealth-tech, Singapore and Bengaluru. Built with Lighthouse Canton, for accredited investors and family offices.`
 - **Years:** `2025 – now`
 - **Role:** `Builder (AVP, Mobile)`
-- **Products and stack:** `Keenai Wealth, a multi-asset platform covering 50+ global markets with custody at BNY Pershing, and Keenai Pulse, which the firm runs for single-family offices. Flutter, Dart. And end-to-end feature work, backend through testing, with AI.`
+- **Products and stack:** `Keenai Wealth, a multi-asset platform covering 50 global markets with custody at BNY Pershing, and Keenai Pulse, which the firm runs for single-family offices. Flutter, Dart. And end-to-end feature work, backend through testing, with AI.`
 
 Item 37 cleared "Singapore and Bengaluru" and item 25 cleared Keenai Pulse. Both now print without
 a marker, on the owners' authorisation: the company's own site names only Singapore, and it names
@@ -662,7 +677,7 @@ second half of his native iOS work here.
 ### 6.3 Teaching and writing
 
 - **Heading:** `He writes it down`
-- **Body:** `Sahib writes Android posts regularly and they land: channelFlow versus callbackFlow, Android 16 dropping orientation locks and the duplicate-fragment bug it caused, ViewModel versus onSaveInstanceState versus SavedStateHandle. The Android 16 post drew 283 reactions and 13 reposts. Before any of that he founded PyHour at Chitkara, a student initiative running free Python classes for juniors.`
+- **Body:** `Sahib writes Android posts regularly and they land: channelFlow versus callbackFlow, Android 16 dropping orientation locks and the duplicate-fragment bug it caused, ViewModel versus onSaveInstanceState versus SavedStateHandle. By his account, the Android 16 post drew 283 reactions and 13 reposts on LinkedIn. Before any of that he founded PyHour at Chitkara, a student initiative running free Python classes for juniors.`
 - `[CONFIRM: which supplied URL belongs to which post title. Item 38 gave four LinkedIn URLs for the three posts named above and did not map them; QUESTIONS.md item 62 asks which is which and what the fourth one is. Three titles print with three links or none of them link.]`
 - `[CONFIRM: "283 reactions and 13 reposts", permanently. LinkedIn blocks every fetch, so this figure is the owners' own count and cannot be checked from any URL they supply. FACTS.md (e)3 records it as a standing limitation, not a pending question. It prints as their figure or it comes out.]`
 - **Closing line:** `Someone who can explain a thing clearly to strangers is usually the person who can explain it to a reviewer.`
@@ -715,7 +730,7 @@ misrepresents what she does; nothing below depends on one.
 
 - **Headline:** `Tanya Jain`
 - **Role line:** `Mobile engineer. Native Android and KMP, and the iOS side too.`
-- **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Here she owns QA on real devices and the security and privacy review outright, shares code review with Sahib, and owns both ends of the work either side of them: the spec that starts it and the ASO that ships it.`
+- **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Here she owns QA on real devices and the security and privacy review outright, and shares code review with Sahib. She also owns the spec that starts the work and the ASO that ships it.`
 - **Second paragraph:** `Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
 - **Quote, verbatim from Sahib's recommendation of her, 3 July 2026:** `"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices"`
 - **Second quote, same source:** `"go-to person for KMP-related discussions"`
@@ -880,9 +895,10 @@ repeated here. No starting price prints anywhere, per item 7.
 
 ### 8.3 No form
 
-There is no contact form on this site, and none on the wedding planner page either. Items 11 and 13
-settled it: email is the whole intake, nothing posts to an endpoint, and a page about not shipping
-things that aren't wired up does not ship a field that goes nowhere. The form heading, its four
+There is no contact form on this site, and none on the wedding planner page either. No form ships:
+email is the intake, nothing posts to an endpoint, and a page about not shipping things that
+aren't wired up does not ship a field that goes nowhere. `QUESTIONS.md` item 69 asks the owners
+directly, and a form is added only if they say yes. The form heading, its four
 fields, its two hints, the submit label, the sending, success and failure states and both
 validation errors are cut, and the response-time clause they carried now sits in §8.2's engagement
 line, where item 43 put a number behind it.
@@ -1072,7 +1088,9 @@ For the record, and so a later round does not reopen a closed decision as though
 F1 is answered by items 3 and the resume (Bengaluru and New Delhi, IST); F2 by items 17 and 18 (no
 personal data beyond GitHub and LinkedIn); F3 by items 4 to 8; F4, F5 and F6 by item 9, which chose
 the full name-agnostic page, so a missing product name and a missing store link are the shipping
-state of that page rather than a hole in it; F7 and F13 by items 11 and 13, no form anywhere; F8 by
+state of that page rather than a hole in it; F7 and F13 by the shipping decision itself, no form
+anywhere, email as the intake, with `QUESTIONS.md` item 69 asking the owners directly and a form
+added only if they say yes; F8 by
 item 44 and the codebase audit in `FACTS.md` section (d); F9 by item 16, with only the capture
 logistics left open as C3; F10, F11 and F12 by items 1, 2, 3 and 53.
 

@@ -2,11 +2,11 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: Pass 1 planning complete. No code yet.** The next step is human gate 1 (Direction). Nothing gets built until the items under "What needs you now" are answered.
+**Status: gate 1 passed; build step 1 done (repo, tokens, schemas, CI, QA gates, plain home and 404, Lighthouse 100/100/96/100). Step 2 in progress.** Local commits only; no GitHub remote until QUESTIONS.md item 58 is answered.
 
 ## What needs you now
 
-1. Open [QUESTIONS.md](QUESTIONS.md) and answer inline. Items 29 to 32 and 45 to 55 are the Direction gate; the rest block Facts and Copy before publish. One line each is enough. "No" and "leave it off" are valid answers.
+1. Open [QUESTIONS.md](QUESTIONS.md). Items 1 to 55 are answered. Items 56 to 67 are open; 56 (who cuts the release), 57 (Firebase config), 58 (repo name and push), 64 (cabin props) and 67 (Astro 7) block the next steps.
 2. Read [DESIGN.md](DESIGN.md) §B (studio), §C (the floor), §F (Sahib), §G (Tanya). Say yes, or say what is wrong, per section.
 3. Skim [COPY.md](COPY.md) for anything you would not put your name to. Every `[CONFIRM]` and `[FILL]` in it is a question in QUESTIONS.md.
 

@@ -1,19 +1,40 @@
 ---
-import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME } from '../lib/copy';
+import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME, NAV, BUILT_ROUTES } from '../lib/copy';
+import ThemeToggle from './ThemeToggle.astro';
 
 /**
- * COPY.md §1 gives four nav labels (Work, Sahib, Tanya, Contact). Those four
- * routes are not built in this step, so their links are not rendered: a nav
- * item pointing at a page that does not exist is a broken link, and the link
- * checker is right to fail on one. They come back with the routes.
+ * DESIGN.md §B.8 / §B.9 / §B.10a. One component at every breakpoint: the wordmark, the
+ * four COPY.md §1 nav labels, and the light/dark toggle last. It wraps rather than
+ * collapsing — no hamburger, no disclosure, no aria-expanded state.
+ *
+ * COPY.md §1 gives four nav labels. Only the routes that exist are rendered; the rest
+ * come back the step their route lands. Today that is `/` alone, which the wordmark
+ * already carries, so the nav element itself is omitted rather than shipped empty.
  *
  * QUESTIONS.md item 48: there is no logo. The name sets in the display face.
  */
+const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
 ---
 
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="site-header__wordmark" href="/" aria-label={WORDMARK_ACCESSIBLE_NAME}>{SITE_NAME}</a>
+    {
+      links.length > 0 && (
+        <nav class="site-header__nav" aria-label="Primary">
+          <ul class="site-header__list">
+            {links.map((item) => (
+              <li>
+                <a class="site-header__link" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+    <ThemeToggle />
   </div>
 </header>
 
@@ -22,13 +43,19 @@ import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME } from '../lib/copy';
     background-color: var(--tgd-surface);
   }
 
+  /* §B.8: 92px at 360 (two rows), §B.9: 72px at >=768 (one row). */
   .site-header__inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    min-block-size: 64px;
+    column-gap: var(--space-24);
+    row-gap: 0;
+    min-block-size: 92px;
+    padding-block: var(--space-12);
   }
 
   .site-header__wordmark {
+    flex: 1 0 100%;
     font-family: var(--tgd-font-display);
     font-weight: var(--wght-display);
     font-variation-settings: 'wdth' var(--wdth-display);
@@ -36,5 +63,50 @@ import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME } from '../lib/copy';
     line-height: var(--step-title-lh);
     text-decoration: none;
     color: var(--tgd-ink);
+    min-block-size: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-header__nav {
+    flex: 1 1 auto;
+  }
+
+  .site-header__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-24);
+    list-style: none;
+  }
+
+  .site-header__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-ink);
+    text-decoration: none;
+  }
+
+  /* §B.10a — right-aligned to the content edge, last in the tab order. */
+  .theme-toggle {
+    margin-inline-start: auto;
+  }
+
+  @media (min-width: 768px) {
+    .site-header__inner {
+      flex-wrap: nowrap;
+      min-block-size: 72px;
+    }
+
+    .site-header__wordmark {
+      flex: 0 0 auto;
+    }
+
+    .site-header__nav {
+      flex: 0 0 auto;
+      margin-inline-start: auto;
+    }
   }
 </style>

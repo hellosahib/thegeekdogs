@@ -1,22 +1,77 @@
 ---
-import { FOOTER, STUDIO_EMAIL } from '../lib/copy';
+import { getCollection } from 'astro:content';
+import { FOOTER, STUDIO_EMAIL, NAV, BUILT_ROUTES } from '../lib/copy';
 
 /**
- * COPY.md §1 footer, minus three groups that have no approved strings or no
- * destination yet, listed here so they are not forgotten:
- *   - the location line is an open [FILL] in COPY.md;
- *   - the "Elsewhere" group needs the founders' profile URLs, which live on the
- *     `people` collection and it is empty until the next step;
- *   - the nav repeat points at four routes that are not built yet.
+ * COPY.md §1, footer.
+ *
+ * Step-1 review item 12: the location line was missing at every breakpoint on both
+ * pages. It is COPY.md §1's own string and it is back.
+ *
+ * The "Elsewhere" group needed the founders' profile URLs, which live on the `people`
+ * collection; that collection now exists, so the four outbound links ship. Four links
+ * and no more (items 17 and 18).
+ *
+ * The nav repeat still points at four routes that are not built, so it is still out —
+ * the same rule the header follows.
  */
+const people = await getCollection('people');
+
+/** COPY.md §1's four labels, verbatim, each resolved to that person's own URL. */
+const elsewhere = FOOTER.elsewhere
+  .map((entry) => {
+    const person = people.find((p) => p.data.slug === entry.person);
+    return person ? { label: entry.label, href: person.data.socials[entry.social] } : null;
+  })
+  .filter((entry): entry is { label: string; href: string } => entry !== null);
+
+const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
 ---
 
 <footer class="site-footer">
   <div class="shell stack">
     <p>{FOOTER.studioLine}</p>
+    <p>{FOOTER.locationLine}</p>
     <p>
       <a class="link" href={`mailto:${STUDIO_EMAIL}`}>{FOOTER.emailLabel}</a>
     </p>
+
+    {
+      navRepeat.length > 0 && (
+        <nav aria-label="Footer">
+          <ul class="site-footer__links">
+            {navRepeat.map((item) => (
+              <li>
+                <a class="link" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      elsewhere.length > 0 && (
+        <section class="stack-tight" aria-labelledby="footer-elsewhere">
+          <h2 id="footer-elsewhere" class="site-footer__heading">
+            {FOOTER.elsewhereHeading}
+          </h2>
+          <ul class="site-footer__links small">
+            {elsewhere.map((item) => (
+              <li>
+                <a class="link" href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                  <span class="sr-only"> Opens a new tab.</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
     <p class="small muted">{FOOTER.employerNote}</p>
     <p class="small muted">{FOOTER.rightsLine}</p>
   </div>
@@ -27,5 +82,28 @@ import { FOOTER, STUDIO_EMAIL } from '../lib/copy';
     background-color: var(--tgd-surface-alt);
     color: var(--tgd-ink);
     padding-block: var(--space-48);
+  }
+
+  /* COPY.md §10.5 — every outbound link says so in its own name; no icon carries it. */
+  .site-footer__links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-32);
+    row-gap: var(--space-4);
+  }
+
+  .site-footer__links a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+  }
+
+  .site-footer__heading {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    font-family: var(--tgd-font-body);
+    font-weight: 600;
+    color: var(--tgd-muted);
   }
 </style>

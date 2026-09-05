@@ -1,6 +1,8 @@
 # DESIGN.md — TheGeekDogs.com
 
-Design Lead, Pass 2 (round 3). Pass 1 cleared the Direction human gate; the owners' answers are in `QUESTIONS.md` items 45–55 and are applied here in place. Structure and voice are Pass 1's; what changed is marked in the section that changed.
+Design Lead, Pass 2 (round 3), amended in round 4. Pass 1 cleared the Direction human gate; the owners' answers are in `QUESTIONS.md` items 45–55 and are applied here in place. Structure and voice are Pass 1's; what changed is marked in the section that changed.
+
+**Round 4.** Two owner decisions reverse `QUESTIONS.md` item 49: **every page ships a dark scheme**, and **every page carries a manual light/dark toggle**. Applied in place. Six palettes now exist, three light and three dark, all computed to AA by §B.2's method: §B.2 / §B.2a (studio), §F.4 / §F.4a (Sahib — his existing palette *is* his dark scheme), §G.1 / §G.1a (Tanya). The toggle is specified in §B.10a; the stage indicator is re-checked on dark in §E.1a; print (§D.8) always uses the light tokens; §H.4 confirms the toggle adds no motion. Round 3's other decisions are untouched.
 
 Scope of this document: art direction, three token systems, layout, hierarchy, responsive behaviour, the studio floor composition, the work-card treatment, the build-stage indicator, motion spec. No application code. No user-facing copy — drafted copy from §7 is quoted only to size the boxes, and copy that does not exist yet is marked `[COPY NEEDED]`. Facts that do not exist in §5 are marked `[BLOCKED]` and never guessed.
 
@@ -79,7 +81,21 @@ This is the mechanism that lets §9.4's "spend boldness in one place" be a rule 
 
 ### B.2 Tokens
 
-**Each world is locked to one scheme; there is no dark mode** (QUESTIONS.md item 49). No `prefers-color-scheme` branch exists anywhere on this site. The studio is light with two inverted regions, Sahib's world is dark, Tanya's is light, and each is the only appearance that surface has. This is why every ratio below is a fixed number rather than a pair.
+**Round 4: item 49 is reversed. Every page ships a dark scheme, and every page carries a manual light/dark toggle** (QUESTIONS.md item 49, answered 2026-09-05). So each world now has two schemes, not one: the studio is light-by-default with two inverted regions **and** a dark counterpart (§B.2a); Sahib's world is dark-by-default with a light counterpart (§F.4a); Tanya's is light-by-default with a dark counterpart (§G.1a). Six palettes, all computed, all AA. The section below is the **light** studio scheme and is unchanged from round 3 — every number in it still holds.
+
+**How the two schemes are scoped** (PLAN.md §1.2). The world is a `data-world` attribute on a wrapper per route; the scheme is a `data-theme` attribute on the root element. Every dark token below **keeps the name of its light twin** and only changes value, so the Engineer writes exactly one block per world:
+
+```
+[data-world="studio"] { … light values … }
+[data-world="studio"][data-theme="dark"] { … dark values … }
+```
+
+Three names are theme-invariant across the whole site and are declared once: `--chalk`, `--lamp`, and the two card inks defined below. One new alias absorbs the single role that genuinely inverts:
+
+| Alias | Light value | Dark value | Why it exists |
+|---|---|---|---|
+| `--ink` | `--floor` | `--chalk` | Primary text **on the page**. In the light studio `--floor` does two jobs (room ground and page text); in the dark studio it cannot, because the page is dark. `--ink` is the one indirection that lets every component keep one declaration. Text **inside the room** stays `--chalk` in both schemes and needs no alias. |
+| `--card-ink` / `--card-ink-2` | `#0F2A2E` / `#4E6468` | same | The work card is a printed white object sitting in whatever light the page has. **Print does not invert**, so its two inks never change with the theme — in any world, in either scheme. This is already how §F.6 treats the cards on Sahib's dark ground; round 4 only gives it a name. |
 
 Six named values. Contrast computed per WCAG 2.x: channel `c` in sRGB 0–1, linearised as `c/12.92` when `c ≤ 0.03928` else `((c+0.055)/1.055)^2.4`; `L = 0.2126R + 0.7152G + 0.0722B`; ratio `= (L_light + 0.05) / (L_dark + 0.05)`.
 
@@ -125,6 +141,100 @@ This is why the build-stage indicator (§E) carries its three states on shape, s
 **Focus ring** (WCAG 2.2 SC 1.4.11 needs 3 : 1 against adjacent colour): a two-tone ring, 3px outer + 2px inner, 3px offset. The outer is the maximum-contrast neutral for the surface it lands on — `--floor` on light (13.53 : 1), `--chalk` on the room (12.74 : 1). The inner is always `--lamp`, so focus has one identity everywhere while the outer ring is what carries the contrast. `outline: none` is never used without this replacement.
 
 Borders are derived at alpha rather than tokenised: card edge highlight `rgba(255,255,255,.72)` top/left and `rgba(15,42,46,.14)` bottom/right; hairlines inside a card `rgba(15,42,46,.12)`. These are decorative separators, not information carriers, so they are not held to 3 : 1. Structural separation between sections is done with fill changes (`--sheet` ↔ `--band` ↔ `--floor`) and space, never with rules — §9.4 bans broadsheet hairlines and this removes the temptation entirely.
+
+### B.2a Dark scheme — studio
+
+Same method as §B.2, re-run. Nothing here is estimated.
+
+**The idea survives, and it survives by staying literal.** §B.1 says *the room is lit; the page is printed*. A dark page does not make the room disappear — it makes the room a **darker** region inside a dark page, which is exactly what a real unlit floor looks like next to a dim printed sheet. So the dark scheme keeps the same three facts and changes only the values:
+
+1. **The floor is still the darkest thing on the site, and it is still the only lit region.** `--floor` goes *deeper* in dark (`#07181B`, L 0.007776) rather than staying where it was, so the room does not get overtaken by the page. It is the only region carrying lit surfaces (desk tops at `--chalk` 22%, the lamp cone), and in dark those lit surfaces read *more* strongly, not less, because the surrounding page is no longer bright.
+2. **The dark sheet is a step lighter than the floor and stays flat.** `--sheet` `#18292D` is one step above the floor; **floor-to-sheet is 1.21 : 1**. No shadow, no glow, no elevation anywhere on it — flatness, not brightness, is what makes it "printed", and flatness survives the theme intact.
+3. **The alternation band moves the other way.** In light, `--band` is a step *darker* than `--sheet`; in dark it is a step *lighter* (`#213539`, **1.17 : 1** above the sheet). The rule is: *the band steps away from the floor, never toward it*, so the floor stays the darkest fill on the page in both schemes and section alternation never gets confused with entering the room.
+
+Those two steps (1.21 and 1.17) are small by construction — every step between two dark values is. They are both **larger than the 1.16 : 1 panel-to-ground step already accepted on Sahib's page** (§F.4), and they carry the same reinforcement: a 1px inset `rgba(232,237,233,.14)` top edge on the floor band and on the work-card stand's band, plus space. Region separation in dark is edge-plus-content, not fill contrast, and it is stated here rather than discovered at build time.
+
+| Token | Light value | **Dark value** | Relative luminance L (dark) | Role in dark |
+|---|---|---|---|---|
+| `--floor` | `#0F2A2E` | **`#07181B`** | 0.007776 | The room's ground only. It no longer doubles as page text — `--ink` does that job (§B.2). |
+| `--sheet` | `#F1F3F0` | **`#18292D`** | 0.019695 | The page. One step above the floor, flat. |
+| `--band` | `#E2E6E1` | **`#213539`** | 0.031649 | Section alternation, and still the only permitted backdrop behind a work card. Steps *away* from the floor. |
+| `--muted` | `#4E6468` | **`#93A6A8`** | 0.363026 | Secondary text on the page. Never used on `--floor`, exactly as in light. |
+| `--chalk` | `#E8EDE9` | **`#E8EDE9`** | 0.836074 | Unchanged. Text and marks in the room, **and** primary text on the page via `--ink`. |
+| `--lamp` | `#F2A93B` | **`#F2A93B`** | 0.475689 | Unchanged. The one signal does not change colour when the room does. |
+
+Two derived values, printed because they carry text:
+
+| Derived | Composite | L | Where |
+|---|---|---|---|
+| `--chalk` at 72% over dark `--floor` | `#A9B1AF` | 0.431294 | Secondary text inside the room. (Light twin: `#ABB6B5`.) |
+| White at 90% over dark `--sheet` | `#E8EAEA` | 0.816977 | The worst-case work-card surface in dark. See below. |
+
+**Every text-on-background pair in use, dark studio:**
+
+| Foreground | Background | Ratio | AA body (4.5) | AA large (3.0) |
+|---|---|---|---|---|
+| `--ink` = `--chalk` `#E8EDE9` | `--sheet` `#18292D` | **12.71 : 1** | pass | pass |
+| `--ink` | `--band` `#213539` | **10.85 : 1** | pass | pass |
+| `--muted` `#93A6A8` | `--sheet` | **5.93 : 1** | pass | pass |
+| `--muted` | `--band` | **5.06 : 1** | pass | pass |
+| `--chalk` | `--floor` `#07181B` | **15.34 : 1** | pass | pass |
+| `--chalk` @72% `#A9B1AF` | `--floor` | **8.33 : 1** | pass | pass |
+| `--lamp` `#F2A93B` | `--floor` | **9.10 : 1** | pass | pass |
+| `--lamp` | `--sheet` | **7.54 : 1** | pass | pass |
+| `--lamp` | `--band` | **6.44 : 1** | pass | pass |
+| `--card-ink` `#0F2A2E` | card surface `#E8EAEA` | **12.47 : 1** | pass | pass |
+| `--card-ink-2` `#4E6468` | card surface `#E8EAEA` | **5.18 : 1** | pass | pass |
+| `--floor` `#07181B` | `--chalk` (primary CTA, inverted) | **15.34 : 1** | pass | pass |
+| `--floor` | `--lamp` (contact plate, ink on amber) | **9.10 : 1** | pass | pass |
+
+Every pair is at least as strong as its light twin except `--muted`, which is deliberately set to sit within 0.1 of its light twin's ratios (5.93 / 5.06 dark against 5.62 / 4.97 light) so secondary text has the same *voice* in both schemes rather than being quietly louder in one.
+
+**The lamp rule, re-derived — and it inverts.**
+
+> **Lamp rule, dark.** On the dark sheet `--lamp` is **7.54 : 1** and on the dark band **6.44 : 1**. So in the dark studio `--lamp` **may be text and may be a mark**, on the page as well as in the room, with no border and no size restriction. The light-scheme restriction — fill only, never mark, never text, and any lamp fill on a light surface carries a 2px `--floor` border for a 13.53 : 1 boundary — applies to the **light** scheme only, and it applies there because the ground is light, not because the token is amber.
+
+The rule is therefore restated as a property of the ground, not of the theme name: **`--lamp` is text-legal on any ground darker than L ≈ 0.09 and fill-only above it.** That is one sentence the Engineer can hold in both schemes and in all three worlds, and it is what makes §F.4a's light Sahib page fall out of the same rule rather than needing a new one.
+
+**What the inverted rule does *not* license.** `--lamp` still appears in exactly three places (the empty chair's light, the inner half of every focus ring, the persistent contact plate). Being *permitted* as text in dark is not permission to use it as one — §B.6 principle 4 and §9.4's one-accent-word ban are unchanged, and a headline with one amber word remains banned in both schemes. The only thing that changes is that the dark scheme no longer needs the 2px border to make the contact plate's boundary legal.
+
+**Work cards on the dark studio page — the 90% rule, computed.** §F.6 sets card fill at 82% white on light grounds and 90% on dark. The dark studio is a dark ground, so it takes 90%, and the worst case is the **darker** of the two permitted backdrops, which in dark is `--sheet` (the band steps lighter):
+
+**Worst-case composite:** white at 90% over `#18292D`
+`R = 0.90(255) + 0.10(24) = 231.9` · `G = 0.90(255) + 0.10(41) = 233.6` · `B = 0.90(255) + 0.10(45) = 234.0`
+→ effective card surface **`#E8EAEA`**, L = **0.816977**
+
+| Card text | Ratio on `#E8EAEA` | AA body |
+|---|---|---|
+| `--card-ink` `#0F2A2E` (company, dates, role) | **12.47 : 1** | pass |
+| `--card-ink-2` `#4E6468` (one-liner, products, stack) | **5.18 : 1** | pass |
+
+At 82% the same surface would be `#D5D8D9` and `--card-ink-2` reads **4.40 : 1** — a fail. So the 90% figure is re-derived here independently of §F.6 and lands in the same place, which is the check worth having. Over `--band` (`#213539`) the composite is `#E9EBEB` and the two ratios are 12.60 and 5.24, both better, confirming `--sheet` as the worst case.
+
+**Three card details that do change in dark**, because a dark ground eats a dark shadow:
+
+- **Contact shadow** `0 2px 3px -1px rgba(0,0,0,.55)` and **ambient** `0 10px 24px -12px rgba(0,0,0,.34)`. Same two-shadow ratio as §D.2, re-based on black rather than on `--floor`, because `rgba(15,42,46,.38)` over `#18292D` is invisible.
+- **Stand** takes the dark `--band` value; its lowest 1px goes to `rgba(0,0,0,.45)`.
+- **Edge highlight** is unchanged: `inset 1px 1px 0 rgba(255,255,255,.72)` top/left, `inset -1px -1px 0 rgba(15,42,46,.14)` bottom/right. The card is a white object and the light still comes from upper left, so its cut edge behaves identically. Radius stays 3px, tilt stays §D.4's.
+
+**Focus ring, dark.** Same construction as §B.2 — 3px outer + 2px inner, 3px offset, 4px radius — with the outer recomputed as the maximum-contrast neutral for the surface it lands on:
+
+| Surface | Outer ring | Ratio against surface |
+|---|---|---|
+| `--sheet` `#18292D` | `--chalk` | **12.71 : 1** |
+| `--band` `#213539` | `--chalk` | **10.85 : 1** |
+| `--floor` `#07181B` (the room) | `--chalk` | **15.34 : 1** |
+| work-card surface `#E8EAEA` | `--card-ink` `#0F2A2E` | **12.47 : 1** |
+
+The inner is always `--lamp`, unchanged, so focus keeps one identity across both schemes and all three worlds. On the card surface the outer flips to ink for the same reason the card's text does: the card is a light object in either scheme.
+
+**Buttons, dark.** The hero's primary CTA inverts: `--chalk` fill with `--floor` text, **15.34 : 1** (light twin: `--floor` fill, `--chalk` text, 12.74 : 1). The secondary keeps its outline treatment with the outline and label both at `--ink` — 1.5px `--chalk`, **12.71 : 1** on the sheet. Neither changes size, radius or position, so no wireframe in §B.8 or §B.9 moves.
+
+**The contact plate, dark** (§B.10). Fill stays `--lamp`; text is the theme's `--floor`, so **9.10 : 1** in dark against 7.56 : 1 in light. The plate's *boundary* is where the schemes differ: in light the amber-on-sheet edge is 1.79 : 1 and the 2px `--floor` border is what makes it 13.53 : 1, while in dark the fill itself carries **7.54 : 1** against the sheet and the border is no longer load-bearing. **The border stays anyway**, at the dark `--floor` value, because dropping it would change the plate's box model and §B.10's "one component, one size, every page, every breakpoint" line is worth more than 2px. In dark it reads as a keyline; against the amber it is 9.10 : 1.
+
+**Section fill order is unchanged** — sheet, floor, band, sheet, band, sheet, floor. The dark scheme swaps values, never the order, so the page's rhythm is identical in both and §B.9's seven-families argument is untouched.
+
+**OG images and `theme-color`, ruled** (round 4's §I item 4; PLAN.md §1.7). Every OG card, on every page, is built from the **light** studio tokens only — one set, no dark variant: a scraper has no theme, the card is the same argument print makes (§D.8), and the floor composition still reads inside a light card because it is the darkest region in either scheme. `theme-color` ships as two `<meta>` entries keyed to `prefers-color-scheme`, which is emitted per scheme and therefore follows the *system* setting rather than a visitor's stored override from the §B.10a toggle — a browser-chrome colour that can disagree with the page for an overriding visitor, accepted here deliberately rather than discovered later, because the alternative is scripting the meta tag at runtime for two hairlines of chrome.
 
 ### B.3 Typeface roles
 
@@ -412,7 +522,10 @@ satisfies §D.7's controlled-backdrop rule without a new value.
 plain row of four links sitting on its own 44px line directly under the wordmark, and the same
 four labels repeat as a 2-up block in the footer. `Work`, `Sahib`, `Tanya` and `Contact` at 14px
 measure roughly 236px of the 320px content width including three 24px gaps, so all four fit on one
-line with real 44px targets and nothing has to be hidden behind a control. That is the whole
+line with real 44px targets and nothing has to be hidden behind a control. **The light/dark toggle
+is the fifth item on that same row** (§B.10a), right-aligned to the content edge: 236 + 44 = 280 of
+the 320 available, leaving 40px of clear space between `Contact` and the control. The header height
+is unchanged at 92px and the fold arithmetic below is unchanged. That is the whole
 argument for this over a disclosure: a hamburger costs a button, a panel, a focus trap, an
 `aria-expanded` state and a tap before anyone can see where the site goes — more code and more
 interaction than simply printing the four destinations, which is the same trade the floor's fixed
@@ -560,6 +673,8 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
                                              before the final CTA section)
 ```
 
+**The header row above carries one more item than it did in round 3:** the light/dark toggle sits 24px to the right of `Contact`, right-aligned to the 1200 content edge, 44 × 44, last in the header's tab order (§B.10a). The header height stays 72px and no other element in this wireframe moves.
+
 **Layout families used, one each:** asymmetric-left hero with a void; full-bleed scene plus fixed slot; left-labelled card rail (the work-card strip — the only structure on the site where a row label sits outside the content and the objects run out from it); hung-numeral list with an anchored closing line; split band with a diagram; narrow centred statement; full-bleed inverted CTA. Seven sections, seven families — nothing repeats. Adding the strip did not cost a repeat, which is the test it had to pass to be worth including.
 
 **One deliberate exception to page-theme lock:** the floor and the final CTA invert to `--floor` while the rest of the page is `--sheet`. This is not section-level theme flicker; the room is a place, entered once and bookended once, and inverting it is what makes it read as somewhere rather than as a panel.
@@ -584,8 +699,61 @@ The same rule governs each page's own closing line: a person page closes with th
 - **< 768:** full-bleed bar, 56px tall, `--lamp` fill, 2px `--floor` top border, the address as a `mailto:` link filling the bar. Whole bar is the target. No width question here — the bar is the viewport.
 - **≥ 768:** 260 × 56 plate, bottom-right, 16px inset from the viewport, same colours, same 2px border. **The plate width does not change between pages**, and that is checked rather than assumed: set at small/14px Instrument 600 with 20px padding each side, the longest of the three addresses (`jaintanya999@gmail.com`, 22 characters ≈ 169px) needs 209px of the 260 available; `thegeekdogs@gmail.com` needs ~202px and `sahiboffc@gmail.com` ~186px. All three clear 260 with ≥ 51px to spare, so **no wireframe in §B.8, §B.9, §F.7, §F.8 or §G.3 changes width**, and the plate stays one component with one size at every breakpoint on every page.
 - **Reserve:** every section it can overlay gets +56px bottom padding, so it never covers content and never causes CLS.
-- Contrast: `--floor` on `--lamp` = 7.56 : 1; plate boundary against `--sheet` via its ink border = 13.53 : 1. On Sahib's `--s-ground` and Tanya's `--t-ground` the same ink border carries 14.11 : 1 and 14.18 : 1 respectively, so the plate needs no per-world variant.
+- Contrast: `--floor` on `--lamp` = 7.56 : 1; plate boundary against `--sheet` via its ink border = 13.53 : 1. On Sahib's `--s-ground` and Tanya's `--t-ground` the same ink border carries 14.11 : 1 and 14.18 : 1 respectively, so the plate needs no per-world variant. **In dark** the plate's own amber fill carries the boundary (7.54 : 1 on the dark studio sheet, 8.66 : 1 on Tanya's dark ground) and its text is the theme's `--floor` at 9.10 : 1; the 2px border stays for box-model reasons only. See §B.2a.
 - Print: the plate is `display: none` (§D.8). A sticky amber bar is not a thing that belongs on paper, and the address prints once at the top of page 1 instead.
+
+### B.10a The light/dark toggle
+
+Item 49's second half: every page carries a manual toggle. One control, one per page, in the header. Behaviour is specified here; the Engineer implements it (PLAN.md §1.2's `data-theme` on the root).
+
+**Default and persistence.**
+
+- **No stored choice → follow `prefers-color-scheme`.** The visitor's OS preference is the default on first visit, on every page, in all three worlds. A visitor who has set their machine to dark gets Sahib's page exactly as round 3 designed it and the studio in §B.2a.
+- **No stored choice and no OS preference expressed → light.** Light is the tie-break because it is also the print scheme (§D.8) and the scheme every wireframe in this document is drawn in.
+- **The toggle overrides and persists per visitor**, across pages and across sessions. A stored choice outranks the OS preference permanently, including if the OS preference later changes — a person who chose light at 9am does not get flipped at sunset. There is no third "system" position on the control and no reset in the UI; clearing it is a browser-storage action, not a design affordance.
+- **No flash.** The stored value must be applied before first paint. If it cannot be, the page paints light and corrects — never the reverse, because a dark flash on a light page is the more violent of the two. This is the Engineer's call to make; the design constraint is only that the *floor band* must never be seen in the wrong scheme, since it is the one region whose meaning depends on being the darkest thing on screen.
+
+**Where it sits.**
+
+| Breakpoint | Position | Arithmetic |
+|---|---|---|
+| **360** | Fifth and last item on the header's nav row (§B.8 row 2), right-aligned to the 320 content edge, on the same 44px line as the four links. | Four labels + three 24px gaps = 236; + 44 = 280 of 320; 40px of clear space between `Contact` and the control. Header stays 92px; the primary CTA's bottom edge stays at ~464px on a 640-tall viewport. |
+| **≥ 768** | Same row as the wordmark and nav, after `Contact`, right-aligned to the content edge. | 24px from `Contact`, inside the 1200 content width at 1440. Header stays 72px. |
+
+- **Last in the header's tab order**, after the four nav links, in every world and at every breakpoint. It is a preference, not a destination, so it does not come before the navigation.
+- **One instance per page. The footer does not repeat it.** The footer nav exists because a visitor at the bottom of a long page still needs to *go* somewhere; a second copy of a stateful control is two focus stops, two accessible names and two things to keep in sync for a preference that is set once and then left alone.
+- **On every route**, including `/404` and both person pages. There is no page where the control is absent, because a visitor who lands on `/sahib/` first must be able to change scheme without finding the home page.
+
+**Size and shape.**
+
+- **Target 44 × 44** at every breakpoint (§B.6 principle 5), containing a 28 × 28 plate at the site's one 3px radius, containing a 20 × 20 glyph. The plate is not a border and not a fill — it is the hit area made visible at the same weight as a nav label.
+- **The glyph is the floor's pendant lamp**, which is the only iconography this site owns. **Two states, distinguished by shape:**
+  - **Light scheme active** — the shade alone, drawn as an outlined trapezoid on a 2px stem. No cone.
+  - **Dark scheme active** — the same shade and stem, plus a **solid filled cone** below it. A shape is present that was absent.
+- **The differentiator is the presence of a filled triangle, never colour.** In greyscale, at 20px, with colour removed entirely, the two states are still one-shape-versus-two. A sun/moon pair was rejected (scratch, round 4): it is the generic-template tell §9.4 exists to prevent, and it says nothing about this site.
+- **The glyph shows the scheme now in effect**, not the scheme pressing it would produce. The action lives in the accessible name, which is where an action belongs. `[COPY NEEDED: the toggle's accessible name, ≤ 5 words, phrased as the action taken, not the current state]` and `[COPY NEEDED: the live announcement after a change, ≤ 6 words, or the decision that there is none]`.
+- **Monochrome in every world and both schemes.** Shade, stem and cone are all drawn in the world's `--ink` — never `--lamp`. Two reasons, and the second is the load-bearing one: on a light ground `--lamp` is 1.79 : 1 and would break the lamp rule outright; and on Tanya's page an amber glyph would be a **second** chromatic mark, when her whole world is built on there being exactly one (§G.1). One rule covers all six palettes.
+
+**Per world.**
+
+| World / scheme | Glyph colour | Ratio against the header ground | Plate |
+|---|---|---|---|
+| Studio, light | `--ink` = `--floor` `#0F2A2E` on `--sheet` | **13.53 : 1** | none — the glyph sits on the sheet |
+| Studio, dark | `--ink` = `--chalk` on `--sheet` `#18292D` | **12.71 : 1** | none |
+| Sahib, dark (his default) | `--s-ink` `#E9EAF0` on `--s-ground` | **14.11 : 1** | none |
+| Sahib, light | `--s-ink` `#1A2033` on `--s-ground` `#EEEFF4` | **14.09 : 1** | none |
+| Tanya, light | `--t-ink` `#1B2020` on `--t-ground` | **14.18 : 1** | none |
+| Tanya, dark | `--t-ink` `#E9EAEA` on `--t-ground` `#191B1B` | **14.35 : 1** | none |
+
+Every one of the six is above 12.5 : 1, which is what lets the glyph be a 2px stroke rather than a filled blob. The control is the same object in all six — same geometry, same position, same two shapes — and only the ink changes, which is the same discipline the nav labels already follow.
+
+**Focus.** The §B.2 / §B.2a two-tone ring, unchanged: 3px outer in the surface's maximum-contrast neutral (the six ratios in the table above are exactly the outer ring's ratios, since the glyph and the ring take the same ink), 2px `--lamp` inner, 3px offset, 4px radius traced around the 44 × 44 target rather than the 28 × 28 plate. This is the only place `--lamp` appears on the control, and only while focused.
+
+**Motion — and the hard rule.**
+
+> **The toggle never animates the page.** Every colour token switches instantly. No `transition` is declared on any colour, background, border or fill property anywhere on this site, so there is nothing to cross-fade and no half-themed frame can exist. A 200ms page-wide colour fade is the single most common dark-mode tell and it is banned here outright.
+
+The **only** thing permitted to move is the control's own glyph: the cone fades and scales in or out over `--dur-1` (120ms), `opacity` and `transform` only, `--ease-out`. Nothing else on the page moves, nothing reflows, and the toggle is not one of §H.3's orchestrated moments — it is a response to a user action, which §10 always allows.
 
 ### B.11 `/work/*`, `/contact/`, `/404`
 
@@ -596,6 +764,53 @@ Same tokens, same grid, no new devices.
 - **`/work/wedding-planner/`** — identical shell, descriptive title, stage at Final touches, no dates anywhere, no store link (there is nothing to link to). **The route ships** (item 9a: full page, name-agnostic), so the layout is built, not held. `[COPY NEEDED: the name-agnostic page title, ≤ 5 words — the placeholder name may not appear (§5.3).]`
 - **`/contact/`** — three addressed blocks per §8 (studio `thegeekdogs@gmail.com`, Sahib `sahiboffc@gmail.com`, Tanya `jaintanya999@gmail.com`) as a 3-up at ≥1024, stacked at 360. **No form** (item 11): three printed addresses and nothing to submit, which removes a service dependency, a success state, a spam surface and a whole class of validation design. No orchestrated moment; a contact page's job is to be answered, not performed.
 - **`/404`** — the only page that shows an **empty room**: the floor slab and the lamp, no desks, no chair. It reuses the floor's slab symbol and its lamp gradient and adds nothing, so it costs roughly zero new bytes. One line, one link home. `[COPY NEEDED: 404 line, ≤ 12 words.]` This is the one joke the site gets, and it is a joke that is also the argument.
+
+### B.12 Favicon and app icons
+
+**This is not a logo.** QUESTIONS.md item 48 is answered "display name only, no logo", and that answer stands: the header sets *The Geek Dogs* in the display face and nothing else. A favicon is **browser chrome** — a tab, a bookmark, a home-screen tile, a manifest entry — and it is the one place the site cannot set type, because 16px will not hold a letterform of a two-word name. So the mark below exists only outside the document. **It never appears on a page**: not in the header, not in the footer, not on the floor, not in an OG card (§B.2a), not on a work card. If it ever turns up rendered in the layout, it has become a logo and it is wrong.
+
+**What it is a picture of.** The site has exactly one prop — the empty chair's lamp (§C.1) — and the lamp's cone is already the only thing on the site drawn in `--lamp` as a shape. The chair itself is out: an isometric chair at 16px is four grey smudges. The cone is in, because a bright wedge narrowing to a point is legible at any size and it is the site's single signal, reduced to its silhouette. The chair is implied by what the cone points at, exactly as it is on `/404`.
+
+**Geometry.** Square canvas, `viewBox="0 0 32 32"`, full-bleed ground, no corner radius (iOS and Android mask the tile themselves), no stroke, no gradient — §C.1's lamp is a 2-stop linear gradient and a gradient across 16 physical pixels is a smear, so the favicon takes flat `--lamp`. Three marks, all one fill:
+
+1. **Cord** — a 2 × 4 bar, x 15–17, running from y 0 to y 4 so it leaves the top edge. It reads as *hanging* rather than floating, and it is the element allowed to disappear first at 16px.
+2. **Cone** — an isosceles trapezoid, apex up: top edge 8 wide at y 4 (x 12–20), splaying to a base 22 wide at y 25 (x 5–27). This is the mark; everything else is support.
+3. **Pool** — a 22 × 3 bar at y 28–31 (x 5–27), separated from the cone by a 3-unit clear gap. The gap is what makes the pool read as a lit floor rather than as the cone's own base.
+
+```
+schematic, 1 cell ≈ 2 units; ▓ = --lamp, · = --floor
+
+·······▓▓·······   cord, 2 wide, off the top edge
+······▓▓▓▓······   cone top edge, 8 wide, y 4
+·····▓▓▓▓▓▓·····
+····▓▓▓▓▓▓▓▓····
+···▓▓▓▓▓▓▓▓▓▓···
+··▓▓▓▓▓▓▓▓▓▓▓▓··   cone base, 22 wide, y 25
+················   3-unit clear gap
+··▓▓▓▓▓▓▓▓▓▓▓▓··   pool, 22 × 3, y 28–31
+```
+
+At 16px that is a 4px-wide top edge, an 11px base and a 1.5px pool line — three bands of decreasing width, which survives both the size and the greyscale test the build-stage indicator is held to (§E.1).
+
+**Two colours, and no third.** Ground `--floor`, mark `--lamp` — the same pairing the room uses, and the only place on the site where `--lamp` is a *shape* rather than a fill, a focus ring or a plate. This is not a fourth amber under §B.2's three-places rule: the rule governs the rendered page, and the favicon is not on it.
+
+| Variant | Ground | Mark | Mark-on-ground ratio |
+|---|---|---|---|
+| Light | `--floor` `#0F2A2E` | `--lamp` `#F2A93B` | **7.56 : 1** |
+| Dark | `--floor` `#07181B` | `--lamp` `#F2A93B` | **9.10 : 1** |
+
+**One SVG is enough, and it carries no `prefers-color-scheme` block.** Ship the light values hard-coded. The two grounds are 1.4 : 1 apart and invisible at 16px; more importantly the tile is *dark in both schemes* — §B.2a's whole argument is that the floor stays the darkest thing on the site whichever way the page goes — so a single dark-petrol tile with an amber cone sits correctly on light and on dark browser chrome alike. A media query inside the SVG would also buy a difference the three PNGs below cannot follow, leaving the vector and the rasters disagreeing on machines that pick either. If a dark variant is ever wanted, it is one `<style>` block and one hex, and it is deliberately not being spent now.
+
+**File set for the Engineer.** Four files, all exported from the one SVG, which is the source of truth:
+
+| File | Size | Slot |
+|---|---|---|
+| `/favicon.svg` | `viewBox 0 0 32 32`, vector | `<link rel="icon" type="image/svg+xml" href="/favicon.svg">`. The primary icon everywhere it is supported. |
+| `/favicon-32.png` | 32 × 32 | `<link rel="icon" type="image/png" sizes="32x32">`. Fallback for browsers without SVG favicon support. |
+| `/apple-touch-icon.png` | 180 × 180 | `<link rel="apple-touch-icon">`. Full-bleed, **opaque**, square, no pre-applied corner radius — iOS masks it and a self-rounded tile gets rounded twice. |
+| `/icon-512.png` | 512 × 512 | Web manifest `icons[]`, `"purpose": "any"`. |
+
+No `.ico`, no 16px PNG: the SVG covers modern browsers and the 32px PNG downsamples cleanly to 16, which is why the geometry above is authored on a 32 grid rather than a 16 one. No maskable variant either — a maskable icon needs 40% safe padding, which would shrink the cone to the size the mark was designed to avoid.
 
 ---
 
@@ -611,9 +826,11 @@ Four fills in the whole scene, all derived from the six tokens:
 |---|---|---|
 | floor slab | `--floor` | the ground |
 | surface, lit | `--chalk` @ 22% over floor | desk tops, chair seat |
-| surface, shadow | `--floor` darkened, `#0A1E21` | desk right faces, contact shadows |
+| surface, shadow | `--floor` darkened, `#0A1E21` light / **`#051113` dark** | desk right faces, contact shadows |
 | glow | `--chalk` @ 55–85% | monitors |
 | lamp | `--lamp`, one 2-stop linear gradient | the empty chair's cone only |
+
+**In dark** (§B.2a) three of these five follow `--floor` automatically, because they are alphas over it: the lit surface, the glow and the lamp gradient are unchanged declarations and simply sit on a deeper ground, which makes the lit surfaces read *more* strongly rather than less. Only the shadow fill is an absolute value and it takes the second hex above, keeping the same luminance relationship to the dark floor that `#0A1E21` has to the light one. The scene is one SVG with one set of fills in both schemes — **no second scene, no per-scheme geometry, and no addition to §C.10's weight table.**
 
 ### C.2 Seven agent desks, two cabins, one empty chair — ten stations
 
@@ -992,7 +1209,7 @@ Semantics (also PLAN.md §5.5): the cards are a `<ul>` of roles read as company 
 
 Option 2 is also the only one of the three that prints correctly, that is identical under `prefers-reduced-transparency`, and that behaves identically on every device — which matters on a site arguing that it tests on real hardware.
 
-**Spec:** card fill = white at **82%** on light grounds, **90%** on dark grounds (see §F.4 for why). Optional noise: a single tiled SVG turbulence pattern at 96 × 96, `opacity .035`. The noise is on the "remove one thing" list (§J) — the card works without it.
+**Spec:** card fill = white at **82%** on light grounds, **90%** on dark grounds (see §F.4 for why). **Round 4: the rule is keyed to the ground, not to the world or to the theme name** — any backdrop with L below ≈ 0.09 takes 90%, anything above takes 82%. That one sentence covers all six palettes without a per-world exception: the studio's dark sheet (§B.2a, composite `#E8EAEA`), Sahib's dark ground (§F.6, `#E8E8EA`) and Tanya's dark ground (§G.1a, `#E8E8E8`) all land within one point of each other, and Sahib's new *light* ground (§F.4a) takes 82% like every other light ground on the site. The two card inks are theme-invariant (§B.2), so a card looks and reads the same in both schemes. Optional noise: a single tiled SVG turbulence pattern at 96 × 96, `opacity .035`. The noise is on the "remove one thing" list (§J) — the card works without it.
 
 ### D.7 The controlled background band, and the worst case
 
@@ -1013,6 +1230,8 @@ Option 2 is also the only one of the three that prints correctly, that is identi
 
 ### D.8 Print
 
+**Print always uses the light tokens, in every world, whatever the visitor's theme** (round 4). `@media print` re-declares each world's light values on the root regardless of `data-theme`, so a page read in dark mode prints exactly the same document as a page read in light. This is not a nicety: dark tokens on paper are either an ink-flooded page or, once the browser's own print-background suppression kicks in, light text on white — which is an unreadable document produced silently. The rule is one line in the print stylesheet and it removes the whole failure class. The toggle itself is `display: none` in print, alongside the contact plate — a control that cannot be pressed is not a thing that belongs on paper.
+
 Cards flatten to a plain CV, because somebody will print or PDF a person page. Under `@media print` the tilt goes to `transform: none`, the fill goes to solid `#fff`, every shadow and the stand and the edge highlight are removed, the card's own padding drops to zero, and the `<ul>` reflows to a single column with a single 1px bottom rule between items and no rule under the last; the company and the date range set on one line with the date right-aligned so a printed column of dates still scans, `--muted` resolves to `#444`, `--lamp` never prints, `page-break-inside: avoid` applies per item, and the person's name and email print once at the top of page 1 — the person's own address per §B.10, since a printed CV that routes replies to a studio inbox is a worse document.
 
 **Print omits the floor entirely** (item 54). The whole floor section — scene, buttons, card slot and roster — is `display: none` on every page that carries it, and no text substitute is printed in its place. The persistent contact plate is `display: none` too. The reasoning is that the roster-as-a-text-list would print as an unexplained list of seven job titles under a person's CV, which raises a question the paper cannot answer; the room is an argument that needs the screen, and a document that tries to carry it becomes a worse document. What survives is the thing people actually print these pages for: name, address, and a clean column of roles and dates. The output should be a document you would attach to an email, which is the actual reason anyone prints this.
@@ -1030,20 +1249,68 @@ Each state differs on **three redundant channels** — size, internal structure,
 | Shape | filled disc | ring with a concentric core | hollow disc |
 | Diameter | 10px | **18px** | 10px |
 | Fill | `--floor` solid | core: `--floor` solid, 8px, with a 4px clear gap inside the ring | none — the ground shows through |
-| Stroke | none | 3px `--floor` on the ring | 1.5px `rgba(15,42,46,.45)` |
+| Stroke | none | 3px `--floor` on the ring | 1.5px `rgba(15,42,46,.60)` |
 | Outgoing connector | 2px solid `--floor` | 2px solid `--floor` | 2px **dashed** `rgba(15,42,46,.22)`, 4-4 |
 | Label | Instrument 500, `--muted` | Instrument 600, `--floor` | Instrument 400, `--muted` |
 
 The current node is the largest thing on the track and the only one with two concentric parts (principle 4 again: it is distinct by structure, not by shine). On `--floor` grounds the inner core becomes `--lamp` (7.56 : 1) — but that is emphasis only; the size and structure still carry it, so the greyscale test passes with colour switched off entirely.
 
+**The current node's outgoing connector is solid, and the table above is normative** (step 1 review item 16): a connector belongs to the node it leaves and states whether *that* stage happened, so the segment out of `◉` is solid because the product has genuinely reached that stage, and the dashes begin at the first future node — §E.2's and §E.3's wireframes are corrected below to match, and the build already follows this.
+
+**Future-node stroke, raised to `.60`** (round 4's §I item 5, ruled: 3 : 1 for a meaningful graphic is a Perf & A11y line, not a preference). The light value is now **`rgba(15,42,46,.60)`**, replacing `.45`. Computed on both grounds the track is permitted to sit on, by §B.2's method:
+
+| Composite | Effective hex | L | Against | Ratio | Needs |
+|---|---|---|---|---|---|
+| `rgba(15,42,46,.60)` over `--sheet` `#F1F3F0` | `#697A7C` | 0.184856 | `--sheet` | **4.01 : 1** | 3 : 1 |
+| `rgba(15,42,46,.60)` over `--band` `#E2E6E1` | `#637576` | 0.167421 | `--band` | **3.83 : 1** | 3 : 1 |
+
+Both clear SC 1.4.11, and the light stroke now sits above its dark twin's 3.76 : 1 (§E.1a) rather than below it. The drawing does not change — same 1.5px, same 10px hollow disc — so no wireframe, no geometry and no weight figure moves. The dashed connector's `rgba(15,42,46,.22)` is deliberately **not** raised with it: the connector is the state's second channel, never its carrier, and the node stroke is what the 3 : 1 line is about.
+
 Semantics: an `<ol>`, current step marked `aria-current="step"`. Not divs (§6.2).
+
+### E.1a The three states on dark
+
+The component does not change shape, size or structure in dark — it changes one token. Every value below that was `--floor` in light becomes `--ink`, which resolves to `--chalk` on a dark page and back to `--floor` on a light one, so there is exactly one declaration per property and no second component.
+
+| | Done | Current | Future |
+|---|---|---|---|
+| Shape | filled disc | ring with a concentric core | hollow disc |
+| Diameter | 10px | 18px | 10px |
+| Fill | `--ink` solid | core: **`--lamp`** solid, 8px, 4px clear gap inside the ring | none — the dark ground shows through |
+| Stroke | none | 3px `--ink` on the ring | 1.5px `rgba(232,237,233,.45)` |
+| Outgoing connector | 2px solid `--ink` | 2px solid `--ink` | 2px dashed `rgba(232,237,233,.22)`, 4-4 |
+| Label | Instrument 500, `--muted` | Instrument 600, `--ink` | Instrument 400, `--muted` |
+
+**Re-checked against the dark sheet `#18292D`, which is where the track sits on `/work/*` and in §E.3's compact home view:**
+
+| Mark | Ratio against the dark sheet | Needs |
+|---|---|---|
+| Done node, `--chalk` fill | **12.71 : 1** | 3 : 1 (non-text) |
+| Current node ring, `--chalk` 3px stroke | **12.71 : 1** | 3 : 1 |
+| Current node core, `--lamp` | **7.54 : 1** | 3 : 1 |
+| Future node, `rgba(232,237,233,.45)` → `#768182` | **3.76 : 1** | 3 : 1 |
+| Current label, `--ink` | **12.71 : 1** | 4.5 : 1 (text) |
+| Done / future labels, `--muted` | **5.93 : 1** | 4.5 : 1 |
+
+Two notes. **First, the current node's core is `--lamp` in dark and `--floor` in light** — §E.1 already made that switch conditional on the ground rather than on the page, and the dark scheme is simply another dark ground. The gap inside the ring shows the sheet, so the ring (12.71) and the core (7.54) are each measured against the ground and never against each other; the concentric read holds. **Second, the state is still carried by size and structure with colour switched off entirely** — 18px versus 10px, two concentric parts versus one, solid connector versus dashed. The greyscale test passes in both schemes, which is what §6.2 asks for and what makes the whole component theme-proof.
+
+**Round 4's one finding, now closed.** The light future-node stroke was `rgba(15,42,46,.45)`, which computes to **2.65 : 1** over `--sheet` — under the 3 : 1 that SC 1.4.11 asks of a meaningful graphic, against its dark twin's 3.76 : 1 at the same alpha. It was raised as a question rather than fixed unilaterally, because it is a change to an approved round-1 light value. **Ruled, round 5: the priced fix is applied** — 3 : 1 for a meaningful graphic is a Perf & A11y line, not a preference. §E.1's light stroke is now `rgba(15,42,46,.60)`: **4.01 : 1** on `--sheet` and **3.83 : 1** on `--band`.
+
+**The dark stroke stays at `rgba(232,237,233,.45)` and is not raised with it**, because it already clears the line on both dark grounds and a light mark on a dark ground is simply more efficient at the same alpha — the two schemes are matched on *ratio*, which is the thing that matters, not on alpha:
+
+| Dark stroke composite | Effective hex | Against | Ratio | Needs |
+|---|---|---|---|---|
+| `rgba(232,237,233,.45)` over dark `--sheet` `#18292D` | `#768182` | `--sheet` | **3.76 : 1** | 3 : 1 |
+| `rgba(232,237,233,.45)` over dark `--band` `#213539` | `#7B8888` | `--band` | **3.49 : 1** | 3 : 1 |
+
+All four grounds, both schemes, clear 3 : 1. The state is still carried by size and structure with colour switched off entirely.
 
 ### E.2 The full track
 
 **≥ 768 — horizontal**, five nodes evenly spaced, labels beneath. "Submitted for review" wraps to two lines, so the label row reserves two lines of height for all five nodes and no layout shifts.
 
 ```
-   ●───────●───────◉───╌╌╌╌○╌╌╌╌╌╌╌○
+   ●───────●───────◉───────○╌╌╌╌╌╌╌○
 Specced  Building  Final    Submitted   Live
                    touches  for review
 ```
@@ -1056,7 +1323,7 @@ Specced  Building  Final    Submitted   Live
  ●  Building
  │
  ◉  Final touches            <- current, 18px, ring + core
- ╎
+ │
  ○  Submitted for review
  ╎
  ○  Live
@@ -1075,7 +1342,7 @@ No dates, no estimates, no "expected in" anywhere in this component. There is no
                     │          │            │             │         │
  Pocket Manager     ●──────────●────────────●─────────────●─────────◉
                     │          │            │             │         │
- [second app]       ●──────────●────────────◉╌╌╌╌╌╌╌╌╌╌╌╌╌○╌╌╌╌╌╌╌╌╌○
+ [second app]       ●──────────●────────────◉─────────────○╌╌╌╌╌╌╌╌╌○
 ```
 
 **< 768: one row per product,** product name, a 5-node mini-track (nodes only, 140px total, no per-node labels), and the current stage printed as text beside it. Only the four non-current labels are dropped — the fact a visitor actually needs stays as words.
@@ -1085,7 +1352,7 @@ No dates, no estimates, no "expected in" anywhere in this component. There is no
  ●─●─●─●─◉                    Live
 
  [second app]
- ●─●─◉╌○╌○                    Final touches
+ ●─●─◉─○╌○                    Final touches
 ```
 
 The `<ol>` supplies the full label text in both forms; at < 768 the four non-current labels are visually hidden but present for screen readers, and the node graphics are `aria-hidden`.
@@ -1138,6 +1405,8 @@ His writing is the entry point. The page opens with the three verified post subj
 
 Sahib's world inverts the studio: his page is a dark ground, because a coverage map reads as light marks on dark, and because the ground being dark makes the single lit column unmissable. The hue is shifted off the studio petrol to indigo-slate so the two are visibly different rooms, not one theme reskinned.
 
+**Round 4:** the values in this section are now his **dark** scheme — unchanged, and still the default for any visitor whose OS asks for dark. His light counterpart, and the reasoning for not drawing a deeper dark instead, are in §F.4a.
+
 | Token | Hex | L | Role |
 |---|---|---|---|
 | `--s-ground` | `#161C2E` | 0.011983 | Page ground. |
@@ -1159,6 +1428,57 @@ Sahib's world inverts the studio: his page is a dark ground, because a coverage 
 
 `--s-panel` sits only 1.16× above `--s-ground` in luminance. That is intentional — panels on a dark ground are separated by an inset 1px `rgba(233,234,240,.14)` top-left edge highlight (the same acrylic language as the work cards, inverted) plus space, not by fill contrast. A panel that fights the ground on brightness makes a dark page look like a grid of boxes.
 
+### F.4a Light scheme — Sahib
+
+**The decision item 49 forces: his existing palette *is* his dark scheme, unchanged, hex for hex. The new work is his light counterpart.** No deeper variant is drawn.
+
+Three reasons, and the third is the one that decides it.
+
+1. **The palette above was designed as a dark ground and reviewed as one.** `#161C2E` / `#1F2841` / `#E9EAF0` / `#8E96AC` came out of round 1, survived two review rounds, and its whole argument — a dark ground so the single lit 2025 column is unmissable — is a dark-mode argument already. A "deeper" variant would be re-solving a solved problem.
+2. **A deeper variant is a fourth palette to keep at AA for no gain.** Six palettes is already the cost of item 49; seven, with two of them dark and near-identical, is the version of this that gets out of sync.
+3. **The default matters more than the label.** The visitor arriving with `prefers-color-scheme: dark` — the majority of the traffic §4 describes — lands on the page exactly as designed and approved. Making his dark mode a *different* dark would mean the approved page is the one nobody sees by default, which is a strange thing to ship on purpose.
+
+So `/sahib/` is the one route where the toggle's two positions are "as designed" and "the counterpart", rather than "the counterpart" and "as designed". The `data-theme="dark"` block for his world is therefore **empty of overrides** — his `[data-world="sahib"]` base values are the dark ones, and it is `[data-theme="light"]` that carries the overrides. Stated explicitly so the Engineer does not invert it by pattern-matching the other two worlds.
+
+**His light counterpart keeps the indigo-slate hue**, so the two schemes are the same room at two times of day rather than two different pages. Same names, same roles, inverted values:
+
+| Token | Dark value (his default) | **Light value** | L (light) | Role |
+|---|---|---|---|---|
+| `--s-ground` | `#161C2E` | **`#EEEFF4`** | 0.864418 | Page ground. |
+| `--s-panel` | `#1F2841` | **`#E0E2EC`** | 0.762961 | The map's field, section blocks. Steps *darker* than the ground in light, *lighter* in dark — the same "step away from the extreme" rule as the studio's band (§B.2a). |
+| `--s-ink` | `#E9EAF0` | **`#1A2033`** | 0.014917 | Primary text, filled cells. |
+| `--s-dim` | `#8E96AC` | **`#545C74`** | 0.108001 | Secondary text, row and column labels. |
+| `--lamp` | `#F2A93B` | `#F2A93B` | 0.475689 | Unchanged. Still only on the 2025 end-to-end-with-AI column. |
+
+| Foreground | Background | Ratio | AA body |
+|---|---|---|---|
+| `--s-ink` `#1A2033` | `--s-ground` `#EEEFF4` | **14.09 : 1** | pass |
+| `--s-ink` | `--s-panel` `#E0E2EC` | **12.52 : 1** | pass |
+| `--s-dim` `#545C74` | `--s-ground` | **5.79 : 1** | pass |
+| `--s-dim` | `--s-panel` | **5.15 : 1** | pass |
+| `--s-ink` | `--lamp` (text inside the lit cell) | **8.10 : 1** | pass |
+| `--card-ink` `#0F2A2E` | work-card surface `#F9FAFC` | **14.44 : 1** | pass |
+| `--card-ink-2` `#4E6468` | work-card surface `#F9FAFC` | **6.00 : 1** | pass |
+
+Every light pair is within 0.2 of its dark twin (14.09/14.11, 12.52/12.16, 5.79/5.73, 5.15/4.94). That is deliberate: the page should not feel *sharper* in one scheme than the other, because the map's read depends on the difference between a filled cell and an empty one, not on how loud the ink is.
+
+**The lit cell in light, and the lamp rule doing its job.** `--lamp` on his light ground is **1.74 : 1** and on his light panel **1.55 : 1**, so by §B.2a's restated rule (`--lamp` is text-legal only on grounds below L ≈ 0.09) it is **fill-only** here. The 2025 cell is a filled region, which is exactly what the composition needs, so nothing about §F.1's argument changes:
+
+- The cell is a `--lamp` **fill** carrying a **2px `--s-ink` border**, which gives its boundary 14.09 : 1 against the ground.
+- The text inside it sets in `--s-ink`, **8.10 : 1** on the amber.
+- It is still the only filled-with-colour region on the page, still the newest and smallest, and still the only solitary mark — the Motive row's three-cell bar still does the work §F.1 describes.
+- A lamp **mark or text** on his light page — if one is ever wanted, and none is specified — uses `--lamp-ink` `#8A5A08` (5.16 : 1 on the ground, 4.58 : 1 on the panel), the same dark-amber counterpart Tanya's world already defines. Borrowing an existing token rather than minting a sixth one.
+
+**Work cards on his light page** take 82% white (the ground is light) over the worst-case backdrop, which in light is the **darker** of his two permitted grounds — `--s-panel`:
+
+**Worst-case composite:** white at 82% over `#E0E2EC` → **`#F9FAFC`**, L = **0.954532**, with the two card inks at 14.44 : 1 and 6.00 : 1 (table above). The §D.7 controlled-backdrop rule is unchanged and still names `--s-ground` and `--s-panel` as the only permitted backdrops; only which of the two is the worst case flips with the scheme.
+
+**Panel separation flips with it.** §F.4 says panels on his dark ground are separated by an inset 1px `rgba(233,234,240,.14)` top-left edge highlight plus space, not by fill contrast — because a panel that fights the ground on brightness turns a dark page into a grid of boxes. In light the panel is genuinely a step darker than the ground (1.13 : 1 by luminance) and the edge highlight inverts to `rgba(22,28,46,.10)` on the bottom-right, matching the light direction that governs everything else on this site. The map's field reads as a field in both schemes for the same reason: it is the only large area of the non-ground fill.
+
+**Focus ring on his light page:** 3px `--s-ink` outer (14.09 : 1 on the ground, 12.52 : 1 on the panel) + 2px `--lamp` inner, unchanged geometry. On his dark page the outer is `--s-ink` at 14.11 : 1, also unchanged.
+
+**"The map fills" (§H.3) is scheme-agnostic.** Four columns fade up, 300ms hold, then the end-to-end column arrives alone in `--lamp`. Nothing in that sequence depends on the ground's lightness — the lamp column is the only chromatic event in either scheme — so the orchestrated moment is one animation, not two.
+
 ### F.5 Typefaces on Sahib's page
 
 Same two families, same roles, different emphasis. The **numerals role does more work here than anywhere else on the site**: years, row counts, the seven-year span. Column headers and row labels set in Anek Latin at `wdth` 87.5 / `wght` 500 so the matrix's labels are condensed and the grid can be narrower without shrinking type. Body prose stays Instrument Sans. No new face.
@@ -1168,7 +1488,7 @@ Same two families, same roles, different emphasis. The **numerals role does more
 The `<ul>` of roles from §D, unchanged in structure, sitting on `--s-ground`. Two changes, both computed:
 
 - **Card fill goes to 90% white** (not 82%), because 82% over `#161C2E` composites to `#D5D6D9` where `--muted` reads at **4.32 : 1** and fails AA. At 90% the surface is `#E8E8EA` and `--muted` reads at **5.13 : 1** (table above). So: **82% on light grounds, 90% on dark grounds**, one rule, derived rather than eyeballed.
-- The controlled-band rule from §D.7 still applies: `--s-ground` and `--s-panel` are the only permitted backdrops, and `--s-ground` is the worst case.
+- The controlled-band rule from §D.7 still applies: `--s-ground` and `--s-panel` are the only permitted backdrops, and `--s-ground` is the worst case **in his dark scheme**. In his light scheme (§F.4a) the permitted pair is unchanged but the worst case flips to `--s-panel`, the darker of the two there — composite `#F9FAFC` at 82%, 14.44 : 1 and 6.00 : 1. The worst case is always the darker permitted backdrop; which token that is depends on the scheme.
 
 The cards live **below** the map, as the attribution layer: the map makes the claim, the cards are the receipts. Each attributed cell in the map is the same company as a card below it.
 
@@ -1356,6 +1676,45 @@ Her world is the most achromatic of the three, and that is a positional argument
 **One constraint follows:** `--lamp-ink` is body-legal on `--t-ground` only. On `--t-core` it is **large text (≥ 24px, or ≥ 19px bold) or non-text marks only.** Since its job on this page is a 4px column cap and a section marker, that is where it stays.
 
 Work cards on her page sit on `--t-core` (worst case), white at 82%, composite `#F9F9F9` — computed in the table above.
+
+### G.1a Dark scheme — Tanya (both directions)
+
+Her light scheme is the strictest surface on the site: the most achromatic, the most rigorously aligned, the least decorated, and that is a positional argument rather than an absence (§G.1). **The dark counterpart has to be at least as strict, or the argument only holds in one scheme.** It is, on every pair.
+
+Achromatic in dark is harder than it sounds, because the easy dark-mode move is to warm the ground — a blue-black or a brown-black reads "designed" and costs nothing. Both were rejected (scratch, round 4). Her ground is `#191B1B`: R, G and B within 2 of each other, the same discipline as `--t-ink` `#1B2020` in light, and for the same reason — a tinted near-black posing as sophistication is precisely the decorative move §9.3 forbids on her page.
+
+| Token | Light value | **Dark value** | L (dark) | Role in dark |
+|---|---|---|---|---|
+| `--t-ground` | `#EDEEEE` | **`#191B1B`** | 0.010697 | Page ground. Genuinely achromatic, not a blue-black. |
+| `--t-core` | `#DCDEDE` | **`#282B2B`** | 0.023533 | The shared-core field (T1) / the node field (T2). Steps *lighter* than the ground, where in light it steps darker — the field is always the one step away from the page, in whichever direction the page is not. **1.21 : 1**, the same step the dark studio uses between its floor and its page, and reinforced the same way: a 1px inset `rgba(233,234,234,.14)` top edge plus space. |
+| `--t-ink` | `#1B2020` | **`#E9EAEA`** | 0.821098 | Primary text and every structural stroke. Not `#FFF`: pure white on a near-black ground vibrates at body sizes exactly as pure `#000` does on a light one, which is the same reason her light ink is not `#000`. The rule is symmetric because the problem is. |
+| `--t-edge` | `#56605F` | **`#959C9C`** | 0.325668 | Secondary text, platform-edge labels, connector strokes. |
+| `--lamp-ink` | `#8A5A08` | **`#F2A93B`** | 0.475689 | The one chromatic mark. In light it is the studio lamp's dark counterpart; in dark the counterpart of the counterpart **is the lamp itself**, unchanged, so her single mark and the studio's single signal are literally the same value on a dark ground. |
+
+| Foreground | Background | Ratio | AA body | AA large |
+|---|---|---|---|---|
+| `--t-ink` `#E9EAEA` | `--t-ground` `#191B1B` | **14.35 : 1** | pass | pass |
+| `--t-ink` | `--t-core` `#282B2B` | **11.85 : 1** | pass | pass |
+| `--t-edge` `#959C9C` | `--t-ground` | **6.19 : 1** | pass | pass |
+| `--t-edge` | `--t-core` | **5.11 : 1** | pass | pass |
+| `--lamp-ink` `#F2A93B` | `--t-ground` | **8.66 : 1** | pass | pass |
+| `--lamp-ink` | `--t-core` | **7.15 : 1** | pass | pass |
+| `--card-ink` `#1B2020` | work-card surface `#E8E8E8` | **13.47 : 1** | pass | pass |
+| `--card-ink-2` `#56605F` | work-card surface `#E8E8E8` | **5.31 : 1** | pass | pass |
+
+**Every pair beats its light twin** (14.35 > 14.18, 11.85 < 12.20 by 0.35, 6.19 > 5.59, 5.11 > 4.81, and the card pair 13.47 / 5.31 against 15.66 / 6.17). Her dark scheme is the strictest surface on the site by the same margin her light one is, which was the requirement.
+
+**The one restriction that relaxes, and is kept anyway.** In light, `--lamp-ink` fails body contrast on `--t-core` (4.38 : 1) and is therefore restricted to large text or non-text marks there. In dark it clears body on both grounds (8.66 and 7.15), so the restriction is no longer forced. **It stays.** Her one chromatic mark is a 4px column cap and a section marker in both schemes; letting it become a word in one scheme and not the other would give her page two different amounts of colour depending on the visitor's OS, and "one mark, one job" is the whole reason the token exists. The constraint is now a design rule rather than a contrast consequence, which is stated here so nobody later "fixes" it by reading the ratio table alone.
+
+**Work cards in dark** take 90% white (the ground is dark) over the worst case, which in dark is the **darker** of her two permitted backdrops — `--t-ground`, where in light it was `--t-core`:
+
+**Worst-case composite:** white at 90% over `#191B1B` → **`#E8E8E8`**, L = **0.808193**, card inks at 13.47 : 1 and 5.31 : 1 (table above). At 82% the same surface would be `#D6D6D6` and `--card-ink-2` reads **4.46 : 1** — a fail by 0.04, which re-derives §F.6's 90% rule a third time, independently, on her page.
+
+**Focus ring, dark:** 3px `--t-ink` outer (**14.35 : 1** on the ground, **11.85 : 1** on the core) + 2px `--lamp` inner, geometry unchanged. Note that this is the one place where amber appears on her page in dark other than the core cap — as it already does in light, and only while focused.
+
+**T1 and T2 both use this set, unchanged, exactly as they both use §G.1's.** Swapping her direction is still a layout-module change that touches no token, in either scheme (§G.4). The 2px ticks out of the Motive card, the core field's boundary, the edge columns' left rules and T2's connector strokes all take `--t-ink` and `--t-edge`, so they follow the scheme with no per-direction rule.
+
+**"The core draws" (§H.3) is scheme-agnostic:** the core field's boundary draws top to bottom and each edge column appears as the core passes its row. That choreography is about order, not about lightness, so it is one animation in both schemes.
 
 ### G.2 Typefaces (both directions)
 
@@ -1671,7 +2030,10 @@ Every animation is interruptible. Nothing blocks text paint. There are **no scro
 | `/sahib/` | "The map fills" | The map renders fully filled, with the end-to-end column in `--lamp`. Identical to the end frame. |
 | `/tanya/` T1 | "The core draws" | Core field fully drawn, both edge columns visible, `--lamp-ink` cap present. |
 | `/tanya/` T2 | "The path resolves" | All edges drawn, including the loop-back. |
+| everywhere | the toggle's glyph transition (§B.10a) — the cone's 120ms fade-and-scale goes to 0ms | **Nothing else about the toggle changes, because there was nothing else.** The scheme switch is already instant for every visitor: no colour property on this site carries a `transition`, so there is no page-wide fade to remove and no half-themed frame to suppress. Under `reduce`, the cone appears or disappears between frames and the tokens switch exactly as they always do. The control keeps its position, its size, its two shapes, its focus ring and its persistence. |
 | everywhere | nothing else | Focus rings, selected states and the card-slot swap all still respond, at 0ms. Response to a user action is not decoration and it is not removed — §10 says motion answering a user action is always welcome, and instant is a valid duration. |
+
+**One consequence worth stating plainly:** the dark scheme adds **no motion to this site at all.** Every orchestrated moment in §H.3 is scheme-agnostic (the lamp column, the core's draw order, the track stopping at the truth), every still frame in the table above is the same frame in both schemes, and the only new animation in round 4 is 120ms on a 20px glyph. Six palettes cost zero new motion budget and zero new reduced-motion branches.
 
 The reduced-motion site is a complete, still, finished site (§4). It is not the site with the animation subtracted; on every page above, the still frame *is* the animation's last frame, which is why it looks finished.
 
@@ -1683,20 +2045,36 @@ Library choice is not mine. The only thing this spec requires of it: the one loo
 
 ## I. Open questions
 
-Round 3. Items 1–7 and 9–11 of Pass 1 are answered in `QUESTIONS.md` (items 45–55) and have been applied in place above; they are not repeated here. What is left is one carry-over and eight new ones, each answerable in one sentence. Factual and copy gaps live in `QUESTIONS.md` and `COPY.md` and are not duplicated here.
+Round 5. Round 4's list carried six items; **two of them are now ruled and removed**, leaving four. Factual and copy gaps live in `QUESTIONS.md` and `COPY.md` and are not duplicated here.
 
-1. **`[APPROVE: prop list]` — the two cabins' contents** (§C.4). Item 52 asked for persona-specific items plus a painting or a whiteboard; these are proposals, they are decor and not facts, and they need a yes or a swap:
-   - **Sahib's cabin:** a whiteboard on the far wall carrying a three-box architecture sketch with no text; a second monitor turned portrait, drawn dark; a desk plant.
-   - **Tanya's cabin:** a painting on the far wall, one frame with a two-band abstract inside it; a device shelf holding three phones on a riser; a stack of three books.
-   - Either prop in either cabin can be swapped for another at the same segment cost. What cannot happen without redrawing the budget is a third prop.
-2. **The Designer desk's checking gate** (§C.2). COPY.md §2.4 says "Design review"; item 42 mapped design review onto architecture review back when the desk was off the floor. Now that it is visible, does its card say design review, architecture review, or something else?
-3. **The Release Watcher desk's gate, and its collision with the empty chair** (§C.2). Item 42 mapped the release gate onto the chair's Ship approval. With both on the floor, the chair is the decision to ship and the Release Watcher needs a gate of its own — most likely something covering what happens *after* the release, since that is what the role's own card describes.
-4. **The two-owner gates on the human cards** (§C.6). Code review is Sahib's and Tanya's; the Spec Writer's architecture review is Sahib's while item 19 gives the product spec to Tanya. Do the cards simply list both names, or does a shared gate get a treatment of its own? A one-line copy fix may be enough; if it is not, this is a card-design change and it should be decided before the card slot's min-height is locked.
-5. **The mobile floor section is now ~1180px tall** (§C.7) — up from ~1000 at eight stations, because ten stations added 50px of room and the two human cards' gate lists pushed the card panel from 168 to 320. Accept it, or shorten the two human card bodies (COPY.md §2.3) so the panel comes back down? The station count and the target sizes are not on the table.
-6. **Pocket Manager's stack**, for the TheGeekDogs row of Sahib's coverage map (§F.7, §F.8). Item 44 sends this to the local codebase rather than answering it, so the cell currently rests on item 44's own phrase "Android Studio project" and needs the Fact Checker's read before publish.
-7. **T2 is now unblocked** (§G.4, §G.5). The resume supplies six named practices with places and item 19 supplies the gates, so Tanya's alternative direction could be built honestly today. §G.5 recommends T1 anyway, on a new argument: the floor at ten stations has made the home page the site's pipeline diagram and T2 would be the second one. Confirm T1 stands until her post-build review, or ask for the swap now.
-8. **Person pages' closing line** (§B.10). The plate prints the person's own address on `/sahib/` and `/tanya/` per item 53; the spec extends that to each page's own closing CTA so the plate and the page never disagree. Is that right, or should the closing line still route to the studio inbox?
-9. **Hero subhead length** (§B.7) — carried over unanswered. May the Copywriter cut variant A's subhead from 33 words to ≤ 26 so the primary CTA stays above the fold at 360 on a 640-tall viewport?
+**Ruled and closed in round 5, and where the answer now lives:**
+
+- **Round 4 item 4, OG images and `theme-color` under two schemes** — **ruled.** One set of OG cards built from the **light** tokens for every page; `theme-color` emitted as two entries keyed to `prefers-color-scheme`, with the toggle-override mismatch accepted rather than scripted around. Recorded in **§B.2a**. Removed from this list.
+- **Round 4 item 5, the future stage node's light stroke alpha** — **ruled: the priced fix is applied.** 3 : 1 for a meaningful graphic is a Perf & A11y line, not a preference, so `rgba(15,42,46,.45)` becomes `rgba(15,42,46,.60)` — **4.01 : 1** on `--sheet`, **3.83 : 1** on `--band`. **§E.1** carries the new value and the arithmetic, **§E.1a** records why the dark twin is not raised with it. Removed from this list.
+
+**Closed in round 4, and why:**
+
+- **Round 3 item 6, Pocket Manager's stack** — **resolved.** `FACTS.md` §(d) is a direct read of the local repo: Kotlin 2.0.21 with a six-file Java remainder, Compose-only presentation with no `res/layout*` and a repo test pinning that, Hilt, Room, WorkManager, minSdk 23 / targetSdk 36. The TheGeekDogs row of the coverage map no longer rests on item 44's phrase, and the `[BLOCKED]` markers in §F.7 and §F.8 are the Fact Checker's to clear against that section rather than a design question. Removed from this list.
+- **Round 3 item 7, T2** — **closed: T1 stands.** §G.5's argument (the floor at ten stations has made the home page the site's pipeline diagram; T2 would be the second one) is the recommendation, T2 remains documented as unblocked and buildable, and Tanya's post-build review is where a swap would be raised. Nothing further is owed here, so it stops being an open question.
+- **Round 3 item 9, hero subhead length** — **stale.** `COPY.md` §1 cut the variant A body to **24 words** in round 3, inside §B.7's ≤ 26-word budget, with the 41-word version kept in Appendix A as "hero body, long form". The constraint is met; the question was answered by the Copywriter before it was asked twice. Removed.
+
+**Moved to `QUESTIONS.md`, and tracked there, not here:**
+
+- Round 3 item 1, the cabin prop list (§C.4) → **`QUESTIONS.md` 64.**
+- Round 3 item 5, the ~1180px mobile floor section (§C.7) → **`QUESTIONS.md` 65.**
+- Round 3 item 8, the person pages' closing address (§B.10) → **`QUESTIONS.md` 66.**
+
+Each is stated there in the owners' terms and none of them is repeated below. If any comes back with a different answer, the section it names is what changes.
+
+**With the Copywriter since round 4, still open:**
+
+1. **The Designer desk's checking gate** (§C.2). COPY.md §2.4 says "Design review"; item 42 mapped design review onto architecture review back when the desk was off the floor. Now that it is visible, does its card say design review, architecture review, or something else? — **being resolved by the Copywriter in round 4.** The card slot's geometry is identical whichever way it lands, so nothing in §C.6 waits on it.
+2. **The Release Watcher desk's gate, and its collision with the empty chair** (§C.2). Item 42 mapped the release gate onto the chair's Ship approval; with both on the floor the chair is the decision to ship and the Release Watcher needs a gate of its own. — **being resolved by the Copywriter in round 4.** It is a narrative problem, not a layout one.
+3. **The two-owner gates on the human cards** (§C.6). Code review is Sahib's and Tanya's; the Spec Writer's architecture review is Sahib's while item 19 gives the product spec to Tanya. — **being resolved by the Copywriter in round 4** as a one-line copy fix. If the copy cannot carry it, it becomes a card-design change and comes back here **before** the 344 / 320 min-heights are locked, since a second line in that block is 28px.
+
+**Out of the dark scheme, still open:**
+
+4. **Does the studio floor band keep its full-bleed inversion in dark?** It does in this spec, and the arithmetic supports it — the floor sits 1.21 : 1 below the dark page, it is the only region with lit surfaces, and it takes a 1px `rgba(232,237,233,.14)` top edge (§B.2a). But 1.21 : 1 is a *quiet* boundary next to the 13.53 : 1 the light scheme gets for free, and the room is the site's one bold moment. This is still the one thing I would most like seen rendered at 360 and at 1440 before it is called settled, and it should be the first screenshot of the first review that ships the dark scheme rather than a question answered on paper. The step 1 review rendered light only, so it is not yet answered.
 
 ## J. Before-ship: remove one thing (§9.4)
 
@@ -1713,5 +2091,6 @@ Per page, the thing to cut in the final pass. These are pre-committed so the dec
 | `/contact/` | The second call to action. One email, one link, one answer. | No — and with item 11 removing the form, the page is now three addresses, which makes the cut easier rather than harder. |
 | `/404` | Everything except the line and the link home. The empty room is the joke; a nav menu underneath it is not. | No. |
 | everywhere | The noise texture on the work-card surface (§D.6). The base, the edge and the tilt carry the object; the noise is the fourth thing propping up three that already work. | No, and it now applies to four more objects: the compressed strip's cards use the same surface. |
+| everywhere | **The light/dark toggle is exempt: it is a control, not decoration.** A pre-committed cut cannot remove a thing a visitor operates, and item 49 puts it on every page by decision. What *is* removable, if this row ever has to pay, is the toggle's 28 × 28 plate (§B.10a) — the glyph alone inside its 44 × 44 target reads at 12.7–14.4 : 1 in all six palettes and loses nothing but a visible box. The two shapes, the target size and the focus ring are not on the table. | **New this round.** |
 
 **Not on this list, and deliberately.** The two cabins' props (§C.4) are not a "remove one thing" candidate, because item 52 asked for them by name. If the floor ever has to lose weight the order is in §C.10 — seam lines, then the second prop in each cabin, then the cabin walls — and a station is never the cut.

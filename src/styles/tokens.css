@@ -1,16 +1,24 @@
 /*
   tokens.css — the single source of truth for every value DESIGN.md names.
 
-  Layer 1: DESIGN.md's own token names, transcribed verbatim (DESIGN.md §B.2, §F.4, §G.1).
-           A value change in DESIGN.md is a one-line edit here and nowhere else.
-  Layer 2: the semantic names (--tgd-*) shared components consume, remapped per world scope
-           (PLAN.md §1.2). Shared components never reference a world-specific name.
+  Layer 1: DESIGN.md's own token names, transcribed verbatim (DESIGN.md §B.2, §B.2a,
+           §F.4, §F.4a, §G.1, §G.1a). A value change in DESIGN.md is a one-line edit
+           here and nowhere else.
+  Layer 2: the semantic names (--tgd-*) shared components consume, remapped per world
+           scope (PLAN.md §1.2). Shared components never reference a world-specific name.
 
-  Scopes: :root is the studio world. [data-world="sahib"] and [data-world="tanya"] override.
+  Two axes, per DESIGN.md §B.2:
+    world  — `data-world` on the root element. :root is the studio.
+    scheme — `data-theme` on the root element, always set explicitly by the inline
+             head script, because Sahib's world inverts (his stored palette IS the
+             dark scheme and [data-theme="light"] carries the overrides, §F.4a).
+
+  Every dark token keeps the name of its light twin and changes only its value, so a
+  component has exactly one declaration per property.
 */
 
 :root {
-  /* --- DESIGN.md §B.2, studio world. Six named values. --- */
+  /* --- DESIGN.md §B.2, studio world, LIGHT. Six named values. --- */
   --floor: #0f2a2e; /* L 0.019547 — the room's ground and all primary text on light surfaces */
   --sheet: #f1f3f0; /* L 0.890932 — the page */
   --band: #e2e6e1; /* L 0.781986 — section alternation, the only permitted work-card backdrop */
@@ -18,21 +26,52 @@
   --chalk: #e8ede9; /* L 0.836074 — text and marks on --floor */
   --lamp: #f2a93b; /* L 0.475689 — the one signal */
 
+  /*
+    DESIGN.md §B.2 — the one alias that absorbs the role which genuinely inverts.
+    In the light studio --floor does two jobs (room ground and page text); in dark it
+    cannot, because the page is dark. Text *inside* the room stays --chalk in both.
+  */
+  --ink: var(--floor);
+
+  /*
+    DESIGN.md §B.2 — the two card inks. Print does not invert, so they never change
+    with the theme. They do change with the world: §G.1a gives Tanya's cards her own
+    two inks, which is the same discipline applied to her achromatic palette.
+  */
+  --card-ink: #0f2a2e;
+  --card-ink-2: #4e6468;
+
   /* --- DESIGN.md §B.2, the two derived values that carry text --- */
   --chalk-72: #abb6b5; /* --chalk at 72% over --floor, L 0.454500 */
-  --card-surface: #fafbfa; /* white at 82% over --band, L 0.962205 — §D.6 worst case */
+  --card-surface: #fafbfa; /* white at 82% over --band, L 0.962205 — §D.6/§D.7 worst case */
 
   /* --- DESIGN.md §B.2, borders derived at alpha, not tokenised as colours --- */
   --edge-light: rgba(255, 255, 255, 0.72); /* card edge highlight, top/left */
   --edge-dark: rgba(15, 42, 46, 0.14); /* card edge highlight, bottom/right */
   --hairline: rgba(15, 42, 46, 0.12); /* hairlines inside a card */
+  --rule-on-room: rgba(232, 237, 233, 0.16); /* the interaction card's rule, §C.6 */
+  --room-top-edge: transparent; /* §B.2a: a 1px inset top edge, in dark only */
+
+  /* --- DESIGN.md §D.2, the base and the two shadows. Re-based on black in dark. --- */
+  --card-shadow-contact: 0 2px 3px -1px rgba(15, 42, 46, 0.38);
+  --card-shadow-ambient: 0 10px 24px -12px rgba(15, 42, 46, 0.16);
+  --card-stand-base: rgba(15, 42, 46, 0.22);
+
+  /* --- DESIGN.md §E.1, the stage indicator's three states --- */
+  --node-current-core: var(--floor); /* §E.1: --lamp only on --floor grounds */
+  --node-future-stroke: rgba(15, 42, 46, 0.45);
+  --node-future-connector: rgba(15, 42, 46, 0.22);
 
   /* --- DESIGN.md §B.2, focus ring: 3px outer + 2px inner, 3px offset --- */
   --focus-outer-width: 3px;
   --focus-inner-width: 2px;
   --focus-offset: 3px;
-  --focus-outer: var(--floor); /* maximum-contrast neutral for a light surface */
+  --focus-outer: var(--ink); /* maximum-contrast neutral for the surface it lands on */
   --focus-inner: var(--lamp); /* always the lamp, one identity everywhere */
+
+  /* --- DESIGN.md §B.2a, buttons. The hero's primary CTA inverts with the scheme. --- */
+  --btn-fill: var(--ink);
+  --btn-ink: var(--chalk);
 
   /* --- DESIGN.md §B.3, typeface roles --- */
   --tgd-font-display: 'Anek Latin Variable', ui-sans-serif, system-ui, sans-serif;
@@ -59,9 +98,14 @@
   --step-micro: 0.8125rem; /* 13px */
   --step-micro-lh: 1.45;
 
-  /* --- DESIGN.md §B.4, measure --- */
+  /*
+    DESIGN.md §B.4, measure. Step-1 review item 8: a 62ch cap measures 62 zero-widths,
+    which in Instrument Sans renders ~79 average characters — the review measured 79 on
+    the hero body. The cap is therefore expressed in em: 32em holds ≤ 62 characters at
+    this face's average advance (~0.49em), which is what §B.4 actually asks for.
+  */
+  --measure-body: 32em;
   --measure-display: 28ch;
-  --measure-body: 62ch;
 
   /* --- DESIGN.md §B.5, grid and rhythm. 8px base, type on a 4px sub-grid. --- */
   --space-4: 4px;
@@ -70,7 +114,9 @@
   --space-16: 16px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-40: 40px;
   --space-48: 48px;
+  --space-56: 56px;
   --space-64: 64px;
   --space-96: 96px;
   --space-128: 128px;
@@ -81,12 +127,17 @@
   --outer: 20px; /* 360 */
   --gutter: 16px; /* 360 */
   --section-pad: 72px; /* 360 */
+  --cols: 4;
 
   /* DESIGN.md §B.10 — every section the contact plate can overlay reserves its height. */
   --plate-height: 56px;
   --plate-width: 260px;
   --plate-inset: 16px;
   --plate-reserve: 56px;
+
+  /* --- DESIGN.md §C.6, the interaction card's reserved slot --- */
+  --card-slot-min: 320px; /* < 768 */
+  --card-slot-width: 366px; /* ≥ 1024 */
 
   /* --- DESIGN.md §H.1, shared timing tokens --- */
   --dur-1: 120ms;
@@ -101,7 +152,7 @@
   /* --- Layer 2: semantic names, studio mapping --- */
   --tgd-surface: var(--sheet);
   --tgd-surface-alt: var(--band);
-  --tgd-ink: var(--floor);
+  --tgd-ink: var(--ink);
   --tgd-muted: var(--muted);
   --tgd-accent: var(--lamp);
   --tgd-room: var(--floor);
@@ -110,12 +161,45 @@
   --tgd-card: var(--card-surface);
 }
 
+/*
+  DESIGN.md §B.2a — dark studio. Same method as §B.2, re-run; nothing estimated.
+  The floor goes *deeper* so the room stays the darkest thing on the site, the sheet
+  is one step above it, and the band steps away from the floor rather than toward it.
+*/
+[data-world='studio'][data-theme='dark'] {
+  --floor: #07181b; /* L 0.007776 — the room's ground only */
+  --sheet: #18292d; /* L 0.019695 — the page, one step above the floor, flat */
+  --band: #213539; /* L 0.031649 — section alternation, steps away from the floor */
+  --muted: #93a6a8; /* L 0.363026 — secondary text on the page */
+  /* --chalk and --lamp are unchanged: the one signal does not change colour. */
+
+  --ink: var(--chalk);
+  --btn-ink: var(--floor);
+
+  --chalk-72: #a9b1af; /* --chalk at 72% over the dark --floor, L 0.431294 */
+  --card-surface: #e8eaea; /* white at 90% over the dark --sheet, L 0.816977 */
+
+  /* §B.2a — a dark ground eats a dark shadow, so both are re-based on black. */
+  --card-shadow-contact: 0 2px 3px -1px rgba(0, 0, 0, 0.55);
+  --card-shadow-ambient: 0 10px 24px -12px rgba(0, 0, 0, 0.34);
+  --card-stand-base: rgba(0, 0, 0, 0.45);
+
+  /* §B.2a — region separation in dark is edge-plus-content, not fill contrast. */
+  --room-top-edge: rgba(232, 237, 233, 0.14);
+
+  /* §E.1a — one token changes, the component does not. */
+  --node-current-core: var(--lamp);
+  --node-future-stroke: rgba(232, 237, 233, 0.45);
+  --node-future-connector: rgba(232, 237, 233, 0.22);
+}
+
 /* DESIGN.md §B.5 — grid and rhythm change by breakpoint; the values do not change by world. */
 @media (min-width: 768px) {
   :root {
     --outer: 32px;
     --gutter: 20px;
     --section-pad: 96px;
+    --cols: 8;
   }
 }
 
@@ -124,6 +208,7 @@
     --outer: 48px;
     --gutter: 24px;
     --section-pad: 128px;
+    --cols: 12;
   }
 }
 
@@ -135,19 +220,27 @@
   }
 }
 
-/* --- DESIGN.md §F.4, Sahib's world (direction S1). Dark ground, indigo-slate. --- */
+/*
+  --- DESIGN.md §F.4, Sahib's world (direction S1). ---
+  §F.4a: his existing palette IS his dark scheme, hex for hex. The base block below is
+  therefore the DARK one and [data-theme="light"] carries the overrides. This is the one
+  world where the two positions are "as designed" and "the counterpart" in that order —
+  stated in §F.4a explicitly so it is not inverted by pattern-matching the other two.
+*/
 [data-world='sahib'] {
   --s-ground: #161c2e; /* L 0.011983 — page ground */
-  --s-panel: #1f2841; /* L 0.021905 — raised surface */
+  --s-panel: #1f2841; /* L 0.021905 — the map's field, section blocks */
   --s-ink: #e9eaf0; /* L 0.824605 — primary text, filled cells */
   --s-dim: #8e96ac; /* L 0.305420 — secondary text, row and column labels */
   /* --lamp is shared with the studio, DESIGN.md §F.4. */
 
   --s-panel-edge: rgba(233, 234, 240, 0.14); /* inset 1px top-left edge highlight */
-  --s-card-surface: #e8e8ea; /* work-card surface on this page */
+  --s-card-surface: #e8e8ea; /* white at 90% over his dark ground, §F.6 */
 
-  /* Focus ring: the maximum-contrast neutral for a dark surface is the light ink. */
+  --ink: var(--s-ink);
   --focus-outer: var(--s-ink);
+  --btn-fill: var(--s-ink);
+  --btn-ink: var(--s-ground);
 
   --tgd-surface: var(--s-ground);
   --tgd-surface-alt: var(--s-panel);
@@ -160,18 +253,39 @@
   --tgd-card: var(--s-card-surface);
 }
 
-/* --- DESIGN.md §G.1, Tanya's world (shared by both directions). The most achromatic. --- */
+/* DESIGN.md §F.4a — his light counterpart. Same hue, same names, inverted values. */
+[data-world='sahib'][data-theme='light'] {
+  --s-ground: #eeeff4; /* L 0.864418 */
+  --s-panel: #e0e2ec; /* L 0.762961 — steps darker than the ground in light */
+  --s-ink: #1a2033; /* L 0.014917 */
+  --s-dim: #545c74; /* L 0.108001 */
+
+  --s-panel-edge: rgba(22, 28, 46, 0.1); /* the edge highlight inverts to bottom-right */
+  --s-card-surface: #f9fafc; /* white at 82% over --s-panel, the light worst case */
+}
+
+/*
+  --- DESIGN.md §G.1, Tanya's world (shared by both directions). The most achromatic. ---
+  Light by default, dark counterpart below.
+*/
 [data-world='tanya'] {
   --t-ground: #edeeee; /* L 0.853266 — page ground */
   --t-core: #dcdede; /* L 0.727321 — the shared-core field / node field */
   --t-ink: #1b2020; /* L 0.013703 — primary text and every structural stroke */
-  --t-edge: #56605f; /* L 0.111704 — secondary text, platform-edge labels, connector strokes */
+  --t-edge: #56605f; /* L 0.111704 — secondary text, platform-edge labels, connectors */
   --lamp-ink: #8a5a08; /* L 0.127331 — the dark counterpart of --lamp */
 
-  --t-card-surface: #f9f9f9; /* white at 82% over --t-core */
+  --t-card-surface: #f9f9f9; /* white at 82% over --t-core, the light worst case */
 
+  /* §G.1a — her cards carry her own two inks, theme-invariant like the studio's. */
+  --card-ink: #1b2020;
+  --card-ink-2: #56605f;
+
+  --ink: var(--t-ink);
   --focus-outer: var(--t-ink);
   --focus-inner: var(--lamp);
+  --btn-fill: var(--t-ink);
+  --btn-ink: var(--t-ground);
 
   --tgd-surface: var(--t-ground);
   --tgd-surface-alt: var(--t-core);
@@ -182,4 +296,17 @@
   --tgd-on-room: var(--t-ink);
   --tgd-on-room-muted: var(--t-edge);
   --tgd-card: var(--t-card-surface);
+}
+
+/* DESIGN.md §G.1a — her dark counterpart. Genuinely achromatic, not a blue-black. */
+[data-world='tanya'][data-theme='dark'] {
+  --t-ground: #191b1b; /* L 0.010697 */
+  --t-core: #282b2b; /* L 0.023533 — steps lighter than the ground */
+  --t-ink: #e9eaea; /* L 0.821098 — not #FFF; pure white vibrates as pure black does */
+  --t-edge: #959c9c; /* L 0.325668 */
+  --lamp-ink: #f2a93b; /* the counterpart of the counterpart is the lamp itself */
+
+  --t-card-surface: #e8e8e8; /* white at 90% over --t-ground, the dark worst case */
+
+  --t-core-edge: rgba(233, 234, 234, 0.14); /* 1px inset top edge on the core field */
 }

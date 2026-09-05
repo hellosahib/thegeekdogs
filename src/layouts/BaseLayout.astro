@@ -27,6 +27,19 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+/**
+ * DESIGN.md §I item 4 — `theme-color` ships as two entries keyed to
+ * `prefers-color-scheme`. It cannot follow a visitor's *stored* override, which is a
+ * known and accepted mismatch, recorded there rather than discovered here. Values are
+ * each world's own page ground in each scheme (§B.2, §B.2a, §F.4, §F.4a, §G.1, §G.1a).
+ */
+const THEME_COLOR = {
+  studio: { light: '#F1F3F0', dark: '#18292D' },
+  sahib: { light: '#EEEFF4', dark: '#161C2E' },
+  tanya: { light: '#EDEEEE', dark: '#191B1B' },
+} as const;
+const themeColor = THEME_COLOR[world];
 ---
 
 <!doctype html>
@@ -34,10 +47,42 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      DESIGN.md §B.10a — the stored choice must be applied before first paint, because
+      the floor band must never be seen in the wrong scheme. This runs in <head>,
+      ahead of the stylesheet link, so the first paint is already correct. No stored
+      choice follows prefers-color-scheme; no stored choice and no expressed OS
+      preference falls back to light, which is also the print scheme.
+      `data-theme` is always set explicitly, never left absent: Sahib's world inverts
+      and reads [data-theme="light"] as its override scope (§F.4a).
+    -->
+    <script is:inline>
+      (function () {
+        var scheme = 'light';
+        try {
+          var stored = localStorage.getItem('tgd-theme');
+          if (stored === 'light' || stored === 'dark') {
+            scheme = stored;
+          } else if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+          ) {
+            scheme = 'dark';
+          }
+        } catch (error) {
+          scheme = 'light';
+        }
+        document.documentElement.setAttribute('data-theme', scheme);
+      })();
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
+
+    <meta name="theme-color" content={themeColor.light} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={themeColor.dark} media="(prefers-color-scheme: dark)" />
 
     <!-- PLAN.md §1.5 — only the hero face is preloaded. Nothing else. -->
     <link
