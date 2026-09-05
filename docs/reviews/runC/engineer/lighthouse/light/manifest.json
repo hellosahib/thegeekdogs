@@ -1,0 +1,290 @@
+[
+  {
+    "url": "http://localhost:65095/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_02_20.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_02_20.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_02_42.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_02_42.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_03.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_03.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_45.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_45.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/sahib/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_27.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_27.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/sahib/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_49.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_49.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/tanya/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_10.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_10.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/tanya/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_31.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_31.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/pocket-manager/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_13.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_13.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/pocket-manager/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_56.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_56.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/wedding-planner/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_07_18.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_07_18.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/wedding-planner/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_07_39.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_07_39.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/contact/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_08_22.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_08_22.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/contact/index.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_09_04.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_09_04.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/404.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_09_25.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_09_25.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.66
+    }
+  },
+  {
+    "url": "http://localhost:65095/404.html",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_10_07.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_10_07.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.66
+    }
+  },
+  {
+    "url": "http://localhost:65095/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_01_59.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-index_html-2026_09_05_13_01_59.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_24.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_index_html-2026_09_05_13_03_24.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/sahib/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_06.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-sahib_index_html-2026_09_05_13_04_06.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/tanya/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_52.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-tanya_index_html-2026_09_05_13_05_52.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/pocket-manager/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_35.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_pocket_manager_index_html-2026_09_05_13_06_35.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/work/wedding-planner/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_08_00.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-work_wedding_planner_index_html-2026_09_05_13_08_00.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/contact/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_08_43.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-contact_index_html-2026_09_05_13_08_43.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:65095/404.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_09_46.report.html",
+    "jsonPath": "/Users/sahib.singh/FlutterProjects/tgd_website/.lighthouseci/reports/localhost-404_html-2026_09_05_13_09_46.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.66
+    }
+  }
+]

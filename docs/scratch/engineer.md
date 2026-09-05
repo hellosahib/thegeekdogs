@@ -1198,3 +1198,180 @@ vertical track whose five labels were already visible were all found that way an
 the track is vertical with all five labels and no right-hand extent; at 931 it is
 horizontal and its axis ends at x 580 against a plate band beginning at x 655, 75px clear
 at the tightest width in the range.
+
+---
+
+## Pass C — the sub-768 plate, and §B.11's empty room on `/404` (2026-09-05)
+
+Run B's two held items, both closed. Nothing else was in scope and nothing else was
+touched.
+
+### 1. The plate below 768
+
+`ContactPlate.astro`'s `display: none` at `max-width: 767px` is gone. COPY.md §1 now
+carries both of round 10's `[COPY NEEDED]` strings, and only one of them is new:
+
+- **Visible label below 768: `Email`.** Five characters against the ~73px of type a 112px
+  plate leaves. One string for all three worlds, no pronoun, because `us` would name the
+  studio while the `mailto:` names one person.
+- **The accessible name is the SAME pattern at both widths** — `Email <address>. Opens a
+  new message about a project.` with the page's own address substituted. That is worth
+  saying out loud, because it is what makes SC 2.5.3 hold at both widths without a second
+  string: `Email` is the name's first word and the address is its second, so whichever of
+  the two the plate is printing, the visible label is contained in the name. Lighthouse's
+  `label-content-name-mismatch` — the audit that took `/sahib/` to 98 in run B — is clean
+  on all eight routes in both schemes.
+
+Two spans, one shown at a time by a `display` declaration. The fill, the border, the 3px
+radius, the type size, the inset, the focus ring and the print rule are all still one
+declaration on `.plate` in `global.css`: **one object at two sizes, not two components.**
+Measured at 360, 390 and 767: 112 × 56 with `Email`; at 768, 1024 and 1440: 260 × 56 with
+the address. Per world, measured: studio on `/`, `/work/*`, `/contact/` and `/404.html`,
+`sahiboffc@gmail.com` on `/sahib/`, `jaintanya999@gmail.com` on `/tanya/`.
+
+### 2. The wrapper on `/`, and one thing measuring found that reading did not
+
+Round 10's change three — below 768 the plate's wrapper begins at the **end of the floor
+section** — is a `position: sticky` containing-block question, and a sticky element's
+containing block is its parent's box. So the span is two nested wrappers and one
+declaration decides which is the plate's: below 768 `.plate-span__after-floor` is a real
+box and the plate cannot rise above the work-card strip; at ≥ 768 it is `display:
+contents`, generates no box at all, and the containing block is `.plate-span` again, floor
+included, exactly as before. `display: contents` on a plain `<div>` removes the box and
+nothing else — no role, no name, no styles, an identical accessibility tree. **No JS, no
+scroll listener, no `view-timeline`, no scroll-driven animation**, so there is nothing to
+cancel under `reduce` and nothing to fall back from.
+
+**Then the plate was still over the room, and only a sweep showed it.** The plate carries
+`margin-block-start: -56px` so that it adds no height at the end of its wrapper. A sticky
+element is clamped by its **margin box**, not its border box — so that same −56 buys it
+56px of travel *above* its wrapper's own top edge. Everywhere else that edge is a
+section's bottom padding and nothing is seen; here it is the floor. Walked in 80px steps
+at 360 and 390 in both schemes, the plate's box was over the floor section at **17 of 88
+scroll positions** — an amber plate on the room, which is the thing change three exists to
+prevent, sitting inside a change that had otherwise landed. The fix is to move the flow
+saving off the plate and onto the wrapper (`margin-block-end: -56px` there, `0` on the
+plate below 768): identical arithmetic, and the plate's margin box is now its border box,
+which is what the clamp reads. Measured again: **0 of 88, all four combinations.** The
+sweep is in `scripts/evidence-runc.mjs` and prints its count on every run.
+
+**The reserve.** `--plate-reserve` was already 72. What was missing is that two of the
+sections the plate can overlay did not carry it: the work-card strip and the gates. Below
+768 the plate's span now *begins* at the strip, and at ≥ 768 both were always inside it,
+so both take `section--reserve` — §B.10's reserve point 2 is "every section the plate can
+overlay", and it now is. The floor takes none, per §B.10 point 3.
+
+**`qa:plate` measures the real containing block now.** It used to take
+`plate.closest('.plate-span')`, which on `/` below 768 is the outer wrapper and would have
+checked the floor's marks against a band the plate cannot reach. It walks up past every
+`display: contents` ancestor instead, which is the CSS rule itself. **566 marks across 8
+routes at 8 widths, 0 inside the band** — up from 432, because 360 and 390 now have a
+plate to measure against.
+
+### 3. `/404` — §B.11's empty room
+
+The slab and the lamp, no desks, no chair, and **no geometry authored for it**:
+
+- the slab is `WIDE_SLAB`, the same projected outline of the same 6 × 5 room;
+- the lamp's cord and shade were two paths at the top of `#fl-seat`; they are now a
+  shared `#fl-lamp` symbol that `#fl-seat` `<use>`s, so the chair on `/` is byte-for-byte
+  the same drawing and `/404` can hang the same lamp with nothing under it;
+- `LAMP_DEFS` — the `#fl-cone` gradient plus that symbol — is split out of `FLOOR_DEFS`,
+  which is the string both pages now read. Taking the whole of `FLOOR_DEFS` to `/404`
+  would have shipped seven desks, two cabins and an occupant to a page that draws none;
+- the pool and the cone are the two `d` strings the floor draws at its chair station, at
+  the chair's own `wideTransform` off `placements()`. §B.12 already said the chair on
+  `/404` "is implied by what the cone points at". It is.
+
+**The box is cropped to what is drawn.** §C.3's 856 × 520 carries 140 units of margin for
+nameplates that do not exist here; at 360 that was the difference between a room and a
+smudge. The crop is computed from the slab's own extents and the lamp's, not typed.
+
+**Scoped for the `set:html` lesson.** The `<defs>` are injected, so Astro cannot scope
+them and every class they carry is styled `:global`. They are restated in `EmptyRoom.astro`
+rather than borrowed from `StudioFloor.astro` on purpose: **a route must not depend on the
+stylesheet of a component it never mounts.** Same values, same tokens.
+
+**No idle loop** — `.fl-glow` is a monitor's screen and there are no monitors, so there is
+no glow, no `--d` phase and no animation declared anywhere in the component. **The cone is
+static**: §H.3's moment belongs to the page it introduces, and a 404 that performs a
+lighting cue is asking to be admired for having gone wrong. Under `reduce` and without it
+this renders identically, because there is nothing to reduce.
+
+**One section, and it is the room.** Two were tried first and measured: with the headline
+on the sheet and the room below it, at 1440 × 900 the room's top edge landed at y 502 and
+the lamp at y 662 — the joke entirely below the fold on the one page whose whole content
+is the joke. The headline and the link stand in the room instead, on `--chalk` over
+`--floor` at 12.74 : 1 and 15.34 : 1, both already published. At 360 × 640 the header, the
+line, the link, the whole room and the plate are in the first screen. `noindex` is
+unchanged, the page is still a headline and one link, and the plate is chrome.
+
+**`content-visibility` and `contain-intrinsic-size`, and the second thing measuring found.**
+The home floor's height is content-derived and one 1180px estimate fits it. This room's is
+`width ÷ 5:3` and **no single number fits it at more than one width**: declared `auto
+432px` it reserved 432 against a room that renders 164 at 360 and 190 at 412, and because
+`/404` is short enough that the footer sits in the first viewport, all of that jump was
+counted — **CLS 0.0596 against a 0.05 line, identical across three Lighthouse runs.**
+Isolated by re-running with `content-visibility` disabled (0) and with the fonts blocked
+(0.0596), so it was the reservation and not the swap. A size-contained box prefers
+`contain-intrinsic-size` to its `aspect-ratio`, so the fix is to give it nothing to
+prefer: the ratio lives on the box that carries the width cap, and the intrinsic size is
+`auto none` — the remembered size for a second paint, and the ratio otherwise, which is
+exact at **every** width rather than at one. Measured after at 360, 412 and 1440: 0,
+0.0027 and 0, and the 0.0027 is the font swap.
+
+### Lighthouse now covers `/404.html`, and how
+
+It was not in `lighthouserc.json` at all, which is why the CLS above was never seen. It is
+now, and the config is an `assertMatrix` rather than one block, because `categories:seo`
+at `minScore: 1` cannot hold on a page COPY.md §9 requires to be `noindex`: `is-crawlable`
+is weight 4.04 of 12.04, so a correct `/404` scores **0.66** and always will. Rather than
+relax the category to a number that means nothing, the 404 row turns the category off and
+asserts the **eight** SEO audits that do apply, each at `minScore: 1` — `document-title`,
+`meta-description`, `http-status-code`, `link-text`, `crawlable-anchors`, `robots-txt`,
+`hreflang`, `canonical`. Every other assertion is identical to the other seven routes'.
+
+### Still open — run B's list, updated
+
+Closed this pass: item 3 (the plate below 768) and item 6 (§B.11's empty room). Unchanged
+and still open: **1.** font subsetting and the `wdth` restriction; **2.** fallback-metric
+matching, which is still `/contact/`'s 0.0304 CLS and now also the 0.0027 residual on
+`/404` at 360; **4.** both headshots; **5.** §C.4's 6% warm offset. Also still open, and
+not raised again by this pass: §B.9's split proof band at 1024, flagged for the Design
+Lead in run B.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| `qa:plate` | **566** load-bearing marks, 8 routes × 8 widths, **0** inside the band |
+| Plate below 768 | 112 × 56, `Email`, on all eight routes at 360, 390 and 767 |
+| Plate at ≥ 768 | 260 × 56, the page's own address, at 768, 1024, 1440 |
+| Plate over the floor on `/`, swept per 80px | **0 of 88** at 360 and **0 of 86** at 390, both schemes (17 before the margin fix) |
+| `/404` room, markup | 1,561 B raw, **615 B gzip** |
+| `/404` room, its own CSS | 447 B raw, **32 B gzip** |
+| `/404.html` total | 11,837 B raw, **4,124 B gzip** |
+| CSS, all routes | 69,840 B raw / **12,517 B gzip** (31% of the 40 KB line; +165 B on run B) |
+| Home page total | **158,797 B gzip** (13% of the 1.2 MB line) |
+| Floor budget | **6,336 B gzip** of 81,920 |
+| `qa:*` | build, no-slop, images, links, console, contrast (62 pairs), worlds (32 tokens), plate (566 marks), floor budget, floor pointer, weight — all pass |
+| Lighthouse mobile, 3 runs, **light**, all **eight** routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** — and 0.66 on `/404.html`, which is `is-crawlable` on a `noindex` page and is the design |
+| Lighthouse mobile, 3 runs, **dark**, all eight routes | the same eight rows, same scores |
+| LCP, light | 1,443–1,531 ms (line 2,000); `/404.html` 1,443–1,449 |
+| LCP, dark | 1,442–1,535 ms; `/404.html` 1,447–1,450 |
+| CLS | **0** on seven routes in both schemes; **0.0304** on `/contact/`, unchanged since run A and still the font swap |
+| TBT | **0 ms** on every route in both schemes |
+
+The dark runs used the same method runs A and B used: a scratch copy of `dist/` whose
+head-script default is flipped to `dark`, because neither LHCI nor a Chrome flag can seed
+`localStorage` or `prefers-color-scheme` for a static run. Nothing shipped was changed to
+produce them.
+
+Evidence in `docs/reviews/runC/engineer/`: `/404.html` full-page and viewport at 360 and
+1440 in both schemes; `/` full-page at 360 and 390 in both; `/` mid-scroll at 360 and 390
+in both with the plate at rest over the strip, and again with the floor filling the
+viewport and no plate on it; the floor's chair station at 1440 in both, which is the
+`#fl-lamp` refactor's proof that the room on `/` did not move; and all 48 Lighthouse
+reports under `lighthouse/{light,dark}/`. Every screenshot was opened and looked at — the
+plate on the room, the below-the-fold empty room and the 432px over-reservation were all
+found that way or by the sweep the pictures prompted.
