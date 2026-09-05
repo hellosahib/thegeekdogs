@@ -42,6 +42,30 @@ const d = product.data;
 const SHOT_WIDTH = 280;
 
 /*
+  Review item WP1, and DESIGN.md §B.11 round 12. Run A item 9 asked for a grid built for
+  one screenshot instead of a four-column grid with three collapsed tracks, and the build
+  delivered that; the composition did not follow. Rendered, `/work/wedding-planner/`'s one
+  real screen of the multi-function view was a **280 x 609 thumbnail alone at the far left
+  of a 1200px row** — the smallest object on a 3,104px page, with ~940px of empty sheet
+  beside it and nothing to read there — while §J's row for the route says that one screen
+  IS the differentiator. It cannot also be the page's smallest mark.
+
+  §B.11's answer: **at >= 1024 the shot runs in cols 1-4 with COPY §5.2's differentiator
+  paragraph in cols 6-10 beside it, top-aligned to the shot; below 1024 the shot is full
+  content width with the paragraph beneath it.** So a one-screenshot page does not render
+  a standalone screenshot row at all — the shot is placed inside the differentiator
+  section, which is the section it is evidence for, and the row carries the picture and
+  the sentence that explains it and no third thing.
+
+  The source is 1206 x 2622, so 603 is the largest display width that still downscales at
+  2x. The `<img>` keeps its explicit width/height and the real 9:19.5 device aspect at
+  both sizes, so §B.11's layout-holds-with-images-aborted guarantee is unchanged.
+*/
+const singleShot = d.screenshots.length === 1;
+const SOLO_SHOT_WIDTH = 603;
+const soloShot = singleShot ? d.screenshots[0] : undefined;
+
+/*
   Run A item 7 — §B.11 allows at most TWO screenshots above the fold, and the four-across
   row at >=1024 ran y 600-1207 in a 900-tall viewport, so all four were. The row is
   capped at two columns at every width from 768 up; at 768 it was already a 2 x 2 and
@@ -92,7 +116,7 @@ const schema = productGraph(product);
         </div>
 
         {
-          d.screenshots.length > 0 && (
+          d.screenshots.length > 1 && (
             <ul class="shots" style={`--shot-columns: ${shotColumns}`}>
               {d.screenshots.map((shot, index) => (
                 <li class="shots__item">
@@ -115,9 +139,27 @@ const schema = productGraph(product);
         <div class="product-body">
           {
             d.sections.map((section, index) => (
-              <section class="product-section" data-fill={index % 2 === 1 ? 'band' : 'sheet'}>
+              <section
+                class="product-section"
+                data-fill={index % 2 === 1 ? 'band' : 'sheet'}
+                data-shot={index === 0 && soloShot ? '' : undefined}
+              >
                 <div class="product-section__inner grid">
                   <h2 class="product-section__heading">{section.heading}</h2>
+                  {index === 0 && soloShot && (
+                    <div class="product-section__shot">
+                      <Picture
+                        src={soloShot.src}
+                        alt={soloShot.alt}
+                        formats={['avif', 'webp']}
+                        width={SOLO_SHOT_WIDTH}
+                        densities={[1, 2]}
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
                   <div class="product-section__content">
                 {section.body && <p class="product-section__body">{section.body}</p>}
                 {section.showFeatures && d.features.length > 0 && (
@@ -216,6 +258,18 @@ const schema = productGraph(product);
     row-gap: var(--space-16);
   }
 
+  /* WP1 / §B.11 round 12 — the one screenshot, inside the section it is evidence for. */
+  .product-section__shot {
+    margin-block-start: var(--space-24);
+  }
+
+  .product-section__shot :global(img) {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: 3px;
+  }
+
   .product-section__body,
   .product-section__closing {
     margin-block-start: var(--space-16);
@@ -229,22 +283,27 @@ const schema = productGraph(product);
     font-weight: 600;
   }
 
-  /* A list of items, rendered as a list. Tailwind's preflight strips the marker, and an
-     indented block with no marker reads as a mistake rather than as a list; the marker
-     takes --muted so it stays quieter than the text it belongs to. */
+  /*
+    §J's pre-committed cut, taken on BOTH product routes: `/work/pocket-manager/`'s
+    bulleted list in `Build` and `/work/wedding-planner/`'s bullet markers on
+    `What's in it` (review items PM1 and WP2, both nominated in run A and both still
+    unspent). These were the site's only two bulleted lists; §B.2 separates with fill and
+    space and never with a glyph, and short feature lines read faster without a marker in
+    front of them.
+
+    The markers go and the indent goes with them — an indented block with no marker is the
+    thing that reads as a mistake — and the separation moves to space, which is what §B.2
+    asks for. It is still a real `<ul>` of `<li>`s: the list semantics are what a screen
+    reader counts, and the cut is the decoration, not the structure.
+  */
   .product-section__features {
     margin-block-start: var(--space-16);
-    padding-inline-start: var(--space-24);
     max-inline-size: var(--measure-body);
-    list-style: disc;
-  }
-
-  .product-section__features > li::marker {
-    color: var(--tgd-muted);
+    list-style: none;
   }
 
   .product-section__features > li + li {
-    margin-block-start: var(--space-8);
+    margin-block-start: var(--space-16);
   }
 
   @media (min-width: 768px) {
@@ -261,7 +320,6 @@ const schema = productGraph(product);
   */
   @media (min-width: 931px) {
     .product-head__track {
-      --track-span: 100%;
       grid-column: 1 / span 5;
     }
   }
@@ -293,6 +351,38 @@ const schema = productGraph(product);
 
     .product-section__content {
       grid-column: 4 / span 6;
+    }
+
+    /*
+      §B.11 round 12 — the differentiator row: the shot in cols 1-4, the heading and
+      COPY §5.2's paragraph in cols 6-10 beside it, top-aligned to the shot. The shot
+      spans both rows so the paragraph sits against its top edge rather than centring
+      on a 1,200px-tall picture.
+    */
+    /* The shot spans both rows, so row 2 is the flexible one: without that, an `auto`
+       row-pair splits the picture's height between them and drops the paragraph half a
+       screenshot below its own heading. */
+    .product-section[data-shot] .product-section__inner {
+      grid-template-rows: auto 1fr;
+    }
+
+    .product-section[data-shot] .product-section__shot {
+      grid-column: 1 / span 4;
+      grid-row: 1 / span 2;
+      margin-block-start: 0;
+    }
+
+    .product-section[data-shot] .product-section__heading,
+    .product-section[data-shot] .product-section__content {
+      grid-column: 6 / span 5;
+    }
+
+    .product-section[data-shot] .product-section__heading {
+      grid-row: 1;
+    }
+
+    .product-section[data-shot] .product-section__content {
+      grid-row: 2;
     }
 
     .product-section {
