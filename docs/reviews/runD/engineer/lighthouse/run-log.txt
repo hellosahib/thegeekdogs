@@ -1,0 +1,20 @@
+dark bootstrap flipped in 8 html file(s)
+light /index.html                          P100 A100 B100 S100  LCP 1442ms  CLS 0.0001  TBT 0ms
+light /work/index.html                     P100 A100 B100 S100  LCP 1442ms  CLS 0.0001  TBT 0ms
+light /work/pocket-manager/index.html      P100 A100 B100 S100  LCP 1503ms  CLS 0.0001  TBT 0ms
+light /work/wedding-planner/index.html     P100 A100 B100 S100  LCP 1495ms  CLS 0.0001  TBT 0ms
+light /sahib/index.html                    P100 A100 B100 S100  LCP 1434ms  CLS 0.0001  TBT 0ms
+light /tanya/index.html                    P100 A100 B100 S100  LCP 1437ms  CLS 0.0001  TBT 0ms
+light /contact/index.html                  P100 A100 B100 S100  LCP 1420ms  CLS 0.0001  TBT 0ms
+light /404.html                            P100 A100 B100 S66  LCP 1437ms  CLS 0.0001  TBT 0ms
+dark  /index.html                          P100 A100 B100 S100  LCP 1451ms  CLS 0.0001  TBT 0ms
+dark  /work/index.html                     P100 A100 B100 S100  LCP 1426ms  CLS 0.0001  TBT 0ms
+dark  /work/pocket-manager/index.html      P100 A100 B100 S100  LCP 1506ms  CLS 0.0001  TBT 0ms
+dark  /work/wedding-planner/index.html     P100 A100 B100 S100  LCP 1498ms  CLS 0.0001  TBT 0ms
+dark  /sahib/index.html                    P100 A100 B100 S100  LCP 1456ms  CLS 0.0001  TBT 0ms
+dark  /tanya/index.html                    P100 A100 B100 S100  LCP 1443ms  CLS 0.0001  TBT 0ms
+dark  /contact/index.html                  P100 A100 B100 S100  LCP 1437ms  CLS 0.0001  TBT 0ms
+dark  /404.html                            P100 A100 B100 S66  LCP 1435ms  CLS 0.0001  TBT 0ms
+written /Users/sahib.singh/FlutterProjects/tgd_website/docs/reviews/runD/engineer/lighthouse/summary.json
+
+[exited with code 0]

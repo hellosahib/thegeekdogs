@@ -1375,3 +1375,331 @@ viewport and no plate on it; the floor's chair station at 1440 in both, which is
 reports under `lighthouse/{light,dark}/`. Every screenshot was opened and looked at — the
 plate on the room, the below-the-fold empty room and the 432px over-reservation were all
 found that way or by the sweep the pictures prompted.
+
+---
+
+## Build run D — the consolidated fix run (2026-09-05)
+
+Thirty run-B review items, the audit's three, the two COPY round-14 strings, the font
+pipeline, and DESIGN.md round 12 — which landed in the Design Lead's own scratch partway
+through this run, which is why parts A to D were built against the spec text first and
+part E ran afterwards.
+
+### First, the three blockers, measured against pass C rather than assumed
+
+The brief asked whether pass C's wrapper change had already closed B1, B2 or B3. It had
+not, and the answer is measured on a worktree built from `868f01c` rather than argued from
+the diff:
+
+| | Measured on the pass-C build | Verdict |
+|---|---|---|
+| **B1** | `1,000+` ink ends **x 573.4 at 768** against a band at 492, and **661.4 at 900** against 624 | still open — the wrapper never touched the proof band |
+| **B2** | `Designer` ends **x 701.7** and `Test Engineer` **718.8** at 900, against a band at 624 | still open |
+| **B3** | the card slot is inside the plate's wrapper at **768, 900, 1024 and 1440** (`wrapper.contains(slot) === true` at all four) | still open |
+
+Pass C's change was `@media (max-width: 767px)`, so at every width from 768 up the floor
+and the slot were inside the plate's span exactly as run B found them. All three are closed
+in part E below, and the same script now measures them on every run.
+
+### Part A — home and the floor
+
+- **H5, the chair.** §C.3 round 12 specified the object rather than leaving it to the
+  drawing, and the old back panel is why: at local x −34.4 to −15.6 rising to y 8.8, it sat
+  **under the desk's own near-left edge**, which crosses that span at y −1 to 10. The chair
+  was standing behind the thing it stands in front of, and what was left was the "lit slab
+  over a small dark box" three reviews described. It is five paths now — seat, rim, back
+  near face, back cap, two legs — with the back **14 units tall**, which is 0.6 of the
+  seat's 22-unit plan depth *and* the number that keeps the whole back clear of the desk:
+  measured at local x −16 the desk stops at y 10 and the back starts at 15; at x 0, 18
+  against 23; at x 6, 15 against 26. Five units at the tightest point. Shot at the 250ms
+  frame with the cone absent, which is §C.3's own acceptance test, at 360 and 1440 in both
+  schemes.
+- **H5's second half.** The chair is §C.7's one exception to the portrait plate rule and
+  its 20-unit band is at the **bottom** of its button. Its pool bottoms out at exactly
+  y 500 and the band runs 500–520, so `Ship approval` sets on bare `--floor` at chalk@72%
+  instead of across the cone at ~1.6 : 1. §C.7's disjointness proof is untouched — it says
+  a rectangle inside one member of a disjoint set is inside no other, and top or bottom
+  does not enter that argument.
+- **H6.** 264 / 416 / 352, §C.6 round 12's measured numbers. The old 392 was 15px short of
+  Sahib's own 406.7px card at 1024 and the old 344 reserved 93px of void at 768.
+- **H7.** The two edge-aligned labels go; all five centre. `Live` then ends 2px inside the
+  band at 768, which is the overhang §E.3 exempts in terms — see the gate note below.
+- **H8 / S3.** One number, `.card` and `.work-card` both: **no work card is wider than
+  420px**, left-aligned where the grid gives more, and the cap is lifted in print because
+  §D.8 removes both the stand and the price position that §D.1 argues from.
+- **H9.** Below.
+
+### H9, and the acceptance test that cannot be reached by amplitude
+
+§C.8 raised the selected fill from 34% to 52% and wrote its own acceptance test: the same
+pixel-difference method under `reduce`, at 360 and 1440 in both schemes, needing **≥ 30% of
+the desk's pixels changed at a maximum channel delta ≥ 60**. Measured at 52% alone:
+
+| | 360 | 1440 |
+|---|---|---|
+| pixels changed | 15.5% | 24.6% |
+| max channel delta | **67** light / **69** dark | 67 / 69 |
+
+The delta passes and the share does not, so §C.8's **priced fallback is taken on that
+measurement** — a 1px `--chalk` edge on the selected desk top, which is the stroke the
+slab's own edge and the cabin walls already draw. Delta goes to **106–178**; the share
+moves only to 16.6% / 25.4%.
+
+**It cannot go further, and the reason is geometry rather than amplitude.** The only thing
+that changes between the two states is the desk's top face, and that face is ~25% of the
+station's own box at 1440 and ~16% at 360 — the box also contains the monitor, the chair,
+the shadow faces and the empty scene around them. No fill value and no second indicator on
+the *top face* can move 30% of those pixels. The 30% is a number about the desk's drawing,
+not about the state, and it is flagged here for the Design Lead rather than chased.
+
+**Contrast, since the brief asked for a ratio.** `--chalk` @ 52% over `--floor` against
+`--chalk` @ 22% over the same ground is **2.36 : 1 in light and 2.61 : 1 in dark** — under
+3 : 1. 3 : 1 is not reachable by this mechanism either: at 100% `--chalk` on `--floor` the
+step is 4.9 : 1, and §C.8 caps the selected desk below the monitor glow's 55–85% so that
+the brightest thing in the room stays a screen. The 1px `--chalk` edge is what carries the
+state at full contrast, which is why §C.8 priced it as the fallback.
+
+### Part B — routes
+
+- **W1.** §E.2's round-12 anchor, as one expression: first node centre at the block's left
+  edge + 9, last at `min(block right, 100vw − 300) − 9`, and the list is 1.25 axes wide
+  starting an eighth of an axis before it, because with five equal columns a node centre
+  sits half a column in. Measured against §E.2's own table: **931 → last node 622, ring 631,
+  band 655, 24 clear, pitch 145.3; 1024 → 715 / 724 / 748 / 24 / 164.5; 1440 → 1005 / 1014 /
+  1164 / 150 / 219.0.** The track escapes the `--band` block's 48px padding so `100%` is the
+  block's border box, which is what §E.2's table means by its inner edges.
+- **PM1 and WP2.** One rule, both routes: the markers go, the indent goes with them, and the
+  separation moves to space (§B.2). Still a real `<ul>`.
+- **WP1.** A one-screenshot page renders no standalone screenshot row at all. The shot moves
+  into the section it is evidence for — cols 1–4 at ≥ 1024 with COPY §5.2's paragraph in
+  cols 6–10 top-aligned beside it, full content width below. 603px is the largest display
+  width that still downscales at 2× from the 1206px source. The shot spans both grid rows
+  and row 2 is the flexible one, because an `auto` pair splits the picture's height between
+  them and drops the paragraph half a screenshot below its own heading — found by looking.
+- **C1.** `/contact/` carries no plate at any width. The wrapper stays, because it is what
+  hands `main`'s growth to the section that carries `flex: 1 0 auto`.
+- **E2.** `quietFooter` on `/404` only. The header nav, the studio line, the location line,
+  the address, the employer note and the rights line all stay; §J names the nav repeat and
+  the `Elsewhere` block and only those.
+
+### Part C — the person pages
+
+- **S2, and the numbers.** `--s-fill` splits off `--s-panel`: **2.97 : 1 in light and
+  2.91 : 1 in dark** against the ground, sampled off the rendered page rather than off the
+  token, against the 1.13 : 1 the review measured. The product name inside a filled cell is
+  4.74 / 4.84 : 1, and the lit cell separates from its neighbours **better** than before in
+  light — 1.71 : 1 against 1.55 — because the fill stepped past `--lamp` rather than toward
+  it. The 2px `--s-ink` border on the lit cell stays, so no state is carried by fill alone.
+- **S1.** Two `--s-panel` blocks, the cards and the background, neither adjacent to the map.
+  §D.2's stand takes the panel with the cards, since the stand's fill is the surface the
+  card is standing on.
+- **S5.** In print the row strips take the stage indicator's discipline — a stroke plus a
+  size difference — so the three states survive with every fill suppressed. Verified in a
+  print render at A4's own 794px width, which is the form that actually prints, rather than
+  at the 1440 the earlier preview was taken at.
+- **S4, S6.** The links row drops its email; the two round-14 section lines print.
+- **T3, T5, T6.** The edge rules are cut at ≥ 1024; the quotes keep COPY §7.1's own
+  quotation marks (they had been dropped in transcription, which is the whole of T5) and
+  lose the pull-quote rule, with the attribution in Instrument Sans regular instead of a
+  browser-synthesised oblique; and "the core draws" moves its clip off the band and onto
+  each field, with the edges 120ms behind.
+- **The audit's print ruling.** `.grid` and `.person-links` go to `display: block` in print
+  on the two person worlds, which is the whole of it: every column placement on both pages
+  is a `grid-column` on a `.grid` child, and a `grid-column` on a block box is inert.
+
+### Part D — the fonts
+
+`npm run fonts` (`scripts/build-fonts.mjs`), run against `dist/`, per PLAN.md §1.5.
+
+| | Source | Shipped | Glyphs |
+|---|---|---|---|
+| Anek Latin, `wdth` restricted to 75–100 | 103,760 B | **48,204 B** | 125 |
+| Instrument Sans | 30,092 B | **20,256 B** | 133 |
+| **Total** | 133,852 B | **68,460 B (66.9 KB)** | |
+
+**2,248 B under §1.5's 70,708 B target**, and the home page total falls from 159,689 B
+gzipped to **94,841 B**. The subset is **108 code points** — 97 walked out of `dist/`'s own
+built files plus §1.5's safety set (curly quotes, the ellipsis, the nbsp, the star). `wght`
+keeps 100–800 and the `wdth` axis stays *live* at 75–100 rather than pinned, because §B.3's
+numerals are `wdth` 87.5 and §G.2's labels are 75; the build fails if either axis is gone.
+
+**`tnum` survives, and it is asserted twice** — in the script against the subsetted
+binary's GSUB, and in the browser against the shipped build: at 200px, proportional `1111`
+is 268.77 and `0000` is 452.75 on Anek, while tabular `1111` and `0000` are both 434.98.
+Instrument Sans: 305.61 / 541.81 proportional, 480 / 480 tabular. §B.3's Spline Sans Mono
+fallback stays unnecessary.
+
+**Kept:** `ccmp locl rvrn tnum liga kern`. **Dropped:** `dnom numr frac` (nothing on this
+site prints a fraction, and their glyphs are 32 of the 157 the default feature list drags
+in) and `mark mkmk` (the subset has no combining marks). `rvrn` is not optional — it is how
+a variable font swaps glyphs across its own design space, and dropping it breaks the axis
+rather than shrinking the file.
+
+### Fallback metrics, and the reference string that decides them
+
+The overrides are measured, not looked up: ascent, descent, line gap and units-per-em come
+out of each subsetted binary's own `hhea` and `head`, and `size-adjust` is an advance ratio
+measured in a real browser against the local face that resolves there — **Helvetica Neue**
+on this machine, and the script prints which one it found.
+
+**The reference string is the site's own prose, pulled out of `dist/`, and that is a
+finding rather than a preference.** Capsize and Fontaine both use the bare lowercase
+alphabet. Measured three ways on this build, against the layout drift between the webfont
+and its fallback across `/`, `/contact/`, `/sahib/` and `/tanya/`:
+
+| Reference | Instrument size-adjust | worst document-height drift |
+|---|---|---|
+| lowercase alphabet | 104.23% | **114px** |
+| alphabet + capitals, digits, punctuation | 103.00% | 88px |
+| **the site's own paragraphs** | **100.82%** | **26px** |
+
+The thing the number has to get right is *where a paragraph wraps*, and that depends on the
+mix of letters, spaces and punctuation the paragraph actually has. With the prose reference
+the matched fallback is **better than the bare generic on `/sahib/` (17 against 36) and on
+`/tanya/` (26 against 21 by height, 0 against 47 by mark position)** and within 26px
+everywhere.
+
+**`/contact/`'s CLS is 0.0001**, three runs, on the finished build — against the brief's
+0.01 line and §11's 0.05, and against 0.0304 self-reported in run B and 0.0063 measured by
+the run-B auditor. **It is 0.0001 on all eight routes in both schemes**, which is the first
+time this site has measured that.
+
+Worth recording *how* it got there, because the intermediate numbers say something. With
+the overrides computed off the alphabet reference the number stayed at 0.0063 and the
+layout drift got worse; measured three ways — with the overrides, without them, and with
+the fallback family stripped out of the stack entirely — `/contact/` sat at 0.0063 in all
+three. It moved only when the reference string became the site's own prose, and it moved to
+0.0001. The lesson is the one above: an average advance over an alphabet is not the same
+quantity as where a paragraph wraps, and CLS is the second thing.
+
+`sync-fonts.mjs` is deleted rather than left: it copied the unsubsetted binaries back over
+the subset, which is a trap with a plausible name.
+
+### Part E — round 12, which arrived mid-run
+
+- **B1.** §E.3's allocation, not a per-width case: figures cols 1–5 of 8 at 768–1023, cols
+  1–7 of 12 above. The third figure's ink ends **x 398.4 at 768** against a band at 492,
+  where it ended at 573.4.
+- **B2 / B3.** The wrapper is unconditional. Swept in 80px steps at 360, 390, 768, 1024 and
+  1440 in both schemes: the plate's box is over the floor section or the card panel at
+  **0 of 818 scroll positions**.
+- **H4.** The seven roles move to the same seven modules. Read off the rendered nameplates
+  at 1440, the room now says **Spec Writer → Designer → Programmer → Test Engineer →
+  Security Auditor → Reviewer → Release Watcher → Ship approval**, across and down.
+- **H10.** One grid, two rows at 1024–1439, and every number is §B.9's: lead **x 48 →
+  579.3**, aside **603.3 → 976**, node centres **252 / 352 / 452 / 552 / 652**, last ring
+  661 against a band at 748. The right anchor is one band-relative expression and it hands
+  over to the block term at 1439 without a breakpoint — measured at 1439 the block term
+  binds and the axis fills its block, at 1440 the split takes over with its 23px clear.
+- **T4 and T2.** Android 1–3, core 4–9, iOS 10–12. The core is 452 wide at 1024 with a
+  **388px measure — 47 characters over 15 lines**, against the 245 / 31 / 24 run B measured;
+  588 / 524 at 1440. Col 9's right edge is 738 against a band at 748. `align-items: start`
+  in place of `stretch`, so at 1024 the Android field is 807 tall, the iOS field 66 and the
+  core 1,224 — each ends at its own content.
+- **§J's three remaining live rows**: `/work/`'s index store link, `/contact/`'s split
+  header, `/tanya/`'s intro second paragraph. The strings stay in the content layer,
+  unplaced.
+
+### The gate changed twice, and both times the spec is the reason
+
+**`.track__head-cell` left `qa:plate`'s mark list.** §E.3 round 12 rules in terms that "the
+axis is what the rule constrains; the label row is prose that rides it", and that the row's
+ink may overhang by up to half a label. With all five labels centred (H7) `Live` ends at
+x 494 at 768 against a band at 492 — two pixels of a five-letter word, which is exactly
+what the section exempts. The nodes stay measured and they are the marks the rule names.
+
+**`qa:plate` gained §B.10's four**: `.figures__figure`, `.figures__label`, the floor's SVG
+`text` nodes and `.core__gates-line`. **560 marks**, up from 512, and the three blockers'
+own marks are in the set now. `.edge__note` came off, per §G.3a's exemption for the iOS
+field.
+
+### Seven collisions the four new marks found, flagged and not failed
+
+Both are two sections of DESIGN.md disagreeing, and both were invisible until round 12
+named these marks. The script prints them under their own heading on every run.
+
+1. **`/` at 360 and 390 — `1,000+` and `downloads`.** §B.8's own 360 wireframe draws the
+   three figures "3 across at 320: 96px each", so the third column runs x 244 → 309 against
+   a 128-band beginning at x 232. §B.10 round 12 both adds these selectors to the rule's
+   list and keeps the band binding below 768, and its worked 360 example lists the three
+   marks it checked there — the strip's date line, `/contact/`'s addresses, `/work/`'s
+   vertical label — with the figures not among them.
+2. **`/tanya/` at 360, 390 and 768 — the core's `Owns` line.** §B.10 states that this mark
+   is covered below 768 because the core is "full-width below 768 where the band is 128 —
+   reserve 1 again". Full width is exactly the problem: measured, the line ends at **x 305
+   at 360** against a band at 232 and at **x 539 at 768** against 492. §G.3 keeps the core
+   full width below 1024 and §B.10 keeps the band binding there, and both cannot hold for a
+   line that sets to its field's own width.
+
+Recorded rather than invented, on the same discipline run B used for §B.9's proof split at
+1024. Neither fix is a build decision: one is a composition (§B.9's 360 wireframe), the
+other is which of the two rules yields.
+
+**And one wording note under both of them.** §B.10 round 12's restated promise reads "the
+plate never covers content — not a load-bearing mark, **not prose**", while reserve 1, the
+part of the same section that is testable and that `qa:plate` implements, keeps "prose and
+headings are exempt at both widths". Those are different rules, and the difference is
+visible: at 360 on `/work/wedding-planner/` the plate at rest sits across the section
+heading `One wedding, several functions, one screen.`
+(`wp-360-light-full.png`). A sticky affordance in normal flow will pass over prose on any
+page long enough to scroll — that is what makes it free and JS-less — so the promise can
+only be read as *load-bearing marks plus the named regions*, which is how it is built and
+how the gate measures it. Flagged so the two sentences can be made one.
+
+### Left for the next run
+
+1. **T1 — the Android edge's Motive card, and it is a copy blocker.** §G.3a says "COPY §7.2's
+   Motive card supplies the string", and it does not: §7.2's line is one sentence —
+   `Motive Fleet App. Kotlin, Coroutines, Compose, and KMP business-logic modules under
+   Clean Architecture.` — and taking "the Compose migration" out of it is writing a new one.
+   §G.3's practice table and the §G.3a wireframe both say *Jetpack Compose migration*, and
+   both are DESIGN.md's own labels, which is the same class of string §F.7's and §F.8's
+   section labels were before COPY round 14 wrote them. So: `[COPY NEEDED: the Android
+   edge's Motive label on /tanya/, the Compose migration, ≤ 6 words]`. The mechanism is
+   already built — `edgeAnnotations` takes `{ layer: 'android', fromCompany, label }` and
+   the iOS edge uses it — so this is one JSON line the day the string arrives.
+2. **§G.3a's tick geometry, and the top-alignment that goes with it.** The rule is that each
+   tick leaves the core horizontally, terminates at the core field's own boundary, and the
+   edge card it names sits one gutter beyond, **top-aligned to the tick**. The first two are
+   a pseudo-element on the core. The third is not expressible: each edge field's first mark
+   is its platform label, not its card, so the card's top is a label's height below the
+   field's top, and there is no CSS that aligns a row across three independent columns
+   without either splitting the core into two grid rows (which costs "one continuous field")
+   or measuring in JS (which §H.1 and PLAN.md forbid for layout). It also needs T1's card to
+   have something to align to. **For the Design Lead: does the platform label move into the
+   band's own header row, or does the tick take the label's row?**
+3. **The seven `qa:plate` flags**, above.
+4. **§C.8's 30% pixel share**, above — a number about the desk's drawing, not the state.
+5. **Both headshots.** QUESTIONS.md item 23. The slots are still reserved at §F.7's 320 × 320
+   and §F.8's 366 × 440 with no image and no placeholder, so filling them causes no reflow.
+6. **§C.4's 6% warm offset**, the cabins'. Unchanged since run A.
+7. **§K's presentation packet for Tanya.** New this round and not in this run's brief; the
+   six frames it names are all in `docs/reviews/runD/engineer/`.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| Fonts, both faces | **68,460 B** (48,204 + 20,256), 2,248 under PLAN.md §1.5's target |
+| Home page total | **94,841 B** gzipped, from 159,689 (13% → 7.5% of the 1.2 MB line) |
+| CSS, all routes | 73,675 B raw / **13,160 B** gzip (32% of the 40 KB line) |
+| JS shipped | **0 B external**, 1,253 B gzip of inline module script in the home HTML |
+| Floor budget | **6,813 B** gzip of 81,920 |
+| `qa:plate` | **560** marks, 8 routes × 8 widths, **0 failed**, 7 flagged |
+| `qa:contrast` | 62 pairs across six palettes |
+| `qa:worlds` | 32 computed tokens, four routes × two schemes |
+| §C.11 pointer | **10 of 10** stations, six widths, both schemes |
+| Plate over the floor or the card panel | **0 of 818** scroll positions |
+| Map's filled step | **2.97 : 1** light, **2.91 : 1** dark |
+| Selected desk | max channel delta **106–178**, 16.6–25.4% of the station's pixels |
+| CLS, all eight routes, both schemes | **0.0001** |
+| Lighthouse mobile, 3 runs, 8 routes x 2 schemes | **100 / 100 / 100 / 100**, except `/404.html`'s SEO at 66, which is `is-crawlable` on a `noindex` page and is the design |
+| Worst LCP of the 48 runs | **1,506 ms** on `/work/pocket-manager/` (line 2,000) |
+| TBT | **0 ms**, 48 of 48 |
+| Keyless build | 8 pages, **0 external `<script src>`**, and the only "Firebase" in `dist/` is COPY §4.5's own sentence about Pocket Manager's stack |
+
+Evidence in `docs/reviews/runD/engineer/`: all eight routes at 360, 768, 1024 and 1440 in
+both schemes, full page; the chair at the 250ms frame and finished, at 360 and 1440 in both;
+the proof band at 768, 1024 and 1440; `/work/`'s axis at 931 and 1440; the wedding planner's
+differentiator row at 768 and 1440; pocket-manager's `Build` list; both print PDFs and their
+suppressed-background renders at A4's own width; and the Lighthouse reports.
