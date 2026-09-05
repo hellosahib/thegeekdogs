@@ -253,7 +253,16 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
       gap: var(--space-12);
     }
 
+    /*
+      §B.9 draws the product label ABOVE its runner, and above the runner means above the
+      runner's FIRST NODE — the label starts where the axis starts. At 1440 the axis takes
+      col 7's left edge and `--track-list-origin` is 0, so the two already agreed; at
+      1024-1439 the axis is indented into its block by §E.3's band-relative anchor, and
+      without this the label sat 200px to its left with nothing under it. One declaration,
+      the same relationship at every width.
+    */
     .track__product {
+      margin-inline-start: var(--track-list-origin, calc(var(--track-pitch) / 2));
       font-size: var(--step-body);
       line-height: var(--step-body-lh);
     }

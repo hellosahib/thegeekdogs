@@ -196,8 +196,21 @@ const figures = [
           </p>
         </div>
 
+        <!--
+          §B.9 round 12, the proof grid at 1024-1439: **one grid, two rows, no second
+          content width.** Row 1 is §2.7's headline, paragraph 1, the three figures and the
+          two links in cols 1-7, with §2.8's caption and its note in cols 8-12 top-aligned;
+          row 2 is the two-runner track spanning cols 1-9. The caption and the note are
+          therefore their own block rather than a tail on the track — they are prose, which
+          §B.10's rule exempts, and they are what fills the right of row 1 instead of the
+          void run B rendered there. At >= 1440 they go back under the track in cols 7-12,
+          where §B.9's split already puts them; below 768 everything stacks in DOM order.
+        -->
         <div class="proof__track">
           <StageTrackCompact runners={runners} />
+        </div>
+
+        <div class="proof__aside">
           <p class="proof__caption">One shipped, one nearly there.</p>
           <p class="proof__note small muted">
             The track shows both products and where each one actually is: Pocket Manager shipped
@@ -365,7 +378,6 @@ const figures = [
   }
 
   .proof__caption {
-    margin-block-start: var(--space-24);
     font-family: var(--tgd-font-display);
     font-weight: var(--wght-display);
     font-variation-settings: 'wdth' var(--wdth-display);
@@ -379,6 +391,41 @@ const figures = [
 
   .proof__track {
     margin-block-start: var(--space-48);
+  }
+
+  .proof__aside {
+    margin-block-start: var(--space-24);
+  }
+
+  /*
+    §E.3 round 12, and blocker B1. At 768-1023 the section stacks — prose cols 1-6, **the
+    figures and the store link cols 1-5** — and that allocation, not a per-width case, is
+    what closes B1. Measured before: at full content width the third figure's ink ran to
+    x 573.4 at 768 against a band beginning at 492, so the page rendered `1,0` over `dow`,
+    and §B.6 principle 2 makes the install count the second-loudest type on the site.
+    Inside cols 1-5 the same figure ends at x 404.
+
+    §B.5's grid is arithmetic here rather than a table: `--col` and `--gutter` are the
+    section's own columns, so the cap is five of them and it follows the breakpoint.
+
+    The axis in this range takes the content's own left edge — §E.3's table gives node
+    centres 32 / 132 / 232 / 332 / 432 at 768, the last ring closing at 441 against a band
+    at 492, 51px clear. The label row rides half a pitch earlier, which is the overhang
+    §E.3 exempts as prose.
+  */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .proof__lead {
+      grid-column: 1 / span 6;
+    }
+
+    .figures {
+      max-inline-size: calc(5 * var(--col) + 4 * var(--gutter));
+    }
+
+    .proof__track {
+      --track-list-origin: 0px;
+      --track-head-origin: calc(var(--track-pitch) / -2);
+    }
   }
 
   .cta__body {
@@ -421,38 +468,100 @@ const figures = [
     .offer__inner {
       grid-column: 3 / span 8;
     }
+
+    /*
+      §B.9 round 12 — the proof grid at 1024-1439. **One grid, two rows, and no second
+      content width.**
+
+      Run B rendered this range as round 11's stack: the band's prose in cols 1-5 with the
+      track beneath it in the same half, the three figures crossing the full content width
+      on their own row, and **the right 46% of a 918px-tall section empty from its top edge
+      to its bottom** — two content widths in one block, which is the void §B.9 permits
+      exactly once and spends in the hero. The reviewer refused it on render and §B.5
+      gained the ruling that governs it: "the split forms engage at 1024" holds for §C.6's
+      slot and the gates' closing line, and does NOT hold for a two-column arrangement
+      whose second column is a diagram with a fixed minimum extent. Those engage where
+      their diagram fits and are one grid, two rows below it.
+
+      Row 1: the headline, paragraph 1, the three figures and the two links in cols 1-7 —
+      x 48 → 579.3 at 1024, 531.3px, a 31.2em measure — with the caption and its note in
+      cols 8-12 top-aligned, x 603.1 → 975.6. The right of the row is filled by writing,
+      not by a void, and §B.10's rule exempts prose in terms.
+
+      Row 2: the two-runner track, block cols 1-9, at the 100px pitch §B.10 fixes.
+    */
+    .proof__lead {
+      grid-column: 1 / span 7;
+      grid-row: 1;
+    }
+
+    .proof__aside {
+      grid-column: 8 / span 5;
+      grid-row: 1;
+      margin-block-start: 0;
+    }
+
+    .proof__track {
+      grid-column: 1 / span 9;
+      grid-row: 2;
+      margin-block-start: 0;
+
+      /*
+        The axis's right anchor, written once and BAND-RELATIVE: §E.3 gives it as
+        `min(block right − 33, 100vw − 372)`, and this is the one place in the document
+        where §B.10's viewport rule *sets* a coordinate rather than only testing one.
+
+        `--track-list-origin` is the first node centre, measured from the block's own left
+        edge, and the last node is four 100px pitches beyond it — so the expression below
+        is that anchor less 400. The block term is `100% − 433`; the band term is
+        `100vw − 372 − 400` less the block's left edge, which is §B.5's `--content-left`
+        because this block starts at column 1.
+
+        At 1024 the band term binds: node centres **252 / 352 / 452 / 552 / 652**, axis ink
+        243 → 661, the last ring closing at 661 against a band beginning at 748 — **87px
+        clear ring-to-band, 96 node-centre-to-band**, and it is the component's largest
+        clearance at any width. At 1439 the block term binds instead, so the axis fills its
+        block there rather than floating in it, and the two hand over without a breakpoint.
+      */
+      --track-list-origin: min(
+        calc(100% - 4 * var(--track-pitch) - 33px),
+        calc(100vw - 372px - 4 * var(--track-pitch) - var(--content-left))
+      );
+      --track-head-origin: calc(var(--track-list-origin) - var(--track-pitch) / 2);
+    }
   }
 
   /*
-    §B.9's split proof band engages at 1440 on this page, not at 1024, and the reason is
-    §B.10's own arithmetic rather than a preference. §B.10 computes the band at 1440 —
-    axis x 732 to 1132, last ring closing at 1141 against a plate band beginning at 1164 —
-    and nowhere else. At 1024 col 7 starts at x 524 and the plate's band begins at x 748,
-    which leaves 224px for a five-node axis: the 100px pitch that makes §E.2's two-line
-    label reservation hold needs 500, and shrinking it to 56 is the three-line
-    `Submitted for review` the step-2 review raised as item 7 and this build closed.
-    Measured before the change, the last three nodes and three labels all ended inside the
-    band at 1024. Stacked, the axis runs x 48 to 448 with its labels ending at 548, clear
-    by 200 — the same remedy §B.10 chose for /work/ at 768-930, and for the same reason:
-    the form with no right-hand extent, not a narrower pitch. FLAGGED FOR THE DESIGN LEAD,
-    because §B.5 says every split engages at 1024 and this one cannot.
+    §B.9's split band **keeps 1440 unchanged, because it clears**: cols 7-12, axis
+    x 732 → 1132, the last ring closing at 1141 against a plate band beginning at 1164,
+    23px clear. Round 12's grid above is what 1024-1439 does instead of trying to hold
+    this split at a width where the axis does not fit — the section changes shape, never
+    the component, and the pitch is 100 at every width.
   */
   @media (min-width: 1440px) {
     .proof__lead {
       grid-column: 1 / span 5;
+      grid-row: 1;
     }
 
     /*
       §B.10: in the band the axis takes col 7's left edge, so the FIRST NODE sits on it
       and the label row hangs half a pitch back into the gutter between cols 6 and 7 —
-      which is empty, the prose ending at col 5. The caption and the note below keep the
-      full cols 7-12 width.
+      which is empty, the prose ending at col 5. The caption and the note go back under
+      the track at the full cols 7-12 width, which is where §B.9's wireframe draws them.
     */
     .proof__track {
       grid-column: 7 / span 6;
+      grid-row: 1;
       margin-block-start: 0;
       --track-head-origin: calc(var(--track-pitch) / -2);
       --track-list-origin: 0px;
+    }
+
+    .proof__aside {
+      grid-column: 7 / span 6;
+      grid-row: 2;
+      margin-block-start: 0;
     }
   }
 </style>

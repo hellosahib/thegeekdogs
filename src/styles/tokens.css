@@ -142,6 +142,20 @@
 
   --page-max: 1320px;
   --content-max: 1200px;
+
+  /*
+    §B.5's grid, as arithmetic rather than as a table, so a component that has to land on a
+    column edge can say so instead of carrying a per-breakpoint number.
+
+    --content is the shell's own content box: the page capped at --page-max, less the two
+    outer margins. --col is one column of it. --content-left is where column 1 begins in
+    VIEWPORT coordinates, which is what §B.10's composition rule needs — the rule is
+    measured from the viewport's right edge and the grid is centred in it, so a component
+    that has to stop clear of the plate's band has to know both.
+  */
+  --content: calc(min(100vw, var(--page-max)) - 2 * var(--outer));
+  --col: calc((var(--content) - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+  --content-left: calc(50vw - min(50vw, var(--page-max) / 2) + var(--outer));
   --outer: 20px; /* 360 */
   --gutter: 16px; /* 360 */
   --section-pad: 72px; /* 360 */
