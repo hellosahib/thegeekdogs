@@ -76,7 +76,20 @@ for (const width of WIDTHS) {
       // Round 10: the band is the plate's width plus its 16px inset.
       const band = window.innerWidth - (window.innerWidth >= 768 ? 276 : 128);
       const plate = document.querySelector('.plate');
-      const wrapper = plate?.closest('.plate-span') ?? null;
+      /*
+        The plate's wrapper is not "the nearest .plate-span" — it is the plate's own
+        STICKY CONTAINING BLOCK, which is the nearest ancestor that actually generates a
+        box. Round 10, change three, makes the two differ on `/`: below 768 the plate
+        lives inside `.plate-span__after-floor`, a real box that starts after the floor,
+        and at >= 768 that div is `display: contents` and the containing block is the
+        outer `.plate-span` again. Walking past every `display: contents` ancestor is the
+        CSS rule itself, so the script measures the span the browser measures — and on
+        `/` at 360 and 390 the floor is correctly outside it.
+      */
+      let wrapper = plate?.parentElement ?? null;
+      while (wrapper && getComputedStyle(wrapper).display === 'contents') {
+        wrapper = wrapper.parentElement;
+      }
       // A mark outside the plate's wrapper cannot be covered by it, and the rule says so.
       const inWrapper = (el) => Boolean(wrapper && wrapper.contains(el));
       const platePresent = Boolean(plate && getComputedStyle(plate).display !== 'none');
