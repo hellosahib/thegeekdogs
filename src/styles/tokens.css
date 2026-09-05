@@ -135,9 +135,18 @@
   --plate-inset: 16px;
   --plate-reserve: 56px;
 
+  /*
+    DESIGN.md §B.10 / §E.2 — the shared stage axis runs on a 100px column pitch, which
+    is what lets §E.2's two-line label reservation hold `Submitted for review` in two
+    lines instead of three. In §B.9's proof band at 1440 that puts the five node centres
+    on x 732 / 832 / 932 / 1032 / 1132, the last ring closing at 1141, 23px clear of the
+    plate's leading edge at 1164.
+  */
+  --track-pitch: 100px;
+
   /* --- DESIGN.md §C.6, the interaction card's reserved slot --- */
   --card-slot-min: 320px; /* < 768 */
-  --card-slot-width: 366px; /* ≥ 1024 */
+  --card-slot-width: 293px; /* cols 9–12 at 1024: 4 × 55.3 + 3 × 24 */
 
   /* --- DESIGN.md §H.1, shared timing tokens --- */
   --dur-1: 120ms;
@@ -217,6 +226,9 @@
     --outer: 60px;
     --gutter: 24px;
     --section-pad: 160px;
+
+    /* §C.6 — cols 9–12 at 1440: 4 × 78 + 3 × 24. */
+    --card-slot-width: 384px;
   }
 }
 

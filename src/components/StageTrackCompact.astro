@@ -46,7 +46,6 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
 
 <div class="track">
   <p class="track__head" aria-hidden="true">
-    <span class="track__spacer"></span>
     {headings.map((label) => <span class="track__head-cell">{label}</span>)}
   </p>
 
@@ -181,43 +180,60 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
   }
 
   /*
-    >= 768 — one axis, five fixed columns, defined once on .track and inherited by the
-    label row and by both runners through subgrid. The column gap is zero on purpose:
-    the connector spans exactly one column, so a gap would leave the line short of the
-    next node.
+    >= 768 — one axis on a fixed 100px column pitch (DESIGN.md §B.10, §E.2), shared by
+    the single label row and by both runners.
+
+    Step-2 review item 7: at the old 67px pitch `Submitted for review` set to three
+    lines and `Final touches` to two, so §E.2's two-line reservation was a stepped block
+    rather than a row and the five stages could not be taken in one pass. The pitch is
+    what fixes it, and the pitch is affordable because the keep-out lane that was taking
+    78px off the band is withdrawn.
+
+    §B.10 also moves the product label ABOVE its runner in this band, as §B.9's
+    wireframe draws it, so the axis takes the band's own left edge instead of being
+    indented behind a label column.
+
+    The node centres sit on the COLUMN START lines, not in the column middles: four
+    100px columns plus a zero-width fifth put them at 0 / 100 / 200 / 300 / 400 from the
+    list's origin, which is the axis §B.10 specifies. The label row is the same five
+    stages centred on those same x, so it is half a pitch wider and starts half a pitch
+    earlier.
+
+    Which of the two carries that half pitch is the page's call, and it is one pair of
+    variables. Stacked (the default), the label row starts at the container's left edge
+    and the runners are indented half a pitch. In §B.9's proof band the page flips it, so
+    the first node — not the first label — lands on col 7's left edge and the axis is
+    §B.10's 732 -> 1132 exactly. The relative geometry is identical either way.
   */
   @media (min-width: 768px) {
     .track {
-      grid-template-columns: minmax(7rem, 11rem) repeat(5, minmax(0, 1fr));
-      gap: var(--space-16) 0;
-    }
-
-    .track__head,
-    .track__runner {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: subgrid;
-      align-items: center;
-      margin: 0;
-      max-inline-size: none;
+      gap: var(--space-32);
     }
 
     .track__head {
+      margin-inline-start: var(--track-head-origin, 0px);
+      display: grid;
+      grid-template-columns: repeat(5, var(--track-pitch));
+      inline-size: calc(5 * var(--track-pitch));
+      align-items: end;
+      max-inline-size: none;
       color: var(--tgd-muted);
       font-size: var(--step-micro);
       line-height: var(--step-micro-lh);
-      align-items: end;
     }
 
     /* Height is reserved for the longest label so nothing shifts (§E.2). */
     .track__head-cell {
       text-align: center;
       padding-inline: var(--space-4);
-      min-block-size: calc(3 * var(--step-micro) * var(--step-micro-lh));
+      min-block-size: calc(2 * var(--step-micro) * var(--step-micro-lh));
+    }
+
+    .track__runner {
+      gap: var(--space-12);
     }
 
     .track__product {
-      padding-inline-end: var(--space-16);
       font-size: var(--step-body);
       line-height: var(--step-body-lh);
     }
@@ -228,20 +244,34 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
     }
 
     .track__list {
-      grid-column: 2 / -1;
+      margin-inline-start: var(--track-list-origin, calc(var(--track-pitch) / 2));
       display: grid;
-      grid-template-columns: subgrid;
-      inline-size: auto;
+      grid-template-columns: repeat(4, var(--track-pitch)) 0;
+      inline-size: calc(4 * var(--track-pitch));
       block-size: 20px;
     }
 
     .track__step {
+      display: block;
+      position: relative;
       flex: none;
       block-size: 20px;
     }
 
     .track__step:last-child {
       flex: none;
+    }
+
+    .track__node {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .track__step:not(:last-child)::after {
+      inset-inline-start: 0;
+      inline-size: 100%;
     }
   }
 

@@ -157,11 +157,19 @@ import { THEME_TOGGLE } from '../lib/copy';
     }
   }
 
-  /* §B.10a — the ring traces the 44 x 44 target, not the 28 x 28 plate. */
+  /*
+    §B.10a — the ring traces the 44 x 44 target, not the 28 x 28 plate, at the site's
+    one 3px offset and a 4px radius.
+
+    Step-2 review item 12: it was built differently from every other control's — a 0
+    offset with the --lamp ring INSET, so the amber ran inside the target instead of
+    between the target and the outer ring. It is the §B.2 construction now, identical
+    to a floor station's: the global :focus-visible rule supplies the 3px outer ring,
+    and only the offset and the radius are stated here.
+  */
   .theme-toggle__button:focus-visible {
-    outline: var(--focus-outer-width) solid var(--focus-outer);
-    outline-offset: 0;
-    box-shadow: inset 0 0 0 var(--focus-inner-width) var(--focus-inner);
+    outline-offset: var(--focus-offset);
+    box-shadow: 0 0 0 var(--focus-inner-width) var(--focus-inner);
     border-radius: 4px;
   }
 </style>
