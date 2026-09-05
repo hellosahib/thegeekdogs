@@ -75,6 +75,18 @@ const MARKS = [
   ['a CTA', '.button'],
   ['the map’s lit cell', '.map__cell[data-lamp][data-filled]'],
   /*
+    The final review's item N1 puts the map's product names on this list, and its ruling is
+    the reason: below 768 the row strip IS the map, §F.1's lead sentence tells the reader
+    that a filled cell's payload is a name, and a name whose second half is under the plate
+    is a mark that has lost its meaning — "a mark read as a unit, whose meaning is lost when
+    part of it is hidden", which is §B.10's own definition. It is not the `.edge__note` case
+    §G.3a took off this list: that is prose in a container, this is the field's payload.
+
+    It is measured at EVERY width, not only below 768, because at >= 1024 the same names
+    print inside the matrix's cells and the rightmost column is the one the plate reaches.
+  */
+  ["the map's product name", '.map__cell-product'],
+  /*
     §B.10 round 12's own list, added here: all four are load-bearing by the rule's
     definition and none of the four was in run B's 432. `.figures__figure` and
     `.figures__label` are blocker B1 — the `1,000+` install count is the second-loudest

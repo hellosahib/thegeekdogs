@@ -325,6 +325,36 @@ function productFor(place: (typeof places)[number], key: string): string | undef
     color: var(--s-lamp-ink);
   }
 
+  /*
+    §B.10 reserve 1, and the final review's item N1. Below 768 the strip IS the map — §F.1's
+    lead sentence tells the reader that a filled cell's payload is a name — so the product
+    line is a load-bearing mark read as a unit, and three of the ten ran under the plate:
+    `Design-components library across Fleet and Driver` ended at x 319.3 against a band at
+    232 (360) and 262 (390), so the reader got `Design-components library acr` and then
+    `Driver`.
+
+    The fix is the instrument §B.8 used for the figures and §G.3a for the gates — the line
+    breaks before the band, no lane and no `padding-right`. The cell narrows to clear it,
+    which it may: §B.5's round-12 ruling reserves "a diagram with a fixed minimum extent"
+    from narrowing, and this is the field's own content, not the diagram.
+
+    The constant is arithmetic, not a guess. The cell's right edge sits 36px inside the
+    viewport's right edge at every width below 768 (§B.3's 20px outer gutter plus the row
+    panel's own 16px of padding), and the band begins 128px inside it, so the cell has to
+    give back 128 − 36 = 92px; 96 is that plus one 4px step of slack. Measured after:
+    widest ink x 222.4 at 360 against 232, and 256.5 at 390 against 262. `.map__cell-product`
+    is on `qa:plate`'s mark list from this round, so it cannot come back quietly.
+
+    The lamp cell is named explicitly because its own `max-inline-size: 100%` above carries
+    the same specificity; it shrink-wraps well inside this cap and is unchanged in fact.
+  */
+  @media (max-width: 767px) {
+    .map__cell[data-filled],
+    .map__cell[data-filled][data-lamp] {
+      max-inline-size: calc(100% - 96px);
+    }
+  }
+
   .map__surface-short {
     display: none;
   }
