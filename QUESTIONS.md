@@ -123,7 +123,7 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
 48. Does a TheGeekDogs wordmark or logo exist that the site may use? If not, the header sets the name in the display face and that is a deliberate choice.
     Answer: Display name only, no logo.
 49. Dark mode: lock each world to one appearance (recommended) or also ship a dark scheme? Three worlds times two schemes is six palettes to keep at AA.
-    Answer: Lock each world to one scheme.
+    Answer: REVERSED 2026-09-05 by the owner: dark mode on every page, all three worlds. Design Lead supplies a dark counterpart per world with computed contrast; Engineer wires `prefers-color-scheme` as the default and a manual light/dark toggle on every page (owner decision, same day). Toggle state persists per visitor; Design Lead specs where it sits and what it looks like.
 50. Home page work-card strip: omit (recommended; the floor already spent the boldness) or include?
     Answer: Include.
 51. The visible floor shows five agent desks (Spec Writer, Programmer, Test Engineer, Security Auditor, Reviewer); Designer and Release Watcher appear in the text roster below it. Is leaving Designer off the visible floor acceptable, given neither founder is a designer? Swapping Designer in for Spec Writer is the alternative.
@@ -148,4 +148,10 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
 59. Three adjectives each (items 20 and 21 were answered with pronouns). Not blocking.
     Answer:
 60. Pocket Manager screenshots (item 16): who captures them from the local build, and on which device or emulator size? The case study needs at least the calendar and statistics screens.
+    Answer:
+61. Sahib's resume or CV, so his titles, dates and the iOS/KMP specifics can be cross-checked the way Tanya's were.
+    Answer:
+62. Item 38 gave four LinkedIn URLs for three named posts. Which URL is which, and what is the fourth post?
+    Answer:
+63. Tanya's Naskay project is "Jillian Michaels | Fitness App", a third-party trademark. Name it, or describe it as "a fitness app for a US client"?
     Answer:

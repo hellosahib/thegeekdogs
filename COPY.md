@@ -66,6 +66,21 @@ Follows the visitor down the home page. Not a modal, not a chat bubble.
 
 `Skip to main content`
 
+### Dark mode toggle
+
+On every page, at every breakpoint (item 49). `prefers-color-scheme` sets the opening state; the
+toggle overrides it and the choice persists per visitor. The button's accessible name states the
+action it performs, never the state the page is already in, so a screen reader user is never told
+"dark mode" and left to guess whether that is a description or an instruction.
+
+- **Visible label, group:** `Theme`
+- **Visible label on the control:** `Dark` when the page is light, `Light` when the page is dark.
+  One word, the destination, matching the accessible name's verb.
+- **Accessible name while the page is light:** `Switch to dark mode`
+- **Accessible name while the page is dark:** `Switch to light mode`
+- **`aria-live` announcement after the switch, polite:** `Dark mode on.` / `Light mode on.`
+  Four words, past the point of action, so the announcement confirms rather than instructs.
+
 ### Back to the studio
 
 The quiet return link on `/sahib/` and `/tanya/`. Not a studio header.
@@ -76,14 +91,18 @@ The quiet return link on `/sahib/` and `/tanya/`. Not a studio header.
 ### Footer
 
 - Studio line: `TheGeekDogs. A two-person mobile studio.`
-- Location line: `[FILL: city or cities to print, and whether to state a timezone. Sahib is in Bengaluru and Tanya is in Delhi per §5.4, but printing two cities needs the owners' call.]`
+- Location line: `Bengaluru and New Delhi. We work in IST.`
 - Email label: `thegeekdogs@gmail.com`
 - Link group heading: `Elsewhere`
-- Links: `Sahib on GitHub`, `Tanya on GitHub`, `[FILL: any socials beyond GitHub the owners want listed: X, a personal blog, a second email. §5.4 lists this as open.]`
+- Links: `Sahib on GitHub`, `Tanya on GitHub`, `Sahib on LinkedIn`, `Tanya on LinkedIn`
 - Nav repeat: `Work`, `Sahib`, `Tanya`, `Contact`
 - Rights line: `© 2026 TheGeekDogs`
 - Employer note, required by §5.4 so employer names cannot be read as endorsement. Print it small
   but print it: `Company names on this site are the two founders' employment history. None of them are clients of TheGeekDogs and none endorse it.`
+
+Four outbound links and no more. Items 17 and 18 closed the question: no personal data beyond
+GitHub and LinkedIn, no X, no blog, no second address. Resume links may be added later, and when
+they are they are a footer link like the others, not a new section.
 
 ---
 
@@ -135,44 +154,53 @@ card panel at every breakpoint (§C.6), so the argument is on screen without it.
 
 Note for Design Lead and Engineer. The instruction says "open", not "tap" or "hover", because the
 same sentence has to be true on touch, on a mouse and on a keyboard (§6). Do not print a desk
-count in this line; §7 permits cutting the floor to five agents, and a printed number would go
-stale the moment it does.
+count in this line. Item 32 settled the floor at seven agent desks, and a number written into body
+copy goes stale the day the roster changes, which a roster on a live site eventually does.
 
 ### 2.3 The two human cards
 
-Equal weight. Neither is the assistant. Both lines are drafted from §5.4 and carry a confirmation.
+Equal weight. Neither is the assistant. Each card names what that person owns, from item 19.
 
 **Sahib Singh**
 
 - **Role line:** `Mobile across all four stacks: native iOS, native Android, KMP, Flutter.`
-- **Body:** `Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. Owns architecture and the release cut here.`
+- **Body:** `Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and reads code review with Tanya.`
 
 **Tanya Jain**
 
 - **Role line:** `Native Android and KMP, and the iOS side too.`
-- **Body:** `Android engineer at Motive. Owns how the work gets made: the practices, the workflow, the shared-core decisions. The four review gates below are her subject.`
+- **Body:** `Software Engineer 2 at Motive, where she owns releases. She owns the product spec here, QA on real devices, and the security, privacy and ASO review, and reads code review with Sahib.`
 
-`[CONFIRM: both floor card lines with Sahib and Tanya themselves before publish. §7 requires it and the page carries their names and their employers'.]`
-
-`[CONFIRM: which of the four human gates each person owns. §5.4 lists this as open; the lines above assign architecture and the release cut to Sahib and the review gates to Tanya, following the §7 draft. If ownership differs, both cards change.]`
+Item 19 assigned every gate but one, and it assigned them unevenly: three of the four named gates
+are hers, code review is shared, and architecture is his. The cards print that split rather than
+balancing it, because a card that squares an uneven division is a card that stopped being true.
 
 ### 2.4 The agent cards
 
 One card per role. Each names the job and the human gate that checks its output. The pairing of
 the flex and the reassurance is the point; do not split them across two cards.
 
-Order below is pipeline order. If the floor renders five desks instead of seven (§7), Security
-Auditor and Reviewer stay visible and the full seven appear in the roster list.
+Order below is pipeline order. Item 32 settled the floor at seven agent desks, so all seven render
+and the roster list carries the same seven in the same order.
+
+The gate names in the right column are the same strings as the four gates in §2.6, plus the two
+item 19 named outside them: the product spec, which is Tanya's, and ship approval, which is the
+empty chair in §2.5. Item 42 accepted mapping design review onto architecture review and the
+release gate onto ship approval, so no seventh label is invented for either.
 
 | Desk | Job | Checked by |
 |---|---|---|
-| Spec Writer | `Turns the brief into a written spec: scope, constraints, and what the thing deliberately won't do.` | `Architecture review` |
-| Designer | `Layouts, states, and the empty and error screens everyone else forgets.` | `Design review` |
-| Programmer | `Writes the code. Fast, and far more of it than a person would.` | `Human code review` |
-| Test Engineer | `Writes the tests around the edges you'd have shipped without. The agent writes them and runs them. A person judges whether they test what matters.` | `QA pass` |
-| Security Auditor | `Scans dependencies, permissions, and what the app collects and where it goes. The agent runs the scan. A person reads the result and decides what to do about it.` | `Security review` |
-| Reviewer | `Reads every diff for what a tired human misses at 1am.` | `Human code review` |
-| Release Watcher | `Watches crashes and performance in production and files the ticket before your users do.` | `Release gate` |
+| Spec Writer | `Turns the brief into a written spec: scope, constraints, and what the thing deliberately won't do.` | `Product spec review` |
+| Designer | `Layouts, states, and the empty and error screens everyone else forgets.` | `Architecture review` |
+| Programmer | `Writes the code. Fast, and far more of it than a person would.` | `Code review` |
+| Test Engineer | `Writes the tests around the edges you'd have shipped without. The agent writes them and runs them. A person judges whether they test what matters.` | `QA on real devices` |
+| Security Auditor | `Scans dependencies, permissions, and what the app collects and where it goes. The agent runs the scan. A person reads the result and decides what to do about it.` | `Security and privacy review` |
+| Reviewer | `Reads every diff for what a tired human misses at 1am.` | `Code review` |
+| Release Watcher | `Watches crashes and performance in production and files the ticket before your users do.` | `Ship approval` |
+
+`[CONFIRM: who reviews design. Item 19 names an owner for every other gate on this floor and none for this one, so the Designer card currently borrows architecture review under item 42's mapping. If a person owns design review by name, this cell and §10.2's spoken button name both change.]`
+
+`[CONFIRM: who cuts the release, and therefore whose name sits behind ship approval on the Release Watcher card and the empty chair. QUESTIONS.md item 56 is open.]`
 
 The two long cards are long on purpose. §7 is explicit that a reader who notices Security Auditor
 and the human security review overlapping will assume the page is padding, and the same for Test
@@ -196,10 +224,10 @@ This card has no worker in it and should not pretend otherwise. There is no role
 These are genuinely a sequence, so §9.4 permits numbering them. Nothing else on the page gets
 numbers.
 
-1. **`Architecture review.`** `Before a line is written, a person decides the shape: what the data looks like, where the boundaries are, what this has to survive in two years. Agents are good at filling in a structure and bad at choosing one.`
-2. **`Code review.`** `Every change is read by a human before it merges. Not skimmed for style. Read for whether it does what it claims.`
-3. **`QA on real devices.`** `Physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit.`
-4. **`Security and privacy review.`** `What the app collects, where it goes, what's stored, what's exposed. Checked by a person against what we told your users we'd do.`
+1. **`Architecture review.`** `Sahib decides the shape before a line is written: what the data looks like, where the boundaries are, what this has to survive in two years. Agents are good at filling in a structure and bad at choosing one.`
+2. **`Code review.`** `Every change is read by a person before it merges, and both of us are on this one. Not skimmed for style. Read for whether it does what it claims.`
+3. **`QA on real devices.`** `Tanya runs the build on physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit.`
+4. **`Security and privacy review.`** `Tanya reads what the app collects, where it goes, what's stored and what's exposed, against what we told your users we'd do.`
 
 - **Closing line:** `That's the difference between generated software and shipped software.`
 
@@ -211,32 +239,26 @@ numbers.
 
 `Pocket Manager has been in the Play Store since 2020, maintained by the same pipeline and the same review gates. 4.3 stars from 24 reviews, 1,000+ downloads, and it still gets updates five years on.`
 
-`[CONFIRM: the public listing shows 4.3 today; if the Play Console shows a different figure for one country, the site prints the public global number.]`
-
 - **Link label:** `Open Pocket Manager in the Play Store`
 - **Secondary link label:** `Read how it gets built`  → `/work/pocket-manager/`
 
-`[CONFIRM: Pocket Manager's exact first release date, from the Play Console. "Since 2020" is safe per §7 and is what is printed. Nothing more precise goes on the site until this is verified.]`
+The rating and the review count are the live listing's own figures, verified at the store and
+confirmed by item 36. Item 13 gave the release year and nothing finer, so "since 2020" is the whole
+of what this page knows about the first release and the whole of what it says.
 
-**Privacy line. Content flag, default OFF (§5.2).**
+**No privacy line, on this page or any other.** Item 14 closed it: the site makes no privacy,
+encryption or deletion claim for Pocket Manager, now or later. There is no content flag to flip,
+because there is no flag-on wording to write. Do not soften one back in either; a hedged claim
+against a live Data Safety declaration is the same listing-policy risk as a hard one.
 
-- **Flag OFF, the default and what ships today:** no privacy line at all. Paragraph 1 stands alone.
-  Do not soften a privacy claim into the copy anywhere; a hedged claim that contradicts a live Data
-  Safety declaration is the same listing-policy risk as a hard one.
-- **Flag ON:** one sentence, added after paragraph 1. `[CONFIRM: the exact wording of the corrected Data Safety declaration as it reads on the live Play Store listing, not a description of the fix. "Data can be deleted on request", "data is encrypted in transit" and "data never leaves your device" are three different promises and each licenses a different sentence. Whoever flips this flag verifies the live listing first.]`
-  - **Draft shape, not approved copy, verbs to be replaced with the declaration's own:**
-    `Pocket Manager's records {stay on your device / are encrypted in transit / can be deleted on request}. What the Play Store listing declares and what this page says are the same sentence, checked before every release.`
-  - The second sentence of that draft is the part worth keeping whatever the first turns out to
-    say, because it is the studio's own argument applied to itself.
+**Paragraph 2.**
 
-**Paragraph 2, the strongest line on the site.**
+`A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
 
-`A second app is in final touches behind it. It's the one that had its headline feature cut from its own store listing, because the button that opens it isn't wired up yet. That rule is the whole point.`
-
-`[CONFIRM: owners comfortable saying this publicly. §7 requires it. If the second product stays off the site entirely, keep this paragraph and attribute it generically to the app in build, exactly as written above, since it names no product.]`
-
-Note: this paragraph deliberately does not name the feature. Naming it would describe the
-collaboration feature §5.3 forbids describing, which would be a joke the page could not survive.
+Item 12 was answered no: the site does not say publicly that a feature was cut from the second
+app's own store listing. The paragraph above carries the "in build" frame without it, on the two
+facts that survive: same pipeline, and a person ends it. Do not reinstate the cut-feature sentence
+here or in §5.4 in any wording.
 
 ### 2.8 The shared build-stage view
 
@@ -290,7 +312,13 @@ gives it. Do not write a second, near-identical line for the other case.
 
 This is the one place on `/` that uses the "not X, not Y, not Z" triple. Do not add a second.
 
-- **Second paragraph:** `[FILL: typical timeline to the first build, the engagement model (fixed-scope, retainer, or both), what a first conversation actually looks like, and the capacity ceiling. §5.1 and §5.4 both point here. If the answer is "one project at a time", say exactly that: it is a stronger line than anything vaguer, and an unstated capacity discovered mid-engagement is how a first client becomes a last one.]`
+- **Second paragraph:** `One project at a time. Fixed scope or a retainer, both work here. It starts with a short written brief rather than a call, and a first MVP is a few days from the go-ahead.`
+
+Items 4, 5, 6 and 8, printed plainly. "One project at a time" is the capacity ceiling stated as the
+studio states it, and it is the only place on the site that sentence appears: it is the strongest
+line the engagement facts produce, and repeating it on `/contact/` would spend it twice. §8.2
+carries the rest of the same answer without restating this one. No starting price is printed
+anywhere, per item 7.
 
 ### 2.10 Final CTA
 
@@ -337,7 +365,11 @@ nothing is invented here.
 
 ### 3.3 Card: the wedding planner
 
-- **Product name:** `A wedding planner`, descriptive. `[FILL: the final product name, once a human picks it. ADR-0046 reduced the working title to an internal label; nothing on this site uses it. Until then this card, its slug, its page title and its OG fields all stay descriptive.]`
+- **Product name:** `A wedding planner`, descriptive. The name is not final and the site ships
+  without one: item 9 chose the full name-agnostic page, so this card, its slug, its page title and
+  its OG fields are descriptive by decision, not by omission. ADR-0046 reduced the working title to
+  an internal label and nothing on this site uses it. If a name is picked later it replaces the
+  descriptive string in five places and nothing else on the page moves.
 - **Stage:** `Final touches`
 - **One-line description:** `Works offline, and handles a wedding that's more than one event.`
 - **Link label:** `See what's in build`
@@ -371,12 +403,28 @@ contain it.
 - **Heading:** `Problem`
 - **Body:** `An expense tracker earns its place only if logging something takes seconds and the answer is on screen before you put the phone down. Pocket Manager is built around two questions: what did I spend today, and what does the month come to. The calendar screen answers the first, showing a chosen day's records with the daily and monthly balance beside them. The statistics screen answers the second, with graphs over date ranges up to 90 days.`
 
-`[CONFIRM: that this is a fair statement of the app's original goal. It is derived from the Play Store listing's own feature list (§5.2), not from a written brief. If the owners had a different starting problem, this paragraph is theirs to correct.]`
+The paragraph is derived from the Play Store listing's own feature list, which the Fact Checker
+verified at the source. It went to the owners with the rest of round 3 and came back uncorrected,
+so it stands as written.
 
 ### 4.3 Build
 
+Every fact in this section comes from a read-only audit of the app's own repository, recorded in
+`FACTS.md` section (d). Nothing here is a description of the codebase supplied by the owners; item
+44 said there were no written notes and to read the code instead.
+
 - **Heading:** `Build`
-- **Body:** `[FILL: what Pocket Manager is built in, and anything about its architecture the owners want said. §5 contains the store listing and nothing about the codebase, so this section has no facts to work from. Useful shape: the stack, roughly how the app is structured, and one decision made early that is still paying off.]`
+- **Body:** `Kotlin, and Jetpack Compose for every screen. The migration off XML layouts is finished, and a test in the repository fails the build if a layout file comes back. Hilt wires the app together, Room holds the data with no network layer behind it, and WorkManager runs the scheduled work. The home-screen widgets are Glance, the app lock is the platform biometric API, and the charts on the statistics screen are our own code rather than a charting library. Export runs through a vendored SQLite-to-Excel module. Analytics and crash reporting are Firebase. minSdk 23, so it still installs on a phone running Android 6.`
+- **Closing line:** `The repository's first commit is dated November 2020.`
+
+That last line is a commit, not a release, and the page says so by calling it one. The two are
+different events and only the year is common to both.
+
+Do not write "on-device only", "nothing leaves your device" or any sentence with that shape into
+this section. The app's own records have no network layer, which is a build fact and printable; the
+Firebase analytics and crash-reporting SDKs do send data off the device, which makes the stronger
+sentence false. Item 14's ban on privacy claims covers the rest.
+
 - **Feature list, safe to print as-is, straight from the listing:**
   - `A simple interface with multiple categories.`
   - `A calendar screen showing a chosen day's records, with the daily and monthly balance.`
@@ -385,11 +433,18 @@ contain it.
 
 ### 4.4 Review process
 
-This is the section the whole site exists to support. Facts here come from §3.
+This is the section the whole site exists to support, and it is the one section whose claims a
+reader cannot check from the store listing. It is written from the pipeline's own configuration
+files, audited in `FACTS.md` section (d): the scheduled task, the repository contract, and the two
+CI workflows.
 
 - **Heading:** `Review process`
-- **Body:** `Pocket Manager is maintained by our own agent pipeline, running on a schedule, and every release is cut by a person. The same four gates apply to it as to client work: a human decides the architecture, reads the diffs, runs QA on physical phones, and reviews what the app collects against what the listing says it collects. There is no version of this where an agent decides the app is ready.`
+- **Body:** `An autonomous run picks up Pocket Manager every two hours on our own machine, and the rule it runs under is written into the repository: a human cuts every release, and the agent never pushes. The release workflow is manual-trigger only, so no scheduled run can start one. A separate workflow runs the unit tests on every push. The same four gates apply here as to client work: a person decides the architecture, reads the diffs, and runs QA on physical phones. There is no version of this where an agent decides the app is ready.`
 - **Closing line:** `The process being sold on the home page is the process running on this app.`
+
+Note on the fourth gate. The security and privacy review runs on this app like any other, but this
+page states no outcome from it, because item 14 forbids a privacy claim of any kind here. Naming
+the gate is a process fact; naming what it found would be the claim.
 
 ### 4.5 Outcome
 
@@ -400,31 +455,29 @@ Do not round, inflate or re-describe any of those four numbers. The smallness of
 part of the argument: a maintained small app is better evidence of discipline than a large
 abandoned one.
 
-`[CONFIRM: Pocket Manager's exact first release date from the Play Console, if anything more precise than "since 2020" and "roughly five years" is ever printed. Cross-reference with §2.7.]`
+Item 13 gave 2020 as the release year and no month, so "since 2020" and "roughly five years" are
+the most precise things this page will ever say about the first release. The repository's first
+commit, in §4.3, is a commit and is labelled as one.
 
-### 4.6 Privacy, content flag, default OFF
+### 4.6 Privacy
 
-- **Flag OFF, the default:** this page describes the product and makes no privacy or encryption
-  claim of any kind. There is no "Data safety" heading, no sentence about what is collected, no
-  reassurance. Section is absent, not empty.
-- **Flag ON:** a short block appears after Outcome.
-  - **Heading:** `Data safety`
-  - **Body:** `[CONFIRM: the exact wording of the corrected Data Safety declaration on the live Play Store listing. Same confirmation as §2.7 and it resolves both. Do not accept "it's resolved" as a source. Whoever flips this flag reads the live listing first and matches the verbs exactly.]`
-  - **Draft shape, not approved copy:** `Pocket Manager's records {stay on your device / are encrypted in transit / can be deleted on request}. The Play Store Data Safety declaration and this page say the same thing, and one of the four gates exists to keep them saying it.`
+There is no privacy section on this page, and its absence is deliberate rather than pending: item
+14 settled that the site makes no privacy, encryption or deletion claim for Pocket Manager, so
+there is no "Data safety" heading, no sentence about what is collected, and no flag to turn on
+later.
 
 ### 4.7 Screenshots
 
-Store screenshots from the live listing. Alt text below assumes the screens named in §5.2; each
-one is confirmed against the actual file before it ships.
-
-`[FILL: which screenshots are being used, and in what order. The listing has more screens than the page needs. Once chosen, the alt text below is trimmed to match rather than invented for.]`
+New screenshots, captured from the latest build rather than pulled off the store listing (item 16).
+The alt lines below describe the screens the §5.2 feature list names, and each is checked against
+the image that actually ships before it publishes.
 
 - **Alt, calendar screen:** `The Pocket Manager calendar screen, showing one day's transactions with the daily and monthly balance above them.`
 - **Alt, statistics screen:** `The Pocket Manager statistics screen, showing spending as a graph over a selected date range.`
 - **Alt, categories screen:** `The Pocket Manager category list, with a spending total beside each category.`
 - **Alt, export:** `The Pocket Manager export screen.`
 
-`[CONFIRM: each alt line above against the actual screenshot file before publish. These describe the screens the §5.2 feature list names; if a chosen screenshot shows something else, the alt is rewritten, not stretched.]`
+`[CONFIRM: every alt line above, against the new screenshots, once they exist. QUESTIONS.md item 60 is open on who captures them and at which device size; the calendar and statistics screens are the two the case study cannot do without. If a captured screen shows something other than the line describes, the alt is rewritten, not stretched.]`
 
 ### 4.8 Meta
 
@@ -444,15 +497,20 @@ sign-in. Nothing here mentions a vendor directory, a guest-facing app, in-app pa
 tier. There is no gendered language. Tone is plain and warm, never chirpy: the reward this product
 offers is relief, and nobody is congratulated.
 
-`[FILL: whether the owners want this product on the site at all before the name is settled. §5.3 says leaving it off and showing only Pocket Manager is a legitimate call. If it comes off, keep the "headline feature cut from its own listing" paragraph on the home page, attributed generically.]`
+Item 9 chose option (a): the full page ships, name-agnostic, before the name is settled. Item 12
+was answered no, so nothing on this page or the home page says a feature was cut from the store
+listing. Item 11 was answered no, so there is no email capture here.
 
 ### 5.1 Page header
 
 - **Headline:** `The second one, in build.`
 - **Subhead:** `A wedding planner that works offline, never sells your data, and handles a wedding with more than one function.`
 - **Stage:** `Final touches`
-- **Product name field:** `[FILL: the final name, once a human picks it. Until then every reference on this page, in its slug, its title, its OG fields and its structured data is descriptive. The internal bundle id is never user-facing.]`
-- **Store link field:** `[FILL: the store URL, once the app is submitted and live. Until then no store link renders and no link label is shown. Do not ship a link to nothing.]`
+- **Product name field:** empty, by decision. Every reference on this page, in its slug, its title,
+  its OG fields and its structured data is descriptive until a human picks a name. The internal
+  bundle id is never user-facing.
+- **Store link field:** empty, by decision. The app has not been submitted, so no store link
+  renders and no link label is shown. Do not ship a link to nothing.
 
 The subhead is the ASO document's own positioning line, used verbatim. Do not paraphrase it.
 
@@ -484,11 +542,14 @@ honest to describe. Nothing is added to this list without checking §5.3.
 Honest, and it does more work than a launch date would.
 
 - **Heading:** `Why it isn't out yet`
-- **Body:** `The features are built and verified on real devices. What's left is the list you'd expect at this stage and one thing you might not: the name isn't final, the release signing and the launcher icon aren't done, and a feature that's fully built and fully tested still isn't described anywhere here, because the button that opens it doesn't open yet. That last one is a rule, not an oversight.`
+- **Body:** `The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the name isn't final, and the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.`
 - **Closing line:** `It goes to the store when a person says it's ready, and not before.`
 
-Note: this paragraph refers to the unreachable feature without naming or describing it. Do not add
-a clause explaining what it does. That is the exact failure §5.3 warns about.
+Note: item 12 was answered no. The paragraph that used to sit here referred to a fully built,
+fully tested feature that is described nowhere because the button that opens it doesn't open yet.
+That sentence is out of this section and out of §2.7, in any wording. The "in build" frame stands
+on the three remaining facts and the closing line, which is the one that was doing the argument's
+work anyway: a person ends it.
 
 ### 5.5 Email capture, optional
 

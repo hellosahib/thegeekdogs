@@ -77,6 +77,8 @@ This is the mechanism that lets §9.4's "spend boldness in one place" be a rule 
 
 ### B.2 Tokens
 
+**Each world is locked to one scheme; there is no dark mode** (QUESTIONS.md item 49). No `prefers-color-scheme` branch exists anywhere on this site. The studio is light with two inverted regions, Sahib's world is dark, Tanya's is light, and each is the only appearance that surface has. This is why every ratio below is a fixed number rather than a pair.
+
 Six named values. Contrast computed per WCAG 2.x: channel `c` in sRGB 0–1, linearised as `c/12.92` when `c ≤ 0.03928` else `((c+0.055)/1.055)^2.4`; `L = 0.2126R + 0.7152G + 0.0722B`; ratio `= (L_light + 0.05) / (L_dark + 0.05)`.
 
 | Token | Hex | Relative luminance L | Role |
@@ -196,9 +198,10 @@ Content 320, margins 20. Sections in §7 order.
 ```
 ┌────────────────────────────────────────┐ 360
 │ 20│                                 │20 │
-│   thegeekdogs                          │  48  header row 1. wordmark, display
-│                                        │      600, links home. not sticky.
-│                                        │      [BLOCKED: wordmark?]
+│   thegeekdogs                          │  48  header row 1. THE WORDMARK IS
+│                                        │      THE DISPLAY NAME (item 48): no
+│                                        │      logo exists and none is drawn.
+│                                        │      Anek 600, links home. not sticky.
 │   Work    Sahib    Tanya    Contact    │  44  header row 2. THE NAV. the same
 │   ────────────────────────────────────  │      four items as 1440, COPY.md §1
 │                                        │      labels. small 14px --floor,
@@ -234,26 +237,63 @@ Content 320, margins 20. Sections in §7 order.
 │▓  the human who checks it.            ▓│      instruction line, COPY.md §2.2.
 │▓                                      ▓│      body 16/26 chalk@72%, 2 lines.
 │▓  ┌──────────────────────────────┐    ▓│  32
-│▓  │ portrait room, 320 x 470     │    ▓│      iso scene. plan and stations
-│▓  │ 2 modules wide, 4 deep       │    ▓│      in §C.3. targets >= 88x72.
-│▓  │ see §C for the plan          │    ▓│
+│▓  │ portrait room, 320 x 520     │    ▓│      iso scene. plan and stations
+│▓  │ 3 modules wide, 6 deep       │    ▓│      in §C.7. TEN stations. agent
+│▓  │ see §C.7 for the plan        │    ▓│      targets 101 x 64, cabins
+│▓  │                              │    ▓│      320 x 88, chair 104 x 96.
 │▓  └──────────────────────────────┘    ▓│
 │▓                                      ▓│  20
 │▓  ┌──────────────────────────────┐    ▓│      CARD PANEL. below the scene,
 │▓  │ Ship approval                │    ▓│      never over it. min-height
-│▓  │                              │    ▓│      reserved for the longest
-│▓  │ This chair stays empty. No   │    ▓│      card => zero CLS.
+│▓  │                              │    ▓│      320 (§C.6), reserved for the
+│▓  │ This chair stays empty. No   │    ▓│      longest card => zero CLS.
 │▓  │ agent decides that something │    ▓│      DEFAULT CONTENT = the chair,
 │▓  │ is ready for your users. A   │    ▓│      so the argument is on screen
 │▓  │ person does, every release.  │    ▓│      before any interaction.
 │▓  └──────────────────────────────┘    ▓│
 │▓                                      ▓│  40
-│▓  The full pipeline                   ▓│      the seven roles as text.
-│▓  Spec Writer, Designer, Programmer,  ▓│      Designer and Release Watcher
-│▓  Test Engineer, Security Auditor,    ▓│      are here and not on the floor
-│▓  Reviewer, Release Watcher.          ▓│      (§C.2). small 14px, chalk@72%
-│▓                                      ▓│  72
-╞════════════════════════════════════════╡
+│▓  The full pipeline                   ▓│      the seven roles as text, in
+│▓  Spec Writer, Designer, Programmer,  ▓│      COPY.md §2.4 order. all seven
+│▓  Test Engineer, Security Auditor,    ▓│      are now ALSO on the floor
+│▓  Reviewer, Release Watcher.          ▓│      (§C.2); this line is the
+│▓                                      ▓│      readable, screen-reader-first
+│▓                                      ▓│  72  copy of the same list.
+╞════════════════════════════════════════╡      small 14px, chalk@72%
+│░░░░░░░░░░░░░ --band ░░░░░░░░░░░░░░░░░░░│  72  FULL BLEED. THE COMPRESSED
+│░                                      ░│      WORK-CARD STRIP (§6.1, item
+│░  Sahib Singh                         ░│      50). sits directly after the
+│░                                      ░│  16  floor: the room has just named
+│░  ┌──────────────────────────────┐    ░│      two people at two desks, and
+│░  │ Keenai Global                │    ░│      this answers who they are.
+│░  │ 2025 - now                   │    ░│
+│░  └──────────────────────────────┘    ░│      COMPRESSED CARD: TWO fields
+│░       ▁▁▁▁▁▁▁▁▁▁                     ░│      only -- company (Anek 600,
+│░                                      ░│  28  title) and dates (numeral-
+│░  ┌──────────────────────────────┐    ░│      large, price position). role,
+│░  │ Motive                       │    ░│      product and stack are DROPPED.
+│░  │ 2023 - 2025                  │    ░│      that is the compression, and
+│░  └──────────────────────────────┘    ░│      it is what stops the strip
+│░       ▁▁▁▁▁▁▁▁▁▁                     ░│      being the person page in
+│░                                      ░│  16  miniature. min-height 112 vs
+│░  [link to /sahib/]                   ░│      168 for a full card at 360.
+│░                                      ░│  40  base, edge and tilt are §D's,
+│░  Tanya Jain                          ░│      unchanged -- the object is the
+│░                                      ░│  16  same object, with two of its
+│░  ┌──────────────────────────────┐    ░│      four levels removed.
+│░  │ Motive                       │    ░│
+│░  │ 2024 - now                   │    ░│      TWO cards per person at every
+│░  └──────────────────────────────┘    ░│      breakpoint. not three at 1440
+│░       ▁▁▁▁▁▁▁▁▁▁                     ░│      and two at 360: the strip is
+│░                                      ░│  28  one DOM list and its contents
+│░  ┌──────────────────────────────┐    ░│      do not change with viewport
+│░  │ HSBC                         │    ░│      width (the §C.2 rule).
+│░  │ 2021 - 2023                  │    ░│
+│░  └──────────────────────────────┘    ░│      tilt continues §D.4's cycle:
+│░       ▁▁▁▁▁▁▁▁▁▁                     ░│      -1.4, +0.8, -2.1, +1.7.
+│░                                      ░│  16
+│░  [link to /tanya/]                   ░│      small 14px --floor
+│░                                      ░│  72  [COPY NEEDED: the strip's two
+╞════════════════════════════════════════╡       link labels, <= 5 words each]
 │                                        │  72  --sheet
 │   Four things we don't hand            │      display-section
 │   to an agent.                         │
@@ -348,6 +388,24 @@ Content 320, margins 20. Sections in §7 order.
                                                 before the final CTA.
 ```
 
+**The work-card strip, specified.** Item 50 says include it, so here is what it is and what it is
+not. It is **two rows, one per person, two cards each, two fields per card** — company in the title
+position, date range in the price position — plus one link per row to that person's page. Ten
+things on screen, not thirty. The compression is subtractive, not stylistic: the card keeps §D's
+base, edge, tilt, radius and shadow pair exactly, and simply loses two of §D.5's four levels (role,
+and the product/stack small print). A compressed card is 112 tall against a full card's 168 at 360
+and 196 at 1024, so the strip costs roughly 60% of what a full card grid would.
+
+Three constraints follow. **(a)** Two cards each at *every* breakpoint — the strip is one DOM list
+and its contents do not change with viewport width, which is the same rule §C.2 applies to the desk
+roster. **(b)** Sahib's list is truncated (five companies, two shown) and Tanya's is not (three
+companies, two shown); the equal treatment is the count, and the truncation is his. §9.3's warning
+about padding her row count to match his cuts the other way here and the strip respects it.
+**(c)** The strip is the only place on the site where a work card appears without its role and
+stack, so the person pages remain the only complete rendering of §D.5. Section ground is `--band`,
+which keeps the page's fill alternation intact (sheet, floor, band, sheet, band, sheet, floor) and
+satisfies §D.7's controlled-backdrop rule without a new value.
+
 **How the other four pages are reached at 360, and why there is no hamburger.** The nav is a
 plain row of four links sitting on its own 44px line directly under the wordmark, and the same
 four labels repeat as a 2-up block in the footer. `Work`, `Sahib`, `Tanya` and `Contact` at 14px
@@ -387,10 +445,10 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 │                                                                          │
 │                                        cols 8-12 DELIBERATELY EMPTY.     │  the only void
 │                                        the void sets up the room that    │  on the page.
-│                                        arrives full-bleed next. if the   │  reserved
-│                                        headshot route resolves (Q23),    │  520 x 420 so
-│                                        the two portraits land here.      │  filling it
-│                                        [BLOCKED: headshot route]         │  causes no
+│                                        arrives full-bleed next. the two  │  reserved
+│                                        AI headshots (item 23, option 2)  │  520 x 420 so
+│                                        land here when supplied.          │  filling it
+│                                        [PENDING: headshot images]        │  causes no
 │                                                                     160  │  reflow.
 ╞══════════════════════════════════════════════════════════════════════════╡
 │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ FULL BLEED --floor. THE ROOM. ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│ 128
@@ -405,21 +463,38 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 │▓ ┌────────────────────────────────────────┐  ┌───────────────────────┐  ▓│
 │▓ │                                        │  │ CARD SLOT             │  ▓│
 │▓ │   isometric scene, cols 1-8            │  │ cols 9-12, 366 wide   │  ▓│
-│▓ │   856 x 520, 5 wide x 4 deep plan      │  │ vertically centred    │  ▓│
-│▓ │   see §C.3 for the station plan        │  │ to the scene          │  ▓│
+│▓ │   792 x 560, 6 wide x 5 deep plan      │  │ vertically centred    │  ▓│
+│▓ │   TEN stations, see §C.3               │  │ to the scene          │  ▓│
 │▓ │                                        │  │                       │  ▓│
-│▓ │   the empty chair sits alone at        │  │ min-height reserved   │  ▓│
-│▓ │   near-right, lit, with two clear      │  │ for the longest card  │  ▓│
-│▓ │   floor modules of nothing around it   │  │                       │  ▓│
-│▓ │                                        │  │ default = Ship        │  ▓│
-│▓ └────────────────────────────────────────┘  │ approval              │  ▓│
-│▓                                             └───────────────────────┘  ▓│
+│▓ │   the empty chair sits alone at        │  │ min-height 344px      │  ▓│
+│▓ │   near-right, lit, with the whole      │  │ (§C.6), reserved for  │  ▓│
+│▓ │   of row 5 empty beside it             │  │ the longest card      │  ▓│
+│▓ │                                        │  │                       │  ▓│
+│▓ │   the two CABINS hold column A-B,      │  │ default = Ship        │  ▓│
+│▓ │   rows 1-4 (§C.4)                      │  │ approval              │  ▓│
+│▓ └────────────────────────────────────────┘  └───────────────────────┘  ▓│
 │▓                                                                        ▓│
 │▓ The full pipeline                                                      ▓│
 │▓ Spec Writer, Designer, Programmer, Test Engineer,      (cols 1-8)      ▓│  small, chalk@72%
 │▓ Security Auditor, Reviewer, Release Watcher.                           ▓│  [set as a wrapped
 │▓                                                                   128  ▓│   sentence, not a
 ╞══════════════════════════════════════════════════════════════════════════╡   dotted meta strip]
+│░░░░░░░░░░░░░░░░░ FULL BLEED --band. THE WORK-CARD STRIP. ░░░░░░░░░ 128 ░░│
+│░                                                                        ░│
+│░ Sahib Singh  │ ┌───────────────┐  ┌───────────────┐ │                  ░│  row label in
+│░ (cols 1-2)   │ │ Keenai Global │  │ Motive        │ │ [link to /sahib/]░│  cols 1-2, Anek
+│░ Anek 600 20px│ │ 2025 - now    │  │ 2023 - 2025   │ │  cols 11-12      ░│  600, links to
+│░              │ └───────────────┘  └───────────────┘ │                  ░│  the page.
+│░              │    ▁▁▁▁▁▁▁▁▁▁        ▁▁▁▁▁▁▁▁▁▁      │                  ░│
+│░              │  cols 3-9: 2 x 316 + one 24 gutter   │                  ░│  cards carry TWO
+│░                                                                    40  ░│  fields only:
+│░ Tanya Jain   │ ┌───────────────┐  ┌───────────────┐ │                  ░│  company (title)
+│░ (cols 1-2)   │ │ Motive        │  │ HSBC          │ │ [link to /tanya/]░│  and dates (the
+│░              │ │ 2024 - now    │  │ 2021 - 2023   │ │                  ░│  price position).
+│░              │ └───────────────┘  └───────────────┘ │                  ░│  min-height 112.
+│░              │    ▁▁▁▁▁▁▁▁▁▁        ▁▁▁▁▁▁▁▁▁▁      │                  ░│  row gap 40 so
+│░                                                                   128  ░│  the tilts never
+╞══════════════════════════════════════════════════════════════════════════╡  read as a pile.
 │                                                                     160  │  --sheet
 │ 01  Architecture review                    │  That's the difference      │
 │     Before a line is written, a person     │  between generated          │  the closing line
@@ -483,7 +558,7 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
                                              before the final CTA section)
 ```
 
-**Layout families used, one each:** asymmetric-left hero with a void; full-bleed scene plus fixed slot; hung-numeral list with an anchored closing line; split band with a diagram; narrow centred statement; full-bleed inverted CTA. Six sections, six families — nothing repeats.
+**Layout families used, one each:** asymmetric-left hero with a void; full-bleed scene plus fixed slot; left-labelled card rail (the work-card strip — the only structure on the site where a row label sits outside the content and the objects run out from it); hung-numeral list with an anchored closing line; split band with a diagram; narrow centred statement; full-bleed inverted CTA. Seven sections, seven families — nothing repeats. Adding the strip did not cost a repeat, which is the test it had to pass to be worth including.
 
 **One deliberate exception to page-theme lock:** the floor and the final CTA invert to `--floor` while the rest of the page is `--sheet`. This is not section-level theme flicker; the room is a place, entered once and bookended once, and inverting it is what makes it read as somewhere rather than as a panel.
 
@@ -491,11 +566,24 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 
 §8: not a chat bubble, not an exit modal. It is the empty chair's nameplate, reused — the same amber plate with ink text, because the thing you are being invited to do is talk to the person who signs off.
 
+**The plate prints the address in plain text** (item 53). Not a label over a `mailto:`. A page whose whole argument is "a real person answers" cannot hide the person's address behind a button; the address *is* the proof, and printing it is the cheapest possible demonstration of the claim. The scraping cost is accepted, and it is accepted with open eyes: these are Gmail addresses with Google's own filtering behind them, and no obfuscation scheme survives a determined scraper anyway.
+
+**The address is per world:**
+
+| Where | Address printed on the plate |
+|---|---|
+| `/`, `/work/*`, `/contact/`, `/404` | `thegeekdogs@gmail.com` |
+| `/sahib/` | `sahiboffc@gmail.com` |
+| `/tanya/` | `jaintanya999@gmail.com` |
+
+The same rule governs each page's own closing line: a person page closes with that person's address, the studio pages close with the studio's. The plate and the page never disagree about who is being written to, which is the whole reason the person pages get their own addresses at all.
+
 - **Mechanism:** `position: sticky; bottom: 0` on an element inside a wrapper that spans from the end of the hero to the start of the final CTA. It appears when the hero leaves, follows down the page, and retires on its own when the real CTA arrives. No JS, no scroll listener, no dismiss state.
-- **< 768:** full-bleed bar, 56px tall, `--lamp` fill, 2px `--floor` top border, the email as a `mailto:` link filling the bar. Whole bar is the target.
-- **≥ 768:** 260 × 56 plate, bottom-right, 16px inset from the viewport, same colours, same 2px border.
+- **< 768:** full-bleed bar, 56px tall, `--lamp` fill, 2px `--floor` top border, the address as a `mailto:` link filling the bar. Whole bar is the target. No width question here — the bar is the viewport.
+- **≥ 768:** 260 × 56 plate, bottom-right, 16px inset from the viewport, same colours, same 2px border. **The plate width does not change between pages**, and that is checked rather than assumed: set at small/14px Instrument 600 with 20px padding each side, the longest of the three addresses (`jaintanya999@gmail.com`, 22 characters ≈ 169px) needs 209px of the 260 available; `thegeekdogs@gmail.com` needs ~202px and `sahiboffc@gmail.com` ~186px. All three clear 260 with ≥ 51px to spare, so **no wireframe in §B.8, §B.9, §F.7, §F.8 or §G.3 changes width**, and the plate stays one component with one size at every breakpoint on every page.
 - **Reserve:** every section it can overlay gets +56px bottom padding, so it never covers content and never causes CLS.
-- Contrast: `--floor` on `--lamp` = 7.56 : 1; plate boundary against `--sheet` via its ink border = 13.53 : 1.
+- Contrast: `--floor` on `--lamp` = 7.56 : 1; plate boundary against `--sheet` via its ink border = 13.53 : 1. On Sahib's `--s-ground` and Tanya's `--t-ground` the same ink border carries 14.11 : 1 and 14.18 : 1 respectively, so the plate needs no per-world variant.
+- Print: the plate is `display: none` (§D.8). A sticky amber bar is not a thing that belongs on paper, and the address prints once at the top of page 1 instead.
 
 ### B.11 `/work/*`, `/contact/`, `/404`
 
@@ -503,8 +591,8 @@ Same tokens, same grid, no new devices.
 
 - **`/work/`** — two entries, each a `--band` block: product name, one line, the full labelled build-stage track (§E), a store link where one exists. No hero image. `[COPY NEEDED: /work/ index intro, ≤ 20 words]`
 - **`/work/pocket-manager/`** — problem, build, review process, outcome, store link, per §8. Screenshots in the real device aspect ratio (portrait 9:19.5), max two above the fold, explicit dimensions. The full stage track sits directly under the h1 because "Live" is the strongest fact on the page.
-- **`/work/wedding-planner/`** — identical shell, descriptive title, stage at Final touches, no dates anywhere, no store link (there is nothing to link to). `[BLOCKED: whether this route ships at all — QUESTIONS.md item 9.]`
-- **`/contact/`** — three addressed blocks per §8 (studio, Sahib, Tanya) as a 3-up at ≥1024, stacked at 360. No orchestrated moment; a contact page's job is to be answered, not performed. `[BLOCKED: whether this page carries a form at all, or only the email — depends on QUESTIONS.md items 1 and 11.]`
+- **`/work/wedding-planner/`** — identical shell, descriptive title, stage at Final touches, no dates anywhere, no store link (there is nothing to link to). **The route ships** (item 9a: full page, name-agnostic), so the layout is built, not held. `[COPY NEEDED: the name-agnostic page title, ≤ 5 words — the placeholder name may not appear (§5.3).]`
+- **`/contact/`** — three addressed blocks per §8 (studio `thegeekdogs@gmail.com`, Sahib `sahiboffc@gmail.com`, Tanya `jaintanya999@gmail.com`) as a 3-up at ≥1024, stacked at 360. **No form** (item 11): three printed addresses and nothing to submit, which removes a service dependency, a success state, a spam surface and a whole class of validation design. No orchestrated moment; a contact page's job is to be answered, not performed.
 - **`/404`** — the only page that shows an **empty room**: the floor slab and the lamp, no desks, no chair. It reuses the floor's slab symbol and its lamp gradient and adds nothing, so it costs roughly zero new bytes. One line, one link home. `[COPY NEEDED: 404 line, ≤ 12 words.]` This is the one joke the site gets, and it is a joke that is also the argument.
 
 ---
@@ -525,83 +613,103 @@ Four fills in the whole scene, all derived from the six tokens:
 | glow | `--chalk` @ 55–85% | monitors |
 | lamp | `--lamp`, one 2-stop linear gradient | the empty chair's cone only |
 
-### C.2 Five agent desks, not seven
+### C.2 Seven agent desks, two cabins, one empty chair — ten stations
 
-**Decision: two human desks + five agent desks + one empty chair = eight stations.**
+**Decision taken by the owners (items 32 and 51): two human cabins + seven agent desks + one empty chair = ten stations.** Pass 1 argued for five agent desks on the grounds that ten would drop touch targets below comfort. That argument was right about the constraint and wrong about the arithmetic: it assumed the eight-station portrait plan (2 wide × 4 deep) had to absorb two more desks, when the honest answer is a different plan. Re-planned at 3 wide × 6 deep (§C.7), ten stations hold **101 × 64 CSS px** for the seven agent desks, 320 × 88 for the cabins and 104 × 96 for the chair — every one of them clear of the 44 × 44 floor, the smallest dimension in the set sitting 45% above it. So the count changed and nothing was cut to pay for it. Item 51 also closes Pass 1's own flag: Designer is on the floor, and the studio is not quietly admitting it has no design discipline.
 
-§6 asks for five to six agent desks; §7's table lists seven roles and says to cut to five if the floor gets crowded, keeping Security Auditor and Reviewer. At 360 with a portrait room, eight stations already give ~88 × 72 targets; nine or ten would drop below a comfortable touch target, and the brief is explicit that accessibility is never what gets cut.
+All seven roles are now on the visible floor **and** in the roster text beneath it. The roster is no longer a place to park the two that did not fit; it is the readable, screen-reader-first copy of the same list, in the same order, which is what §6's semantic-first requirement wanted in the first place. The station count does **not** change between breakpoints — one DOM list, two CSS arrangements.
 
-The five on the floor are chosen so that **every human gate in §7 is represented at least once**, which makes the scene legible as a pipeline rather than as a mascot lineup:
+**Desk-to-gate table, with the human who owns each gate** (item 19). This is what makes the scene legible as a pipeline rather than as a mascot lineup: every agent's card names a gate, and every gate now names a person.
 
-| Desk | Gate it feeds |
-|---|---|
-| Spec Writer | Architecture review |
-| Programmer | Human code review |
-| Test Engineer | QA pass |
-| Security Auditor | Security review |
-| Reviewer | Human code review |
+| # | Desk | Gate it feeds (COPY.md §2.4) | Human who owns that gate (item 19) |
+|---|---|---|---|
+| 1 | Spec Writer | Architecture review | **Sahib** |
+| 2 | Designer | `[COPY NEEDED: Designer's checking gate, ≤ 3 words. COPY.md §2.4 says "Design review"; item 42 mapped design review onto architecture review when Designer was off the floor. Now that the desk is visible its card needs a gate that is either its own or honestly shared.]` | Follows from the gate |
+| 3 | Programmer | Human code review | **Sahib and Tanya** |
+| 4 | Test Engineer | QA pass, on real devices | **Tanya** |
+| 5 | Security Auditor | Security and privacy review | **Tanya** |
+| 6 | Reviewer | Human code review | **Sahib and Tanya** |
+| 7 | Release Watcher | `[COPY NEEDED: Release Watcher's checking gate, ≤ 3 words. COPY.md §2.4 says "Release gate"; item 42 mapped the release gate onto the empty chair's Ship approval. With this desk visible, the two now collide on the same floor and Copy has to separate them — the chair is the decision to ship, the Release Watcher's gate is whatever checks what happens after.]` | **Sahib** owns the release cut |
+| — | Ship approval (the empty chair) | — the gate itself, unowned by any agent | **Sahib** cuts the release; the card names no worker |
 
-The order of that table is **COPY.md §2.4's pipeline order** — spec, code, tests, scan, review —
-and it is the order used by the plan below, by the DOM and by the tab order in §C.8. Pass 1 put
-Reviewer third, next to Programmer, on the grounds that the two share a gate. That was the wrong
-read: work is written, then tested, then scanned, and the human diff review is the last thing
-that happens before the release cut, which is why the Reviewer desk is the one immediately
-upstream of the empty chair. Copy owns the pipeline narrative and the narrative is the argument,
-so the design follows it.
+Two notes on that table. **First**, item 19 gives Tanya the product spec while the Spec Writer's checking gate is architecture review, which is Sahib's. That is not a contradiction and the card should not try to resolve it in one line: the spec is written, Tanya owns what it says the product is, Sahib owns whether the shape survives. It is flagged in §I because the two-owner case may want a card treatment rather than a copy fix. **Second**, two of the seven gates are `[COPY NEEDED]` rather than guessed. Both are genuinely copy decisions — the gate names are Copy's vocabulary and the Release Watcher / empty chair collision is a narrative problem, not a layout one — and the card slot's geometry is identical whichever way they land.
 
-**Designer** and **Release Watcher** appear in the roster text directly beneath the scene, per §7's instruction. The desk count does **not** change between breakpoints — the DOM roster is one list, and changing its contents with viewport width would break §6's semantic-first requirement.
-
-One flag: omitting **Designer** from the visible floor may read as the studio quietly acknowledging it has no design discipline (§5.4 says neither founder is a designer). That is a real risk and it is open question 3 below.
+The order of the table is **COPY.md §2.4's pipeline order** — spec, design, code, tests, scan, review, watch — and it is the order used by the plan below, by the DOM and by the tab order in §C.8. Copy owns the pipeline narrative and the narrative is the argument, so the design follows it, including where it puts Release Watcher last and therefore nearest the chair.
 
 ### C.3 Composition — plan
 
 ASCII cannot honestly draw isometry, so this is the **plan** (top-down). The projection maps plan-x to screen right-down and plan-y to screen right-up; the near corner of the plan is the bottom of the screen.
 
-**Desktop plan, 5 modules wide × 4 deep (scene 856 × 520 at 1440):**
+**Desktop plan, 6 modules wide × 5 deep (scene box 792 × 560 at 1440, cols 1–8):**
 
 ```
-  back-left ──────────────────────────────────────────── back-right
-   ┌────────┬────────┬────────┬────────┬────────┐
- 1 │        │ SPEC   │        │ PROG-  │        │   row 1, far
-   │   ·    │ WRITER │   ·    │ RAMMER │   ·    │
-   ├────────┼────────┼────────┼────────┼────────┤
- 2 │ SAHIB  │        │ TEST   │        │ SECUR. │   row 2
-   │ ▓▓▓▓   │   ·    │ ENGIN. │   ·    │ AUDITOR│
-   ├────────┼────────┼────────┼────────┼────────┤
- 3 │ TANYA  │        │ REVIEW │        │        │   row 3
-   │ ▓▓▓▓   │   ·    │ -ER    │   ·    │   ·    │
-   ├────────┼────────┼────────┼────────┼────────┤
- 4 │        │        │        │        │ ┌────┐ │   row 4, near
-   │   ·    │   ·    │   ·    │   ·    │ │CHAIR│ │
-   │        │        │        │        │ │ ☐   │ │
-   └────────┴────────┴────────┴────────┴────────┘
-  front-left ────────────────────────────────────── front-right
-                                            ▲
-                         the whole of row 4 is empty except this
+  back-left ─────────────────────────────────────────────────────── back-right
+       A        B        C        D        E        F
+   ┌────────┬────────┬────────┬────────┬────────┬────────┐
+ 1 │                 │ SPEC   │        │ DESI-  │        │   row 1, far
+   │   SAHIB CABIN   │ WRITER │   ·    │ GNER   │   ·    │
+   ├      2 x 2      ┼────────┼────────┼────────┼────────┤
+ 2 │      (§C.4)     │        │ PROG-  │        │ TEST   │   row 2
+   │                 │   ·    │ RAMMER │   ·    │ ENGIN. │
+   ├────────┬────────┼────────┼────────┼────────┼────────┤
+ 3 │                 │ SECUR. │        │ REVIEW │        │   row 3
+   │   TANYA CABIN   │ AUDITOR│   ·    │ -ER    │   ·    │
+   ├      2 x 2      ┼────────┼────────┼────────┼────────┤
+ 4 │      (§C.4)     │        │RELEASE │        │        │   row 4
+   │                 │   ·    │WATCHER │   ·    │   ·    │
+   ├────────┬────────┼────────┼────────┼────────┼────────┤
+ 5 │        │        │        │        │        │ ┌────┐ │   row 5, near
+   │   ·    │   ·    │   ·    │   ·    │   ·    │ │CHAIR│ │
+   │        │        │        │        │        │ │ ☐   │ │
+   └────────┴────────┴────────┴────────┴────────┴────────┘
+  front-left ──────────────────────────────────────────── front-right
+                                                     ▲
+                              the whole of row 5 is empty except this
 ```
 
-**How the eye is led to the empty chair — five mechanisms, all free:**
+The seven agent desks sit on a checkerboard through columns C–F, rows 1–4, and read **row-major in COPY.md §2.4's pipeline order**: Spec Writer and Designer across the far row, Programmer and Test Engineer across row 2, Security Auditor and Reviewer across row 3, Release Watcher alone in row 4. The checkerboard is not decoration — it is what keeps a neighbour within one module of every agent desk, which is the condition mechanism 3 below depends on.
 
-1. **It is the only station that does not move.** Every other desk has a monitor glow on a slow idle loop. The chair does not. In a moving field, the still thing is what you look at (principle 4). This is the whole trick and it costs nothing.
-2. **It is the only lit thing.** A pendant lamp above it casts a cone in `--lamp` onto the desk. It is the single largest area of accent colour on the entire site, and `--lamp` appears nowhere else in the scene.
-3. **Emptiness around it.** Row 4 is otherwise completely bare — four empty modules to its left. Every other station has a neighbour within one module. From A.3: one thing is allowed to be loud, and it earns it with the space around it.
+Scene arithmetic, so the box is not a guess: at 2:1 isometry with 128 × 64 modules, a 6 × 5 plan projects to (6+5) × 64 = **704px wide** and (6+5) × 32 = **352px tall** on screen, plus ~40px of cabin wall elevation and ~60px for the lamp cone above the chair, giving a drawn room of roughly **704 × 500** inside the 792 × 560 box. That leaves 44px of horizontal margin each side and 30px vertical — enough that the focus ring on an edge station never clips.
+
+Desktop touch and pointer targets: agent-desk buttons ≈ **112 × 56**, cabin buttons ≈ **232 × 148**, the chair ≈ **128 × 88**. All are well past 44 × 44; at this breakpoint the binding constraint is legibility of the nameplate, not the target.
+
+**How the eye is led to the empty chair — five mechanisms, all free, all unchanged by the count going from eight stations to ten:**
+
+1. **It is the only station that does not move.** Every other station has a monitor glow on a slow idle loop. The chair does not. In a moving field, the still thing is what you look at (principle 4). This is the whole trick and it costs nothing. Nine idling stations make it work *better* than seven did.
+2. **It is the only lit thing.** A pendant lamp above it casts a cone in `--lamp` onto the desk. It is the single largest area of accent colour on the entire site, and `--lamp` appears nowhere else in the scene — not in the cabins, not on a prop, not on a painting.
+3. **Emptiness around it.** Row 5 is otherwise completely bare — **five** empty modules to its left, up from four in the eight-station plan, plus F4 empty directly behind it. Every other station has a neighbour within one module. From A.3: one thing is allowed to be loud, and it earns it with the space around it. The bigger room bought the chair more isolation, not less.
 4. **It is nearest.** Front-right in an isometric projection is the closest cell to the viewer and renders largest.
-5. **It is downstream.** Reading the plan as a pipeline, work moves back-to-front and left-to-right, and it now reads in COPY.md §2.4's order exactly — Spec Writer and Programmer across the far row, Test Engineer and Security Auditor across the middle, Reviewer alone above the chair; the chair is the terminal node. The two human desks in column A are angled so their monitors face across the room toward it.
+5. **It is downstream.** Reading the plan as a pipeline, work moves back-to-front and left-to-right, and it reads in COPY.md §2.4's order exactly, terminating at the chair. The two cabins in columns A–B are open on their near and right sides so both occupants' monitors face across the room toward it.
 
-### C.4 Human desks vs agent desks
+### C.4 Human cabins vs agent desks
 
-They must read as the same room but not the same class of thing. §6: humans get "more detail and warmth", agents are "deliberately more schematic".
+They must read as the same room but not the same class of thing. §6: humans get "more detail and warmth", agents are "deliberately more schematic". Item 52 makes the human stations **cabins** — a room inside the room — each with persona-specific items and a wall piece.
 
-| | Human desk | Agent desk |
+| | Human cabin | Agent desk |
 |---|---|---|
-| Footprint | 1.5 × 1 modules | 1 × 1 module |
-| Silhouette | Bespoke geometry per person — desk, monitor, a chair that is pulled out at a slight angle, and one personal object each `[BLOCKED: what object — nothing in §5 supports inventing one; until answered, both human desks ship with a second monitor instead, which is supportable and neutral]` | One shared `<symbol>`, instanced five times with only a translate. Identical to each other on purpose. |
-| Chair | Present, occupied, pulled out | Present, pushed in, square to the desk |
-| Nameplate | Name in `--chalk`, title case, Anek 600 | Role in `--chalk` @72%, Instrument 600, smaller |
-| Detail budget | ~14 path segments each | ~9 path segments, shared |
-| Warmth | Desk top gets the lit fill at 22%; the human desks additionally get a 6% warm offset toward `--lamp` in their surface fill, which is below the threshold at which it reads as a colour and above the threshold at which the room feels uneven | Neutral lit fill only |
+| Footprint | **2 × 2 modules** (256 × 128 scene units in plan) | 1 × 1 module |
+| Enclosure | Two waist-high partition walls on the **far and left** plan edges, 40 scene units tall. Open on the near and right sides so the camera sees straight in. **No ceiling and no fourth wall** — a cabin that closes is a box, and a box has no contents. | None |
+| Silhouette | Bespoke geometry per person: the two walls, a floor patch in a slightly lit fill, the wall piece, and two props. Desk, monitor and chair are the **shared sub-symbols**, `<use>`d, not redrawn. | One shared `<symbol>`, instanced **seven** times with only a translate. Identical to each other on purpose. |
+| Chair | Present, occupied, pulled out at a slight angle | Present, pushed in, square to the desk |
+| Nameplate | Name in `--chalk`, title case, Anek 600, mounted on the near face of the left wall so it reads as a door plate | Role in `--chalk` @72%, Instrument 600, smaller, floating above the desk |
+| Detail budget | **≤ 16 bespoke path segments per cabin, plus 3 shared `<use>`s.** See the accounting note below. | ~9 path segments, shared once across all seven |
+| Warmth | The cabin floor patch and desk top get the lit fill at 22% with a 6% warm offset toward `--lamp` — below the threshold at which it reads as a colour, above the threshold at which the room feels uneven. The walls take the shadow fill on their right faces, which is what gives a cabin its interior. | Neutral lit fill only |
+| Glow | **One** glow rectangle, on the main monitor only. Sahib's portrait monitor is drawn dark. | One glow rectangle |
 
-The distinction is carried by **footprint, uniqueness and occupancy**, in that order. Not by colour, and not by size alone — five identical things next to two different things is the read, and it is the honest one.
+The distinction is carried by **enclosure, footprint, uniqueness and occupancy**, in that order. Not by colour, and not by size alone — seven identical things next to two rooms is the read, and it is the honest one.
+
+**The props.** Two per cabin plus one wall piece, all `[APPROVE: prop list]` in §I. They are **decor, not facts**: none of them is a claim, none carries text, and removing any one of them changes nothing the site asserts. They are chosen against item 19's personas and then deliberately crossed so the pair cannot be read as the split §9.4 bans.
+
+| | Sahib — the CTO cabin | Tanya — the CEO/product cabin |
+|---|---|---|
+| Wall piece | **A whiteboard**: three boxes and two connecting lines, an architecture sketch. 5 path segments, `--chalk` strokes on a lit ground, **no text** — text on a whiteboard at this scale is either unreadable or a lie. | **A painting**: one frame, a two-band abstract composition inside it, 3 path segments, `--chalk` at two opacities. No image, no texture, nothing representational. |
+| Prop 1 | **A second monitor turned portrait**, beside the main one — the code-review posture. Drawn dark, so it adds a silhouette and no light. 2 segments. | **A device shelf**: three phones standing on a small riser beside the desk — the real-device QA bench. 4 segments. |
+| Prop 2 | **A desk plant** in a small pot. 4 segments. The one organic silhouette in the room. | **A stack of three books** on the desk's left edge, spines to the camera. 3 segments. |
+| Maps to (item 19) | architecture review, code review, the release cut | device QA, security and privacy, product spec |
+
+**The §9.4 check, stated because it is the failure this could have walked into.** The warm, soft object — the plant — is on the CTO's desk, and the hardware bench is on the product owner's. The whiteboard is a working surface and the painting is not, which puts the "technical" wall piece on the person who is not the engineer-by-title. Nothing in either cabin is rounder, paler or more decorative than its counterpart, and neither cabin uses a colour the other does not. If a reader can tell which cabin belongs to which person before reading the nameplate, the props have failed and the fix is to swap one, not to add.
+
+**Detail budget, checked rather than asserted.** Sahib's cabin: 2 walls + 1 floor patch + 5 whiteboard + 2 portrait monitor + 4 plant = **14 bespoke segments**. Tanya's: 2 walls + 1 floor patch + 3 painting + 4 device shelf + 3 books = **13**. Pass 1's two bespoke human desks were budgeted at ~14 segments each, so **the cabins are the same geometry budget, spent on walls and props instead of on a placeholder second monitor.** That is the fact that lets §C.10's weight line survive the change, and it is why the budget is ≤ 16 and not "as much as a cabin needs".
 
 ### C.5 Idle state — one loop
 
@@ -610,7 +718,8 @@ One loop for the whole scene, on one property.
 - **What moves:** the monitor glow rectangle's `opacity`, and nothing else. No transform, no position, no colour change, no scale. Zero layout, zero paint outside the glow rect, composited.
 - **Amplitude:** opacity 0.55 → 0.85 → 0.55. ±0.15 around a 0.70 midpoint.
 - **Period:** 4800ms, easing `cubic-bezier(.4, 0, .6, 1)` — symmetric, so the loop has no direction and no perceptible "start".
-- **Phase:** each desk offset by `index × 600ms`. Seven working stations across 4800ms means they are never in unison. A unison pulse reads as a page-wide effect; staggered pulses read as seven people working independently, which is the point.
+- **Phase:** each station offset by `index × 533ms`. There are now **nine** working stations (seven agent desks plus one glow per cabin), and 9 × 533 = 4797ms fills the 4800ms period without two stations ever sharing a phase. Pass 1's 600ms stagger was sized for seven and would have wrapped two stations into unison at ten. A unison pulse reads as a page-wide effect; staggered pulses read as nine people working independently, which is the point.
+- **One glow rectangle per station, nine in total.** Sahib's portrait monitor is drawn dark (§C.4) rather than given a second glow — the loop stays one property on one rect per station, and the budget and the "no jitter" line both hold.
 - **The empty chair does not participate.** Its lamp cone is static at full. See C.3 mechanism 1.
 - No blink, no cursor, no typing. §6 says "one idle loop, low amplitude, no jitter" and this is the minimum thing that satisfies "reads as working".
 
@@ -621,13 +730,35 @@ One loop for the whole scene, on one property.
 1. Name (human) or role (agent) — Anek 600, title size, `--chalk`.
 2. One line of what they do — Instrument 400, body, `--chalk` @72%.
 3. **For agents only:** a distinct sub-block, separated by 16px and a 1px `rgba(232,237,233,.16)` rule — the label "Checked by" in micro `--chalk`@72%, then the gate name in Instrument 600 body `--chalk`. §6 is explicit that the flex and the reassurance arrive in the same card and must not be split, so this sub-block is part of the card, never a separate tooltip or a second interaction.
-4. **For the chair:** the Ship approval copy, no worker, no "Checked by" block. It is the only card with an absence in it, and the absence is visible because every other card has a block there and this one has empty space.
+4. **For the two humans:** the *same* sub-block geometry — 16px, the same rule, a micro label, then a list of the gates that person owns, in Instrument 600 body `--chalk`, comma-separated on up to two lines. Sahib: architecture review, code review, the release cut. Tanya: product spec, code review, device QA, security and privacy, ASO. This is item 19's answer rendered where it does the most work: the agent cards say "checked by a human", and the two human cards say which human. `[COPY NEEDED: the field label above the gate list on the human cards, ≤ 2 words — "Checked by" is the agent-card equivalent and this is its counterpart.]`
+5. **For the chair:** the Ship approval copy, no worker, no sub-block at all. It is the only card with an absence in it, and the absence is visible because every other card has a block there and this one has empty space.
 
-**Placement — a fixed slot, not a cursor-following popover.** This is a change from PLAN.md §4.3 and it is a visual-judgement call, not a feasibility one (it is also strictly less code — no `popover`, no anchor positioning, no light-dismiss, no focus containment). The Engineer is updating PLAN.md §4.3 to the fixed slot in this round, so the popover and the bottom sheet come out of that document and the two specs do not disagree.
+**Placement — a fixed slot, not a cursor-following popover.** This is a change from PLAN.md §4.3 and it is a visual-judgement call, not a feasibility one (it is also strictly less code — no `popover`, no anchor positioning, no light-dismiss, no focus containment). The Engineer updated PLAN.md §4.3 to the fixed slot in round 3, so the popover and the bottom sheet are out of that document and the two specs do not disagree.
 
-- **≥ 1024:** cols 9–12, 366px wide, vertically centred to the scene, min-height reserved for the longest card so nothing reflows.
-- **768–1023:** below the scene, full content width, min-height reserved.
-- **< 768:** below the scene, full width. See C.7.
+- **≥ 1024:** cols 9–12, 366px wide, vertically centred to the scene, **`min-height: 344px`**.
+- **768–1023:** below the scene, full content width, `min-height: 344px`.
+- **< 768:** below the scene, full width, **`min-height: 320px`**. See C.7.
+
+**The ≥ 1024 min-height, derived rather than reserved-in-the-abstract.** PLAN.md §13 item 1 and §4.3 ask for this number so the Engineer does not have to invent one or measure it at build time. It is computed from the longest card at §B.4's ≥ 1024 type sizes, in the 366px slot with 24px padding — a 318px measure, which at Instrument Sans 17px (average advance ≈ 0.49em ≈ 8.33px) holds **≈ 38 characters per line**.
+
+The longest card is **Tanya's**, not an agent's, because the human cards gained the gate-ownership block above: COPY.md §2.3's body is 154 characters → 5 lines, and her five gates set to 2 lines.
+
+| Part | Metric | Height |
+|---|---|---|
+| padding-top | | 24.00 |
+| Name, title 22px / 1.2 | 1 line | 26.40 |
+| gap | | 8.00 |
+| Body, 17px / 1.62 | 5 lines | 137.70 |
+| gap + rule + gap | 16 + 1 + 16 | 33.00 |
+| Field label, micro 13px / 1.45 | 1 line | 18.85 |
+| gap | | 4.00 |
+| Gate list, 17px / 1.62 | 2 lines | 55.08 |
+| padding-bottom | | 24.00 |
+| **Total** | | **331.03** |
+
+Rounded up to the 8px grid: **344px**, with ~13px of slack. Security Auditor — the longest agent card, 160 characters of body over 5 lines plus a one-line gate — computes to ~306, so it sits 38px inside the reservation. At 360 the same arithmetic with §B.4's mobile sizes (title 20/1.2, body 16/1.62, 280px measure ≈ 35 ch/line) gives 313.15 → **320px**. Pass 1's §C.7 wireframe said 168, which was simply wrong: the chair's own four-line card already computed to ~180 at 360, so the reservation had never been checked against the copy. It is now.
+
+**This number does not remove the build-time assertion.** 38 characters per line is an estimate of Instrument Sans's average advance, not a measurement, and one extra wrapped line is 28px. PLAN.md §4.3's script should keep asserting the measured maximum against 344 and 320 and **fail the build loudly** if a copy edit overflows, rather than the value being quietly raised. If it does overflow, the fix is the copy or the padding — never a shorter reservation.
 - **Default content at every breakpoint: the empty chair's card.** Nobody has to interact to receive the argument. This is the single highest-value decision in the floor spec, because most visitors will not touch anything.
 - Hover, focus and tap all replace the slot's content, identically, in the same place. Nothing important is behind a hover (principle 3).
 
@@ -639,9 +770,15 @@ Why not a vertical roster: the floor is the one bold moment on the site, and 80%
 
 Why not a bottom sheet (PLAN.md §4.3's default): a sheet covers the room, so you cannot see the desk you just tapped while reading its card; dismissing it costs a gesture; and it means the default state on load is "no card", which throws away the free argument in C.6.
 
-Why not shrink the desktop plan to fit: 5 modules across 320px gives ~64px desks. Below a comfortable target and illegible.
+Why not shrink the desktop plan to fit: 6 modules across 320px gives ~53px desks. Below a comfortable target and illegible.
 
-**The move:** the same eight stations are re-planned into a **portrait room, 2 modules wide × 4 deep**, scene 320 × 470. Same `<symbol>`s, same DOM, same order, different `<use>` transforms and `viewBox` — a layout change, not a content change. Targets land at ~88 × 72.
+**The move:** the same **ten** stations are re-planned into a **portrait room, 3 modules wide × 6 deep**, scene **320 × 520**. Same `<symbol>`s, same DOM, same order, different `<use>` transforms and `viewBox` — a layout change, not a content change.
+
+**The two cabins span the full three-module width** and take the top two rows. That is not a compromise, it is the humans-first read made structural: at 360 the two largest objects in the room are the two people's rooms, they are the first thing on screen, the first thing in tab order and the first thing a screen reader meets. The seven agent desks then run 3-up beneath them in pipeline order, read row-major, and the chair sits alone at the bottom-right.
+
+**Targets, and the honest numbers.** Agent desks: **101 × 64 CSS px** (320 less two 8px gaps, divided by three, and a 64px row). Cabins: **320 × 88**. The chair: **104 × 96** — the largest agent-class target in the room, because it is nearest and because it is the one thing the whole scene is pointing at. The smallest dimension anywhere in the set is 64px, which is 45% above the 44 × 44 floor. Pass 1's eight-station plan gave 88 × 72; ten stations trade 8px of height for 13px of width and stay clear. This is the number I can hold, and it is stated rather than rounded up.
+
+**Height arithmetic**, so 520 is derived and not chosen: 88 (cabin) + 8 + 88 (cabin) + 12 + 64 + 8 + 64 + 8 + 64 + 12 + 96 (chair) = **512**, in a 520 box with 8px for the lamp cone's spill above the chair.
 
 **360 wireframe of the floor section:**
 
@@ -657,47 +794,54 @@ Why not shrink the desktop plan to fit: 5 modules across 320px gives ~64px desks
 │▓  Open any desk to see the job and    ▓│  instruction line, body 16/26,
 │▓  the human who checks it.            ▓│  chalk@72%, two lines.
 │▓                                      ▓│  32
-│▓  ┌──────────────────────────────┐    ▓│  scene 320 x 470
-│▓  │  plan: 2 wide x 4 deep       │    ▓│  (drawn here as plan, not iso)
-│▓  │  ┌─────────┬─────────┐       │    ▓│
-│▓  │  │ SAHIB   │ SPEC    │ row 1 │    ▓│  humans in the near-left column
-│▓  │  │ ▓▓▓▓▓   │ WRITER  │       │    ▓│  so the two people are the first
-│▓  │  ├─────────┼─────────┤       │    ▓│  thing read, top-left, and the
-│▓  │  │ TANYA   │ PROG-   │ row 2 │    ▓│  first thing in tab order
-│▓  │  │ ▓▓▓▓▓   │ RAMMER  │       │    ▓│
-│▓  │  ├─────────┼─────────┤       │    ▓│
-│▓  │  │ TEST    │ SECUR.  │ row 3 │    ▓│  agents run in COPY.md §2.4's
-│▓  │  │ ENGIN.  │ AUDITOR │       │    ▓│  pipeline order, read row-major
-│▓  │  ├─────────┼─────────┤       │    ▓│
-│▓  │  │ REVIEW  │         │ row 4 │    ▓│  the chair keeps its isolation:
-│▓  │  │ -ER     │  ┌────┐ │       │    ▓│  one empty module to its left,
-│▓  │  │         │  │CHAIR│ │  ◀── │    ▓│  nearest to the viewer, lit,
-│▓  │  └─────────┴──┴────┴─┴───────┘    ▓│  and still
+│▓  ┌──────────────────────────────┐    ▓│  scene 320 x 520
+│▓  │ plan: 3 wide x 6 deep        │    ▓│  (drawn here as plan, not iso)
+│▓  │ ┌──────────────────────────┐ │    ▓│
+│▓  │ │      SAHIB  CABIN        │ │ r1 ▓│  the two CABINS span the full
+│▓  │ │      ▓▓▓▓▓▓▓▓▓▓▓▓        │ │    ▓│  width, 320 x 88 each. the two
+│▓  │ ├──────────────────────────┤ │    ▓│  people are the largest objects
+│▓  │ │      TANYA  CABIN        │ │ r2 ▓│  in the room, first on screen,
+│▓  │ │      ▓▓▓▓▓▓▓▓▓▓▓▓        │ │    ▓│  first in tab order
+│▓  │ ├────────┬────────┬────────┤ │    ▓│
+│▓  │ │ SPEC   │ DESI-  │ PROG-  │ │ r3 ▓│  seven agent desks 3-up at
+│▓  │ │ WRITER │ GNER   │ RAMMER │ │    ▓│  101 x 64, read ROW-MAJOR in
+│▓  │ ├────────┼────────┼────────┤ │    ▓│  COPY.md §2.4's pipeline order
+│▓  │ │ TEST   │ SECUR. │ REVIEW │ │ r4 ▓│
+│▓  │ │ ENGIN. │ AUDITOR│ -ER    │ │    ▓│
+│▓  │ ├────────┼────────┼────────┤ │    ▓│
+│▓  │ │RELEASE │        │        │ │ r5 ▓│  the chair keeps its isolation
+│▓  │ │WATCHER │   ·    │   ·    │ │    ▓│  and gains some: FOUR empty
+│▓  │ ├────────┼────────┼────────┤ │    ▓│  modules adjacent (r5 c2-c3,
+│▓  │ │        │        │ ┌────┐ │ │ r6 ▓│  r6 c1-c2), nearest to the
+│▓  │ │   ·    │   ·    │ │CHAIR│ │ │ ◀─ ▓│  viewer, lit, and still.
+│▓  │ └────────┴────────┴─┴────┴─┘ │    ▓│  104 x 96.
 │▓  └──────────────────────────────┘    ▓│
 │▓                                      ▓│  20
 │▓  ┌──────────────────────────────┐    ▓│  CARD PANEL, always visible,
 │▓  │ Ship approval                │    ▓│  never an overlay, no dismiss.
-│▓  │                              │    ▓│  min-height 168 reserved for
-│▓  │ This chair stays empty. No   │    ▓│  the longest card.
+│▓  │                              │    ▓│  min-height 320 (§C.6), derived
+│▓  │ This chair stays empty. No   │    ▓│  from Tanya's card, the longest.
 │▓  │ agent decides that something │    ▓│  default = the chair.
 │▓  │ is ready for your users.     │    ▓│
-│▓  │ A person does, every         │    ▓│  the selected desk keeps a
+│▓  │ A person does, every         │    ▓│  the selected station keeps a
 │▓  │ release, every time.         │    ▓│  persistent selected state in
 │▓  └──────────────────────────────┘    ▓│  the scene, so the panel and
 │▓                                      ▓│  the room stay connected
 │▓  The full pipeline                   ▓│
-│▓  Spec Writer, Designer, Programmer,  ▓│  the two off-floor roles are
-│▓  Test Engineer, Security Auditor,    ▓│  here, in text
-│▓  Reviewer, Release Watcher.          ▓│
+│▓  Spec Writer, Designer, Programmer,  ▓│  all seven roles, now also all
+│▓  Test Engineer, Security Auditor,    ▓│  on the floor. same list, same
+│▓  Reviewer, Release Watcher.          ▓│  order, readable form.
 │▓                                      ▓│
 └────────────────────────────────────────┘
 ```
 
-At 360 the room is entered from the near-left where the two people are, and read downward to the chair. That is the same argument as the desktop plan, told in a portrait room.
+At 360 the room is entered from the top where the two people's cabins are, and read downward through the pipeline to the chair. That is the same argument as the desktop plan, told in a portrait room.
+
+**The cost, stated.** Scene 520 + 20 + panel 320 + the intro text (~200) + the roster (~120) puts the floor section at roughly **1180px** at 360 — about 1.8 viewports on a 640-tall screen, up from ~1000 at eight stations. That is a real cost of the owners' count and it is worth paying, because the default card is on screen immediately below the room and no interaction is needed to get the argument. If it turns out to be too much, the fix is the two human card bodies (copy), which are what drove the panel from 168 to 320 — **not** the target sizes and not the station count. Flagged in §I.
 
 ### C.8 Keyboard
 
-- **Tab order:** Sahib → Tanya → Spec Writer → Programmer → Test Engineer → Security Auditor → Reviewer → Ship approval. Humans first, chair last, and the five agents in COPY.md §2.4's pipeline order — tests, then scan, then review, then the release cut. This is DOM order at every breakpoint regardless of visual position, because the order is the argument, and the argument is Copy's to state.
+- **Tab order, ten stops:** Sahib → Tanya → Spec Writer → Designer → Programmer → Test Engineer → Security Auditor → Reviewer → Release Watcher → Ship approval. Humans first, chair last, and the seven agents in COPY.md §2.4's pipeline order — spec, design, code, tests, scan, review, watch. This is DOM order at every breakpoint regardless of visual position, because the order is the argument, and the argument is Copy's to state. Ten stops is two more than Pass 1 and still well under the point at which a keyboard user would want a bypass; the skip link below already jumps the whole section for anyone who does not want it.
 - **Focus treatment:** the two-tone ring from §B.2, on the room's surface: 3px `--chalk` outer (12.74 : 1 against `--floor`) + 2px `--lamp` inner, 3px offset, 4px radius, following the desk button's rectangle rather than the desk's silhouette — a ring that traces an isometric parallelogram is illegible at 2px and expensive to draw.
 - **Focus is never the only indicator.** A focused desk also takes the selected fill (its desk-top surface lifts to `--chalk` @ 34%) and updates the card slot, exactly as hover and tap do.
 - Skip link above the floor. The floor's roster is reachable and readable in order by screen reader with the SVG `aria-hidden`, per PLAN.md §4.1.
@@ -706,7 +850,23 @@ At 360 the room is entered from the near-left where the two people are, and read
 
 `prefers-reduced-motion: reduce` removes the "Lights on" moment (§H) and the idle loop. It removes nothing else.
 
-The still frame is **designed, not stopped**: each monitor glow renders at a *different* static opacity — 0.62, 0.70, 0.78, 0.66, 0.74 for the five agents, 0.80 for each human desk — so the room reads as seven stations lit slightly differently, which is what a room looks like. A uniform 0.70 across all seven would look switched-off-but-on. The lamp cone is at full. The card slot still swaps content on interaction, instantly, with no fade and no slide.
+The still frame is **designed, not stopped**: each monitor glow renders at a *different* static opacity, so the room reads as nine stations lit slightly differently, which is what a room looks like. A uniform 0.70 across all nine would look switched-off-but-on.
+
+| Station (DOM order) | Static glow opacity |
+|---|---|
+| Sahib's cabin | 0.84 |
+| Tanya's cabin | 0.82 |
+| Spec Writer | 0.62 |
+| Designer | 0.74 |
+| Programmer | 0.68 |
+| Test Engineer | 0.80 |
+| Security Auditor | 0.64 |
+| Reviewer | 0.76 |
+| Release Watcher | 0.70 |
+
+Three things about those numbers. **The seven agent values span 0.62–0.80** — the exact amplitude of the live loop — with the midpoint 0.70 present once, so the still frame is a legal frame of the animation rather than a separate design. **They are non-monotonic**: read down the DOM they go down, up, down, up, down, up, down, so no gradient forms across the room and nothing reads as a sequence of brightness. **The two cabins differ from each other** (0.84 / 0.82) — Pass 1 gave both human desks 0.80, which is the same uniformity mistake this section exists to avoid, one level up.
+
+The lamp cone is at full. The card slot still swaps content on interaction, instantly, with no fade and no slide.
 
 Nothing is missing from this frame. It is a finished picture of the same room.
 
@@ -714,8 +874,8 @@ Nothing is missing from this frame. It is a finished picture of the same room.
 
 The Engineer calls this the tightest line on the site (PLAN.md §7). The composition is built to leave headroom rather than to consume it.
 
-- **Shared symbols.** One `<symbol>` for the agent desk, instanced 5× with `<use transform="translate(x,y)">`. One for the empty chair. One for a floor module. Only the two human desks are bespoke geometry, and they share their monitor and chair sub-symbols with the agent desk.
-- **Two plans, one geometry.** The portrait mobile plan is the *same* symbols at different `<use>` transforms, swapped by CSS at the breakpoint. There is not a second scene.
+- **Shared symbols.** One `<symbol>` for the agent desk, instanced **7×** with `<use transform="translate(x,y)">`. One for the empty chair. One for a floor module. One each for the desk, monitor and chair sub-parts. Only the two cabins are bespoke geometry, and they `<use>` those same three sub-symbols rather than redrawing a desk, a monitor or a chair.
+- **Two plans, one geometry.** The portrait mobile plan (3 × 6) is the *same* symbols at different `<use>` transforms and a different `viewBox`, swapped by CSS at the breakpoint. There is not a second scene, and the ten stations are one DOM list.
 - **Four fills, no more** (§C.1). One `<linearGradient>` in total, for the lamp cone.
 - **No `<filter>` anywhere.** No `feGaussianBlur`, no `feDropShadow`. Contact shadows are flat opaque parallelograms at a fixed offset. This is both the budget decision and the mobile-paint decision (PLAN.md §10.4).
 - **No embedded raster, no base64, no external asset.**
@@ -723,7 +883,23 @@ The Engineer calls this the tightest line on the site (PLAN.md §7). The composi
 - **Text is real DOM text**, never outlined paths — it stays selectable, crisp at any zoom, and translatable.
 - **No per-desk bespoke CSS.** Desk positions come from a single `--x` / `--y` custom-property pair per button, set once; the CSS rule is written once. This is aimed at the Engineer's specific concern that per-desk positioning CSS is the biggest unknown in the CSS budget.
 
-Rough accounting: symbols ~2.5 KB raw, floor slab + seams ~1 KB, eight `<use>` + eight buttons + labels ~3.5 KB, scene CSS ~4 KB, floor JS ~4 KB. Well inside the line before compression. **The headroom is deliberately not spent.** If the composition has to grow, it grows into detail on the two human desks, because those are the ones §6 says are the point.
+**Accounting, re-done for ten stations plus cabin detail.** Pass 1's figures are kept beside the new ones so the cost of the owners' decision is legible rather than absorbed.
+
+| Item | Pass 1 (8 stations) | Round 3 (10 stations, 2 cabins) | Why it moved |
+|---|---|---|---|
+| Shared `<symbol>` defs (agent desk, chair, floor module, desk/monitor/chair sub-parts) | 2.5 KB | 2.5 KB | One agent-desk symbol however many instances. Seven `<use>`s cost no geometry. |
+| Two bespoke cabins | *(inside the line above)* | +1.1 KB | 27 bespoke segments total (§C.4) + 6 `<use>`s. Same segment budget as Pass 1's two human desks, spent differently. |
+| Floor slab + seams | 1.0 KB | 1.3 KB | 6 × 5 grid instead of 5 × 4. |
+| `<use>` + buttons + nameplates | 3.5 KB | 4.4 KB | Ten stations instead of eight. |
+| Server-rendered station cards (markup + copy) | *not counted* | 2.6 KB | Ten `<article>`s. Pass 1 omitted this line entirely; it is counted now because PLAN.md §4.3 renders all cards at build time. |
+| Scene-positioning CSS (one rule, `--x`/`--y` per button, two plans) | 4.0 KB | 4.6 KB | Two more coordinate pairs and a taller mobile `viewBox`. No per-desk bespoke CSS in either version. |
+| Floor interaction JS | 4.0 KB | 4.0 KB | Unchanged — the `hidden` toggle does not care how many cards there are. |
+| **Total, raw** | **~15.0 KB** | **~20.5 KB** | |
+| **Total, gzipped** (~38% of raw for SVG/CSS/JS text) | ~5.7 KB | **~7.8 KB** | |
+
+**Against the ≤ 80 KB gzipped line: ~7.8 KB, about 10% of it, with ~72 KB of headroom.** Ten stations plus two cabins cost ~5.5 KB raw / ~2.1 KB gzipped over eight stations — and ~2.6 KB of that raw increase is the card markup Pass 1 never counted, so **the composition itself grew by ~2.9 KB raw.** The line the Engineer called the tightest on the site (PLAN.md §7) remains a wide-margin pass, and `scripts/check-floor-budget.mjs` stays the authority over this table.
+
+**The headroom is still deliberately not spent.** If the floor ever has to shrink, the cut order is: (1) the faint floor-seam lines, (2) the second prop in each cabin, (3) the cabin walls, leaving the cabins as open desks with their props. A station is never the cut, and neither is a target size.
 
 ---
 
@@ -835,7 +1011,9 @@ Option 2 is also the only one of the three that prints correctly, that is identi
 
 ### D.8 Print
 
-Cards flatten to a plain CV, because somebody will print or PDF a person page. Under `@media print` the tilt goes to `transform: none`, the fill goes to solid `#fff`, every shadow and the stand and the edge highlight are removed, the card's own padding drops to zero, and the `<ul>` reflows to a single column with a single 1px bottom rule between items and no rule under the last; the company and the date range set on one line with the date right-aligned so a printed column of dates still scans, `--muted` resolves to `#444`, `--lamp` never prints, `page-break-inside: avoid` applies per item, the studio floor and the persistent contact plate are `display: none`, and the person's name and email print once at the top of page 1. The output should be a document you would attach to an email, which is the actual reason anyone prints this.
+Cards flatten to a plain CV, because somebody will print or PDF a person page. Under `@media print` the tilt goes to `transform: none`, the fill goes to solid `#fff`, every shadow and the stand and the edge highlight are removed, the card's own padding drops to zero, and the `<ul>` reflows to a single column with a single 1px bottom rule between items and no rule under the last; the company and the date range set on one line with the date right-aligned so a printed column of dates still scans, `--muted` resolves to `#444`, `--lamp` never prints, `page-break-inside: avoid` applies per item, and the person's name and email print once at the top of page 1 — the person's own address per §B.10, since a printed CV that routes replies to a studio inbox is a worse document.
+
+**Print omits the floor entirely** (item 54). The whole floor section — scene, buttons, card slot and roster — is `display: none` on every page that carries it, and no text substitute is printed in its place. The persistent contact plate is `display: none` too. The reasoning is that the roster-as-a-text-list would print as an unexplained list of seven job titles under a person's CV, which raises a question the paper cannot answer; the room is an argument that needs the screen, and a document that tries to carry it becomes a worse document. What survives is the thing people actually print these pages for: name, address, and a clean column of roles and dates. The output should be a document you would attach to an email, which is the actual reason anyone prints this.
 
 ---
 
@@ -910,7 +1088,7 @@ No dates, no estimates, no "expected in" anywhere in this component. There is no
 
 The `<ol>` supplies the full label text in both forms; at < 768 the four non-current labels are visually hidden but present for screen readers, and the node graphics are `aria-hidden`.
 
-`[BLOCKED: whether the second product appears at all (QUESTIONS.md item 9). If it does not, this component degrades to a single-runner track for Pocket Manager and the section keeps the §7 line about the app in build, attributed generically.]`
+**The second product ships** (item 9a: a full, name-agnostic page), so the two-runner form is what gets built and the single-runner degradation is no longer a live branch.
 `[COPY NEEDED: the descriptive label for the second product in this view, ≤ 18 characters, since the placeholder name may not appear (§5.3).]`
 
 ---
@@ -929,17 +1107,20 @@ The finance thread is the texture, per §5.4's instruction to pick one spine and
 
 **Why this over the others:** it is the only one where a stranger gets the argument without reading; §9.2 literally describes it ("the breadth itself is the composition"); and it is the shape of contribution rather than a sequence, which keeps it distinct from Tanya's page in the way §9.2 asks.
 
-**The honest-gap problem, and how the design handles it.** §5.4 asserts production work in all four stacks, but §7's work-card table attributes only Android/Kotlin, Dart/Flutter and the end-to-end AI work. Native iOS and KMP currently have no company or product behind them. So cells get **three** states, on the same grammar as §E:
+**The honest-gap problem is closed, and the third cell state is removed.** Pass 1 designed a three-state cell grammar — attributed / asserted / empty — because §5.4 claimed four stacks while §7's table attributed three, leaving native iOS and KMP as columns with nothing behind them. Item 45 answers it: **native iOS at Motive and smallcase; KMP at Motive.** Every column on the map now has at least one attributed cell.
+
+**Decision: remove the "asserted" state, do not keep it as grammar for the future.** Two states remain:
 
 | Cell state | Treatment | Means |
 |---|---|---|
 | Attributed | filled, product name printed inside | we can name the product |
-| Asserted | outlined, 1.5px, no fill, no product name | the owners state it; no product named yet |
 | Empty | nothing | no claim |
 
-If the gap closes, the "asserted" state disappears and every cell is attributed. If it does not, the map ships with attributed cells only and one honest line beneath instead of two blank columns. Either way the layout survives and the gap is visible rather than hidden — which is the same discipline §7's proof section is selling.
+Keeping a third state "in case we need it" would be keeping a drawn way to make an unattributed claim, and a drawn affordance gets used. The honest answer to a future claim with no product behind it is not a hollow cell — it is the one line of prose beneath the map that this section already reserves, or silence. A two-state map cannot lie by omission, because the only thing it can say is "here is a product". That is a stronger position than a grammar, and it costs one CSS rule less.
 
-`[BLOCKED: which employers or products carry Sahib's production native-iOS and KMP work? §5.4 asserts all four stacks; §7's table attributes only three. This is a hole in the page's central argument.]`
+**What the closed gap does to the composition, which is more than filling two holes.** The Motive row now carries **three adjacent filled cells** — native iOS, native Android, KMP, all the Motive Fleet App — and that horizontal bar is the single densest thing on the map. It does real work: the KMP column has exactly one filled cell, and so does the end-to-end-with-AI column, and two lone cells on the same map would have diluted the "one lit region" read that §H.3's orchestrated moment depends on. Because Motive's KMP cell sits inside a three-cell bar, it does not read as isolated, and **the 2025 lamp cell stays the only solitary mark on the page.** The gap closing made the lit region louder, not quieter.
+
+The filled region now spans **all five columns and all five rows** — ten of twenty-five cells, no empty column, no empty row. That is what §9.2's "the breadth itself is the composition" was always describing, and until item 45 it was a claim the map could not actually make.
 
 ### F.2 Direction S2 — teaching-led
 
@@ -1003,8 +1184,8 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │  at Keenai Global.                     │
 │                                        │  24
 │  ┌──────────────────────────────────┐  │      portrait slot, 320 x 320
-│  │  [BLOCKED: headshot route, Q23]  │  │      reserved with explicit
-│  │  space reserved, not filled      │  │      dimensions so filling it
+│  │  [PENDING: AI headshot, item 23  │  │      reserved with explicit
+│  │   option 2. image to be supplied]│  │      dimensions so filling it
 │  └──────────────────────────────────┘  │      later causes no reflow
 │                                        │  56
 │  Where he has shipped                  │      display-section 27px
@@ -1013,22 +1194,32 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │  ┌──────────────────────────────────┐  │      THE MAP. at 360 it rotates:
 │  │            iOS And KMP Flt  AI   │  │      surfaces become COLUMNS at
 │  │ Keenai      ·   ·   ·   ■   ▣    │  │      44px each (5 x 44 = 220),
-│  │ 2025-        finance             │  │      companies become ROWS at
-│  │ ─────────────────────────────────│  │      64px. product names move
-│  │ Motive      ·   ■   ·   ·   ·    │  │      out of the cells into the
-│  │ 2023-25      fleet               │  │      row's own line, since a
-│  │ ─────────────────────────────────│  │      44px cell cannot hold text.
-│  │ smallcase   ·   ■   ·   ■   ·    │  │
-│  │ 2020-23      investing           │  │      ■ attributed  ▣ lamp (2025)
-│  │ ─────────────────────────────────│  │      □ asserted    · empty
-│  │ Cleartrip   ·   ■   ·   ·   ·    │  │
-│  │ 2019-20      travel              │  │      the finance thread reads
-│  │ ─────────────────────────────────│  │      down the domain column as
-│  │ TheGeekDogs ·   ?   ·   ?   ·    │  │      texture, not as a second
-│  │ 2020-        personal finance    │  │      diagram
-│  └──────────────────────────────────┘  │
-│                                        │      [BLOCKED: iOS and KMP
-│  [honest line if the gap stays open]   │       columns, see §F.1]
+│  │ 2025-        Keenai Wealth,      │  │      companies become ROWS at
+│  │              Keenai Pulse        │  │      64px (76 where the row line
+│  │              end to end with AI  │  │      wraps). product names move
+│  │ ─────────────────────────────────│  │      out of the cells into the
+│  │ Motive      ■   ■   ■   ·   ·    │  │      row's own line, since a
+│  │ 2023-25      Motive Fleet App    │  │      44px cell cannot hold text.
+│  │ ─────────────────────────────────│  │
+│  │ smallcase   ■   ■   ·   ■   ·    │  │      ■ attributed  ▣ lamp (2025)
+│  │ 2020-23      Tickertape          │  │      · empty. TWO states only --
+│  │ ─────────────────────────────────│  │      the "asserted" state is
+│  │ Cleartrip   ·   ■   ·   ·   ·    │  │      removed (§F.1).
+│  │ 2019-20      Cleartrip Android   │  │
+│  │ ─────────────────────────────────│  │      the row line carries the
+│  │ TheGeekDogs ·   ■   ·   ·   ·    │  │      product because within every
+│  │ 2020-        Pocket Manager      │  │      row the filled cells share
+│  └──────────────────────────────────┘  │      one product -- Keenai is the
+│                                        │      one exception and gets two
+│  [the finance domain note runs as a    │      lines.
+│   second row line; §J cuts it]         │
+│                                        │      [BLOCKED: Pocket Manager's
+│                                        │       stack. item 44 sends this to
+│                                        │       the local codebase; the cell
+│                                        │       above rests on item 44 naming
+│                                        │       an Android Studio project and
+│                                        │       needs the Fact Checker's read
+│                                        │       before publish.]
 │                                        │  56
 │  What he writes about                  │      S2's material, as section 2
 │  ─ channelFlow vs callbackFlow         │      three verified subjects.
@@ -1067,9 +1258,9 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                     128  │
 │ Sahib Singh                                    ┌──────────────────────┐  │  h1 60/1.04
-│                          (cols 1-6)            │ [BLOCKED: headshot]  │  │
-│ Mobile across native iOS, native Android,      │ 366 x 440 reserved   │  │  portrait slot
-│ KMP and Flutter. Builder at Keenai Global,     │ cols 9-12            │  │  cols 9-12
+│                          (cols 1-6)            │ [PENDING: AI headshot│  │
+│ Mobile across native iOS, native Android,      │  item 23, option 2]  │  │  portrait slot
+│ KMP and Flutter. Builder at Keenai Global,     │ 366 x 440 reserved   │  │  cols 9-12
 │ shipping features end to end with AI.          └──────────────────────┘  │
 │                                                                     128  │
 ├──────────────────────────────────────────────────────────────────────────┤
@@ -1079,26 +1270,29 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │              iOS      Android    KMP      Flutter   with AI              │  full 12 cols.
 │            ┌────────┬─────────┬─────────┬─────────┬──────────────┐       │  columns are
 │ Keenai     │   ·    │    ·    │    ·    │ Keenai  │  backend,    │ 2025- │  surfaces,
-│ wealth     │        │         │         │ Wealth  │  frontend,   │       │  rows are
-│            │        │         │         │         │  tests  ▣    │       │  places.
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │
-│ Motive     │   ·    │ Motive  │    ·    │    ·    │      ·       │ 2023- │  ▣ = --lamp.
-│ fleet      │        │ Fleet   │         │         │              │  25   │  the ONLY lit
-│            │        │ App     │         │         │              │       │  cell on the
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  page, and it
-│ smallcase  │   ·    │  ■      │    ·    │   ■     │      ·       │ 2020- │  is the newest
-│ investing  │        │         │         │         │              │  23   │  and smallest
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  region.
-│ Cleartrip  │   ·    │ Clear-  │    ·    │    ·    │      ·       │ 2019- │
-│ travel     │        │ trip    │         │         │              │  20   │  the filled
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  region's SHAPE
-│ TheGeek-   │   ·    │  ?      │    ·    │   ?     │      ·       │ 2020- │  is the argument
-│ Dogs       │        │         │         │         │              │       │  -- it spans
-│ personal   │        │         │         │         │              │       │  the full width
-│ finance    └────────┴─────────┴─────────┴─────────┴──────────────┘       │  and 7 years.
-│                                                                          │
-│ [BLOCKED: iOS and KMP columns have no attribution in §5/§7 - §F.1]       │
-│                                                                     128  │
+│ wealth     │        │         │         │ Wealth, │  frontend,   │       │  rows are
+│            │        │         │         │ Keenai  │  tests  ▣    │       │  places.
+│            │        │         │         │ Pulse   │              │       │
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  ▣ = --lamp,
+│ Motive     │ Motive │ Motive  │ Motive  │    ·    │      ·       │ 2023- │  the ONLY lit
+│ fleet      │ Fleet  │ Fleet   │ Fleet   │         │              │  25   │  cell on the
+│            │ App    │ App     │ App     │         │              │       │  page, newest
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  and smallest
+│ smallcase  │ Ticker-│ Ticker- │    ·    │ Ticker- │      ·       │ 2020- │  region.
+│ investing  │ tape   │ tape    │         │ tape    │              │  23   │
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  the Motive row
+│ Cleartrip  │   ·    │ Clear-  │    ·    │    ·    │      ·       │ 2019- │  is a THREE-cell
+│ travel     │        │ trip    │         │         │              │  20   │  bar, which is
+│            │        │ Android │         │         │              │       │  what stops the
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  lone KMP cell
+│ TheGeek-   │   ·    │ Pocket  │    ·    │    ·    │      ·       │ 2020- │  competing with
+│ Dogs       │        │ Manager │         │         │              │       │  the lamp cell.
+│ personal   │        │         │         │         │              │       │
+│ finance    └────────┴─────────┴─────────┴─────────┴──────────────┘       │  10 of 25 cells
+│                                                                          │  filled. NO empty
+│ [BLOCKED: Pocket Manager's stack -- item 44 sends it to the codebase.]   │  column, no empty
+│                                                                     128  │  row, 5 surfaces,
+│                                                                          │  7 years.
 ├──────────────────────────────────────────────────────────────────────────┤
 │ What he writes about              │  channelFlow vs callbackFlow         │  S2 material.
 │                     (cols 1-4)    │  Android 16, orientation locks,      │  three verified
@@ -1169,13 +1363,23 @@ Same two families. Emphasis differs from Sahib's: on her page the **width axis c
 
 **The page's own layout is a KMP architecture.** One fixed central column is the shared core; two flanking columns are the native edges, Android on the left, iOS on the right. Content sits in the column that owns it: anything shared — a practice, a workflow decision, a review gate, an architectural rule — sits in the core; anything platform-specific sits in an edge column, narrower and indented. The core is a continuous vertical field running the full page height, so it reads as a spine rather than as a stack of sections.
 
-Her work history attaches as **annotations pinned to the layer they belong to**, not as a chronological run: Motive and its KMP work pin to the core, HSBC's REST/Retrofit work pins to the Android edge, Naskay pins to the Android edge.
+Her work history attaches as **annotations pinned to the layer they belong to**, not as a chronological run. The resume (item 47) is what makes this concrete, and its single best gift to the layout is that **one company lands in three positions at once**:
+
+| Layer | What sits there | Where it comes from |
+|---|---|---|
+| **Android edge** | The **Jetpack Compose migration** at Motive. HSBC's MVVM migration off a legacy architecture, and its REST/Retrofit and UI-performance work. Naskay's Kotlin/Glide/Retrofit build and APK-size reduction. | Compose is Android-only, so it cannot be core, and saying so is the layout doing its job. |
+| **Shared core** | **KMP business-logic modules + Clean Architecture** at Motive, 2024 to now. CI/CD pipelines and workflow automation. Release ownership: phased rollouts, crash and ANR monitoring. Bluetooth device-verification flows. Plus the review gates she owns (item 19). | All cross-platform, all shared. This is the field's content, named and dated. |
+| **iOS edge** | The **Motive Fleet App** (item 46). | The edge that consumes the shared modules. |
+
+**Motive appears on all three layers, and that is the page's argument, not a duplication bug.** The card lives in the core, where the KMP work is; the Android and iOS edges each carry a short connector — a 2px `--t-ink` tick running out of the core's card into the edge column, with a label at its end — showing the same product arriving on each platform. That is literally what a KMP architecture looks like, it fills the iOS column with a named product rather than with structure alone, and it costs one label per side rather than two duplicate cards.
+
+Two numerals from the resume take the core's numeral slots, because a claim gets a number or it gets cut (principle 2): **99.8% crash-free** and **~20% faster startup**, both at Motive. `[CONFIRM: both figures are resume-sourced, not publicly verifiable — the Fact Checker signs them off before publish or they drop out.]`
 
 The visitor learns the shape of KMP by reading a page built in it. That is the argument delivered by structure rather than by claim, which is the highest form of what §9.3 is asking for.
 
-The connection §9.3 requires to the home page is direct and should be stated on the home page too: the four gates are the core, and the review discipline the studio sells is the same discipline this layout is drawn from.
+The connection §9.3 requires to the home page is now **named, not gestured at**: the core column closes with the gates she owns — product spec, code review, device QA, security and privacy, ASO (item 19) — set as a block in the core, because a gate she shares with Sahib is exactly the kind of thing that belongs to everyone and therefore belongs in the core field. The home page's four gates and this block are the same four gates seen from her side.
 
-**Why this over T2:** it can be built entirely from facts §5 supports — KMP as shared core, native Android and iOS at the edges, developer productivity, workflow, practices, three companies. T2 cannot.
+**Why this over T2:** see §G.5. T2's content blocker is closed and it is now buildable; the reason to prefer T1 has changed rather than persisted.
 
 **T1 at 1440:**
 
@@ -1186,10 +1390,10 @@ The connection §9.3 requires to the home page is direct and should be stated on
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                     128  │
 │ Tanya Jain                       ┌───────────────────────────────────┐   │  h1 60/1.04
-│                    (cols 1-5)    │ [BLOCKED: headshot route, Q23]    │   │  --t-ink
-│ Native Android and KMP, and the  │ 366 x 440 reserved, cols 9-12     │   │
-│ iOS side too. She owns how the   └───────────────────────────────────┘   │
-│ work gets made.                                                          │
+│                    (cols 1-5)    │ [PENDING: AI headshot, item 23    │   │  --t-ink
+│ Native Android and KMP, and the  │  option 2. image to be supplied]  │   │
+│ iOS side too. She owns how the   │ 366 x 440 reserved, cols 9-12     │   │
+│ work gets made.                  └───────────────────────────────────┘   │
 │                                                                     128  │
 ├──────────────────────────────────────────────────────────────────────────┤
 │  ANDROID       │▒▒▒▒▒▒▒▒ SHARED CORE ▒▒▒▒▒▒▒▒│        iOS               │
@@ -1198,31 +1402,42 @@ The connection §9.3 requires to the home page is direct and should be stated on
 │                │▒                            ▒│                          │
 │                │▒  What belongs to everyone  ▒│                          │  the core is
 │                │▒                            ▒│                          │  ONE continuous
-│  Android-only  │▒  The practice. The review  ▒│  iOS-only concerns       │  field running
-│  concerns      │▒  gate. The workflow rule.  ▒│  live here. narrower,    │  the section's
-│  live here.    │▒  The shared-core decision. ▒│  indented, --t-edge      │  full height,
-│  narrower,     │▒                            ▒│  labels.                 │  not a stack
-│  indented.     │▒  [COPY NEEDED: the core    ▒│                          │  of blocks.
-│                │▒   statement, ~40 words]    ▒│                          │
-│  ┌──────────┐  │▒                            ▒│                          │  edges are
-│  │ HSBC     │  │▒  ┌──────────────────────┐  ▒│                          │  narrower AND
-│  │ REST,    │  │▒  │ Motive               │  ▒│  ┌──────────┐            │  indented, so
-│  │ Retrofit │  │▒  │ 2024 - now           │  ▒│  │ [iOS     │            │  the hierarchy
-│  │ 2021-23  │  │▒  │ Kotlin, Coroutines,  │  ▒│  │  edge    │            │  survives even
-│  └──────────┘  │▒  │ KMP                  │  ▒│  │  work]   │            │  in greyscale
-│                │▒  └──────────────────────┘  ▒│  └──────────┘            │
-│  ┌──────────┐  │▒                            ▒│  [BLOCKED: what iOS      │  work cards
-│  │ Naskay   │  │▒  the KMP work pins to the  ▒│   work can be named?     │  attach to the
-│  │ MVVM     │  │▒  core, because that is     ▒│   §5.4 says she works    │  layer they
-│  │ 2020-21  │  │▒  where it lives            ▒│   the iOS side; §7's     │  belong to, not
-│  └──────────┘  │▒                            ▒│   table names nothing]   │  to a date
-│                │▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│                          │
-│                                                                     128  │
+│  Android-only  │▒  [COPY NEEDED: the core    ▒│  iOS-only concerns       │  field running
+│  concerns      │▒   statement, ~40 words]    ▒│  live here. narrower,    │  the section's
+│  live here.    │▒                            ▒│  indented, --t-edge      │  full height,
+│  narrower,     │▒  99.8%        ~20%         ▒│  labels.                 │  not a stack
+│  indented.     │▒  crash-free   faster start ▒│                          │  of blocks.
+│                │▒  [CONFIRM: resume-sourced] ▒│                          │
+│                │▒                            ▒│                          │  edges are
+│  ┌──────────┐  │▒  ┌──────────────────────┐  ▒│                          │  narrower AND
+│  │ Motive   │  │▒  │ Motive               │  ▒│  ┌──────────┐            │  indented, so
+│  │ Compose  │◀─┼▒──│ Fleet management, US │──▒┼─▶│ Motive   │            │  the hierarchy
+│  │ migration│  │▒  │ 2024 - now           │  ▒│  │ Fleet    │            │  survives even
+│  └──────────┘  │▒  │ ─────────────────────│  ▒│  │ App      │            │  in greyscale
+│                │▒  │ Software Engineer 2  │  ▒│  └──────────┘            │
+│  ┌──────────┐  │▒  │ Motive Fleet App     │  ▒│  [COPY NEEDED: the iOS   │  ONE COMPANY,
+│  │ HSBC     │  │▒  │ Kotlin, KMP business │  ▒│   edge card's small      │  THREE LAYERS.
+│  │ MVVM,    │  │▒  │ logic, Clean Arch.   │  ▒│   print, <= 12 words.    │  the two ticks
+│  │ REST,    │  │▒  └──────────────────────┘  ▒│   must NOT claim Swift   │  out of the
+│  │ Retrofit │  │▒                            ▒│   or UIKit work: item    │  core ARE the
+│  │ 2021-23  │  │▒  CI/CD and workflow        ▒│   46 attributes the      │  KMP shape,
+│  └──────────┘  │▒  automation. Releases:     ▒│   Fleet App, and the     │  drawn.
+│                │▒  phased rollouts, crash    ▒│   resume names KMP       │
+│  ┌──────────┐  │▒  and ANR monitoring.       ▒│   shared modules, not    │  2px --t-ink
+│  │ Naskay   │  │▒  Bluetooth device          ▒│   Swift.]                │  ticks, labelled
+│  │ Kotlin,  │  │▒  verification flows.       ▒│                          │  at the end
+│  │ APK size │  │▒                            ▒│                          │
+│  │ 2020-21  │  │▒  THE GATES SHE OWNS        ▒│                          │  item 19, set
+│  └──────────┘  │▒  Product spec, code        ▒│                          │  as a block in
+│                │▒  review, device QA,        ▒│                          │  the CORE -- a
+│                │▒  security and privacy, ASO ▒│                          │  gate shared
+│                │▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│                          │  with Sahib is
+│                                                                     128  │  shared work.
 ├──────────────────────────────────────────────────────────────────────────┤
-│ The review gates below are hers.                          (cols 4-9)     │  the §9.3
+│ Those are the same four gates the home page names. (cols 4-9)            │  the §9.3
 │ [COPY NEEDED: the link back to the home page's four gates, ~25 words]    │  connection,
 │                                                                          │  made on the
-│ github.com/Tanya-jain99      Tell us what you're building.               │  core column
+│ github.com/Tanya-jain99      jaintanya999@gmail.com                      │  core column
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -1289,13 +1504,24 @@ The connection §9.3 requires to the home page is direct and should be stated on
 └────────────────────────────────────────┘
 ```
 
-### G.4 Direction T2 — the pipeline she owns *(documented, not recommended)*
+### G.4 Direction T2 — the pipeline she owns *(unblocked, buildable, still not recommended)*
 
 **Her page is the studio floor seen from above, as a process rather than as a room.** A directed graph of the build pipeline — spec, build, review, QA, security, release — laid out as a plan, with edges showing the path work takes. Selecting a node reveals the practice at that point, the tooling decision behind it, and where she did it. §7 says the review gates are hers; this makes the page an argument about the gates.
 
 **The case for it:** it is the strongest possible link between her page and the site's pitch (§9.3's explicit ask), it is unambiguously diagrammatic and non-chronological, and it reuses the floor's plan vocabulary without repeating the floor's room.
 
-**Why not now: content.** §5 gives her subject areas — developer productivity, refining workflows, introducing better development practices, KMP discussions — but not one *named* practice, tool or workflow change. A node graph with unnamed nodes is an empty diagram, and naming them is invention. `[BLOCKED: three to six specific practices, tools or workflow changes Tanya introduced, with where. Without these T2 cannot be built honestly.]`
+**Pass 1's blocker is closed.** Item 47's answer is her resume, and it names six practices with places — which is what a node graph needs and what §5 alone could not give:
+
+| # | Practice, tool or workflow change | Where | Which T2 node it fills |
+|---|---|---|---|
+| 1 | Re-architecture with **KMP business-logic modules + Clean Architecture** | Motive, 2024 – now | Build |
+| 2 | **Jetpack Compose migration** | Motive | Build |
+| 3 | **CI/CD pipeline enhancement and workflow automation** | Motive | Release |
+| 4 | **Owning releases** — phased rollouts, crash and ANR monitoring | Motive | Release |
+| 5 | **MVVM migration** off a legacy architecture | HSBC, 2021 – 2023 | Build / Review |
+| 6 | **APK-size reduction** through code and resource optimisation | Naskay, 2020 – 2021 | Build |
+
+Combined with item 19, every node would carry both a gate she owns and a named practice with a company behind it — spec ← product spec, review ← code review, QA ← device QA, security ← security and privacy — so **T2 could now be built with no invention at all.** It is not recommended for a different reason, given in §G.5: the floor at ten stations has made the home page the site's pipeline diagram, and T2 would be the second one.
 
 **T2 tokens: identical to G.1.** Not similar — identical. Connector strokes use `--t-edge` (5.59 : 1 on `--t-ground`, comfortably over the 3 : 1 a meaningful graphic needs). The node field uses `--t-core`. The traversed path is marked with `--lamp-ink` at large-mark sizes only. **Swapping T1 for T2 is a layout-module change and a page-content change; it touches no token and no shared component.** That is exactly the swappability §9.3 requires.
 
@@ -1312,19 +1538,23 @@ The connection §9.3 requires to the home page is direct and should be stated on
 ├──────────────────────────────────────────────────────────────────────────┤
 │  THE GRAPH  (cols 1-8)                       │  PANEL (cols 9-12)        │
 │                                              │                           │
-│         ┌────────┐        ┌────────┐         │  fixed slot, same         │  same interaction
-│         │ SPEC   │───────▶│ BUILD  │         │  pattern as the floor's   │  grammar as the
-│         └────────┘        └───┬────┘         │  card slot (§C.6):        │  floor: fixed
-│                               │              │  hover, focus and tap     │  slot, default
-│                          ┌────▼───┐          │  all land here.           │  content, no
-│         ┌────────┐◀──────│ REVIEW │          │                           │  cursor tracking
-│         │  QA    │       └────┬───┘          │  default content = the    │
-│         └───┬────┘            │              │  node she is most         │
-│             │            ┌────▼─────┐        │  associated with.         │
-│             └───────────▶│ SECURITY │        │                           │
-│                          └────┬─────┘        │  [BLOCKED: node content   │
-│                          ┌────▼────┐         │   -- see above]           │
+│         ┌────────┐        ┌────────┐         │  fixed slot, the same     │  the same
+│         │ SPEC   │───────▶│ BUILD  │         │  pattern as the floor's   │  interaction
+│         │  (1)   │        │(2,5,6) │         │  card slot (§C.6): hover, │  grammar as the
+│         └────────┘        └───┬────┘         │  focus and tap all land   │  floor -- which
+│                               │              │  here.                    │  is now the very
+│                          ┌────▼───┐          │                           │  reason NOT to
+│         ┌────────┐◀──────│ REVIEW │          │  default content = the    │  build it (§G.5)
+│         │  QA    │       │  (19)  │          │  node she is most         │
+│         │  (19)  │       └────┬───┘          │  associated with.         │  node numbers
+│         └───┬────┘            │              │                           │  refer to §G.4's
+│             │            ┌────▼─────┐        │  every node now carries   │  practice table;
+│             └───────────▶│ SECURITY │        │  a gate she owns AND a    │  (19) means the
+│                          │   (19)   │        │  named practice with a    │  gate comes from
+│                          └────┬─────┘        │  company behind it. no    │  item 19.
+│                          ┌────▼────┐         │  node is empty any more.  │
 │                          │ RELEASE │         │                           │
+│                          │  (3,4)  │         │                           │
 │                          └─────────┘         │                           │
 │                                              │                           │
 │  the graph is a PLAN, not a line: work       │                           │
@@ -1341,9 +1571,20 @@ The connection §9.3 requires to the home page is direct and should be stated on
 
 **T2 at 360:** the graph becomes a vertical traversal — nodes in a single column, connectors in the left gutter drawn as 2px `--t-edge` strokes including the loop-back from review, each node 64px tall and a full-width `<button>`; the panel opens inline directly beneath the selected node rather than as a sheet, for the same reason as §C.7. The loop-back edge survives because it is drawn in the gutter, which is the one thing that must not be lost when the graph goes vertical.
 
-### G.5 Recommendation and equality of ambition
+### G.5 The decision, re-taken against the resume and item 19
 
-**Recommend T1.** T2 is the better idea and is documented so it can be swapped the moment its content exists — which is a live possibility, since her sign-off comes after the build (§9.3).
+Pass 1 recommended T1 for one reason only: T2's content did not exist. `docs/tanya-jain-resume.pdf` (item 47) and item 19 between them destroy that reason. **The recommendation still stands, but the argument for it has changed completely, and so has T2's status.**
+
+**What the new information does.** The resume supplies exactly what item 47 asked for — six named practices with places (listed in §G.4). Item 19 makes her the owner of product spec, device QA, security/privacy/ASO and half of code review. Map those onto T2's six nodes and every node gets both a gate she owns and a named practice with a company behind it: spec ← product spec; build ← the Compose migration and the KMP modules at Motive; review ← code review; QA ← device QA and the 99.8% crash-free figure; security ← security and privacy; release ← owned releases, phased rollouts, crash/ANR monitoring and the CI/CD work at Motive. **T2 is now buildable, honestly, with no invention.** That is a real change and it must be said plainly rather than buried.
+
+**Why T1 still wins anyway — and the deciding argument is new, not a restatement of Pass 1's.**
+
+1. **The floor grew, and it took T2's territory.** Items 32 and 51 put all seven agent roles on the visible floor. The home page now *shows* the pipeline — spec, design, code, tests, scan, review, watch — as ten stations a visitor can open one at a time. A six-node directed graph of spec → build → review → QA → security → release on her page would be the site's **second pipeline diagram**, in a different projection, arguing the same thing. §9.3 asks her page to connect to the home page without repeating it, and at eight stations T2 cleared that bar; at ten it does not. Pass 1 could not have known this, and it is the fact that decides the round.
+2. **T1's own hole closed in the same breath.** Item 46 fills the iOS edge with the Motive Fleet App, and the resume attributes the shared core to a named, dated re-architecture — *KMP Business Logic Modules + Clean Architecture*, Motive, 2024 to now. T1's central field is no longer a metaphor with one card in it; it is the thing she actually did, named, with a company and a date on it. The direction that was recommended-by-default is now recommended-on-merit.
+3. **The resume made T1 structurally richer than T2.** Its content splits three ways along T1's own axis with no forcing: the Jetpack Compose migration is Android-only and belongs on the Android edge; the KMP business-logic modules, Clean Architecture, CI/CD, workflow automation and release ownership are cross-platform and belong in the core; the Fleet App on iOS belongs on the iOS edge. **One company, three positions.** That is the KMP shape drawn out of her own work rather than asserted about it, and T2 has no equivalent move — its graph would put all six Motive facts in a queue.
+4. **Item 19's content is a list, and lists do not need a graph.** Gate ownership prints as a named block on the core column, which is where §G.3's closing section already was, previously carrying a `[COPY NEEDED]` link back to the home page's four gates. That slot now holds real names. T2 would spend a whole page's structure delivering something a block delivers.
+
+**What would flip it.** If the floor were ever cut back to five agent desks, argument 1 evaporates and T2 becomes the stronger page. Tanya's sign-off comes after the build (§9.3), and T2 is now a live, unblocked option at that review rather than a documented might-have-been — which is a materially better position than it was in Pass 1. The swap remains a layout-module change and touches no token and no shared component (§G.4).
 
 On equality: her page carries the harder layout problem of the two (a three-field structure that has to survive collapse to one column while keeping its meaning, versus Sahib's matrix which collapses by rotation), and it does not pad. §7 warns against padding her row count to match his; she has three companies and gets three cards, and the page does not compensate by inflating anything. Nothing on her page is softer, rounder, paler or more decorative than his; if anything hers is the stricter of the two.
 
@@ -1376,9 +1617,9 @@ Every animation is interruptible. Nothing blocks text paint. There are **no scro
 
 | Page | Named moment | What happens |
 |---|---|---|
-| `/` | **Lights on** | Fires only after the h1 has painted. Monitor glows come up in DOM order — Sahib, Tanya, then the five agents — at 90ms stagger, `--dur-4` each, opacity 0 → their loop-start value. Then a **400ms hold with nothing happening**, and the empty chair's lamp cone comes up alone over 900ms. Total ~2.3s. Nothing moves position; nothing is offscreen-then-onscreen; nothing blocks paint. The hold is the moment: the room fills, then stops, then one light comes on where nobody is sitting. |
+| `/` | **Lights on** | Fires only after the h1 has painted. Nine monitor glows come up in DOM order — Sahib's cabin, Tanya's cabin, then the seven agents — at **70ms** stagger, `--dur-4` each, opacity 0 → their §C.9 still-frame value. Then a **400ms hold with nothing happening**, and the empty chair's lamp cone comes up alone over 900ms. Total ≈ **2.5s** (last glow starts at 8 × 70 = 560ms, ends at 1200ms; + 400 hold; + 900 lamp). Pass 1's 90ms stagger was sized for seven stations and would run nine to ~2.7s, which starts to feel like a load screen — the stagger tightened rather than the hold shortening, because **the hold is the moment** and it is the one part of this that must not be cut. Nothing moves position; nothing is offscreen-then-onscreen; nothing blocks paint. The room fills, then stops, then one light comes on where nobody is sitting. |
 | `/work/pocket-manager/`, `/work/wedding-planner/` | **The track fills** | Stage nodes fill left to right at 90ms stagger and **stop hard at the current node**. Future nodes never animate at all — no fade, no pulse, nothing. The animation stops exactly where the truth stops, which is the same rule the whole site is selling. |
-| `/sahib/` | **The map fills** | Coverage cells fade up column by column: iOS, Android, KMP, Flutter — then a 300ms hold — then the end-to-end-with-AI column arrives alone in `--lamp`. 120ms per column. The hold makes the 2025 fact the event. |
+| `/sahib/` | **The map fills** | Coverage cells fade up column by column: iOS, Android, KMP, Flutter — then a 300ms hold — then the end-to-end-with-AI column arrives alone in `--lamp`. 120ms per column. The hold makes the 2025 fact the event. Item 45 is what makes this moment work: every one of the first four columns now has a cell to fade up, so the sequence reads as four filling and one arriving, rather than as two filling, two staying blank, and one arriving. |
 | `/tanya/` (T1) | **The core draws** | The shared-core field's boundary draws top to bottom over 900ms; each edge column's content becomes visible only as the core passes its row. The edges cannot appear before the core does, which is the architectural claim made as choreography. |
 | `/tanya/` (T2) | **The path resolves** | Graph edges draw in traversal order, including the loop-back from review, 140ms per edge. |
 | `/work/`, `/contact/`, `/404` | none | A contact page's job is to be answered, not performed. |
@@ -1389,7 +1630,7 @@ Every animation is interruptible. Nothing blocks text paint. There are **no scro
 
 | Page | What is removed | What the still state looks like |
 |---|---|---|
-| `/` | "Lights on"; the floor's idle loop | The room at §C.9's still frame — seven glows at seven *different* static opacities, lamp cone at full. The card slot still swaps content, instantly, no slide, no fade. The sticky contact plate still appears (it is `position: sticky`, never animated). |
+| `/` | "Lights on"; the floor's idle loop | The room at §C.9's still frame — nine glows at nine *different* static opacities, lamp cone at full. The card slot still swaps content, instantly, no slide, no fade. The sticky contact plate still appears (it is `position: sticky`, never animated). |
 | `/work/*` | "The track fills" | The track renders complete: done nodes filled, current node at 18px with its ring and core, future nodes hollow with dashed connectors. Identical to the end frame of the animation. |
 | `/sahib/` | "The map fills" | The map renders fully filled, with the end-to-end column in `--lamp`. Identical to the end frame. |
 | `/tanya/` T1 | "The core draws" | Core field fully drawn, both edge columns visible, `--lamp-ink` cap present. |

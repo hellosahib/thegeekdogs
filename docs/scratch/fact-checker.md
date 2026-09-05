@@ -83,3 +83,49 @@ Fetched via browser tool (WebFetch truncated the page, browser get_page_text wor
 
 ## Final deliverable
 Written to /Users/sahib.singh/FlutterProjects/tgd_website/FACTS.md -- 46-row table + Data Safety verbatim + GitHub placement write-up + 12 owner questions.
+
+---
+
+## Round 2 (2026-09-05) -- owner answers, resume, Pocket Manager codebase
+
+Inputs this round: QUESTIONS.md (all 55 answered), docs/tanya-jain-resume.pdf, and a read-only pass over /Users/sahib.singh/AndroidStudioProjects/PocketManager-Android.
+
+### Resume PDF extraction
+- Read via the Read tool (renders PDF text + a page image). No pypdf/PyPDF2/pdftotext/qpdf/mutool available locally; installed nothing (PEP 668 externally-managed env blocked pip install without --break-system-packages, which I did not use).
+- Link annotations aren't exposed as visible PDF text, so I extracted them by regex-scanning the raw PDF bytes for `/URI (...)` objects (uncompressed annotation objects, not inside a FlateDecode stream) -- found three: github.com/Tanya-Jain99 (profile), linkedin.com/in/tanyajain06 (profile), and github.com/Tanya-jain99/TaskManager (the open-source Task Manager project link, not visible as page text -- this is the one the brief's Task A asked me to "extract if the PDF exposes it").
+- Fetched the TaskManager URL directly: HTTP 200, page title confirms it's Tanya-jain99's repo. Upgraded to CONFIRMED (row 53) -- the only Task-A resume item independently reachable at a primary source.
+- Phone number (+91-86300...) is on the resume. Per explicit instruction, never written to FACTS.md or any other repo file. Confirmed via `grep -rl` after writing that it does not appear anywhere in the repo.
+
+### Education contradiction (the one Round 1 got wrong by not checking)
+- Round 1 (FACTS.md row 36) confirmed "APJ Abdul Kalam Technological University" is a real Kerala state university and stopped -- it never checked this is the school Tanya actually attended.
+- Resume says: B.Tech CSE, Meerut Institute of Engineering and Technology (AKTU), 2017-2021.
+- Verified both institutions exist and are distinct: miet.ac.in resolves (200) and uses "AKTU" on its own site; aktu.ac.in resolves (200); Wikipedia's page for that AKTU is titled "Dr. A. P. J. Abdul Kalam Technical University, Lucknow" -- a different, Lucknow/Uttar-Pradesh university from the Kerala one Round 1 checked (formerly Kerala Technological University, Thiruvananthapuram). Same namesake (Dr. Kalam), unrelated schools.
+- Corrected row 36: site should print "B.Tech, Computer Science & Engineering -- Meerut Institute of Engineering and Technology, affiliated to Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow -- 2017-2021." Never print "Kerala" or "Technological University" (the Kerala name) on Tanya's page.
+
+### Other resume vs. brief discrepancies found
+- Naskay title: resume says "Android Intern," brief said "Android Developer." CONTRADICTED, use "Android Intern."
+- Motive title: resume says "Software Engineer 2," brief/work-card said "Software Engineer, Android." "Android" isn't in her actual title anywhere on the resume. Flagged, not silently corrected for her -- recommend printing her real title.
+- Naskay->HSBC boundary: resume gives Naskay ending Aug 2021 and HSBC starting Aug 2021 (same month); brief said Naskay ended Jul 2021. One-month discrepancy, noted as CONTRADICTED at row 50; doesn't break the "five years, three companies" arithmetic either way.
+- HSBC product: resume names "HSBC Online Banking" as the project, but QUESTIONS.md #27 says explicitly "No product name" -- owner answer overrides the resume. Flagged in row 32 as a must-not-print.
+
+### Owner-answer sweep (QUESTIONS.md)
+Mapped every Task-B item to its existing FACTS.md row by QUESTIONS.md item number (not FACTS row number -- the two numbering schemes collide, e.g. QUESTIONS #36 is the rating question, not FACTS.md row 36 which is the education row; kept these straight throughout). New status OWNER-CONFIRMED added to the legend specifically for QUESTIONS.md answers, kept distinct from OWNER-PROVIDED (resume/LinkedIn self-reported text) -- an owner settling an ambiguity is a different kind of source than a person's own CV copy, and neither is a primary source the Fact Checker independently verified.
+
+One exception: row 2 (rating). Owner said "Use 4.3" but that's also exactly what the live Play Store listing shows (confirmed Round 1) -- so that row went to CONFIRMED, not OWNER-CONFIRMED, since it's independently verifiable regardless of the owner's answer.
+
+Also caught: QUESTIONS.md #38 supplied four LinkedIn post URLs for three named posts, with no mapping given. Fetched one directly (`.../7430310577153011712/`): HTTP 200 but body is LinkedIn's "Agree & Join" login wall, same block as Round 1's profile fetches. Recorded all four as OWNER-PROVIDED URLs only; flagged the 3-vs-4 mismatch as an open question rather than guessing which is which.
+
+### Pocket Manager codebase audit (read-only, /Users/sahib.singh/AndroidStudioProjects/PocketManager-Android)
+- Kotlin 232 files + Java 6 files (per docs/architecture.md, itself dated/audited against a specific commit -- trusted this repo doc since it cites its own sourcing method, but cross-checked its headline claims against the actual gradle files directly rather than taking it purely on faith).
+- Compose-only UI, migration from XML views complete and pinned by a test (NoViewBindingOrLayoutsRemainTest). Minor build.gradle.kts leftover: still declares appcompat/constraintlayout/material -- noted as a caveat, not a contradiction (MainActivity is still an AppCompatActivity host).
+- minSdk 23, targetSdk/compileSdk 36 (android_sdk_config.gradle).
+- Room, WorkManager+Hilt, Kizitonwose CalendarView, Glance widgets, vendored :external:sqlite2excel module for export, androidx.biometric, custom (non-library) chart code. No Retrofit/OkHttp/network client for app data.
+- IMPORTANT: Firebase Analytics + Firebase Crashlytics are both present and both network-capable -- app/build.gradle.kts confirms both dependencies. docs/architecture.md's "no network layer" claim is about the app's own data (transactions stay in Room/SQLite only) and does NOT mean nothing leaves the device -- crash logs, diagnostics, and app-activity analytics do transmit via these two Firebase SDKs. This lines up with, doesn't contradict, the Data Safety declaration already confirmed in Round 1 (crash logs/diagnostics/app activity collected). Flagged explicitly so nobody writes "fully on-device" or "nothing leaves your device" copy for Pocket Manager.
+- git log --reverse: first commit 2020-11-28 "Inital Commit" (sic), f3791fb. Labelled "first commit" not "first release" per instructions -- corroborates but doesn't prove the owner's "2020" answer for first release.
+- git tags found (not necessarily = Play Store release history): 1.0, 1.7-1.9.1, 2-5, 1.10.0-1.13.1. No CHANGELOG.md in the repo.
+- Agent pipeline claim ("maintained by our own agent pipeline, on a schedule, with human-cut releases"): found DIRECT, STRONG, primary-source evidence, not just plausible inference. ~/.claude/scheduled-tasks/pocketmanager-factory-run/SKILL.md (read per instructions, did not modify) is a real local scheduled task, cron 37 */2 * * * (every 2h + jitter), matched by factory/SCHEDULE.md in the repo itself. factory/STATE.md logs a real, detailed run (run 200, 2026-08-24) including a subagent mistake caught on review before merge. .claude/CLAUDE.md states as a hard rule: "A human cuts releases from master... releases are the human's job (HARD STOP #2)" and "You never push... origin is the owner's to push (HARD STOP #7)." .github/workflows/android-release.yml is workflow_dispatch-only with a comment explicitly stating autonomous runs never trigger it; android-ci.yml runs unit tests on every push/PR. This is CONFIRMED at a primary source (the repo's own contract and scheduler config), not CONFIRM-WITH-OWNER -- the strongest single finding of this round.
+
+### Status count in the final FACTS.md
+CONFIRMED: majority of original Play Store/company-site rows plus all new codebase rows (section d) and the Task Manager repo row. OWNER-CONFIRMED: every row resolved directly by a QUESTIONS.md answer (rating printing decision, Bengaluru, Tickertape, Keenai Pulse, Fleet App, HSBC no-name, Naskay nameable, developer-of-record cut, first-release year, privacy-off decision, gate ownership, Sahib's iOS/KMP employers, Tanya's iOS claim, GitHub placement override). OWNER-PROVIDED: resume-sourced biographical/technical claims not independently auditable (titles corroboration, Motive KMP/Compose/CI-CD bullets, crash-free/startup figures, LinkedIn post URLs). CONTRADICTED: education (row 36, the big one), Naskay title, Motive title label, Naskay/HSBC date boundary. UNVERIFIABLE: none newly added this round that weren't resolved or reclassified. CONFIRM-WITH-OWNER remaining: none of the original 12 -- all answered; five new open questions raised in FACTS.md section (e) instead (Sahib's own resume missing, the 4-URLs-for-3-posts mapping, the reaction-count permanent limitation, the Jillian Michaels trademark question, and a phone-number audit request across other repo files).
+
+Written to /Users/sahib.singh/FlutterProjects/tgd_website/FACTS.md: added ~13 new table rows (47-58, plus 42a), edited 13 existing rows in place, rewrote section (a)'s closing paragraph, rewrote section (c) into a Round-1-questions-now-answered index, added section (d) (Pocket Manager codebase, ~10 rows plus pipeline-evidence writeup), added section (e) (5 new Round 2 owner questions). Added OWNER-CONFIRMED to the status legend.
