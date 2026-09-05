@@ -366,57 +366,41 @@
     DESIGN.md §B.10 — position: sticky inside a wrapper spanning hero end to CTA
     start. No JS, no scroll listener, no dismiss state.
 
-    Step-1 review item 1: the +56px bottom reserve protects a section's last line
-    but not content passing under the plate mid-scroll, and at >=768 the 260x56
-    plate sat on top of the stage track. The fix is the reviewer's first option —
-    every section the plate can overlay now ends left of the plate's own footprint,
-    so there is no scroll position at which the two can meet. --plate-keepout is
-    the difference between the plate's reach from the viewport's right edge and the
-    space the page margin already gives it, so it is 0 wherever the margin is
-    already wide enough.
+    Step-2 review, ruling (a): ONE component, one size, every page, every
+    breakpoint — a 260 x 56 plate inset 16px from the bottom and right of the
+    viewport. The `< 768` full-bleed bar is withdrawn from the spec; at 360 the
+    plate plus its inset is 276 of 360, so 84px of clear space stays to its left
+    and it reads as an object on the page rather than as the viewport.
+
+    Step-2 review, ruling (b): the keep-out lane is withdrawn entirely. No section
+    carries a padding-right and every section keeps the full 1200 content width and
+    §B.5's one grid at every breakpoint. What keeps the plate's corner clear is
+    §B.10's composition rule about where load-bearing marks go (the proof band's
+    axis ends at x 1132), plus the +56px reserve below, which is the whole of the
+    reservation.
   */
   .plate-span {
     position: relative;
     pointer-events: none;
-    --gap-right: max(var(--outer), calc((100vw - var(--page-max)) / 2 + var(--outer)));
-    --plate-keepout: 0px;
   }
 
   .plate {
     position: sticky;
-    inset-block-end: 0;
+    inset-block-end: var(--plate-inset);
     z-index: 20;
     pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    inline-size: var(--plate-width);
     block-size: var(--plate-height);
+    margin-inline-start: auto;
+    margin-inline-end: var(--plate-inset);
     background-color: var(--lamp);
     color: var(--floor);
-    border-block-start: 2px solid var(--floor);
+    border: 2px solid var(--floor);
     font-weight: 600;
     text-decoration: none;
-  }
-
-  @media (min-width: 768px) {
-    .plate-span {
-      --plate-keepout: max(
-        0px,
-        calc(var(--plate-width) + var(--plate-inset) - var(--gap-right))
-      );
-    }
-
-    .plate-span .shell {
-      padding-inline-end: calc(var(--outer) + var(--plate-keepout));
-    }
-
-    .plate {
-      inline-size: var(--plate-width);
-      margin-inline-start: auto;
-      margin-inline-end: var(--plate-inset);
-      inset-block-end: var(--plate-inset);
-      border: 2px solid var(--floor);
-    }
   }
 
   /* DESIGN.md §B.10 — the reserve stays: it is what stops the plate covering a
