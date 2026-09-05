@@ -81,6 +81,18 @@ const themeColor = THEME_COLOR[world];
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
 
+    <!--
+      DESIGN.md §B.12 — four files, all exported from `public/favicon.svg` by
+      `npm run icons`. The SVG is the primary icon everywhere it is supported; the 32px
+      PNG is the fallback and downsamples cleanly to 16, which is why the geometry is
+      authored on a 32 grid. No .ico, no 16px PNG, no maskable variant. The mark itself
+      never appears on a page — if it ever renders in the layout it has become a logo.
+    -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <meta name="theme-color" content={themeColor.light} media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content={themeColor.dark} media="(prefers-color-scheme: dark)" />
 

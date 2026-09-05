@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "fonts:sync": "node scripts/sync-fonts.mjs",
+    "icons": "node scripts/build-icons.mjs",
     "qa": "npm run qa:build && npm run qa:no-slop && npm run qa:images && npm run qa:links && npm run qa:console && npm run qa:contrast && npm run qa:floor && npm run qa:weight",
     "qa:build": "node scripts/qa-build.mjs",
     "qa:no-slop": "node scripts/qa-no-slop.mjs",
