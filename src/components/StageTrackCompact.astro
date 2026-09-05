@@ -235,23 +235,19 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
     }
 
     /*
-      Run A item 10 — the label row is half a pitch wider than the axis it labels, so
-      centring all five put `Specced` 50px left of the band's left edge (into col 6, left
-      of `Pocket Manager`) and `Live` 50px past the axis's end and into the plate's 276px
-      band. The three middle labels stay centred on their own nodes; the two END labels
-      align to the ends of the AXIS instead, by taking half a pitch of padding on their
-      outer side. Measured at 1440 the row's ink now runs x 732 -> 1132, which is the
-      axis exactly (§B.10) and 32px clear of the plate's leading edge at 1164.
-    */
-    .track__head-cell:first-child {
-      text-align: start;
-      padding-inline-start: calc(var(--track-pitch) / 2);
-    }
+      DESIGN.md §E.3 round 12 — ALL FIVE LABELS CENTRE ON THEIR NODES, in every form of
+      this component, at every width, and the row's ink may overhang the axis at either
+      end by up to half a label.
 
-    .track__head-cell:last-child {
-      text-align: end;
-      padding-inline-end: calc(var(--track-pitch) / 2);
-    }
+      Round 10's fix for run A item 10 edge-aligned `Specced` and `Live` to nodes 1 and 5
+      so that the row's ink matched the axis exactly, and the cost was visible in
+      `home-proof-1440-light.png`: three labels centred on their dots and two sitting half
+      a pitch off the dot they name, which in a five-item row reads as a mistake rather
+      than as a rule (item H7). §B.10 exempts prose and this row is five words, not five
+      marks — the AXIS is what the composition rule constrains, and the label row is prose
+      that rides it. So the two special cases are gone and there is one rule at every
+      width.
+    */
 
     .track__runner {
       gap: var(--space-12);
