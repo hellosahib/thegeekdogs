@@ -143,20 +143,32 @@ const schema = await personGraph(person);
     display: none;
   }
 
-  /* Quotation, not decoration: an indent and a rule, at body size, in the body face. */
+  /*
+    §G.3a's T5 ruling — **print the marks; drop the rule.** Quotation is carried by the
+    quotation marks COPY.md §7.1 supplies (they are in the string now), at body size in
+    the body face, separated by space. The 2px left rule is the pull-quote convention and
+    it was the only cue the block had, which inverted §7.1's own instruction; §B.2
+    separates with fill and space and never with a rule, and the same stroke is what T3
+    cuts off the two edge columns one section down.
+  */
   .quote {
     margin: 0;
-    padding-inline-start: var(--space-24);
-    border-inline-start: 2px solid var(--tgd-muted);
   }
 
   .quote + .quote {
     margin-block-start: var(--space-24);
   }
 
+  /* §G.3a — the attribution sets in Instrument Sans REGULAR, never oblique. The family
+     ships no italic, so the UA stylesheet's `<cite> { font-style: italic }` was being
+     synthesised by the browser, which is the one place on the site a face was faked. */
   .quote__attribution {
     font-size: var(--step-small);
     line-height: var(--step-small-lh);
+  }
+
+  .quote__attribution cite {
+    font-style: normal;
   }
 
   .quote__closing {

@@ -275,6 +275,22 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
     }
 
     /*
+      §G.3a's T3 ruling, and §J's "remove one thing" for this page: **no full-height rules
+      at >= 1024. Cut them.** Both edge columns took a 2px --t-ink left rule running the
+      full 1,450px height of the band, and in dark those two rules were near-white and the
+      brightest things on her page — brighter than her text. §9.4 bans the broadsheet
+      hairline by name, §B.2 does structural separation with fill and space and never with
+      rules, and §B.6 principle 4 says the site never has two loud things at once. §G.3
+      asks for the rule **at 360 and only at 360**, where depth replaces horizontal
+      position and the rule is the only thing doing the separating; at >= 1024 the three
+      fields are already separated by the core's fill, by the grid's gutters and by the
+      edges' own indentation, and the rules were drawing a box around emptiness.
+    */
+    .edge {
+      border-inline-start: 0;
+    }
+
+    /*
       The three fields are one row, and the row is explicit. DOM order is core, Android,
       iOS (§G.3's 360 collapse), so auto-placement would put the core in row 1 and then
       refuse to backtrack to col 1 for the Android edge — which rendered the band as
@@ -320,18 +336,33 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
   }
 
   /*
-    §H.3, "the core draws". The field's boundary draws top to bottom over 900ms and each
-    edge column's content becomes visible as the core passes its row — one clip on the
-    band expresses both, because the edges cannot appear before the core does, which is
-    the architectural claim made as choreography. `--ease-inout` is §H.1's curve for a
-    thing moving between two known states. Nothing else on this page animates.
+    §H.3, "the core draws", **with round 12's lag** (review item T6).
+
+    One clip on the whole band was the previous build, and it made §H.3's claim
+    technically true and visually absent: at 300ms the core and both edge columns were
+    clipped at the SAME y (`tanya-coredraws-300ms.png`), so what a visitor saw was a
+    reveal wipe — the generic scroll-effect move §H.1 removes from the rest of the site by
+    banning scroll-driven effects. The claim §H.3 actually makes is that "each edge
+    column's content becomes visible only as the core passes its row, **and it appears
+    120ms after the core has passed it**", and with zero lag there is nothing to watch.
+
+    So the clip is per field rather than per band, and the edges take a 120ms delay. Same
+    900ms, same `--ease-inout` (§H.1's curve for a thing moving between two known states),
+    same boundary shape — the edges are simply behind, at every row, by one step below
+    `--dur-4` and above the threshold at which two events read as one. **The lag is the
+    whole moment and it is one delay.** Nothing else on this page animates.
 
     The unconditional rendering is the complete band, so §H.4's still frame is the
     default and `reduce` removes an animation rather than adding a branch.
   */
   @media (prefers-reduced-motion: no-preference) {
-    .core-band__grid {
+    .core,
+    .core-band__gates-link {
       animation: core-draws 900ms var(--ease-inout) both;
+    }
+
+    .edge {
+      animation: core-draws 900ms var(--ease-inout) 120ms both;
     }
   }
 
@@ -344,9 +375,25 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
     }
   }
 
-  /* §D.8 — a fill the browser would suppress anyway, and a rule that survives it. */
+  /*
+    §D.8 — a fill the browser would suppress anyway, and a rule that survives it.
+
+    **And round 12: the whole page collapses to one column in print, not just the cards**
+    (Perf & A11y audit ruling 1, review item S5's sibling). §D.8 said "the `<ul>` reflows
+    to a single column" and the build read that as *the cards* reflow, which is literally
+    what it said — so this band printed as Android / core / iOS side by side on A4, at a
+    third of a page width each, with the core's measure at roughly 20 characters. The rule
+    is the page, not the component: every multi-column arrangement here becomes one column
+    in DOM order, and the `.grid` reset that does it lives in global.css so it covers both
+    person pages and anything a later round adds. What is left here is this component's own
+    part of it — the ticks do not print, because a connector between two blocks that are
+    now stacked says nothing, and each edge field prints under its own platform label,
+    which is the structure §G.3's 360 form already draws.
+  */
   @media print {
-    .core-band__grid {
+    .core,
+    .edge,
+    .core-band__gates-link {
       animation: none;
     }
 
@@ -360,6 +407,19 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
 
     .core__gates-label {
       border-inline-start-color: currentColor;
+    }
+
+    .edge {
+      padding-inline-start: 0;
+      border-inline-start: 0;
+    }
+
+    .edge__tick {
+      display: none;
+    }
+
+    .edge__note {
+      gap: 0;
     }
   }
 </style>
