@@ -107,8 +107,104 @@ for (const scheme of ['light', 'dark']) {
   await ctx.close();
 }
 
+/*
+  DESIGN.md §I.1 row 2 — **the tick attaches to the layer's name, and the three names sit
+  on one baseline.** §G.3a states the rule and then states what to check:
+
+  > On the shipped Anek subset that baseline is 50px below the band's top border edge, and
+  > the tick is a 2px stroke centred on it. **50 is the consequence and the baseline is the
+  > spec:** if the shipped face's ascent moves the number, the number is corrected and the
+  > alignment is not, and the assertion checks the two labels' baselines against the core's
+  > rather than checking 50.
+
+  So this measures the three platform labels' first baselines against each other, and the
+  two ticks' stroke centres against that baseline, at both widths the three-column
+  allocation exists at. The 50 is reported, never asserted.
+*/
+for (const width of [1024, 1440]) {
+  const ctx = await browser.newContext({ viewport: { width, height: 1200 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/tanya/', { waitUntil: 'load' });
+  const got = await page.evaluate(() => {
+    /*
+      A first baseline, read rather than computed: a zero-size inline-block with
+      `vertical-align: baseline` sits with its bottom margin edge ON the line's baseline,
+      so its own box is the measurement. Nothing here assumes a font metric.
+    */
+    const baselineOf = (el) => {
+      if (!el) return null;
+      const probe = document.createElement('span');
+      probe.style.cssText =
+        'display:inline-block;width:0;height:0;vertical-align:baseline;padding:0;margin:0';
+      el.insertBefore(probe, el.firstChild);
+      const y = probe.getBoundingClientRect().bottom;
+      probe.remove();
+      return y;
+    };
+    const core = document.querySelector('.core-band .core');
+    const drawn = (el, pseudo) => {
+      if (!el) return false;
+      const cs = getComputedStyle(el, pseudo);
+      return cs.content !== 'none' && cs.display !== 'none' && parseFloat(cs.width) > 0;
+    };
+    const coreLabel = document.querySelector('.core__label');
+    /*
+      Each tick hangs its own 32px of core padding, so the stroke's outer end lands on the
+      core field's boundary exactly when the label's line runs the field's full inner
+      width. It did not: `--measure-body` is 32em, 448px at the label's size, so at 1440
+      the label stopped 76px short and took the right tick with it. Measured here, because
+      the tick ends are the two coordinates §G.3a fixes.
+    */
+    const labelBox = coreLabel ? coreLabel.getBoundingClientRect() : null;
+    const coreBox = core ? core.getBoundingClientRect() : null;
+    return {
+      tickEnds:
+        labelBox && coreBox
+          ? [
+              Math.round(labelBox.left - coreBox.left - 32),
+              Math.round(coreBox.right - labelBox.right - 32),
+            ]
+          : null,
+      coreEdges: coreBox ? [Math.round(coreBox.left), Math.round(coreBox.right)] : null,
+      bandTop: core ? core.getBoundingClientRect().top : null,
+      core: baselineOf(coreLabel),
+      android: baselineOf(document.querySelector('.edge--android .edge__label')),
+      ios: baselineOf(document.querySelector('.edge--ios .edge__label')),
+      ticks: [drawn(coreLabel, '::before'), drawn(coreLabel, '::after')].filter(Boolean).length,
+    };
+  });
+
+  checked += 3;
+  if (got.ticks !== 2) {
+    failures.push(
+      `/tanya/ @ ${width}: the core draws ${got.ticks} tick(s), and §G.3's shape is two — one out of each side of the field`,
+    );
+  }
+  for (const field of ['android', 'ios']) {
+    const delta = Math.abs((got[field] ?? 0) - (got.core ?? 0));
+    if (delta > 1) {
+      failures.push(
+        `/tanya/ @ ${width}: the ${field} label's first baseline is ${delta.toFixed(1)}px off the core's — §I.1 row 2 puts all three on one baseline`,
+      );
+    }
+  }
+  checked += 1;
+  for (const [side, gap] of [['left', got.tickEnds?.[0]], ['right', got.tickEnds?.[1]]]) {
+    if (gap !== 0) {
+      failures.push(
+        `/tanya/ @ ${width}: the ${side} tick stops ${gap}px short of the core field's boundary — §G.3a terminates it ON the boundary`,
+      );
+    }
+  }
+  console.log(
+    `      /tanya/ @ ${width}   ${got.ticks} tick(s) ending on the core's own x ${got.coreEdges?.join(' and ')}, three labels on one baseline, ${((got.core ?? 0) - (got.bandTop ?? 0)).toFixed(1)}px below the band's top edge (§G.3a's 50 is reported, never asserted)`,
+  );
+
+  await ctx.close();
+}
+
 await browser.close();
 close();
 
-console.log(`      ${checked} computed token(s) checked on ${EXPECTED.length} routes in 2 schemes`);
+console.log(`      ${checked} computed token(s) and baseline(s) checked on ${EXPECTED.length} routes in 2 schemes`);
 process.exit(report('qa:worlds', failures));

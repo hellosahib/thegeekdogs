@@ -97,47 +97,31 @@ const MARKS = [
 ];
 
 /**
- * **Three collisions the four new marks found below 768, and they are flagged rather than
- * failed, because fixing either one needs a Design Lead decision this script cannot make.**
+ * **The FLAGGED list is gone, and §I.1 round 13 is why.**
  *
- * Both are places where two sections of DESIGN.md disagree with each other, and both were
- * invisible until §B.10 round 12 named these marks:
+ * Run D measured seven collisions below 768 that the four round-12 selectors found, and
+ * flagged rather than failed them because each one was two sections of DESIGN.md
+ * disagreeing with each other and the resolution was a design decision, not a build one:
  *
- * 1. `/` at 360 and 390 — `1,000+` and `downloads`. §B.8's own 360 wireframe draws the
- *    three figures "3 across at 320: 96px each", so the third column runs x 244 → 309
- *    against a 128-band beginning at x 232. §B.10 round 12 adds these two selectors to the
- *    rule's list AND makes the band bind below 768; §B.10's worked 360 example lists the
- *    three marks it checked there and the figures are not among them. So the rule and the
- *    wireframe disagree and the figures are the casualty. The fix is a composition — two
- *    rows, or a narrower row — and §B.9's 360 wireframe is where it belongs.
+ * 1. `/` at 360 and 390 — `1,000+` and `downloads`, against §B.8's "3 across at 320:
+ *    96px each", which predated the 128px band.
+ * 2. `/tanya/` at 360, 390 and 768 — the core's `Owns` line, against §B.10's claim that
+ *    it was covered below 768 "by being full width".
  *
- * 2. `/tanya/` at 360, 390 and 768 — the core's `Owns` line. §B.10 round 12 states that
- *    this mark is covered below 768 because the core is "full-width below 768 where the
- *    band is 128 — reserve 1 again". Measured, full width is exactly the problem: the line
- *    ends at x 305 at 360 against a band at 232, and at x 539 at 768 against 492. §G.3
- *    keeps the core full width below 1024 and §B.10 keeps the band binding there, and the
- *    two cannot both hold for a line that sets to the field's own width.
- *
- * Recorded rather than invented, per the same discipline run B used for §B.9's proof split
- * at 1024: the script measures them on every run and prints them under their own heading,
- * so they cannot go quiet, and it does not fail the build on a contradiction whose
- * resolution is a design decision.
+ * §I.1 row 1 rules on both, and both sentences were the Design Lead's. §B.8's row form
+ * below 768 is replaced — **the three figures stack**, numeral in a 68px column from
+ * x 20, label from x 104 on the same baseline, widest ink at x 162 against a band at 232.
+ * §B.10's full-width clause is deleted — **the gates block sets one gate per line below
+ * 1024**. Two compositions, seven marks, no exemption and no region left the plate's
+ * wrapper, and the section's closing instruction to this script is one line:
+ * **"`qa:plate` should now fail rather than flag, and the four selectors stay in the
+ * set."** So there is no flag list, and a collision at any width on any route is a
+ * failure again.
  */
-const FLAGGED = [
-  { route: '/', widths: [360, 390], selectors: ['.figures__figure', '.figures__label'] },
-  { route: '/tanya/', widths: [360, 390, 768], selectors: ['.core__gates-line'] },
-];
-
-const isFlagged = (route, width, selector) =>
-  FLAGGED.some(
-    (entry) =>
-      entry.route === route && entry.widths.includes(width) && entry.selectors.includes(selector),
-  );
 
 const { base, close } = await serveDist();
 const browser = await chromium.launch();
 const failures = [];
-const flagged = [];
 let checked = 0;
 
 for (const width of WIDTHS) {
@@ -196,9 +180,9 @@ for (const width of WIDTHS) {
 
     checked += found.seen;
     for (const bad of found.out) {
-      const line = `${route} @ ${width}: ${bad.kind} (${bad.selector}) ends at x ${bad.right}, inside the band that begins at x ${found.band} — "${bad.text}"`;
-      if (isFlagged(route, width, bad.selector)) flagged.push(line);
-      else failures.push(line);
+      failures.push(
+        `${route} @ ${width}: ${bad.kind} (${bad.selector}) ends at x ${bad.right}, inside the band that begins at x ${found.band} — "${bad.text}"`,
+      );
     }
   }
 
@@ -209,10 +193,4 @@ await browser.close();
 close();
 
 console.log(`      ${checked} load-bearing mark(s) measured across ${ROUTES.length} routes at ${WIDTHS.length} widths`);
-if (flagged.length > 0) {
-  console.log(
-    `      ${flagged.length} FLAGGED FOR THE DESIGN LEAD — measured, not failed, reasons above the FLAGGED table:`,
-  );
-  for (const line of flagged) console.log(`        ${line}`);
-}
 process.exit(report('qa:plate', failures));
