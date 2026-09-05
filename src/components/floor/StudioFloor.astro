@@ -539,8 +539,16 @@ const b = BOX;
     stroke-width: 1;
   }
 
+  /*
+    The desk's top face, and §C.8's second indicator on it. The edge is `transparent` at
+    rest and `--chalk` on the selected station; it is a custom property rather than a
+    descendant selector because `.fl-top` lives inside a `<use>`'s shadow tree, which a
+    selector cannot reach and an inherited property can. Same mechanism as the fill above.
+  */
   :global(.fl-top) {
     fill: var(--fl-desk-top);
+    stroke: var(--fl-desk-edge, transparent);
+    stroke-width: 1;
   }
 
   :global(.fl-glow) {
@@ -628,6 +636,22 @@ const b = BOX;
   */
   .fl-st[data-on] {
     --fl-desk-top: rgba(232, 237, 233, 0.52);
+    /*
+      **§C.8's priced fallback, taken on measurement.** The section states the acceptance
+      test — the same pixel-difference method under `reduce`, at 360 and 1440 in both
+      schemes, needing ">= 30% of the desk's pixels changed at a maximum channel delta
+      >= 60" — and names what to do if 52% alone does not reach it: "a 1px `--chalk`
+      top-edge inset on the selected station, a mark the room already draws elsewhere",
+      taken "only on measurement, never in addition on preference".
+
+      Measured at 52% alone (scripts/evidence-rund.mjs): max channel delta **67 light, 69
+      dark** — past the 60 — but **24.6% of the station's pixels at 1440 and 15.5% at 360**,
+      which is short of the 30. So the fallback is taken, and it is taken because the
+      measurement said so. The room already draws exactly this stroke twice: the slab's own
+      edge (`.fl-edge`) and the cabin walls both take a 1-unit `--fl-lit` stroke, so this
+      is the existing vocabulary at a higher value rather than a new mark.
+    */
+    --fl-desk-edge: var(--chalk);
   }
 
   /*

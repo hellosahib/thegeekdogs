@@ -104,13 +104,42 @@ export interface Placement {
 const WIDE_CELLS: WideCell[] = [
   { c: 0, r: 0, span: 2 }, // Sahib's cabin, A1-B2
   { c: 0, r: 2, span: 2 }, // Tanya's cabin, A3-B4
+  /*
+    DESIGN.md §C.3 round 12 re-assigns the seven roles to the SAME seven modules, because
+    the wide plan read its own pipeline backwards on screen (review item H4). Measured off
+    `floor-1440-light.png` against §C.3's own projection, the previous assignment put
+    Security Auditor and Release Watcher at screen x 396, Spec Writer / Programmer /
+    Reviewer at 524 and Designer / Test Engineer at 652 — so the two lower screen rows read
+    left-to-right as 5 · 3 · 2 and 7 · 6 · 4, and a visitor reading the labels across got
+    Security Auditor → Programmer → Designer. The build rendered §C.3's coordinates
+    exactly; the defect was in the plan.
+
+    The projection maps plan (c, r) to screen x `396 + 64(c − r)`, so the plan's row-major
+    order is not the screen's row-major order — and the screen is what is read. **The seven
+    occupied modules are unchanged** (C1, C3, D2, D4, E1, E3, F2 — the same set, the same
+    checkerboard parity, the same footprint), so every coordinate, button box, target size,
+    clearance proof and scale figure in §C.3 holds without recomputation. Only which
+    nameplate sits on which module changes, and the room now reads 1 / 2 · 3 · 4 /
+    5 · 6 · 7 — COPY.md §2.4's order exactly, which is what §C.3 mechanism 5 has always
+    claimed and what the portrait plan at 360 already did.
+
+    | Pipeline order | Module | Screen centre | Was |
+    |---|---|---|---|
+    | 1 Spec Writer      | C1 | (524, 200) | C1 — unchanged |
+    | 2 Designer         | C3 | (396, 264) | E1 |
+    | 3 Programmer       | D2 | (524, 264) | D2 — unchanged |
+    | 4 Test Engineer    | E1 | (652, 264) | F2 |
+    | 5 Security Auditor | D4 | (396, 328) | C3 |
+    | 6 Reviewer         | E3 | (524, 328) | E3 — unchanged |
+    | 7 Release Watcher  | F2 | (652, 328) | D4 |
+  */
   { c: 2, r: 0, span: 1 }, // Spec Writer, C1
-  { c: 4, r: 0, span: 1 }, // Designer, E1
+  { c: 2, r: 2, span: 1 }, // Designer, C3
   { c: 3, r: 1, span: 1 }, // Programmer, D2
-  { c: 5, r: 1, span: 1 }, // Test Engineer, F2
-  { c: 2, r: 2, span: 1 }, // Security Auditor, C3
+  { c: 4, r: 0, span: 1 }, // Test Engineer, E1
+  { c: 3, r: 3, span: 1 }, // Security Auditor, D4
   { c: 4, r: 2, span: 1 }, // Reviewer, E3
-  { c: 3, r: 3, span: 1 }, // Release Watcher, D4
+  { c: 5, r: 1, span: 1 }, // Release Watcher, F2
   { c: 5, r: 4, span: 1 }, // the empty chair, F5
 ];
 
