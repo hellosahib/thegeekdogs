@@ -1924,3 +1924,61 @@ evidence in `docs/reviews/runF/engineer/`: `sahib-map-1440-{light,dark}.png` (fu
 clipped to Motive's adjacent iOS/Android cells — the shared-edge case). Viewed all four:
 stroke is clearly visible in both schemes at both zoom levels, the two adjacent filled
 cells share one edge rather than a doubled seam, cell text unchanged.
+
+## Build run F — N1 and N2, the final review's two must-fix items (2026-09-05)
+
+**N1 — `/sahib/`'s map product names under the plate at 360 and 390.** `.map__cell-product`
+joins `qa:plate`'s mark list at every width, on the review's ruling that below 768 the row
+strip *is* the map and a filled cell's payload is a name read as a unit — not the
+`.edge__note` case §G.3a exempted as prose in a container. Then the composition: the cell's
+right edge sits 36px inside the viewport at every width below 768 (§B.3's 20px outer gutter
+plus the row panel's own 16px padding) and the band begins 128 inside it, so the cell gives
+back 128 − 36 = 92 plus one 4px step — `max-inline-size: calc(100% - 96px)` under
+`max-width: 767px`, the lamp cell named explicitly because its own `max-inline-size: 100%`
+carries equal specificity. **No font-size change and no lane**; the line breaks earlier,
+which is the instrument §B.8 used for the figures and §G.3a for the gates. Widest ink was
+319.3 at both widths; it is now **222.4 at 360 against a band at 232** and **256.5 at 390
+against 262**, zero of ten over at either width, in both schemes. `qa:plate` measures **640**
+marks across 8 routes × 8 widths and PASSes. The map's 360 layout did not need the Design
+Lead — every cell fits.
+
+**N2 — the card slot's reservation was short by its own padding.** `min-block-size` is a
+border-box number (`box-sizing: border-box` is site-wide) and the slot carries 24px of
+padding at both ends, so 320 offered a card 272 and 416 offered 368. All four of §C.6's
+round-12 numbers were short by roughly their own padding, and opening a human's card stepped
+the whole floor section down: **+57 at 360, +31 at 390, +35 at 768, +39 at 1024**; only 1440
+held, and only because the scene is taller than the slot there. Re-derived as tallest card
++ 48 + slack — **384 / 304 / 464 / 392** at < 768 / 768–1023 / 1024–1439 / ≥ 1440, which is
+the review's own arithmetic and matches my measurements of the ten cards exactly (329.0 /
+251.3 / 406.7 / 339.2).
+
+**New gate `qa:floor:slot`** (`scripts/check-floor-slot.mjs`), inside `qa:floor`, so the
+chain is **13 gates**. It asserts the promise rather than the arithmetic: it opens all ten
+cards at 360, 390, 768, 1024 and 1440 through the station button a visitor actually clicks
+and requires `document.documentElement.scrollHeight` to be **exactly** unchanged — not
+"within a few pixels", because a partial reservation is the defect. **50 openings, 0px at
+every width.** Negative-tested by reverting `--card-slot-min` to 320: it fails with the four
+rows above, named by card and width. This is the assertion PLAN.md §4.3 asked for and is
+strictly stronger than the table of numbers it replaces — a copy edit that adds a line to any
+card now fails here without anyone re-measuring anything. Lighthouse cannot see this class of
+defect at all: an input-initiated shift inside 500ms is excluded from CLS by definition, and
+that exclusion is right for CLS and useless for §C.6's promise.
+
+**N4 — not closed, and it is not free.** At 1024 the iOS field itself runs **x 762 → 976**
+against a band beginning at **748**: the field starts 14px *inside* the band, so the label
+`iOS` (ink to 799.2) cannot clear it without the field moving, and moving it is §G.3a's
+cols 10–12 allocation — the Design Lead's, and exactly the ruling the review says must not
+be left implicit (move the three platform labels into the band's own header row inside
+cols 1–9, or rule a platform label a caption). At **1440 and 1920 the label is already
+clear** — 1075.2 against 1164, 1315.2 against 1644 — and the only mark over the band there
+is `.edge__note`'s `Motive Fleet App` at 1171.9, which §G.3a has off the mark list in terms.
+I changed nothing on `/tanya/`. N3 is likewise a spec item (run B's 1024 ruling contains two
+sentences that cannot both hold) and is untouched.
+
+**Gates.** Full `npm run qa` — **13 of 13 PASS**: build, no-slop, images, links, console,
+contrast, worlds, plate, floor budget, floor pointer, **floor slot**, weight, glyphs.
+Lighthouse mobile, 3 runs each, `/` and `/sahib/`, both schemes: **P100 A100 B100 S100**
+throughout, LCP 1450–1479ms, **CLS 0.0001**, TBT 0ms. Evidence in
+`docs/reviews/runF/engineer/`: `sahib-map-{360,390}-{light,dark}.png`,
+`home-card4-360-{light,dark}.png` (the Designer card, the fourth, opened at 360 — 7205 →
+7205), `evidence-log.txt`, `qa.txt`, `lighthouse/summary.json`. All six viewed.

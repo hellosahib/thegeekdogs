@@ -1,0 +1,6 @@
+dark bootstrap flipped in 8 html file(s)
+light /index.html                          P100 A100 B100 S100  LCP 1479ms  CLS 0.0001  TBT 0ms
+light /sahib/index.html                    P100 A100 B100 S100  LCP 1464ms  CLS 0.0001  TBT 0ms
+dark  /index.html                          P100 A100 B100 S100  LCP 1466ms  CLS 0.0001  TBT 0ms
+dark  /sahib/index.html                    P100 A100 B100 S100  LCP 1450ms  CLS 0.0001  TBT 0ms
+written /Users/sahib.singh/FlutterProjects/tgd_website/docs/reviews/runF/engineer/lighthouse/summary.json
