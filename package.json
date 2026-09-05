@@ -20,7 +20,9 @@
     "qa:images": "node scripts/qa-images.mjs",
     "qa:console": "node scripts/qa-console.mjs",
     "qa:contrast": "node scripts/qa-contrast.mjs",
-    "qa:floor": "node scripts/check-floor-budget.mjs",
+    "qa:floor": "npm run qa:floor:budget && npm run qa:floor:pointer",
+    "qa:floor:budget": "node scripts/check-floor-budget.mjs",
+    "qa:floor:pointer": "node scripts/check-floor-pointer.mjs",
     "qa:weight": "node scripts/measure-bundles.mjs"
   },
   "dependencies": {

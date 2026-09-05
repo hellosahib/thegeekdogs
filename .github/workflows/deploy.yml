@@ -59,7 +59,10 @@ jobs:
         run: npm run qa:console
       - name: qa:contrast
         run: npm run qa:contrast
-      - name: check-floor-budget
+      # DESIGN.md §C.10's 80 KB line, and §C.11's pointer acceptance test with
+      # §C.7's nameplate proof. §C.11 is explicit that the floor's operability is
+      # settled "in CI — not a CSS edit checked by eye".
+      - name: qa:floor (budget, §C.11 pointer, §C.7 nameplates)
         run: npm run qa:floor
       - name: gzip weights
         run: npm run qa:weight
