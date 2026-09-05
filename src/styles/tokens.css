@@ -266,6 +266,27 @@
   --s-dim: #8e96ac; /* L 0.305420 — secondary text, row and column labels */
   /* --lamp is shared with the studio, DESIGN.md §F.4. */
 
+  /*
+    DESIGN.md §F.4b round 12 — the map's filled cells leave `--s-panel` and take their own
+    token, and `--s-panel` goes back to the job §F.4 named it for: SECTION BLOCKS.
+
+    Review item S2: the two-state grammar was `--s-panel` on `--s-ground`, a **1.13 : 1**
+    step in light, and §F.1's whole argument is that "the takeaway is the SHAPE of the
+    filled region… a staircase descending right to left". At 1.13 : 1 that shape is at the
+    edge of perception and the product names do the work. The dark map is arithmetically
+    the same step — 1.16 : 1 — and reads better only because of where those two values sit
+    on the tone curve, which is a coincidence and not a design.
+
+    `--s-fill` against `--s-ground`: **2.91 : 1 dark, 2.97 : 1 light** — the two schemes
+    match on RATIO, which is §B.2a's rule, rather than on hex distance. `--s-ink` inside a
+    filled cell is 4.85 : 1 dark and 4.74 : 1 light, so the product names still clear AA
+    body; and the lit cell separates from its neighbours BETTER than before in light
+    (1.71 : 1 against 1.55 : 1), because the fill has stepped past `--lamp` rather than
+    toward it. The lit cell keeps its 2px `--s-ink` border, so the map keeps §E.1's
+    discipline and no state is ever carried by fill alone.
+  */
+  --s-fill: #5e6480; /* L 0.130504 — the coverage map's filled cells, and nothing else */
+
   --s-panel-edge: rgba(233, 234, 240, 0.14); /* inset 1px top-left edge highlight */
   --s-card-surface: #e8e8ea; /* white at 90% over his dark ground, §F.6 */
 
@@ -298,6 +319,7 @@
 [data-world='sahib'][data-theme='light'] {
   --s-ground: #eeeff4; /* L 0.864418 */
   --s-panel: #e0e2ec; /* L 0.762961 — steps darker than the ground in light */
+  --s-fill: #868aa0; /* L 0.257833 — §F.4b, 2.97 : 1 against the light ground */
   --s-ink: #1a2033; /* L 0.014917 */
   --s-dim: #545c74; /* L 0.108001 */
 

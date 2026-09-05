@@ -576,6 +576,7 @@
   html[data-world='sahib']:not([data-theme='light']) {
     --s-ground: #eeeff4;
     --s-panel: #e0e2ec;
+    --s-fill: #868aa0;
     --s-ink: #1a2033;
     --s-dim: #545c74;
   }
@@ -635,6 +636,38 @@
      where the scoped selector can actually outrank the component's own `display: flex`. */
   .site-footer nav {
     display: none;
+  }
+
+  /*
+    §D.8 round 12 — **the whole person page collapses to one column in print, not just the
+    cards.** §D.8 said "the `<ul>` reflows to a single column" and the build read that as
+    *the cards* reflow, which is literally what it said; the Perf & A11y audit's finding 1
+    then measured `/tanya/` printing its three-field band as Android / core / iOS side by
+    side on A4, a third of a page width each, with the core's measure at roughly 20
+    characters. **The rule is the page, not the component**: every multi-column arrangement
+    on `/sahib/` and `/tanya/` becomes one column in DOM order — the cards, the map's grid,
+    the core band's three fields, the quotes block, the links row, and anything a later
+    round adds. A printed CV is a single column read top to bottom; a three-column layout
+    on A4 is a screen layout that happened to be sent to a printer.
+
+    Turning §B.5's grid off is the whole of it, because every column placement on both
+    pages is a `grid-column` on a `.grid` child and a `grid-column` on a block box is
+    inert. The map keeps its shape because it is a `<table>` and a table is not a layout
+    column. Scoped to the two person worlds: the studio routes print the plate, the toggle
+    and the floor away already (below) and nobody prints them as a document.
+  */
+  html[data-world='sahib'] .grid,
+  html[data-world='tanya'] .grid,
+  html[data-world='sahib'] .person-links,
+  html[data-world='tanya'] .person-links {
+    display: block;
+  }
+
+  html[data-world='sahib'] .grid > * + *,
+  html[data-world='tanya'] .grid > * + *,
+  html[data-world='sahib'] .person-links > li + li,
+  html[data-world='tanya'] .person-links > li + li {
+    margin-block-start: var(--space-16);
   }
 
   /*

@@ -388,15 +388,24 @@ function productFor(place: (typeof places)[number], key: string): string | undef
       line-height: var(--step-small-lh);
     }
 
-    /* The field: §F.4's panel, separated from the ground by an inset edge and space
-       rather than by fill contrast. It is the only large area of non-ground fill on the
-       page, which is what makes it read as a field in both schemes. */
+    /*
+      §F.4b round 12, review item S2. The field used to be `--s-panel` on every cell,
+      filled or not, which made the two states a **1.13 : 1** step in light — §F.1's
+      staircase at the edge of perception, and a diagram whose legibility depended on the
+      visitor's scheme. The fill now belongs to the FILLED cells alone and it is
+      `--s-fill`: 2.97 : 1 against the ground in light, 2.91 : 1 in dark, matched on ratio
+      rather than on hex distance. Empty cells are nothing, which is §F.1's own word for
+      that state, and the row labels are labels rather than a field.
+    */
     .map__place,
     .map__cell {
-      background-color: var(--tgd-surface-alt);
-      box-shadow: inset 1px 1px 0 var(--s-panel-edge);
       vertical-align: top;
       padding: var(--space-16) var(--space-12);
+    }
+
+    .map__cell[data-filled] {
+      background-color: var(--s-fill);
+      box-shadow: inset 1px 1px 0 var(--s-panel-edge);
     }
 
     .map__place {
@@ -471,10 +480,56 @@ function productFor(place: (typeof places)[number], key: string): string | undef
      the panel fill a browser would suppress anyway. */
   @media print {
     .map__cell,
-    .map__place {
+    .map__place,
+    .map__cell[data-filled],
+    .map__table > tbody > tr {
       background-color: transparent;
       box-shadow: none;
       animation: none;
+    }
+
+    /*
+      §D.8 round 12, review item S5 — **in default print the marks must keep their state.**
+      With the browser's own background suppression on (the default, and the one nobody
+      chooses) the five-mark row strips lost their fill: empty marks vanished entirely,
+      filled marks became a thin outline and the lit mark became an amber outline at
+      1.87 : 1 on white. The state was carried by fill alone, which is exactly what §E.1
+      refuses for the stage indicator and refuses for the same reason.
+
+      So the marks take the stage indicator's discipline — **a stroke plus a size
+      difference** — and the three states survive with every fill suppressed: empty is the
+      smaller mark with a hairline stroke, filled is the larger mark with a solid stroke,
+      and the lit mark is the larger mark with a doubled stroke and an outer ring, which is
+      a shape difference and not a colour one. `print-color-adjust: exact` is the cheaper
+      fix and §D.8 refuses it in terms: it asks the visitor's printer for a permission the
+      rest of §D.8 is built not to need.
+    */
+    .map__mark {
+      inline-size: 12px;
+      block-size: 12px;
+      border: 1px solid #444;
+      background-color: transparent;
+    }
+
+    .map__mark[data-filled] {
+      inline-size: 20px;
+      block-size: 20px;
+      border: 2px solid currentColor;
+      background-color: transparent;
+    }
+
+    .map__mark[data-filled][data-lamp] {
+      border-width: 4px;
+      border-color: currentColor;
+      outline: 1.5px solid currentColor;
+      outline-offset: 2px;
+      background-color: transparent;
+    }
+
+    /* The strip is a five-column grid of 44px cells and the marks are now three sizes,
+       so they are centred on their own column rather than left-aligned in it. */
+    .map__strip {
+      justify-items: center;
     }
 
     /*
