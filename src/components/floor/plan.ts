@@ -18,19 +18,25 @@
 export const HW = 64;
 export const HH = 32;
 
-/** DESIGN.md §C.3 — the desktop scene box. */
-export const WIDE_BOX = { w: 792, h: 560 } as const;
-/** DESIGN.md §C.7 — the portrait scene box. */
+/**
+ * DESIGN.md §C.3 — the desktop scene box. 856 x 520: the 6 x 5 room projects to
+ * 704 x 352, the cabin walls lift the drawn room to 704 x 392, and §C.3 adds 76 each
+ * side horizontally (the nameplates overhang their module by up to 51, the focus ring
+ * by 8) and 64 each side vertically. The old 792 x 560 is withdrawn — it was 88 too
+ * narrow for the plates and 40 too tall for a room whose lamp hangs over its nearest
+ * cell, which is what the step-3 review measured at 1440 (item 6).
+ */
+export const WIDE_BOX = { w: 856, h: 520 } as const;
+/** DESIGN.md §C.7 — the portrait scene box. Same 520, so nothing jumps at the switch. */
 export const TALL_BOX = { w: 320, h: 520 } as const;
 
 /**
- * Where the 6 x 5 room sits inside the 792 x 560 box. §C.3 asks for 44px of horizontal
- * margin each side, which is what `tx` is. `ty` centres the drawn room (its extremes are
- * the cabins' wall tops at -48 and the floor's near corner at 352) in the box, which
- * leaves a wider vertical margin than §C.3's ~30px estimate — a margin is the one thing
- * that can only help the focus ring on an edge station, so it is left generous.
+ * Where the 6 x 5 room sits inside the 856 x 520 box, written so §C.3's own coordinates
+ * come out of it: module (c, r) — c = 1…6, r = 1…5 — centres at
+ * (396 + 64(c - r), 72 + 32(c + r)). That puts the floor's back vertex at y 104, its
+ * near vertex at y 456, its left corner at x 76 and its right at x 780.
  */
-const WIDE_ORIGIN = { tx: 44, ty: 128 } as const;
+const WIDE_ORIGIN = { tx: 76, ty: 104 } as const;
 /** x of plan column 0 / row 0, chosen so the projected diamond starts at local x = 0. */
 const WIDE_X0 = 5 * HW;
 
@@ -41,8 +47,14 @@ export function wpt(c: number, r: number): { x: number; y: number } {
 
 export const WIDE_TRANSFORM = `translate(${WIDE_ORIGIN.tx} ${WIDE_ORIGIN.ty})`;
 
-/** DESIGN.md §C.7 — the portrait plan's uniform scale. One scale keeps one room. */
-export const TALL_SCALE = 0.6;
+/**
+ * DESIGN.md §C.7 — the portrait plan's scales, one per station class, each of them the
+ * ratio §C.7 states rather than a number chosen by eye: every button carries a 20-unit
+ * nameplate band across its top and "the artwork [takes] the remaining 48 (agents),
+ * 68 (cabins) or 72 (the chair)". A symbol's scale is therefore its band height over
+ * its own bounding-box height, which is what makes the plate band actually empty.
+ */
+export const TALL_PLATE_BAND = 20;
 
 export type StationShape = 'cabin' | 'agent' | 'chair';
 
@@ -100,23 +112,27 @@ const WIDE_CELLS: WideCell[] = [
 ];
 
 /**
- * DESIGN.md §C.7's portrait grid, and its own height arithmetic:
- * 88 + 8 + 88 + 12 + 64 + 8 + 64 + 8 + 64 + 12 + 96 = 512, in a 520 box with 8 for the
- * lamp cone's spill. The three agent columns are (320 - two 8px gaps) / 3 = 101.33.
+ * DESIGN.md §C.7's portrait grid, row for row, and its own height arithmetic:
+ * 88 + 8 + 88 + 12 + 68 + 8 + 68 + 8 + 68 + 12 + 92 = 520. The three agent columns are
+ * (320 - two 8px gaps) / 3 = 101.33, and the rows are 68 rather than 64 because §C.7's
+ * plate band came *inside* the button: the plate rule bought target height rather than
+ * costing it. The ten cells are pairwise disjoint — 8 units between columns, 8 or 12
+ * between rows — which is the whole of §C.7's proof that no plate can land in another
+ * station's target.
  */
 const COL_W = (TALL_BOX.w - 16) / 3;
 const COL_X = [0, COL_W + 8, 2 * (COL_W + 8)] as const;
 const TALL_CELLS: TallCell[] = [
-  { x: 0, y: 8, w: 320, h: 88 }, // Sahib's cabin, full width
-  { x: 0, y: 104, w: 320, h: 88 }, // Tanya's cabin, full width
-  { x: COL_X[0], y: 204, w: COL_W, h: 64 },
-  { x: COL_X[1], y: 204, w: COL_W, h: 64 },
-  { x: COL_X[2], y: 204, w: COL_W, h: 64 },
-  { x: COL_X[0], y: 276, w: COL_W, h: 64 },
-  { x: COL_X[1], y: 276, w: COL_W, h: 64 },
-  { x: COL_X[2], y: 276, w: COL_W, h: 64 },
-  { x: COL_X[0], y: 348, w: COL_W, h: 64 },
-  { x: 216, y: 424, w: 104, h: 96 }, // the chair, alone at the bottom right
+  { x: 0, y: 0, w: 320, h: 88 }, // row 1 — Sahib's cabin, full width
+  { x: 0, y: 96, w: 320, h: 88 }, // row 2 — Tanya's cabin, full width
+  { x: COL_X[0], y: 196, w: COL_W, h: 68 }, // row 3 — Spec Writer
+  { x: COL_X[1], y: 196, w: COL_W, h: 68 }, //         Designer
+  { x: COL_X[2], y: 196, w: COL_W, h: 68 }, //         Programmer
+  { x: COL_X[0], y: 272, w: COL_W, h: 68 }, // row 4 — Test Engineer
+  { x: COL_X[1], y: 272, w: COL_W, h: 68 }, //         Security Auditor
+  { x: COL_X[2], y: 272, w: COL_W, h: 68 }, //         Reviewer
+  { x: COL_X[0], y: 348, w: COL_W, h: 68 }, // row 5 — Release Watcher; c2 and c3 empty
+  { x: 216, y: 428, w: 104, h: 92 }, // row 6 — the chair, alone at the near right
 ];
 
 /**
@@ -129,12 +145,28 @@ export const BOX = {
   dk: { x: -46, y: -14, w: 92, h: 58 },
   mon: { x: 0, y: -40, w: 38, h: 50 },
   ch: { x: -16, y: -32, w: 32, h: 40 },
+  occ: { x: -11, y: -47, w: 22, h: 49 },
   agent: { x: -64, y: -40, w: 128, h: 104 },
-  seat: { x: -46, y: -84, w: 92, h: 134 },
+  seat: { x: -46, y: -84, w: 92, h: 140 },
   cabin: { x: -136, y: -48, w: 272, h: 184 },
 } as const;
 
-const SHAPE_BOX = { cabin: BOX.cabin, agent: BOX.agent, chair: BOX.seat } as const;
+/**
+ * What each station class actually draws, which is not always its placement box.
+ *
+ * DESIGN.md §C.7 gives the portrait plan an artwork band per station — 48 for an agent
+ * desk, 68 for a cabin, 72 for the chair — and these are the boxes that band holds. The
+ * chair's is the one that differs from its symbol: §C.7 puts the lamp's cord and cone
+ * *above* the chair's cell, rising "through c3, over floor and not over a station", so
+ * the 84 units of cord in `#fl-seat` are deliberately outside the band and reach up into
+ * row 5's empty right cell. The cabin's drops the 16 units of empty box below its floor
+ * patch. Both are the drawing's own extents, measured off the symbols in `symbols.ts`.
+ */
+const ART_BOX = {
+  cabin: { x: -136, y: -40, w: 272, h: 168 },
+  agent: BOX.agent,
+  chair: { x: -64, y: -26, w: 128, h: 90 },
+} as const;
 
 /** DESIGN.md §C.3 and §C.7 — button footprints, per station class, per plan. */
 export const TARGETS = {
@@ -152,10 +184,14 @@ export const TARGETS = {
     agent: { w: 112, h: 56 },
     chair: { w: 128, h: 88 },
   },
+  /*
+    §C.7 — the smallest target anywhere in the portrait set is 101.3 x 68, and 68 is
+    55% above the 44 x 44 floor.
+  */
   tall: {
     cabin: { w: 320, h: 88 },
-    agent: { w: COL_W, h: 64 },
-    chair: { w: 104, h: 96 },
+    agent: { w: COL_W, h: 68 },
+    chair: { w: 104, h: 92 },
   },
 } as const;
 
@@ -184,24 +220,30 @@ export function placements(): Placement[] {
 
     const tall = TALL_CELLS[i];
     if (!tall) throw new Error(`The portrait plan has no cell for station ${i}.`);
-    const box = SHAPE_BOX[shape];
-    /* Anchor each symbol by its own bounding-box centre, so a station sits in its
-       portrait cell the same way it sits on its module. The two cabins are the one
-       exception: their artwork is taller than §C.7's 88px row, so they are hung from
-       four units above the row instead and overlap the row below, which is what an
-       isometric object nearer the camera does anyway. */
-    const anchorY = shape === 'cabin' ? box.y : box.y + box.h / 2;
-    const targetY = shape === 'cabin' ? tall.y - 4 : tall.y + tall.h / 2;
+    const box = ART_BOX[shape];
+    /*
+      DESIGN.md §C.7 — every portrait button carries its nameplate in a 20-unit band
+      across its top, and the artwork takes the remaining height: 48 for an agent desk,
+      68 for a cabin, 72 for the chair. So a station's scale is its own band height over
+      its own bounding-box height, and its artwork is anchored to the band rather than
+      to the cell. Nothing here is chosen by eye: the three scales fall out of §C.7's
+      three numbers, and the band above every one of them is genuinely empty, which is
+      what makes the plate rule's disjointness proof true of the picture and not only
+      of the rectangles.
+    */
+    const artTop = tall.y + TALL_PLATE_BAND;
+    const artH = tall.h - TALL_PLATE_BAND;
+    const scale = artH / box.h;
     const tallT = {
-      x: tall.x + tall.w / 2 - TALL_SCALE * (box.x + box.w / 2),
-      y: targetY - TALL_SCALE * anchorY,
+      x: tall.x + tall.w / 2 - scale * (box.x + box.w / 2),
+      y: artTop - scale * box.y,
     };
 
     return {
       i,
       shape,
       wideTransform: `translate(${node.x} ${node.y})`,
-      tallTransform: `translate(${num(tallT.x)} ${num(tallT.y)}) scale(${TALL_SCALE})`,
+      tallTransform: `translate(${num(tallT.x)} ${num(tallT.y)}) scale(${round(scale)})`,
       wide: { x: pct(centre.x, WIDE_BOX.w), y: pct(centre.y, WIDE_BOX.h) },
       tall: {
         x: pct(tall.x + tall.w / 2, TALL_BOX.w),
@@ -209,19 +251,20 @@ export function placements(): Placement[] {
       },
       tallPlateX: tall.x + tall.w / 2,
       /*
-        Step-3 floor review, item 7 and deviation 4 (SEND BACK for the portrait plan):
-        every plate sits inside ITS OWN station's target, on that station's near edge.
-        It used to float ten units *above* an agent's row, which on a 3-up orthogonal
-        grid is inside the row above — nine of the ten plates landed in another
-        station's button, the focus ring on Spec Writer was drawn round a box labelled
-        "Test Engineer", and `Tanya Jain` and `Designer` abutted with a 0px gap and read
-        as one two-line label saying a real person is the Designer. The occlusion
-        argument that puts an agent's plate below its desk on the wide checkerboard does
-        not apply here, and there is no reason for the portrait plan to leave its own
-        cell. Rows are 8 to 12 units apart, so a plate six units inside its own bottom
-        edge is at least 14 units clear of the next row's.
+        DESIGN.md §C.7's portrait nameplate rule, and it is the opposite of the wide
+        plan's on purpose: the plate sits at the TOP of its own button, above its own
+        station's artwork, never below it. "Below" is forced on the checkerboard by the
+        occlusion of the desk behind-left (§C.3); a 3-up orthogonal grid has nothing
+        behind-left to occlude. Each plate is centred on its button's x-axis inside the
+        button's top 20 units — box y `top + 2` to `top + 18` — so it lies wholly inside
+        its own button, and the ten buttons are pairwise disjoint. A rectangle inside one
+        member of a disjoint set is inside no other member: that is a proof, and it is
+        what the step-3 review found missing when nine of the ten plates sat in a
+        neighbour's target at 360 and 768 and `Tanya Jain` and `Designer` abutted at a
+        0px gap. The anchor below is the band's centre; the plate is set with a central
+        dominant baseline so `top + 10` is the box's middle and not a baseline.
       */
-      tallPlateY: tall.y + tall.h - (shape === 'cabin' ? 12 : 6),
+      tallPlateY: tall.y + TALL_PLATE_BAND / 2,
       wideDepth: (cell.c + cell.span) * 100 + (cell.r + cell.span) * 100 + cell.c,
     };
   });
@@ -232,10 +275,6 @@ export function wideOrder<T extends { wideDepth: number }>(list: T[]): T[] {
   return [...list].sort((a, b) => a.wideDepth - b.wideDepth);
 }
 
-/** DESIGN.md §C.3 — the 6 x 5 floor's own module lattice, for the seams. */
-export const WIDE_MODULES = Array.from({ length: 6 }, (_, c) =>
-  Array.from({ length: 5 }, (_, r) => wpt(c, r)),
-).flat();
 
 /** The projected outline of the whole 6 x 5 slab. */
 export const WIDE_SLAB = [wpt(0, 0), wpt(6, 0), wpt(6, 5), wpt(0, 5)]

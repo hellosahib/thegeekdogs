@@ -2,7 +2,6 @@ import { FLOOR_DEFS } from '../../components/floor/symbols';
 import {
   BOX,
   STILL_GLOW,
-  WIDE_MODULES,
   WIDE_SLAB,
   WIDE_TRANSFORM,
   placements,
@@ -36,10 +35,11 @@ const FILLS = {
 } as const;
 
 /**
- * The drawn room's own extent inside the 792 x 560 scene box: x from the left margin to
- * the far column's edge, y from the cabins' wall tops to the near corner of the slab.
+ * The drawn room's own extent inside DESIGN.md §C.3's 856 x 520 scene box, with four
+ * units of air on each side: the slab runs x 76 to 780, the cabins' wall tops sit at
+ * y 64 and the slab's near corner at y 456.
  */
-export const FLOOR_CROP = { x: 40, y: 70, w: 712, h: 424 } as const;
+export const FLOOR_CROP = { x: 72, y: 60, w: 712, h: 400 } as const;
 
 export function floorSceneSvg(): string {
   const scene = wideOrder(placements());
@@ -52,7 +52,7 @@ export function floorSceneSvg(): string {
           ? `<use href="#fl-cabin-${p.i === 0 ? 's' : 't'}" x="${BOX.cabin.x}" y="${BOX.cabin.y}" width="${BOX.cabin.w}" height="${BOX.cabin.h}"/>`
           : p.shape === 'agent'
             ? `<use href="#fl-agent" x="${BOX.agent.x}" y="${BOX.agent.y}" width="${BOX.agent.w}" height="${BOX.agent.h}"/>`
-            : `<use href="#fl-seat" x="${BOX.seat.x}" y="${BOX.seat.y}" width="${BOX.seat.w}" height="${BOX.seat.h}"/><path class="fl-cone" d="M-9-56 9-56 44 10-44 10Z"/>`;
+            : `<path class="fl-cone" d="M0 0 64 32 0 64-64 32Z"/><use href="#fl-seat" x="${BOX.seat.x}" y="${BOX.seat.y}" width="${BOX.seat.w}" height="${BOX.seat.h}"/><path class="fl-cone" d="M0-26 44-4 0 18-44-4Z"/><path class="fl-cone" d="M-9-56 9-56 44-4-44-4Z"/>`;
       /* §C.9's still frame: nine stations, nine different static opacities. The chair
          has no monitor and therefore no glow, which is the point of it. */
       const glow =
@@ -63,10 +63,6 @@ export function floorSceneSvg(): string {
     })
     .join('');
 
-  const modules = WIDE_MODULES.map(
-    (m) => `<use href="#fl-mod" x="${m.x - 64}" y="${m.y}" width="128" height="64"/>`,
-  ).join('');
-
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${FLOOR_CROP.x} ${FLOOR_CROP.y} ${FLOOR_CROP.w} ${FLOOR_CROP.h}" width="${FLOOR_CROP.w}" height="${FLOOR_CROP.h}">
 <style>
   .fl-slab{fill:${FILLS.ground}}
@@ -76,6 +72,7 @@ export function floorSceneSvg(): string {
   .fl-glow{fill:${FILLS.glow}}
   .fl-wall{fill:${FILLS.shadow};stroke:${FILLS.lit};stroke-width:1}
   .fl-seam{fill:none;stroke:${FILLS.lit};stroke-width:1}
+  .fl-edge{stroke:${FILLS.lit};stroke-width:1}
   .fl-mark{fill:none;stroke:${FILLS.glow};stroke-width:1.5;opacity:.55}
   .fl-mark-fill{fill:${FILLS.glow};opacity:.4}
   .fl-cone{fill:url(#fl-cone)}
@@ -84,6 +81,6 @@ export function floorSceneSvg(): string {
 </style>
 ${FLOOR_DEFS}
 <rect x="${FLOOR_CROP.x}" y="${FLOOR_CROP.y}" width="${FLOOR_CROP.w}" height="${FLOOR_CROP.h}" fill="${FILLS.ground}"/>
-<g transform="${WIDE_TRANSFORM}"><polygon class="fl-slab" points="${WIDE_SLAB}"/>${modules}${stations}</g>
+<g transform="${WIDE_TRANSFORM}"><polygon class="fl-slab fl-edge" points="${WIDE_SLAB}"/>${stations}</g>
 </svg>`;
 }
