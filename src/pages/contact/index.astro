@@ -5,11 +5,26 @@ import { CONTACT } from '../../lib/copy';
 import { studioGraph } from '../../lib/jsonld';
 
 /*
-  COPY.md §8 and DESIGN.md §B.11. Three addressed blocks as a 3-up at >=1024, stacked at
-  360, and no form: QUESTIONS.md items 11 and 69 both answered email only, so there is
-  no field, no endpoint, no success state and no validation design on this page. All
-  three addresses print in full (item 53) as `mailto:` links over the visible address,
-  never a label over a hidden one.
+  COPY.md §8 and DESIGN.md §B.11. Three addressed blocks as a 3-up **inside cols 1-9** at
+  >=1024, stacked below, and no form: QUESTIONS.md items 11 and 69 both answered email
+  only, so there is no field, no endpoint, no success state and no validation design on
+  this page. All three addresses print in full (item 53) as `mailto:` links over the
+  visible address, never a label over a hidden one.
+
+  Run A blocker 2, and §B.11 as amended in round 9. At full content width the third
+  column ran x 682.7-976 at 1024 against a plate band beginning at 748, and the plate
+  struck through `jaintanya999@gmail.com` on first paint in a 900-tall viewport. A
+  printed address is the first mark §B.10's amended rule names, and this page is nothing
+  but three of them, so the fix is the column allocation and not the breakpoint: going
+  3-up only at >=1200 does not help, because at full width the third column would end at
+  1140 against a band at 924 and fail again. Cols 1-9 is 9 x 55.3 + 8 x 24 = 690 at 1024,
+  so the row ends at x 738 against a band at 748, and 894 at 1440, ending at x 954
+  against 1164. 1024 is the tightest width and every width above it is looser, because
+  the band moves 1px per viewport px and the row's right edge moves ~0.75. Each block is
+  (690 - 48) / 3 = 214px at 1024 and 282px at 1440; the longest address needs ~169px
+  (§B.10), so all three set on one line at both.
+
+  Cols 10-12 are this page's one §B.9 void and the plate rests in them.
 
   There is no orchestrated moment here. A contact page's job is to be answered.
 */
@@ -26,15 +41,15 @@ const schema = await studioGraph();
 >
   <div class="plate-span plate-span--page">
     <section class="section">
-      <div class="shell stack">
-        <h1>{CONTACT.headline}</h1>
-        <p class="muted">{CONTACT.body}</p>
+      <div class="shell grid intro">
+        <h1 class="intro__headline">{CONTACT.headline}</h1>
+        <p class="intro__body muted">{CONTACT.body}</p>
       </div>
     </section>
 
     <section class="section section--reserve routes-section">
-      <div class="shell">
-        <h2>{CONTACT.routesHeading}</h2>
+      <div class="shell grid routes-grid">
+        <h2 class="routes__heading">{CONTACT.routesHeading}</h2>
         <ul class="routes">
           {
             CONTACT.routes.map((route) => (
@@ -72,6 +87,16 @@ const schema = await studioGraph();
     gap: var(--space-40);
   }
 
+  .intro {
+    row-gap: var(--space-24);
+  }
+
+  /* The three blocks and the engagement line carry their own vertical rhythm, so the
+     grid contributes no extra row gap on top of it. */
+  .routes-grid {
+    row-gap: 0;
+  }
+
   .routes__label {
     font-size: var(--step-title);
     line-height: var(--step-title-lh);
@@ -96,8 +121,27 @@ const schema = await studioGraph();
     margin-block-start: var(--space-48);
   }
 
-  /* §B.11 — a 3-up at >=1024, stacked below it. */
+  /*
+    §B.11 as amended in round 9 — the three routes are a 3-up INSIDE cols 1-9 at >=1024,
+    stacked below it, and cols 10-12 are the page's one void. Run A item 5: the header's
+    headline and body are the same grid's two columns rather than one 530px measure in a
+    1200px page.
+  */
   @media (min-width: 1024px) {
+    .intro__headline {
+      grid-column: 1 / span 5;
+    }
+
+    .intro__body {
+      grid-column: 7 / span 6;
+    }
+
+    .routes__heading,
+    .routes,
+    .routes__engagement {
+      grid-column: 1 / span 9;
+    }
+
     .routes {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       column-gap: var(--gutter);
