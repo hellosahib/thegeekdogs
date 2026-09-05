@@ -1,0 +1,241 @@
+---
+import { roster, FLOOR_INTRO, CHECKED_BY_LABEL } from '../../lib/floor';
+
+/**
+ * The studio floor, build step 2: the semantic roster, with no scene yet.
+ *
+ * PLAN.md §4.1 — the interactive layer is a set of real HTML <button> elements. In this
+ * step they ship as a plain, well-set list; in step 3 the decorative SVG arrives
+ * underneath and the *same* buttons are repositioned onto desk coordinates by CSS
+ * alone. Nothing in this DOM changes to allow that: one list, one order, two visual
+ * arrangements.
+ *
+ * DESIGN.md §C.8 — ten stops in DOM order at every breakpoint: Sahib, Tanya, the seven
+ * agents in COPY.md §2.4's pipeline order, the chair last. The order is the argument.
+ *
+ * DESIGN.md §C.6 — one fixed card slot, never a popover and never a sheet. Hover, focus
+ * and tap all write to it, identically, in the same place. Its default content is the
+ * empty chair's card, so a visitor who touches nothing still receives the argument. The
+ * slot reserves its height (320 below 768, 344 at and above it) so a swap never
+ * reflows, and every non-visible card carries the native `hidden` attribute so a screen
+ * reader meets exactly one card rather than ten.
+ */
+const stations = await roster();
+/* DESIGN.md §C.6 — the default card is the empty chair's, which is the last stop. */
+const defaultStation = stations.at(-1);
+if (!defaultStation) throw new Error('The floor roster is empty; the card slot has no default.');
+const defaultId = defaultStation.id;
+---
+
+<section id="studio-floor" class="section bleed room floor" tabindex="-1" data-floor>
+  <div class="shell">
+    <h2 class="floor__lead">{FLOOR_INTRO.leadIn}</h2>
+    <p class="floor__instruction">{FLOOR_INTRO.instruction}</p>
+
+    <div class="floor__body">
+      <ul class="roster">
+        {
+          stations.map((station) => (
+            <li class="roster__item">
+              <button
+                type="button"
+                class="station"
+                data-station={station.id}
+                data-kind={station.kind}
+                data-selected={station.id === defaultId ? 'true' : undefined}
+                aria-label={station.accessibleName}
+              >
+                <span class="station__label">{station.label}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="floor__slot" aria-live="polite" data-floor-slot>
+        {
+          stations.map((station) => (
+            <article
+              class="station-card"
+              data-card={station.id}
+              hidden={station.id === defaultId ? undefined : true}
+            >
+              <h3 class="station-card__name">{station.label}</h3>
+              {station.lead && <p class="station-card__lead">{station.lead}</p>}
+              <p class="station-card__body">{station.body}</p>
+              {
+                station.checkedBy && (
+                  <div class="station-card__gate">
+                    <p class="station-card__gate-label">{CHECKED_BY_LABEL}</p>
+                    <p class="station-card__gate-name">{station.checkedBy}</p>
+                  </div>
+                )
+              }
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /*
+    PLAN.md §4.2, §4.3 — one "open card" path, reached by pointer, by focus and by tap.
+    The visibility mechanism is the native `hidden` attribute, so the nine cards that
+    are not showing leave the accessibility tree entirely; `data-selected` is a styling
+    hook only and carries no visibility meaning, so the two never fight.
+
+    DESIGN.md §C.9 — the slot swaps instantly. No fade, no slide, nothing to animate.
+  */
+  const floor = document.querySelector<HTMLElement>('[data-floor]');
+  const slot = floor?.querySelector<HTMLElement>('[data-floor-slot]');
+
+  if (floor && slot) {
+    const cards = new Map<string, HTMLElement>();
+    for (const card of slot.querySelectorAll<HTMLElement>('[data-card]')) {
+      cards.set(card.dataset.card ?? '', card);
+    }
+    const buttons = Array.from(floor.querySelectorAll<HTMLElement>('[data-station]'));
+
+    let open = '';
+    for (const [id, card] of cards) {
+      if (!card.hidden) open = id;
+    }
+
+    const show = (id: string): void => {
+      if (id === open || !cards.has(id)) return;
+      cards.get(open)?.setAttribute('hidden', '');
+      cards.get(id)?.removeAttribute('hidden');
+      for (const button of buttons) {
+        if (button.dataset.station === id) button.dataset.selected = 'true';
+        else delete button.dataset.selected;
+      }
+      open = id;
+    };
+
+    const from = (target: EventTarget | null): string | undefined =>
+      (target as Element | null)?.closest<HTMLElement>('[data-station]')?.dataset.station;
+
+    for (const type of ['click', 'pointerover', 'focusin'] as const) {
+      floor.addEventListener(type, (event: Event) => {
+        const id = from(event.target);
+        if (id) show(id);
+      });
+    }
+  }
+</script>
+
+<style>
+  /* PLAN.md §4.5 — the section reserves its height so the headline above it paints
+     first and nothing shifts when the section is laid out. */
+  .floor {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1180px;
+  }
+
+  .floor__lead {
+    max-inline-size: 20ch;
+  }
+
+  .floor__instruction {
+    margin-block-start: var(--space-16);
+    color: var(--tgd-on-room-muted);
+  }
+
+  .floor__body {
+    margin-block-start: var(--space-32);
+    display: grid;
+    gap: var(--space-24);
+  }
+
+  .roster {
+    list-style: none;
+    display: grid;
+    gap: 0;
+    border-block-start: 1px solid var(--rule-on-room);
+  }
+
+  .station {
+    display: flex;
+    align-items: center;
+    inline-size: 100%;
+    min-block-size: 56px;
+    padding: var(--space-12) var(--space-16);
+    border: 0;
+    border-block-end: 1px solid var(--rule-on-room);
+    background: none;
+    color: var(--tgd-on-room);
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    text-align: start;
+    cursor: pointer;
+  }
+
+  /* DESIGN.md §C.8 — the selected station keeps a persistent state, so the panel and
+     the room stay connected. Focus is never the only indicator. */
+  .station[data-selected='true'] {
+    background-color: rgba(232, 237, 233, 0.12);
+  }
+
+  /*
+    DESIGN.md §C.6 — the fixed slot. The reservation is not a guess: 344 is derived in
+    §C.6 from the longest card (Tanya's) at the >=1024 sizes in a 366px slot, and 320
+    from the same arithmetic at 360's sizes. If a copy edit ever overflows it, the fix
+    is the copy or the padding, never a shorter reservation.
+  */
+  .floor__slot {
+    min-block-size: var(--card-slot-min);
+    padding: var(--space-24);
+    border: 1px solid var(--rule-on-room);
+  }
+
+  .station-card__lead,
+  .station-card__body {
+    margin-block-start: var(--space-8);
+    color: var(--tgd-on-room-muted);
+  }
+
+  .station-card__gate {
+    margin-block-start: var(--space-16);
+    padding-block-start: var(--space-16);
+    border-block-start: 1px solid var(--rule-on-room);
+  }
+
+  .station-card__gate-label {
+    font-size: var(--step-micro);
+    line-height: var(--step-micro-lh);
+    color: var(--tgd-on-room-muted);
+  }
+
+  .station-card__gate-name {
+    margin-block-start: var(--space-4);
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .floor__slot {
+      min-block-size: 344px;
+    }
+
+    .roster {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--gutter);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .floor__body {
+      grid-template-columns: minmax(0, 1fr) var(--card-slot-width);
+      gap: var(--gutter);
+      align-items: center;
+    }
+
+    .roster {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

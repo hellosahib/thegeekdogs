@@ -28,7 +28,16 @@ const result = await checker.check({
   // Fetching it from a pre-deploy checker tests the currently-live site, not the
   // one being checked, so it is skipped here and covered by the deploy instead.
   // Nothing else is skipped; no external 404 is silenced.
-  linksToSkip: ['^https://thegeekdogs\\.com/'],
+  linksToSkip: [
+    '^https://thegeekdogs\\.com/',
+    // LinkedIn answers an automated request with a signup wall or a 429 and never with
+    // the profile — FACTS.md rows 37 and 38 record both profile URLs as UNVERIFIABLE
+    // for exactly this reason, and row 42a saw the same behaviour on a post URL. A 429
+    // from a host that blocks every bot is not evidence of a broken link, so checking
+    // it here would only ever produce a false failure. The two URLs are the owners'
+    // own, given against QUESTIONS.md items 17 and 18. Nothing else is skipped.
+    '^https://www\\.linkedin\\.com/',
+  ],
 });
 
 for (const link of result.links) {

@@ -27,6 +27,10 @@ by reading order, so it maps to content collections without interpretation.
 - The second product is never named. Its working title, which ADR-0046 downgraded to an internal label only,
   appears in no headline, slug, title, alt text, OG field or structured data, and it is not written
   in this document either.
+- Item 59 gave three adjectives per person. They are register, not vocabulary: `/sahib/` should
+  leave a stranger with drive and delivery, `/tanya/` with forethought and attention to the person
+  using the thing. None of the six words is printed anywhere on this site and none is to be added;
+  the pages earn the impression from what they report, not from claiming it.
 
 ---
 
@@ -199,9 +203,12 @@ release gate onto ship approval, so no seventh label is invented for either.
 | Reviewer | `Reads every diff for what a tired human misses at 1am.` | `Code review` |
 | Release Watcher | `Watches crashes and performance in production and files the ticket before your users do.` | `Ship approval` |
 
-`[CONFIRM: who reviews design. Item 19 names an owner for every other gate on this floor and none for this one, so the Designer card currently borrows architecture review under item 42's mapping. If a person owns design review by name, this cell and §10.2's spoken button name both change.]`
+`[CONFIRM: who reviews design. Item 19 named an owner for every other gate on this floor and none for this one, so the Designer card borrows architecture review under item 42's mapping. QUESTIONS.md item 70 is open and recommends Tanya. If a person owns design review by name, this cell and §10.2's spoken button name both change.]`
 
-`[CONFIRM: who cuts the release, and therefore whose name sits behind ship approval on the Release Watcher card and the empty chair. QUESTIONS.md item 56 is open.]`
+Ship approval has an owner now. Item 56 answered it: Sahib and Tanya cut every release together.
+The Release Watcher's `Checked by` cell stays the gate name and nothing else, because §10.2 speaks
+that same string in the desk button's accessible name and six strings serve the whole floor. The
+two names print in §2.6's ship-approval line instead, where every other gate names its owner.
 
 The two long cards are long on purpose. §7 is explicit that a reader who notices Security Auditor
 and the human security review overlapping will assume the page is padding, and the same for Test
@@ -230,7 +237,13 @@ numbers.
 3. **`QA on real devices.`** `Tanya runs the build on physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit.`
 4. **`Security and privacy review.`** `Tanya reads what the app collects, where it goes, what's stored and what's exposed, against what we told your users we'd do.`
 
+- **Ship-approval line, under the four:** `The release itself is a fifth thing no agent touches. Sahib and Tanya cut every release together, both names on it, every time.`
 - **Closing line:** `That's the difference between generated software and shipped software.`
+
+Item 56 settled ship approval: both of them, jointly, on every release. It sits under the numbered
+four rather than inside them, because the four are the gates §2.4's cards map to and item 42 put
+the release gate on the empty chair instead. The empty chair's own card in §2.5 stays exactly as
+written and names nobody; a chair with two names on it is a chair with someone in it.
 
 ### 2.7 Proof
 
@@ -254,12 +267,13 @@ against a live Data Safety declaration is the same listing-policy risk as a hard
 
 **Paragraph 2.**
 
-`A second app sits behind it in final touches. There's no date on it. The list of what's left is short, and a person decides when it ends.`
+`A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
 
-**Variant if item 68 is yes:** `A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
-
-The pipeline audit in `FACTS.md` §(d) read the Pocket Manager repository only. Until item 68 comes
-back yes, the second app's pipeline is unaudited and the shipping paragraph does not claim it.
+Item 68 came back yes: the second app is built and maintained through the same pipeline and the
+same review gates, so the pipeline clause is the shipping text. The `FACTS.md` §(d) audit still
+read the Pocket Manager repository only, and the claim now rests on the owners' answer rather than
+on that audit. If the second repository is ever audited and reads differently, this clause comes
+out of here, §3.1 and §3.4 together.
 
 Item 12 was answered no: the site does not say publicly that a feature was cut from the second
 app's own store listing. The paragraph above carries the "in build" frame without it, on the one
@@ -349,15 +363,13 @@ anywhere, per item 7.
 ### 3.1 Intro
 
 - **Headline:** `Two products, both ours.`
-- **Short intro:** `The two apps this studio builds and maintains. One is in the Play Store, one is in final touches.`
-- **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains. One is in the Play Store. One is in final touches.`
-
-**Variant if item 68 is yes:**
-
 - **Short intro:** `The two apps this studio builds and maintains, with the same review gates a client would get.`
 - **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains with the same pipeline and the same review gates a client would get. One is in the Play Store. One is in final touches.`
 
-The short intro is 18 words, against DESIGN.md §B.11's 20. It is the one that prints if only one
+Item 68 confirmed both products run through the same pipeline and the same gates, so the clause
+prints here rather than waiting behind a variant.
+
+The short intro is 17 words, against DESIGN.md §B.11's 20. It is the one that prints if only one
 can. The long body is the Design Lead's to place or cut; the headline already carries the "both
 ours" fact, so cutting the long body costs the page nothing it cannot survive.
 
@@ -389,14 +401,11 @@ nothing is invented here.
 ### 3.4 Meta
 
 - **Meta title:** `Work | TheGeekDogs`
-- **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches, with no date on it and a person deciding when it ends.`
-- **OG title:** `Two products, both ours.`
-- **OG description:** `One shipped and still updated. One in final touches. No date on the second, and a person decides when it ends.`
-
-**Variant if item 68 is yes:**
-
 - **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches. Both built and maintained by the pipeline this studio sells.`
+- **OG title:** `Two products, both ours.`
 - **OG description:** `One shipped and still updated. One in final touches. Built with the same review gates a client would get.`
+
+Both descriptions are the item 68 wording, promoted out of variant on the owners' yes.
 
 ---
 
@@ -570,7 +579,8 @@ work anyway: a person ends it.
 ### 5.5 Screenshots
 
 The email-capture section that stood here is cut: item 11 was answered no, so this page collects
-no address, ships no field, and posts to no endpoint.
+no address, ships no field, and posts to no endpoint. Item 69 closed the same question for the
+whole site, email only and no form anywhere, so nothing reopens this one either.
 
 What ships instead is images. Item 10 cleared the five real-device screenshots and the store icon
 from `assets/brand/store/`. The feature graphic is excluded, because it carries the placeholder
@@ -597,7 +607,7 @@ product's internal working title.
 
 ## 6. `/sahib/`
 
-`[CONFIRM: every title, date boundary and stack attribution on this page, against Sahib's own resume, once it is supplied. QUESTIONS.md item 61 is open. Tanya's page was cross-checked against a document; this one rests on the brief's paraphrase and one-line owner answers, which is a weaker source for the same kind of claim.]`
+`[CONFIRM: every title, date boundary and stack attribution on this page, against docs/sahib-singh-resume.pdf. QUESTIONS.md item 61 supplied that resume and said no newer one exists, so the cross-check is now possible and is the Fact Checker's to run. Tanya's page was corrected in three places the same way; this one has not been read against its document yet, and any correction it produces is applied here before publishing.]`
 
 ### 6.1 Intro
 
@@ -678,7 +688,7 @@ second half of his native iOS work here.
 
 - **Heading:** `He writes it down`
 - **Body:** `Sahib writes Android posts regularly and they land: channelFlow versus callbackFlow, Android 16 dropping orientation locks and the duplicate-fragment bug it caused, ViewModel versus onSaveInstanceState versus SavedStateHandle. By his account, the Android 16 post drew 283 reactions and 13 reposts on LinkedIn. Before any of that he founded PyHour at Chitkara, a student initiative running free Python classes for juniors.`
-- `[CONFIRM: which supplied URL belongs to which post title. Item 38 gave four LinkedIn URLs for the three posts named above and did not map them; QUESTIONS.md item 62 asks which is which and what the fourth one is. Three titles print with three links or none of them link.]`
+- `[CONFIRM: which supplied URL belongs to which post title. Item 38 gave four LinkedIn URLs for the three posts named above and did not map them. QUESTIONS.md item 62 says the Orchestrator opened all four in Chrome and wrote the notes to docs/scratch/references.md; the mapping is read out of those notes and applied here. Three titles print with three links or none of them link.]`
 - `[CONFIRM: "283 reactions and 13 reposts", permanently. LinkedIn blocks every fetch, so this figure is the owners' own count and cannot be checked from any URL they supply. FACTS.md (e)3 records it as a standing limitation, not a pending question. It prints as their figure or it comes out.]`
 - **Closing line:** `Someone who can explain a thing clearly to strangers is usually the person who can explain it to a reviewer.`
 
@@ -782,7 +792,13 @@ answer wins over the document.
 - **Years:** `Nov 2020 – Aug 2021`
 - **Role:** `Android Intern`
 - **Products and stack:** `Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring.`
-- **Project line:** `[CONFIRM: how to describe the Naskay project. Item 28 cleared naming it and her resume names it, but it is a real US personality's trademarked fitness brand rather than Naskay's own product. QUESTIONS.md item 63 asks the owners to choose: name the brand, or print "a fitness app for a US client". The card carries no project line until they pick one.]`
+- **Project line:** `The Jillian Michaels fitness app, built at Naskay for a US client.`
+
+Item 63 chose the name over the generic description, and items 28 and 47 cleared it: the resume
+names the project and the owners confirmed it can be printed. It prints as the resume gives it,
+descriptively and in sentence case, with no trademark symbol and no ownership claim. The card says
+where she worked and what she worked on; it does not say the brand is a client of this studio, and
+the footer's employer note in §1 covers the rest.
 
 ### 7.3 How the work gets made
 
@@ -897,8 +913,9 @@ repeated here. No starting price prints anywhere, per item 7.
 
 There is no contact form on this site, and none on the wedding planner page either. No form ships:
 email is the intake, nothing posts to an endpoint, and a page about not shipping things that
-aren't wired up does not ship a field that goes nowhere. `QUESTIONS.md` item 69 asks the owners
-directly, and a form is added only if they say yes. The form heading, its four
+aren't wired up does not ship a field that goes nowhere. `QUESTIONS.md` item 69 asked the owners
+directly and they answered email only, no form, so this is a settled decision rather than a
+pending one and no later round reopens it. The form heading, its four
 fields, its two hints, the submit label, the sending, success and failure states and both
 validation errors are cut, and the response-time clause they carried now sits in §8.2's engagement
 line, where item 43 put a number behind it.
@@ -1061,24 +1078,23 @@ the scene is actually on screen and the lines do the work they were written for.
 
 ## Appendix B. Every `[CONFIRM]` and `[FILL]`, numbered for QUESTIONS.md
 
-Rebuilt from scratch in round 4. The owners answered every item from 1 to 55, the Fact Checker
-audited the Pocket Manager codebase, and Tanya's resume arrived, so the previous list of twenty
-CONFIRM and thirteen FILL questions no longer described this document. Numbering restarts. A marker
-survives round 4 only if it is an open item in QUESTIONS.md section J, or a fact that no round can
-ever verify and only the owners can supply.
+Rebuilt again in round 7, on the same rule round 4 set: a marker survives only if it names an open
+item in QUESTIONS.md, or a fact that no round can ever verify and only the owners can supply.
+Numbering follows the surviving markers in document order, so the old C-numbers do not carry across
+rounds. The owners' answers to items 56 to 69 closed three of round 4's eight: ship approval has an
+owner, the second product's pipeline is confirmed, and Tanya's Naskay project has a name. Item 70
+opened one in their place, on the same gate round 4 had filed under item 19's gap.
 
 ### CONFIRM. Fact Checker owns these. An unverifiable claim gets cut, not softened.
 
 | # | Where | What needs confirming | Traces to |
 |---|---|---|---|
-| C1 | §2.4 | Who reviews design. Item 19 named an owner for every other gate on the floor and none for this one, so the Designer card borrows architecture review under item 42's accepted mapping. If a person owns design review by name, this cell and the spoken button name in §10.2 both change. | Item 19's gap |
-| C2 | §2.4 | Who cuts the release, and therefore whose name sits behind ship approval on the Release Watcher card and on the empty chair in §2.5. | Item 56, open |
-| C3 | §4.7 | Every Pocket Manager screenshot alt line, against the new screenshots once they are captured. Item 16 replaced the store screenshots with fresh ones from the latest build; item 60 has not said who captures them or at what device size. | Item 60, open |
-| C4 | §6 | Every title, date boundary and stack attribution on Sahib's page, against his own resume. Tanya's page was corrected in three places by cross-checking hers; his has had no equivalent document. | Item 61, open |
-| C5 | §6.3 | Which of the four supplied LinkedIn URLs belongs to which of the three named posts, and what the fourth one is. | Item 62, open |
-| C6 | §6.3 | The "283 reactions and 13 reposts" figure. Permanent, not pending: LinkedIn blocks every fetch, so no URL the owners supply can be opened to count it. It prints as their own figure or it comes out. | FACTS.md (e)3 |
-| C7 | §7.2 | How to describe Tanya's Naskay project. Item 28 cleared naming it and her resume names it, but the name is a real US personality's trademarked fitness brand rather than Naskay's own product. Name the brand, or print "a fitness app for a US client". | Item 63, open |
-| C8 | §10.1 | Both headshot alt lines, once the owners supply the portraits item 23 chose. Only they can produce the images, each approves their own, and the alt has to describe what actually ships. | Item 23, images pending |
+| C1 | §2.4 | Who reviews design. Item 19 named an owner for every other gate on the floor and none for this one, so the Designer card borrows architecture review under item 42's accepted mapping. If a person owns design review by name, this cell and the spoken button name in §10.2 both change. | Item 70, open. Recommendation on the item is Tanya |
+| C2 | §4.7 | Every Pocket Manager screenshot alt line, against the new screenshots. Item 16 replaced the store screenshots with fresh ones from the latest build, and item 60 put the capture on an agent running that build on an emulator or simulator. The images do not exist yet, and no alt line is settled until they do. | Item 60, capture pending |
+| C3 | §6 | Every title, date boundary and stack attribution on Sahib's page, against `docs/sahib-singh-resume.pdf`. Item 61 supplied the resume and said no newer one exists, so the cross-check is possible and unrun. Any correction it produces is applied before publishing, the way Tanya's three were. | Item 61, cross-check pending the Fact Checker |
+| C4 | §6.3 | Which of the four supplied LinkedIn URLs belongs to which of the three named posts, and what the fourth one is. Item 62 says the Orchestrator opened all four in Chrome and wrote the notes to `docs/scratch/references.md`; the mapping is read out of those notes into this section. | Item 62, pending the Orchestrator's Chrome notes |
+| C5 | §6.3 | The "283 reactions and 13 reposts" figure. Permanent, not pending: LinkedIn blocks every fetch, so no URL the owners supply can be opened to count it. It prints as their own figure, attributed, or it comes out. | FACTS.md (e)3, permanent |
+| C6 | §10.1 | Both headshot alt lines, once the owners supply the portraits item 23 chose. Only they can produce the images, each approves their own, and the alt has to describe what actually ships. | Item 23, images pending |
 
 ### FILL. Only the owners can answer these.
 
@@ -1088,25 +1104,25 @@ For the record, and so a later round does not reopen a closed decision as though
 F1 is answered by items 3 and the resume (Bengaluru and New Delhi, IST); F2 by items 17 and 18 (no
 personal data beyond GitHub and LinkedIn); F3 by items 4 to 8; F4, F5 and F6 by item 9, which chose
 the full name-agnostic page, so a missing product name and a missing store link are the shipping
-state of that page rather than a hole in it; F7 and F13 by the shipping decision itself, no form
-anywhere, email as the intake, with `QUESTIONS.md` item 69 asking the owners directly and a form
-added only if they say yes; F8 by
+state of that page rather than a hole in it; F7 and F13 by item 69, which answered email only and
+no form, on this site and on the wedding planner page alike; F8 by
 item 44 and the codebase audit in `FACTS.md` section (d); F9 by item 16, with only the capture
-logistics left open as C3; F10, F11 and F12 by items 1, 2, 3 and 53.
+logistics left open as C2; F10, F11 and F12 by items 1, 2, 3 and 53.
 
-**Totals: 8 distinct `[CONFIRM]` questions and 0 `[FILL]`. 8 open items, down from 33.**
+**Totals: 6 distinct `[CONFIRM]` questions and 0 `[FILL]`. 6 open items, down from 8 and from 33.**
 
-A grep of this document finds 8 `[CONFIRM:` and 0 `[FILL:` markers, once the two legend lines in
-"How to read this document", the four quoted strings in this appendix's own heading and totals
-line, and the two in the count paragraph below are excluded. There are no cross-references left:
-every marker appears exactly once, in one section, so the marker count and the question count are
-the same number for the first time.
+A grep of this document finds 6 `[CONFIRM:` and 0 `[FILL:` markers, once the two legend lines in
+"How to read this document" and the quoted strings in this appendix's own heading, totals line and
+count paragraph are excluded. There are no cross-references: every marker appears exactly once, in
+one section, so the marker count and the question count are the same number.
 
-Round 4 removed nineteen markers and wrote three new ones. C1, C2, C3, C4, C5 and C7 are new or
-renumbered against open items; C6 and C8 are the two that no amount of checking will close, and
-they are marked so nobody spends another round trying. Six markers were not resolved but retired,
-because the question behind them stopped being a question: gate ownership, the privacy declaration,
-the cut-feature sentence, the smallcase surface, the Motive app and the HSBC product.
+Round 7 resolved three markers and rewrote three more without resolving them. Ship approval went to
+Sahib and Tanya jointly under item 56 and prints in §2.6; the second product's pipeline claim went
+to the shipping text on §2.7, §3.1 and §3.4 under item 68; Tanya's Naskay project took its name
+under item 63. C2, C3 and C4 kept their questions and gained the answers' logistics, so the next
+round knows who is holding each one: an agent for the screenshots, the Fact Checker for the resume,
+the Orchestrator's notes for the post mapping. C1 moved from item 19's gap to item 70, which is the
+same question asked of the owners directly.
 
-None of them may reach production unresolved. C2 is the one that changes a card rather than a
+None of them may reach production unresolved. C1 is the one that changes a card rather than a
 sentence, and it should go to the human gate first.

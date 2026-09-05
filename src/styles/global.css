@@ -247,6 +247,13 @@
     align-items: start;
   }
 
+  /* Default: a block spans the whole grid. Column placement is opted into, per
+     breakpoint, by the section that wants it — nothing lands in a one-column slot
+     by accident. */
+  .grid > * {
+    grid-column: 1 / -1;
+  }
+
   .stack > * + * {
     margin-block-start: var(--space-24);
   }

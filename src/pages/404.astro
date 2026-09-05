@@ -1,11 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactPlate from '../components/ContactPlate.astro';
 import { BACK_TO_STUDIO } from '../lib/copy';
 
 /*
-  COPY.md §9. Four words and one link. DESIGN.md §B.11's empty room is the
-  floor's slab and lamp, and the floor is not built in this step, so the page
-  ships with the copy and nothing standing in for the artwork.
+  COPY.md §9. Four words and one link. DESIGN.md §B.11's empty room is the floor's slab
+  and lamp, and the floor scene is not built until step 3, so the page ships with the
+  copy and nothing standing in for the artwork.
+
+  Step-1 review item 13: §B.10's address table lists /404 among the pages that print
+  thegeekdogs@gmail.com on the plate, and no plate rendered there at any width. It does
+  now, in the same sticky wrapper the home page uses — the wrapper is the page's whole
+  content, because /404 has neither a hero to leave nor a final CTA to retire into.
+
+  Step-1 review item 15: the page is shorter than the viewport, so the section grows to
+  fill it and the footer band sits on the viewport's bottom edge. No bare sheet shows
+  below the band at any width.
 */
 ---
 
@@ -14,14 +24,31 @@ import { BACK_TO_STUDIO } from '../lib/copy';
   description="That page isn't here. One link back to the studio, and nothing else on it."
   noindex
 >
-  <section class="section">
-    <div class="shell stack">
-      <h1>This page isn't here.</h1>
-      <p>
-        <a class="link" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>
-          {BACK_TO_STUDIO.label}
-        </a>
-      </p>
-    </div>
-  </section>
+  <div class="plate-span room-404">
+    <section class="section">
+      <div class="shell stack">
+        <h1>This page isn't here.</h1>
+        <p>
+          <a class="link" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>
+            {BACK_TO_STUDIO.label}
+          </a>
+        </p>
+      </div>
+    </section>
+    <ContactPlate />
+  </div>
 </BaseLayout>
+
+<style>
+  /* The wrapper has to be at least as tall as the space main gives it, or a sticky
+     plate inside a short page has nothing to stick within. */
+  .room-404 {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100%;
+  }
+
+  .room-404 > .section {
+    flex: 1 0 auto;
+  }
+</style>

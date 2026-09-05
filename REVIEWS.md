@@ -169,3 +169,30 @@ Verdict: **APPROVED. COPY.md is at human gate 3 (Copy).** Four fact-check items 
 ## 2026-09-05 · DESIGN.md round 5 · Orchestrator
 
 Verdict: **APPROVED.** Connector rule settled (solid out of the current node; the table was normative, the build already matched). Future-node stroke raised to `rgba(15,42,46,.60)` in light: 4.01 on sheet and 3.83 on band, recomputed by the Orchestrator and matching. OG light-only and per-scheme `theme-color` recorded. New §B.12 favicon: the lamp cone alone, `--lamp` on `--floor`, one SVG plus 32/180/512 PNGs, never on the page. → Engineer step 3 produces the files.
+
+## 2026-09-05 · Owner answers 56 to 69 · Orchestrator routing
+
+Both cut the release (56) → Copywriter round 7. Firebase keys go in `.env` by the owner; the site must build without them (57) → already so; Engineer verifies a keyless build in step 3. Repo `thegeekdogs.com`, local commits only, a human pushes (58). Adjectives recorded as register, never printed (59). Pocket Manager screenshots from an emulator build (60) → step 4. Sahib's older resume (61) and the four LinkedIn posts (62, verified by the Orchestrator in Chrome: 110 / 283 / 92 / 17 reactions; the Android 16 post carries exactly 283 reactions and 13 reposts) → Fact Checker round 4. Naskay project named (63), props approved (64), floor height accepted (65), person-page CTAs use own addresses (66), Astro 7 (67) → Engineer step 3, same pipeline for the second product (68) → variant text ships, email only (69). New item 70: design-review owner.
+Resume flags for the Fact Checker: Motive start Oct 2023 vs the brief's Nov; smallcase end Sept 2023; Cleartrip title Android Intern; smallcase iOS work was the Tickertape Flutter app, which strains item 45's "native iOS at smallcase"; a Udacity iOS Nanodegree the brief omits.
+
+## 2026-09-05 · Human gate 3 (Copy) · passed with two amendments
+
+Owner read `COPY.md` and approved it, with: location Bengaluru only (footer line and any other user-facing mention of New Delhi removed); design review owned by both (closes item 70). Instruction: bake it into the site. Routing: Copywriter round 8 applies the two amendments plus Fact Checker round 4's resume corrections, then Engineer step 3 transcribes the final copy into content files for every route.
+
+## 2026-09-05 · COPY.md round 7 · Orchestrator
+
+Verdict: **APPROVED.** Ship approval names both under §2.6; the second product's pipeline text ships; Naskay project named; adjectives recorded as register only; markers down to 6, all tied to open items. Round 8 queued for: Bengaluru only, design review by both (item 70), and Fact Checker round 4's resume corrections.
+
+## 2026-09-05 · Owner clarification, item 45 → item 72
+
+smallcase/Tickertape: native Android and native iOS, then Flutter. Motive: native Android, native iOS, KMP. OWNER-CONFIRMED. Fact Checker round 4's expected CONTRADICTED (partial) row on this point is resolved by the owner's statement; the row should record both sources and this ruling. Copywriter round 8 and Design Lead (coverage map §F) apply it.
+
+## 2026-09-05 · FACTS.md round 4 · Orchestrator rulings
+
+Fact Checker verdict on Sahib's page: CHANGES REQUESTED, 5 CONTRADICTED rows, 7 questions. Rulings:
+1. Native iOS at smallcase and Motive: **closed by the owner's item 72** (native Android and native iOS at Tickertape, then Flutter; native Android, native iOS and KMP at Motive). The resume is older and silent, not contradicting. Copy prints item 72's wording; the resume's Tickertape Flutter launch is the later phase and is printed as such.
+2. Motive title "Android Engineer" vs resume "Android Developer": both owner sources; brief §5.4 says the owners' corrections override profile text and the brief prints Engineer. Keep. Moot on the site beyond the role line.
+3, 4, 5. Month-level date differences: the site prints years only (2023 – 2025, 2020 – 2023); Pocket Manager's project window is not printed. Moot; recorded.
+6. "Android Basics Nanodegree" vs "Android Nanodegree": print the resume's own wording, "Udacity Android Nanodegree", true under either programme.
+7. Add: Udacity iOS Nanodegree (supports the iOS claim); leading the team that launched the Tickertape Flutter app for iOS and migrated Android to Flutter; the Motive design-components library across Driver and Fleet apps and the Views-to-Compose migration; Cleartrip hotel booking on an app with 10M+ downloads. Skip: IIIT-B data science (off-thesis). All attributed as his own account where a figure appears.
+LinkedIn rows 40 to 42 upgraded to CONFIRMED on the Orchestrator's logged-in check. → Copywriter round 8.

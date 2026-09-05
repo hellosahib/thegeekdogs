@@ -1,0 +1,171 @@
+---
+import { getCollection } from 'astro:content';
+
+/**
+ * The compressed work-card strip (QUESTIONS.md item 50, DESIGN.md §B.8 and §B.9 as
+ * amended in round 3). It sits directly after the floor: the room has just named two
+ * people at two desks, and this answers who they are.
+ *
+ * Two rows, one per person, two cards each, TWO fields per card — company in the title
+ * position, the date range in the price position. Role, product and stack are dropped;
+ * that is the compression, and it is what stops the strip being the person page in
+ * miniature. Two cards each at every breakpoint: the strip is one DOM list and its
+ * contents do not change with viewport width (§B.8 constraint (a)).
+ *
+ * The card keeps §D's base, edge, tilt, radius and shadow pair exactly, and takes §D.6
+ * option 2 — a static translucent white, no `backdrop-filter` anywhere. Section ground
+ * is `--band`, which is one of the two backdrops §D.7 permits behind a card.
+ *
+ * §B.8 also asks for one link per row to that person's page. Both the link labels
+ * ("[COPY NEEDED: the strip's two link labels, <= 5 words each]") and the two routes
+ * are missing, so no link is rendered and nothing stands in for one.
+ */
+const people = await getCollection('people');
+
+const order = ['sahib-singh', 'tanya-jain'];
+const rows = order.map((slug) => {
+  const person = people.find((p) => p.data.slug === slug);
+  if (!person) throw new Error(`The work-card strip needs src/data/people/${slug}.json.`);
+  return {
+    name: person.data.name,
+    cards: person.data.workHistory.filter((entry) => entry.confirmed).slice(0, 2),
+  };
+});
+
+/** DESIGN.md §D.4 — deterministic by index, so it is reproducible and printable. */
+const TILTS = ['-1.4deg', '0.8deg', '-2.1deg', '1.7deg', '-0.6deg'];
+let tiltIndex = 0;
+---
+
+<section class="section bleed strip">
+  <div class="shell">
+    {
+      rows.map((row) => (
+        <div class="strip__row">
+          <h2 class="strip__name">{row.name}</h2>
+          <ul class="strip__cards">
+            {row.cards.map((card) => (
+              <li class="work-card" style={`--tilt: ${TILTS[tiltIndex++ % TILTS.length]}`}>
+                <span class="work-card__company">{card.company}</span>
+                <span class="work-card__years numeral">{card.years}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .strip {
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+  }
+
+  .strip__row + .strip__row {
+    margin-block-start: var(--space-40);
+  }
+
+  .strip__name {
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+  }
+
+  .strip__cards {
+    margin-block-start: var(--space-16);
+    list-style: none;
+    display: grid;
+    /* §D.1 — a 320px card tilted under 3 degrees overshoots ~7px at each end, so 28px
+       keeps real air between cards and the tilts never read as collisions. */
+    gap: 28px;
+  }
+
+  /*
+    DESIGN.md §D.2, §D.3, §D.4, §D.6. The base, the edge and the tilt carry the object;
+    there is no live blur and no fourth detail. The two card inks are theme-invariant
+    (§B.2) because a printed white object does not invert.
+  */
+  .work-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-16);
+    min-block-size: 112px;
+    padding: 20px 20px 24px;
+    border-radius: 3px;
+    background-color: var(--tgd-card);
+    color: var(--card-ink);
+    transform: rotate(var(--tilt));
+    transform-origin: bottom center;
+    box-shadow:
+      inset 1px 1px 0 var(--edge-light),
+      inset -1px -1px 0 var(--edge-dark),
+      var(--card-shadow-contact),
+      var(--card-shadow-ambient);
+  }
+
+  /* §D.2 — the stand: a 4px bar, 56% of the card's width, flush with its bottom edge.
+     It reads as the lip of an acrylic holder. */
+  .work-card::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -4px;
+    inset-inline-start: 22%;
+    inline-size: 56%;
+    block-size: 4px;
+    background-color: var(--tgd-surface-alt);
+    border-block-end: 1px solid var(--card-stand-base);
+  }
+
+  .work-card__company {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+  }
+
+  /* §D.5 — the number in the price position. */
+  .work-card__years {
+    font-size: var(--step-numeral-large);
+    line-height: var(--step-numeral-large-lh);
+  }
+
+  @media (min-width: 768px) {
+    .strip__cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--gutter);
+    }
+  }
+
+  /* §B.9 — the row label sits outside the content and the objects run out from it. The
+     only structure on the site that does this, which is what keeps §B.9's
+     seven-sections-seven-families test true. */
+  @media (min-width: 1024px) {
+    .strip__row {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 9fr);
+      column-gap: var(--gutter);
+      align-items: start;
+    }
+
+    .strip__cards {
+      margin-block-start: 0;
+    }
+  }
+
+  @media print {
+    .work-card {
+      transform: none;
+      background-color: #fff;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .work-card::after {
+      display: none;
+    }
+  }
+</style>

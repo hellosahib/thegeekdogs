@@ -36,22 +36,32 @@ if (!section) {
 }
 
 // Every JS module the home page loads counts against the floor line, because the
-// floor's interaction script is the only client JS the home page has.
-const scripts = [...html.matchAll(/<script[^>]*\bsrc="([^"]+)"/g)]
+// floor's interaction script is the only client JS the home page has. Astro inlines a
+// module small enough to be worth inlining rather than emitting a file, and it is
+// hoisted out of the section it came from, so both forms are collected here — counting
+// only <script src> would have measured the floor's script at zero.
+const external = [...html.matchAll(/<script[^>]*\bsrc="([^"]+)"/g)]
   .map((m) => m[1])
   .filter((src) => src.startsWith('/'))
   .map((src) => join(DIST, src))
   .filter((file) => existsSync(file));
 
+const inline = [...html.matchAll(/<script\b[^>]*\btype="module"[^>]*>([\s\S]*?)<\/script>/g)].map(
+  (m) => m[1],
+);
+
 const payload = Buffer.concat([
   Buffer.from(section[0], 'utf8'),
-  ...scripts.map((file) => readFileSync(file)),
+  ...external.map((file) => readFileSync(file)),
+  ...inline.map((code) => Buffer.from(code, 'utf8')),
 ]);
 
 const raw = payload.byteLength;
 const gzipped = gzipSync(payload).byteLength;
 
-console.log(`      floor markup + ${scripts.length} script(s): ${raw} B raw, ${gzipped} B gzipped`);
+console.log(
+  `      floor markup + ${external.length} external + ${inline.length} inline module script(s): ${raw} B raw, ${gzipped} B gzipped`,
+);
 console.log(`      budget ${BUDGET} B gzipped`);
 
 const failures = gzipped > BUDGET ? [`floor is ${gzipped} B gzipped, over the ${BUDGET} B line`] : [];

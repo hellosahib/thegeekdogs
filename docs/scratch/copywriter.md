@@ -276,3 +276,27 @@ way §7.2 attributes Tanya's: "By his account ... on LinkedIn", four added words
 Appendix B no longer cite items 11 and 13 for the no-form decision; item 13 is the release year.
 Both now say the decision is the shipping one, with item 69 asking the owners and a form added
 only if they say yes. Scan after editing: zero banned words, zero em-dashes. "Slop" still zero.
+
+Round 7. Items 56 to 69 applied in place, nothing else touched. Item 56 resolved ship approval to
+both owners jointly. The Release Watcher's `Checked by` cell was left as the gate name `Ship
+approval`, because §10.2 speaks that exact string in the desk button's accessible name and the
+floor runs on six strings used everywhere; the two names print instead as a new ship-approval line
+under §2.6's numbered four, where every other gate already names its owner, and §2.5's empty chair
+is untouched. A chair with two names on it is a chair with someone in it. Item 68 came back yes, so
+the four "Variant if item 68 is yes" blocks were promoted to the shipping text and their labels
+deleted: §2.7 paragraph 2, §3.1 short intro and long body, §3.4 meta and OG descriptions. The note
+under §2.7 now says the pipeline claim rests on the owners' answer rather than on the FACTS §(d)
+audit, which still read the Pocket Manager repository only. Item 63 named the Naskay project:
+"The Jillian Michaels fitness app, built at Naskay for a US client", descriptive, sentence case, no
+trademark symbol, no ownership claim. Item 69 verified: §8.3 and §5.5 carry no form and no capture
+field, and both notes now cite item 69 as answered rather than as a question outstanding. Item 70
+kept its marker; the §2.4 design-review CONFIRM now cites item 70 and its recommendation instead of
+item 19's gap. Item 59's adjectives became a rule at the top of the document, as register rather
+than vocabulary; none of the six words appears anywhere in COPY.md and the two person pages earn
+the impression from what they report. Appendix B rebuilt and renumbered in document order: eight
+markers down to six, C1 design review (70), C2 screenshots (60), C3 Sahib's resume (61, pending the
+Fact Checker), C4 the post mapping (62, pending the Orchestrator's Chrome notes), C5 the reaction
+count (permanent) and C6 the headshots (23). Scan after editing: zero banned words, zero em-dashes,
+zero "bride", "groom", "Milan", "on-device", and zero of either phone number. "Slop" still zero.
+Grep confirms six `[CONFIRM:` and zero `[FILL:`, excluding the legend and the appendix's own
+counting lines.

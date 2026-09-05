@@ -7,15 +7,29 @@ import type { Stage } from '../content.config';
  * The compact, two-product stage view (DESIGN.md §E.3, COPY.md §2.8, §10.4).
  *
  * REVIEWS.md, 2026-09-05, arbitration 4: this is one `<ol>` per product, not a
- * `<table>`. Brief §6.2 is explicit that the component is an ordered list with
- * the current step marked via `aria-current="step"`, and a table has no defined
- * place for `aria-current="step"`. The shared axis DESIGN.md §E.3 wants comes
- * from a visible, aligned header row of stage names plus the two lists carrying
- * identical item text in identical order.
+ * `<table>`. Brief §6.2 is explicit that the component is an ordered list with the
+ * current step marked via `aria-current="step"`. The shared axis §E.3 wants comes from
+ * a visible, aligned header row of stage names plus the two lists carrying identical
+ * item text in identical order.
  *
- * States survive greyscale on three redundant channels (DESIGN.md §E.1): size,
- * internal structure, and the pattern of the outgoing connector. The state word
- * is also spoken, per COPY.md §10.4, so it never rests on the graphic at all.
+ * Step-1 review items 2 and 3, both fixed here by the same mechanism. The five columns
+ * are now defined once, by the axis, and both runners and the label row are laid on it
+ * with `subgrid` — so a node's column position no longer depends on the sum of the
+ * widths of the nodes before it, and a label is centred on its own node rather than on
+ * a second, independent grid. The current node is 18px against the others' 10px and it
+ * is centred in its column like every other node, so the size difference pushes nothing
+ * rightward.
+ *
+ * Step-1 review item 17: the trailing `Stage:` line is gone at >=768, where the header
+ * row already names all five stages and the current node is the largest mark on the
+ * axis. It stays below 768, where §E.3 drops the four other labels — and it now sits
+ * *above* its track, which is where COPY.md §10.4 puts it.
+ *
+ * States survive greyscale on three redundant channels (DESIGN.md §E.1, §E.1a): size,
+ * internal structure, and the pattern of the outgoing connector. Every value that was
+ * `--floor` in light resolves through `--ink` so the component is one component in both
+ * schemes. The state word is also spoken (COPY.md §10.4), so nothing rests on the
+ * graphic at all.
  */
 interface Runner {
   label: string;
@@ -32,11 +46,8 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
 
 <div class="track">
   <p class="track__head" aria-hidden="true">
-    <span class="track__product"></span>
-    <span class="track__head-cells">
-      {headings.map((label) => <span class="track__head-cell">{label}</span>)}
-    </span>
-    <span class="track__now small"></span>
+    <span class="track__spacer"></span>
+    {headings.map((label) => <span class="track__head-cell">{label}</span>)}
   </p>
 
   {
@@ -46,6 +57,7 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
       return (
         <div class="track__runner">
           <p class="track__product">{runner.label}</p>
+          <p class="track__now small" aria-hidden="true">{`Stage: ${current}`}</p>
           <ol class="track__list" aria-label={`${runner.label} build stage`}>
             {steps.map((step) => (
               <li
@@ -58,9 +70,6 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
               </li>
             ))}
           </ol>
-          <p class="track__now small">
-            <span aria-hidden="true">{`Stage: ${current}`}</span>
-          </p>
         </div>
       );
     })
@@ -90,30 +99,52 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
     line-height: var(--step-title-lh);
   }
 
+  .track__now {
+    color: var(--tgd-muted);
+  }
+
+  /* < 768: nodes only, 140px of mini track, no per-node labels (§E.3). */
   .track__list {
     display: flex;
     align-items: center;
     list-style: none;
+    inline-size: 140px;
   }
 
   .track__step {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex: 1;
+    block-size: 20px;
   }
 
-  /* DESIGN.md §E.1 — the outgoing connector's pattern is the third channel. */
+  .track__step:last-child {
+    flex: 0 0 auto;
+  }
+
+  /* DESIGN.md §E.1 — the outgoing connector's pattern is the third channel. It is drawn
+     from this node's centre to the next node's, which at equal column widths is exactly
+     one column. */
   .track__step:not(:last-child)::after {
     content: '';
-    inline-size: 20px;
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    inline-size: 100%;
     block-size: 0;
-    border-block-start: 2px solid var(--floor);
+    border-block-start: 2px solid var(--tgd-ink);
   }
 
   .track__step[data-state='upcoming']:not(:last-child)::after {
-    border-block-start: 2px dashed rgba(15, 42, 46, 0.22);
+    border-block-start-style: dashed;
+    border-block-start-color: var(--node-future-connector);
   }
 
   .track__node {
+    position: relative;
+    z-index: 1;
     display: block;
     inline-size: 10px;
     block-size: 10px;
@@ -121,23 +152,21 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
   }
 
   .track__step[data-state='complete'] .track__node {
-    background-color: var(--floor);
+    background-color: var(--tgd-ink);
   }
 
   .track__step[data-state='upcoming'] .track__node {
     background-color: transparent;
-    border: 1.5px solid rgba(15, 42, 46, 0.45);
+    border: 1.5px solid var(--node-future-stroke);
   }
 
-  /* The current node: 18px, a ring with a concentric 8px core and a 4px clear
-     gap. The only node with two parts. */
+  /* The current node: 18px, a ring with a concentric 8px core and a 4px clear gap.
+     The only node with two parts. */
   .track__step[data-state='current'] .track__node {
     inline-size: 18px;
     block-size: 18px;
-    border: 3px solid var(--floor);
+    border: 3px solid var(--tgd-ink);
     background-color: transparent;
-    box-shadow: inset 0 0 0 4px transparent;
-    position: relative;
   }
 
   .track__step[data-state='current'] .track__node::after {
@@ -148,75 +177,82 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
     inline-size: 8px;
     block-size: 8px;
     border-radius: 50%;
-    background-color: var(--floor);
+    background-color: var(--node-current-core);
   }
 
-  .track__now {
-    color: var(--tgd-muted);
-  }
-
-  /* DESIGN.md §E.3 — at >=768 the five stage names become one shared column
-     header row and the two runners align to it. */
+  /*
+    >= 768 — one axis, five fixed columns, defined once on .track and inherited by the
+    label row and by both runners through subgrid. The column gap is zero on purpose:
+    the connector spans exactly one column, so a gap would leave the line short of the
+    next node.
+  */
   @media (min-width: 768px) {
     .track {
-      gap: var(--space-16);
+      grid-template-columns: minmax(7rem, 11rem) repeat(5, minmax(0, 1fr));
+      gap: var(--space-16) 0;
     }
 
     .track__head,
     .track__runner {
+      grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: minmax(9rem, 12rem) 1fr minmax(9rem, auto);
+      grid-template-columns: subgrid;
       align-items: center;
-      gap: var(--space-16);
       margin: 0;
       max-inline-size: none;
     }
 
     .track__head {
       color: var(--tgd-muted);
+      font-size: var(--step-micro);
+      line-height: var(--step-micro-lh);
+      align-items: end;
+    }
+
+    /* Height is reserved for the longest label so nothing shifts (§E.2). */
+    .track__head-cell {
+      text-align: center;
+      padding-inline: var(--space-4);
+      min-block-size: calc(3 * var(--step-micro) * var(--step-micro-lh));
+    }
+
+    .track__product {
+      padding-inline-end: var(--space-16);
+      font-size: var(--step-body);
+      line-height: var(--step-body-lh);
+    }
+
+    /* Step-1 review item 17 — the header row already names all five stages here. */
+    .track__now {
+      display: none;
+    }
+
+    .track__list {
+      grid-column: 2 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+      inline-size: auto;
+      block-size: 20px;
+    }
+
+    .track__step {
+      flex: none;
+      block-size: 20px;
+    }
+
+    .track__step:last-child {
+      flex: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .track__head {
       font-size: var(--step-small);
       line-height: var(--step-small-lh);
     }
 
-    /* Two lines of height are reserved for every label, because "Submitted for
-       review" wraps and nothing may shift (DESIGN.md §E.2). */
-    .track__head-cells {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: var(--space-8);
-      min-block-size: calc(2 * var(--step-small) * var(--step-small-lh));
-    }
-
     .track__head-cell {
-      flex: 1;
-      text-align: center;
-    }
-
-    .track__head-cell:first-child {
-      text-align: start;
-    }
-
-    .track__head-cell:last-child {
-      text-align: end;
-    }
-
-    .track__list {
-      justify-content: space-between;
-      inline-size: 100%;
-    }
-
-    .track__step {
-      flex: 1;
-    }
-
-    .track__step:not(:last-child)::after {
-      flex: 1;
-      inline-size: auto;
-    }
-
-    .track__step:last-child {
-      flex: 0 0 auto;
+      min-block-size: calc(2 * var(--step-small) * var(--step-small-lh));
     }
   }
 </style>

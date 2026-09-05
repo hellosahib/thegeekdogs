@@ -63,6 +63,21 @@ const homeHtml = join(DIST, 'index.html');
 const homeGz = existsSync(homeHtml) ? gz(homeHtml) : 0;
 const pageTotal = homeGz + total(styles) + total(scripts) + total(fonts);
 
+/*
+  Astro inlines a small module rather than emitting a file, and an inline script is
+  already inside the HTML byte count above — so it is not added to the page total, only
+  reported, so the JS line has a number attached to it rather than reading as zero.
+*/
+const homeSource = existsSync(homeHtml) ? readFileSync(homeHtml, 'utf8') : '';
+const inlineJs = [...homeSource.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)]
+  .map((m) => m[1])
+  .join('');
+console.log(
+  `      inline JS in the home HTML (counted inside it)             ${String(
+    gzipSync(Buffer.from(inlineJs, 'utf8')).byteLength,
+  ).padStart(8)} B gz  (${inlineJs.length} B raw)`,
+);
+
 console.log(`      home HTML                                                ${String(homeGz).padStart(8)} B gz`);
 console.log(`      home page total (HTML + CSS + JS + fonts)                ${String(pageTotal).padStart(8)} B gz`);
 

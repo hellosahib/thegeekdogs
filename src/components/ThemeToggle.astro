@@ -30,6 +30,10 @@ import { THEME_TOGGLE } from '../lib/copy';
     class="theme-toggle__button"
     data-theme-toggle
     aria-label={THEME_TOGGLE.toDark.accessibleName}
+    data-name-to-light={THEME_TOGGLE.toLight.accessibleName}
+    data-name-to-dark={THEME_TOGGLE.toDark.accessibleName}
+    data-says-light={THEME_TOGGLE.toLight.announcement}
+    data-says-dark={THEME_TOGGLE.toDark.announcement}
   >
     <span class="theme-toggle__plate">
       <svg
@@ -58,41 +62,39 @@ import { THEME_TOGGLE } from '../lib/copy';
   <span class="sr-only" data-theme-announce aria-live="polite"></span>
 </div>
 
-<script
-  is:inline
-  define:vars={{
-    toLight: THEME_TOGGLE.toLight,
-    toDark: THEME_TOGGLE.toDark,
-  }}
->
-  (function () {
-    var root = document.documentElement;
-    var button = document.querySelector('[data-theme-toggle]');
-    var announce = document.querySelector('[data-theme-announce]');
-    if (!button) return;
+<script>
+  /*
+    The four COPY.md §1 strings travel on the button as data attributes rather than
+    through `define:vars`, so there is exactly one place they are written (the frontmatter
+    above), the script stays type-checked, and no copy is duplicated into JavaScript.
+  */
+  const root = document.documentElement;
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const announce = document.querySelector<HTMLElement>('[data-theme-announce]');
 
-    function sync() {
-      var dark = root.dataset.theme === 'dark';
-      button.setAttribute('aria-label', dark ? toLight.accessibleName : toDark.accessibleName);
-    }
+  if (button) {
+    const sync = (): void => {
+      const dark = root.dataset.theme === 'dark';
+      const name = dark ? button.dataset.nameToLight : button.dataset.nameToDark;
+      if (name) button.setAttribute('aria-label', name);
+    };
 
     sync();
 
-    button.addEventListener('click', function () {
-      var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
       try {
         localStorage.setItem('tgd-theme', next);
-      } catch (error) {
-        /* Storage can be unavailable; the choice then lasts the page, which is
-           better than refusing to switch. */
+      } catch {
+        // Storage can be unavailable. The choice then lasts the page, which is better
+        // than refusing to switch.
       }
       sync();
-      if (announce) {
-        announce.textContent = next === 'dark' ? toDark.announcement : toLight.announcement;
-      }
+      const said = next === 'dark' ? button.dataset.saysDark : button.dataset.saysLight;
+      if (announce && said) announce.textContent = said;
     });
-  })();
+  }
 </script>
 
 <style>

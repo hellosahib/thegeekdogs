@@ -3,20 +3,18 @@ import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactPlate from '../components/ContactPlate.astro';
 import StageTrackCompact from '../components/StageTrackCompact.astro';
+import StudioFloor from '../components/floor/StudioFloor.astro';
+import WorkCardStrip from '../components/WorkCardStrip.astro';
 import { STUDIO_EMAIL, CONTACT_AFFORDANCE } from '../lib/copy';
 
 /*
-  COPY.md §2. Only the approved, stable sections are built here:
-  §2.1 hero, §2.6 the four gates, §2.7 paragraph 1 and its link labels,
-  §2.8's stage strings for the compact track, §2.10 the final CTA, §2.11 meta.
+  COPY.md §2, in §7's section order: hero, the floor, the work-card strip, the four
+  gates, proof, what you get, the final CTA.
 
-  Deliberately absent, because the copy or the destination is not settled:
-  - the hero's secondary button ("Look around the floor") -- it hands the
-    visitor to the floor, and the floor is not built in this step;
-  - §2.7's second link ("Read how it gets built") -- /work/pocket-manager/
-    does not exist yet;
-  - §2.2 the floor intro, §2.3-2.5 the cards, §2.9 "What you get", and §2.7's
-    privacy line and paragraph 2, which carry open [CONFIRM]/[FILL] markers.
+  Still deliberately absent, because the destination does not exist yet:
+  - §2.7's secondary link ("Read how it gets built") -> /work/pocket-manager/;
+  - §B.8's one link per work-strip row -> /sahib/ and /tanya/, whose labels are also
+    an open [COPY NEEDED].
 */
 
 const gates = (await getCollection('gates')).sort((a, b) => a.data.order - b.data.order);
@@ -34,6 +32,30 @@ const runners = [pocketManager, weddingPlanner].map((product) => ({
 }));
 
 const storeUrl = pocketManager.data.storeUrl;
+
+/*
+  DESIGN.md §B.8 line 332 and §B.9 line 528 — the three figures as a numeral-large
+  block with a micro label under each. Every string below is COPY.md §2.7's own
+  ("4.3 stars from 24 reviews, 1,000+ downloads"), split at the word boundary the
+  design asks for; no figure and no label is written here.
+
+  The two countable figures are asserted against the store entry so the block and the
+  content collection cannot drift. `downloads` is a display string and the two
+  documents round it differently — COPY.md §2.7 prints `1,000+`, the store listing's
+  own rounding in src/data/products is `1K+` — so COPY.md's is what prints, and the
+  difference is recorded in docs/scratch/engineer.md rather than reconciled by me.
+*/
+const stats = pocketManager.data.storeStats;
+if (!stats || stats.rating !== 4.3 || stats.ratingCount !== 24) {
+  throw new Error(
+    "Pocket Manager's store stats no longer match COPY.md §2.7's figures; the proof block must be re-transcribed.",
+  );
+}
+const figures = [
+  { figure: '4.3', label: 'stars' },
+  { figure: '24', label: 'reviews' },
+  { figure: '1,000+', label: 'downloads' },
+];
 ---
 
 <BaseLayout
@@ -43,13 +65,14 @@ const storeUrl = pocketManager.data.storeUrl;
   ogDescription="A two-person mobile studio with four human gates between the code and your users. Pocket Manager is live in the Play Store."
 >
   <section class="section hero">
-    <div class="shell stack">
+    <div class="shell grid">
+      <div class="hero__inner">
       <h1>AI writes a lot of our code. It doesn't get the last word.</h1>
-      <p>
+      <p class="hero__body muted">
         A two-person mobile studio. Agents do the volume work. Then a person reviews the
         architecture, tests on real phones, and signs off on security.
       </p>
-      <p class="cluster">
+      <p class="cluster hero__actions">
         <a
           class="button"
           data-cta="hero-primary"
@@ -58,43 +81,76 @@ const storeUrl = pocketManager.data.storeUrl;
         >
           {CONTACT_AFFORDANCE.label}
         </a>
+        <a
+          class="button button--secondary"
+          href="#studio-floor"
+          aria-label="Look around the studio floor"
+        >
+          Look around the floor
+        </a>
       </p>
+      </div>
     </div>
   </section>
 
   <!-- DESIGN.md §B.10: the plate spans from the end of the hero to the start of
        the final CTA, and retires there on its own. -->
   <div class="plate-span">
-    <section class="section bg-surface-alt section--reserve">
-      <div class="shell stack-loose">
-        <h2>Four things we don't hand to an agent.</h2>
-        <ol class="gates">
-          {
-            gates.map((gate) => (
-              <li class="gates__item stack-tight">
-                <h3>{gate.data.name}</h3>
-                <p>{gate.data.description}</p>
-              </li>
-            ))
-          }
-        </ol>
-        <p>That's the difference between generated software and shipped software.</p>
+    <StudioFloor />
+
+    <WorkCardStrip />
+
+    <section class="section gates-section">
+      <div class="shell grid">
+        <div class="gates-section__list">
+          <h2>Four things we don't hand to an agent.</h2>
+          <ol class="gates">
+            {
+              gates.map((gate) => (
+                <li class="gates__item">
+                  <div class="gates__text">
+                    <h3>{gate.data.name}</h3>
+                    <p class="muted">{gate.data.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <p class="gates-section__closing">
+          That's the difference between generated software and shipped software.
+        </p>
       </div>
     </section>
 
-    <section class="section section--reserve">
-      <div class="shell stack-loose">
-        <div class="stack">
+    <section class="section bleed proof section--reserve">
+      <div class="shell grid">
+        <div class="proof__lead stack">
           <h2>We run this on our own app first.</h2>
-          <p>
+          <p class="muted">
             Pocket Manager has been in the Play Store since 2020, maintained by the same pipeline
             and the same review gates. 4.3 stars from 24 reviews, 1,000+ downloads, and it still
             gets updates five years on.
           </p>
+          <ul class="figures">
+            {
+              figures.map((item) => (
+                <li class="figures__item">
+                  <span class="figures__figure numeral">{item.figure}</span>
+                  <span class="figures__label micro muted">{item.label}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p>
+            A second app sits behind it in final touches, built through the same pipeline and
+            stopped at the same gates. There's no date on it. The list of what's left is short,
+            and a person decides when it ends.
+          </p>
           {
             storeUrl && (
               <p>
-                <a class="link" href={storeUrl} rel="noopener">
+                <a class="link" href={storeUrl} target="_blank" rel="noopener noreferrer">
                   Open Pocket Manager in the Play Store
                   <span class="sr-only"> Opens a new tab.</span>
                 </a>
@@ -102,28 +158,56 @@ const storeUrl = pocketManager.data.storeUrl;
             )
           }
         </div>
-        <StageTrackCompact runners={runners} />
+
+        <div class="proof__track">
+          <StageTrackCompact runners={runners} />
+          <p class="proof__caption">One shipped, one nearly there.</p>
+          <p class="proof__note small muted">
+            The track shows both products and where each one actually is: Pocket Manager shipped
+            and still updated, the second one close enough that the list of what's left is short.
+            Neither carries a date, and neither will. A date we miss in public is worse than no
+            date at all.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section offer section--reserve">
+      <div class="shell grid">
+        <div class="offer__inner stack">
+          <h2>You'll be holding something before you're bored of the kickoff.</h2>
+          <p class="muted">
+            The first thing we hand over is a working build you can open on your phone. Not a
+            deck, not a Figma walkthrough, not a status update. Everything after that is
+            iteration on a thing that already runs.
+          </p>
+          <p class="muted">
+            One project at a time. Fixed scope or a retainer, both work here. It starts with a
+            short written brief rather than a call, and a first MVP is a few days from the
+            go-ahead.
+          </p>
+        </div>
       </div>
     </section>
 
     <ContactPlate />
   </div>
 
-  <section class="section bg-room text-on-room">
+  <section class="section bleed room cta">
     <div class="shell stack">
       <h2>Tell us what you're building.</h2>
-      <p>
+      <p class="cta__body">
         One email, a real reply from one of us, and a straight answer about whether we're the right
         fit. If we're not, we'll say so.
       </p>
-      <p class="cluster">
+      <p>
         <a
-          class="button button--lamp"
+          class="lamp-address"
           data-cta="final-cta"
           href={`mailto:${STUDIO_EMAIL}`}
           aria-label={`Email ${STUDIO_EMAIL} to start a project`}
         >
-          {`Email ${STUDIO_EMAIL}`}
+          {STUDIO_EMAIL}
         </a>
       </p>
     </div>
@@ -131,34 +215,154 @@ const storeUrl = pocketManager.data.storeUrl;
 </BaseLayout>
 
 <style>
+  /* DESIGN.md §B.9 — h1 in cols 1-9, body in cols 1-6, actions in cols 1-5, and
+     cols 8-12 deliberately empty: the only void on the page, reserved so that
+     filling it later causes no reflow. Step-1 review item 8: the body's cap is now
+     in em, so it holds <= 62 characters rather than 79. */
+  .hero__body {
+    margin-block-start: var(--space-24);
+  }
+
+  .hero__actions {
+    margin-block-start: var(--space-32);
+  }
+
+  /*
+    Step-1 review items 4 and 6 — one hung-numeral column, not a 2 x 2 grid, and the
+    numerals are two-digit and hung in the margin rather than inline list markers.
+    These are the only numbers on the site that are a sequence (§B.8), which is what
+    §9.4's numbering exception is protecting.
+  */
   .gates {
     list-style: none;
     counter-reset: gate;
     display: grid;
-    gap: var(--space-32);
+    gap: var(--space-40);
+    margin-block-start: var(--space-40);
+    margin-inline-start: calc(-1 * var(--outer));
   }
 
   .gates__item {
     counter-increment: gate;
+    display: grid;
+    grid-template-columns: calc(var(--outer) + var(--space-16)) minmax(0, 1fr);
+    align-items: start;
   }
 
-  /* COPY.md §2.6 -- these are genuinely a sequence, so they are numbered.
-     Nothing else on the page gets numbers. */
-  .gates__item h3::before {
-    content: counter(gate) '. ';
+  .gates__item::before {
+    content: counter(gate, decimal-leading-zero);
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-numeral);
+    font-variation-settings: 'wdth' var(--wdth-numeral);
     font-variant-numeric: tabular-nums;
+    font-size: var(--step-body);
+    line-height: var(--step-title-lh);
+    color: var(--tgd-ink);
   }
 
-  @media (min-width: 768px) {
-    .gates {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-48);
+  .gates__text > p {
+    margin-block-start: var(--space-12);
+  }
+
+  /* Step-1 review item 5 — the closing line is anchored right and centred to the whole
+     group at display-section size. It is not a card and not a pull-quote. */
+  .gates-section__closing {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-display-section);
+    line-height: var(--step-display-section-lh);
+    max-inline-size: var(--measure-display);
+  }
+
+  /* Step-1 review item 9 — the proof section is the full-bleed --band split, which is
+     also what restores the page's fill alternation: sheet, floor, band, sheet, band,
+     sheet, floor. */
+  .proof {
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+  }
+
+  /* Step-1 review item 7 — three across, numeral-large, Anek at wdth 87.5 with
+     tabular-nums, a micro label under each. §B.6 principle 2 makes the numbers the
+     second-loudest type on the site. */
+  .figures {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  .figures__item {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .figures__figure {
+    font-size: var(--step-numeral-large);
+    line-height: var(--step-numeral-large-lh);
+  }
+
+  .proof__caption {
+    margin-block-start: var(--space-24);
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+  }
+
+  .proof__note {
+    margin-block-start: var(--space-12);
+  }
+
+  .proof__track {
+    margin-block-start: var(--space-48);
+  }
+
+  .cta__body {
+    color: var(--tgd-on-room-muted);
+  }
+
+  @media (min-width: 1024px) {
+    .hero__inner {
+      grid-column: 1 / span 9;
     }
-  }
 
-  /* DESIGN.md §B.10 -- every section the plate can overlay reserves its height,
-     so it never covers content and never causes CLS. */
-  .section--reserve {
-    padding-block-end: calc(var(--section-pad) + var(--plate-reserve));
+    .gates {
+      margin-inline-start: 0;
+    }
+
+    .gates__item {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 6fr);
+      column-gap: var(--gutter);
+    }
+
+    .gates__item::before {
+      font-size: var(--step-numeral-large);
+      line-height: var(--step-numeral-large-lh);
+    }
+
+    .gates-section__list {
+      grid-column: 1 / span 7;
+    }
+
+    .gates-section__closing {
+      grid-column: 9 / span 4;
+      align-self: center;
+    }
+
+    .proof__lead {
+      grid-column: 1 / span 5;
+    }
+
+    .proof__track {
+      grid-column: 7 / span 6;
+      margin-block-start: 0;
+    }
+
+    .offer__inner {
+      grid-column: 3 / span 8;
+    }
   }
 </style>

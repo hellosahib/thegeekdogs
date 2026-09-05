@@ -168,4 +168,11 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
 69. Contact form: none, email only (current assumption, matching "a short written brief"), or a real form via Formspree? Nobody was asked directly.
     Answer: Email only. No form.
 70. Design review owner. Item 19 named every gate except who reviews the Designer agent's output. Recommendation: Tanya, as the product and marketing owner. Confirm or name Sahib.
-    Answer:
+    Answer: Both.
+
+## K. Human gate 3 (Copy) · 2026-09-05
+
+71. Copy approved by the owners with two amendments: the site's location is Bengaluru only (no New Delhi in any user-facing string), and design review is owned by both. Applied in Copywriter round 8.
+    Answer: Recorded.
+72. Item 45 clarified by the owner, 2026-09-05: at smallcase (Tickertape) the work was native Android and native iOS first, then the move to a Flutter codebase. At Motive it is native Android, native iOS and KMP. Sahib's coverage map and work cards print exactly that. The resume's Tickertape lines (leading the Flutter iOS launch, migrating Android to Flutter) describe the later phase and do not contradict it.
+    Answer: Recorded.

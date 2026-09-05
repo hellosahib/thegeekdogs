@@ -18,12 +18,11 @@ import { FOOTER, STUDIO_EMAIL, NAV, BUILT_ROUTES } from '../lib/copy';
 const people = await getCollection('people');
 
 /** COPY.md §1's four labels, verbatim, each resolved to that person's own URL. */
-const elsewhere = FOOTER.elsewhere
-  .map((entry) => {
-    const person = people.find((p) => p.data.slug === entry.person);
-    return person ? { label: entry.label, href: person.data.socials[entry.social] } : null;
-  })
-  .filter((entry): entry is { label: string; href: string } => entry !== null);
+const elsewhere: { label: string; href: string }[] = [];
+for (const entry of FOOTER.elsewhere) {
+  const person = people.find((p) => p.data.slug === entry.person);
+  if (person) elsewhere.push({ label: entry.label, href: person.data.socials[entry.social] });
+}
 
 const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
 ---
