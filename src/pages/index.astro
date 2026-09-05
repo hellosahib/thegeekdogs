@@ -99,14 +99,29 @@ const figures = [
     </div>
   </section>
 
-  <!-- DESIGN.md §B.10: the plate spans from the end of the hero to the start of
-       the final CTA, and retires there on its own. -->
+  <!--
+    DESIGN.md §B.10: the plate spans from the end of the hero to the start of the final
+    CTA, and retires there on its own.
+
+    Round 10, change three: BELOW 768 that span begins at the end of the FLOOR instead.
+    A sticky element is constrained by its own parent's box, so the two spans are two
+    nested wrappers and one `display` declaration decides which of them is the plate's
+    containing block: below 768 `.plate-span__after-floor` is a real box and the plate
+    cannot leave it, and at >= 768 that div is `display: contents`, generates no box at
+    all, and the plate's containing block is the outer wrapper again — floor included.
+    No JS, no scroll listener, no `view-timeline` and no scroll-driven animation, so
+    reduced motion, forced colours and no-JS all render exactly this.
+  -->
   <div class="plate-span">
     <StudioFloor />
 
+    <div class="plate-span__after-floor">
     <WorkCardStrip />
 
-    <section class="section gates-section">
+    <!-- §B.10's reserve, point 2: EVERY section the plate can overlay carries +72px of
+         bottom padding. Below 768 the plate now appears at the strip, so the strip and
+         this section are inside its span at every width and both take the reserve. -->
+    <section class="section gates-section section--reserve">
       <div class="shell grid">
         <div class="gates-section__list">
           <h2>Four things we don't hand to an agent.</h2>
@@ -212,7 +227,8 @@ const figures = [
       </div>
     </section>
 
-    <ContactPlate />
+      <ContactPlate />
+    </div>
   </div>
 
   <section class="section bleed room cta">

@@ -414,6 +414,58 @@
   }
 
   /*
+    DESIGN.md §B.10 round 10, change three — below 768 the plate's wrapper on `/` begins
+    at the END OF THE FLOOR SECTION rather than at the end of the hero. The width change
+    alone still left 88 of the card panel's 280px measure under the plate, and the
+    standard for that panel is `never covered`, not `exempt`.
+
+    A `position: sticky` element is constrained by its own containing block, which is its
+    parent's padding box, so the span is expressed as a nested wrapper and switched by one
+    declaration: below 768 this div is a real box and the plate cannot rise above the
+    strip; at >= 768 it is `display: contents`, generates no box at all, and the plate's
+    containing block is `.plate-span` again — floor included, exactly as it was.
+
+    `display: contents` on a plain <div> removes the box and nothing else: the div carries
+    no role, no name and no styles of its own, the sections inside stay children of the
+    same grid-less block, and the accessibility tree is identical either way.
+
+    Still no JS, no scroll listener, no `view-timeline` and no scroll-driven animation —
+    which is the point, because each of those would have needed a fallback that landed
+    back on the defect. Reduced motion, forced colours and no-JS all render this.
+  */
+  @media (min-width: 768px) {
+    .plate-span__after-floor {
+      display: contents;
+    }
+  }
+
+  /*
+    ...and one more declaration, which measuring found rather than reading.
+
+    The plate's own `margin-block-start: -56px` (below) is what stops it adding height at
+    the end of its wrapper. But a sticky element is clamped by its MARGIN box, not its
+    border box, so a -56px top margin also buys it 56px of travel ABOVE its wrapper's own
+    top edge. On every other route that edge is a section's bottom padding and nothing is
+    seen. Here it is the floor: swept in 80px steps at 360 and 390, the plate's box was
+    over the floor section at 17 of 88 scroll positions — an amber plate on the room, over
+    the section round 10's change three exists to keep it off.
+
+    So below 768 the saving moves off the plate and onto this wrapper. The arithmetic is
+    identical — the wrapper is 56px taller and pulls the next 56px back — and the plate's
+    margin box is now its border box, which is what the clamp reads. Measured again after:
+    0 of 88.
+  */
+  @media (max-width: 767px) {
+    .plate-span__after-floor {
+      margin-block-end: calc(-1 * var(--plate-height));
+    }
+
+    .plate-span__after-floor > .plate {
+      margin-block-start: 0;
+    }
+  }
+
+  /*
     A route with no hero to leave and no final CTA to retire into — /work/, both case
     studies, /contact/ and /404. The wrapper is the whole page there, so it takes
     `main`'s growth and hands it on to whichever of its sections carries `flex: 1 0 auto`,

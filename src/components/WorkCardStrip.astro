@@ -65,7 +65,10 @@ const TILTS = ['-1.4deg', '0.8deg', '-2.1deg', '1.7deg', '-0.6deg'];
 let tiltIndex = 0;
 ---
 
-<section class="section bleed strip" aria-label={STRIP_HEADING}>
+<!-- DESIGN.md §B.10, the reserve: the plate's span begins here below 768 (round 10,
+     change three) and covers this section at every width above it, so the section
+     carries the plate's +72px footprint like every other one it can overlay. -->
+<section class="section bleed strip section--reserve" aria-label={STRIP_HEADING}>
   <div class="shell">
     {
       rows.map((row) => (
