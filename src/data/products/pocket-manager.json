@@ -1,0 +1,21 @@
+{
+  "slug": "pocket-manager",
+  "name": "Pocket Manager",
+  "descriptiveName": "Pocket Manager",
+  "stage": "live",
+  "storeUrl": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+  "storeStats": {
+    "rating": 4.3,
+    "ratingCount": 24,
+    "downloads": "1K+",
+    "lastUpdated": "2025-08-29"
+  },
+  "privacyClaimEnabled": false,
+  "features": [
+    "A simple interface with multiple categories.",
+    "A calendar screen showing a chosen day's records, with the daily and monthly balance.",
+    "A statistics screen with graphs and date ranges up to 90 days.",
+    "Transaction export."
+  ],
+  "screenshots": []
+}

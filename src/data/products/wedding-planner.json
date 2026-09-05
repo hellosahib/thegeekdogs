@@ -1,0 +1,19 @@
+{
+  "slug": "wedding-planner",
+  "name": null,
+  "descriptiveName": "Wedding planner",
+  "stage": "final-touches",
+  "storeUrl": null,
+  "storeStats": null,
+  "privacyClaimEnabled": false,
+  "features": [
+    "Works fully offline. No account needed to plan a wedding.",
+    "A planning board with a guest list and a headcount for each function.",
+    "A budget per function, a card showing who has paid what, and a payment timeline by month.",
+    "Optional Google sign-in for cloud backup. Sign in only if you want it, nothing required.",
+    "More than one wedding on the same device. Create them, switch between them.",
+    "A Hindi interface.",
+    "No ads. Everything in the first version is free."
+  ],
+  "screenshots": []
+}

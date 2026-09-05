@@ -1,0 +1,6 @@
+{
+  "slug": "code-review",
+  "order": 2,
+  "name": "Code review.",
+  "description": "Every change is read by a human before it merges. Not skimmed for style. Read for whether it does what it claims."
+}
