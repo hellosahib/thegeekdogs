@@ -41,6 +41,19 @@ const d = product.data;
 */
 const SHOT_WIDTH = 280;
 
+/*
+  Run A item 7 — §B.11 allows at most TWO screenshots above the fold, and the four-across
+  row at >=1024 ran y 600-1207 in a 900-tall viewport, so all four were. The row is
+  capped at two columns at every width from 768 up; at 768 it was already a 2 x 2 and
+  correct. Nothing is cut to achieve it.
+
+  Run A item 9 — /work/wedding-planner/ computed `280px 0px 0px 0px`: one cleared
+  screenshot in a four-column grid with three collapsed tracks, sitting at the far left
+  of a 1200px row. The column count is the screenshot count, capped at two, so a page
+  with one screenshot is laid out for the one it has.
+*/
+const shotColumns = Math.min(d.screenshots.length, 2);
+
 const schema = productGraph(product);
 ---
 
@@ -55,8 +68,8 @@ const schema = productGraph(product);
   <div class="plate-span plate-span--page">
     <section class="section section--reserve page-section">
       <div class="shell">
-        <div class="product-head">
-          <h1>{d.headline}</h1>
+        <div class="grid product-head">
+          <h1 class="product-head__headline">{d.headline}</h1>
           <p class="product-head__subhead muted">{d.subhead}</p>
           <div class="product-head__track">
             <StageTrack stage={d.stage} label={d.descriptiveName} />
@@ -80,7 +93,7 @@ const schema = productGraph(product);
 
         {
           d.screenshots.length > 0 && (
-            <ul class="shots">
+            <ul class="shots" style={`--shot-columns: ${shotColumns}`}>
               {d.screenshots.map((shot, index) => (
                 <li class="shots__item">
                   <Picture
@@ -101,9 +114,11 @@ const schema = productGraph(product);
 
         <div class="product-body">
           {
-            d.sections.map((section) => (
-              <section class="product-section">
-                <h2>{section.heading}</h2>
+            d.sections.map((section, index) => (
+              <section class="product-section" data-fill={index % 2 === 1 ? 'band' : 'sheet'}>
+                <div class="product-section__inner grid">
+                  <h2 class="product-section__heading">{section.heading}</h2>
+                  <div class="product-section__content">
                 {section.body && <p class="product-section__body">{section.body}</p>}
                 {section.showFeatures && d.features.length > 0 && (
                   <ul class="product-section__features">
@@ -115,6 +130,8 @@ const schema = productGraph(product);
                 {section.closingLine && (
                   <p class="product-section__closing">{section.closingLine}</p>
                 )}
+                  </div>
+                </div>
               </section>
             ))
           }
@@ -131,17 +148,15 @@ const schema = productGraph(product);
     flex: 1 0 auto;
   }
 
-  .product-head__subhead {
-    margin-block-start: var(--space-24);
+  /* Run A item 5 — the head is on §B.5's grid rather than one 530px measure in a
+     1200px page. Below 1024 its parts stack in DOM order, as every split does. */
+  .product-head {
+    row-gap: var(--space-24);
   }
 
   /* §B.11 — directly under the h1. */
   .product-head__track {
-    margin-block-start: var(--space-32);
-  }
-
-  .product-head__store {
-    margin-block-start: var(--space-24);
+    margin-block-start: var(--space-8);
   }
 
   .product-head__store a {
@@ -150,6 +165,11 @@ const schema = productGraph(product);
     min-block-size: 44px;
   }
 
+  /*
+    Item 7 and item 9 — the column count is the screenshot count capped at two, so no
+    page above the fold carries more than §B.11's two and a page with one screenshot is
+    laid out for the one it has instead of leaving three collapsed tracks beside it.
+  */
   .shots {
     margin-block-start: var(--space-64);
     list-style: none;
@@ -169,13 +189,40 @@ const schema = productGraph(product);
     margin-block-start: var(--space-96);
   }
 
-  .product-section + .product-section {
-    margin-block-start: var(--space-64);
+  /*
+    Run A item 8 — both product pages ran header to footer on one --sheet, with the four
+    sections separated by space alone. §B.2 separates structure with fill changes AND
+    space, and §B.9's argument for the home page's seven families is that a long page
+    needs the fill to mark where the argument turns. The sections alternate now.
+
+    The fill carrier takes 16px of horizontal padding and pulls the same 16px back as a
+    negative margin, so its CONTENT box is exactly the content width and the grid inside
+    it lands on §B.5's own columns — the fill breathes past the type without the type
+    moving off the grid, and nothing here is full-bleed (§B.5 gives that to two regions
+    on the whole site and neither is on this page).
+  */
+  .product-section {
+    padding-inline: var(--space-16);
+    margin-inline: calc(-1 * var(--space-16));
+    padding-block: var(--space-48);
+  }
+
+  .product-section[data-fill='band'] {
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+  }
+
+  .product-section__inner {
+    row-gap: var(--space-16);
   }
 
   .product-section__body,
   .product-section__closing {
     margin-block-start: var(--space-16);
+  }
+
+  .product-section__content > :first-child {
+    margin-block-start: 0;
   }
 
   .product-section__closing {
@@ -202,30 +249,54 @@ const schema = productGraph(product);
 
   @media (min-width: 768px) {
     .shots {
-      grid-template-columns: repeat(2, max-content);
+      grid-template-columns: repeat(var(--shot-columns, 1), max-content);
       column-gap: var(--gutter);
     }
   }
 
+  /*
+    §E.2's horizontal track starts at 931 (round 9). Between 931 and 1023 the eight
+    columns give the head cols 1-5, so the axis ends at x 566 at 931 against a plate band
+    beginning at 655 — the tightest width in the range, and looser above it.
+  */
+  @media (min-width: 931px) {
+    .product-head__track {
+      --track-span: 100%;
+      grid-column: 1 / span 5;
+    }
+  }
+
   @media (min-width: 1024px) {
-    .product-head {
-      max-inline-size: none;
+    .product-head__headline {
+      grid-column: 1 / span 5;
     }
 
-    .shots {
-      grid-template-columns: repeat(4, max-content);
+    .product-head__subhead {
+      grid-column: 7 / span 6;
+      align-self: end;
     }
 
-    .product-body {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--gutter);
+    /* Cols 1-9 ends at x 738 at 1024 and x 930 at 1440, against a band beginning at 748
+       and 1164, so the axis and the store link are clear of it (§B.10's amended rule)
+       and cols 10-12 are the page's one §B.9 void. The two-column screenshot row is
+       2 x 280 + 24 = 584 wide and ends at x 632 / 704, clear on the same rule. */
+    .product-head__track,
+    .product-head__store {
+      grid-column: 1 / span 9;
     }
 
-    /* §B.5's grid, and §B.4's body measure: the prose runs cols 1-8 and the right
-       third stays empty rather than the paragraphs setting to the full 1200. */
+    /* Item 5 — a left rail carries the section's name and the prose runs beside it, the
+       same second-column device the work-card strip and the proof band already use. */
+    .product-section__heading {
+      grid-column: 1 / span 3;
+    }
+
+    .product-section__content {
+      grid-column: 4 / span 6;
+    }
+
     .product-section {
-      grid-column: 1 / span 8;
+      padding-block: var(--space-64);
     }
   }
 </style>
