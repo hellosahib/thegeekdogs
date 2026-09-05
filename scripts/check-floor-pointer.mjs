@@ -15,8 +15,9 @@
  *     puts that station's card in the slot and its selected state on the station in the
  *     room. Ten of ten, at every width, in both schemes.
  *
- *  2. **Nameplates.** At 360 and 390, no nameplate's box intersects another station's
- *     button box. §C.7's portrait rule is a disjointness proof — every plate lies wholly
+ *  2. **Nameplates.** At every one of those widths, no nameplate's box intersects
+ *     another station's button box. §C.7 states the rule at 360 and 390, which is where
+ *     the old one failed, and it is a disjointness proof — every plate lies wholly
  *     inside its own button's top 20-unit band and the ten buttons are pairwise disjoint
  *     — and this is that proof measured on the rendered page, because the rule it
  *     replaced put nine of the ten plates inside a neighbour's target and drew the focus
@@ -36,8 +37,13 @@ requireDist();
 /** DESIGN.md §C.11's own list. */
 const WIDTHS = [360, 390, 768, 1024, 1440, 1920];
 const SCHEMES = ['light', 'dark'];
-/** §C.7's nameplate proof is stated at these two widths. */
-const PLATE_WIDTHS = [360, 390];
+/**
+ * §C.7 states its nameplate proof at 360 and 390, which is where the rule it replaced
+ * failed. It is run at every width because the same failure had a wide-plan half — the
+ * skewed cabin plate put "Sahib Singh" inside Tanya's button at 1024, 1440 and 1920 —
+ * and one check that holds everywhere is cheaper than two that each hold somewhere.
+ */
+const PLATE_WIDTHS = WIDTHS;
 /** DESIGN.md §C.2 — ten stations, and the count is asserted rather than assumed. */
 const STATIONS = 10;
 
