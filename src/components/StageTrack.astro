@@ -153,14 +153,21 @@ const steps = stageSteps(stage);
     font-weight: 500;
   }
 
-  /* >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9). */
-  @media (min-width: 931px) {
-    /* The five labels are all visible here, so the summary line would say a second time
-       what the track's own largest mark already says (step-1 review item 17). */
+  /*
+    Step-1 review item 17 keeps COPY.md §10.4's `Stage:` line below 768 and drops it at
+    768 and above, and that is unchanged by §E.2's breakpoint moving to 931: the line's
+    rule is about whether the five labels are readable, not about which form the track
+    takes, and in the vertical form between 768 and 930 they are. Held at its own
+    breakpoint so the two do not get confused for one.
+  */
+  @media (min-width: 768px) {
     .full-track__now {
       display: none;
     }
+  }
 
+  /* >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9). */
+  @media (min-width: 931px) {
     .full-track__list {
       margin-block-start: 0;
       grid-template-columns: repeat(5, minmax(0, 1fr));
