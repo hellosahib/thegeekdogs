@@ -146,9 +146,26 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
       display: none;
     }
 
+    /*
+      §D.8's failure class, one layer down. The footer takes the room's ground so the page
+      is bookended by the floor (§B.9), and its text is --chalk. On paper a browser
+      suppresses the ground and leaves --chalk on white at 1.20 : 1 — an unreadable block
+      produced silently. It prints as ink on paper with a rule above it instead, which is
+      the separation the fill was carrying.
+    */
     .site-footer {
+      background-color: transparent;
+      color: var(--floor);
+      box-shadow: none;
       padding-block-start: var(--space-16);
       padding-block-end: 0;
+      --tgd-on-room: var(--floor);
+      --tgd-on-room-muted: #444;
+    }
+
+    .site-footer__rule {
+      border-block-start-color: #444;
+      margin-block-end: var(--space-16);
     }
   }
 </style>

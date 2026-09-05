@@ -466,7 +466,16 @@
   produced silently. One block removes the whole failure class.
 */
 @media print {
-  html[data-theme='dark'] {
+  /*
+    The selector has to OUTRANK the block it is correcting. `tokens.css` scopes the dark
+    studio as `[data-world="studio"][data-theme="dark"]`, specificity (0,2,0), and this
+    block was written as `html[data-theme="dark"]`, (0,1,1) — which loses. The whole
+    override was inert: a page read in dark printed the dark studio, the inverted regions
+    kept their --floor ground, and the final CTA printed --lamp on it. Found in a PDF, not
+    in the stylesheet. The two other worlds' blocks below already outranked their own and
+    were correct; only this one was not.
+  */
+  html[data-world='studio'][data-theme='dark'] {
     --floor: #0f2a2e;
     --sheet: #f1f3f0;
     --band: #e2e6e1;
