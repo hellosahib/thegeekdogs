@@ -139,12 +139,18 @@ const schema = await studioGraph();
     1200px page.
   */
   @media (min-width: 1024px) {
-    .intro__headline {
-      grid-column: 1 / span 5;
-    }
-
+    /*
+      §J round 12, `/contact/`'s "remove one thing": **the split header.** The previous row
+      — the second call to action — is spent by rule, since §B.10 now removes the plate
+      from this route entirely. What is left to cut is the header's two-part split: on a
+      page whose whole content is three printed addresses inside cols 1-9, the headline and
+      its line belong in one column, and a headline in cols 1-5 with its body in cols 7-12
+      is a composition borrowed from pages that have more to say. They stack in cols 1-9
+      now, on the same left edge as everything under them.
+    */
+    .intro__headline,
     .intro__body {
-      grid-column: 7 / span 6;
+      grid-column: 1 / span 9;
     }
 
     .routes__heading,
