@@ -86,6 +86,11 @@ committed** — so a fresh checkout builds and deploys with no Python anywhere n
 re-run it when the copy changes enough to need a glyph the subset does not carry, or when
 either package is upgraded.
 
+CI never runs `npm run fonts`, so the committed `.woff2` files can drift silently behind a
+copy edit — `npm run qa:glyphs` is the gate that catches it: it maps every character
+`dist/**/*.html` actually paints to the face the site's CSS renders it in and fails,
+naming the character and the file, if that face's committed subset doesn't have it.
+
 | Script | What fails it |
 |---|---|
 | `npm run qa:build` | any TypeScript error, any Astro diagnostic or hint, any build warning |
@@ -98,6 +103,7 @@ either package is upgraded.
 | `npm run qa:plate` | a load-bearing mark whose right edge falls inside the contact plate's band (DESIGN.md §B.10's composition rule), measured as ink rather than as a box, on every route at eight widths |
 | `npm run qa:floor` | the studio floor over 80KB gzipped (passes trivially until the floor exists) |
 | `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
+| `npm run qa:glyphs` | a character `dist/**/*.html` paints (text, or an `alt`/`aria-label`/`title`) that the committed `public/fonts/*.woff2` subset for the face rendering it doesn't contain |
 
 Lighthouse runs the same assertions the brief's budget table states, over all eight routes:
 

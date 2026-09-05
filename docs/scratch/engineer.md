@@ -1849,3 +1849,17 @@ runner; and the two small scripts that produced the print and `Owns` frames.
    files; frames 1 to 4 are now stale against this build and the equivalents are in
    `docs/reviews/runE/engineer/`. Whose call the packet is has not been settled.
 3. **The 360 plate over the Android annotation**, above — ruled, not open, but worth a look.
+
+## qa:glyphs, added 2026-09-05
+
+The committed `public/fonts/*.woff2` are hand-cut (`npm run fonts`) and CI's `astro build`
+never regenerates them — a copy edit landing a character outside the committed subset
+would render as tofu with nothing catching it. `scripts/check-glyphs.mjs` (`npm run
+qa:glyphs`, wired into the `qa` chain and the CI QA step) closes that: it walks
+`dist/**/*.html`, maps every painted character (text nodes, plus `alt`/`aria-label`/
+`title`) to the face the site's own CSS renders it in — read out of the CSS itself, not
+guessed — and checks that face's cmap via `fontkit@2.0.4` (new, pinned devDependency).
+Passes clean on the current build (21,459 characters checked, 0 uncovered). Proved the
+failure path by appending `₹` to `src/data/agents/programmer.json`'s `job` string,
+rebuilding, and confirming the gate fails naming `U+20B9 "₹"` and `dist/index.html`;
+reverted and confirmed green again.
