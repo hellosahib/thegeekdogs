@@ -408,3 +408,161 @@ them is inside `@lhci/cli`'s dependency tree — `tmp`, `extract-zip`, and the
 
 So: **zero high advisories against anything that ships, seven against the Lighthouse CI
 toolchain with no upstream fix available.** Recorded rather than suppressed.
+
+---
+
+## Build step 3 — the isometric scene, the favicon set (2026-09-05)
+
+Scope per brief §14 step 3 and DESIGN.md §C: the studio floor drawn as an inline SVG
+under the step-2 roster, plus §B.12's four icon files. The Astro 7 upgrade above landed
+first, as its own commit, before anything here.
+
+### What the scene is made of
+
+`src/components/floor/plan.ts` holds the geometry and computes it; the component holds
+the drawing. Nothing about a station's position is typed twice.
+
+- **Projection.** 2:1 isometry, 128 x 64 modules, `wpt(c, r) = (320 + 64(c - r), 32(c + r))`.
+  §C.3's own arithmetic is the check and it lands exactly: the 6 x 5 plan projects to
+  704 x 352, the near corner (row 5) is the bottom of the screen, and F5 — the empty
+  chair — is the closest cell to the camera.
+- **Symbols.** `#fl-mod` (floor module), `#fl-dk`, `#fl-mon`, `#fl-ch` (the shared desk,
+  monitor and chair sub-parts), `#fl-agent` (one symbol, seven `<use>`s, translate only),
+  `#fl-seat`, and the two bespoke cabins, which `<use>` the same three sub-parts rather
+  than redraw them. Every symbol's `viewBox` is its own bounding box and every `<use>`
+  repeats those four numbers as x/y/width/height, so the desktop plan renders at exactly
+  1:1 and the portrait plan is one uniform 0.6 off it. **Bespoke segment count: Sahib 15,
+  Tanya 13**, against §C.4's budget of 16.
+- **Three `<svg>` roots, not one.** `viewBox` is an attribute, not a CSS property, so the
+  two plans cannot be one element. The `<defs>` therefore live in their own zero-sized
+  svg, and whichever scene is `display: none`, the symbols still resolve.
+- **Four fills, one gradient.** `--fl-ground` (`--tgd-room`), `--fl-lit`
+  (`rgba(232,237,233,.22)`), `--fl-shadow` (`#0A1E21`, `#051113` in dark) and `--fl-glow`
+  (`--chalk`). The desk reads in three tones out of those four: lit top, ground-value
+  left face, shadow right face. No `<filter>`, no raster, no outlined text.
+- **Both schemes** resolve from the tokens; the only absolute value is the shadow fill,
+  which takes §C.1's second hex under `[data-theme='dark']`.
+
+### The interaction layer
+
+The ten buttons are the step-2 buttons: same DOM, same order, same accessible names,
+same `hidden`-attribute card slot. Only their CSS changed. `--x` / `--y` is one pair per
+station per plan, set inline as `--xw/--yw` and `--xt/--yt`, and one rule picks the pair
+for the breakpoint. Footprints are three `[data-kind]` rules, not ten.
+
+**Measured, in the browser, on the built page — target sizes and pairwise overlap:**
+
+| Viewport | Scene | Smallest target | Overlapping pairs |
+|---|---|---|---|
+| 360 | 320 x 520 | **64** (agent desks are 101.3 x 64) | none |
+| 390 | 320 x 520 | 64 | none |
+| 768 | 320 x 520 | 64 | none |
+| 1024 | 700 x 495 | 49.5 | none |
+| 1440 | 654 x 462 | 46.2 | none |
+| 1920 | 792 x 560 | 56 | none |
+
+### Four places the drawing had to argue with the spec, and the arithmetic
+
+1. **The portrait plan runs below 1024, not below 768.** The floor sits inside the
+   contact plate's keep-out lane, which leaves 460 of 704px at 768. The 6 x 5 plan
+   scaled into 460px gives 65 x 33 agent buttons and 33 is under the 44 x 44 floor. The
+   portrait plan at its own 320px width gives 101 x 64 there instead. The plan swap moved
+   up a breakpoint rather than the targets coming down.
+2. **Cabin buttons are 128 x 136, not §C.3's "= 232 x 148".** Two 2 x 2 cabins one module
+   apart project to centres 128 apart in x and 64 apart in y, so *any* pair of rectangles
+   wider than 128 and taller than 64 overlaps and the nearer button steals the farther
+   cabin's clicks. 128 x 136 is the largest pair that cannot. Both dimensions are still
+   far past 44, and the same arithmetic clears the Security Auditor's desk below.
+3. **Buttons are centred on the artwork, not on the module.** A desk is 104 units tall
+   and its button is §C.3's 56, so where those 56 land decides whether a pointer on the
+   monitor hits the desk it is over. Centred on the module, the whole monitor was outside
+   its own target.
+4. **An agent's nameplate sits on the near half of its own module**, not floating above
+   the desk as §C.4 has it. On the checkerboard a desk and the desk behind-left of it
+   share a screen x and are 64 apart in y, so a plate above the desk lands squarely on
+   the desk behind: the first render had "Reviewer" inside the Programmer's own button.
+   Below the desk it is inside its own hit target and nearer its own desk than any other.
+   Found by screenshot, not by reasoning. **All four are the Design Lead's to accept or
+   overrule.**
+
+### Motion
+
+**No library. Motion One was not used and is not installed for this.** "Lights on" is
+nine staggered `opacity` animations and one more for the lamp; CSS `animation-delay`
+expresses the stagger and the 400ms hold exactly, and a WAAPI call per element would have
+cost 2.3 KB to do the same thing less declaratively. The scratch note above kept Motion
+One in reserve for "a staggered sequence CSS handles worse" — this is not that sequence.
+
+- **Idle loop:** `@keyframes` on the glow rects' `opacity` only, `--loop-floor` (4800ms),
+  `--ease-idle`, `animation-delay: calc(var(--d) * -533ms)`, inside
+  `@media (prefers-reduced-motion: no-preference)`. The unconditional CSS is
+  `opacity: var(--g)` — §C.9's still frame, nine different static values set inline.
+- **"Lights on"** fades a `<g>` *wrapper* around each glow rect from 0 to 1 rather than
+  the rect itself, so the loop runs underneath the whole time and the room does not jump
+  when the moment ends. The JS decides only whether and when: it arms at module-execution
+  time (before the section can paint, so the room is never seen lit and then switched
+  off) and fires in a `requestAnimationFrame` after `load`, which is provably after first
+  paint. It cancels on the first `pointerdown` or `focusin`, and it is skipped entirely
+  when `matchMedia('(prefers-reduced-motion: no-preference)')` does not match.
+- **Measured against §H.3, sampled every 200ms in the browser:** nine glows up in DOM
+  order at 70ms stagger, last complete at ~1200ms; 1200-1600ms nothing happens; the lamp
+  cone alone from 1600 to 2500ms; idle loop running underneath at nine distinct phases
+  throughout. The chair never animates and its cone is static once up.
+
+### Two things the drawing does not do
+
+- **§C.4's "6% warm offset toward `--lamp`" on the cabin floor patch and desk top is not
+  implemented.** It is a fifth fill value, and §C.1's "four fills in the whole scene" is
+  the harder line. §C.4 says the offset sits below the threshold at which it reads as a
+  colour, so nothing legible is lost. Design Lead's call.
+- **§B.8's "The full pipeline" roster line is still not printed** — its label is still not
+  a string COPY.md contains. The seven roles are now readable on the floor as real SVG
+  `<text>` nameplates, and every station's spoken name is on its button, so nothing is
+  only visual and nothing is only spoken.
+
+### Favicon (§B.12)
+
+`public/favicon.svg` is the source of truth; `npm run icons` exports `favicon-32.png`,
+`apple-touch-icon.png` (180, full-bleed, opaque, no pre-applied radius) and
+`icon-512.png` from it with sharp, which Astro already depends on. `site.webmanifest`
+carries the name and the one 512 icon and nothing else. No `.ico`, no 16px PNG, no
+maskable variant, no `prefers-color-scheme` block inside the SVG — all four are §B.12's
+own rulings. **This closes deferred item 4 and, with it, the `/favicon.ico` 404 that had
+been holding Lighthouse best practices at 96 since step 1.**
+
+Note for whoever edits the SVG: the file's own commentary is in `<title>`/`<desc>`, not in
+an XML comment, because a comment containing a token name (`--lamp`) is a double hyphen
+and libvips refuses to parse the file at all.
+
+### Deferred, deliberately — the step-2 list, updated
+
+Closed this step: **the favicon**, and **the OG image's blocker** is now half-gone (the
+floor composition exists and its `<symbol>` defs are reusable), though the image itself is
+still step 7.
+
+Still open: font subsetting (step 8); fallback-metric matching (CLS is still 0); the four
+nav links (their routes do not exist); the OG image; the work strip's two row links; §B.8's
+"The full pipeline" label; §C.6's gate-ownership sub-block on the two human cards.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| JS shipped, home page | **714 B gzip** (1,712 B raw, two inline modules) — the 4 KB line holds |
+| CSS shipped, home page | 40,343 B raw / **8,467 B gzip** (21% of the 40 KB line) |
+| Home HTML | 8,830 B gzip |
+| **Floor section + its script** | 32,574 B raw / **5,125 B gzip — 6.3% of the 80 KB line** |
+| Home page total | **152,227 B gzip** (12% of the 1.2 MB line) |
+| Lighthouse mobile, 3 runs, light | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| Lighthouse mobile, 3 runs, dark | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| LCP | 1,418-1,459 ms light, 1,405-1,415 ms dark (line is 2,000); LCP element is the `<h1>` |
+| CLS | **0** in both schemes | 
+| TBT | **0 ms** in both schemes |
+| Smallest hit target at 360 | **64 px** (agent desks, 101.3 x 64) |
+
+Screenshots at 360, 768 and 1440 in both schemes, the same six under `reduce`, the card
+slot and the two-tone focus ring after keyboard activation of a station at 360 and 1440,
+and one frame of "Lights on" mid-sequence are in `docs/reviews/step3/engineer/`. Every one
+was opened and looked at; the nameplate collisions, the misaligned hit targets, the
+`<use>` href prefix bug, the focus ring cutting through the portrait nameplates and the
+undersized scene container were all found that way and fixed.
