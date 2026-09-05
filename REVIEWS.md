@@ -196,3 +196,15 @@ Fact Checker verdict on Sahib's page: CHANGES REQUESTED, 5 CONTRADICTED rows, 7 
 6. "Android Basics Nanodegree" vs "Android Nanodegree": print the resume's own wording, "Udacity Android Nanodegree", true under either programme.
 7. Add: Udacity iOS Nanodegree (supports the iOS claim); leading the team that launched the Tickertape Flutter app for iOS and migrated Android to Flutter; the Motive design-components library across Driver and Fleet apps and the Views-to-Compose migration; Cleartrip hotel booking on an app with 10M+ downloads. Skip: IIIT-B data science (off-thesis). All attributed as his own account where a figure appears.
 LinkedIn rows 40 to 42 upgraded to CONFIRMED on the Orchestrator's logged-in check. → Copywriter round 8.
+
+## 2026-09-05 · DESIGN.md round 6 · Orchestrator
+
+Verdict: **APPROVED.** Coverage map cells re-attributed per item 72 (smallcase: Android app, Tickertape native iOS, Tickertape Flutter; Motive: Fleet and Driver apps, Compose migration, KMP components library); the unattributed "honest line" deleted; Pocket Manager `[BLOCKED]` markers cleared. Filled region reads as a staircase falling right to left, all five columns and rows covered. Geometry unchanged, so step 6's build spec is stable.
+
+## 2026-09-05 · COPY.md round 8 · Orchestrator
+
+Verdict: **CHANGES REQUESTED, 3 items** (round 9). Bengaluru-only footer, design review by both, item 72 stacks, Nanodegree wording, Cleartrip title, post figures printed plainly with four URLs: all approved. Back: "by his own account" three times on one page (once, at most); the Cleartrip 10M download figure is a store fact and needs no attribution; §2.3's home role line dropped "native" to satisfy an Orchestrator scan that was broader than the rule it enforced, so it goes back to the brief's wording. Card small print also needs trimming to card length. Markers now 2 (screenshots, headshots).
+
+## 2026-09-05 · COPY.md round 9 · Orchestrator
+
+Verdict: **APPROVED. COPY.md is final for the build.** Role line restored to the brief's wording; attribution once per page; card lines at 35/35/14 words. Two markers remain (screenshot and headshot alt lines), both tied to assets that do not exist yet; the Engineer omits those `alt` sources until the assets land. Engineer step 3 transcribes every route from this version.

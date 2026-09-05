@@ -6,7 +6,11 @@
   "headlineRole": "Native Android and KMP, and the iOS side too.",
   "currentEmployer": "Motive",
   "bio": "Software Engineer 2 at Motive, where she owns releases. Here she owns the product spec, real-device QA, and the security, privacy and ASO review. She shares code review with Sahib.",
-  "gatesOwned": ["code-review", "qa-on-real-devices", "security-and-privacy-review"],
+  "gatesOwned": [
+    "code-review",
+    "qa-on-real-devices",
+    "security-and-privacy-review"
+  ],
   "socials": {
     "github": "https://github.com/Tanya-jain99",
     "linkedin": "https://www.linkedin.com/in/tanyajain06/"
@@ -21,14 +25,18 @@
         "Motive Fleet App. Kotlin, Coroutines, Compose, and KMP business-logic modules under Clean Architecture.",
         "Bluetooth device-verification flows, CI/CD and workflow automation."
       ],
-      "confirmed": true
+      "confirmed": true,
+      "ownershipLine": "She owns app releases there: phased rollouts, crash and ANR monitoring, and the fixes that follow.",
+      "attributedAccount": "By her account, a 99.8% crash-free rate held and about 20% off startup time, from cold-start and dependency work."
     },
     {
       "company": "HSBC",
       "whatTheyDo": "Global bank.",
       "years": "Aug 2021 – Dec 2023",
       "role": "Software Engineer",
-      "productsStack": ["Mobile banking. Migration to MVVM, UI performance work, and diagnosis of production issues."],
+      "productsStack": [
+        "Mobile banking. Migration to MVVM, UI performance work, and diagnosis of production issues."
+      ],
       "confirmed": true
     },
     {
@@ -36,8 +44,11 @@
       "whatTheyDo": "Mobile and product studio, Noida. Around 20 people, client work.",
       "years": "Nov 2020 – Aug 2021",
       "role": "Android Intern",
-      "productsStack": ["Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring."],
-      "confirmed": true
+      "productsStack": [
+        "Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring."
+      ],
+      "confirmed": true,
+      "projectLine": "The Jillian Michaels fitness app, built at Naskay for a US client."
     }
   ]
 }

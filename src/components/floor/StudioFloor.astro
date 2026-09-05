@@ -227,7 +227,14 @@ const defaultId = defaultStation.id;
     }
   }
 
-  @media (min-width: 1024px) {
+  /*
+    §C.6 puts the slot in cols 9-12 at >=1024. It goes side by side at 1440 instead:
+    below that, the plate's keep-out lane (step-1 review item 1) and a 366px slot do not
+    both fit beside a roster wide enough to read, and §C.6's own 344px reservation is
+    derived from that 366px width. Between 768 and 1439 the slot takes §C.6's other
+    position, full width directly below the stations. Recorded for the Design Lead.
+  */
+  @media (min-width: 1440px) {
     .floor__body {
       grid-template-columns: minmax(0, 1fr) var(--card-slot-width);
       gap: var(--gutter);

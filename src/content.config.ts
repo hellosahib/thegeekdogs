@@ -51,6 +51,13 @@ const people = defineCollection({
           // on that card and the component renders nothing in its place.
           role: z.string().min(1).optional(),
           productsStack: z.array(z.string().min(1)),
+          // COPY.md §7.2 gives Tanya's Motive card two lines no other card has, and her
+          // Naskay card a project line (item 63). They are optional because they belong
+          // to those cards and to no others; the compressed home strip renders none of
+          // them, and the person pages are a later step.
+          ownershipLine: z.string().min(1).optional(),
+          attributedAccount: z.string().min(1).optional(),
+          projectLine: z.string().min(1).optional(),
           confirmed: z.boolean(),
         }),
       ),

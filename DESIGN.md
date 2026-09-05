@@ -1376,20 +1376,20 @@ The finance thread is the texture, per §5.4's instruction to pick one spine and
 
 **Why this over the others:** it is the only one where a stranger gets the argument without reading; §9.2 literally describes it ("the breadth itself is the composition"); and it is the shape of contribution rather than a sequence, which keeps it distinct from Tanya's page in the way §9.2 asks.
 
-**The honest-gap problem is closed, and the third cell state is removed.** Pass 1 designed a three-state cell grammar — attributed / asserted / empty — because §5.4 claimed four stacks while §7's table attributed three, leaving native iOS and KMP as columns with nothing behind them. Item 45 answers it: **native iOS at Motive and smallcase; KMP at Motive.** Every column on the map now has at least one attributed cell.
+**The honest-gap problem is closed twice over, and the third cell state is gone.** Pass 1 designed a three-state cell grammar — attributed / asserted / empty — because §5.4 claimed four stacks while §7's table attributed three, leaving native iOS and KMP as columns with nothing behind them. Item 45 named the stacks (**native iOS at Motive and smallcase; KMP at Motive**) and **item 72 named the products behind them**: at smallcase, the smallcase Android app and Tickertape on native iOS, then the Tickertape Flutter app for iOS and the Android app migrated to Flutter; at Motive, the Fleet and Driver apps natively on both platforms, a design-components library in KMP shared across the two, and the Views-to-Compose migration on Android. **Every filled cell on the map now prints a product name.** There is nothing left on this page for an "asserted" cell to say.
 
-**Decision: remove the "asserted" state, do not keep it as grammar for the future.** Two states remain:
+**Decision: remove the "asserted" state.** It is retained here as documented grammar for a future row whose stack is real but whose product cannot be named — and for nothing else, because no cell on Sahib's page is in that condition. Two states are drawn:
 
 | Cell state | Treatment | Means |
 |---|---|---|
 | Attributed | filled, product name printed inside | we can name the product |
 | Empty | nothing | no claim |
 
-Keeping a third state "in case we need it" would be keeping a drawn way to make an unattributed claim, and a drawn affordance gets used. The honest answer to a future claim with no product behind it is not a hollow cell — it is the one line of prose beneath the map that this section already reserves, or silence. A two-state map cannot lie by omission, because the only thing it can say is "here is a product". That is a stronger position than a grammar, and it costs one CSS rule less.
+Keeping the third state *drawn* "in case we need it" would be keeping a rendered way to make an unattributed claim, and a drawn affordance gets used. **The one line of prose this section used to reserve beneath the map is deleted with it**, because nothing under the map is unattributed and a disclaimer under a fully attributed diagram only teaches the reader to doubt the diagram. A two-state map cannot lie by omission, because the only thing it can say is "here is a product". That is a stronger position than a grammar, and it costs one CSS rule less.
 
-**What the closed gap does to the composition, which is more than filling two holes.** The Motive row now carries **three adjacent filled cells** — native iOS, native Android, KMP, all the Motive Fleet App — and that horizontal bar is the single densest thing on the map. It does real work: the KMP column has exactly one filled cell, and so does the end-to-end-with-AI column, and two lone cells on the same map would have diluted the "one lit region" read that §H.3's orchestrated moment depends on. Because Motive's KMP cell sits inside a three-cell bar, it does not read as isolated, and **the 2025 lamp cell stays the only solitary mark on the page.** The gap closing made the lit region louder, not quieter.
+**What the closed gap does to the composition, which is more than filling two holes.** The Motive row carries **three adjacent filled cells** — native iOS, native Android, KMP: the Fleet and Driver apps, and the design-components library shared between them — and the smallcase row carries three of its own — native iOS, native Android, Flutter. Those two bars are the densest thing on the map. They do real work: the KMP column has exactly one filled cell, and so does the end-to-end-with-AI column, and two lone cells on the same map would have diluted the "one lit region" read that §H.3's orchestrated moment depends on. Because Motive's KMP cell sits inside a three-cell bar, it does not read as isolated, and **the 2025 lamp cell stays the one mark on the map that stands apart.**
 
-The filled region now spans **all five columns and all five rows** — ten of twenty-five cells, no empty column, no empty row. That is what §9.2's "the breadth itself is the composition" was always describing, and until item 45 it was a claim the map could not actually make.
+The filled region spans **all five columns and all five rows** — ten of twenty-five cells, no empty column, no empty row. **Its shape is a staircase descending right to left:** the lit pair at the top right steps down into the two wide middle rows, which then narrow to the single native-Android column running unbroken to the bottom. The Keenai pair meets the Motive bar corner to corner rather than edge to edge, which is what makes the step read as a step and keeps the lamp at the head of the figure rather than buried inside it. Item 72 changed what the cells *say*, not where they sit — the geometry is round 5's, now with a product name in every one of the ten. That is what §9.2's "the breadth itself is the composition" was always describing, and until item 45 it was a claim the map could not actually make.
 
 ### F.2 Direction S2 — teaching-led
 
@@ -1517,31 +1517,29 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │  │            iOS And KMP Flt  AI   │  │      surfaces become COLUMNS at
 │  │ Keenai      ·   ·   ·   ■   ▣    │  │      44px each (5 x 44 = 220),
 │  │ 2025-        Keenai Wealth,      │  │      companies become ROWS at
-│  │              Keenai Pulse        │  │      64px (76 where the row line
-│  │              end to end with AI  │  │      wraps). product names move
-│  │ ─────────────────────────────────│  │      out of the cells into the
-│  │ Motive      ■   ■   ■   ·   ·    │  │      row's own line, since a
-│  │ 2023-25      Motive Fleet App    │  │      44px cell cannot hold text.
+│  │              Keenai Pulse        │  │      64px, growing by 20 for each
+│  │              end to end with AI  │  │      product line the row needs.
+│  │ ─────────────────────────────────│  │      product names move out of
+│  │ Motive      ■   ■   ■   ·   ·    │  │      the cells into the row's own
+│  │ 2023-25      Fleet + Driver apps │  │      lines, since a 44px cell
+│  │              KMP components lib, │  │      cannot hold text.
+│  │              Compose migration   │  │
+│  │ ─────────────────────────────────│  │      ■ attributed  ▣ lamp (2025)
+│  │ smallcase   ■   ■   ·   ■   ·    │  │      · empty. TWO states only --
+│  │ 2020-23      smallcase Android;  │  │      the "asserted" state is
+│  │              Tickertape iOS;     │  │      removed (§F.1), and so is
+│  │              Tickertape Flutter, │  │      the line of prose that used
+│  │              iOS then Android    │  │      to sit under the map: every
+│  │ ─────────────────────────────────│  │      filled cell now names its
+│  │ Cleartrip   ·   ■   ·   ·   ·    │  │      own product, so there is
+│  │ 2019-20      Cleartrip Android   │  │      nothing left to qualify.
 │  │ ─────────────────────────────────│  │
-│  │ smallcase   ■   ■   ·   ■   ·    │  │      ■ attributed  ▣ lamp (2025)
-│  │ 2020-23      Tickertape          │  │      · empty. TWO states only --
-│  │ ─────────────────────────────────│  │      the "asserted" state is
-│  │ Cleartrip   ·   ■   ·   ·   ·    │  │      removed (§F.1).
-│  │ 2019-20      Cleartrip Android   │  │
-│  │ ─────────────────────────────────│  │      the row line carries the
-│  │ TheGeekDogs ·   ■   ·   ·   ·    │  │      product because within every
-│  │ 2020-        Pocket Manager      │  │      row the filled cells share
-│  └──────────────────────────────────┘  │      one product -- Keenai is the
-│                                        │      one exception and gets two
-│  [the finance domain note runs as a    │      lines.
-│   second row line; §J cuts it]         │
-│                                        │      [BLOCKED: Pocket Manager's
-│                                        │       stack. item 44 sends this to
-│                                        │       the local codebase; the cell
-│                                        │       above rests on item 44 naming
-│                                        │       an Android Studio project and
-│                                        │       needs the Fact Checker's read
-│                                        │       before publish.]
+│  │ TheGeekDogs ·   ■   ·   ·   ·    │  │      the row lines carry the
+│  │ 2020-        Pocket Manager      │  │      products, and a row may now
+│  └──────────────────────────────────┘  │      hold more than one: Keenai,
+│                                        │      Motive and smallcase take
+│  [the finance domain note runs as a    │      three lines each, Cleartrip
+│   second row line; §J cuts it]         │      and TheGeekDogs one.
 │                                        │  56
 │  What he writes about                  │      S2's material, as section 2
 │  ─ channelFlow vs callbackFlow         │      three verified subjects.
@@ -1593,28 +1591,34 @@ The cards live **below** the map, as the attribution layer: the map makes the cl
 │            ┌────────┬─────────┬─────────┬─────────┬──────────────┐       │  columns are
 │ Keenai     │   ·    │    ·    │    ·    │ Keenai  │  backend,    │ 2025- │  surfaces,
 │ wealth     │        │         │         │ Wealth, │  frontend,   │       │  rows are
-│            │        │         │         │ Keenai  │  tests  ▣    │       │  places.
-│            │        │         │         │ Pulse   │              │       │
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  ▣ = --lamp,
-│ Motive     │ Motive │ Motive  │ Motive  │    ·    │      ·       │ 2023- │  the ONLY lit
-│ fleet      │ Fleet  │ Fleet   │ Fleet   │         │              │  25   │  cell on the
-│            │ App    │ App     │ App     │         │              │       │  page, newest
+│            │        │         │         │ Keenai  │  tests  ▣    │       │  places. every
+│            │        │         │         │ Pulse   │              │       │  filled cell
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  names a real
+│ Motive     │ Motive │ Motive  │ design- │    ·    │      ·       │ 2023- │  product
+│ fleet      │ Fleet  │ Fleet   │ compo-  │         │              │  25   │  (items 45, 72).
+│            │ and    │ and     │ nents   │         │              │       │
+│            │ Driver │ Driver; │ library │         │              │       │  ▣ = --lamp,
+│            │ apps   │ Views   │ across  │         │              │       │  the ONLY lit
+│            │        │ to Com- │ Fleet + │         │              │       │  cell on the
+│            │        │ pose    │ Driver  │         │              │       │  page, newest
 │            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  and smallest
-│ smallcase  │ Ticker-│ Ticker- │    ·    │ Ticker- │      ·       │ 2020- │  region.
-│ investing  │ tape   │ tape    │         │ tape    │              │  23   │
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  the Motive row
-│ Cleartrip  │   ·    │ Clear-  │    ·    │    ·    │      ·       │ 2019- │  is a THREE-cell
-│ travel     │        │ trip    │         │         │              │  20   │  bar, which is
-│            │        │ Android │         │         │              │       │  what stops the
-│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  lone KMP cell
-│ TheGeek-   │   ·    │ Pocket  │    ·    │    ·    │      ·       │ 2020- │  competing with
-│ Dogs       │        │ Manager │         │         │              │       │  the lamp cell.
-│ personal   │        │         │         │         │              │       │
-│ finance    └────────┴─────────┴─────────┴─────────┴──────────────┘       │  10 of 25 cells
-│                                                                          │  filled. NO empty
-│ [BLOCKED: Pocket Manager's stack -- item 44 sends it to the codebase.]   │  column, no empty
-│                                                                     128  │  row, 5 surfaces,
-│                                                                          │  7 years.
+│ smallcase  │ Ticker-│ small-  │    ·    │ Ticker- │      ·       │ 2020- │  region.
+│ investing  │ tape   │ case    │         │ tape    │              │  23   │
+│            │        │ Android │         │ Flutter │              │       │  the Motive and
+│            │        │ app     │         │ for iOS,│              │       │  smallcase rows
+│            │        │         │         │ Android │              │       │  are THREE-cell
+│            │        │         │         │ migrated│              │       │  bars, which is
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  what stops the
+│ Cleartrip  │   ·    │ Clear-  │    ·    │    ·    │      ·       │ 2019- │  lone KMP cell
+│ travel     │        │ trip    │         │         │              │  20   │  competing with
+│            │        │ Android │         │         │              │       │  the lamp cell.
+│            ├────────┼─────────┼─────────┼─────────┼──────────────┤       │  10 of 25 cells
+│ TheGeek-   │   ·    │ Pocket  │    ·    │    ·    │      ·       │ 2020- │  filled. NO empty
+│ Dogs       │        │ Manager │         │         │              │       │  column, no empty
+│ personal   │        │         │         │         │              │       │  row, 5 surfaces,
+│ finance    └────────┴─────────┴─────────┴─────────┴──────────────┘       │  7 years, and one
+│                                                                     128  │  descending stair
+│                                                                          │  from lamp to base.
 ├──────────────────────────────────────────────────────────────────────────┤
 │ What he writes about              │  channelFlow vs callbackFlow         │  S2 material.
 │                     (cols 1-4)    │  Android 16, orientation locks,      │  three verified
@@ -2054,7 +2058,7 @@ Round 5. Round 4's list carried six items; **two of them are now ruled and remov
 
 **Closed in round 4, and why:**
 
-- **Round 3 item 6, Pocket Manager's stack** — **resolved.** `FACTS.md` §(d) is a direct read of the local repo: Kotlin 2.0.21 with a six-file Java remainder, Compose-only presentation with no `res/layout*` and a repo test pinning that, Hilt, Room, WorkManager, minSdk 23 / targetSdk 36. The TheGeekDogs row of the coverage map no longer rests on item 44's phrase, and the `[BLOCKED]` markers in §F.7 and §F.8 are the Fact Checker's to clear against that section rather than a design question. Removed from this list.
+- **Round 3 item 6, Pocket Manager's stack** — **resolved.** `FACTS.md` §(d) is a direct read of the local repo: Kotlin 2.0.21 with a six-file Java remainder, Compose-only presentation with no `res/layout*` and a repo test pinning that, Hilt, Room, WorkManager, minSdk 23 / targetSdk 36. The TheGeekDogs row of the coverage map no longer rests on item 44's phrase, and the `[BLOCKED]` markers in §F.7 and §F.8 are **removed in round 6** against that section — the cell prints Pocket Manager, native Android, like every other cell on the map. Removed from this list.
 - **Round 3 item 7, T2** — **closed: T1 stands.** §G.5's argument (the floor at ten stations has made the home page the site's pipeline diagram; T2 would be the second one) is the recommendation, T2 remains documented as unblocked and buildable, and Tanya's post-build review is where a swap would be raised. Nothing further is owed here, so it stops being an open question.
 - **Round 3 item 9, hero subhead length** — **stale.** `COPY.md` §1 cut the variant A body to **24 words** in round 3, inside §B.7's ≤ 26-word budget, with the 41-word version kept in Appendix A as "hero body, long form". The constraint is met; the question was answered by the Copywriter before it was asked twice. Removed.
 

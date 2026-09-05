@@ -34,7 +34,9 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
         </nav>
       )
     }
-    <ThemeToggle />
+    <div class="site-header__toggle">
+      <ThemeToggle />
+    </div>
   </div>
 </header>
 
@@ -90,8 +92,9 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
   }
 
   /* §B.10a — right-aligned to the content edge, last in the tab order. */
-  .theme-toggle {
+  .site-header__toggle {
     margin-inline-start: auto;
+    display: flex;
   }
 
   @media (min-width: 768px) {

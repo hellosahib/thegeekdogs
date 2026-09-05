@@ -18,9 +18,9 @@ import { THEME_TOGGLE } from '../lib/copy';
  * button's accessible name rather than as printed text. Noted in
  * docs/scratch/engineer.md as the one place the two documents disagree.
  *
- * The name is written server-side for the light scheme and corrected by the inline
- * script below the moment the element exists, because the scheme itself is decided
- * before first paint by the head script in BaseLayout.
+ * The name is written server-side for the light scheme and corrected by the script
+ * below the moment it runs, because the scheme itself is decided before first paint by
+ * the head script in BaseLayout, which cannot reach an element that does not exist yet.
  */
 ---
 
@@ -45,16 +45,16 @@ import { THEME_TOGGLE } from '../lib/copy';
         focusable="false"
       >
         <!-- stem -->
-        <path d="M10 1.5V6" fill="none" stroke="currentColor" stroke-width="2"></path>
+        <path d="M10 1V6.6" fill="none" stroke="currentColor" stroke-width="2"></path>
         <!-- shade: an outlined trapezoid -->
         <path
-          d="M4.5 11.5 L7.5 6 h5 l3 5.5 Z"
+          d="M2.6 12.8 L6.6 6.6 H13.4 L17.4 12.8 Z"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linejoin="round"></path>
         <!-- cone: present only while the dark scheme is active -->
-        <path class="theme-toggle__cone" d="M5.5 12.5 h9 L11.6 18.5 h-3.2 Z" fill="currentColor"
+        <path class="theme-toggle__cone" d="M4.6 14.4 H15.4 L12.4 19.4 H7.6 Z" fill="currentColor"
         ></path>
       </svg>
     </span>
@@ -141,7 +141,7 @@ import { THEME_TOGGLE } from '../lib/copy';
   .theme-toggle__cone {
     opacity: 0;
     transform: scale(0.6);
-    transform-origin: 10px 12.5px;
+    transform-origin: 10px 14.4px;
   }
 
   :global(html[data-theme='dark']) .theme-toggle__cone {

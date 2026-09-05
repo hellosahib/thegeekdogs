@@ -116,6 +116,21 @@ const figures = [
               ))
             }
           </ol>
+          <!--
+            COPY.md §2.6, round 8. Items 56 and 70 gave ship approval and design review
+            an owner apiece, both of them jointly, and §2.6 prints each as a line UNDER
+            the numbered four rather than as a fifth and sixth number: the four are the
+            gates §2.4's cards map to, and only the four are numbered (§B.8's "the ONLY
+            numbered sequence on the site").
+          -->
+          <p class="gates-section__extra muted">
+            The release itself is a fifth thing no agent touches. Sahib and Tanya cut every
+            release together, both names on it, every time.
+          </p>
+          <p class="gates-section__extra muted">
+            Design review is a sixth. Both of them read the layouts, the states, and the empty
+            and error screens before anything is built to them.
+          </p>
         </div>
         <p class="gates-section__closing">
           That's the difference between generated software and shipped software.
@@ -264,6 +279,11 @@ const figures = [
     margin-block-start: var(--space-12);
   }
 
+  /* Under the four, not inside them, and set apart from them by space. */
+  .gates-section__extra {
+    margin-block-start: var(--space-32);
+  }
+
   /* Step-1 review item 5 — the closing line is anchored right and centred to the whole
      group at display-section size. It is not a card and not a pull-quote. */
   .gates-section__closing {
@@ -343,6 +363,21 @@ const figures = [
       line-height: var(--step-numeral-large-lh);
     }
 
+    .offer__inner {
+      grid-column: 3 / span 8;
+    }
+  }
+
+  /*
+    §B.9's two side-by-side forms — the anchored closing line and the split proof band —
+    come in at 1440 rather than at 1024. Below 1440 the plate's keep-out lane (review
+    item 1) leaves a right-hand column too narrow to hold either at the size §B.9 sets
+    them: the closing line broke to five short lines and the five-column stage axis lost
+    its label row to collisions. §B.9 is drawn at 1440 and has no 1024 counterpart, so
+    the honest reading is that the split is the wide form and 1024 stacks, exactly as
+    768 does. Recorded in docs/scratch/engineer.md for the Design Lead.
+  */
+  @media (min-width: 1440px) {
     .gates-section__list {
       grid-column: 1 / span 7;
     }
@@ -359,10 +394,6 @@ const figures = [
     .proof__track {
       grid-column: 7 / span 6;
       margin-block-start: 0;
-    }
-
-    .offer__inner {
-      grid-column: 3 / span 8;
     }
   }
 </style>

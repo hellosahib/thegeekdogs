@@ -300,3 +300,58 @@ count (permanent) and C6 the headshots (23). Scan after editing: zero banned wor
 zero "bride", "groom", "Milan", "on-device", and zero of either phone number. "Slop" still zero.
 Grep confirms six `[CONFIRM:` and zero `[FILL:`, excluding the legend and the appendix's own
 counting lines.
+
+Round 8. Human gate 3's two amendments, item 72 and Fact Checker round 4's rulings applied in
+place; nothing else touched. Location is one city now: the footer reads `Bengaluru. We work in
+IST.`, Appendix B's F1 note drops the second city, and no user-facing string, meta field or note in
+this document contains "Delhi" in any form. Tanya's page never printed a city and still does not.
+Design review took an owner under item 70, both of them, so the Designer's `Checked by` cell became
+its own label `Design review` instead of architecture review borrowed under item 42, §10.2 speaks
+that string, and §2.6 gained a design-review line under the ship-approval line so the gate names
+its owners where every other gate does. Architecture review is now the one gate with no desk under
+it, which the §2.4 note states rather than hides; the floor still runs on six strings. Item 72
+rewrote three "Products and stack" lines: Motive is native Android, native iOS and KMP plus the
+design-components library across Driver and Fleet, the Views-to-Compose migration and the KMP work;
+smallcase is native Android and native iOS first, then the Flutter codebase, with the team of seven,
+the Flutter iOS launch, the Android migration and the architecture; Cleartrip is the hotel-booking
+feature on an app with over 10 million downloads. All three attributed as his own account, all
+three in the card's small-print register. Cleartrip's role took the resume's `Android Intern`,
+matching Tanya's Naskay card. §6.1's item 45 paragraph became item 72's, and the honest line about
+unattributed columns is gone for good: every column has a product. §6.4 corrected the Udacity
+credential to `Udacity Android Nanodegree` and added `Udacity iOS Nanodegree`; the data-science
+certification stays off, as round 4 ruled. §6.3 lost both markers: the 283 reactions and 13 reposts
+print plainly with no hedge, because rows 40 to 42 were read off the post pages in a logged-in
+session, and the four post subjects now print with four link targets from the Orchestrator's notes,
+the fourth being coroutine cancellation, which the brief never named. Appendix B rebuilt, not
+edited: four markers resolved, none added, two left, both waiting on images nobody has made yet.
+Scan after editing: zero banned words, zero em-dashes, zero "bride", "groom", "Milan", "on-device",
+"New Delhi" or "Delhi", zero of either phone number, and zero "native iOS" outside §6, where item
+72 now authorises it per employer. §2.3's home-page role line reads `Mobile across all four stacks:
+iOS, Android, KMP, Flutter.` for that reason. "Slop" still zero. The one triple negation is still
+§2.9's. Grep confirms two `[CONFIRM:` and zero `[FILL:`, excluding the legend and the appendix's own
+counting lines.
+
+Round 9. Three items, nothing else touched. §2.3's role line goes back to the brief's wording,
+`Mobile across all four stacks: native iOS, native Android, KMP, Flutter.` Round 8 dropped both
+"native"s to satisfy a scan that was policing the wrong thing: item 72 is the owner's own
+clarification and it says native Android and native iOS in as many words, so the word is authorised
+wherever the stacks are listed, not only inside §6. §6.1's role line already read `Native iOS,
+native Android, KMP and Flutter`, so the two now match and neither moved to meet the other. §6.2's
+three "Products and stack" lines lost two of the three attributions and a third of their length.
+The phrase was on all three cards, and three disclaimers in a column read as a hedge rather than as
+care; it now sits once, on smallcase, where the claim is strongest, leading the team of seven. The
+Cleartrip download figure is a public store number and takes no attribution, so that card is 14
+words and states the figure plainly. Motive is 35, smallcase 35, Cleartrip 14, and every fact
+survived the cut: the fleet-manager surface and its four features, the three stacks, the Driver and
+Fleet design-components library, the Views-to-Compose migration, the KMP work, the native-first
+then Flutter order, the team of seven, the Flutter iOS launch, the Android migration, the Flutter
+architecture, the download figure and the hotel-booking feature. What went was connective tissue:
+"the move to a Flutter codebase" is "then Flutter", "the Tickertape Flutter app for iOS" is "the
+Flutter iOS app" on a card whose first word is Tickertape, and "used across the Driver and Fleet
+apps" is "the Driver and Fleet design-components library". The §6 preamble dropped its
+"attributed to him" clause, which stopped being true of three cards, and §6.2's intro gained the
+rationing rule so a later round does not put the phrase back on all three. Nothing outside §2.3,
+§6 and §6.2 was edited. Scan after editing: zero banned words, zero em-dashes, zero of either phone
+number, zero "New Delhi" and zero "Delhi", "slop" still zero, the one triple negation still §2.9's.
+"By his own account" appears once on `/sahib/` and "By her account" once on `/tanya/`, which §7.2's
+own note requires; no other page carries either.

@@ -54,7 +54,7 @@ export const BACK_TO_STUDIO = {
 /** COPY.md §1, footer. */
 export const FOOTER = {
   studioLine: 'TheGeekDogs. A two-person mobile studio.',
-  locationLine: 'Bengaluru and New Delhi. We work in IST.',
+  locationLine: 'Bengaluru. We work in IST.',
   emailLabel: STUDIO_EMAIL,
   elsewhereHeading: 'Elsewhere',
   /** COPY.md §1: four outbound links and no more. Labels verbatim. */
