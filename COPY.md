@@ -171,9 +171,10 @@ Equal weight. Neither is the assistant. Each card names what that person owns, f
 - **Role line:** `Native Android and KMP, and the iOS side too.`
 - **Body:** `Software Engineer 2 at Motive, where she owns releases. She owns the product spec here, QA on real devices, and the security, privacy and ASO review, and reads code review with Sahib.`
 
-Item 19 assigned every gate but one, and it assigned them unevenly: three of the four named gates
-are hers, code review is shared, and architecture is his. The cards print that split rather than
-balancing it, because a card that squares an uneven division is a card that stopped being true.
+Item 19 assigned every gate but one, and it assigned them unevenly: two of the four are hers
+outright, code review is shared, architecture is his, and the product spec, which is not one of the
+four, is hers as well. The cards print that split rather than balancing it, because a card that
+squares an uneven division is a card that stopped being true.
 
 ### 2.4 The agent cards
 
@@ -420,10 +421,10 @@ Every fact in this section comes from a read-only audit of the app's own reposit
 That last line is a commit, not a release, and the page says so by calling it one. The two are
 different events and only the year is common to both.
 
-Do not write "on-device only", "nothing leaves your device" or any sentence with that shape into
-this section. The app's own records have no network layer, which is a build fact and printable; the
-Firebase analytics and crash-reporting SDKs do send data off the device, which makes the stronger
-sentence false. Item 14's ban on privacy claims covers the rest.
+One shape of sentence is forbidden here: the one claiming nothing ever leaves the phone, in any
+wording. The app's own records have no network layer, which is a build fact and printable; the
+Firebase analytics and crash-reporting SDKs do send data off the phone, which makes the larger
+claim false. Item 14's ban on privacy claims covers the rest.
 
 - **Feature list, safe to print as-is, straight from the listing:**
   - `A simple interface with multiple categories.`
@@ -714,7 +715,7 @@ misrepresents what she does; nothing below depends on one.
 
 - **Headline:** `Tanya Jain`
 - **Role line:** `Mobile engineer. Native Android and KMP, and the iOS side too.`
-- **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Three of the four gates this studio refuses to hand to an agent are hers, and so is the spec that starts the work and the ASO that ends it. Code review she shares with Sahib.`
+- **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Here she owns QA on real devices and the security and privacy review outright, shares code review with Sahib, and owns both ends of the work either side of them: the spec that starts it and the ASO that ships it.`
 - **Second paragraph:** `Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
 - **Quote, verbatim from Sahib's recommendation of her, 3 July 2026:** `"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices"`
 - **Second quote, same source:** `"go-to person for KMP-related discussions"`
@@ -778,7 +779,7 @@ The section that connects her to the home page's pitch.
 - **Gates link, 360** (DESIGN.md line 1227, ~25 words): the same string, unchanged. The two markers
   are one slot at two breakpoints, not two slots. The 360 wireframe restates the 1440 line rather
   than replacing it, so one string serves both, on the same rule as §10.4's stage labels.
-- **Body, long form:** `Most of the gates on the home page are hers. She writes the spec that says what the thing deliberately won't do, she runs the build on physical phones, and she reads what it collects and what the listing says about it before anyone outside sees either. At Motive she owns releases the same way: phased rollouts, crash and ANR monitoring, and CI/CD work so the path from merge to store is one a person can repeat. A studio selling "agents write it, humans review it" needs someone whose subject that already is, and the shared core is the same argument one layer down: agree the data, the rules and the order of the work once, and the platform code at the edges stays small enough to review.`
+- **Body, long form:** `Three of the four gates on the home page have her on them, two of them hers alone. She writes the spec that says what the thing deliberately won't do, she runs the build on physical phones, and she reads what it collects and what the listing says about it before anyone outside sees either. At Motive she owns releases the same way: phased rollouts, crash and ANR monitoring, and CI/CD work so the path from merge to store is one a person can repeat. A studio selling "agents write it, humans review it" needs someone whose subject that already is, and the shared core is the same argument one layer down: agree the data, the rules and the order of the work once, and the platform code at the edges stays small enough to review.`
 
 The long form is still the section's paragraph where a paragraph fits. The two short fields above
 are the strings DESIGN.md §G.3 has slots for: the core statement sits inside the shared-core field
@@ -831,7 +832,7 @@ The LinkedIn link is the CTA item 40 asked for, labelled plainly. Items 17 and 1
 ### 7.6 Meta
 
 - **Meta title:** `Tanya Jain | TheGeekDogs`
-- **Meta description:** `Mobile engineer in native Android and KMP, working on the iOS side too. Software Engineer 2 at Motive, where she owns releases, and the owner of most of this studio's review gates.`
+- **Meta description:** `Mobile engineer in native Android and KMP, working on the iOS side too. Software Engineer 2 at Motive, where she owns releases. Here she owns the spec, device QA and the security and privacy review.`
 - **OG title:** `Tanya Jain`
 - **OG description:** `The product spec, QA on real devices, and the security and privacy review are hers. So are releases at Motive, phased and monitored.`
 - **OG image text:** `Tanya Jain` and, under it, `Native Android, KMP, and how the work gets made.`
@@ -1044,59 +1045,50 @@ the scene is actually on screen and the lines do the work they were written for.
 
 ## Appendix B. Every `[CONFIRM]` and `[FILL]`, numbered for QUESTIONS.md
 
+Rebuilt from scratch in round 4. The owners answered every item from 1 to 55, the Fact Checker
+audited the Pocket Manager codebase, and Tanya's resume arrived, so the previous list of twenty
+CONFIRM and thirteen FILL questions no longer described this document. Numbering restarts. A marker
+survives round 4 only if it is an open item in QUESTIONS.md section J, or a fact that no round can
+ever verify and only the owners can supply.
+
 ### CONFIRM. Fact Checker owns these. An unverifiable claim gets cut, not softened.
 
-| # | Where | What needs confirming |
-|---|---|---|
-| C1 | §2.3 | Both human floor-card lines, with Sahib and Tanya themselves. §7 requires it before publish. |
-| C2 | §2.3 | Which of the four human gates each person owns. §5.4 open; §7's draft assigns architecture and the release cut to Sahib, the review gates to Tanya. |
-| C3 | §2.7, §4.5 | Pocket Manager's exact first release date, from the Play Console. Nothing more precise than "since 2020" and "roughly five years" prints until then. |
-| C4 | §2.7, §4.6 | The exact wording of the corrected Play Store Data Safety declaration, read off the live listing. Resolves the flag-ON privacy line on both the home page and the product page. "Resolved" is not a source. |
-| C5 | §2.7 | That the owners are comfortable saying publicly that a headline feature was cut from its own store listing because the button wasn't wired up. |
-| C6 | §4.2 | That the Problem paragraph is a fair statement of Pocket Manager's original goal. It is derived from the store listing's feature list, not from a written brief. |
-| C7 | §4.7 | Each screenshot alt line, checked against the actual image file that ships. |
-| C8 | §6.2 | Whether Keenai Pulse belongs on Sahib's Keenai card. §7 marks it *confirm*. |
-| C9 | §6.2 | Which smallcase surface Sahib worked on: the smallcase app, Tickertape, or gateway. §7 *confirm*. |
-| C10 | §6.5 | Placement of Sahib's GitHub link. The Fact Checker's read of github.com/hellosahib: real, in use, spans the four stacks, but mostly older learning work in public. Recommended a plain link on his page, not a hero moment. Owners decide placement. |
-| C11 | §7.2 | Which Motive app Tanya works on, Driver or Fleet. §7 *confirm*. |
-| C12 | §7.2 | Which HSBC product Tanya worked on. §7: don't guess at a bank. |
-| C13 | §7.2 | Whether any Naskay client project can be named at all, given likely NDAs. §7 *confirm*. |
-| C14 | §7.5 | Placement of Tanya's GitHub link. The Fact Checker's read of github.com/Tanya-jain99: sparse, no KMP or iOS repo, so it undercuts the shared-core narrative her page is built on. Recommended the footer only. Owners decide placement. |
-| C15 | §8.3 | The response-time clause in the contact success state ("usually within a couple of days"). Drops out if the owners won't commit to a number. |
-| C16 | §10.1 | Both headshot alt lines, after the photo is chosen and both people approve their own image. Rewritten entirely if the illustrated route is taken. |
-| C17 | §2.7, §4.5, §4.8, §6.2 | The star rating. The live listing shows 4.3 from 24 reviews, not 4.6; every instance on the site now prints 4.3. If the Play Console shows a different figure for one country, the site prints the public global number. |
-| C18 | §6.3 | URLs for Sahib's three named Android posts and the "283 reactions and 13 reposts" figure. None are publicly findable, so they print only if the owners supply links. |
-| C19 | §6.2 | Keenai Global's Bengaluru office. The company's own site names only Singapore; only third-party directories list Bengaluru. |
-| C20 | §6.1 | Whether the honest line beneath Sahib's coverage map prints. It prints only while QUESTIONS.md item 45 is unanswered, which is the case DESIGN.md §F.1 designs for: native iOS and KMP ship in the outlined state with no product named. If item 45 comes back with a nameable product for either stack, the cell fills and this line comes out. |
+| # | Where | What needs confirming | Traces to |
+|---|---|---|---|
+| C1 | §2.4 | Who reviews design. Item 19 named an owner for every other gate on the floor and none for this one, so the Designer card borrows architecture review under item 42's accepted mapping. If a person owns design review by name, this cell and the spoken button name in §10.2 both change. | Item 19's gap |
+| C2 | §2.4 | Who cuts the release, and therefore whose name sits behind ship approval on the Release Watcher card and on the empty chair in §2.5. | Item 56, open |
+| C3 | §4.7 | Every Pocket Manager screenshot alt line, against the new screenshots once they are captured. Item 16 replaced the store screenshots with fresh ones from the latest build; item 60 has not said who captures them or at what device size. | Item 60, open |
+| C4 | §6 | Every title, date boundary and stack attribution on Sahib's page, against his own resume. Tanya's page was corrected in three places by cross-checking hers; his has had no equivalent document. | Item 61, open |
+| C5 | §6.3 | Which of the four supplied LinkedIn URLs belongs to which of the three named posts, and what the fourth one is. | Item 62, open |
+| C6 | §6.3 | The "283 reactions and 13 reposts" figure. Permanent, not pending: LinkedIn blocks every fetch, so no URL the owners supply can be opened to count it. It prints as their own figure or it comes out. | FACTS.md (e)3 |
+| C7 | §7.2 | How to describe Tanya's Naskay project. Item 28 cleared naming it and her resume names it, but the name is a real US personality's trademarked fitness brand rather than Naskay's own product. Name the brand, or print "a fitness app for a US client". | Item 63, open |
+| C8 | §10.1 | Both headshot alt lines, once the owners supply the portraits item 23 chose. Only they can produce the images, each approves their own, and the alt has to describe what actually ships. | Item 23, images pending |
 
 ### FILL. Only the owners can answer these.
 
-| # | Where | What is missing |
-|---|---|---|
-| F1 | §1 footer | City or cities to print, and whether to state a timezone. |
-| F2 | §1 footer, §6.5, §7.5 | Any socials beyond GitHub and LinkedIn for either person. |
-| F3 | §2.9, §8.2 | Engagement model, typical timeline to the first build, starting price if they'll state one, what a first conversation looks like, and the capacity ceiling. One answer resolves both places. |
-| F4 | §3.3, §5.1 | The wedding planner's final name, once a human picks it. |
-| F5 | §5 header | Whether the wedding planner appears on the site at all before the name is settled. §5.3 says leaving it off is a legitimate call. |
-| F6 | §5.1 | The store URL for the wedding planner, once submitted and live. No link renders until then. |
-| F7 | §5.5 | Which real form service and endpoint for the wedding planner's email capture. Formspree, Tally or a Google Form. Answered together with F13. |
-| F8 | §4.3 | What Pocket Manager is built in and anything about its architecture worth saying. §5 has the store listing and nothing about the codebase. |
-| F9 | §4.7 | Which store screenshots are used, and in what order. |
-| F10 | §8.2 | The real intake address if it isn't thegeekdogs@gmail.com, plus whether to list a phone or WhatsApp number, a timezone, and whether client work is full-time or alongside their own products. |
-| F11 | §8.2 | Sahib's direct intake route, or the decision to drop that block. |
-| F12 | §8.2 | Tanya's direct intake route, or the decision to drop that block. |
-| F13 | §8.3 | Whether a contact form is wanted at all, or the `mailto:` link is the whole intake. |
+None. Every `[FILL]` in this document at the end of round 3 has an answer.
 
-**Totals: 20 distinct `[CONFIRM]` questions and 13 distinct `[FILL]` questions. 33 open items.**
+For the record, and so a later round does not reopen a closed decision as though it were a gap:
+F1 is answered by items 3 and the resume (Bengaluru and New Delhi, IST); F2 by items 17 and 18 (no
+personal data beyond GitHub and LinkedIn); F3 by items 4 to 8; F4, F5 and F6 by item 9, which chose
+the full name-agnostic page, so a missing product name and a missing store link are the shipping
+state of that page rather than a hole in it; F7 and F13 by items 11 and 13, no form anywhere; F8 by
+item 44 and the codebase audit in `FACTS.md` section (d); F9 by item 16, with only the capture
+logistics left open as C3; F10, F11 and F12 by items 1, 2, 3 and 53.
 
-A grep of this document, ignoring the two legend lines in "How to read this document" and this
-paragraph's own two quoted strings, finds 22 `[CONFIRM:` and 17 `[FILL:` markers. The six extra
-instances are cross-references: C3 and C4 each appear on both the home page and the Pocket Manager
-page, F2 in three places, and F3 and F4 in two each. Answering the question once clears every
-instance of it. C17 is counted once even though the rating it corrects prints in four sections.
+**Totals: 8 distinct `[CONFIRM]` questions and 0 `[FILL]`. 8 open items, down from 33.**
 
-Round 3 added exactly one marker, C20, and removed none. Every other string round 3 supplied is
-written from facts already on the page, so the convergence round cost the publish gate one line.
+A grep of this document finds 8 `[CONFIRM:` and 0 `[FILL:` markers, once the two legend lines in
+"How to read this document", the four quoted strings in this appendix's own heading and totals
+line, and the two in the count paragraph below are excluded. There are no cross-references left:
+every marker appears exactly once, in one section, so the marker count and the question count are
+the same number for the first time.
 
-None of them may reach production unresolved. C4 and F5 are the two that can change the shape of a
-page rather than a sentence, and both should go to the human gate first.
+Round 4 removed nineteen markers and wrote three new ones. C1, C2, C3, C4, C5 and C7 are new or
+renumbered against open items; C6 and C8 are the two that no amount of checking will close, and
+they are marked so nobody spends another round trying. Six markers were not resolved but retired,
+because the question behind them stopped being a question: gate ownership, the privacy declaration,
+the cut-feature sentence, the smallcase surface, the Motive app and the HSBC product.
+
+None of them may reach production unresolved. C2 is the one that changes a card rather than a
+sentence, and it should go to the human gate first.

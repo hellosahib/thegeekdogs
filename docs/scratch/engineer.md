@@ -92,3 +92,57 @@ Verdict: **APPROVED** (PLAN.md §13). Six PLAN.md sections updated in place (§1
 - §3 (sticky contact plate): DESIGN.md's `position: sticky` plate is feasible; flagged a build-order dependency (the floor's `content-visibility: auto` / `contain-intrinsic-size` must account for §B.10's own +56px reserve) and a `pointer-events` detail (wrapper `none`, plate `auto`) so the sticky wrapper's invisible box doesn't swallow clicks meant for the floor underneath.
 - §3 (404 empty room): shared slab/lamp-gradient markup authored once as a shared Astro component, duplicated inline per static page at build time (no runtime sprite fetch) — estimated 400-600 bytes raw for the 404 page's stripped-down version, confirming DESIGN.md's "roughly zero new bytes" claim.
 - §6 (stage indicator): DESIGN.md's `stroke-dashoffset` motion spec (§H.5) implies SVG-drawn connectors, not CSS borders as Pass 1 assumed; the compact home variant's "one set of column headers, two runners" (§E.3) is a table relationship, not two reused single-product `<ol>`s — both corrected in PLAN.md §6.
+
+---
+
+## Build step 1 — repo, tokens, content, routes, QA, CI (2026-09-05)
+
+Scope per brief §14 step 1 and PLAN.md §11 step 1: a plain working site before any design lands. No floor, no person pages, no motion, no work or contact routes.
+
+### The `@theme`-via-`var()` spike (PLAN.md §1.2, §12 risk 5) — resolved, with a correction
+
+**Plain `@theme` does not work for the three-world scope. `@theme inline` does.** Proved by building both and reading the emitted CSS:
+
+- `@theme { --color-surface-alt: var(--tgd-surface-alt); }` emits `--color-surface-alt: var(--tgd-surface-alt)` on `:root` and compiles the utility to `background-color: var(--color-surface-alt)`. Custom properties substitute their `var()` references at computed-value time **on the element where they are declared**, so `--color-surface-alt` computes once at `:root` to the studio value and inherits that value everywhere. A `[data-world="tanya"]` override of `--tgd-surface-alt` would never reach it. This is the failure mode PLAN.md §1.2 flagged and could not name.
+- `@theme inline { --color-surface-alt: var(--tgd-surface-alt); }` substitutes the reference **into the utility**: the shipped rule is `.bg-surface-alt{background-color:var(--tgd-surface-alt)}`, resolved at the element, so a world scope overrides it correctly. Verified in `dist/_astro/style.*.css`.
+
+So PLAN.md §1.2's fallback (hand-writing theme-consuming utilities as plain CSS outside `@theme`) is **not needed**. The one-word change from `@theme` to `@theme inline` is the whole fix. `src/styles/global.css` carries the reasoning inline so nobody "simplifies" it back.
+
+Two naming collisions found while doing it, both fixed in `tokens.css`: DESIGN.md's `--font-display` / `--font-body` and `--ease-out` / `--ease-inout` / `--ease-idle` occupy the same names as Tailwind's own `--font-*` and `--ease-*` theme namespaces, which makes the mapping self-referential. The font tokens are renamed `--tgd-font-display` / `--tgd-font-body`; DESIGN.md §H.1's easing tokens keep their exact DESIGN.md names and are deliberately not mapped into `@theme` at all (no motion ships this step, and they are available as plain `var()`).
+
+### Deferred, deliberately — do not look for these in source, they are here on purpose
+
+`qa:no-slop` greps the built output for `TODO` and `FIXME`, so nothing below may be written as a marker in a source file. This list is the marker.
+
+1. **Font subsetting and the `wdth` range restriction (PLAN.md §1.5) is step 8's job.** Today `public/fonts/` carries the full unsubsetted Fontsource binaries: Anek Latin two-axis 103,760 B and Instrument Sans single-axis 30,092 B, 133,852 B total — exactly the raw figures §1.5 measured. The pipeline §1.5 specifies (glyphhanger against the built `dist/`, `fonttools varLib.instancer` restricting `wdth` to 75–100, a pinned ~12.5KB static hero instance as the only preload candidate) brings that to ~71KB, and is worth doing only once the real copy exists to subset against. `npm run fonts:sync` is where that step hooks in.
+2. **Fallback-metric matching for `font-display: swap` (PLAN.md §1.5, risk 7).** Not applied. Measured CLS is 0 today because the page is short and the swap happens above the fold before layout settles; this needs the `ascent-override`/`size-adjust` work before the page grows.
+3. **The nav links and the footer's "Elsewhere" group.** COPY.md §1 gives four nav labels (Work, Sahib, Tanya, Contact) and the footer's nav repeat. Those four routes are not built, so rendering the links would be four broken links and `qa:links` would be right to fail. They go back in at step 2 as their routes land. `src/components/Header.astro` and `Footer.astro` each carry a comment saying so.
+4. **The hero's secondary button, "Look around the floor".** It exists to hand the visitor to the floor, and there is no floor yet. Returns with step 3.
+5. **A favicon.** There is none, so every page load requests `/favicon.ico` and gets a 404, which is the single reason Lighthouse's best-practices score is 96 rather than 100 (`errors-in-console`, one network 404). QUESTIONS.md item 48 says there is no logo and the header sets the name in the display face — that answers the wordmark, not the tab icon. This is a Design Lead deliverable; inventing one would be inventing artwork.
+6. **OG image.** `og:image` is not emitted. PLAN.md §1.7's Satori pipeline renders the floor composition, which does not exist yet, and COPY.md §2.11 specifies the image's text but not a fallback image. Step 7.
+
+### Other decisions made this step
+
+- **Astro is pinned to `5.18.2`, the newest 5.x, per the brief. `npm audit` reports eight high-severity advisories against it, none of which has a patched 5.x release** — every fix landed in 6.x or 7.x, and the current line is 7.3.1. Every one of the eight concerns dynamically rendered values: `define:vars`, server islands, spread attribute names, `transition:*` directives, View Transition animation properties, slot names, and a prerendered error page's Host header. This build is fully static, has no server runtime, no islands, no view transitions, and renders no user-supplied value, so the practical exposure is nil. Flagged to the Orchestrator all the same: staying on Astro 5 means staying on a line that no longer receives security patches, and moving to 7 is a stack change that needs sign-off, not a quiet upgrade.
+- **`optionalGlob` (`src/loaders/optional-glob.ts`).** Astro's `glob()` loader warns when its directory is empty, and `people`/`agents` are legitimately empty until step 2. Rather than weakening `qa:build`'s zero-warning gate with an allowlist, the loader skips the glob entirely when there is no matching file, so the collection is empty and quiet. Every warning the build does emit stays a real one.
+- **One narrow Rollup `onwarn` filter, in `astro.config.mjs`.** When `PUBLIC_FIREBASE_*` is unset the analytics bootstrap compiles to an empty chunk, and Rollup says so. That is the designed outcome, and it is scoped to `EMPTY_BUNDLE` on the Analytics module only.
+- **`qa:links` skips `^https://thegeekdogs.com/`.** That origin appears as `<link rel="canonical">` and `og:url`. Fetching it from a pre-deploy checker tests whatever is currently live, not the build under test — it returned 520 before it was skipped. No external 404 is silenced by this.
+- **`qa:no-slop`'s lowercase check is scoped to `.html` routes.** Vite's content hashes are legitimately mixed-case and are not URLs anyone types. PLAN.md §1.10's intent is route slugs, which the Zod regex already enforces at the schema level.
+- **The compact stage view is one `<ol>` per product**, per REVIEWS.md's arbitration of 2026-09-05 (brief §6.2 outranks both PLAN.md §6's `<table>` and DESIGN.md §E.3). The shared axis comes from a visible, aligned header row of the five stage names plus two lists carrying identical item text in identical order; each list carries an accessible name naming its product, and every item carries its state as a spoken word (COPY.md §10.4) so nothing rests on the graphic.
+- **The contact plate is in flow at the end of its sticky wrapper**, which is what gives it the "retires when the real CTA arrives" behaviour geometrically. Sections inside the wrapper carry the +56px bottom reserve DESIGN.md §B.10 specifies.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| JS shipped, home page, no analytics config | **0 B** — no `<script>` tag at all |
+| CSS shipped, home page | 23,811 B raw / **5,681 B gzip** (14% of the 40KB line) |
+| Home HTML | 2,345 B gzip |
+| Fonts | 133,852 B (unsubsetted; ~71KB after step 8) |
+| Home page total | **141,878 B gzip** (11% of the 1.2MB line) |
+| Firebase Analytics, config present | 915 B gzip bootstrap + 14,891 B gzip lazy chunk = **15,806 B gzip** (15.4% of the 100KB line) |
+| Lighthouse mobile, 3 runs, LHCI static server | Performance **100**, Accessibility **100**, Best practices **96**, SEO **100** |
+| LCP | 1,341 / 1,341 / 1,484 ms (line is 2,000) |
+| CLS | **0** (line is 0.05) |
+| TBT | **0 ms** |
+| Contrast pairs checked against DESIGN.md's published ratios | 26, all matching to two decimals |

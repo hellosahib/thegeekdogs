@@ -155,3 +155,9 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer:
 63. Tanya's Naskay project is "Jillian Michaels | Fitness App", a third-party trademark. Name it, or describe it as "a fitness app for a US client"?
     Answer:
+64. Cabin props to approve (DESIGN.md §C.4). Sahib: whiteboard with a textless three-box architecture sketch, a portrait second monitor drawn dark, a desk plant. Tanya: a painting with a two-band abstract, a device shelf with three phones, a stack of three books. Any prop can be swapped one for one; a third prop per cabin costs budget.
+    Answer:
+65. The mobile floor section is now about 1180px tall with ten stations and the two human cards' gate lists. Accept, or shorten the two human card bodies so the panel comes down?
+    Answer:
+66. On /sahib/ and /tanya/, the closing call to action and the contact plate print that person's own address (sahiboffc@gmail.com, jaintanya999@gmail.com), not the studio inbox. Correct?
+    Answer:

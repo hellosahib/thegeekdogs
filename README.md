@@ -38,3 +38,123 @@ Static site for TheGeekDogs, built the way the site says work gets built: agents
 Order per the brief §14: repo and CI first, then a plain semantic home page, then the floor, then the two product pages, then Sahib, then Tanya last, then contact, 404, OG images and structured data, then the full audit on real hardware. Each surface goes through Design Lead review of the rendered page, Fact Checker, QA, and the Perf & A11y Auditor before a human cuts the release. Three review rounds maximum per surface, then it escalates to you.
 
 Run instructions, content-editing instructions, and the theme-scope notes arrive here with the first code commit.
+
+---
+
+## Run it
+
+Node 22.12 or newer. Everything below runs from the repo root.
+
+```bash
+npm install            # once
+npx playwright install chromium   # once, for qa:console
+npm run dev            # http://localhost:4321
+npm run build          # → dist/
+npm run qa             # every gate, in order, against dist/
+```
+
+The QA scripts run against the **built output**, never against source, so build first.
+
+| Script | What fails it |
+|---|---|
+| `npm run qa:build` | any TypeScript error, any Astro diagnostic or hint, any build warning |
+| `npm run qa:no-slop` | `lorem`, `TODO`, `FIXME`, `placeholder` (including the HTML attribute), `[FILL`, `[CONFIRM`, `coming soon`, `example.com`, `href="#"`, the placeholder product name, the second app's bundle-id fragment, an uppercase character in a built route |
+| `npm run qa:images` | an `<img>` with no `alt` attribute (`alt=""` passes), or a referenced image that is not in `dist/` |
+| `npm run qa:links` | a broken internal or external link, or a built page missing from the sitemap |
+| `npm run qa:console` | a console error or warning, an uncaught error, or a failed request on any route |
+| `npm run qa:contrast` | any DESIGN.md colour pair below AA, or any pair whose computed ratio disagrees with the figure DESIGN.md publishes |
+| `npm run qa:floor` | the studio floor over 80KB gzipped (passes trivially until the floor exists) |
+| `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
+
+Lighthouse runs the same assertions the brief's budget table states:
+
+```bash
+npm run build && npx lhci autorun --config=lighthouserc.json
+```
+
+### Adding content
+
+Content lives in `src/data/` as JSON, one file per entry, validated by the Zod schemas in
+`src/content.config.ts`. A field that breaks a schema fails the build; it does not ship.
+
+- **A product** — `src/data/products/<slug>.json`. `slug` must be lowercase and hyphenated.
+  `name` may be `null` when no final name has been chosen; `descriptiveName` is always present and
+  is what renders in headings and metadata while `name` is null. `stage` is one of `specced`,
+  `building`, `final-touches`, `submitted`, `live`. `features` holds only functionality a user can
+  actually reach in the shipped build — there is no field for anything unreachable, so it cannot
+  leak onto the site by accident.
+- **A person** — `src/data/people/<slug>.json`, matching the `people` schema. `gatesOwned` holds
+  slugs from `src/data/gates/`. The directory is empty today and that is a valid state: nothing
+  renders a stand-in for a person who is not there yet.
+- **An agent** — `src/data/agents/<slug>.json`. `checkedBy` references a gate slug; `deskSlot` is a
+  `desk-N` id the floor component owns.
+
+### Naming the second product and adding its store link
+
+Open `src/data/products/wedding-planner.json` and change three fields:
+
+```json
+{ "name": "<the chosen name>", "stage": "live", "storeUrl": "<the store URL>" }
+```
+
+Add `storeStats` when the listing has figures worth printing. Nothing else changes: no component
+references any of those fields by a hard-coded value — the templates branch on presence, so a
+missing name falls back to `descriptiveName` and a missing store URL renders no link rather than a
+dead one.
+
+### How the theme scopes work
+
+`src/styles/tokens.css` holds every value DESIGN.md names, in two layers. The first layer is
+DESIGN.md's own token names, transcribed exactly (`--floor`, `--sheet`, `--s-ground`, `--t-core`,
+and so on) — a value change in DESIGN.md is a one-line edit there and nowhere else. The second
+layer maps those onto semantic names (`--tgd-surface`, `--tgd-ink`, `--tgd-accent`, …) that shared
+components consume, redeclared under `[data-world="sahib"]` and `[data-world="tanya"]`.
+
+`src/styles/global.css` points Tailwind's `@theme` at the semantic layer, so `bg-surface-alt`
+compiles to `background-color: var(--tgd-surface-alt)`. **The block is `@theme inline`, and it has
+to be**: plain `@theme` computes the value once on `:root` and inherits it, which would freeze all
+three worlds to the studio palette. `inline` substitutes the reference into the utility so it
+resolves at the element, inside whichever world scope it sits in.
+
+Setting a world is one prop: `<BaseLayout world="tanya">`. One Tailwind build, one CSS bundle,
+three visual worlds.
+
+### Deploy, and the DNS records someone has to add
+
+The site deploys to GitHub Pages from `.github/workflows/deploy.yml`: build, every QA script,
+Lighthouse CI, then `actions/deploy-pages` — and only on `main`. A pull request runs everything
+except the deploy, so a PR that breaks a budget line does not merge.
+
+**Set the Pages source to Actions before the first run.** In the repository, Settings → Pages →
+Build and deployment → Source → **GitHub Actions**. Then set the custom domain to
+`thegeekdogs.com` and tick **Enforce HTTPS** once the DNS below has propagated. `public/CNAME`
+already carries the domain, so the custom domain survives every redeploy.
+
+If Firebase Analytics is wanted, add the seven values from `.env.example` as repository secrets
+under Settings → Secrets and variables → Actions. Without them the site builds and deploys fine and
+simply ships no analytics.
+
+**DNS at GoDaddy.** GoDaddy has no `ALIAS`/`ANAME` record at the apex, so the apex needs the four A
+records. Verified against GitHub's documentation on 2026-09-05:
+<https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site>
+
+| Type | Name | Value | TTL |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | 1 hour |
+| A | `@` | `185.199.109.153` | 1 hour |
+| A | `@` | `185.199.110.153` | 1 hour |
+| A | `@` | `185.199.111.153` | 1 hour |
+| AAAA | `@` | `2606:50c0:8000::153` | 1 hour |
+| AAAA | `@` | `2606:50c0:8001::153` | 1 hour |
+| AAAA | `@` | `2606:50c0:8002::153` | 1 hour |
+| AAAA | `@` | `2606:50c0:8003::153` | 1 hour |
+| CNAME | `www` | `<github-username>.github.io` | 1 hour |
+
+The AAAA records are optional but recommended; the four A records are the required part. Replace
+`<github-username>` with the account that owns the repository — the value is the account's default
+Pages domain, with no repository name after it. Delete GoDaddy's default parked-domain A record and
+its `www` CNAME first, or they will conflict. Once both apex and `www` resolve, GitHub serves the
+`www` → apex redirect and the certificate itself; nothing further is needed at the registrar.
+
+These records are documented by GitHub and have changed before. Re-check the page above before
+applying them if this file is more than a few months old.

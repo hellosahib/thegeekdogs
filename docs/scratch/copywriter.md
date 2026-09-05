@@ -186,3 +186,71 @@ DESIGN.md Pass 1 landed and set lengths. Design Lead wins on layout; these are t
 Banned-word and em-dash scan after editing: zero hits on the §7 list, zero em-dashes, zero
 instances of the "isn't X, it's Y" device. The em-dash budget is still entirely unspent and "slop"
 is still used zero times.
+
+# Round 4 — Pass 2, every question answered
+
+QUESTIONS.md items 1 to 55 came back, Tanya's resume arrived, and the Fact Checker audited the
+Pocket Manager codebase. Folded in place. Nothing invented; every new sentence traces to an answer,
+to FACTS.md, to the resume, or to the brief.
+
+1. **Gate ownership written into the floor cards and the four gates.** Item 19 gave an uneven
+   split and the copy prints it uneven: architecture is Sahib's, code review is both, device QA and
+   the security/privacy/ASO review are Tanya's, and the product spec is hers too. **Cut: balancing
+   the two cards.** Two founders' cards that come out even when the answer wasn't even is a card
+   that stopped being true. Pronouns from items 20 and 21 replaced every "their", including §10.2's
+   spoken button name.
+2. **§2.4's "Checked by" column re-mapped to six strings that exist elsewhere on the page.** Item 42
+   accepted mapping design review onto architecture review and the release gate onto ship approval,
+   so `Design review`, `Human code review`, `QA pass`, `Security review` and `Release gate` are gone
+   as separate labels. **Cut: inventing a seventh gate name for the Designer card.** Two markers
+   stay: nobody owns design review, and item 56 has not said who cuts the release.
+3. **Every Pocket Manager privacy variant deleted, both flag-ON drafts and the Data safety block.**
+   Item 14 is not "the wording isn't ready", it is "never". §4.6 is now one sentence saying the
+   section is absent on purpose. **Cut: keeping the draft shape "in case".** A drafted claim in a
+   copy deck gets shipped by someone eventually.
+4. **§4.3 Build written from the codebase audit.** Kotlin, Compose everywhere with the migration
+   pinned by a test, Hilt, Room with no network layer, WorkManager, Glance widgets, biometric lock,
+   in-house charts, the vendored export module, minSdk 23, and Firebase for analytics and crashes.
+   **Cut: every sentence claiming nothing leaves the phone.** The records are local and the two
+   Firebase SDKs are not; the honest build fact is printable and the reassuring version is false.
+   The first commit is printed as a commit, November 2020, never as a release.
+5. **§4.4 rewritten from the pipeline's own config**: the two-hourly local run, the repo contract's
+   "a human cuts every release, the agent never pushes", the manual-only release workflow, unit
+   tests on every push. **Cut: "maintained by our own agent pipeline, running on a schedule"** as
+   the opener. It was the marketing paraphrase of a thing whose actual configuration is more
+   convincing than any paraphrase of it.
+6. **Item 12 was no, so the strongest line on the site came out.** The cut-feature sentence is gone
+   from §2.7 and §5.4. Both paragraphs were rewritten so "in build" stands on same pipeline, same
+   gates, short list, and a person ends it. **Cut: hedging it into "a feature we're not describing
+   yet".** A hint at a thing the owners declined to say publicly is the same disclosure, slower.
+7. **"One project at a time" placed once, in §2.9.** It is the capacity answer and it lands hardest
+   where a stranger is deciding, not where a decided visitor is already looking for an address.
+   §8.2's engagement line carries the rest of items 2 to 8 and 43 without restating it.
+8. **§8.3 and §5.5's capture form cut entirely.** Items 11 and 13. Nine strings and two validation
+   errors deleted; the response-time clause moved to §8.2 with item 43's number behind it. §5.5 is
+   now the screenshots section item 10 cleared, with the feature graphic excluded because it carries
+   the placeholder wordmark.
+9. **Tanya's page rebuilt around ownership, with the resume as evidence.** Titles and dates
+   corrected per FACTS.md rows 47, 48 and 50 (Android Intern, Software Engineer 2, the Aug 2021
+   boundary), education corrected per row 36 (Meerut, AKTU Lucknow, not Kerala). The 99.8% and ~20%
+   figures print attributed to her own account, per row 52. **Cut: printing them plain.** A studio
+   selling review gates does not print an uncheckable number as if it had checked it. Task Manager
+   added because row 53 fetched the repo.
+10. **Sahib's coverage-map honest line and C20 removed.** Item 45 filled both columns: native iOS at
+    Motive and smallcase, KMP at Motive. Tickertape named, Keenai Pulse added, Bengaluru cleared.
+    GitHub stays on both pages per item 39, and the LinkedIn CTA from item 40 is a plain labelled
+    link on each. **Cut: dressing the LinkedIn link as an invitation.** It is a link to a profile.
+11. **§1 gained the dark-mode toggle strings** (item 49 reversed): visible label, an accessible name
+    that states the action rather than the state, and the polite announcement. Footer location is
+    Bengaluru and New Delhi in IST; socials closed at four links by items 17 and 18.
+12. **Appendix B rebuilt from scratch, not edited.** Round 3's twenty CONFIRM and thirteen FILL no
+    longer described the document. Now 8 CONFIRM and 0 FILL, every one an open item in section J
+    (56, 60, 61, 62, 63), a gap item 19 left (design review), or a fact no round can close (the
+    reaction count, the headshot images). No cross-references remain, so marker count and question
+    count are the same number for the first time. The retired-not-resolved list is written into the
+    appendix so a later round does not reopen a decision as though it were a hole.
+
+Scan after editing: zero banned words, zero em-dashes, zero "isn't X, it's Y", zero "bride",
+"groom" or "Milan", zero occurrences of the phone number on the resume, and zero of the
+"nothing leaves the device" phrasing including in the notes that forbid it. "Slop" still zero. The
+one triple negation is still §2.9's, still once on `/`.
