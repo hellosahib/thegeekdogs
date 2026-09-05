@@ -1,0 +1,8 @@
+{
+  "slug": "reviewer",
+  "name": "Reviewer",
+  "job": "Reads every diff for what a tired human misses at 1am.",
+  "checkedBy": "Code review",
+  "deskSlot": "desk-6",
+  "checkedByGate": "code-review"
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "sahib-singh",
+  "name": "Sahib Singh",
+  "pronouns": "he/him",
+  "city": "Bengaluru",
+  "headlineRole": "Mobile across all four stacks: native iOS, native Android, KMP, Flutter.",
+  "currentEmployer": "Keenai Global",
+  "bio": "Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and shares code review with Tanya.",
+  "gatesOwned": ["architecture-review", "code-review"],
+  "socials": {
+    "github": "https://github.com/hellosahib",
+    "linkedin": "https://www.linkedin.com/in/sahib-singh-876959143/"
+  },
+  "workHistory": [
+    {
+      "company": "Keenai Global",
+      "whatTheyDo": "Wealth-tech, Singapore and Bengaluru. Built with Lighthouse Canton, for accredited investors and family offices.",
+      "years": "2025 – now",
+      "role": "Builder (AVP, Mobile)",
+      "productsStack": [
+        "Keenai Wealth, a multi-asset platform covering 50+ global markets with custody at BNY Pershing, and Keenai Pulse, which the firm runs for single-family offices.",
+        "Flutter, Dart. And end-to-end feature work, backend through testing, with AI."
+      ],
+      "confirmed": true
+    },
+    {
+      "company": "Motive",
+      "whatTheyDo": "Fleet management, US. Formerly KeepTruckin. AI dashcams, ELD compliance, telematics.",
+      "years": "2023 – 2025",
+      "role": "Android Engineer",
+      "productsStack": [
+        "Motive Fleet App, the fleet-manager side: live GPS, hours of service, vehicle health, dashcam review.",
+        "Kotlin, native iOS, and KMP."
+      ],
+      "confirmed": true
+    },
+    {
+      "company": "smallcase",
+      "whatTheyDo": "Investing platform, India. Curated portfolios of stocks and ETFs.",
+      "years": "2020 – 2023",
+      "role": "SDE 1 to SDE 2 to Senior Software Engineer",
+      "productsStack": ["Tickertape.", "Android first, then Dart and Flutter, and native iOS."],
+      "confirmed": true
+    },
+    {
+      "company": "Cleartrip",
+      "whatTheyDo": "Travel booking, India. Flights, hotels, trains.",
+      "years": "2019 – 2020",
+      "role": "Android Developer, internship",
+      "productsStack": ["Cleartrip Android app."],
+      "confirmed": true
+    },
+    {
+      "company": "TheGeekDogs",
+      "whatTheyDo": "This studio.",
+      "years": "2020 – now",
+      "productsStack": ["Pocket Manager.", "4.3 stars, 1,000+ installs, still shipping."],
+      "confirmed": true
+    }
+  ]
+}

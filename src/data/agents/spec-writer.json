@@ -1,0 +1,7 @@
+{
+  "slug": "spec-writer",
+  "name": "Spec Writer",
+  "job": "Turns the brief into a written spec: scope, constraints, and what the thing deliberately won't do.",
+  "checkedBy": "Product spec review",
+  "deskSlot": "desk-1"
+}

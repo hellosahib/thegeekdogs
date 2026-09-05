@@ -1,0 +1,8 @@
+{
+  "slug": "test-engineer",
+  "name": "Test Engineer",
+  "job": "Writes the tests around the edges you'd have shipped without. The agent writes them and runs them. A person judges whether they test what matters.",
+  "checkedBy": "QA on real devices",
+  "deskSlot": "desk-4",
+  "checkedByGate": "qa-on-real-devices"
+}

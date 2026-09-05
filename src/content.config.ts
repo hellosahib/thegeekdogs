@@ -35,14 +35,21 @@ const people = defineCollection({
         blog: z.string().url().optional(),
         email: z.string().email().optional(),
       }),
-      headshot: image(),
-      headshotAlt: z.string().min(1),
+      // Item 23 chose headshots from a tool trained on each person's own selfies and
+      // the images have not been supplied. COPY.md §10.1's two alt lines are still
+      // [CONFIRM]-marked pending those images, so both fields are optional: a card
+      // with no portrait renders no <img> at all rather than a broken one.
+      headshot: image().optional(),
+      headshotAlt: z.string().min(1).optional(),
       workHistory: z.array(
         z.object({
           company: z.string().min(1),
           whatTheyDo: z.string().min(1),
           years: z.string().min(1),
-          role: z.string().min(1),
+          // COPY.md §6.2 card 5 (TheGeekDogs) has no role line, and §7's source table
+          // leaves it blank. Inventing one would be inventing a fact, so it is absent
+          // on that card and the component renders nothing in its place.
+          role: z.string().min(1).optional(),
           productsStack: z.array(z.string().min(1)),
           confirmed: z.boolean(),
         }),
@@ -56,7 +63,16 @@ const agentsCollection = defineCollection({
     slug,
     name: z.string().min(1),
     job: z.string().min(1),
-    checkedBy: reference('gates'),
+    /*
+      COPY.md §2.4's "Checked by" label, verbatim. It is a string rather than a
+      collection reference because two of the seven labels are not one of §2.6's four
+      gates: the Spec Writer's is `Product spec review` and the Release Watcher's is
+      `Ship approval`, both of which item 19 and item 42 place outside the four. The
+      other five do name a gate, and `checkedByGate` carries that link where it exists
+      so the two strings cannot drift — the floor asserts it at build time.
+    */
+    checkedBy: z.string().min(1),
+    checkedByGate: reference('gates').optional(),
     // A named slot the floor component owns, not raw coordinates. The valid *set*
     // of ids is cross-checked at build time against the floor's own export.
     deskSlot: z.string().regex(/^desk-\d+$/, 'desk slot id, e.g. "desk-7"'),

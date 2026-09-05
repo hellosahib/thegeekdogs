@@ -1,0 +1,8 @@
+{
+  "slug": "security-auditor",
+  "name": "Security Auditor",
+  "job": "Scans dependencies, permissions, and what the app collects and where it goes. The agent runs the scan. A person reads the result and decides what to do about it.",
+  "checkedBy": "Security and privacy review",
+  "deskSlot": "desk-5",
+  "checkedByGate": "security-and-privacy-review"
+}

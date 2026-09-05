@@ -1,0 +1,8 @@
+{
+  "slug": "designer",
+  "name": "Designer",
+  "job": "Layouts, states, and the empty and error screens everyone else forgets.",
+  "checkedBy": "Architecture review",
+  "deskSlot": "desk-2",
+  "checkedByGate": "architecture-review"
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "programmer",
+  "name": "Programmer",
+  "job": "Writes the code. Fast, and far more of it than a person would.",
+  "checkedBy": "Code review",
+  "deskSlot": "desk-3",
+  "checkedByGate": "code-review"
+}

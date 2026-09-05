@@ -1,0 +1,7 @@
+{
+  "slug": "release-watcher",
+  "name": "Release Watcher",
+  "job": "Watches crashes and performance in production and files the ticket before your users do.",
+  "checkedBy": "Ship approval",
+  "deskSlot": "desk-7"
+}
