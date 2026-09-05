@@ -1,0 +1,185 @@
+/*
+  tokens.css — the single source of truth for every value DESIGN.md names.
+
+  Layer 1: DESIGN.md's own token names, transcribed verbatim (DESIGN.md §B.2, §F.4, §G.1).
+           A value change in DESIGN.md is a one-line edit here and nowhere else.
+  Layer 2: the semantic names (--tgd-*) shared components consume, remapped per world scope
+           (PLAN.md §1.2). Shared components never reference a world-specific name.
+
+  Scopes: :root is the studio world. [data-world="sahib"] and [data-world="tanya"] override.
+*/
+
+:root {
+  /* --- DESIGN.md §B.2, studio world. Six named values. --- */
+  --floor: #0f2a2e; /* L 0.019547 — the room's ground and all primary text on light surfaces */
+  --sheet: #f1f3f0; /* L 0.890932 — the page */
+  --band: #e2e6e1; /* L 0.781986 — section alternation, the only permitted work-card backdrop */
+  --muted: #4e6468; /* L 0.117335 — secondary text on light surfaces only */
+  --chalk: #e8ede9; /* L 0.836074 — text and marks on --floor */
+  --lamp: #f2a93b; /* L 0.475689 — the one signal */
+
+  /* --- DESIGN.md §B.2, the two derived values that carry text --- */
+  --chalk-72: #abb6b5; /* --chalk at 72% over --floor, L 0.454500 */
+  --card-surface: #fafbfa; /* white at 82% over --band, L 0.962205 — §D.6 worst case */
+
+  /* --- DESIGN.md §B.2, borders derived at alpha, not tokenised as colours --- */
+  --edge-light: rgba(255, 255, 255, 0.72); /* card edge highlight, top/left */
+  --edge-dark: rgba(15, 42, 46, 0.14); /* card edge highlight, bottom/right */
+  --hairline: rgba(15, 42, 46, 0.12); /* hairlines inside a card */
+
+  /* --- DESIGN.md §B.2, focus ring: 3px outer + 2px inner, 3px offset --- */
+  --focus-outer-width: 3px;
+  --focus-inner-width: 2px;
+  --focus-offset: 3px;
+  --focus-outer: var(--floor); /* maximum-contrast neutral for a light surface */
+  --focus-inner: var(--lamp); /* always the lamp, one identity everywhere */
+
+  /* --- DESIGN.md §B.3, typeface roles --- */
+  --tgd-font-display: 'Anek Latin Variable', ui-sans-serif, system-ui, sans-serif;
+  --tgd-font-body: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --wdth-display: 100;
+  --wdth-numeral: 87.5;
+  --wght-display: 600;
+  --wght-numeral: 500;
+
+  /* --- DESIGN.md §B.4, type scale. Two sizes do the work. --- */
+  --step-display-hero: clamp(2.375rem, 4.6vw, 3.75rem); /* 38px → 60px */
+  --step-display-hero-lh: 1.04;
+  --step-display-hero-tracking: -0.015em;
+  --step-display-section: clamp(1.6875rem, 2.8vw, 2.5rem); /* 27px → 40px */
+  --step-display-section-lh: 1.1;
+  --step-numeral-large: clamp(1.5rem, 1.9vw, 1.75rem); /* 24px → 28px */
+  --step-numeral-large-lh: 1;
+  --step-title: clamp(1.25rem, 1.5vw, 1.375rem); /* 20px → 22px */
+  --step-title-lh: 1.2;
+  --step-body: clamp(1rem, 1.15vw, 1.0625rem); /* 16px → 17px */
+  --step-body-lh: 1.62;
+  --step-small: 0.875rem; /* 14px */
+  --step-small-lh: 1.5;
+  --step-micro: 0.8125rem; /* 13px */
+  --step-micro-lh: 1.45;
+
+  /* --- DESIGN.md §B.4, measure --- */
+  --measure-display: 28ch;
+  --measure-body: 62ch;
+
+  /* --- DESIGN.md §B.5, grid and rhythm. 8px base, type on a 4px sub-grid. --- */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+  --space-160: 160px;
+
+  --page-max: 1320px;
+  --content-max: 1200px;
+  --outer: 20px; /* 360 */
+  --gutter: 16px; /* 360 */
+  --section-pad: 72px; /* 360 */
+
+  /* DESIGN.md §B.10 — every section the contact plate can overlay reserves its height. */
+  --plate-height: 56px;
+  --plate-width: 260px;
+  --plate-inset: 16px;
+  --plate-reserve: 56px;
+
+  /* --- DESIGN.md §H.1, shared timing tokens --- */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 360ms;
+  --dur-4: 640ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-idle: cubic-bezier(0.4, 0, 0.6, 1);
+  --loop-floor: 4800ms;
+
+  /* --- Layer 2: semantic names, studio mapping --- */
+  --tgd-surface: var(--sheet);
+  --tgd-surface-alt: var(--band);
+  --tgd-ink: var(--floor);
+  --tgd-muted: var(--muted);
+  --tgd-accent: var(--lamp);
+  --tgd-room: var(--floor);
+  --tgd-on-room: var(--chalk);
+  --tgd-on-room-muted: var(--chalk-72);
+  --tgd-card: var(--card-surface);
+}
+
+/* DESIGN.md §B.5 — grid and rhythm change by breakpoint; the values do not change by world. */
+@media (min-width: 768px) {
+  :root {
+    --outer: 32px;
+    --gutter: 20px;
+    --section-pad: 96px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --outer: 48px;
+    --gutter: 24px;
+    --section-pad: 128px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --outer: 60px;
+    --gutter: 24px;
+    --section-pad: 160px;
+  }
+}
+
+/* --- DESIGN.md §F.4, Sahib's world (direction S1). Dark ground, indigo-slate. --- */
+[data-world='sahib'] {
+  --s-ground: #161c2e; /* L 0.011983 — page ground */
+  --s-panel: #1f2841; /* L 0.021905 — raised surface */
+  --s-ink: #e9eaf0; /* L 0.824605 — primary text, filled cells */
+  --s-dim: #8e96ac; /* L 0.305420 — secondary text, row and column labels */
+  /* --lamp is shared with the studio, DESIGN.md §F.4. */
+
+  --s-panel-edge: rgba(233, 234, 240, 0.14); /* inset 1px top-left edge highlight */
+  --s-card-surface: #e8e8ea; /* work-card surface on this page */
+
+  /* Focus ring: the maximum-contrast neutral for a dark surface is the light ink. */
+  --focus-outer: var(--s-ink);
+
+  --tgd-surface: var(--s-ground);
+  --tgd-surface-alt: var(--s-panel);
+  --tgd-ink: var(--s-ink);
+  --tgd-muted: var(--s-dim);
+  --tgd-accent: var(--lamp);
+  --tgd-room: var(--s-ground);
+  --tgd-on-room: var(--s-ink);
+  --tgd-on-room-muted: var(--s-dim);
+  --tgd-card: var(--s-card-surface);
+}
+
+/* --- DESIGN.md §G.1, Tanya's world (shared by both directions). The most achromatic. --- */
+[data-world='tanya'] {
+  --t-ground: #edeeee; /* L 0.853266 — page ground */
+  --t-core: #dcdede; /* L 0.727321 — the shared-core field / node field */
+  --t-ink: #1b2020; /* L 0.013703 — primary text and every structural stroke */
+  --t-edge: #56605f; /* L 0.111704 — secondary text, platform-edge labels, connector strokes */
+  --lamp-ink: #8a5a08; /* L 0.127331 — the dark counterpart of --lamp */
+
+  --t-card-surface: #f9f9f9; /* white at 82% over --t-core */
+
+  --focus-outer: var(--t-ink);
+  --focus-inner: var(--lamp);
+
+  --tgd-surface: var(--t-ground);
+  --tgd-surface-alt: var(--t-core);
+  --tgd-ink: var(--t-ink);
+  --tgd-muted: var(--t-edge);
+  --tgd-accent: var(--lamp-ink);
+  --tgd-room: var(--t-ground);
+  --tgd-on-room: var(--t-ink);
+  --tgd-on-room-muted: var(--t-edge);
+  --tgd-card: var(--t-card-surface);
+}
