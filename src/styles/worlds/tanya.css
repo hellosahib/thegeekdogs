@@ -1,0 +1,59 @@
+/*
+  worlds/tanya.css — Tanya's token partial.
+
+  PLAN.md §1.2 asks for her direction to be swappable by changing one layout module and
+  one token partial, with no shared component touched. This is that partial: every token
+  her world declares lives here and nowhere else, tokens.css imports it, and no shared
+  component ever references a `--t-*` name — they consume the `--tgd-*` names the block
+  below remaps.
+
+  DESIGN.md §G.1 and §G.1a. T1 and T2 use this set unchanged, exactly as they both use
+  §G.1's, so swapping her direction touches no value in this file either.
+*/
+
+/*
+  --- DESIGN.md §G.1, Tanya's world (shared by both directions). The most achromatic. ---
+  Light by default, dark counterpart below.
+*/
+[data-world='tanya'] {
+  --t-ground: #edeeee; /* L 0.853266 — page ground */
+  --t-core: #dcdede; /* L 0.727321 — the shared-core field / node field */
+  --t-ink: #1b2020; /* L 0.013703 — primary text and every structural stroke */
+  --t-edge: #56605f; /* L 0.111704 — secondary text, platform-edge labels, connectors */
+  --lamp-ink: #8a5a08; /* L 0.127331 — the dark counterpart of --lamp */
+
+  --t-card-surface: #f9f9f9; /* white at 82% over --t-core, the light worst case */
+
+  /* §G.1a — her cards carry her own two inks, theme-invariant like the studio's. */
+  --card-ink: #1b2020;
+  --card-ink-2: #56605f;
+
+  --ink: var(--t-ink);
+  --focus-outer: var(--t-ink);
+  --focus-inner: var(--lamp);
+  --btn-fill: var(--t-ink);
+  --btn-ink: var(--t-ground);
+
+  --tgd-surface: var(--t-ground);
+  --tgd-surface-alt: var(--t-core);
+  --tgd-ink: var(--t-ink);
+  --tgd-muted: var(--t-edge);
+  --tgd-accent: var(--lamp-ink);
+  --tgd-room: var(--t-ground);
+  --tgd-on-room: var(--t-ink);
+  --tgd-on-room-muted: var(--t-edge);
+  --tgd-card: var(--t-card-surface);
+}
+
+/* DESIGN.md §G.1a — her dark counterpart. Genuinely achromatic, not a blue-black. */
+[data-world='tanya'][data-theme='dark'] {
+  --t-ground: #191b1b; /* L 0.010697 */
+  --t-core: #282b2b; /* L 0.023533 — steps lighter than the ground */
+  --t-ink: #e9eaea; /* L 0.821098 — not #FFF; pure white vibrates as pure black does */
+  --t-edge: #959c9c; /* L 0.325668 */
+  --lamp-ink: #f2a93b; /* the counterpart of the counterpart is the lamp itself */
+
+  --t-card-surface: #e8e8e8; /* white at 90% over --t-ground, the dark worst case */
+
+  --t-core-edge: rgba(233, 234, 234, 0.14); /* 1px inset top edge on the core field */
+}

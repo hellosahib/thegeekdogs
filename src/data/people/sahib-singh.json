@@ -69,5 +69,111 @@
       ],
       "confirmed": true
     }
-  ]
+  ],
+  "coverage": {
+    "surfaces": [
+      {
+        "key": "ios",
+        "label": "native iOS",
+        "short": "iOS",
+        "lamp": false
+      },
+      {
+        "key": "android",
+        "label": "native Android",
+        "short": "And",
+        "lamp": false
+      },
+      {
+        "key": "kmp",
+        "label": "KMP",
+        "short": "KMP",
+        "lamp": false
+      },
+      {
+        "key": "flutter",
+        "label": "Flutter",
+        "short": "Flt",
+        "lamp": false
+      },
+      {
+        "key": "ai",
+        "label": "end to end with AI",
+        "short": "AI",
+        "lamp": true
+      }
+    ],
+    "places": [
+      {
+        "company": "Keenai Global",
+        "years": "2025 - now",
+        "cells": [
+          {
+            "surface": "flutter",
+            "product": "Keenai Wealth, Keenai Pulse"
+          },
+          {
+            "surface": "ai",
+            "product": "Backend, frontend, tests"
+          }
+        ]
+      },
+      {
+        "company": "Motive",
+        "years": "2023 - 2025",
+        "cells": [
+          {
+            "surface": "ios",
+            "product": "Motive Fleet and Driver apps"
+          },
+          {
+            "surface": "android",
+            "product": "Motive Fleet and Driver apps; Views to Compose"
+          },
+          {
+            "surface": "kmp",
+            "product": "Design-components library across Fleet and Driver"
+          }
+        ]
+      },
+      {
+        "company": "smallcase",
+        "years": "2020 - 2023",
+        "cells": [
+          {
+            "surface": "ios",
+            "product": "Tickertape"
+          },
+          {
+            "surface": "android",
+            "product": "smallcase Android app"
+          },
+          {
+            "surface": "flutter",
+            "product": "Tickertape Flutter for iOS, Android migrated"
+          }
+        ]
+      },
+      {
+        "company": "Cleartrip",
+        "years": "2019 - 2020",
+        "cells": [
+          {
+            "surface": "android",
+            "product": "Cleartrip Android app"
+          }
+        ]
+      },
+      {
+        "company": "TheGeekDogs",
+        "years": "2020 - now",
+        "cells": [
+          {
+            "surface": "android",
+            "product": "Pocket Manager"
+          }
+        ]
+      }
+    ]
+  }
 }

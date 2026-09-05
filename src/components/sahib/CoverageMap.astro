@@ -1,0 +1,448 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+/**
+ * DESIGN.md §F.1, §F.7, §F.8 — direction S1's coverage map, and the page's centre.
+ *
+ * Five surfaces crossed against five places. A cell is filled only where a real product
+ * can be named (QUESTIONS.md items 45 and 72), and the two states are the whole grammar:
+ * attributed, with the product printed inside, or empty, which is no claim. §F.1 removed
+ * the third "asserted" state and the line of prose that used to sit under the map with
+ * it, because a two-state map cannot lie by omission.
+ *
+ * **It is a real `<table>`**, not a list and not a grid of divs: a matrix whose meaning
+ * is "this surface, at this place" needs row and column headers, and a table gives a
+ * screen reader both for free through `scope`. Every table element also carries its ARIA
+ * role explicitly, because below 1024 the rows are restyled into stacked blocks and
+ * changing `display` on a table element drops its implicit role in every engine. The
+ * roles are the documented mitigation for exactly that, not decoration.
+ *
+ * The two layouts, one DOM:
+ *
+ * - **>= 1024 (§F.8)** — the matrix. Columns are surfaces, rows are places, and the
+ *   product name prints inside its own cell.
+ * - **< 1024 (§F.7)** — the row header carries the company, its years and a five-mark
+ *   strip showing which surfaces that place fills, and the product names move out of the
+ *   cells onto the row's own lines, each prefixed with its surface. A 44px cell cannot
+ *   hold text, so §F.7 moves the text and keeps the marks; the marks are `aria-hidden`
+ *   because the cells beneath them already carry the truth, and the inline surface label
+ *   is `aria-hidden` too because the column header has already been announced.
+ *
+ * The lit column (§F.1, §F.4): the end-to-end-with-AI surface has exactly one filled
+ * cell and it is the only `--lamp` region on the page. In light `--lamp` is 1.74:1 on
+ * his ground, so by §B.2a's restated lamp rule it is a FILL there and its text is
+ * `--s-ink` at 8.10:1; in dark the same fill takes `--s-ground` at 8.48:1. One token,
+ * `--s-lamp-ink`, carries that flip, and both ratios are DESIGN.md's own.
+ *
+ * §J's pre-committed cut for this page is taken: the finance-domain annotation does not
+ * run down the row labels. The work cards below the map carry the domains.
+ */
+interface Props {
+  person: CollectionEntry<'people'>;
+  /** COPY.md §6.1's map lead-in. It is the table's caption, so it names the map once. */
+  leadIn: string;
+}
+
+const { person, leadIn } = Astro.props;
+const coverage = person.data.coverage;
+
+if (!coverage) {
+  throw new Error(
+    `The coverage map needs src/data/people/${person.data.slug}.json to carry a "coverage" block.`,
+  );
+}
+
+const { surfaces, places } = coverage;
+
+/*
+  §F.1's own arithmetic, asserted rather than assumed: ten of twenty-five cells filled,
+  no empty column and no empty row. If a content edit ever empties a column the map stops
+  being the figure §F.1 describes and §H.3's orchestrated moment loses a step, so the
+  build fails instead of the page quietly reading differently.
+*/
+const filledPerSurface = new Map(surfaces.map((surface) => [surface.key, 0]));
+let filled = 0;
+for (const place of places) {
+  if (place.cells.length === 0) {
+    throw new Error(`Coverage map: the ${place.company} row has no filled cell (§F.1).`);
+  }
+  for (const cell of place.cells) {
+    if (!filledPerSurface.has(cell.surface)) {
+      throw new Error(`Coverage map: "${cell.surface}" is not one of the five surfaces.`);
+    }
+    filledPerSurface.set(cell.surface, (filledPerSurface.get(cell.surface) ?? 0) + 1);
+    filled += 1;
+  }
+}
+for (const [key, count] of filledPerSurface) {
+  if (count === 0) throw new Error(`Coverage map: the "${key}" column has no filled cell (§F.1).`);
+}
+if (filled !== 10) {
+  throw new Error(`Coverage map: §F.1 describes ten filled cells; this map has ${filled}.`);
+}
+
+const lampSurfaces = surfaces.filter((surface) => surface.lamp);
+if (lampSurfaces.length !== 1) {
+  throw new Error('Coverage map: §F.1 gives the map exactly one lit column.');
+}
+
+function productFor(place: (typeof places)[number], key: string): string | undefined {
+  return place.cells.find((cell) => cell.surface === key)?.product;
+}
+---
+
+<div class="map">
+  <table class="map__table" role="table">
+    <caption class="map__lead">{leadIn}</caption>
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader" scope="col" class="map__corner">
+          <span class="sr-only">Place</span>
+        </th>
+        {
+          surfaces.map((surface) => (
+            <th
+              role="columnheader"
+              scope="col"
+              class="map__surface"
+              data-lamp={surface.lamp ? '' : undefined}
+            >
+              <span class="map__surface-long">{surface.label}</span>
+              <span class="map__surface-short" aria-hidden="true">
+                {surface.short}
+              </span>
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {
+        places.map((place) => (
+          <tr role="row">
+            <th role="rowheader" scope="row" class="map__place">
+              <span class="map__company">{place.company}</span>
+              <span class="map__years numeral">{place.years}</span>
+              <span class="map__strip" aria-hidden="true">
+                {surfaces.map((surface) => (
+                  <span
+                    class="map__mark"
+                    data-filled={productFor(place, surface.key) ? '' : undefined}
+                    data-lamp={surface.lamp ? '' : undefined}
+                  />
+                ))}
+              </span>
+            </th>
+            {surfaces.map((surface, column) => {
+              const product = productFor(place, surface.key);
+              return (
+                <td
+                  role="cell"
+                  class="map__cell"
+                  style={`--map-column: ${column}`}
+                  data-filled={product ? '' : undefined}
+                  data-lamp={surface.lamp ? '' : undefined}
+                >
+                  {product && (
+                    <span class="map__cell-inner">
+                      <span class="map__cell-surface" aria-hidden="true">
+                        {surface.label}
+                      </span>
+                      <span class="map__cell-product">{product}</span>
+                    </span>
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .map__table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    text-align: start;
+  }
+
+  /* COPY.md §6.1's lead-in is the caption, so the map is named once and the name is the
+     line the reader sees. It sets as body prose, not as a table label. */
+  .map__lead {
+    text-align: start;
+    color: var(--tgd-muted);
+    max-inline-size: var(--measure-body);
+    margin-block-end: var(--space-32);
+  }
+
+  /*
+    < 1024 (§F.7). The matrix rotates into stacked blocks: the row header carries the
+    company, its years and the five-mark strip, and each filled cell becomes a line under
+    it. Every table element keeps its explicit ARIA role, so nothing here costs the map
+    its row and column meaning.
+  */
+  .map__table,
+  .map__table > thead,
+  .map__table > tbody,
+  .map__table > thead > tr,
+  .map__table > tbody > tr,
+  .map__corner,
+  .map__surface,
+  .map__place,
+  .map__cell {
+    display: block;
+  }
+
+  /* The column headers are announced by the row/column relationship rather than read as
+     a row of their own at this width, so the header row is clipped, never removed. */
+  .map__table > thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .map__table > tbody > tr {
+    padding-block: var(--space-24);
+  }
+
+  .map__table > tbody > tr + tr {
+    border-block-start: 1px solid var(--s-panel-edge);
+  }
+
+  .map__place {
+    display: grid;
+    gap: var(--space-4);
+    font-weight: 400;
+  }
+
+  .map__company {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-numeral);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    color: var(--tgd-ink);
+  }
+
+  .map__years {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-muted);
+  }
+
+  /* §F.7's five 44px marker columns — the shape of the filled region, at 360, where the
+     product names cannot fit inside the cells. */
+  .map__strip {
+    margin-block-start: var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(5, 44px);
+    align-items: center;
+  }
+
+  .map__mark {
+    inline-size: 20px;
+    block-size: 20px;
+    border: 1.5px solid var(--s-panel-edge);
+  }
+
+  .map__mark[data-filled] {
+    background-color: var(--tgd-ink);
+    border-color: var(--tgd-ink);
+  }
+
+  .map__mark[data-filled][data-lamp] {
+    background-color: var(--lamp);
+    border-color: var(--lamp);
+  }
+
+  .map__cell:not([data-filled]) {
+    display: none;
+  }
+
+  .map__cell[data-filled] {
+    margin-block-start: var(--space-12);
+  }
+
+  .map__cell-inner {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .map__cell-surface,
+  .map__surface-long {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-numeral);
+    font-variation-settings: 'wdth' var(--wdth-numeral);
+    font-size: var(--step-micro);
+    line-height: var(--step-micro-lh);
+    color: var(--tgd-muted);
+  }
+
+  .map__cell-product {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-ink);
+  }
+
+  /* The lit cell: a --lamp fill with a 2px --s-ink border, its text in --s-lamp-ink.
+     Light 8.10:1, dark 8.48:1, both §F.4/§F.4a's own published pairs. */
+  .map__cell[data-filled][data-lamp] {
+    background-color: var(--lamp);
+    border: 2px solid var(--tgd-ink);
+    padding: var(--space-8) var(--space-12);
+  }
+
+  .map__cell[data-filled][data-lamp] .map__cell-surface,
+  .map__cell[data-filled][data-lamp] .map__cell-product {
+    color: var(--s-lamp-ink);
+  }
+
+  .map__surface-short {
+    display: none;
+  }
+
+  /*
+    >= 1024 (§F.8) — the matrix. Columns are surfaces, rows are places, the product name
+    prints inside its cell, and the row label is the company and its years.
+  */
+  @media (min-width: 1024px) {
+    .map__table,
+    .map__table > thead,
+    .map__table > tbody,
+    .map__table > thead > tr,
+    .map__table > tbody > tr,
+    .map__corner,
+    .map__surface,
+    .map__place,
+    .map__cell {
+      display: revert;
+    }
+
+    .map__table {
+      table-layout: fixed;
+    }
+
+    .map__table > thead {
+      position: static;
+      inline-size: auto;
+      block-size: auto;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+    }
+
+    .map__corner {
+      inline-size: 16.6667%;
+    }
+
+    .map__surface {
+      inline-size: 16.6667%;
+      vertical-align: bottom;
+      padding: 0 var(--space-8) var(--space-8);
+      font-weight: 400;
+    }
+
+    .map__surface-long {
+      font-size: var(--step-small);
+      line-height: var(--step-small-lh);
+    }
+
+    /* The field: §F.4's panel, separated from the ground by an inset edge and space
+       rather than by fill contrast. It is the only large area of non-ground fill on the
+       page, which is what makes it read as a field in both schemes. */
+    .map__place,
+    .map__cell {
+      background-color: var(--tgd-surface-alt);
+      box-shadow: inset 1px 1px 0 var(--s-panel-edge);
+      vertical-align: top;
+      padding: var(--space-16) var(--space-12);
+    }
+
+    .map__place {
+      display: table-cell;
+      inline-size: 16.6667%;
+    }
+
+    .map__company {
+      display: block;
+    }
+
+    .map__years {
+      display: block;
+      margin-block-start: var(--space-4);
+    }
+
+    .map__strip {
+      display: none;
+    }
+
+    .map__cell:not([data-filled]) {
+      display: table-cell;
+    }
+
+    .map__cell[data-filled] {
+      margin-block-start: 0;
+    }
+
+    .map__cell-surface {
+      display: none;
+    }
+
+    .map__cell[data-filled][data-lamp] {
+      padding: var(--space-16) var(--space-12);
+    }
+  }
+
+  /*
+    §H.3, "the map fills" — the page's one orchestrated moment. Four columns fade up at a
+    --dur-1 stagger over --dur-2 each, then a 300ms hold with nothing happening, then the
+    end-to-end-with-AI column arrives alone over --dur-4. Opacity only: nothing moves,
+    nothing is offscreen-then-onscreen, nothing blocks paint. §H.2 gives Sahib --dur-1,
+    --dur-2 and --dur-4-once, which is exactly this shape.
+
+    The unconditional state below this block is the COMPLETE map, so §H.4's still frame
+    is the default rendering and `reduce` removes an animation rather than adding a
+    branch. The last column's delay is 3 x 120 + 200 + 300 = 860ms.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    .map__cell {
+      animation: map-fill var(--dur-2) var(--ease-out) both;
+      animation-delay: calc(var(--map-column, 0) * var(--dur-1));
+    }
+
+    .map__cell[data-lamp] {
+      animation-duration: var(--dur-4);
+      animation-delay: calc(3 * var(--dur-1) + var(--dur-2) + 300ms);
+    }
+  }
+
+  @keyframes map-fill {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* §D.8 — print takes the light tokens and the map prints as the matrix it is, without
+     the panel fill a browser would suppress anyway. */
+  @media print {
+    .map__cell,
+    .map__place {
+      background-color: transparent;
+      box-shadow: none;
+      animation: none;
+    }
+
+    .map__cell[data-filled][data-lamp] {
+      background-color: transparent;
+      border-color: currentColor;
+    }
+  }
+</style>

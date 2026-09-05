@@ -1,0 +1,286 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPlate from '../../components/ContactPlate.astro';
+import QuietBack from '../../components/person/QuietBack.astro';
+import HeadshotSlot from '../../components/person/HeadshotSlot.astro';
+import WorkCard from '../../components/person/WorkCard.astro';
+import PersonLinks from '../../components/person/PersonLinks.astro';
+import CoverageMap from '../../components/sahib/CoverageMap.astro';
+import { SAHIB } from '../../lib/copy';
+import { personGraph } from '../../lib/jsonld';
+
+/*
+  DESIGN.md §F — Sahib's world, direction S1, with S2's material as its second section
+  (§F.3). His page is the shape of breadth: the map is the argument, the cards are the
+  footnotes, and the CV order is preserved only inside the footnotes.
+
+  §F.4a: his existing palette IS his dark scheme, hex for hex, and [data-theme="light"]
+  carries the overrides. `data-world="sahib"` on the page wrapper is the whole of the
+  scoping (PLAN.md §1.2); every component below consumes the generic --tgd-* names.
+
+  COPY.md §6 is the only source of prose on this page. The section labels §F.7 and §F.8
+  draw — `Where he has shipped`, `What he writes about`, `Seven years, four companies` —
+  are wireframe labels rather than COPY.md strings, so the map is named by its own
+  lead-in (§6.1, set as the table's caption), the writing section takes §6.3's heading,
+  and the cards follow the map with no heading above them.
+*/
+const person = await getEntry('people', 'sahib-singh');
+if (!person) throw new Error('/sahib/ needs src/data/people/sahib-singh.json.');
+
+/*
+  COPY.md §6.3's body is one paragraph and four of its phrases are its link text, in the
+  order the body names them: "Four subjects, four links, or none of them link." This
+  asserts that the runs stored in copy.ts still reassemble into that paragraph, so a
+  future edit to either cannot silently produce a different sentence.
+*/
+const writingParagraph =
+  SAHIB.writing.lead +
+  SAHIB.writing.links.map((link) => link.text + link.after).join('') +
+  SAHIB.writing.tail;
+if (!writingParagraph.startsWith('Sahib writes Android posts regularly and they land: ')) {
+  throw new Error("COPY.md §6.3's body no longer reassembles from its four linked runs.");
+}
+
+const schema = await personGraph(person);
+---
+
+<BaseLayout
+  title={SAHIB.meta.title}
+  description={SAHIB.meta.description}
+  ogTitle={SAHIB.meta.ogTitle}
+  ogDescription={SAHIB.meta.ogDescription}
+  ogImage="sahib"
+  schema={schema}
+  world="sahib"
+>
+  <div class="plate-span plate-span--page">
+    <section class="section intro-section">
+      <div class="shell">
+        <QuietBack />
+        <div class="grid intro">
+          <div class="intro__words stack">
+            <h1>{person.data.name}</h1>
+            <p class="intro__role">{SAHIB.roleLine}</p>
+            <p class="muted">{SAHIB.body}</p>
+            <p class="print-address">{SAHIB.links.email.address}</p>
+          </div>
+          <div class="intro__portrait">
+            <HeadshotSlot />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The page's centre. §F.1: the breadth itself is the composition. -->
+    <section class="section map-section section--reserve">
+      <div class="shell">
+        <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
+      </div>
+    </section>
+
+    <!-- §F.6 — the cards live BELOW the map, as the attribution layer: the map makes the
+         claim, the cards are the receipts, and each attributed cell is the same company
+         as a card down here. -->
+    <section class="section cards-section section--reserve">
+      <div class="shell">
+        <ul class="cards">
+          {
+            person.data.workHistory.map((role, index) => (
+              <li>
+                <WorkCard entry={role} index={index} />
+              </li>
+            ))
+          }
+        </ul>
+        <p class="cards__texture muted">{SAHIB.textureLine}</p>
+      </div>
+    </section>
+
+    <!-- §F.3 — S2's material as the second section. Three verified subjects and a fourth
+         the brief never named; four subjects, four links (COPY.md §6.3). -->
+    <section class="section writing-section section--reserve">
+      <div class="shell grid split">
+        <h2 class="split__heading">{SAHIB.writing.heading}</h2>
+        <div class="split__body stack">
+          <p>
+            {SAHIB.writing.lead}
+            {
+              SAHIB.writing.links.map((link) => (
+                <>
+                  <a class="link" href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.text}
+                    <span class="sr-only"> Opens a new tab.</span>
+                  </a>
+                  {link.after}
+                </>
+              ))
+            }
+            {SAHIB.writing.tail}
+          </p>
+          <p class="writing__closing">{SAHIB.writing.closingLine}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section background-section section--reserve">
+      <div class="shell grid split">
+        <h2 class="split__heading">{SAHIB.background.heading}</h2>
+        <ul class="split__body background">
+          {SAHIB.background.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <ContactPlate address={SAHIB.links.email.address} />
+  </div>
+
+  <!-- The real CTA the plate retires into. §B.10 and item 66: a person page closes with
+       that person's own address, never the studio inbox. COPY.md writes no person-page
+       CTA line, so the address is the whole block and no line is invented above it. -->
+  <section class="section close">
+    <div class="shell stack">
+      <PersonLinks person={person} links={SAHIB.links} />
+      <p>
+        <a
+          class="close__address"
+          data-cta="person-cta"
+          href={`mailto:${SAHIB.links.email.address}`}
+          aria-label={SAHIB.links.email.accessibleName}
+        >
+          {SAHIB.links.email.label}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-section {
+    padding-block-start: var(--space-32);
+  }
+
+  .intro {
+    margin-block-start: var(--space-24);
+    row-gap: var(--space-24);
+  }
+
+  /* §D.8 — the person's name and email print once at the top of page 1. On screen the
+     address is the plate and the closing block; on paper it is this line. */
+  .print-address {
+    display: none;
+  }
+
+  .intro__role {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    max-inline-size: var(--measure-display);
+  }
+
+  /* §F.4/§F.6 — the cards sit on his ground, which in his dark scheme is the worst case
+     and in his light one is the panel; the stand takes whichever the card stands on. */
+  .cards {
+    list-style: none;
+    display: grid;
+    /* §D.1 — 28px keeps >= 20px of real air between tilted cards. */
+    gap: 28px;
+    --card-stand-fill: var(--tgd-surface);
+  }
+
+  .cards__texture {
+    margin-block-start: var(--space-48);
+  }
+
+  .background {
+    list-style: none;
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  .writing__closing {
+    font-weight: 600;
+  }
+
+  /* §F.8's closing line. --lamp is 1.74:1 on his light ground and fill-only there
+     (§F.4a), so the address is set in --s-ink through --tgd-ink, at 14.09 : 1 in light
+     and 14.11 : 1 in dark, with the 2px rule the studio's own closing address carries. */
+  .close__address {
+    display: inline-block;
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-numeral-large);
+    line-height: var(--step-numeral-large-lh);
+    color: var(--tgd-ink);
+    text-decoration: none;
+    padding-block-end: var(--space-8);
+    border-block-end: 2px solid var(--tgd-ink);
+    min-block-size: 44px;
+  }
+
+  @media (min-width: 768px) {
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--gutter);
+    }
+  }
+
+  /* §B.5 — the splits engage at 1024, and §F.8 draws them: the words in cols 1-6 with
+     the portrait slot in cols 9-12, and the two prose sections as a heading rail beside
+     their body. */
+  @media (min-width: 1024px) {
+    .intro__words {
+      grid-column: 1 / span 6;
+    }
+
+    .intro__portrait {
+      grid-column: 9 / span 4;
+    }
+
+    .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .split__heading {
+      grid-column: 1 / span 4;
+    }
+
+    .split__body {
+      grid-column: 6 / span 7;
+    }
+  }
+
+  /*
+    DESIGN.md §D.8 — the person's name and address print once at the top of page 1, and
+    what survives is a document you would attach to an email. The map and the cards
+    print; the closing block's links and the address repeated at the foot do not, since
+    the address is already at the top.
+  */
+  @media print {
+    .close,
+    .intro__portrait {
+      display: none;
+    }
+
+    .print-address {
+      display: block;
+    }
+
+    .section {
+      padding-block: var(--space-24);
+    }
+
+    .cards {
+      display: block;
+    }
+
+    .cards > li + li {
+      margin-block-start: var(--space-16);
+      padding-block-start: var(--space-16);
+      border-block-start: 1px solid #444;
+    }
+  }
+</style>

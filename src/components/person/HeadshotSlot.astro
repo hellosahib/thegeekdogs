@@ -1,0 +1,44 @@
+---
+/**
+ * DESIGN.md §F.7, §F.8 and §G.3 reserve a portrait slot beside the h1 — 320 x 320 at
+ * 360, 366 x 440 in cols 9-12 from 1024 — "reserved with explicit dimensions so filling
+ * it later causes no reflow".
+ *
+ * QUESTIONS.md item 23 chose portraits from a headshot tool trained on each person's own
+ * selfies, and the images have not been supplied. COPY.md §10.1's two alt lines are still
+ * [CONFIRM]-marked pending them, and an alt line has to describe the image that actually
+ * ships. So the slot renders with NO image and NO placeholder: no frame, no fill, no
+ * label, no icon and no `placeholder` attribute anywhere. It is reserved space and
+ * nothing else, which is the one rendering that cannot be mistaken for a decision.
+ *
+ * `people.headshot` and `headshotAlt` are optional on the schema for the same reason, so
+ * dropping the images in later is content work rather than a code change.
+ */
+---
+
+<div class="headshot-slot" aria-hidden="true"></div>
+
+<style>
+  /* §F.7 — 320 x 320 at 360. The aspect ratio, not a fixed height, so the reservation
+     scales with the column it is in without the page having to know the column width. */
+  .headshot-slot {
+    inline-size: 100%;
+    max-inline-size: 320px;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* §F.8, §G.3 — 366 x 440 in cols 9-12 from 1024. */
+  @media (min-width: 1024px) {
+    .headshot-slot {
+      max-inline-size: 366px;
+      aspect-ratio: 366 / 440;
+    }
+  }
+
+  /* Reserved space is not a thing that belongs on paper. */
+  @media print {
+    .headshot-slot {
+      display: none;
+    }
+  }
+</style>

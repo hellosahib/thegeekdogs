@@ -24,6 +24,12 @@ const ORG_ID = `${SITE}/#organization`;
 
 const abs = (path: string): string => new URL(path, `${SITE}/`).href;
 
+/** COPY.md §1's nav table: the two person routes, keyed by the collection's own slug. */
+const PERSON_ROUTE: Record<string, string> = {
+  'sahib-singh': 'sahib/',
+  'tanya-jain': 'tanya/',
+};
+
 function personId(slug: string): string {
   return `${SITE}/#${slug}`;
 }
@@ -48,12 +54,18 @@ export function organization(founders: CollectionEntry<'people'>[]): Organizatio
   };
 }
 
+/**
+ * PLAN.md §12 — the same `Person` node on every route that mentions them, keyed by one
+ * `@id`, so `/`, `/contact/` and their own page describe one person rather than three.
+ * `url` is their page, which exists from build run B; nothing else was added, because a
+ * field this site has not verified is omitted rather than guessed.
+ */
 export function person(entry: CollectionEntry<'people'>): Person {
   return {
     '@type': 'Person',
     '@id': personId(entry.data.slug),
     name: entry.data.name,
-    // Their own pages land in build run B; `url` goes on with them.
+    url: abs(`${PERSON_ROUTE[entry.data.slug] ?? ''}`),
     sameAs: sameAs(entry),
     worksFor: { '@id': ORG_ID },
   };
@@ -129,6 +141,19 @@ export async function studioGraph(): Promise<string> {
 export async function workIndexGraph(): Promise<string> {
   const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
   return graph(products.map(softwareApplication));
+}
+
+/**
+ * A person page: that person, and the studio they are a founder of, so the `worksFor`
+ * reference on the `Person` node resolves inside the same graph.
+ */
+export async function personGraph(entry: CollectionEntry<'people'>): Promise<string> {
+  const people = await getCollection('people');
+  const order = ['sahib-singh', 'tanya-jain'];
+  const founders = order
+    .map((slug) => people.find((p) => p.data.slug === slug))
+    .filter((p): p is CollectionEntry<'people'> => Boolean(p));
+  return graph([organization(founders), person(entry)]);
 }
 
 /** A case study: the one application the page is about. */

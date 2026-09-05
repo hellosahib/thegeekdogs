@@ -1,0 +1,35 @@
+---
+import { BACK_TO_STUDIO } from '../../lib/copy';
+
+/**
+ * COPY.md §1, "Back to the studio". DESIGN.md §F.7 and §G.3 both open a person page with
+ * a quiet way back rather than a bolted-on studio header — so this is the whole of it:
+ * one link, at body size, in the world's own ink.
+ *
+ * §9.4 bans an arrow glued to link text, so there is no glyph here; the wireframes'
+ * `<- thegeekdogs` is drawn with one and COPY.md's label is what prints.
+ */
+---
+
+<p class="quiet-back">
+  <a class="link" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>{BACK_TO_STUDIO.label}</a>
+</p>
+
+<style>
+  .quiet-back a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-muted);
+  }
+
+  /* A control that leads somewhere the paper cannot go. §D.8's own rule for the plate
+     and the toggle applies to it for the same reason. */
+  @media print {
+    .quiet-back {
+      display: none;
+    }
+  }
+</style>

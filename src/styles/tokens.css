@@ -1,3 +1,5 @@
+@import './worlds/tanya.css';
+
 /*
   tokens.css — the single source of truth for every value DESIGN.md names.
 
@@ -256,6 +258,15 @@
   --s-panel-edge: rgba(233, 234, 240, 0.14); /* inset 1px top-left edge highlight */
   --s-card-surface: #e8e8ea; /* white at 90% over his dark ground, §F.6 */
 
+  /*
+    DESIGN.md §F.1 and §F.4a — the ink INSIDE the map's one lit cell, which is a --lamp
+    fill in both schemes. In dark that is --s-ground on --lamp, 8.48:1 (§F.4's own pair,
+    read the other way round); in light it is --s-ink on --lamp, 8.10:1 (§F.4a). It is a
+    token rather than two rules because the cell has one declaration and the value is
+    what changes with the scheme, which is the discipline every other token here follows.
+  */
+  --s-lamp-ink: var(--s-ground);
+
   --ink: var(--s-ink);
   --focus-outer: var(--s-ink);
   --btn-fill: var(--s-ink);
@@ -281,51 +292,5 @@
 
   --s-panel-edge: rgba(22, 28, 46, 0.1); /* the edge highlight inverts to bottom-right */
   --s-card-surface: #f9fafc; /* white at 82% over --s-panel, the light worst case */
-}
-
-/*
-  --- DESIGN.md §G.1, Tanya's world (shared by both directions). The most achromatic. ---
-  Light by default, dark counterpart below.
-*/
-[data-world='tanya'] {
-  --t-ground: #edeeee; /* L 0.853266 — page ground */
-  --t-core: #dcdede; /* L 0.727321 — the shared-core field / node field */
-  --t-ink: #1b2020; /* L 0.013703 — primary text and every structural stroke */
-  --t-edge: #56605f; /* L 0.111704 — secondary text, platform-edge labels, connectors */
-  --lamp-ink: #8a5a08; /* L 0.127331 — the dark counterpart of --lamp */
-
-  --t-card-surface: #f9f9f9; /* white at 82% over --t-core, the light worst case */
-
-  /* §G.1a — her cards carry her own two inks, theme-invariant like the studio's. */
-  --card-ink: #1b2020;
-  --card-ink-2: #56605f;
-
-  --ink: var(--t-ink);
-  --focus-outer: var(--t-ink);
-  --focus-inner: var(--lamp);
-  --btn-fill: var(--t-ink);
-  --btn-ink: var(--t-ground);
-
-  --tgd-surface: var(--t-ground);
-  --tgd-surface-alt: var(--t-core);
-  --tgd-ink: var(--t-ink);
-  --tgd-muted: var(--t-edge);
-  --tgd-accent: var(--lamp-ink);
-  --tgd-room: var(--t-ground);
-  --tgd-on-room: var(--t-ink);
-  --tgd-on-room-muted: var(--t-edge);
-  --tgd-card: var(--t-card-surface);
-}
-
-/* DESIGN.md §G.1a — her dark counterpart. Genuinely achromatic, not a blue-black. */
-[data-world='tanya'][data-theme='dark'] {
-  --t-ground: #191b1b; /* L 0.010697 */
-  --t-core: #282b2b; /* L 0.023533 — steps lighter than the ground */
-  --t-ink: #e9eaea; /* L 0.821098 — not #FFF; pure white vibrates as pure black does */
-  --t-edge: #959c9c; /* L 0.325668 */
-  --lamp-ink: #f2a93b; /* the counterpart of the counterpart is the lamp itself */
-
-  --t-card-surface: #e8e8e8; /* white at 90% over --t-ground, the dark worst case */
-
-  --t-core-edge: rgba(233, 234, 234, 0.14); /* 1px inset top edge on the core field */
+  --s-lamp-ink: var(--s-ink); /* §F.4a — --s-ink on --lamp, 8.10:1 */
 }

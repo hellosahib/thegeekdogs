@@ -28,7 +28,8 @@
       ],
       "confirmed": true,
       "ownershipLine": "She owns app releases there: phased rollouts, crash and ANR monitoring, and the fixes that follow.",
-      "attributedAccount": "By her account, a 99.8% crash-free rate held and about 20% off startup time, from cold-start and dependency work."
+      "attributedAccount": "By her account, a 99.8% crash-free rate held and about 20% off startup time, from cold-start and dependency work.",
+      "layer": "core"
     },
     {
       "company": "HSBC",
@@ -38,7 +39,8 @@
       "productsStack": [
         "Mobile banking. Migration to MVVM, UI performance work, and diagnosis of production issues."
       ],
-      "confirmed": true
+      "confirmed": true,
+      "layer": "android"
     },
     {
       "company": "Naskay Technologies",
@@ -49,7 +51,15 @@
         "Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring."
       ],
       "confirmed": true,
-      "projectLine": "The Jillian Michaels fitness app, built at Naskay for a US client."
+      "projectLine": "The Jillian Michaels fitness app, built at Naskay for a US client.",
+      "layer": "android"
+    }
+  ],
+  "edgeAnnotations": [
+    {
+      "layer": "ios",
+      "fromCompany": "Motive",
+      "label": "Motive Fleet App"
     }
   ]
 }

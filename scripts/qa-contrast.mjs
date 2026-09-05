@@ -22,10 +22,22 @@
  * 1.74:1. If either ever clears AA, a token moved and the rule needs rewriting.
  */
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { ROOT, report } from './lib/dist.mjs';
 
-const raw = readFileSync(join(ROOT, 'src', 'styles', 'tokens.css'), 'utf8');
+/*
+  tokens.css imports one partial per world that owns its own file — today that is
+  Tanya's (PLAN.md §1.2's swappable token partial). This check reads what the browser
+  reads, so it inlines the imports rather than being told about them.
+*/
+function readWithImports(file) {
+  const text = readFileSync(file, 'utf8');
+  return text.replace(/@import\s+(?:url\()?['"]([^'"]+)['"]\)?\s*;/g, (_, href) =>
+    href.startsWith('.') ? readWithImports(resolve(dirname(file), href)) : '',
+  );
+}
+
+const raw = readWithImports(join(ROOT, 'src', 'styles', 'tokens.css'));
 
 // Comments and @media wrappers carry no colour decisions; stripping them keeps the
 // block parser below honest about which selector a declaration belongs to.
@@ -180,6 +192,9 @@ const PALETTES = [
       ['--lamp', '--s-panel', 7.31, 'body'],
       ['--card-ink', '--s-card-surface', 12.34, 'body'],
       ['--card-ink-2', '--s-card-surface', 5.13, 'body'],
+      // §F.1's lit cell. In dark its ink is --s-ground on --lamp, which is §F.4's own
+      // --lamp-on---s-ground pair read the other way round.
+      ['--s-lamp-ink', '--lamp', 8.48, 'body'],
     ],
     forbidden: [],
   },
@@ -194,6 +209,8 @@ const PALETTES = [
       ['--s-dim', '--s-ground', 5.79, 'body'],
       ['--s-dim', '--s-panel', 5.15, 'body'],
       ['--s-ink', '--lamp', 8.1, 'body'],
+      // §F.4a — the same lit cell in light, through the token the cell actually names.
+      ['--s-lamp-ink', '--lamp', 8.1, 'body'],
       ['--card-ink', '--s-card-surface', 14.44, 'body'],
       ['--card-ink-2', '--s-card-surface', 6.0, 'body'],
     ],

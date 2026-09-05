@@ -1,0 +1,221 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPlate from '../../components/ContactPlate.astro';
+import QuietBack from '../../components/person/QuietBack.astro';
+import HeadshotSlot from '../../components/person/HeadshotSlot.astro';
+import PersonLinks from '../../components/person/PersonLinks.astro';
+import { TANYA } from '../../lib/copy';
+import { personGraph } from '../../lib/jsonld';
+
+/*
+  DESIGN.md §G — Tanya's world. Her axis is the system, not the timeline: nothing on this
+  page is a dated list, and nothing on it is softer, rounder, paler or more decorative
+  than his.
+
+  PLAN.md §1.2 — HER DIRECTION IS ONE IMPORT. The line below is the only place T1 is
+  named; `src/styles/worlds/tanya.css` is the only place her tokens live; and every other
+  component on this page is shared and consumes only generic token names. Swapping to T2
+  (§G.4, unblocked and buildable) is changing this import and nothing else.
+*/
+import LayoutA from '../../layouts/tanya/LayoutA.astro';
+
+const person = await getEntry('people', 'tanya-jain');
+if (!person) throw new Error('/tanya/ needs src/data/people/tanya-jain.json.');
+
+if (!person.data.ownsLine) {
+  throw new Error("The core's gate block needs COPY.md §2.3's gate list on her entry.");
+}
+
+const schema = await personGraph(person);
+---
+
+<BaseLayout
+  title={TANYA.meta.title}
+  description={TANYA.meta.description}
+  ogTitle={TANYA.meta.ogTitle}
+  ogDescription={TANYA.meta.ogDescription}
+  ogImage="tanya"
+  schema={schema}
+  world="tanya"
+>
+  <div class="plate-span plate-span--page">
+    <section class="section intro-section">
+      <div class="shell">
+        <QuietBack />
+        <div class="grid intro">
+          <div class="intro__words stack">
+            <h1>{person.data.name}</h1>
+            <p class="intro__role">{TANYA.roleLine}</p>
+            <p class="muted">{TANYA.body}</p>
+            <p class="muted">{TANYA.secondParagraph}</p>
+            <p class="print-address">{TANYA.links.email.address}</p>
+          </div>
+          <div class="intro__portrait">
+            <HeadshotSlot />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      COPY.md §7.1's two recommendation quotes. They are the only quoted material on the
+      site and they are load-bearing, so they are marked up AS QUOTATION — real
+      <blockquote> elements with a <cite> naming who said it — and not as pull-quote
+      decoration. Nothing here is enlarged, coloured or hung in a margin.
+    -->
+    <section class="section quotes-section section--reserve">
+      <div class="shell grid split">
+        <div class="split__body stack">
+          {
+            TANYA.quotes.map((quote) => (
+              <blockquote class="quote">
+                <p>{quote}</p>
+              </blockquote>
+            ))
+          }
+          <p class="quote__attribution muted">
+            <cite>{TANYA.quoteAttribution}</cite>
+          </p>
+          <p class="quote__closing">{TANYA.quoteClosingLine}</p>
+        </div>
+      </div>
+    </section>
+
+    <LayoutA
+      person={person}
+      work={TANYA.work}
+      owns={{ label: 'Owns', line: person.data.ownsLine }}
+    />
+
+    <section class="section background-section section--reserve">
+      <div class="shell grid split">
+        <h2 class="split__heading">{TANYA.background.heading}</h2>
+        <ul class="split__body background">
+          {TANYA.background.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <ContactPlate address={TANYA.links.email.address} />
+  </div>
+
+  <!-- §B.10 and item 66: a person page closes with that person's own address. -->
+  <section class="section close">
+    <div class="shell stack">
+      <PersonLinks person={person} links={TANYA.links} />
+      <p>
+        <a
+          class="close__address"
+          data-cta="person-cta"
+          href={`mailto:${TANYA.links.email.address}`}
+          aria-label={TANYA.links.email.accessibleName}
+        >
+          {TANYA.links.email.label}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-section {
+    padding-block-start: var(--space-32);
+  }
+
+  .intro {
+    margin-block-start: var(--space-24);
+    row-gap: var(--space-24);
+  }
+
+  .intro__role {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    max-inline-size: var(--measure-display);
+  }
+
+  /* §D.8 — the person's name and email print once at the top of page 1. On screen the
+     address is the plate and the closing block; on paper it is this line. */
+  .print-address {
+    display: none;
+  }
+
+  /* Quotation, not decoration: an indent and a rule, at body size, in the body face. */
+  .quote {
+    margin: 0;
+    padding-inline-start: var(--space-24);
+    border-inline-start: 2px solid var(--tgd-muted);
+  }
+
+  .quote + .quote {
+    margin-block-start: var(--space-24);
+  }
+
+  .quote__attribution {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  .quote__closing {
+    font-weight: 600;
+  }
+
+  .background {
+    list-style: none;
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  /* §G.1 — --lamp-ink is the page's one chromatic mark and it is a 4px cap and a section
+     marker, never a word, in either scheme. The closing address is --t-ink, 14.18 : 1 in
+     light and 14.35 : 1 in dark, with the 2px rule the studio's closing address carries. */
+  .close__address {
+    display: inline-block;
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-numeral-large);
+    line-height: var(--step-numeral-large-lh);
+    color: var(--tgd-ink);
+    text-decoration: none;
+    padding-block-end: var(--space-8);
+    border-block-end: 2px solid var(--tgd-ink);
+    min-block-size: 44px;
+  }
+
+  @media (min-width: 1024px) {
+    .intro__words {
+      grid-column: 1 / span 5;
+    }
+
+    .intro__portrait {
+      grid-column: 9 / span 4;
+    }
+
+    .split__heading {
+      grid-column: 1 / span 3;
+    }
+
+    .split__body {
+      grid-column: 4 / span 6;
+    }
+  }
+
+  @media print {
+    .close,
+    .intro__portrait {
+      display: none;
+    }
+
+    .print-address {
+      display: block;
+    }
+
+    .section {
+      padding-block: var(--space-24);
+    }
+  }
+</style>

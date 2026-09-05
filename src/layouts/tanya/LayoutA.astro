@@ -1,0 +1,343 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import WorkCard from '../../components/person/WorkCard.astro';
+
+/**
+ * Direction T1, "the shared core" — DESIGN.md §G.3, recommended in §G.5.
+ *
+ * **This file is the whole of her direction.** PLAN.md §1.2: `/tanya/` imports one
+ * layout module and one token partial (`src/styles/worlds/tanya.css`), and every shared
+ * component it uses — the header, the footer, the contact plate, the work card, the
+ * links block — consumes only generic token names. Swapping to T2 (§G.4) is changing
+ * which module `src/pages/tanya/index.astro` imports; it touches no token and no shared
+ * component, which is the condition §9.3 attaches to her sign-off coming after the
+ * build.
+ *
+ * **The page's own layout is a KMP architecture.** One fixed central column is the
+ * shared core; two flanking columns are the native edges, Android on the left, iOS on
+ * the right. Content sits in the column that owns it: anything shared sits in the core,
+ * anything platform-specific sits in an edge, narrower and indented. The core is a
+ * continuous vertical field running the section's full height, so it reads as a spine
+ * rather than as a stack of blocks.
+ *
+ * **Motive appears on all three layers, and that is the argument rather than a
+ * duplication bug.** The card lives in the core, where the KMP work is; a 2px `--t-ink`
+ * tick runs out of it into the iOS edge with the product at its end, showing the same
+ * product arriving on the platform that consumes the shared modules. Her Android-edge
+ * cards are the two roles whose work is Android-only.
+ *
+ * At 360 the three columns collapse to one and the structure survives as indentation
+ * depth plus a rule, not as horizontal position: core content is full width on
+ * `--t-core`, edge content is inset 24px with a 2px `--t-ink` left rule under a condensed
+ * platform label, and the tick out of the Motive card rotates from sideways to downward.
+ *
+ * Column allocation from 1024 (§G.3, §G.2's "which is what lets the three-column layout
+ * hold at 1024"): Android cols 1-3, core cols 4-9, iOS cols 10-12.
+ *
+ * §J's pre-committed cut for this page is taken: there are no platform glyphs at the
+ * edge columns. The words are shorter, clearer and cheaper than any icon, and with
+ * Motive on all three layers the edge labels carry a real distinction an icon would
+ * blur.
+ *
+ * §H.3, "the core draws": the field's boundary draws top to bottom over 900ms and each
+ * edge column's content becomes visible only as the core passes its row — one wipe on
+ * the band, which is the choreography and the architectural claim at once. Nothing else
+ * on the page animates. Under `reduce` the band is simply complete, which is §H.4's
+ * still frame and also the unconditional rendering.
+ */
+interface Props {
+  person: CollectionEntry<'people'>;
+  work: {
+    heading: string;
+    coreStatement: string;
+    gatesLink: string;
+    body: string;
+  };
+  /** COPY.md §2.3's `Owns` field label and that person's own gate list. */
+  owns: { label: string; line: string };
+}
+
+const { person, work, owns } = Astro.props;
+
+const roles = person.data.workHistory;
+const core = roles.filter((role) => role.layer === 'core');
+const android = roles.filter((role) => role.layer === 'android');
+const iosEdge = person.data.edgeAnnotations.filter((note) => note.layer === 'ios');
+const androidEdgeNotes = person.data.edgeAnnotations.filter((note) => note.layer === 'android');
+
+if (core.length === 0 || android.length === 0) {
+  throw new Error(
+    'T1 needs every role in src/data/people/tanya-jain.json to carry a `layer`, with at least one in the core and one on the Android edge (§G.3).',
+  );
+}
+
+/*
+  DESIGN.md §G.2 — the three structural labels. They are the layout's own names for its
+  three fields, which is why they are here and not in COPY.md: §J's row for this page
+  says in terms that "the words Android and iOS are shorter, clearer and cheaper than any
+  icon", and §G.3 names the middle field the shared core throughout.
+*/
+const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as const;
+---
+
+<section class="core-band" aria-label={work.heading}>
+  <div class="shell grid core-band__grid">
+    <!-- The Android edge. Narrower and indented, so the hierarchy survives in greyscale. -->
+    <div class="edge edge--android">
+      <p class="edge__label">{FIELD_LABELS.android}</p>
+      <ul class="edge__cards">
+        {
+          android.map((role, index) => (
+            <li>
+              <WorkCard entry={role} index={index + 1} />
+            </li>
+          ))
+        }
+      </ul>
+      {
+        androidEdgeNotes.map((note) => (
+          <p class="edge__note">
+            <span class="edge__tick" aria-hidden="true" />
+            {note.label}
+          </p>
+        ))
+      }
+    </div>
+
+    <!-- The shared core: one continuous field, not a stack of blocks. -->
+    <div class="core">
+      <p class="core__label">{FIELD_LABELS.core}</p>
+      <h2 class="core__heading">{work.heading}</h2>
+      <p class="core__statement">{work.coreStatement}</p>
+
+      <ul class="core__cards">
+        {
+          core.map((role) => (
+            <li>
+              <WorkCard entry={role} index={0} />
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="core__body">{work.body}</p>
+
+      <div class="core__gates">
+        <p class="core__gates-label">{owns.label}</p>
+        <p class="core__gates-line">{owns.line}</p>
+      </div>
+    </div>
+
+    <!-- The iOS edge: the end of the tick out of the core's card. §B.10's amended rule
+         names "a card's price line" as a mark that may not end inside the plate's band,
+         so this annotation carries the product and no date. -->
+    <div class="edge edge--ios">
+      <p class="edge__label">{FIELD_LABELS.ios}</p>
+      {
+        iosEdge.map((note) => (
+          <p class="edge__note">
+            <span class="edge__tick" aria-hidden="true" />
+            {note.label}
+          </p>
+        ))
+      }
+    </div>
+
+    <!-- §9.3's connection back to the home page, made on the core column. -->
+    <p class="core-band__gates-link">{work.gatesLink}</p>
+  </div>
+</section>
+
+<style>
+  .core-band__grid {
+    row-gap: var(--space-40);
+  }
+
+  /*
+    The core field. In light it is a step darker than the ground, in dark a step lighter;
+    either way it is the one step away from the page, and in dark it takes a 1px inset
+    top edge as well (§G.1a). Its top cap is 4px of --lamp-ink — with the section markers
+    below, the only chromatic marks on the page, and both are non-text (§G.1's own
+    constraint, kept in dark as a design rule rather than a contrast consequence).
+  */
+  .core {
+    background-color: var(--tgd-surface-alt);
+    border-block-start: 4px solid var(--tgd-accent);
+    box-shadow: inset 0 1px 0 var(--t-core-edge, transparent);
+    padding: var(--space-24) var(--space-16) var(--space-32);
+    /* The cards inside the core stand ON the core, so the stand takes its fill. */
+    --card-stand-fill: var(--tgd-surface-alt);
+  }
+
+  /* §G.2 — structural labels set in the display face at wdth 75, condensed, so a narrow
+     column carries a full-size label without the type shrinking. */
+  .core__label,
+  .edge__label {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' 75;
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-muted);
+  }
+
+  .core__heading {
+    margin-block-start: var(--space-8);
+  }
+
+  .core__statement {
+    margin-block-start: var(--space-16);
+  }
+
+  .core__cards {
+    margin-block-start: var(--space-32);
+    list-style: none;
+    display: grid;
+    gap: 28px;
+  }
+
+  .core__body {
+    margin-block-start: var(--space-32);
+    color: var(--tgd-muted);
+  }
+
+  .core__gates {
+    margin-block-start: var(--space-32);
+  }
+
+  /* A section marker: the second and last --lamp-ink mark on the page, non-text. */
+  .core__gates-label {
+    padding-inline-start: var(--space-12);
+    border-inline-start: 4px solid var(--tgd-accent);
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' 75;
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--tgd-muted);
+  }
+
+  .core__gates-line {
+    margin-block-start: var(--space-8);
+  }
+
+  /* The edges: narrower AND indented, with a 2px --t-ink left rule carrying the
+     structure where horizontal position cannot (§G.3's 360 collapse). */
+  .edge {
+    padding-inline-start: var(--space-24);
+    border-inline-start: 2px solid var(--tgd-ink);
+  }
+
+  .edge__cards {
+    margin-block-start: var(--space-16);
+    list-style: none;
+    display: grid;
+    gap: 28px;
+  }
+
+  .edge__note {
+    margin-block-start: var(--space-16);
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  /* The tick out of the core's card. At 360 the two edges sit below the core rather than
+     beside it, so the tick points down; from 1024 it runs sideways into its column. */
+  .edge__tick {
+    inline-size: 2px;
+    block-size: 24px;
+    background-color: var(--tgd-ink);
+    flex: 0 0 auto;
+  }
+
+  .core-band__gates-link {
+    color: var(--tgd-muted);
+  }
+
+  @media (min-width: 1024px) {
+    .core-band__grid {
+      row-gap: var(--space-56);
+      align-items: stretch;
+    }
+
+    .edge--android {
+      grid-column: 1 / span 3;
+    }
+
+    .core {
+      grid-column: 4 / span 6;
+      padding: var(--space-32) var(--space-24) var(--space-48);
+    }
+
+    .edge--ios {
+      grid-column: 10 / span 3;
+    }
+
+    .core-band__gates-link {
+      grid-column: 4 / span 6;
+    }
+
+    .edge__note {
+      margin-block-start: var(--space-24);
+    }
+
+    .edge__tick {
+      inline-size: 24px;
+      block-size: 2px;
+    }
+
+    /* The Android edge's tick leaves the core to the LEFT, so it reads as running out of
+       the core rather than into it. Order in the flex line is the only change. */
+    .edge--android .edge__note {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
+
+  /*
+    §H.3, "the core draws". The field's boundary draws top to bottom over 900ms and each
+    edge column's content becomes visible as the core passes its row — one clip on the
+    band expresses both, because the edges cannot appear before the core does, which is
+    the architectural claim made as choreography. `--ease-inout` is §H.1's curve for a
+    thing moving between two known states. Nothing else on this page animates.
+
+    The unconditional rendering is the complete band, so §H.4's still frame is the
+    default and `reduce` removes an animation rather than adding a branch.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    .core-band__grid {
+      animation: core-draws 900ms var(--ease-inout) both;
+    }
+  }
+
+  @keyframes core-draws {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* §D.8 — a fill the browser would suppress anyway, and a rule that survives it. */
+  @media print {
+    .core-band__grid {
+      animation: none;
+    }
+
+    .core {
+      background-color: transparent;
+      box-shadow: none;
+      padding-inline: 0;
+      border-block-start-width: 2px;
+      border-block-start-color: currentColor;
+    }
+
+    .core__gates-label {
+      border-inline-start-color: currentColor;
+    }
+  }
+</style>

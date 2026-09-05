@@ -1,7 +1,7 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderCard, type CardSpec } from '../../lib/og/card';
-import { CONTACT, WORK_INDEX } from '../../lib/copy';
+import { CONTACT, SAHIB, TANYA, WORK_INDEX } from '../../lib/copy';
 
 /**
  * PLAN.md §1.7 — one OG card per route, generated at build time from the same content
@@ -42,6 +42,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {
       params: { slug: 'contact' },
       props: { title: CONTACT.meta.ogTitle, line: CONTACT.meta.ogDescription },
+    },
+    /*
+      COPY.md §6.6 and §7.6 each write an "OG image text" pair of their own — a name and
+      one line under it — so the person cards take those rather than reusing the OG
+      description. DESIGN.md §B.2a: every card is built from the LIGHT tokens, in every
+      world, because a share preview has no way to know the reader's scheme.
+    */
+    {
+      params: { slug: 'sahib' },
+      props: { title: SAHIB.meta.ogImageTitle, line: SAHIB.meta.ogImageLine },
+    },
+    {
+      params: { slug: 'tanya' },
+      props: { title: TANYA.meta.ogImageTitle, line: TANYA.meta.ogImageLine },
     },
   ];
 

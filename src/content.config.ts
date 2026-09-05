@@ -56,6 +56,65 @@ const people = defineCollection({
       // with no portrait renders no <img> at all rather than a broken one.
       headshot: image().optional(),
       headshotAlt: z.string().min(1).optional(),
+      /*
+        DESIGN.md §F.1 and §F.7/§F.8 — the coverage map. Five surfaces crossed against
+        five places, and a cell is filled only where a real product can be named
+        (QUESTIONS.md items 45 and 72). The map has exactly two states, attributed and
+        empty: §F.1 removed the third, "asserted", state and the line of prose under the
+        map with it, because every filled cell now prints a product. There is therefore
+        no field here a cell could use to make an unattributed claim.
+
+        Optional, because only one person's page is a map.
+      */
+      coverage: z
+        .object({
+          surfaces: z.array(
+            z.object({
+              key: z.string().min(1),
+              /** The column header, §F.8's own wording. */
+              label: z.string().min(1),
+              /**
+                §F.7's abbreviated header for the stacked form below 1024, where a
+                44px cell cannot hold the full label.
+              */
+              short: z.string().min(1),
+              /** §F.1: exactly one surface is the lit column, and it is `--lamp`. */
+              lamp: z.boolean().default(false),
+            }),
+          ),
+          places: z.array(
+            z.object({
+              company: z.string().min(1),
+              years: z.string().min(1),
+              cells: z.array(
+                z.object({
+                  surface: z.string().min(1),
+                  product: z.string().min(1),
+                }),
+              ),
+            }),
+          ),
+        })
+        .optional(),
+
+      /*
+        DESIGN.md §G.3 — an annotation pinned to a layer the person's own work does not
+        put a card on. The iOS edge carries the Motive Fleet App at the end of a 2px tick
+        out of the core's card, which is what makes "one company, three layers" the
+        layout's argument rather than a duplicated card. Optional for the same reason
+        `coverage` is: only one person's page is a shared core.
+      */
+      edgeAnnotations: z
+        .array(
+          z.object({
+            layer: z.enum(['android', 'ios']),
+            /** The company whose core card the tick leaves. */
+            fromCompany: z.string().min(1),
+            label: z.string().min(1),
+          }),
+        )
+        .default([]),
+
       workHistory: z.array(
         z.object({
           company: z.string().min(1),
@@ -73,6 +132,13 @@ const people = defineCollection({
           ownershipLine: z.string().min(1).optional(),
           attributedAccount: z.string().min(1).optional(),
           projectLine: z.string().min(1).optional(),
+          /*
+            DESIGN.md §G.3 — which layer of the shared-core layout this role is pinned
+            to. Content sits in the column that owns it: cross-platform work in the core,
+            platform-specific work on an edge. Optional because it is T1's field and no
+            other rendering of a work card reads it.
+          */
+          layer: z.enum(['core', 'android', 'ios']).optional(),
           confirmed: z.boolean(),
         }),
       ),

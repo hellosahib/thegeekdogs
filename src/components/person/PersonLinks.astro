@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+/**
+ * COPY.md §6.5 and §7.5 — GitHub, LinkedIn and the person's own address, as plain links
+ * and nothing more prominent. Item 39 put GitHub on both pages; item 40 made LinkedIn
+ * the link CTA. Items 17 and 18 closed everything else, so these three and the quiet
+ * back link at the top of the page are the whole of it.
+ *
+ * Never print contribution counts, streaks or repo numbers (§6.5, §7.5).
+ *
+ * COPY.md §10.5: an outbound link that opens a new tab says so in its own name, and no
+ * icon carries it. The two profile links take the accessible names COPY.md writes, both
+ * of which already end in `Opens a new tab.`; the address is a `mailto:` on the same
+ * page and does not.
+ */
+interface LabelledLink {
+  label: string;
+  accessibleName: string;
+}
+
+interface Props {
+  person: CollectionEntry<'people'>;
+  links: {
+    github: LabelledLink;
+    linkedin: LabelledLink;
+    email: LabelledLink & { address: string };
+  };
+}
+
+const { person, links } = Astro.props;
+---
+
+<ul class="person-links">
+  <li>
+    <a
+      class="link"
+      href={person.data.socials.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={links.github.accessibleName}
+    >
+      {links.github.label}
+    </a>
+  </li>
+  <li>
+    <a
+      class="link"
+      href={person.data.socials.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={links.linkedin.accessibleName}
+    >
+      {links.linkedin.label}
+    </a>
+  </li>
+  <li>
+    <a class="link" href={`mailto:${links.email.address}`} aria-label={links.email.accessibleName}>
+      {links.email.label}
+    </a>
+  </li>
+</ul>
+
+<style>
+  .person-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-32);
+    row-gap: var(--space-4);
+  }
+
+  .person-links a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+  }
+</style>

@@ -8,7 +8,27 @@ import { STUDIO_EMAIL } from '../lib/copy';
  * real CTA arrives. No JS, no scroll listener, no dismiss state.
  *
  * QUESTIONS.md item 53: the plate prints the address itself, not a label.
+ *
+ * §B.10's address table is per world, and QUESTIONS.md item 66 confirmed it: the studio
+ * pages carry `thegeekdogs@gmail.com`, `/sahib/` carries his and `/tanya/` hers. The
+ * plate and the page never disagree about who is being written to, which is the whole
+ * reason the person pages get their own addresses at all. The component does not change
+ * width between them: set at 14px Instrument 600 with 20px of padding each side, the
+ * longest of the three needs 209px of the 260 available (§B.10).
+ *
+ * COPY.md §1 gives one accessible-name pattern for all three, with the page's own
+ * address substituted, so the spoken name and the printed label never name different
+ * people.
  */
+interface Props {
+  address?: string;
+}
+
+const { address = STUDIO_EMAIL } = Astro.props;
 ---
 
-<a class="plate" data-cta="contact-plate" href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
+<a
+  class="plate"
+  data-cta="contact-plate"
+  href={`mailto:${address}`}
+  aria-label={`Email ${address}. Opens a new message about a project.`}>{address}</a>

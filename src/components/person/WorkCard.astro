@@ -1,0 +1,205 @@
+---
+/**
+ * DESIGN.md §D — one work card, complete. The full four-level shelf-talker: company
+ * largest, what they do under it, the years in the price position, a 1px rule, and the
+ * role, products and stack as small print.
+ *
+ * This is a SHARED component and it consumes only generic token names — `--tgd-card`,
+ * `--card-ink`, `--card-ink-2`, `--hairline`, `--card-shadow-*`, `--card-stand-fill`.
+ * It never reads `--s-*` or `--t-*`, which is what lets Tanya's direction be swapped by
+ * changing one layout module and one token partial (PLAN.md §1.2) without a shared
+ * component regressing.
+ *
+ * §D.6 option 2: a static translucent white and no `backdrop-filter` anywhere. The base,
+ * the edge and the tilt carry the object; there is no fourth detail and no live blur.
+ * The two card inks are theme-invariant (§B.2) because a printed white object does not
+ * invert. §D.4's tilt is deterministic by index so it is reproducible and printable, and
+ * it is never animated at any breakpoint under any motion preference.
+ *
+ * Semantics (§D.5, PLAN.md §5.5): the caller renders a `<ul>` of these as `<li>`s, read
+ * as company, dates, role, products and stack in source order. The stand and the edge
+ * highlight are CSS on that list, never a replacement DOM structure.
+ */
+interface Entry {
+  company: string;
+  whatTheyDo: string;
+  years: string;
+  role?: string;
+  productsStack: string[];
+  ownershipLine?: string;
+  attributedAccount?: string;
+  projectLine?: string;
+}
+
+interface Props {
+  entry: Entry;
+  /** DESIGN.md §D.4 — the tilt is chosen by position, not at random. */
+  index: number;
+}
+
+const { entry, index } = Astro.props;
+
+/** §D.4's table, and §D.4's own "6+ repeat the cycle". */
+const TILTS = ['-1.4deg', '0.8deg', '-2.1deg', '1.7deg', '-0.6deg'];
+
+/** §D.5's small print, in COPY.md's own order: role, then products, then stack. */
+const smallPrint = [
+  entry.role,
+  ...entry.productsStack,
+  entry.ownershipLine,
+  entry.attributedAccount,
+  entry.projectLine,
+].filter((line): line is string => Boolean(line));
+---
+
+<article class="card" style={`--tilt: ${TILTS[index % TILTS.length]}`}>
+  <h3 class="card__company">{entry.company}</h3>
+  <p class="card__what">{entry.whatTheyDo}</p>
+  <p class="card__years numeral">{entry.years}</p>
+  <hr class="card__rule" />
+  <div class="card__small">
+    {smallPrint.map((line) => <p>{line}</p>)}
+  </div>
+</article>
+
+<style>
+  /*
+    §D.1 — 20px all round with 24 at the bottom at 360, 24 with 28 at the bottom from
+    1024. §D.2's base and two shadows, §D.3's two inset edge highlights instead of four
+    borders so the corners have no seam, and the site's one 3px radius.
+  */
+  .card {
+    position: relative;
+    display: block;
+    min-block-size: 168px;
+    padding: var(--space-16) var(--space-16) var(--space-24);
+    border-radius: 3px;
+    background-color: var(--tgd-card);
+    color: var(--card-ink);
+    transform: rotate(var(--tilt));
+    transform-origin: bottom center;
+    box-shadow:
+      inset 1px 1px 0 var(--edge-light),
+      inset -1px -1px 0 var(--edge-dark),
+      var(--card-shadow-contact),
+      var(--card-shadow-ambient);
+  }
+
+  /* §D.2 — the stand: a 4px bar, 56% of the card's width, flush with its bottom edge.
+     Its fill is the surface the card is standing ON, which the placing context names. */
+  .card::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -4px;
+    inset-inline-start: 22%;
+    inline-size: 56%;
+    block-size: 4px;
+    background-color: var(--card-stand-fill, var(--tgd-surface-alt));
+    border-block-end: 1px solid var(--card-stand-base);
+  }
+
+  /* §D.5 — company: Anek 600, 22/26 at 360 and 24/28 at 1024. THE THING. */
+  .card__company {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    color: var(--card-ink);
+  }
+
+  /* One line under it: Instrument 400, 14/20, the second card ink. */
+  .card__what {
+    margin-block-start: var(--space-4);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--card-ink-2);
+  }
+
+  /* §D.5 — the number, in the price position. Anek 500 at wdth 87.5, tabular. */
+  .card__years {
+    margin-block-start: var(--space-16);
+    font-size: var(--step-numeral-large);
+    line-height: var(--step-numeral-large-lh);
+    color: var(--card-ink);
+  }
+
+  .card__rule {
+    border: 0;
+    border-block-start: 1px solid var(--hairline);
+    margin-block: var(--space-16);
+  }
+
+  /* §D.5 — role at Instrument 600 13px in the card ink, products and stack at 400 in
+     the second ink. §7's `Motive Fleet App · Kotlin` middle-dot string is two lines
+     here: identical information, and §9.4's template tell is gone. */
+  .card__small > p {
+    font-size: var(--step-micro);
+    line-height: var(--step-micro-lh);
+    color: var(--card-ink-2);
+  }
+
+  .card__small > p:first-child {
+    font-weight: 600;
+    color: var(--card-ink);
+  }
+
+  .card__small > p + p {
+    margin-block-start: var(--space-8);
+  }
+
+  @media (min-width: 1024px) {
+    .card {
+      min-block-size: 196px;
+      padding: var(--space-24) var(--space-24) var(--space-24);
+      padding-block-end: 28px;
+    }
+  }
+
+  /*
+    DESIGN.md §D.8 — cards flatten to a plain CV. The tilt goes, the fill goes solid
+    white, every shadow and the stand and the edge highlight are removed, the padding
+    drops to zero, and the company and the date range set on one line with the date
+    right-aligned so a printed column of dates still scans.
+  */
+  @media print {
+    .card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: var(--space-16);
+      min-block-size: 0;
+      padding: 0;
+      border-radius: 0;
+      transform: none;
+      background-color: #fff;
+      box-shadow: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .card::after {
+      display: none;
+    }
+
+    .card__years {
+      margin-block-start: 0;
+      grid-column: 2;
+      grid-row: 1;
+      text-align: end;
+    }
+
+    .card__what,
+    .card__rule,
+    .card__small {
+      grid-column: 1 / -1;
+    }
+
+    .card__rule {
+      display: none;
+    }
+
+    .card__small {
+      margin-block-start: var(--space-8);
+    }
+  }
+</style>
