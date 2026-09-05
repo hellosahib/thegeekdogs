@@ -180,13 +180,11 @@ let tiltIndex = 0;
     line-height: var(--step-numeral-large-lh);
   }
 
-  @media (min-width: 768px) {
-    .strip__cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: var(--gutter);
-    }
-  }
-
+  /*
+    §D.1's table is one column and then two, with no 768 row. A 2-up at 768 put the
+    right-hand card's date line at x 522 against a plate band beginning at 492, and
+    §B.10 names a card's price line by name. The 2-up arrives with the rail at 1024.
+  */
   /* §B.9 — the row label sits outside the content and the objects run out from it. The
      only structure on the site that does this, which is what keeps §B.9's
      seven-sections-seven-families test true. */
@@ -223,6 +221,8 @@ let tiltIndex = 0;
     .strip__cards {
       grid-column: 2;
       grid-row: 1 / -1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--gutter);
     }
   }
 

@@ -21,7 +21,7 @@
  * on them failing: --lamp on the light --sheet is 1.79:1 and on Sahib's light ground
  * 1.74:1. If either ever clears AA, a token moved and the rule needs rewriting.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { ROOT, report } from './lib/dist.mjs';
 
@@ -37,7 +37,20 @@ function readWithImports(file) {
   );
 }
 
-const raw = readWithImports(join(ROOT, 'src', 'styles', 'tokens.css'));
+/*
+  The world partials are imported by global.css, AFTER tokens.css, because `:root` and
+  `[data-world="…"]` are the same specificity and the later block wins. This check keys
+  its blocks by selector and each selector appears in exactly one file, so reading them
+  in that order reproduces the cascade the browser applies.
+*/
+const STYLES = join(ROOT, 'src', 'styles');
+const raw = [
+  readWithImports(join(STYLES, 'tokens.css')),
+  ...readdirSync(join(STYLES, 'worlds'))
+    .filter((file) => file.endsWith('.css'))
+    .sort()
+    .map((file) => readWithImports(join(STYLES, 'worlds', file))),
+].join('\n');
 
 // Comments and @media wrappers carry no colour decisions; stripping them keeps the
 // block parser below honest about which selector a declaration belongs to.

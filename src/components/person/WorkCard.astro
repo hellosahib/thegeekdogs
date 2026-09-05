@@ -21,6 +21,12 @@ import { assertYearsOnly, yearsOnly } from '../../lib/person';
  * Semantics (§D.5, PLAN.md §5.5): the caller renders a `<ul>` of these as `<li>`s, read
  * as company, dates, role, products and stack in source order. The stand and the edge
  * highlight are CSS on that list, never a replacement DOM structure.
+ *
+ * The company is a `<p>`, not a heading. §D.5 sets it largest and PLAN.md §5.5 describes
+ * a LIST of roles rather than a set of sections — and on /sahib/ the cards follow the
+ * map, which COPY.md gives no h2 (its section labels in §F.7 and §F.8 are wireframe
+ * labels), so an `<h3>` there skipped a level and Lighthouse's `heading-order` audit was
+ * right to say so. The list carries the structure; the type carries the hierarchy.
  */
 interface Entry {
   company: string;
@@ -59,7 +65,7 @@ const smallPrint = [
 ---
 
 <article class="card" style={`--tilt: ${TILTS[index % TILTS.length]}`}>
-  <h3 class="card__company">{entry.company}</h3>
+  <p class="card__company">{entry.company}</p>
   <p class="card__what">{entry.whatTheyDo}</p>
   <p class="card__years numeral">{years}</p>
   <hr class="card__rule" />

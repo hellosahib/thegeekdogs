@@ -402,6 +402,26 @@ const figures = [
       align-self: center;
     }
 
+    .offer__inner {
+      grid-column: 3 / span 8;
+    }
+  }
+
+  /*
+    §B.9's split proof band engages at 1440 on this page, not at 1024, and the reason is
+    §B.10's own arithmetic rather than a preference. §B.10 computes the band at 1440 —
+    axis x 732 to 1132, last ring closing at 1141 against a plate band beginning at 1164 —
+    and nowhere else. At 1024 col 7 starts at x 524 and the plate's band begins at x 748,
+    which leaves 224px for a five-node axis: the 100px pitch that makes §E.2's two-line
+    label reservation hold needs 500, and shrinking it to 56 is the three-line
+    `Submitted for review` the step-2 review raised as item 7 and this build closed.
+    Measured before the change, the last three nodes and three labels all ended inside the
+    band at 1024. Stacked, the axis runs x 48 to 448 with its labels ending at 548, clear
+    by 200 — the same remedy §B.10 chose for /work/ at 768-930, and for the same reason:
+    the form with no right-hand extent, not a narrower pitch. FLAGGED FOR THE DESIGN LEAD,
+    because §B.5 says every split engages at 1024 and this one cannot.
+  */
+  @media (min-width: 1440px) {
     .proof__lead {
       grid-column: 1 / span 5;
     }
@@ -417,10 +437,6 @@ const figures = [
       margin-block-start: 0;
       --track-head-origin: calc(var(--track-pitch) / -2);
       --track-list-origin: 0px;
-    }
-
-    .offer__inner {
-      grid-column: 3 / span 8;
     }
   }
 </style>

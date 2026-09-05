@@ -9,10 +9,20 @@ import type { CollectionEntry } from 'astro:content';
  *
  * Never print contribution counts, streaks or repo numbers (§6.5, §7.5).
  *
- * COPY.md §10.5: an outbound link that opens a new tab says so in its own name, and no
- * icon carries it. The two profile links take the accessible names COPY.md writes, both
- * of which already end in `Opens a new tab.`; the address is a `mailto:` on the same
- * page and does not.
+ * COPY.md §10.5's rule is what builds the two profile links' accessible names: "append
+ * `Opens a new tab.` to the link's own name". That is deliberate rather than a shortcut.
+ * §6.5 and §7.5 each also write the name out in full — `Sahib Singh on GitHub. Opens a
+ * new tab.` — and those strings FAIL SC 2.5.3, Label in Name, against §6.5's own visible
+ * label `Sahib on GitHub`: the accessible name has to contain the visible text and
+ * `Sahib Singh on GitHub` does not contain `Sahib on GitHub`. Lighthouse's
+ * `label-content-name-mismatch` audit caught it on /sahib/ and took accessibility to 98.
+ * §10.5's rule produces a name that contains the label by construction, which is why the
+ * general rule wins over the two written-out strings — the same class of ruling as §E.1's
+ * stroke alpha, where a Perf & A11y line outranks a preference. The written names are
+ * kept in `copy.ts` so the conflict is visible rather than quietly resolved.
+ *
+ * The address link is unaffected: `Email Sahib at sahiboffc@gmail.com` contains its own
+ * visible label, so §6.5's string is used exactly as written.
  */
 interface LabelledLink {
   label: string;
@@ -38,9 +48,9 @@ const { person, links } = Astro.props;
       href={person.data.socials.github}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={links.github.accessibleName}
     >
       {links.github.label}
+      <span class="sr-only"> Opens a new tab.</span>
     </a>
   </li>
   <li>
@@ -49,9 +59,9 @@ const { person, links } = Astro.props;
       href={person.data.socials.linkedin}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={links.linkedin.accessibleName}
     >
       {links.linkedin.label}
+      <span class="sr-only"> Opens a new tab.</span>
     </a>
   </li>
   <li>

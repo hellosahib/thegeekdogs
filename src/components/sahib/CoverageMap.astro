@@ -306,7 +306,15 @@ function productFor(place: (typeof places)[number], key: string): string | undef
 
   /* The lit cell: a --lamp fill with a 2px --s-ink border, its text in --s-lamp-ink.
      Light 8.10:1, dark 8.48:1, both §F.4/§F.4a's own published pairs. */
+  /*
+    Below 1024 a filled cell is a full-width line, and a full-width amber block is both
+    the wrong picture — §F.1 calls the lit cell "the newest, SMALLEST" region — and a mark
+    whose right edge lands deep inside the plate's band (x 706 at 768, against 492). It
+    shrinks to its own content, which fixes the composition and the drawing at once.
+  */
   .map__cell[data-filled][data-lamp] {
+    inline-size: fit-content;
+    max-inline-size: 100%;
     background-color: var(--lamp);
     border: 2px solid var(--tgd-ink);
     padding: var(--space-8) var(--space-12);
@@ -422,6 +430,7 @@ function productFor(place: (typeof places)[number], key: string): string | undef
     }
 
     .map__cell[data-filled][data-lamp] {
+      inline-size: auto;
       padding: var(--space-16) var(--space-12);
     }
   }
