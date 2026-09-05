@@ -2,5 +2,5 @@
   "slug": "code-review",
   "order": 2,
   "name": "Code review.",
-  "description": "Every change is read by a human before it merges. Not skimmed for style. Read for whether it does what it claims."
+  "description": "Every change is read by a person before it merges, and both of us are on this one. Not skimmed for style. Read for whether it does what it claims."
 }

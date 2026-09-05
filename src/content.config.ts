@@ -34,6 +34,15 @@ const people = defineCollection({
       currentEmployer: z.string().min(1),
       bio: z.string().min(1),
       gatesOwned: z.array(reference('gates')),
+      /*
+        COPY.md §2.3's "Gate list" for the human interaction cards, verbatim. It is a
+        written string and not a projection of `gatesOwned`, on COPY.md's own
+        instruction: the short forms are set to §C.6's 318px measure, two of the four
+        gate names do not fit at full length, and two of the responsibilities on it
+        (design review, the release cut) are not `gates` entries at all. Optional
+        because a person with no line renders no sub-block rather than an empty one.
+      */
+      ownsLine: z.string().min(1).optional(),
       socials: z.object({
         github: z.url(),
         linkedin: z.url(),

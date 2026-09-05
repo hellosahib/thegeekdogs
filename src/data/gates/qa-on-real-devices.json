@@ -2,5 +2,5 @@
   "slug": "qa-on-real-devices",
   "order": 3,
   "name": "QA on real devices.",
-  "description": "Physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit."
+  "description": "Tanya runs the build on physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit."
 }

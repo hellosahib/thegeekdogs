@@ -17,6 +17,22 @@ export const EMPTY_CHAIR = {
 /** COPY.md §2.4 — the field label above the gate name on each agent card. */
 export const CHECKED_BY_LABEL = 'Checked by';
 
+/**
+ * COPY.md §2.3 — DESIGN.md §C.6 item 4 gives the two human cards the same sub-block
+ * geometry the agent cards have. Its field label is one word, because on a human card
+ * the person is the one doing the checking rather than the one being checked.
+ *
+ * The gate list itself is §C.6's own short form and lives on each person's entry.
+ * COPY.md §2.3 is explicit that it must NOT be asserted against the gate collection
+ * the way the agent cards' single label is: the short forms are written to a 318px
+ * measure and `QA on real devices` / `Security and privacy review` at full length push
+ * the block past its budget.
+ */
+export const OWNS_LABEL = 'Owns';
+
+/** COPY.md §2.4 — the roster line's label. §B.8's own wireframe string. */
+export const ROSTER = { label: 'The full pipeline' } as const;
+
 /** COPY.md §2.2 — the lead-in and the instruction line, in that order. */
 export const FLOOR_INTRO = {
   leadIn: 'Two desks have people at them. The rest are agents.',
@@ -53,8 +69,14 @@ export interface Station {
   lead?: string;
   /** The card's body. */
   body: string;
-  /** Agents only: COPY.md §2.4's gate label. */
+  /** Agents only: COPY.md §2.4's gate label, kept for the assertion below. */
   checkedBy?: string;
+  /**
+   * DESIGN.md §C.6 items 3 and 4 — one sub-block, two field labels. Agents carry
+   * `Checked by` and their gate; the two humans carry `Owns` and the gates they own.
+   * The chair carries neither, and its absence is the point (§C.6 item 5).
+   */
+  gateBlock?: { label: string; value: string };
 }
 
 /**
@@ -152,6 +174,10 @@ export async function roster(): Promise<Station[]> {
     accessibleName: `${person.data.name}. Open ${possessive(person.data.pronouns, person.data.name)} card.`,
     lead: person.data.headlineRole,
     body: person.data.bio,
+    // No `ownsLine` means no sub-block, rather than a labelled empty one.
+    gateBlock: person.data.ownsLine
+      ? { label: OWNS_LABEL, value: person.data.ownsLine }
+      : undefined,
   }));
 
   for (const agent of [...agents].sort(byOrder)) {
@@ -162,6 +188,7 @@ export async function roster(): Promise<Station[]> {
       accessibleName: `${agent.data.name}, agent. Checked by ${inSentence(agent.data.checkedBy)}. Open its card.`,
       body: agent.data.job,
       checkedBy: agent.data.checkedBy,
+      gateBlock: { label: CHECKED_BY_LABEL, value: agent.data.checkedBy },
     });
   }
 
@@ -174,4 +201,25 @@ export async function roster(): Promise<Station[]> {
   });
 
   return stations;
+}
+
+/**
+ * COPY.md §2.4's roster line, as a sentence: the same seven names in the same order as
+ * the desks, joined the way §2.4 writes them — commas, `and` before the last, one full
+ * stop. It is derived from the collection rather than transcribed so the sentence and
+ * the floor cannot disagree, and no count is printed beside it (§2.2, §2.4, §10.2 all
+ * give the same reason: a number in body copy goes stale the day the roster changes).
+ */
+export async function rosterSentence(): Promise<string> {
+  const agents = await getCollection('agents');
+  const names = [...agents]
+    .sort(
+      (a, b) =>
+        DESK_SLOTS.indexOf(a.data.deskSlot as (typeof DESK_SLOTS)[number]) -
+        DESK_SLOTS.indexOf(b.data.deskSlot as (typeof DESK_SLOTS)[number]),
+    )
+    .map((agent) => agent.data.name);
+  const last = names.pop();
+  if (!last) throw new Error('The agents collection is empty, so §2.4 has no roster line.');
+  return names.length === 0 ? `${last}.` : `${names.join(', ')} and ${last}.`;
 }

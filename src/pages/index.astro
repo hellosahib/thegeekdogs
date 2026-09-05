@@ -5,7 +5,7 @@ import ContactPlate from '../components/ContactPlate.astro';
 import StageTrackCompact from '../components/StageTrackCompact.astro';
 import StudioFloor from '../components/floor/StudioFloor.astro';
 import WorkCardStrip from '../components/WorkCardStrip.astro';
-import { STUDIO_EMAIL, CONTACT_AFFORDANCE } from '../lib/copy';
+import { STUDIO_EMAIL, CONTACT_AFFORDANCE, FINAL_CTA } from '../lib/copy';
 
 /*
   COPY.md §2, in §7's section order: hero, the floor, the work-card strip, the four
@@ -117,19 +117,16 @@ const figures = [
             }
           </ol>
           <!--
-            COPY.md §2.6, round 8. Items 56 and 70 gave ship approval and design review
-            an owner apiece, both of them jointly, and §2.6 prints each as a line UNDER
-            the numbered four rather than as a fifth and sixth number: the four are the
-            gates §2.4's cards map to, and only the four are numbered (§B.8's "the ONLY
-            numbered sequence on the site").
+            COPY.md §2.6's "Line under the four", as it now stands. Items 56 and 70 gave
+            ship approval and design review an owner apiece, both of them jointly, and
+            §2.6 prints them as ONE line UNDER the numbered four rather than as a fifth
+            and a sixth number: the four are the gates §2.4's cards map to, and only the
+            four are numbered (§B.8's "the ONLY numbered sequence on the site"). §B.9
+            sets it on the gate bodies' left edge with no hung numeral.
           -->
-          <p class="gates-section__extra muted">
-            The release itself is a fifth thing no agent touches. Sahib and Tanya cut every
-            release together, both names on it, every time.
-          </p>
-          <p class="gates-section__extra muted">
-            Design review is a sixth. Both of them read the layouts, the states, and the empty
-            and error screens before anything is built to them.
+          <p class="gates-section__extra">
+            Design review and the release itself stay with Sahib and Tanya: both read the
+            layouts before build, and both names go on every release.
           </p>
         </div>
         <p class="gates-section__closing">
@@ -215,14 +212,20 @@ const figures = [
         One email, a real reply from one of us, and a straight answer about whether we're the right
         fit. If we're not, we'll say so.
       </p>
+      <!--
+        Step-2 review item 11, ruled: the FORM is the Design Lead's and stands (lamp
+        text on --floor with a 2px rule under it, step-1 item 14), the STRING is
+        Copy's. COPY.md §2.10's primary is `Email thegeekdogs@gmail.com`, so that is
+        what prints; the wireframe's bare address does not.
+      -->
       <p>
         <a
           class="lamp-address"
           data-cta="final-cta"
           href={`mailto:${STUDIO_EMAIL}`}
-          aria-label={`Email ${STUDIO_EMAIL} to start a project`}
+          aria-label={FINAL_CTA.accessibleName}
         >
-          {STUDIO_EMAIL}
+          {FINAL_CTA.label}
         </a>
       </p>
     </div>
@@ -248,19 +251,29 @@ const figures = [
     These are the only numbers on the site that are a sequence (§B.8), which is what
     §9.4's numbering exception is protecting.
   */
+  .gates-section__list {
+    /* One pair of numbers describes the hung-numeral column, so the list items and
+       the line under them are set on the same left edge (§B.9). */
+    --numeral-col: var(--outer);
+    --numeral-gap: var(--space-16);
+    /* How far the numeral column hangs outside the content edge. */
+    --gates-hang: var(--outer);
+  }
+
   .gates {
     list-style: none;
     counter-reset: gate;
     display: grid;
     gap: var(--space-40);
     margin-block-start: var(--space-40);
-    margin-inline-start: calc(-1 * var(--outer));
+    margin-inline-start: calc(-1 * var(--gates-hang));
   }
 
   .gates__item {
     counter-increment: gate;
     display: grid;
-    grid-template-columns: calc(var(--outer) + var(--space-16)) minmax(0, 1fr);
+    grid-template-columns: var(--numeral-col) minmax(0, 1fr);
+    column-gap: var(--numeral-gap);
     align-items: start;
   }
 
@@ -279,9 +292,11 @@ const figures = [
     margin-block-start: var(--space-12);
   }
 
-  /* Under the four, not inside them, and set apart from them by space. */
+  /* Under the four, not inside them, set apart by space, and — §B.9 — set on the gate
+     bodies' own left edge with no hung numeral of its own. */
   .gates-section__extra {
     margin-block-start: var(--space-32);
+    margin-inline-start: calc(var(--numeral-col) + var(--numeral-gap) - var(--gates-hang));
   }
 
   /* Step-1 review item 5 — the closing line is anchored right and centred to the whole
@@ -344,42 +359,32 @@ const figures = [
     color: var(--tgd-on-room-muted);
   }
 
+  /*
+    DESIGN.md §B.5 as amended in round 7: "The split forms engage at 1024." Every
+    two-column arrangement in the document arrives with the twelve-column grid and none
+    of them is held back to 1440 — the keep-out lane that used to force that is
+    withdrawn (step-2 review, ruling (b)), so the closing line has its full cols 9-12
+    and the proof band its full cols 7-12 from 1024 up.
+  */
   @media (min-width: 1024px) {
     .hero__inner {
       grid-column: 1 / span 9;
     }
 
-    .gates {
-      margin-inline-start: 0;
-    }
-
-    .gates__item {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 6fr);
-      column-gap: var(--gutter);
+    .gates-section__list {
+      grid-column: 1 / span 7;
+      /* Step-2 review item 13: the numeral hung a full column plus a gutter — 106px —
+         from the line it numbers, so the pair read as two adjacent columns rather than
+         as a number bound to its title. It is a two-digit numeral column and one
+         gutter now, which is the same relationship 360 already had. */
+      --numeral-col: 40px;
+      --numeral-gap: var(--gutter);
+      --gates-hang: 0px;
     }
 
     .gates__item::before {
       font-size: var(--step-numeral-large);
       line-height: var(--step-numeral-large-lh);
-    }
-
-    .offer__inner {
-      grid-column: 3 / span 8;
-    }
-  }
-
-  /*
-    §B.9's two side-by-side forms — the anchored closing line and the split proof band —
-    come in at 1440 rather than at 1024. Below 1440 the plate's keep-out lane (review
-    item 1) leaves a right-hand column too narrow to hold either at the size §B.9 sets
-    them: the closing line broke to five short lines and the five-column stage axis lost
-    its label row to collisions. §B.9 is drawn at 1440 and has no 1024 counterpart, so
-    the honest reading is that the split is the wide form and 1024 stacks, exactly as
-    768 does. Recorded in docs/scratch/engineer.md for the Design Lead.
-  */
-  @media (min-width: 1440px) {
-    .gates-section__list {
-      grid-column: 1 / span 7;
     }
 
     .gates-section__closing {
@@ -391,9 +396,21 @@ const figures = [
       grid-column: 1 / span 5;
     }
 
+    /*
+      §B.10: in the band the axis takes col 7's left edge, so the FIRST NODE sits on it
+      and the label row hangs half a pitch back into the gutter between cols 6 and 7 —
+      which is empty, the prose ending at col 5. The caption and the note below keep the
+      full cols 7-12 width.
+    */
     .proof__track {
       grid-column: 7 / span 6;
       margin-block-start: 0;
+      --track-head-origin: calc(var(--track-pitch) / -2);
+      --track-list-origin: 0px;
+    }
+
+    .offer__inner {
+      grid-column: 3 / span 8;
     }
   }
 </style>

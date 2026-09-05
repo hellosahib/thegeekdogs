@@ -18,6 +18,12 @@ export const CONTACT_AFFORDANCE = {
   accessibleName: `Start a project. Opens an email to ${STUDIO_EMAIL}`,
 } as const;
 
+/** COPY.md §2.10, the final CTA's primary. The verb is part of the string. */
+export const FINAL_CTA = {
+  label: `Email ${STUDIO_EMAIL}`,
+  accessibleName: `Email ${STUDIO_EMAIL} to start a project`,
+} as const;
+
 /**
  * COPY.md §1, nav labels. The wordmark is slot 0 and links home.
  *
