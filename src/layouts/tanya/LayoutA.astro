@@ -89,6 +89,53 @@ if (core.length === 0 || android.length === 0) {
   icon", and §G.3 names the middle field the shared core throughout.
 */
 const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as const;
+
+/*
+  §G.3a item T1 — **"one company, three layers" has to be legible without reading a
+  word**, so an edge annotation prints the company it comes out of. `fromCompany` has
+  been on the entry since round 3 as the company whose core card the layer attaches to;
+  round 13 makes the tick attach to the LAYER'S NAME rather than to a card, which leaves
+  the pairing to be carried by content — and content is where §G.3a says it was always
+  carried. Where the annotation's own label already names the company (the iOS edge's
+  `Motive Fleet App`) it is not printed a second time; nothing else on this site names a
+  thing twice in one mark.
+*/
+const namesCompany = (note: { fromCompany: string; label: string }) =>
+  !note.label.includes(note.fromCompany);
+
+/*
+  DESIGN.md §G.3a round 13, and §I.1 row 1 — **the gates block sets one gate per line**,
+  a real `<ul>` with no markers and no indent, exactly as PM1 and WP2 left every other
+  list on this site (§B.2: separation by space, never by a marker).
+
+  This is a LINE-BREAKING change and not a copy change. Every word rendered is COPY.md
+  §2.3's own `Owns` line, split at the commas that were already in it; nothing is
+  reworded, reordered or added. The sentence's terminal full stop goes with the sentence
+  — a list of items is not a sentence, and no other item carries a stop — and that is the
+  only mark this file touches. §G.3a's wireframe draws five gates because it was written
+  against item 19's list; the shipped line carries six, and the count is the copy's.
+
+  Why it has to break: §B.10 asserted that this mark was covered below 768 "by being full
+  width", and round 13 deletes that clause because it was false. A line that sets to its
+  field's own measure ends where the field ends: measured on the run-D build it ran to
+  x 305 at 360 against a band at 232 and to x 539 at 768 against 492 — three of
+  `qa:plate`'s seven flags. The core does not narrow (§B.5 calls it a diagram with a fixed
+  minimum extent, and item T4 exists because it was narrowed once already), so the line
+  breaking is what yields. Set one per line, the longest item is `code and design review`
+  and it ends far inside the band at every width. §C.6's floor cards keep the comma form,
+  because a 293px slot turns six lines into six lines of two words.
+*/
+const gates = owns.line
+  .replace(/\.\s*$/, '')
+  .split(',')
+  .map((gate) => gate.trim())
+  .filter((gate) => gate.length > 0);
+
+if (gates.length < 2) {
+  throw new Error(
+    "COPY.md §2.3's `Owns` line for /tanya/ no longer separates its gates with commas; §G.3a's one-gate-per-line block has nothing to break on.",
+  );
+}
 ---
 
 <section class="core-band" aria-label={work.heading}>
@@ -113,13 +160,32 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
 
       <div class="core__gates">
         <p class="core__gates-label">{owns.label}</p>
-        <p class="core__gates-line">{owns.line}</p>
+        <ul class="core__gates-line">
+          {gates.map((gate) => <li>{gate}</li>)}
+        </ul>
       </div>
     </div>
 
-    <!-- The Android edge. Narrower and indented, so the hierarchy survives in greyscale. -->
+    <!--
+      The Android edge. Narrower and indented, so the hierarchy survives in greyscale.
+
+      **Item T1, closed here.** §G.3a: "Motive is the first card in all three fields", so
+      the annotation comes BEFORE the two Android-only roles — Motive (the Compose
+      migration and the Android release path) → HSBC → Naskay. Until COPY round 15 the
+      Android edge held HSBC and Naskay and no Motive at all, and the page's central
+      claim — one company, three layers — was half built. The string is COPY.md §7.2's
+      own new field and nothing here writes one.
+    -->
     <div class="edge edge--android">
       <p class="edge__label">{FIELD_LABELS.android}</p>
+      {
+        androidEdgeNotes.map((note) => (
+          <p class="edge__note">
+            {namesCompany(note) && <span class="edge__note-company">{note.fromCompany}</span>}
+            {note.label}
+          </p>
+        ))
+      }
       <ul class="edge__cards">
         {
           android.map((role, index) => (
@@ -129,25 +195,19 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
           ))
         }
       </ul>
-      {
-        androidEdgeNotes.map((note) => (
-          <p class="edge__note">
-            <span class="edge__tick" aria-hidden="true" />
-            {note.label}
-          </p>
-        ))
-      }
     </div>
 
-    <!-- The iOS edge: the end of the tick out of the core's card. §B.10's amended rule
+    <!-- The iOS edge: the layer that consumes the shared modules. §B.10's amended rule
          names "a card's price line" as a mark that may not end inside the plate's band,
-         so this annotation carries the product and no date. -->
+         so this annotation carries the product and no date. Its label already names the
+         company, so `fromCompany` does not print twice — the note names Motive once,
+         which is the rule everywhere else on this site. -->
     <div class="edge edge--ios">
       <p class="edge__label">{FIELD_LABELS.ios}</p>
       {
         iosEdge.map((note) => (
           <p class="edge__note">
-            <span class="edge__tick" aria-hidden="true" />
+            {namesCompany(note) && <span class="edge__note-company">{note.fromCompany}</span>}
             {note.label}
           </p>
         ))
@@ -228,8 +288,27 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
     color: var(--tgd-muted);
   }
 
+  /*
+    §G.3a round 13 — one gate per line, at every width. A real list with no markers and
+    no indent (§B.2, and the form PM1 and WP2 left every other list on this site in), so
+    the separation is space. §G.3a: "At >= 1024 the block may keep either form and keeps
+    this one: five owned gates read as five gates, and the comma-separated run-on was
+    always the compromise the narrow column forced."
+  */
   .core__gates-line {
     margin-block-start: var(--space-8);
+    list-style: none;
+    padding-inline-start: 0;
+  }
+
+  /* Each gate's box is its own gate. A block `<li>` spans the core's whole measure, so
+     the line box — the thing the plate rule measures, and the thing a focus ring or a
+     forced-colours backplate would draw — reached x 324 at 360 while the ink stopped at
+     213. `max-content` makes the box the mark; `100%` keeps a long gate wrapping rather
+     than overflowing the field. */
+  .core__gates-line > li {
+    inline-size: max-content;
+    max-inline-size: 100%;
   }
 
   /* The edges: narrower AND indented, with a 2px --t-ink left rule carrying the
@@ -246,22 +325,63 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
     gap: 28px;
   }
 
+  /*
+    An edge annotation. It is prose in a container, not a card — round 13's ruling is
+    that the tick attaches a layer to the core by the layer's NAME, so the annotation's
+    only job is to say what that layer holds. §G.3a's card wireframe is superseded on
+    exactly that point and `.edge__note` is off `qa:plate`'s mark list for it.
+  */
   .edge__note {
     margin-block-start: var(--space-16);
-    display: flex;
-    align-items: center;
-    gap: var(--space-8);
     font-size: var(--step-small);
     line-height: var(--step-small-lh);
   }
 
-  /* The tick out of the core's card. At 360 the two edges sit below the core rather than
-     beside it, so the tick points down; from 1024 it runs sideways into its column. */
-  .edge__tick {
+  /*
+    The company the layer comes out of. Item T1's whole point is that this word reads
+    `Motive` in all three fields, so it leads the note on its own line, at the note's own
+    size in the page's ink — no fifth type size (§B.6), and no separator glyph, because a
+    punctuation mark invented in a stylesheet is a character the font subset never walked
+    out of `dist/` and would fall back on.
+  */
+  .edge__note-company {
+    display: block;
+    font-weight: 600;
+    color: var(--tgd-ink);
+  }
+
+  /*
+    **THE TWO TICKS — §G.3a round 13 and §I.1 row 2, and this is a different y than
+    round 12 implied.**
+
+    > A tick is the point at which a platform layer attaches to the core. It attaches to
+    > the layer's *name*, not to any card in it. Each tick's stroke centre sits on the
+    > platform label's first baseline.
+
+    Round 12 asked for the edge card to be "top-aligned to the tick", and that is not
+    expressible: each edge field's first mark is its platform label, so a card's top is a
+    label's height below the field's top, and aligning a row across three independent
+    columns needs either the core split into grid rows — which costs "one continuous
+    field" — or a measurement in JS, which §H.1 forbids for layout. Round 13 withdrew the
+    wording and replaced it with a decision about what the tick MEANS, and the geometry
+    falls out of it: the tick attaches to a name, and the three names share a baseline.
+
+    **Below 1024 the same rule, rotated.** The columns are stacked, so the two ticks leave
+    the core field's bottom edge and come down into each edge block, terminating on that
+    block's platform label baseline. The stroke is an inline-block on the label itself
+    with `vertical-align: baseline`, which puts its bottom margin edge exactly on that
+    baseline — the alignment is structural rather than a measured offset, so it survives
+    any change of face, size or line-height. Its three margins sum to zero
+    (-10 + 2 + 8), so it hangs in the edge's own 24px indent and moves no type.
+  */
+  .edge__label::before {
+    content: '';
+    display: inline-block;
+    vertical-align: baseline;
     inline-size: 2px;
     block-size: 24px;
+    margin-inline: -10px 8px;
     background-color: var(--tgd-ink);
-    flex: 0 0 auto;
   }
 
   .core-band__gates-link {
@@ -296,8 +416,75 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
       fields are already separated by the core's fill, by the grid's gutters and by the
       edges' own indentation, and the rules were drawing a box around emptiness.
     */
+    /*
+      §I.1 row 2 — **the same 36px of lead-in in all three fields**, which is what makes
+      the three platform labels share one baseline with nothing measured. The core's
+      lead-in is its 4px --lamp-ink cap plus 32px of inner padding; the edges carry no cap
+      and no fill, so they take the sum as padding. On the shipped Anek subset that
+      baseline lands 50px below the band's top border edge — **50 is the consequence and
+      the baseline is the spec**, so this rule sets the lead-in and `qa:worlds` asserts
+      the three labels' baselines against each other rather than against 50.
+    */
     .edge {
       border-inline-start: 0;
+      padding-block-start: calc(4px + var(--space-32));
+    }
+
+    /*
+      **The two ticks, at the shared baseline.** §G.3a round 12 fixed their horizontal
+      geometry — "each tick is a 2px --t-ink stroke leaving the core horizontally and
+      terminating at the core field's own boundary", x 285.9 and x 737.7 at 1024, x 426
+      and x 1014 at 1440. They do not cross a gutter: no component on this site draws
+      across one of §B.5's, and a tick crossing the right gutter at 1024 would end at
+      761.7, 13.7px inside the plate's band, which §B.10 forbids for a connector whose
+      whole meaning is its continuity.
+
+      Round 13 gives them their y, and it is the core label's own first baseline. The
+      label becomes a baseline-aligned flex line so both strokes sit ON that baseline
+      structurally: an empty flex item synthesises its baseline from its border box, so a
+      2px stroke's bottom lands on the text baseline and 1px of relative offset centres
+      it. Each stroke reaches its boundary by hanging its 32px of core padding
+      (-32 + 24 + 8 = 0 on the left; `auto` then -32 on the right), so no type moves.
+    */
+    .core__label {
+      display: flex;
+      align-items: baseline;
+      /*
+        The prose measure comes off this one element, and it has to: `--measure-body` is
+        32em, which at the label's own size is 448px, so at 1440 the label's line stopped
+        at x 906 and took the right-hand tick with it — 76px short of the core's boundary
+        at 1014, which is the one coordinate §G.3a fixes for this stroke. A two-word
+        structural label is not prose with a measure; it is the field's name, and here it
+        is also the rail the two ticks are hung on.
+      */
+      max-inline-size: none;
+    }
+
+    .core__label::before,
+    .core__label::after {
+      content: '';
+      position: relative;
+      inset-block-start: 1px;
+      flex: 0 0 auto;
+      inline-size: 24px;
+      block-size: 2px;
+      background-color: var(--tgd-ink);
+    }
+
+    .core__label::before {
+      margin-inline: calc(-1 * var(--space-32)) var(--space-8);
+    }
+
+    .core__label::after {
+      margin-inline-start: auto;
+      margin-inline-end: calc(-1 * var(--space-32));
+    }
+
+    /* The edge labels carry no stroke of their own from 1024: the ticks belong to the
+       core, they leave it, and they stop at its boundary. Below 1024 the columns are
+       stacked and the rule rotates — see `.edge__label::before` above. */
+    .edge__label::before {
+      display: none;
     }
 
     /*
@@ -359,16 +546,9 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
       margin-block-start: var(--space-24);
     }
 
-    .edge__tick {
-      inline-size: 24px;
-      block-size: 2px;
-    }
-
-    /* The Android edge's tick leaves the core to the LEFT, so it reads as running out of
-       the core rather than into it. Order in the flex line is the only change. */
-    .edge--android .edge__note {
-      flex-direction: row-reverse;
-      justify-content: flex-end;
+    /* T1: the Motive annotation leads the Android edge, so its cards start below it. */
+    .edge__note + .edge__cards {
+      margin-block-start: var(--space-24);
     }
   }
 
@@ -448,15 +628,17 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
 
     .edge {
       padding-inline-start: 0;
+      padding-block-start: 0;
       border-inline-start: 0;
     }
 
-    .edge__tick {
+    /* The ticks do not print. A connector between two blocks that print one under the
+       other says nothing, and each edge field already prints under its own platform
+       label — which is the structure §G.3's 360 form draws anyway. */
+    .core__label::before,
+    .core__label::after,
+    .edge__label::before {
       display: none;
-    }
-
-    .edge__note {
-      gap: 0;
     }
   }
 </style>

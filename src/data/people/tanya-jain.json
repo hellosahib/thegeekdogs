@@ -57,6 +57,11 @@
   ],
   "edgeAnnotations": [
     {
+      "layer": "android",
+      "fromCompany": "Motive",
+      "label": "Jetpack Compose migration, and the Android releases she owns: phased rollouts, crash and ANR monitoring."
+    },
+    {
       "layer": "ios",
       "fromCompany": "Motive",
       "label": "Motive Fleet App"
