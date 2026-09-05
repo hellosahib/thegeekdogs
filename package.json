@@ -25,10 +25,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "@resvg/resvg-js": "^2.6.2",
     "astro": "^7.3.1",
-    "firebase": "12.18.0",
-    "satori": "^0.33.4"
+    "firebase": "12.18.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -38,11 +36,12 @@
     "@fontsource/instrument-sans": "^5.3.0",
     "@lhci/cli": "0.15.1",
     "@playwright/test": "1.63.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.3",
     "linkinator": "8.1.0",
+    "satori": "^0.33.4",
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3",
-    "wawoff2": "^2.0.1"
+    "typescript": "^6.0.3"
   }
 }

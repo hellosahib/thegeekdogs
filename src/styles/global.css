@@ -388,9 +388,18 @@
     axis ends at x 1132), plus the +56px reserve below, which is the whole of the
     reservation.
   */
+  /*
+    Step-3 floor review, blocker 1: the whole floor was dead to pointer and touch at
+    every breakpoint — `elementFromPoint` at the centre of all ten stations returned
+    `<main>`. The cause was `pointer-events: none` on this wrapper, inherited by every
+    section inside it. PLAN.md §3 asked for it against a `position: fixed` plate whose
+    own box could sit over the floor; the plate is `position: sticky` in NORMAL FLOW and
+    this wrapper is the sections' own parent, not an overlay, so there is no invisible
+    box to make transparent and making one swallowed every click on the page. The plate
+    itself is a real link 260 x 56 and blocking taps under its own footprint is correct.
+  */
   .plate-span {
     position: relative;
-    pointer-events: none;
   }
 
   /*
@@ -406,11 +415,18 @@
     flex-direction: column;
   }
 
+  /*
+    The plate is in flow at the end of its wrapper, which is what makes "retires when the
+    real CTA arrives" a geometric fact rather than a scroll listener. Its own box is
+    pulled back over the last section's +56px reserve rather than adding 56px of its own:
+    the reserve IS the reservation (§B.10), and on a page whose last section is a --band
+    block the extra 56px showed as a stray strip of --sheet above the footer.
+  */
   .plate {
     position: sticky;
     inset-block-end: var(--plate-inset);
+    margin-block-start: calc(-1 * var(--plate-height));
     z-index: 20;
-    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;

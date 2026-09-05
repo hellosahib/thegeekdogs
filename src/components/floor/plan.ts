@@ -207,12 +207,21 @@ export function placements(): Placement[] {
         x: pct(tall.x + tall.w / 2, TALL_BOX.w),
         y: pct(tall.y + tall.h / 2, TALL_BOX.h),
       },
-      /* A cabin's plate sits on its own near edge; every other station's floats above
-         its desk, in the gap §C.7's row arithmetic already leaves there. */
       tallPlateX: tall.x + tall.w / 2,
-      /* Ten units above the row rather than three: the focus ring reaches six units past
-         the button's own top edge, and at three the ring drew straight through the plate. */
-      tallPlateY: shape === 'cabin' ? tall.y + tall.h - 12 : tall.y - 10,
+      /*
+        Step-3 floor review, item 7 and deviation 4 (SEND BACK for the portrait plan):
+        every plate sits inside ITS OWN station's target, on that station's near edge.
+        It used to float ten units *above* an agent's row, which on a 3-up orthogonal
+        grid is inside the row above — nine of the ten plates landed in another
+        station's button, the focus ring on Spec Writer was drawn round a box labelled
+        "Test Engineer", and `Tanya Jain` and `Designer` abutted with a 0px gap and read
+        as one two-line label saying a real person is the Designer. The occlusion
+        argument that puts an agent's plate below its desk on the wide checkerboard does
+        not apply here, and there is no reason for the portrait plan to leave its own
+        cell. Rows are 8 to 12 units apart, so a plate six units inside its own bottom
+        edge is at least 14 units clear of the next row's.
+      */
+      tallPlateY: tall.y + tall.h - (shape === 'cabin' ? 12 : 6),
       wideDepth: (cell.c + cell.span) * 100 + (cell.r + cell.span) * 100 + cell.c,
     };
   });

@@ -566,3 +566,227 @@ and one frame of "Lights on" mid-sequence are in `docs/reviews/step3/engineer/`.
 was opened and looked at; the nameplate collisions, the misaligned hit targets, the
 `<use>` href prefix bug, the focus ring cutting through the portrait nameplates and the
 undersized scene container were all found that way and fixed.
+
+---
+
+## Build run A — the step 2 items, the rulings, and steps 4, 5 and 7 (2026-09-05)
+
+Scope: the thirteen step-2 rendered-review defects, the two rulings, the Perf & A11y
+aria-live ruling, the copy re-transcription, and brief §14 steps 4, 5 and 7 — `/work/`,
+both case studies, `/contact/`, the full nav, the OG cards and the structured data.
+Person pages are run B.
+
+### The thirteen items, and how each was closed
+
+| # | Fix |
+|---|---|
+| 1 | The keep-out lane is gone. No section carries a `padding-right`; every section keeps the full 1200 content width and §B.5's one grid at every breakpoint. §B.9's split proof band, the anchored closing line and §C.6's cols 9–12 slot all come back at **1024**, as §B.5 and §C.6 say they always did. |
+| 2 | One 260 × 56 plate at every breakpoint, inset 16px from the bottom and right of the viewport. The `< 768` full-bleed bar is withdrawn. At 360 that is 276 of 360, with 84px of clear space to its left. |
+| 3 | The four gate bodies are COPY.md §2.6 verbatim, with their owners' names in them, and §2.6's line under the four is one line again. |
+| 4 | The card slot has no container. No border, no fill, no radius. |
+| 5 | Already closed by step 3 — the roster's ten hairlines went with the semantic list when the scene replaced it. Verified against the built CSS: the only `--rule-on-room` marks left are the card's own internal rule and the footer's, both of which separate two things. |
+| 6, 10 | Resolve with item 1. The closing line has its full cols 9–12 from 1024 up, and the header's toggle and every section head share one right edge again. Item 10 needed one more fix of its own: the nav and the toggle both carried `margin-inline-start: auto` at ≥ 768, which splits the free space between them and left the nav floating mid-header. The nav takes it now and the toggle sits 24px after `Contact`. |
+| 7 | The compact track runs on §B.10's **100px pitch** with the node centres on the column start lines — x 732 / 832 / 932 / 1032 / 1132 in the band at 1440, the last ring closing at 1141 and 23px clear of the plate. The product label moves above its runner there (§B.10), so the axis takes col 7's left edge rather than being indented behind a label column. `Submitted for review` sets in two lines. |
+| 8 | The strip prints years only, and the build throws if a month survives into it. `Jan 2024 – now` → `2024 – now`. COPY.md §7.2's month-level strings are untouched. |
+| 9 | The footer takes the room's ground and follows the final CTA with no seam, so the page is bookended by the floor as §B.9 says. §B.9's rule sits above it. |
+| 11 | The final CTA prints COPY.md §2.10's `Email thegeekdogs@gmail.com`, still as lamp text on `--floor` with a 2px rule. |
+| 12 | The toggle's focus ring is the §B.2 construction — the global outline, 3px offset, the `--lamp` ring outside the target rather than inset. |
+| 13 | The gate numeral is a two-digit column plus one gutter from its title at ≥ 1024, not a full column plus a gutter. §2.6's line under the four is set on the gate bodies' own left edge. |
+| 14 | Ruled by Perf & A11y, implemented as ruled: the slot is **not** a live region. Focus and hover write to it silently; only activation announces, through a region that is in the DOM from first paint. |
+
+Item 15 is the Design Lead's own carry-forward and needs the scene, which now exists.
+
+### The step-3 floor review's blocker 1, fixed here because it was mine
+
+`docs/reviews/step3-floor-review.md` landed while this run was in progress. Its blockers
+2 and 3 and its items 4 and 5 are items 2, 1, 4 and 1 above and are closed by this run.
+Two more were fixed because they are in files this run already had open:
+
+- **Blocker 1, the whole floor dead to pointer and touch at every breakpoint.** The cause
+  was `pointer-events: none` on the sticky-plate wrapper, inherited by every section
+  inside it. PLAN.md §3 asked for that against a `position: fixed` plate whose own box
+  could sit over the floor; the plate is `position: sticky` **in normal flow** and the
+  wrapper is the sections' own parent, not an overlay, so there was no invisible box to
+  make transparent and making one swallowed every click on the page. Both declarations
+  are gone. Re-measured with a real hit test rather than by eye: at 360, 768, 1024 and
+  1440, `elementFromPoint` at the centre of all ten stations returns that station —
+  **10 of 10, four widths** — and a real mouse click on the third station opens Spec
+  Writer's card at every one of them.
+- **Item 7 / deviation 4, the portrait nameplates.** Every plate now sits inside its own
+  station's target, six units inside its own bottom edge, instead of ten units above its
+  row — which on a 3-up orthogonal grid is inside the row above, and which put nine of
+  the ten plates in another station's button. Measured: **10 plates, 0 misplaced at 360**.
+  `Tanya Jain` and `Designer` are a full desk row apart and no longer read as one label.
+
+Not fixed here, and left with the floor's owner: the wide plan's cabin and chair plates
+sit outside every button (they are on the wall face and under the chair, per §C.4) —
+they collide with nothing, but the review's deviation-2 correction asks for the cabin
+plate to be moved; and items 8 and 9, which are the drawing.
+
+### What the plate's own box was doing
+
+The plate is in flow at the end of its wrapper, which is what makes "retires when the
+real CTA arrives" geometric rather than a scroll listener. Its box is now pulled back
+over the last section's +56px reserve (`margin-block-start: -56px`) rather than adding
+56px of its own. The reserve **is** the reservation (§B.10); the extra 56px showed as a
+strip of bare `--sheet` between a `--band` block and the footer on `/contact/`.
+
+### Routes
+
+`/work/` — §3.1's headline and the 17-word short intro (§3.1 says outright it is the one
+that prints if only one can, and §B.11 caps the slot at 20 words), then two `--band`
+blocks, each with the product name, its one line, the full labelled §E.2 track and its
+links. The long body is not placed.
+
+`/work/pocket-manager/` and `/work/wedding-planner/` — one shell used twice, per item
+9a. Problem, Build, Review process, Outcome on one; the differentiator, what's in it and
+why it isn't out yet on the other. The full track sits directly under each h1 (§B.11).
+No privacy section (item 14), no email capture (items 11 and 69), no store link where
+there is nothing to link to, no product name where a human has not picked one.
+
+`/contact/` — §8's three routes as a 3-up at 1024, stacked below, all three addresses
+printed in full as `mailto:` links over the visible address. No form.
+
+Nav carries Work and Contact. `/sahib/` and `/tanya/` are still out of `BUILT_ROUTES`,
+and so are the work strip's two row links, which point at them; both land in run B.
+
+### Deliberate omissions on these routes, and why
+
+1. **COPY.md §2.8's five "meaning lines" print nowhere.** DESIGN.md §E.2 draws labels
+   only and gives them no slot on `/work/` or on a product page. Inventing one would be
+   inventing a layout; the strings are Copy's and the slot is the Design Lead's.
+2. **COPY.md §4.1's store listing name is on the entry but not on the page.** §4.1 gives
+   it "where the full listing title is quoted", and nothing on the page quotes it; a bare
+   quoted string with no sentence around it reads as orphaned text. It is used as the
+   application's `alternateName` in the structured data instead.
+3. **No closing CTA on `/work/*` or `/contact/`.** §B.10 says the studio pages close with
+   the studio's address, and the plate is that address on every one of them. COPY.md
+   writes no closing CTA for these routes and none is invented.
+4. **`/404` gets no OG card.** COPY.md §9 gives it no OG fields and the page is
+   `noindex`, so there is no string to put on one and nowhere it would be shown.
+
+### The OG cards
+
+Satori → `@resvg/resvg-js`, in a prerendered endpoint, one card per route, 1200 × 630,
+light only (§B.2a). The home card shows the real floor: the scene's `<defs>` moved to
+`src/components/floor/symbols.ts` and are imported by both the page and the card, and
+both take their placements from `plan.ts`, so a change to a symbol or to where a station
+stands reaches both. The scene is rasterised to PNG by resvg before satori sees it,
+because resvg renders raster `<image>` payloads reliably and nested SVG ones less so.
+
+**Fonts.** Satori reads woff/ttf/otf and cannot apply a variation axis, so the cards load
+`@fontsource`'s **static** 600 and 400 cuts of the same two faces rather than rendering
+Anek at its variable default weight and calling it the display face. Both are build-time
+devDependencies; nothing new reaches the browser. Recorded because it is a second copy of
+two fonts in the repo, and the reason it is not the same file the site ships is `woff2`.
+
+### The structured data
+
+`Organization` + a `Person` per founder on `/` and `/contact/`; a `SoftwareApplication`
+per app on `/work/` and one on each case study, with the `aggregateRating` (4.3 from 24)
+on Pocket Manager alone. `sameAs` is computed from `socials`, per PLAN.md §2's own note.
+
+**Validated with `schema-dts`, offline** — schema.org's vocabulary as TypeScript types,
+so `astro check` is the validator and a misspelled property or a wrongly-typed value
+fails the build. That is a structural check and not a Rich Results check; **no network
+validator was run**, and no Google Rich Results test was performed.
+
+Fields omitted rather than guessed: `applicationCategory` and `operatingSystem` on the
+wedding planner (it has not been submitted anywhere, and the Pocket Manager values come
+from the Play listing's own title and platform); `Person.url` (their pages land in run
+B); `addressCountry`; any `offers`, since no price is stated anywhere on this site.
+
+### Deferred, deliberately — the step-3 list, updated
+
+Closed this run: the OG image, the four nav links (two of them; two wait on run B), and
+§B.8's "The full pipeline" line, whose label COPY.md §2.4 now carries.
+
+Still open:
+
+1. **Font subsetting and the `wdth` range restriction.** Step 8. `public/fonts/` still
+   carries the full unsubsetted binaries, 133,852 B.
+2. **Fallback-metric matching for `font-display: swap`.** Now load-bearing rather than
+   theoretical: `/contact/` measures a repeatable **CLS 0.030** in both schemes — the one
+   route with a non-zero figure — and it is the swap moving the `--band` block under a
+   five-line body paragraph. It clears the 0.05 line with room, and the fix is
+   `ascent-override` / `size-adjust`, which is step 8's.
+3. **The work strip's two row links**, and the `/sahib/` and `/tanya/` nav entries. Run B.
+4. **§C.6's `Owns` block is live**, but §C.4's cabin plate placement in the wide plan is
+   the floor review's to rule on.
+
+### Flagged for the Design Lead
+
+**On `/work/` between 768 and 1023 the two full stage tracks reach into the plate's right
+band.** §B.10's composition rule is stated as a test — a mark fails if it is inside the
+276px right band **and** within 72px of the bottom of its own section — and by that test
+both tracks pass with room, because they sit far above their section's bottom edge. But
+the plate does cross them mid-scroll at that width, and the track is the same kind of
+mark the rule was written for. At 1024 and 1440 they are clear (the track ends at x 716
+against a band starting at 748, and at 788 against 1164). Either the rule is right as
+written and this is fine, or the track needs a narrower cap between 768 and 1023.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| JS shipped, home page, no analytics config | **0 B** external; 1,242 B gzip of inline module script (3,278 B raw, the floor's and the toggle's) |
+| CSS shipped, all routes | 48,824 B raw / **9,697 B gzip** (24% of the 40 KB line) |
+| Home HTML | 11,358 B gzip |
+| Fonts | 133,852 B (unsubsetted; ~71 KB after step 8) |
+| **Home page total** | **154,907 B gzip** (13% of the 1.2 MB line) |
+| Floor section + its script | 32,655 B raw / **5,658 B gzip** (6.9% of the 80 KB line) |
+| Lighthouse mobile, 3 runs, **light**, all five routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| Lighthouse mobile, 3 runs, **dark**, all five routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| LCP | 1,402–1,476 ms across the five routes, both schemes (line is 2,000) |
+| CLS | **0** on four routes; **0.030** on `/contact/`, both schemes (line is 0.05) |
+| TBT | **0 ms** on every route in both schemes |
+| Contrast pairs checked | **56**, unchanged, all passing |
+| Floor stations hit-tested by pointer | **10 of 10** at 360, 768, 1024 and 1440 |
+| Portrait nameplates inside their own station | **10 of 10** at 360 |
+
+The first screenshot on each case study is `loading="eager"` with `fetchpriority="high"`;
+every other one is lazy. PLAN.md §1.6 reserves exactly that for "if an actual image ever
+becomes the LCP candidate", and measured, it does: §B.11 puts up to two screenshots above
+the fold, and lazy the first one's load did not start until 1.4s in and LCP came out at
+**2,488 ms** against the 2,000 line. Eager it is 1,474 ms.
+
+The dark runs were taken against a scratch copy of `dist/` whose head script default was
+flipped to `dark`, the same method step 2 used, because neither LHCI nor a Chrome flag can
+seed `localStorage` or `prefers-color-scheme` for a static run. Nothing shipped was
+changed to produce them.
+
+**Keyless build.** No `.env` and no `PUBLIC_FIREBASE_*` in the environment: the build
+succeeds and ships **0 B** of analytics — no external JS file at all, and the only
+occurrence of the string "firebase" anywhere in `dist/` is COPY.md §4.3's own sentence on
+the Pocket Manager page.
+
+Screenshots of all four new routes at 360, 768 and 1440 in both schemes, plus `/` and
+`/404` at 360 and 1440 in both, are in `docs/reviews/runA/engineer/`. Every one was opened
+and looked at; the header's floating nav, the stray `--sheet` strip above the footer on
+`/contact/`, the two product pages' vertical rhythm, the unmarked feature list and the
+portrait nameplates were all found that way and fixed.
+
+### Other decisions made this run
+
+- **The five shipped screenshots were COPIED into `src/assets/`, not moved.** The two
+  `docs/assets/*/README.md` files are another role's record of what was captured and they
+  index those paths by name; moving the files would have falsified two documents this
+  Engineer does not own. `docs/assets/` stays the archive, `src/assets/` is what the
+  image pipeline reads.
+- **`02` and `05` of the wedding planner never ship** and `03` and `04` wait on
+  QUESTIONS.md item 73, which is still unanswered. `alt` is a required field on the
+  screenshot schema, so an image whose line is not written cannot be added by accident.
+- **`descriptiveName` is capped at 18 characters in the schema**, which is §E.3's own
+  limit for the compact view's row label, and `indexName` carries the longer descriptive
+  form `/work/` prints. The two used to be one field.
+- **`scripts/screenshots.mjs`** serves the built `dist/` and drives Playwright over a
+  list of routes, widths and both schemes. Written for this run's evidence and left in
+  the repo because run B needs the same thing.
+- **`satori`, `@resvg/resvg-js`, `schema-dts` and the two static font packages are
+  devDependencies, not dependencies.** All five run at build time and none of them
+  reaches `dist/`. It is not a tidiness point: `satori` pulls `fflate` 0.7.x, which
+  carries a moderate advisory (GHSA-px8p-9vwx-vf98, an infinite loop on a malformed
+  ZIP64 archive — nothing this build ever parses), and with it in `dependencies`
+  `npm audit --omit=dev` went from 0 to 2. It is back to **0 vulnerabilities against
+  everything that ships**, which is the number the deploy gate reads. `npm ci` installs
+  devDependencies, so the build is unaffected.

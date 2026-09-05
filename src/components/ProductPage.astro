@@ -32,6 +32,12 @@ const d = product.data;
   PLAN.md §1.6 — one display width, so the four portrait captures form a column of
   equal objects and every one of them carries explicit dimensions. 280 CSS px at 2x is
   560 real pixels against a 1206-1440px source, so the pipeline is always downscaling.
+
+  The FIRST capture is eager and `fetchpriority="high"`; every other one is lazy. §1.6
+  reserves exactly that for "if an actual image ever becomes the LCP candidate", and on
+  these two routes it does: §B.11 puts up to two screenshots above the fold, and measured
+  on Lighthouse mobile the first one is the LCP element. Lazy, its load did not even
+  start until 1.4s in and LCP came out at 2.49s against the §11 line of 2.0.
 */
 const SHOT_WIDTH = 280;
 
@@ -75,7 +81,7 @@ const schema = productGraph(product);
         {
           d.screenshots.length > 0 && (
             <ul class="shots">
-              {d.screenshots.map((shot) => (
+              {d.screenshots.map((shot, index) => (
                 <li class="shots__item">
                   <Picture
                     src={shot.src}
@@ -83,7 +89,8 @@ const schema = productGraph(product);
                     formats={['avif', 'webp']}
                     width={SHOT_WIDTH}
                     densities={[1, 2]}
-                    loading="lazy"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={index === 0 ? 'high' : undefined}
                     decoding="async"
                   />
                 </li>
