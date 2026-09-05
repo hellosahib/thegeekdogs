@@ -2,7 +2,7 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: gate 1 passed; build step 1 done (repo, tokens, schemas, CI, QA gates, plain home and 404, Lighthouse 100/100/96/100). Step 2 in progress.** Local commits only; no GitHub remote until QUESTIONS.md item 58 is answered.
+**Status: gates 1 and 3 passed. Every route in brief §8 is built — home with the isometric floor, `/work/` and both case studies, `/contact/`, `/sahib/`, `/tanya/` and `/404` — in both schemes, with OG cards, structured data and a print stylesheet. Lighthouse 100/100/100/100 on all seven routes. Open: font subsetting (step 8), and the contact plate below 768, which waits on two COPY.md strings (DESIGN.md §B.10, round 10).** Local commits only; a human pushes.
 
 ## What needs you now
 
@@ -62,7 +62,9 @@ The QA scripts run against the **built output**, never against source, so build 
 | `npm run qa:images` | an `<img>` with no `alt` attribute (`alt=""` passes), or a referenced image that is not in `dist/` |
 | `npm run qa:links` | a broken internal or external link, or a built page missing from the sitemap |
 | `npm run qa:console` | a console error or warning, an uncaught error, or a failed request on any route |
-| `npm run qa:contrast` | any DESIGN.md colour pair below AA, or any pair whose computed ratio disagrees with the figure DESIGN.md publishes |
+| `npm run qa:contrast` | any DESIGN.md colour pair below AA, or any pair whose computed ratio disagrees with the figure DESIGN.md publishes — including the marks declared at an alpha, checked at their composite |
+| `npm run qa:worlds` | a world token that computes to something other than DESIGN.md's hex, measured in a browser on the real page in both schemes. It exists because `[data-world="…"]` and `:root` weigh the same, so a partial imported in the wrong order silently hands a world the studio's palette |
+| `npm run qa:plate` | a load-bearing mark whose right edge falls inside the contact plate's band (DESIGN.md §B.10's composition rule), measured as ink rather than as a box, on every route at eight widths |
 | `npm run qa:floor` | the studio floor over 80KB gzipped (passes trivially until the floor exists) |
 | `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
 
