@@ -74,10 +74,6 @@ const b = BOX;
           height="0"
           set:html={FLOOR_DEFS}></svg>
 
-        <!--
-          DESIGN.md §C.3 — the desktop plan, 6 modules wide by 5 deep in a 792 x 560
-          box. Everything below is a placement; no geometry is repeated.
-        -->
         <svg
           class="scene scene--wide"
           viewBox={`0 0 ${WIDE_BOX.w} ${WIDE_BOX.h}`}
@@ -180,10 +176,6 @@ const b = BOX;
           </g>
         </svg>
 
-        <!--
-          DESIGN.md §C.7 — the portrait plan, 3 wide by 6 deep in a 320 x 520 box. Same
-          symbols, one uniform scale, the row heights §C.7 derives 520 from.
-        -->
         <svg
           class="scene scene--tall"
           viewBox={`0 0 ${TALL_BOX.w} ${TALL_BOX.h}`}
@@ -277,14 +269,6 @@ const b = BOX;
         </ul>
       </div>
 
-      <!--
-        REVIEWS.md 2026-09-05, Perf & A11y ruling 2 (also the design reviewer's item
-        14): the slot is NOT a live region. Focus and hover write to it silently,
-        because the station button's own name already speaks the role and its gate
-        (COPY.md §10.2), and a polite region here re-announced a whole card on every
-        Tab through the ten stations. Only activation announces, through the dedicated
-        region below.
-      -->
       <div class="floor__slot" data-floor-slot>
         {
           stations.map((station) => (
@@ -311,12 +295,6 @@ const b = BOX;
       <span class="sr-only" data-floor-announce aria-live="polite"></span>
     </div>
 
-    <!--
-      DESIGN.md §B.8 and §B.9 set the seven roles as a readable wrapped sentence under
-      the scene at every breakpoint, with COPY.md §2.4's own label above it. The seven
-      names and their order come from the same collection the desks do, so the sentence
-      and the room cannot disagree.
-    -->
     <p class="floor__roster-label micro">{ROSTER.label}</p>
     <p class="floor__roster small">{rosterLine}</p>
   </div>

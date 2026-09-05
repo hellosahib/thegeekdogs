@@ -1863,3 +1863,35 @@ Passes clean on the current build (21,459 characters checked, 0 uncovered). Prov
 failure path by appending `₹` to `src/data/agents/programmer.json`'s `job` string,
 rebuilding, and confirming the gate fails naming `U+20B9 "₹"` and `dist/index.html`;
 reverted and confirmed green again.
+
+## Comment sweep and qa:no-slop's new HTML-comment gate, 2026-09-05
+
+`docs/reviews/final-fact-check.md`'s finding 1: COPY.md §7.1's second `/tanya/` intro
+paragraph was cut under DESIGN.md §J but left live in an HTML comment in
+`src/pages/tanya/index.astro`, and that comment ships verbatim in `dist/tanya/index.html`
+— checked directly, `compressHTML` (on by default, nothing overrides it in
+`astro.config.mjs`) strips inter-tag whitespace only, never `<!-- -->` content, so the
+gate below is not redundant against it. Removed that comment, then grepped all of `src/`
+for the same failure class: any `<!-- -->` in an `.astro` template body (they render
+verbatim into `dist/**/*.html`, unlike frontmatter/`.ts`/`<style>`/`<script>` comments,
+which are either compiled away or stripped by the build's minifier — confirmed by
+grepping dist for a `<script>`-block comment string and finding nothing). Removed 32 such
+comments across 11 `.astro` files (WorkCardStrip, ThemeToggle, 404, index, BaseLayout,
+`layouts/tanya/LayoutA`, `components/floor/StudioFloor`, `pages/tanya/index` (2, past the
+one above), `pages/sahib/index`, `pages/work/index`, `pages/contact/index`) plus 11 more
+in `src/components/floor/symbols.ts`, whose SVG defs are template strings reached through
+`set:html` and so leak exactly the same way — confirmed by grepping the pre-fix `dist/`
+for the lamp-gradient comment text and finding it. Left untouched: `.ts`/frontmatter/
+`<style>`/`<script>` comments that explain a mechanism (why a `display: contents` toggle
+decides the plate's containing block, why `<cite>` needs `font-style: normal`, etc.) —
+these never reach dist and are the legitimate home for engineering rationale; the
+§-citations, round numbers and ruling references inside them are fine there. What must
+never sit in *any* comment, per the fact-check finding, is a verbatim cut copy string —
+none remain.
+
+Added the check to `scripts/qa-no-slop.mjs` (already the first step in `qa` and its own
+named CI step) rather than a new script: walks `dist/**/*.html`, flags every `<!-- -->`
+except a conditional comment (`<!--[if ...]>`, which Astro's static output never emits
+here but the allowance costs nothing). Verified both directions — clean build passes;
+injecting `<!-- test leak -->` into a built `dist/index.html` and rerunning fails naming
+the file, line and snippet. Full `npm run qa` (all twelve steps) green after the sweep.

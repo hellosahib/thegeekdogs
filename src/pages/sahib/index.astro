@@ -72,13 +72,6 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <!-- The page's centre. §F.1: the breadth itself is the composition.
-
-         §F.4b's alternation puts NOTHING behind the map: it is the page's one loud thing
-         and the two --s-panel blocks step around it. COPY.md §6.1 round 14 supplies the
-         display-section line above it, which closes the copy gap review item S6 recorded:
-         the heading is the plain-English subject of the thing below it and the lead-in
-         under it is the precise one, with the numbers and the rule for reading a cell. -->
     <section class="section map-section section--reserve">
       <div class="shell grid">
         <div class="map-slot">
@@ -88,9 +81,6 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <!-- §F.6 — the cards live BELOW the map, as the attribution layer: the map makes the
-         claim, the cards are the receipts, and each attributed cell is the same company
-         as a card down here. -->
     <section class="section bleed cards-section section--reserve">
       <div class="shell grid cards-grid">
         <h2 class="section-line">{SAHIB.cardsSectionLine}</h2>
@@ -107,8 +97,6 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <!-- §F.3 — S2's material as the second section. Three verified subjects and a fourth
-         the brief never named; four subjects, four links (COPY.md §6.3). -->
     <section class="section writing-section section--reserve">
       <div class="shell grid split">
         <h2 class="split__heading">{SAHIB.writing.heading}</h2>
@@ -145,9 +133,6 @@ const schema = await personGraph(person);
     <ContactPlate address={SAHIB.links.email.address} />
   </div>
 
-  <!-- The real CTA the plate retires into. §B.10 and item 66: a person page closes with
-       that person's own address, never the studio inbox. COPY.md writes no person-page
-       CTA line, so the address is the whole block and no line is invented above it. -->
   <section class="section close">
     <div class="shell stack">
       <PersonLinks person={person} links={SAHIB.links} omitEmail />

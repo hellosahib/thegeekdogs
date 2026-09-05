@@ -99,28 +99,12 @@ const figures = [
     </div>
   </section>
 
-  <!--
-    DESIGN.md §B.10: the plate spans from the end of the hero to the start of the final
-    CTA, and retires there on its own.
-
-    Round 10, change three: BELOW 768 that span begins at the end of the FLOOR instead.
-    A sticky element is constrained by its own parent's box, so the two spans are two
-    nested wrappers and one `display` declaration decides which of them is the plate's
-    containing block: below 768 `.plate-span__after-floor` is a real box and the plate
-    cannot leave it, and at >= 768 that div is `display: contents`, generates no box at
-    all, and the plate's containing block is the outer wrapper again — floor included.
-    No JS, no scroll listener, no `view-timeline` and no scroll-driven animation, so
-    reduced motion, forced colours and no-JS all render exactly this.
-  -->
   <div class="plate-span">
     <StudioFloor />
 
     <div class="plate-span__after-floor">
     <WorkCardStrip />
 
-    <!-- §B.10's reserve, point 2: EVERY section the plate can overlay carries +72px of
-         bottom padding. Below 768 the plate now appears at the strip, so the strip and
-         this section are inside its span at every width and both take the reserve. -->
     <section class="section gates-section section--reserve">
       <div class="shell grid">
         <div class="gates-section__list">
@@ -137,14 +121,6 @@ const figures = [
               ))
             }
           </ol>
-          <!--
-            COPY.md §2.6's "Line under the four", as it now stands. Items 56 and 70 gave
-            ship approval and design review an owner apiece, both of them jointly, and
-            §2.6 prints them as ONE line UNDER the numbered four rather than as a fifth
-            and a sixth number: the four are the gates §2.4's cards map to, and only the
-            four are numbered (§B.8's "the ONLY numbered sequence on the site"). §B.9
-            sets it on the gate bodies' left edge with no hung numeral.
-          -->
           <p class="gates-section__extra">
             Design review and the release itself stay with Sahib and Tanya: both read the
             layouts before build, and both names go on every release.
@@ -190,22 +166,11 @@ const figures = [
               </p>
             )
           }
-          <!-- COPY.md §2.7's secondary link. Its destination ships from this step. -->
           <p>
             <a class="link" href="/work/pocket-manager/">Read how it gets built</a>
           </p>
         </div>
 
-        <!--
-          §B.9 round 12, the proof grid at 1024-1439: **one grid, two rows, no second
-          content width.** Row 1 is §2.7's headline, paragraph 1, the three figures and the
-          two links in cols 1-7, with §2.8's caption and its note in cols 8-12 top-aligned;
-          row 2 is the two-runner track spanning cols 1-9. The caption and the note are
-          therefore their own block rather than a tail on the track — they are prose, which
-          §B.10's rule exempts, and they are what fills the right of row 1 instead of the
-          void run B rendered there. At >= 1440 they go back under the track in cols 7-12,
-          where §B.9's split already puts them; below 768 everything stacks in DOM order.
-        -->
         <div class="proof__track">
           <StageTrackCompact runners={runners} />
         </div>
@@ -251,12 +216,6 @@ const figures = [
         One email, a real reply from one of us, and a straight answer about whether we're the right
         fit. If we're not, we'll say so.
       </p>
-      <!--
-        Step-2 review item 11, ruled: the FORM is the Design Lead's and stands (lamp
-        text on --floor with a 2px rule under it, step-1 item 14), the STRING is
-        Copy's. COPY.md §2.10's primary is `Email thegeekdogs@gmail.com`, so that is
-        what prints; the wireframe's bare address does not.
-      -->
       <p>
         <a
           class="lamp-address"

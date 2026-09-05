@@ -67,15 +67,6 @@ const themeColor = THEME_COLOR[world];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--
-      DESIGN.md §B.10a — the stored choice must be applied before first paint, because
-      the floor band must never be seen in the wrong scheme. This runs in <head>,
-      ahead of the stylesheet link, so the first paint is already correct. No stored
-      choice follows prefers-color-scheme; no stored choice and no expressed OS
-      preference falls back to light, which is also the print scheme.
-      `data-theme` is always set explicitly, never left absent: Sahib's world inverts
-      and reads [data-theme="light"] as its override scope (§F.4a).
-    -->
     <script is:inline>
       (function () {
         var scheme = 'light';
@@ -101,13 +92,6 @@ const themeColor = THEME_COLOR[world];
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
 
-    <!--
-      DESIGN.md §B.12 — four files, all exported from `public/favicon.svg` by
-      `npm run icons`. The SVG is the primary icon everywhere it is supported; the 32px
-      PNG is the fallback and downsamples cleanly to 16, which is why the geometry is
-      authored on a 32 grid. No .ico, no 16px PNG, no maskable variant. The mark itself
-      never appears on a page — if it ever renders in the layout it has become a logo.
-    -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -116,7 +100,6 @@ const themeColor = THEME_COLOR[world];
     <meta name="theme-color" content={themeColor.light} media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content={themeColor.dark} media="(prefers-color-scheme: dark)" />
 
-    <!-- PLAN.md §1.5 — only the hero face is preloaded. Nothing else. -->
     <link
       rel="preload"
       as="font"
@@ -131,12 +114,6 @@ const themeColor = THEME_COLOR[world];
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
 
-    <!--
-      PLAN.md §1.7 — the card is generated at build time from the same content this page
-      renders, so it cannot drift from the copy. `summary_large_image` is the card type
-      that matches a 1200 x 630 image; a route with no image stays on `summary`, which is
-      the type that does not promise one.
-    -->
     {
       ogImageUrl ? (
         <Fragment>
@@ -153,8 +130,6 @@ const themeColor = THEME_COLOR[world];
       )
     }
 
-    <!-- Brief §12's structured data. `is:inline` because this is not a script Astro
-         should process or bundle: it is a JSON payload the crawler reads in place. -->
     {schema && <script is:inline type="application/ld+json" set:html={schema} />}
 
     <Analytics />

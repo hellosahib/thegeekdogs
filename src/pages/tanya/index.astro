@@ -48,17 +48,6 @@ const schema = await personGraph(person);
             <h1>{person.data.name}</h1>
             <p class="intro__role">{TANYA.roleLine}</p>
             <p class="muted">{TANYA.body}</p>
-            <!--
-              §J round 12, `/tanya/`'s "remove one thing": **the intro's second paragraph**
-              (COPY §7.1: "Underneath that is the shape she works on: a shared core, native
-              code at the edges, and the developer practices that keep the two from
-              drifting apart."). Her page IS that sentence — §G.3's whole argument is that
-              the visitor learns the shape of KMP by reading a page built in it — and
-              saying it as well as building it is the one place on this page where the
-              layout explains its own joke before the reader gets it. The run-B reviewer
-              nominated the two full-height edge rules and §G.3 cuts those by rule instead,
-              so they were not available. The string stays in `copy.ts`, unplaced.
-            -->
             <p class="print-address">{TANYA.links.email.address}</p>
           </div>
           <div class="intro__portrait">
@@ -68,12 +57,6 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <!--
-      COPY.md §7.1's two recommendation quotes. They are the only quoted material on the
-      site and they are load-bearing, so they are marked up AS QUOTATION — real
-      <blockquote> elements with a <cite> naming who said it — and not as pull-quote
-      decoration. Nothing here is enlarged, coloured or hung in a margin.
-    -->
     <section class="section quotes-section section--reserve">
       <div class="shell grid split">
         <div class="split__body stack">
@@ -110,7 +93,6 @@ const schema = await personGraph(person);
     <ContactPlate address={TANYA.links.email.address} />
   </div>
 
-  <!-- §B.10 and item 66: a person page closes with that person's own address. -->
   <section class="section close">
     <div class="shell stack">
       <PersonLinks person={person} links={TANYA.links} />

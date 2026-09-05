@@ -140,7 +140,6 @@ if (gates.length < 2) {
 
 <section class="core-band" aria-label={work.heading}>
   <div class="shell grid core-band__grid">
-    <!-- The shared core: one continuous field, not a stack of blocks. -->
     <div class="core">
       <p class="core__label">{FIELD_LABELS.core}</p>
       <h2 class="core__heading">{work.heading}</h2>
@@ -166,16 +165,6 @@ if (gates.length < 2) {
       </div>
     </div>
 
-    <!--
-      The Android edge. Narrower and indented, so the hierarchy survives in greyscale.
-
-      **Item T1, closed here.** §G.3a: "Motive is the first card in all three fields", so
-      the annotation comes BEFORE the two Android-only roles — Motive (the Compose
-      migration and the Android release path) → HSBC → Naskay. Until COPY round 15 the
-      Android edge held HSBC and Naskay and no Motive at all, and the page's central
-      claim — one company, three layers — was half built. The string is COPY.md §7.2's
-      own new field and nothing here writes one.
-    -->
     <div class="edge edge--android">
       <p class="edge__label">{FIELD_LABELS.android}</p>
       {
@@ -197,11 +186,6 @@ if (gates.length < 2) {
       </ul>
     </div>
 
-    <!-- The iOS edge: the layer that consumes the shared modules. §B.10's amended rule
-         names "a card's price line" as a mark that may not end inside the plate's band,
-         so this annotation carries the product and no date. Its label already names the
-         company, so `fromCompany` does not print twice — the note names Motive once,
-         which is the rule everywhere else on this site. -->
     <div class="edge edge--ios">
       <p class="edge__label">{FIELD_LABELS.ios}</p>
       {
@@ -214,7 +198,6 @@ if (gates.length < 2) {
       }
     </div>
 
-    <!-- §9.3's connection back to the home page, made on the core column. -->
     <p class="core-band__gates-link">{work.gatesLink}</p>
   </div>
 </section>

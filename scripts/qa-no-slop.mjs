@@ -45,6 +45,28 @@ for (const file of htmlFiles()) {
   });
 }
 
+// The engineer's own reasoning — a design ruling, a cut copy string, a §-reference —
+// belongs in REVIEWS.md and DESIGN.md, never in an HTML comment: comments in an
+// Astro template body (or in a markup string reached through `set:html`) are not
+// stripped by `compressHTML` and ship verbatim in the built page (COPY.md §7.1's
+// second `/tanya/` paragraph did exactly this — cut from render, left live in a
+// comment). The only comment Astro itself may emit in static output is a
+// conditional comment (`<!--[if ...]>`), which this allows; every other `<!--` in
+// dist is a source-level leak and fails the build. Confirmed by inspection that
+// `compressHTML` (on by default here) strips inter-tag whitespace but not comments,
+// so this gate is not redundant against that setting — and it is kept regardless,
+// since a future template could reintroduce a comment even if it were.
+const COMMENT_RE = /<!--(?!\[if\s)[\s\S]*?-->/g;
+for (const file of htmlFiles()) {
+  const content = read(file);
+  let match;
+  while ((match = COMMENT_RE.exec(content)) !== null) {
+    const line = content.slice(0, match.index).split('\n').length;
+    const snippet = match[0].replace(/\s+/g, ' ').trim().slice(0, 120);
+    failures.push(`${rel(file)}:${line}  HTML comment in dist  ${snippet}`);
+  }
+}
+
 // PLAN.md §1.10 — a backstop against an uppercase route bypassing the schema
 // regex. Scoped to page URLs: a build tool's content-hashed asset filename is
 // not a URL anyone types, and its hash is legitimately mixed-case.

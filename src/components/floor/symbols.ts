@@ -41,18 +41,11 @@ const D = CABIN_DESK_Y;
  * to a page that draws none of them; re-typing the gradient would have made the site's
  * one light two drawings. This is the one string both pages read.
  */
-export const LAMP_DEFS = `<!-- DESIGN.md §C.1 — the one gradient in the whole scene. It paints the lamp's pool
-       on the floor and the cone in the air; both are drawn in the scene, not here, so
-       "Lights on" can reach them. -->
-  <linearGradient id="fl-cone" x1="0" y1="0" x2="0" y2="1">
+export const LAMP_DEFS = `<linearGradient id="fl-cone" x1="0" y1="0" x2="0" y2="1">
     <stop class="fl-cone-a" offset="0"/>
     <stop class="fl-cone-b" offset="1"/>
   </linearGradient>
 
-  <!-- The fixture: the cord and the shade it hangs from, in the two fills the rest of
-       the room already uses. It was two paths at the top of \`#fl-seat\`; it is a symbol
-       so that \`/404\` can hang the same lamp with nothing underneath it. Its own box is
-       BOX.lamp, so every \`<use>\` renders it 1:1 like every other symbol here. -->
   <symbol id="fl-lamp" viewBox="-15 -84 30 28" overflow="visible">
     <path class="fl-lit" d="M-1-84h2v20h-2Z"/>
     <path class="fl-shadow" d="M-11-64h22l4 8h-30Z"/>
@@ -61,72 +54,36 @@ export const LAMP_DEFS = `<!-- DESIGN.md §C.1 — the one gradient in the whole
 export const FLOOR_DEFS = `<defs>
   ${LAMP_DEFS}
 
-  <!-- One floor module. Instanced across both plans. -->
   <symbol id="fl-mod" viewBox="-64 0 128 64" overflow="visible">
     <path class="fl-seam" d="M0 0 64 32 0 64-64 32Z"/>
   </symbol>
 
-  <!-- Shared sub-part: the desk slab. Top lit, left face the floor's own value, right
-       face the shadow fill — three tones out of four fills. -->
   <symbol id="fl-dk" viewBox="-46 -14 92 58" overflow="visible">
     <path class="fl-slab" d="M-44 10 0 32 0 42-44 20Z"/>
     <path class="fl-shadow" d="M44 10 0 32 0 42 44 20Z"/>
     <path class="fl-top" d="M0-12 44 10 0 32-44 10Z"/>
   </symbol>
 
-  <!-- Shared sub-part: the monitor's bezel. Its glow rect is drawn in the scene, not
-       here, so each station's opacity and phase are addressable. -->
   <symbol id="fl-mon" viewBox="0 -40 38 50" overflow="visible">
     <path class="fl-shadow" d="M2-39 36-22 36 8 2-9Z"/>
   </symbol>
 
-  <!-- Shared sub-part: a chair. -->
   <symbol id="fl-ch" viewBox="-16 -32 32 40" overflow="visible">
     <path class="fl-shadow" d="M-16-32 0-24 0-2-16-10Z"/>
     <path class="fl-lit" d="M0-8 16 0 0 8-16 0Z"/>
   </symbol>
 
-  <!-- The agent desk. One symbol, seven instances, translate only. -->
   <symbol id="fl-agent" viewBox="-64 -40 128 104" overflow="visible">
     ${u('ch', -24, 42)}
     ${u('dk', 0, 0)}
     ${u('mon', 0, 0)}
   </symbol>
 
-  <!-- Shared sub-part: an occupant, seated. DESIGN.md §C.4 carries the human/agent
-       distinction on "enclosure, footprint, uniqueness and OCCUPANCY", and the step-3
-       review found ten empty seats in a room whose heading says two desks have people
-       at them. It is a shared <symbol> rather than bespoke geometry in each cabin so
-       neither cabin spends any of §C.4's 16-segment budget on it. -->
   <symbol id="fl-occ" viewBox="-11 -47 22 49" overflow="visible">
     <path class="fl-shadow" d="M0-32 10-27 10-4 0 1-10-4-10-27Z"/>
     <circle class="fl-lit" cx="0" cy="-40" r="6"/>
   </symbol>
 
-  <!-- The empty chair, redrawn to DESIGN.md §C.3 round 12.
-
-       The previous drawing put its back panel at local x -34.4 to -15.6 rising to y 8.8,
-       which is under the desk's own near-left edge (y -1 to 10 across that span) — so the
-       back was occluded by the thing it stands in front of, and what was left read as "a
-       lit slab over a small dark box" at every width (review item H5,
-       lightson-1440-250ms.png). §C.3 now specifies the object rather than leaving it to
-       the drawing: THREE PARTS — a seat plane, a back panel standing at the far edge of
-       the seat at roughly 0.6 of the seat's depth in height, and a visible support
-       beneath the seat.
-
-       The seat rhombus has half-diagonals 22 x 11, so its plan side is 22 units and 0.6
-       of that is a back 14 units tall — and 14 is the number that keeps the whole back
-       BELOW the desk rather than behind it. Measured against the desk's own near edges:
-       at local x -16 the desk stops at y 10 and the back's top edge starts at 15; at
-       x 0, 18 against 23; at x 6, 15 against 26. Five units of clear floor at the
-       tightest point, at every width, with the cone absent — which is §C.3's acceptance
-       test, the 250ms frame and not the finished one.
-
-       §C.3's light rule, applied: the back's NEAR face is the lit one (the same 22% the
-       seat takes, which reads against the room's ground), and its top cap and the two
-       legs are the shadow fill — so the object is a lit plane, a second lit plane at
-       right angles to it, and dark parts underneath. No new token, no new gradient and
-       no new symbol: five paths in the vocabulary §C.1 already ships. -->
   <symbol id="fl-seat" viewBox="-46 -84 92 140" overflow="visible">
     ${u('lamp', 0, 0)}
     ${u('dk', 0, -14)}
@@ -137,9 +94,6 @@ export const FLOOR_DEFS = `<defs>
     <path class="fl-shadow" d="M-40 45h4v10h-4ZM4 45h4v10h-4Z"/>
   </symbol>
 
-  <!-- Sahib's cabin. Bespoke: two walls, a floor patch, the whiteboard, the portrait
-       second monitor and the plant. Desk, monitor and chair are <use>d. 15 bespoke
-       segments against §C.4's budget of 16. -->
   <symbol id="fl-cabin-s" viewBox="-136 -48 272 184" overflow="visible">
     <path class="fl-wall" d="M0-40 128 24 128 64 0 0Z"/>
     <path class="fl-wall" d="M0-40-128 24-128 64 0 0Z"/>
@@ -166,8 +120,6 @@ export const FLOOR_DEFS = `<defs>
     <path class="fl-lit" d="M-63 78c7-4 11-10 11-16-6 2-10 8-11 16Z"/>
   </symbol>
 
-  <!-- Tanya's cabin. Two walls, a floor patch, the painting, the device shelf and the
-       books. 13 bespoke segments. -->
   <symbol id="fl-cabin-t" viewBox="-136 -48 272 184" overflow="visible">
     <path class="fl-wall" d="M0-40 128 24 128 64 0 0Z"/>
     <path class="fl-wall" d="M0-40-128 24-128 64 0 0Z"/>
