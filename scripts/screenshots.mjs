@@ -24,7 +24,11 @@ const reduce = argv.includes('--reduce');
 const elIndex = argv.indexOf('--el');
 const selector = elIndex === -1 ? null : argv[elIndex + 1];
 
-const args = argv.filter((a, i) => a !== '--reduce' && i !== elIndex && i !== elIndex + 1);
+/* `--el` absent means elIndex is -1, and -1 + 1 is 0 — which used to filter out the
+   FIRST argument, the output directory, on every run without the flag. */
+const args = argv.filter(
+  (a, i) => a !== '--reduce' && (elIndex === -1 || (i !== elIndex && i !== elIndex + 1)),
+);
 const sep = args.indexOf('--');
 const outDir = args[0];
 const routes = args.slice(1, sep === -1 ? undefined : sep).map((s) => {

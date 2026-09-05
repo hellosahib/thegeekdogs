@@ -169,8 +169,12 @@ function productFor(place: (typeof places)[number], key: string): string | undef
   }
 
   /* COPY.md §6.1's lead-in is the caption, so the map is named once and the name is the
-     line the reader sees. It sets as body prose, not as a table label. */
+     line the reader sees. It sets as body prose, not as a table label — and it is a
+     BLOCK below 1024, because a `table-caption` inside a table that has itself been
+     restyled to `display: block` shrink-wraps to its longest word; from 1024 the table
+     is a real table again and the caption is its caption. */
   .map__lead {
+    display: block;
     text-align: start;
     color: var(--tgd-muted);
     max-inline-size: var(--measure-body);
@@ -206,12 +210,23 @@ function productFor(place: (typeof places)[number], key: string): string | undef
     white-space: nowrap;
   }
 
+  /* The field, at this width as at every other: the panel, separated from the ground by
+     an inset edge and space rather than by fill contrast (§F.4). */
   .map__table > tbody > tr {
-    padding-block: var(--space-24);
+    background-color: var(--tgd-surface-alt);
+    box-shadow: inset 1px 1px 0 var(--s-panel-edge);
+    padding: var(--space-16);
   }
 
   .map__table > tbody > tr + tr {
     border-block-start: 1px solid var(--s-panel-edge);
+  }
+
+  /* A `th` is centred by the UA stylesheet at element level, which outranks the table's
+     own inherited alignment. Both header roles are set explicitly. */
+  .map__place,
+  .map__surface {
+    text-align: start;
   }
 
   .map__place {
@@ -325,6 +340,19 @@ function productFor(place: (typeof places)[number], key: string): string | undef
 
     .map__table {
       table-layout: fixed;
+    }
+
+    .map__lead {
+      display: table-caption;
+      caption-side: top;
+    }
+
+    /* The field moves back onto the cells, where the matrix draws it. */
+    .map__table > tbody > tr {
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+      border-block-start: 0;
     }
 
     .map__table > thead {

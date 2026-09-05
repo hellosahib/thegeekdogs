@@ -74,8 +74,10 @@ const schema = await personGraph(person);
 
     <!-- The page's centre. §F.1: the breadth itself is the composition. -->
     <section class="section map-section section--reserve">
-      <div class="shell">
-        <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
+      <div class="shell grid">
+        <div class="map-slot">
+          <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
+        </div>
       </div>
     </section>
 
@@ -250,6 +252,17 @@ const schema = await personGraph(person);
 
     .split__body {
       grid-column: 6 / span 7;
+    }
+
+    /*
+      §B.10's amended rule — the map's lit cell is the single most important mark on this
+      page and a mark read as a unit, so its right edge may not sit inside the plate's
+      276px band. On cols 1-9 the map ends at x 738 at 1024 and x 930 at 1440, against a
+      band beginning at 748 and 1164. Cols 10-12 are this page's second void and the
+      plate rests in them, which is the allocation every route in this build now uses.
+    */
+    .map-slot {
+      grid-column: 1 / span 9;
     }
   }
 

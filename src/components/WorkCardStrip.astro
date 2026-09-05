@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { STRIP_ROW_LINKS, BUILT_ROUTES } from '../lib/copy';
+import { assertYearsOnly, yearsOnly } from '../lib/person';
 
 /**
  * The compressed work-card strip (QUESTIONS.md item 50, DESIGN.md §B.8 and §B.9 as
@@ -32,15 +33,11 @@ const STRIP_HEADING = "Where they've worked";
 
 /*
   Step-2 review item 8, ruled: THE STRIP PRINTS YEARS ONLY. The date is the price
-  position and the reason it is tabular is so a column of them compares; `2025 – now`
-  above `Jan 2024 – now` is two granularities in one column and cannot. COPY.md §7.2's
-  month-level strings are hers and stay, on her own page, where the full card renders —
-  this is a strip-only variant of the same string, not an edit to §7.2.
+  position and the reason it is tabular is so a column of them compares; `2025 - now`
+  above `Jan 2024 - now` is two granularities in one column and cannot. COPY.md §7.2
+  round 12 applies the same rule to the person pages, so the helper is shared
+  (src/lib/person.ts) and the strip no longer carries its own copy of it.
 */
-function yearsOnly(range: string): string {
-  return range.replace(/\b[A-Z][a-z]{2,8}\s+(\d{4})\b/g, '$1');
-}
-
 const order = ['sahib-singh', 'tanya-jain'];
 const rows = order.map((slug) => {
   const person = people.find((p) => p.data.slug === slug);
@@ -59,11 +56,7 @@ const rows = order.map((slug) => {
 
 for (const row of rows) {
   for (const card of row.cards) {
-    if (/[A-Za-z]/.test(card.years.replace(/\bnow\b/g, ''))) {
-      throw new Error(
-        `The strip's date "${card.years}" (${row.name}, ${card.company}) still carries a month; step-2 review item 8 rules the strip prints years only.`,
-      );
-    }
+    assertYearsOnly(card.years, `${row.name}, ${card.company}`);
   }
 }
 

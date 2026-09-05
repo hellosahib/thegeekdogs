@@ -1,4 +1,6 @@
 ---
+import { assertYearsOnly, yearsOnly } from '../../lib/person';
+
 /**
  * DESIGN.md §D — one work card, complete. The full four-level shelf-talker: company
  * largest, what they do under it, the years in the price position, a 1px rule, and the
@@ -39,6 +41,10 @@ interface Props {
 
 const { entry, index } = Astro.props;
 
+/* COPY.md §7.2 — years only, on both person pages. The months stay in the data, where
+   they are the source that settles which card a boundary belongs to. */
+const years = assertYearsOnly(yearsOnly(entry.years), `${entry.company} card`);
+
 /** §D.4's table, and §D.4's own "6+ repeat the cycle". */
 const TILTS = ['-1.4deg', '0.8deg', '-2.1deg', '1.7deg', '-0.6deg'];
 
@@ -55,7 +61,7 @@ const smallPrint = [
 <article class="card" style={`--tilt: ${TILTS[index % TILTS.length]}`}>
   <h3 class="card__company">{entry.company}</h3>
   <p class="card__what">{entry.whatTheyDo}</p>
-  <p class="card__years numeral">{entry.years}</p>
+  <p class="card__years numeral">{years}</p>
   <hr class="card__rule" />
   <div class="card__small">
     {smallPrint.map((line) => <p>{line}</p>)}

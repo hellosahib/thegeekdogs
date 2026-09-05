@@ -30,9 +30,20 @@ import WorkCard from '../../components/person/WorkCard.astro';
  * depth plus a rule, not as horizontal position: core content is full width on
  * `--t-core`, edge content is inset 24px with a 2px `--t-ink` left rule under a condensed
  * platform label, and the tick out of the Motive card rotates from sideways to downward.
+ * The DOM order is therefore CORE, Android edge, iOS edge — §G.3's own collapse, and the
+ * order a screen reader reads at every width. From 1024 the grid places each field by
+ * column, so the middle field is the middle column without the source order changing.
  *
  * Column allocation from 1024 (§G.3, §G.2's "which is what lets the three-column layout
- * hold at 1024"): Android cols 1-3, core cols 4-9, iOS cols 10-12.
+ * hold at 1024"). §G.3 draws Android 1-3, core 4-9 and iOS 10-12 at 1440, and §B.10's
+ * amended rule will not carry that: at 1024 col 10 STARTS at x 762 against a plate band
+ * beginning at 748, so the whole iOS column would sit inside it, and at 1440 the
+ * annotation's own right edge lands at ~1178 against 1164. The three fields are placed
+ * inside cols 1-9 instead — Android 1-3, core 4-7, iOS 8-9 — which keeps §G.3's
+ * hierarchy exactly (the core is the widest field, the edges are narrower and indented)
+ * and puts the band's right edge at x 738 at 1024 and x 1014 at 1440. Cols 10-12 are
+ * this page's void and the plate rests in them, which is the same allocation /work/,
+ * /contact/, both case studies and /sahib/ now use.
  *
  * §J's pre-committed cut for this page is taken: there are no platform glyphs at the
  * edge columns. The words are shorter, clearer and cheaper than any icon, and with
@@ -82,28 +93,6 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
 
 <section class="core-band" aria-label={work.heading}>
   <div class="shell grid core-band__grid">
-    <!-- The Android edge. Narrower and indented, so the hierarchy survives in greyscale. -->
-    <div class="edge edge--android">
-      <p class="edge__label">{FIELD_LABELS.android}</p>
-      <ul class="edge__cards">
-        {
-          android.map((role, index) => (
-            <li>
-              <WorkCard entry={role} index={index + 1} />
-            </li>
-          ))
-        }
-      </ul>
-      {
-        androidEdgeNotes.map((note) => (
-          <p class="edge__note">
-            <span class="edge__tick" aria-hidden="true" />
-            {note.label}
-          </p>
-        ))
-      }
-    </div>
-
     <!-- The shared core: one continuous field, not a stack of blocks. -->
     <div class="core">
       <p class="core__label">{FIELD_LABELS.core}</p>
@@ -126,6 +115,28 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
         <p class="core__gates-label">{owns.label}</p>
         <p class="core__gates-line">{owns.line}</p>
       </div>
+    </div>
+
+    <!-- The Android edge. Narrower and indented, so the hierarchy survives in greyscale. -->
+    <div class="edge edge--android">
+      <p class="edge__label">{FIELD_LABELS.android}</p>
+      <ul class="edge__cards">
+        {
+          android.map((role, index) => (
+            <li>
+              <WorkCard entry={role} index={index + 1} />
+            </li>
+          ))
+        }
+      </ul>
+      {
+        androidEdgeNotes.map((note) => (
+          <p class="edge__note">
+            <span class="edge__tick" aria-hidden="true" />
+            {note.label}
+          </p>
+        ))
+      }
     </div>
 
     <!-- The iOS edge: the end of the tick out of the core's card. §B.10's amended rule
@@ -268,16 +279,16 @@ const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as 
     }
 
     .core {
-      grid-column: 4 / span 6;
+      grid-column: 4 / span 4;
       padding: var(--space-32) var(--space-24) var(--space-48);
     }
 
     .edge--ios {
-      grid-column: 10 / span 3;
+      grid-column: 8 / span 2;
     }
 
     .core-band__gates-link {
-      grid-column: 4 / span 6;
+      grid-column: 4 / span 4;
     }
 
     .edge__note {
