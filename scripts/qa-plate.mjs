@@ -52,7 +52,23 @@ const MARKS = [
   ['a stage node', '.full-track__node'],
   ['a stage node', '.track__node'],
   ['a stage label', '.full-track__label'],
-  ['a stage label', '.track__head-cell'],
+  /*
+    `.track__head-cell` — §E.3's shared label row — is NOT on this list any more, and the
+    spec is what took it off. Round 12 rules in terms: "All five stage labels centre on
+    their nodes, in every form of this component, at every width. The label row's ink may
+    overhang the axis at either end by up to half a label; §B.10 exempts prose and this row
+    is five words, not five marks. **The axis is what the rule constrains; the label row is
+    prose that rides it.**"
+
+    Round 10 had edge-aligned the two end labels precisely so that the row's ink matched
+    the axis and this selector could stay on the list, and the review found the cost:
+    three labels centred on their dots and two half a pitch off the dot they name (item
+    H7). With all five centred, `Live` at 768 ends at x 494 against a band at 492 — two
+    pixels of a five-letter word, which is exactly the overhang §E.3 permits.
+
+    What still binds is the axis, and it is measured: `.track__node` and
+    `.full-track__node` are on this list and they are the marks the rule names.
+  */
   ['a printed address', '.routes__address a'],
   ['a printed address', '.lamp-address'],
   ['a printed address', '.close__address'],
