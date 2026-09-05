@@ -89,6 +89,21 @@ function ratio(a, b) {
   return (light + 0.05) / (dark + 0.05);
 }
 
+/**
+ * An `rgba()` token composited over an opaque ground, so a mark declared at an alpha can
+ * be checked at the colour it actually renders as. DESIGN.md §E.1 and §E.1a publish the
+ * future stage node's stroke this way and nothing else on the site is a coloured mark
+ * declared at an alpha, so this is the whole of the mechanism.
+ */
+function composite(rgba, groundHex) {
+  const m = /^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)$/.exec(rgba);
+  if (!m) return undefined;
+  const a = Number(m[4]);
+  const over = (i, fg) => Math.round(a * fg + (1 - a) * parseInt(groundHex.slice(i, i + 2), 16));
+  const hex = (v) => v.toString(16).padStart(2, '0');
+  return `#${hex(over(1, Number(m[1])))}${hex(over(3, Number(m[2])))}${hex(over(5, Number(m[3])))}`;
+}
+
 /** [foreground token, background token, DESIGN.md's published ratio, size class] */
 const PALETTES = [
   {
@@ -111,6 +126,16 @@ const PALETTES = [
     ],
     // The lamp rule's load-bearing failure.
     forbidden: [['--lamp', '--sheet', 1.79]],
+    /*
+      DESIGN.md §E.1 — the future stage node's 1.5px stroke, declared at an alpha and
+      therefore checked at its composite. Run A item 4: at .45 these read 2.65 and 2.53
+      and failed SC 1.4.11's 3:1 for a meaningful graphic; round 5 raised the light
+      value to .60 and this is the assertion that keeps it there.
+    */
+    composites: [
+      ['--node-future-stroke', '--sheet', 4.01, 'large'],
+      ['--node-future-stroke', '--band', 3.83, 'large'],
+    ],
   },
   {
     name: 'studio, dark',
@@ -134,6 +159,12 @@ const PALETTES = [
       ['--btn-ink', '--btn-fill', 15.34, 'body'],
     ],
     forbidden: [],
+    // §E.1a — the dark stroke stays at .45 and is deliberately not raised with the
+    // light one: a light mark on a dark ground is more efficient at the same alpha.
+    composites: [
+      ['--node-future-stroke', '--sheet', 3.76, 'large'],
+      ['--node-future-stroke', '--band', 3.49, 'large'],
+    ],
   },
   {
     name: 'sahib, dark (his default)',
@@ -248,6 +279,31 @@ for (const palette of PALETTES) {
     }
     checked += 1;
     console.log(`        ${`${fg} on ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  AA ${size}`);
+  }
+
+  for (const [fg, bg, published, size] of palette.composites ?? []) {
+    const ground = tokens.get(bg);
+    const mark = composite(tokens.get(fg) ?? '', ground ?? '');
+    if (!mark) {
+      failures.push(`${palette.name}: ${fg} over ${bg} — not an rgba() token in that scope`);
+      continue;
+    }
+    const computed = ratio(mark, ground);
+    // A non-text mark's line is SC 1.4.11's 3:1, which is THRESHOLD.large.
+    if (computed < THRESHOLD[size]) {
+      failures.push(
+        `${palette.name}: ${fg} over ${bg} — ${computed.toFixed(2)}:1 fails SC 1.4.11 (3:1)`,
+      );
+    }
+    if (Math.abs(computed - published) > 0.05) {
+      failures.push(
+        `${palette.name}: ${fg} over ${bg} — computed ${computed.toFixed(2)}:1 but DESIGN.md publishes ${published}:1`,
+      );
+    }
+    checked += 1;
+    console.log(
+      `        ${`${fg} over ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  graphic 3:1 (${mark})`,
+    );
   }
 
   for (const [fg, bg, published] of palette.forbidden) {

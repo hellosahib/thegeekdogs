@@ -59,7 +59,14 @@
 
   /* --- DESIGN.md §E.1, the stage indicator's three states --- */
   --node-current-core: var(--floor); /* §E.1: --lamp only on --floor grounds */
-  --node-future-stroke: rgba(15, 42, 46, 0.45);
+  /*
+    DESIGN.md §E.1, raised from .45 to .60 in round 5 and shipped here (run A item 4).
+    At .45 the composite reads 2.65:1 over --sheet and 2.53:1 over --band, both under
+    the 3:1 SC 1.4.11 asks of a meaningful graphic. At .60 the composites are #697A7C
+    on --sheet (4.01:1) and #637576 on --band (3.83:1). The dark twin is NOT raised
+    with it (§E.1a): it already clears 3:1 on both dark grounds at .45.
+  */
+  --node-future-stroke: rgba(15, 42, 46, 0.6);
   --node-future-connector: rgba(15, 42, 46, 0.22);
 
   /* --- DESIGN.md §B.2, focus ring: 3px outer + 2px inner, 3px offset --- */
