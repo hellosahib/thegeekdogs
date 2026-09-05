@@ -8,7 +8,7 @@ Companion file: `docs/scratch/engineer.md` — alternatives considered and rejec
 
 ## 1. Stack decisions
 
-### 1.1 Astro 5 static, TS strict, islands policy
+### 1.1 Astro 7 static, TS strict, islands policy
 
 `astro.config.mjs`: `output: 'static'`, `site: 'https://thegeekdogs.com'`, `trailingSlash: 'always'` (§9 below), `tsconfig.json` extending `astro/tsconfigs/strict`.
 
@@ -130,7 +130,7 @@ Lowercase enforcement: every content-collection `slug` field is validated with a
 
 ## 2. Content collections
 
-All schemas in `src/content.config.ts` using Astro 5's Content Layer API (`defineCollection` + `glob`/`file` loaders, Zod schemas). TypeScript is used here per the brief's explicit carve-out — the schema is the content contract.
+All schemas in `src/content.config.ts` using Astro's Content Layer API (`defineCollection` + `glob`/`file` loaders, Zod schemas). TypeScript is used here per the brief's explicit carve-out — the schema is the content contract.
 
 ```ts
 // src/content.config.ts

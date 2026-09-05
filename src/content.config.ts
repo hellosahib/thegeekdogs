@@ -1,4 +1,10 @@
-import { defineCollection, reference, z } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
+// Astro 7: `z` re-exported from `astro:content` is deprecated and goes in Astro 8.
+// `astro/zod` is the same instance, which is what keeps `image()` and `reference()`
+// schemas assignable. Zod 4 also moved the string formats to the top level, so
+// `z.url()` and `z.email()` below are not a style choice: the chained form on a
+// string schema is the deprecated spelling in Zod 4.
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 import { optionalGlob } from './loaders/optional-glob';
 
@@ -29,11 +35,11 @@ const people = defineCollection({
       bio: z.string().min(1),
       gatesOwned: z.array(reference('gates')),
       socials: z.object({
-        github: z.string().url(),
-        linkedin: z.string().url(),
-        x: z.string().url().optional(),
-        blog: z.string().url().optional(),
-        email: z.string().email().optional(),
+        github: z.url(),
+        linkedin: z.url(),
+        x: z.url().optional(),
+        blog: z.url().optional(),
+        email: z.email().optional(),
       }),
       // Item 23 chose headshots from a tool trained on each person's own selfies and
       // the images have not been supplied. COPY.md §10.1's two alt lines are still
@@ -100,7 +106,7 @@ const products = defineCollection({
       // Always present; what renders in headings, nav, OG and JSON-LD while name is null.
       descriptiveName: z.string().min(1),
       stage: z.enum(STAGES),
-      storeUrl: z.string().url().nullable(),
+      storeUrl: z.url().nullable(),
       storeStats: z
         .object({
           rating: z.number().min(0).max(5),

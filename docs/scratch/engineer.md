@@ -334,3 +334,77 @@ Screenshots at 360, 768, 1024 and 1440 in both schemes, plus both mid-scroll sta
 one focused-station state, are in `docs/reviews/step2/engineer/`. Every one was opened
 and looked at; the focus ring on the room, the toggle's glyph geometry, its alignment to
 the content edge, and the 1024 split-layout collisions were all found that way and fixed.
+
+---
+
+## Build step 3 — the Astro 7 upgrade (QUESTIONS.md item 67, 2026-09-05)
+
+Owner signed off on item 67, so the 5 → 6 → 7 move landed as its own commit before the
+scene. Read Astro's own upgrade guides for both majors rather than assuming.
+
+### Versions
+
+| Package | Was | Now |
+|---|---|---|
+| `astro` | 5.18.2 | **7.3.1** |
+| `@astrojs/sitemap` | 3.7.4 | 3.7.4 (already current; works unchanged on 7) |
+| `@astrojs/check` | 0.9.10 | 0.9.10 (already current) |
+| `tailwindcss` / `@tailwindcss/vite` | 4.3.3 | 4.3.3 (already current) |
+| `typescript` | 5.9.3 | **6.0.3** |
+
+**TypeScript is held at 6, not 7.** TS 7.0.2 is out, but `@astrojs/check@0.9.10` declares
+`typescript: "^5.0.0 || ^6.0.0"` and there is no newer `@astrojs/check`. Installing TS 7
+fails `npm install` outright on the peer range; `--force` would only move the breakage to
+`astro check`. 6.0.3 is the newest version that satisfies the gate this repo actually runs.
+
+### The breaking changes that touched this repo
+
+Most of both guides is about things this build does not have — no SSR adapter, no
+islands, no view transitions, no `@astrojs/db`, no markdown content, no i18n, no
+sessions, no actions. Four changes were real:
+
+1. **`import { z } from 'astro:content'` is deprecated in 7** and goes in 8 (`astro check`
+   printed 40 `ts(6385)` warnings for it). `src/content.config.ts` now imports `z` from
+   `astro/zod`, which is the same instance — that identity is what keeps the `image()`
+   and `reference()` schemas assignable.
+2. **Zod 4 moved the string-format validators to the top level** (Astro 6 shipped Zod 4).
+   `z.string().url()` → `z.url()`, `z.string().email()` → `z.email()`, six call sites.
+3. **Rolldown (Vite 8) does not constant-fold a property read off an object literal.**
+   This was the only silent regression, and it cost real bytes: `Analytics.astro` read
+   the seven `PUBLIC_FIREBASE_*` values into a `config` object and then branched on
+   `config.apiKey && …`. Under Rollup that guard folded away on a build with no `.env`
+   and no chunk was emitted (build step 1's "0 B JS" line). Under Rolldown the branch
+   stayed live and the build shipped the whole Firebase SDK — **41,930 B raw / 13,496 B
+   gzip of analytics nobody configured**, plus a 937 B bootstrap. The four required
+   values are now read straight into the `if`, so the condition is a literal
+   `undefined && …` again; the object is built inside the branch. Measured back to
+   **0 B** of external JS. Nothing about this was reported as a warning — it was found
+   by reading `measure-bundles.mjs`'s output against step 2's table.
+4. **`compressHTML` defaults to `'jsx'` in 7**, which strips whitespace between adjacent
+   inline elements by JSX rules rather than HTML rules. Checked rather than assumed:
+   scanned every text run in the built `dist/index.html` for glued words; the eleven hits
+   are all `TheGeekDogs`, `iOS`, `KMP` and `GitHub`, i.e. real capitals inside real
+   strings. No space was lost, so the default is left alone.
+
+Astro 7's stricter Rust compiler (closing tags required, no auto-corrected nesting) found
+nothing — the build is clean and `astro check` reports **0 errors, 0 warnings, 0 hints**
+across 19 files. The narrow `EMPTY_BUNDLE` `onwarn` filter in `astro.config.mjs` no longer
+fires under Rolldown; it is left in place as a guard rather than removed, since it is
+scoped to one module and silences nothing today.
+
+### `npm audit` after the upgrade
+
+**All eight Astro advisories are gone.** Seven high advisories remain, and every one of
+them is inside `@lhci/cli`'s dependency tree — `tmp`, `extract-zip`, and the
+`puppeteer-core` / `@puppeteer/browsers` / `lighthouse` chain it pulls in.
+
+- `@lhci/cli@0.15.1` is the newest release (0.15.1, June 2025); there is no fixed version
+  to move to.
+- `npm audit fix --force` proposes `@lhci/cli@0.1.0`, a fifteen-major-version downgrade
+  that would delete the Lighthouse gate rather than fix it. Not taken.
+- All seven are `devDependencies` of a measurement tool. Nothing in the tree reaches
+  `dist/`; the shipped site has one production dependency graph (`astro`,
+  `@astrojs/sitemap`, `firebase`) and it is clean.
+
+So: **zero high advisories against anything that ships, seven against the Lighthouse CI
+toolchain with no upstream fix available.** Recorded rather than suppressed.
