@@ -146,3 +146,191 @@ Two naming collisions found while doing it, both fixed in `tokens.css`: DESIGN.m
 | CLS | **0** (line is 0.05) |
 | TBT | **0 ms** |
 | Contrast pairs checked against DESIGN.md's published ratios | 26, all matching to two decimals |
+
+---
+
+## Build step 2 — the whole home page, the roster, the dark scheme (2026-09-05)
+
+Scope per brief §14 step 2: the complete home page with the floor as a static semantic
+roster, the dark scheme and its toggle, and the sixteen items from
+`docs/reviews/step1-design-review.md` that are the Engineer's. No SVG scene, no motion.
+
+### The sixteen review items, and how each was closed
+
+| # | Fix |
+|---|---|
+| 1 | Every section inside the plate's sticky span reserves the plate's own footprint on the right at ≥768 (`--plate-keepout`), so there is no scroll position at which the two can meet. See the caveat below — this is only true at ≥768. |
+| 2, 3 | One axis, five columns defined once on `.track` and taken by the label row and both runners through `subgrid`. A node's position no longer depends on the widths of the nodes before it, and a label is centred on its own node rather than on a second grid. |
+| 4, 5, 6 | The gates are one hung-numeral column; `01`–`04` set with `decimal-leading-zero` and hung into the outer margin at 360, into col 1 at ≥1024; the closing line anchored in cols 9–12 at display-section size, vertically centred to the group, at 1440. |
+| 7 | The three figures as the numeral-large block: Anek 500 at `wdth` 87.5, `font-variant-numeric: tabular-nums`, a micro label under each. |
+| 8 | `--measure-body` is `32em`, not `62ch`. The rendered hero body is ~65 characters, not 79. |
+| 9 | Proof is the full-bleed `--band` split, prose cols 1–5 and the track cols 7–12 at 1440, which also restores the fill alternation to sheet, floor, band, sheet, band, sheet, floor. |
+| 10 | §2.7 paragraph 2, §2.8's caption and §2.8's body all print. |
+| 11 | The whole "What you get" section, both paragraphs. |
+| 12 | The footer's location line. |
+| 13 | The plate on /404, in the same sticky wrapper. |
+| 14 | The final CTA's address is `--lamp` text on `--floor` with a 2px rule under it. The site is back to exactly three ambers. |
+| 15 | `body` is a flex column with `min-block-size: 100dvh` and `main { flex: 1 0 auto }`, so the footer band sits on the viewport's bottom edge on a short page. |
+| 17 | The trailing `Stage:` line is `display: none` at ≥768 and sits *above* its track below it, where COPY.md §10.4 puts it. |
+
+### Item 1 is a spec conflict, and this is how far it goes
+
+§B.10 says the plate "never covers content"; §B.9 puts content in every column of a
+1200px grid; and a `position: sticky` element pinned to the viewport's bottom-right will
+pass over whatever is under it at some scroll position. Those three cannot all hold. The
+lane is the reviewer's own first suggested fix and it works, but it costs width:
+
+| Viewport | Keep-out | Content left |
+|---|---|---|
+| 768 | 244 of 704 | 460 |
+| 1024 | 228 of 928 | 700 |
+| 1440 | 156 of 1200 | 1044 |
+| ≥ 1872 | 0 | full |
+
+**Below 768 there is no lane at all** — §B.10 makes the plate a full-bleed 56px bar, so
+it is the viewport's width and there is nothing to move content out of. `home-360-*-scrollmid.png`
+shows it over the tail of a paragraph. That is not fixable in CSS; it needs either a
+narrower plate below 768 or the plate not being sticky there, and both are the Design
+Lead's calls. **Flagged for round 4.**
+
+Two layout consequences of the lane, both deviations from a spec written before it:
+
+- **§B.9's two side-by-side forms come in at 1440, not 1024.** Below 1440 the remaining
+  right-hand column is too narrow to hold either at the size §B.9 sets: the closing line
+  broke to five short lines and the five-column stage axis lost its label row to
+  collisions at 1024. §B.9 is drawn at 1440 and has no 1024 counterpart, so 1024 stacks
+  the way 768 does.
+- **§C.6's card slot goes beside the roster at 1440, not at 1024.** Below 1440 a 366px
+  slot, the lane and a readable roster do not all fit, and §C.6's own 344px reservation
+  is derived from that 366px width — narrowing the slot would break the arithmetic, not
+  just the picture. Between 768 and 1439 the slot takes §C.6's other stated position,
+  full width directly below the stations.
+
+### Where COPY.md and DESIGN.md disagree, and which won
+
+1. **The toggle's visible label.** COPY.md §1 gives a group label `Theme` and a control
+   label `Dark` / `Light`. DESIGN.md §B.10a specifies a 44 × 44 glyph-only control whose
+   state is carried by shape and whose action lives in the accessible name, and §B.8's
+   header arithmetic (236 + 44 = 280 of 320) only works at 44px. **§B.10a won**: the
+   control prints no word, and COPY.md's three strings are carried as the group's
+   accessible name and the button's. If the labels are meant to print, the header
+   arithmetic needs redoing.
+2. **The download figure.** COPY.md §2.7 prints `1,000+ downloads`; the store listing's
+   own rounding, stored in `src/data/products/pocket-manager.json`, is `1K+`; DESIGN.md
+   §B.9's wireframe writes `1K+ installs`. **COPY.md won**, and the build asserts the
+   rating and review count against the product entry so the two cannot drift silently.
+3. **Date dashes.** DESIGN.md §D.5 says "hyphen, not en-dash"; COPY.md §6.2 and §7.2
+   write en dashes. **COPY.md won** — the string is Copy's.
+4. **The `Checked by` label in the desk button's spoken name.** COPY.md §10.2's example
+   lowercases it mid-sentence ("Checked by security and privacy review"), so the build
+   does too — except where the label starts with an initialism, because lowering the
+   first letter of `QA on real devices` produces `qA`, which a screen reader spells out.
+
+### The dark scheme
+
+Every value in §B.2a, §F.4a and §G.1a is in `tokens.css` under a `[data-world][data-theme]`
+block. Three things worth not relearning:
+
+- **`data-theme` is always set explicitly**, never left absent, because Sahib's world
+  inverts: his `[data-world="sahib"]` block holds the *dark* values and `[data-theme="light"]`
+  carries the overrides (§F.4a). A missing attribute would give him his dark page in
+  both positions.
+- **`--ink` is the one alias that earns its keep.** In the light studio `--floor` is both
+  the room's ground and the page's text; in dark it cannot be, and `--ink` is what lets
+  every component keep one declaration. `--focus-outer` follows it — except inside the
+  room, where `.room` re-points it at `--chalk`, because in the light scheme `--ink`
+  resolves to the room's own ground and the outer half of the ring would be invisible.
+- **The future stage node's stroke stays at `rgba(15,42,46,.45)` in light**, computing
+  2.65 : 1. DESIGN.md §E.1a records that its dark twin reaches 3.76 and that raising the
+  light alpha to `.60` would give 4.01, but §I item 5 leaves that as an open question for
+  the Design Lead rather than a decision, so the approved value ships. It has never been
+  the sole carrier of that state.
+
+`qa:contrast` now parses `tokens.css` per selector, layers `:root` → world → theme the
+way the cascade does, resolves `var()` inside the resulting scope, and checks **56 pairs
+across all six palettes**. Four tokens are alpha composites that DESIGN.md publishes as a
+rounded hex while quoting the ratio from the unrounded one; those four pairs get a 0.05
+tolerance and everything else stays at 0.011, which is still far tighter than a mistyped
+hex.
+
+### Deferred, deliberately — the step-1 list, updated
+
+Closed this step: **the hero's secondary button** (the floor exists, so
+`Look around the floor` hands the visitor to `#studio-floor`) and **the footer's
+"Elsewhere" group** (the `people` collection now carries the four profile URLs).
+
+Still open, and why:
+
+1. **Font subsetting and the `wdth` range restriction.** Step 8. `public/fonts/` still
+   carries the full unsubsetted binaries, 133,852 B.
+2. **Fallback-metric matching for `font-display: swap`.** Not applied; measured CLS is
+   still 0.
+3. **The four nav links.** `/work/`, `/sahib/`, `/tanya/` and `/contact/` do not exist,
+   so `Header.astro` filters `NAV` against `BUILT_ROUTES` and renders nothing — the
+   `<nav>` element itself is omitted rather than shipped empty. The footer's nav repeat
+   is filtered by the same set. Each link appears the step its route lands; adding the
+   route to `BUILT_ROUTES` is the whole change.
+4. **A favicon.** Still none, and still the only reason Lighthouse's best-practices score
+   is 96 rather than 100. Design Lead's deliverable.
+5. **OG image.** Still not emitted; the Satori pipeline renders the floor composition,
+   which is step 3's.
+6. **The work-strip's two row links.** §B.8 asks for one link per row to that person's
+   page. Both the labels (`[COPY NEEDED: the strip's two link labels, ≤ 5 words each]`)
+   and the two routes are missing, so no link renders and nothing stands in for one.
+7. **§B.8's "The full pipeline" roster line.** The wireframe sets the seven roles as a
+   readable sentence beneath the scene, with `The full pipeline` as its label. That label
+   is not a string COPY.md contains, and at this step the roster *is* the readable list,
+   so the line is not printed. It comes back with the scene in step 3, if Copy supplies
+   the label.
+8. **§C.6's gate-ownership sub-block on the two human cards.** Its field label is
+   `[COPY NEEDED: ≤ 2 words]`, so the block does not render. The human cards carry
+   COPY.md §2.3's role line and body, which already name what each person owns.
+
+### Other decisions made this step
+
+- **`linksToSkip` gains `^https://www\.linkedin\.com/`.** LinkedIn answers an automated
+  request with a signup wall or a 429 and never with the profile — `FACTS.md` rows 37, 38
+  and 42a record exactly that. A 429 from a host that blocks every bot is not evidence of
+  a broken link. Nothing else is skipped.
+- **`agents.checkedBy` is a string, not a collection reference.** Two of the seven labels
+  are not one of §2.6's four gates: `Product spec review` and `Ship approval`. An
+  optional `checkedByGate` reference sits beside it for the five that are, and
+  `src/lib/floor.ts` asserts at build time that the gate's name and the agent's label are
+  the same string. Design review joined that list in round 8 — it has an owner and its
+  own label now, so it is a sixth gate rather than architecture review borrowed.
+- **`people.headshot`, `headshotAlt` and `workHistory[].role` are optional.** The images
+  do not exist (item 23) and COPY.md §6.2 card 5 has no role line. Three fields on
+  `workHistory` are new and optional — `ownershipLine`, `attributedAccount`,
+  `projectLine` — so §7.2's three extra lines are stored rather than dropped, even though
+  the compressed strip renders none of them.
+- **`check-floor-budget` counts inline module scripts.** Astro inlines a script this
+  small rather than emitting a file and hoists it out of the section, so counting only
+  `<script src>` measured the floor's script at zero. It counts both forms now, which
+  over-counts slightly (the toggle's script is in there too) and is the safe direction.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| JS shipped, home page | **700 B gzip** (1,686 B raw, two inline modules: the floor's and the toggle's) — the 4 KB line holds with room to spare |
+| CSS shipped, home page | 47,437 B raw / **9,507 B gzip** (23% of the 40 KB line) |
+| Home HTML | 6,531 B gzip |
+| Fonts | 133,852 B (unsubsetted; ~71 KB after step 8) |
+| Home page total | **149,890 B gzip** (12% of the 1.2 MB line) |
+| Floor section + its script | 10,120 B raw / **2,069 B gzip** (2.5% of the 80 KB line) |
+| Lighthouse mobile, 3 runs, light | Performance **100**, Accessibility **100**, Best practices **96**, SEO **100** |
+| Lighthouse mobile, 3 runs, dark | Performance **100**, Accessibility **100**, Best practices **96**, SEO **100** |
+| LCP | 1,383–1,392 ms light, 1,390–1,395 ms dark (line is 2,000) |
+| CLS | **0** in both schemes (line is 0.05) |
+| TBT | **0 ms** in both schemes |
+| Contrast pairs checked | **56**, across six palettes, all at or above their thresholds and all matching DESIGN.md's published figures |
+
+The dark Lighthouse runs were taken against a scratch copy of `dist/` whose head script
+was patched to force `data-theme="dark"`, because neither LHCI nor a Chrome flag can
+seed `localStorage` or `prefers-color-scheme` for a static run. Nothing shipped was
+changed to produce them.
+
+Screenshots at 360, 768, 1024 and 1440 in both schemes, plus both mid-scroll states and
+one focused-station state, are in `docs/reviews/step2/engineer/`. Every one was opened
+and looked at; the focus ring on the room, the toggle's glyph geometry, its alignment to
+the content edge, and the 1024 split-layout collisions were all found that way and fixed.

@@ -63,6 +63,9 @@ export interface Station {
  * privacy review."). It is the same string, in a sentence position.
  */
 function inSentence(label: string): string {
+  // "QA on real devices" keeps its capitals: an initialism is not sentence case, and
+  // lowering only the first letter of one produces "qA", which a screen reader spells.
+  if (/^[A-Z]{2}/.test(label)) return label;
   return label.charAt(0).toLowerCase() + label.slice(1);
 }
 

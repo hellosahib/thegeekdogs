@@ -352,6 +352,14 @@
     background-color: var(--tgd-room);
     color: var(--tgd-on-room);
     box-shadow: inset 0 1px 0 var(--room-top-edge);
+    /*
+      DESIGN.md §B.2 and §C.8 — the outer ring is the maximum-contrast neutral for the
+      surface it lands on, which inside the room is --chalk (12.74:1 in light, 15.34:1
+      in dark), never --ink. In the light scheme --ink resolves to --floor, which is the
+      room's own ground, so without this the outer half of every focus ring on the floor
+      would be invisible. The inner half stays --lamp, so focus keeps one identity.
+    */
+    --focus-outer: var(--tgd-on-room);
   }
 
   /*
