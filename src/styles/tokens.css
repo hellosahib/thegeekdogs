@@ -187,7 +187,15 @@
   --track-pitch: 100px;
 
   /* --- DESIGN.md §C.6, the interaction card's reserved slot --- */
-  --card-slot-min: 320px; /* < 768 */
+  /*
+    Round 15, review item N2. `min-height` is a BORDER-BOX number and the slot carries 24px
+    of padding top and bottom, so the reservation available to a card is `min-height − 48`.
+    320 reserved 272 for a card measured at 329.0, and the page stepped down 57px under the
+    reader's thumb when they opened a human's card. Every number here is now
+    `tallest card + 48 + slack`, and `qa:floor:slot` opens all ten cards at all five widths
+    and asserts the document's own scrollHeight does not move.
+  */
+  --card-slot-min: 384px; /* < 768 — 329.0 + 48 = 377 */
   --card-slot-width: 293px; /* cols 9–12 at 1024: 4 × 55.3 + 3 × 24 */
 
   /* --- DESIGN.md §H.1, shared timing tokens --- */

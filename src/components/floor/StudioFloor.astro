@@ -815,10 +815,12 @@ const b = BOX;
   }
 
   /*
-    DESIGN.md §C.6 — the fixed slot. The reservation is not a guess: 344 is derived in
-    §C.6 from the longest card (Tanya's) at the >=1024 sizes in a 366px slot, and 320
-    from the same arithmetic at 360's sizes. If a copy edit ever overflows it, the fix
-    is the copy or the padding, never a shorter reservation.
+    DESIGN.md §C.6 — the fixed slot. The reservation is not a guess and it is not
+    arithmetic either: every one of the four numbers is the tallest card MEASURED in this
+    slot at that width, plus this element's own 48px of padding, plus a step of slack.
+    The four are set below, with their derivations. If a copy edit ever overflows one, the
+    fix is the copy or the padding, never a shorter reservation — and `qa:floor:slot` will
+    say so, because the page height is what it asserts.
   */
   /*
     Step-2 review item 4, and §J's pre-committed cut for `/`: the slot has NO
@@ -856,23 +858,35 @@ const b = BOX;
   }
 
   /*
-    §C.6's four reservations. Round 12 re-derives three of the four against MEASUREMENT
-    rather than against arithmetic (review item H6, `measure-floor.json`): 320 below 768,
-    **264** at 768-1023, **416** at 1024-1439 and **352** at 1440.
+    §C.6's four reservations, re-derived a second time — the final review's item N2, and
+    the arithmetic is what was wrong both times.
 
-    The old numbers came out of Tanya's card, computed before design review and the
-    release cut had owners; COPY §2.3 round 12 put both names on both lists and Sahib's
-    gate line is now the long one. Measured with each card forced visible in the slot, the
-    tallest card is 406.7 at 1024 against a 392 reservation — 15px SHORT of its own
-    longest card — 339.2 at 1440 against 344, and 251.3 at 768 against 344, which is 93px
-    of reserved void under a two-line card. Every number here is the measured maximum
-    rounded up to the next 8px step with at least one step of slack, and §C.6's own rule
-    is what it applies: the fix is the copy or the padding, never a shorter reservation —
-    and reserving 93px of nothing is as much a defect as reserving 15px too few.
+    Round 12 fixed the CONTENT numbers against measurement (item H6): the tallest card is
+    329.0 below 768, 251.3 at 768-1023, 406.7 at 1024-1439 and 339.2 at 1440. What both
+    rounds then missed is that `min-block-size` is a BORDER-BOX number here — `box-sizing`
+    is border-box site-wide — and this slot carries 24px of padding at both ends, so the
+    space a card actually gets is `min-height − 48`. 320 reserved 272 for a 329.0 card,
+    416 reserved 368 for a 406.7 one, 264 reserved 216 for 251.3. Every one of the four
+    was short by roughly its own padding, and opening a human's card stepped the whole
+    floor section and everything under it down the page: +57.0 at 360, +31.1 at 390,
+    +35.3 at 768, +38.7 at 1024. Only 1440 held, and only because the scene is taller
+    than the slot there and absorbed it. Lighthouse never saw it — an input-initiated
+    shift inside 500ms is excluded from CLS — which is why it took a rendered review.
+
+    So each number is now **tallest card + 48 + slack**, rounded to the next 8px step:
+
+      < 768      329.0 + 48 = 377.0  ->  384   (the same number serves 390's 303.1)
+      768-1023   251.3 + 48 = 299.3  ->  304
+      1024-1439  406.7 + 48 = 454.7  ->  464
+      >= 1440    339.2 + 48 = 387.2  ->  392
+
+    §C.6's own rule is what this applies — the fix is the copy or the padding, never a
+    shorter reservation — and `qa:floor:slot` is now the assertion PLAN.md §4.3 asked for:
+    it opens all ten cards at all five widths and fails if `scrollHeight` moves by a pixel.
   */
   @media (min-width: 768px) {
     .floor__slot {
-      min-block-size: 264px;
+      min-block-size: 304px;
     }
   }
 
@@ -908,14 +922,14 @@ const b = BOX;
     }
 
     .floor__slot {
-      min-block-size: 416px;
+      min-block-size: 464px;
       padding-inline: var(--space-24);
     }
   }
 
   @media (min-width: 1440px) {
     .floor__slot {
-      min-block-size: 352px;
+      min-block-size: 392px;
     }
   }
 

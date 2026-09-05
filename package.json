@@ -21,9 +21,10 @@
     "qa:images": "node scripts/qa-images.mjs",
     "qa:console": "node scripts/qa-console.mjs",
     "qa:contrast": "node scripts/qa-contrast.mjs",
-    "qa:floor": "npm run qa:floor:budget && npm run qa:floor:pointer",
+    "qa:floor": "npm run qa:floor:budget && npm run qa:floor:pointer && npm run qa:floor:slot",
     "qa:floor:budget": "node scripts/check-floor-budget.mjs",
     "qa:floor:pointer": "node scripts/check-floor-pointer.mjs",
+    "qa:floor:slot": "node scripts/check-floor-slot.mjs",
     "qa:weight": "node scripts/measure-bundles.mjs",
     "qa:worlds": "node scripts/qa-worlds.mjs",
     "qa:plate": "node scripts/qa-plate.mjs"
