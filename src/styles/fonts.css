@@ -6,12 +6,12 @@
   `wght` untouched, `tnum` asserted present, and one metric-matched local fallback per
   face so the `font-display: swap` costs no layout shift.
 
-  Total: 68,460 B for both faces.
+  Total: 68,984 B for both faces.
   woff2 does not compress further under gzip, so this is also the transfer size.
 */
 
 /*
-  Anek Latin Variable — subset from dist/, 125 glyphs, 48,204 B
+  Anek Latin Variable — subset from dist/, 126 glyphs, 48,432 B
   (source 103,760 B). Axes wght 100–800, wdth 75–100. Features ccmp, liga, locl, rvrn, tnum.
 */
 @font-face {
@@ -46,7 +46,7 @@
 }
 
 /*
-  Instrument Sans Variable — subset from dist/, 133 glyphs, 20,256 B
+  Instrument Sans Variable — subset from dist/, 134 glyphs, 20,552 B
   (source 30,092 B). Axes wght 400–700. Features liga, locl, tnum.
 */
 @font-face {
