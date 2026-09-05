@@ -80,6 +80,9 @@ export interface Placement {
   shape: StationShape;
   /** Room-local transform for the desktop plan. */
   wideTransform: string;
+  /** The same point as numbers, for anything that has to measure rather than place it —
+      §B.11's empty room crops its viewBox to the slab and the lamp above this node. */
+  wideNode: { x: number; y: number };
   /** Scene-local transform for the portrait plan. */
   tallTransform: string;
   /** Button centre and size, as percentages of each scene box. */
@@ -142,6 +145,10 @@ const TALL_CELLS: TallCell[] = [
  */
 export const BOX = {
   mod: { x: -64, y: 0, w: 128, h: 64 },
+  /* The pendant lamp's own fixture — cord and shade, no light. It is a shared symbol
+     rather than two paths inside `#fl-seat` because DESIGN.md §B.11's empty room on
+     /404 hangs the same lamp over the same cell with no chair under it. */
+  lamp: { x: -15, y: -84, w: 30, h: 28 },
   dk: { x: -46, y: -14, w: 92, h: 58 },
   mon: { x: 0, y: -40, w: 38, h: 50 },
   ch: { x: -16, y: -32, w: 32, h: 40 },
@@ -243,6 +250,7 @@ export function placements(): Placement[] {
       i,
       shape,
       wideTransform: `translate(${node.x} ${node.y})`,
+      wideNode: node,
       tallTransform: `translate(${num(tallT.x)} ${num(tallT.y)}) scale(${round(scale)})`,
       wide: { x: pct(centre.x, WIDE_BOX.w), y: pct(centre.y, WIDE_BOX.h) },
       tall: {

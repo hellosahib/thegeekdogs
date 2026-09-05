@@ -30,14 +30,36 @@ export const CABIN_DESK_Y = 24;
 
 const D = CABIN_DESK_Y;
 
-export const FLOOR_DEFS = `<defs>
-  <!-- DESIGN.md §C.1 — the one gradient in the whole scene. It paints the lamp's pool
+/**
+ * The lamp, on its own: DESIGN.md §C.1's one gradient and the fixture that hangs it.
+ *
+ * It is split out of `FLOOR_DEFS` because a THIRD renderer needs exactly this much and
+ * no more — DESIGN.md §B.11's empty room on `/404`, which is "the floor slab and the
+ * lamp, no desks, no chair" and "reuses the floor's slab symbol and its lamp gradient
+ * and adds nothing, so it costs roughly zero new bytes". Taking the whole of
+ * `FLOOR_DEFS` there would have shipped seven desk symbols, two cabins and an occupant
+ * to a page that draws none of them; re-typing the gradient would have made the site's
+ * one light two drawings. This is the one string both pages read.
+ */
+export const LAMP_DEFS = `<!-- DESIGN.md §C.1 — the one gradient in the whole scene. It paints the lamp's pool
        on the floor and the cone in the air; both are drawn in the scene, not here, so
        "Lights on" can reach them. -->
   <linearGradient id="fl-cone" x1="0" y1="0" x2="0" y2="1">
     <stop class="fl-cone-a" offset="0"/>
     <stop class="fl-cone-b" offset="1"/>
   </linearGradient>
+
+  <!-- The fixture: the cord and the shade it hangs from, in the two fills the rest of
+       the room already uses. It was two paths at the top of \`#fl-seat\`; it is a symbol
+       so that \`/404\` can hang the same lamp with nothing underneath it. Its own box is
+       BOX.lamp, so every \`<use>\` renders it 1:1 like every other symbol here. -->
+  <symbol id="fl-lamp" viewBox="-15 -84 30 28" overflow="visible">
+    <path class="fl-lit" d="M-1-84h2v20h-2Z"/>
+    <path class="fl-shadow" d="M-11-64h22l4 8h-30Z"/>
+  </symbol>`;
+
+export const FLOOR_DEFS = `<defs>
+  ${LAMP_DEFS}
 
   <!-- One floor module. Instanced across both plans. -->
   <symbol id="fl-mod" viewBox="-64 0 128 64" overflow="visible">
@@ -90,8 +112,7 @@ export const FLOOR_DEFS = `<defs>
        takes the shadow fill so the chair reads as an object standing in the light
        rather than as another lit plane beside the desk's. -->
   <symbol id="fl-seat" viewBox="-46 -84 92 140" overflow="visible">
-    <path class="fl-lit" d="M-1-84h2v20h-2Z"/>
-    <path class="fl-shadow" d="M-11-64h22l4 8h-30Z"/>
+    ${u('lamp', 0, 0)}
     ${u('dk', 0, -14)}
     <path class="fl-shadow" d="M-34.4 38.2-19.6 30.8-19.6 8.8-34.4 16.2Z"/>
     <path class="fl-shadow" d="M-19.6 30.8-19.6 8.8-15.6 10.8-15.6 32.8Z"/>

@@ -1,21 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactPlate from '../components/ContactPlate.astro';
+import EmptyRoom from '../components/floor/EmptyRoom.astro';
 import { BACK_TO_STUDIO } from '../lib/copy';
 
 /*
-  COPY.md §9. Four words and one link. DESIGN.md §B.11's empty room is the floor's slab
-  and lamp, and the floor scene is not built until step 3, so the page ships with the
-  copy and nothing standing in for the artwork.
+  COPY.md §9 and DESIGN.md §B.11.
+
+  The page is a headline, one link home, and an empty room — the floor slab and the lamp,
+  no desks and no chair, drawn from the floor's own defs (see EmptyRoom.astro). COPY.md
+  §9 names none of it on purpose: "A line explaining a visual joke kills the joke and
+  doubles the page." So the room carries no caption, no alt text and no second link, and
+  the whole scene is aria-hidden.
+
+  The room arrives in run C. Run B recorded it as open rather than fixed, because the
+  floor's slab and lamp — the two things §B.11 says this page reuses — did not exist as
+  shared symbols until then.
 
   Step-1 review item 13: §B.10's address table lists /404 among the pages that print
   thegeekdogs@gmail.com on the plate, and no plate rendered there at any width. It does
   now, in the same sticky wrapper the home page uses — the wrapper is the page's whole
-  content, because /404 has neither a hero to leave nor a final CTA to retire into.
+  content, because /404 has neither a hero to leave nor a final CTA to retire into. The
+  plate is site chrome, not this page's link, and COPY.md §9 says so in terms, so it
+  stays and the page's own content is still a headline and one link.
 
-  Step-1 review item 15: the page is shorter than the viewport, so the section grows to
-  fill it and the footer band sits on the viewport's bottom edge. No bare sheet shows
-  below the band at any width.
+  Step-1 review item 15: the page can be shorter than the viewport, so the room section
+  grows to fill it and the footer band sits on the viewport's bottom edge. No bare sheet
+  shows below the band at any width.
 */
 ---
 
@@ -25,7 +36,21 @@ import { BACK_TO_STUDIO } from '../lib/copy';
   noindex
 >
   <div class="plate-span plate-span--page">
-    <section class="section section--reserve">
+    <!--
+      One section, and it is the room. §B.11 does not put a line above an empty room; it
+      says this page IS one, so the headline and the link home stand in it on the floor's
+      own ground, exactly as the floor's own lead and instruction do on `/`. Two sections
+      were tried first and measured: at 1440 x 900 the sheet band pushed the room's top
+      edge to y 502 and the lamp to y 662, so the joke was entirely below the fold on the
+      one page whose whole content is the joke. One room fits the header, the line, the
+      link and the whole room inside the first screen at 360 and shows all of the room at
+      1440.
+
+      `.link` takes `color: inherit`, so inside `.room` it is --chalk on --floor — 12.74
+      : 1 in light and 15.34 : 1 in dark, both already published in §B.2 / §B.2a — and
+      the room's own focus-ring override applies to it unchanged.
+    -->
+    <section class="section bleed room empty-room section--reserve">
       <div class="shell stack">
         <h1>This page isn't here.</h1>
         <p>
@@ -33,16 +58,24 @@ import { BACK_TO_STUDIO } from '../lib/copy';
             {BACK_TO_STUDIO.label}
           </a>
         </p>
+        <EmptyRoom />
       </div>
     </section>
+
     <ContactPlate />
   </div>
 </BaseLayout>
 
 <style>
   /* The wrapper is the page here, so the one section it holds takes the growth and the
-     footer stays on the viewport's bottom edge (step-1 review item 15). */
-  .section {
+     footer band sits on the viewport's bottom edge (step-1 review item 15). */
+  .empty-room {
     flex: 1 0 auto;
+  }
+
+  /* The room stands away from the line that sent you into it. `.stack` sets the rhythm
+     between the headline and the link; this is the one step above it. */
+  .empty-room :global(.room404) {
+    margin-block-start: var(--space-48);
   }
 </style>

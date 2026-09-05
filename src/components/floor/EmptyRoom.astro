@@ -1,0 +1,195 @@
+---
+import { LAMP_DEFS } from './symbols';
+import { BOX, WIDE_SLAB, placements } from './plan';
+
+/**
+ * DESIGN.md §B.11 — `/404` is "the only page that shows an empty room: the floor slab
+ * and the lamp, no desks, no chair. It reuses the floor's slab symbol and its lamp
+ * gradient and adds nothing, so it costs roughly zero new bytes. [...] This is the one
+ * joke the site gets, and it is a joke that is also the argument."
+ *
+ * Everything drawn below already existed:
+ *
+ * - the slab is `WIDE_SLAB`, the projected outline of the same 6 x 5 room, at the same
+ *   `WIDE_TRANSFORM` origin;
+ * - the lamp is `#fl-lamp` and the `#fl-cone` gradient out of `LAMP_DEFS`, the string the
+ *   floor's own `<defs>` are built from;
+ * - the two lit shapes are the pool and the cone the floor draws at its chair station,
+ *   with the chair's own `wideTransform` off `placements()` putting them over the cell
+ *   the chair stands on. §B.12 already says the chair "is implied by what the cone points
+ *   at, exactly as it is on /404"; this is that.
+ *
+ * **No geometry is authored here.** Two `d` strings are, and they are the two the floor
+ * draws at the same station — the module-diamond pool and the cone between shade and
+ * floor. They are the parts of the lamp that are drawn in the scene rather than in the
+ * defs, because "Lights on" has to be able to reach them on `/`; nothing reaches them
+ * here.
+ *
+ * **What is deliberately absent.**
+ *
+ * - **No idle loop.** §C.5's 4800ms loop animates `.fl-glow`, which is a monitor's
+ *   screen. There are no monitors in an empty room, so there is no glow, no `--d` phase
+ *   offset and no animation of any kind in this component — under `reduce` and without
+ *   it, this renders identically.
+ * - **The cone is static.** §H.3's "Lights on" is `/`'s one orchestrated moment and it
+ *   belongs to the page it introduces. A 404 that performs a lighting cue is a page
+ *   asking to be admired for having gone wrong.
+ * - **No script, no buttons, no roster, no card slot.** Nothing here is interactive, so
+ *   the whole SVG is `aria-hidden` (COPY.md §10.2's rule for the floor's scene) and the
+ *   page's accessibility tree stays the headline, the link home and the plate — which is
+ *   exactly what COPY.md §9 says the page is.
+ *
+ * **Scoping.** The `<defs>` arrive through `set:html`, so Astro cannot add its scope
+ * attribute to them — the bug that rendered the whole floor as one black silhouette in
+ * pass 2. Every class the injected markup carries is therefore styled `:global` below,
+ * and the drawn marks use the same global class names so that one rule covers both. The
+ * two fills those rules resolve from are set on this component's own scene box, exactly
+ * as `.floor__scene` sets them, so both schemes follow `--tgd-room` with no second
+ * palette.
+ */
+const chair = placements().at(-1);
+if (!chair || chair.shape !== 'chair') {
+  throw new Error('The floor plan no longer ends with the chair; /404 has nowhere to hang the lamp.');
+}
+const lamp = BOX.lamp;
+const node = chair.wideNode;
+
+/*
+  The box is CROPPED to what is drawn, and it is computed rather than typed.
+
+  §C.3's 856 x 520 scene box carries 76 units of horizontal margin for nameplates that
+  overhang their module and 64 vertical for the same reason. This room has no nameplates,
+  no desks and no chair, so that margin is 140 units of empty ground — at 360 it was the
+  difference between a room and a smudge. The extents below are the slab's own projected
+  outline, widened where the lamp's pool and the cord reach past it, and `PAD` is the
+  drawing's only breathing room. Nothing here is a coordinate: change the plan and this
+  follows it.
+*/
+const PAD = 8;
+const xs = WIDE_SLAB.split(' ').map(Number).filter((_, i) => i % 2 === 0);
+const ys = WIDE_SLAB.split(' ').map(Number).filter((_, i) => i % 2 === 1);
+/** The pool is a full module, so it reaches a module half-width either side of the node. */
+const POOL = { w: 64, h: 64 };
+const minX = Math.min(...xs, node.x - POOL.w) - PAD;
+const maxX = Math.max(...xs, node.x + POOL.w) + PAD;
+const minY = Math.min(...ys, node.y + lamp.y) - PAD;
+const maxY = Math.max(...ys, node.y + POOL.h) + PAD;
+const box = { w: maxX - minX, h: maxY - minY };
+---
+
+<div class="room404" style={`aspect-ratio: ${box.w} / ${box.h}`}>
+  <svg
+    class="room404__scene"
+    viewBox={`${minX} ${minY} ${box.w} ${box.h}`}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <g set:html={`<defs>${LAMP_DEFS}</defs>`}></g>
+    <polygon class="fl-slab fl-edge" points={WIDE_SLAB}></polygon>
+    <g transform={chair.wideTransform}>
+      <path class="fl-cone" d="M0 0 64 32 0 64-64 32Z"></path>
+      <path class="fl-cone" d="M-9-56 9-56 44-4-44-4Z"></path>
+      <use href="#fl-lamp" x={lamp.x} y={lamp.y} width={lamp.w} height={lamp.h}></use>
+    </g>
+  </svg>
+</div>
+
+<style>
+  /*
+    PLAN.md §4.5 and the home floor's own rule — the section reserves its height so the
+    headline above it paints first and nothing shifts when it is laid out. The number is
+    this room's own: the scene is 856 x 520 capped, so 520 is the tallest it renders.
+  */
+  /*
+    The home floor's rule, and its two declarations, on the box that actually holds the
+    drawing — the section skips its own layout until it is near the viewport, so the
+    headline above it paints first.
+
+    **The reservation is the `aspect-ratio`, and `contain-intrinsic-size` must stay out of
+    its way.** This is the run's second finding that only a measurement produces. The home
+    floor's height is content-derived and a single 1180px estimate fits it; this room's
+    height is `width ÷ 5:3` and no single number fits it at more than one width. Declared
+    as `auto 432px` it reserved 432px at every width against a room that renders 164px at
+    360 and 190px at 412, and because `/404` is short enough that the footer is IN the
+    first viewport, the whole of that jump was counted: **CLS 0.0596 against a 0.05 line,
+    identical across three Lighthouse runs**, on the very page this run added. Isolated by
+    re-running with `content-visibility` disabled (0) and with the fonts blocked (0.0596),
+    so it was the reservation and not the swap.
+
+    A size-contained box takes its block size from `contain-intrinsic-size` **in
+    preference to** the ratio, so the fix is to give it nothing to prefer: `auto none`
+    keeps the remembered size for a second paint and otherwise defers to the ratio, which
+    is exact at every width, continuously, rather than at one. Measured after, at 360,
+    412 and 1440: 0, 0.0027 and 0 — and the 0.0027 is the font swap, not this box.
+
+    The ratio therefore lives on this element rather than on the <svg> inside it, which
+    is also why the width cap moved up here with it.
+  */
+  .room404 {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none;
+
+    /* §C.3's cap for the drawn room — 704 units of slab plus the crop's own padding.
+       The ratio beside it is set inline from the same computed box, so the reservation
+       and the drawing cannot disagree. */
+    max-inline-size: 720px;
+    margin-inline: auto;
+  }
+
+  .room404__scene {
+    /* The same fills §C.1 gives the room, read from the same tokens, so the empty room
+       follows the scheme with no palette of its own. */
+    --fl-ground: var(--tgd-room);
+    --fl-lit: rgba(232, 237, 233, 0.22);
+    --fl-shadow: #0a1e21;
+
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  :global([data-theme='dark']) .room404__scene {
+    --fl-shadow: #051113;
+  }
+
+  /*
+    These are `:global` for the same reason StudioFloor's are, and it is a bug fix rather
+    than a style: the `<defs>` above are injected with `set:html`, and Astro cannot add a
+    scope attribute to markup it did not compile — scoped, `.fl-cone-a[data-astro-cid-…]`
+    matches nothing inside the gradient and every fill falls back to the initial black.
+    They are restated here rather than borrowed from StudioFloor because this page does
+    not render StudioFloor: a route must not depend on the stylesheet of a component it
+    never mounts. Every value is the token the floor reads, so there is one source of
+    truth for the colour and two one-line mappings to it.
+  */
+  :global(.fl-slab) {
+    fill: var(--fl-ground);
+  }
+
+  :global(.fl-edge) {
+    stroke: var(--fl-lit);
+    stroke-width: 1;
+  }
+
+  :global(.fl-lit) {
+    fill: var(--fl-lit);
+  }
+
+  :global(.fl-shadow) {
+    fill: var(--fl-shadow);
+  }
+
+  :global(.fl-cone) {
+    fill: url(#fl-cone);
+  }
+
+  :global(.fl-cone-a) {
+    stop-color: var(--lamp);
+    stop-opacity: 0.5;
+  }
+
+  :global(.fl-cone-b) {
+    stop-color: var(--lamp);
+    stop-opacity: 0.06;
+  }
+</style>
