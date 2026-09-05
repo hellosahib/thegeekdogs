@@ -31,7 +31,9 @@ export const CABIN_DESK_Y = 24;
 const D = CABIN_DESK_Y;
 
 export const FLOOR_DEFS = `<defs>
-  <!-- DESIGN.md §C.1 — the one gradient in the whole scene. -->
+  <!-- DESIGN.md §C.1 — the one gradient in the whole scene. It paints the lamp's pool
+       on the floor and the cone in the air; both are drawn in the scene, not here, so
+       "Lights on" can reach them. -->
   <linearGradient id="fl-cone" x1="0" y1="0" x2="0" y2="1">
     <stop class="fl-cone-a" offset="0"/>
     <stop class="fl-cone-b" offset="1"/>
@@ -69,12 +71,32 @@ export const FLOOR_DEFS = `<defs>
     ${u('mon', 0, 0)}
   </symbol>
 
-  <!-- The empty chair: a desk, a chair pulled out, and the only lamp. -->
-  <symbol id="fl-seat" viewBox="-46 -84 92 134" overflow="visible">
+  <!-- Shared sub-part: an occupant, seated. DESIGN.md §C.4 carries the human/agent
+       distinction on "enclosure, footprint, uniqueness and OCCUPANCY", and the step-3
+       review found ten empty seats in a room whose heading says two desks have people
+       at them. It is a shared <symbol> rather than bespoke geometry in each cabin so
+       neither cabin spends any of §C.4's 16-segment budget on it. -->
+  <symbol id="fl-occ" viewBox="-11 -47 22 49" overflow="visible">
+    <path class="fl-shadow" d="M0-32 10-27 10-4 0 1-10-4-10-27Z"/>
+    <circle class="fl-lit" cx="0" cy="-40" r="6"/>
+  </symbol>
+
+  <!-- The empty chair. The step-3 review (item 9) could not find a chair here at any
+       breakpoint: the shared 32 x 40 sub-part read as a plinth under a wedge. This one
+       is drawn for the job it has to do — it is the nearest station, it renders largest
+       (§C.3 mechanism 4), and it is turned away from the desk rather than pushed in,
+       which is the one silhouette in the room that says nobody got up from it. Four
+       segments: the back, its near edge, the seat and the seat's rim, and the back
+       takes the shadow fill so the chair reads as an object standing in the light
+       rather than as another lit plane beside the desk's. -->
+  <symbol id="fl-seat" viewBox="-46 -84 92 140" overflow="visible">
     <path class="fl-lit" d="M-1-84h2v20h-2Z"/>
     <path class="fl-shadow" d="M-11-64h22l4 8h-30Z"/>
-    ${u('ch', -26, 40)}
-    ${u('dk', 0, 0)}
+    ${u('dk', 0, -14)}
+    <path class="fl-shadow" d="M-34.4 38.2-19.6 30.8-19.6 8.8-34.4 16.2Z"/>
+    <path class="fl-shadow" d="M-19.6 30.8-19.6 8.8-15.6 10.8-15.6 32.8Z"/>
+    <path class="fl-lit" d="M-16 29 6 40-16 51-38 40Z"/>
+    <path class="fl-shadow" d="M-38 40-16 51 6 40 6 45-16 56-38 45Z"/>
   </symbol>
 
   <!-- Sahib's cabin. Bespoke: two walls, a floor patch, the whiteboard, the portrait
@@ -92,9 +114,10 @@ export const FLOOR_DEFS = `<defs>
       <path class="fl-mark" d="M54-24h8"/>
       <path class="fl-mark" d="M69-20 60-15"/>
     </g>
-    ${u('ch', -26, D + 50)}
+    <g transform="rotate(-12 -26 ${D + 50})">${u('ch', -26, D + 50)}</g>
     ${u('dk', 0, D)}
     ${u('mon', 0, D)}
+    ${u('occ', -20, D + 44)}
     <g transform="matrix(1 -0.5 0 1 0 0)">
       <rect class="fl-shadow" x="-36" y="${D - 22}" width="14" height="34"/>
       <rect class="fl-shadow" x="-32" y="${D + 12}" width="6" height="5"/>
@@ -116,9 +139,10 @@ export const FLOOR_DEFS = `<defs>
       <rect class="fl-lit" x="41" y="-30" width="46" height="13"/>
       <rect class="fl-mark-fill" x="41" y="-16" width="46" height="8"/>
     </g>
-    ${u('ch', -26, D + 50)}
+    <g transform="rotate(-12 -26 ${D + 50})">${u('ch', -26, D + 50)}</g>
     ${u('dk', 0, D)}
     ${u('mon', 0, D)}
+    ${u('occ', -20, D + 44)}
     <g transform="${SHEAR}">
       <rect class="fl-shadow" x="52" y="${D + 30}" width="34" height="6"/>
       <rect class="fl-lit" x="56" y="${D + 18}" width="7" height="12"/>
