@@ -1,0 +1,82 @@
+[
+  {
+    "route": "/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/work/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/work/pocket-manager/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/work/wedding-planner/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/sahib/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/tanya/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/contact/",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/404.html",
+    "scheme": "light",
+    "messages": []
+  },
+  {
+    "route": "/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/work/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/work/pocket-manager/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/work/wedding-planner/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/sahib/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/tanya/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/contact/",
+    "scheme": "dark",
+    "messages": []
+  },
+  {
+    "route": "/404.html",
+    "scheme": "dark",
+    "messages": []
+  }
+]

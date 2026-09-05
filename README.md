@@ -2,11 +2,15 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: gates 1 and 3 passed. Every route in brief §8 is built — home with the isometric floor, `/work/` and both case studies, `/contact/`, `/sahib/`, `/tanya/` and `/404` — in both schemes, with OG cards, structured data and a print stylesheet. `/404` is the empty room DESIGN.md §B.11 asks for — the floor's own slab and lamp, no desks, no chair — and the contact plate now prints its label below 768 (DESIGN.md §B.10, round 10). Lighthouse 100/100/100/100 on all eight routes in both schemes, `/404.html`'s SEO excepted, which is `is-crawlable` on a `noindex` page. Open: font subsetting and fallback-metric matching (step 8), and both headshots.** Local commits only; a human pushes.
+**Status: built. Eight routes, Astro 7, both schemes, thirteen CI gates green, Lighthouse 100/100/100/100 on every route in both schemes (404's SEO reads 66 by design, it is noindex). Every specialist review is APPROVED except the final rendered review's two must-fix items, closing in run F. Nothing pushed; a human pushes.** What the owners still owe is listed under "What needs you now".
 
 ## What needs you now
 
-1. Open [QUESTIONS.md](QUESTIONS.md). Items 1 to 55 are answered. Items 56 to 67 are open; 56 (who cuts the release), 57 (Firebase config), 58 (repo name and push), 64 (cabin props) and 67 (Astro 7) block the next steps.
+1. Push. Add the GitHub remote for `thegeekdogs.com` under your account and push `main`; set Pages to deploy from Actions; add the GoDaddy records listed under "Deploy" below.
+2. Put the Firebase web config in `.env` (names in `.env.example`). The site builds and runs without it; analytics is simply absent until then.
+3. Run the two passes no agent can: a mid-range Android phone on throttled 4G through the checklist in [docs/reviews/final-qa-gate.md](docs/reviews/final-qa-gate.md), and VoiceOver over the home page and one person page (QUESTIONS.md item 74).
+4. Show Tanya her page using [docs/reviews/tanya-packet.md](docs/reviews/tanya-packet.md) and record her answer in QUESTIONS.md.
+5. Supply the headshots (item 23) and decide wedding planner screenshots 03 and 04 (item 73). Both are the only content still absent.
 2. Read [DESIGN.md](DESIGN.md) §B (studio), §C (the floor), §F (Sahib), §G (Tanya). Say yes, or say what is wrong, per section.
 3. Skim [COPY.md](COPY.md) for anything you would not put your name to. Every `[CONFIRM]` and `[FILL]` in it is a question in QUESTIONS.md.
 

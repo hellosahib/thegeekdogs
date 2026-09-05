@@ -944,7 +944,7 @@ misrepresents what she does; nothing below depends on one.
 - **Headline:** `Tanya Jain`
 - **Role line:** `Mobile engineer. Native Android and KMP, and the iOS side too.`
 - **Body:** `Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Here she owns QA on real devices and the security and privacy review outright, and shares code review with Sahib. She also owns the spec that starts the work and the ASO that ships it.`
-- **Second paragraph:** `Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
+- **Body, long form (cut per DESIGN.md §J round 12; not printed):** `Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.`
 - **Quote, verbatim from Sahib's recommendation of her, 3 July 2026:** `"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices"`
 - **Second quote, same source:** `"go-to person for KMP-related discussions"`
 - **Quote attribution line:** `Sahib Singh, who worked alongside her at Motive.`
@@ -1209,10 +1209,7 @@ string as the gate's own heading in §2.6, or, for ship approval and design revi
 under the four. Six strings on the floor, used everywhere they appear, and the pronouns are the
 ones items 20 and 21 gave: he and him for Sahib, she and her for Tanya.
 
-**Card close control**
-
-- **Label:** `Close`
-- **Accessible name:** `Close this card`
+The card slot never empties, so there is no close control: a station's card is replaced only by another station's card.
 
 **Floor empty state**, if the scene fails to load and only the roster renders. No apology, no
 error tone, because the roster is a complete answer:

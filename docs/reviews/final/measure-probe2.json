@@ -1,0 +1,302 @@
+{
+ "sahib-plate-over-map-360-light": {
+  "right": 319.25,
+  "top": 1801.203125,
+  "bottom": 1819.203125,
+  "t": "Design-components library across Fleet and Driver"
+ },
+ "sahib-plate-over-map-360-dark": {
+  "right": 319.25,
+  "top": 1801.203125,
+  "bottom": 1819.203125,
+  "t": "Design-components library across Fleet and Driver"
+ },
+ "sahib-plate-over-map-390-light": {
+  "right": 345.28125,
+  "top": 1698.453125,
+  "bottom": 1716.453125,
+  "t": "Motive Fleet and Driver apps; Views to Compose"
+ },
+ "sahib-plate-over-map-390-dark": {
+  "right": 345.28125,
+  "top": 1698.453125,
+  "bottom": 1716.453125,
+  "t": "Motive Fleet and Driver apps; Views to Compose"
+ },
+ "focus-station-light": {
+  "label": "Designer, agent. Checked by design review. Open its card.",
+  "outline": "3px solid rgb(232, 237, 233)",
+  "offset": "3px",
+  "box": {
+   "x": 420,
+   "y": 539,
+   "w": 112,
+   "h": 56
+  }
+ },
+ "focus-station-dark": {
+  "label": "Designer, agent. Checked by design review. Open its card.",
+  "outline": "3px solid rgb(232, 237, 233)",
+  "offset": "3px",
+  "box": {
+   "x": 420,
+   "y": 539,
+   "w": 112,
+   "h": 56
+  }
+ },
+ "desk-light": {
+  "clip": {
+   "x": 420,
+   "y": 539,
+   "width": 112,
+   "height": 56
+  },
+  "edge": {
+   "selected": "true"
+  }
+ },
+ "desk-dark": {
+  "clip": {
+   "x": 420,
+   "y": 539,
+   "width": 112,
+   "height": 56
+  },
+  "edge": {
+   "selected": "true"
+  }
+ },
+ "focusstops-home": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-work": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-pm": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-wp": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-contact": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-sahib": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(26, 32, 51)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(26, 32, 51)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(26, 32, 51)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-tanya": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(27, 32, 32)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(27, 32, 32)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(27, 32, 32)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ],
+ "focusstops-404": [
+  {
+   "tag": "A",
+   "cls": "skip-link",
+   "text": "Skip to main content",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 196,
+   "h": 55
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__wordmark",
+   "text": "TheGeekDogs",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 128,
+   "h": 44
+  },
+  {
+   "tag": "A",
+   "cls": "site-header__link",
+   "text": "Work",
+   "outline": "3px solid rgb(15, 42, 46)",
+   "offset": "3px",
+   "w": 35,
+   "h": 44
+  }
+ ]
+}

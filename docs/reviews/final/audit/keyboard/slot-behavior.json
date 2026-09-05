@@ -1,0 +1,17 @@
+{
+  "beforeActivation": {
+    "activeStation": "sahib-singh",
+    "announceText": "",
+    "announceAriaLive": "polite",
+    "slotAriaLive": null,
+    "visibleCardIsThisStation": true
+  },
+  "afterActivation": {
+    "announceText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and shares code review with Tanya.OwnsArchitecture review, code review, design review, the release cut."
+  },
+  "afterTabOnly": {
+    "activeStation": "tanya-jain",
+    "announceTextStillOld": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and shares code review with Tanya.OwnsArchitecture review, code review, design review, the release cut.",
+    "visibleCardSwappedToNewStation": true
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "futureNodeStroke": {
+    "bg": [
+      241,
+      243,
+      240
+    ],
+    "strokeDarkestPixel": [
+      105,
+      122,
+      124
+    ],
+    "ratio": 4.024937720920415,
+    "note": "darkest pixel on the ring stroke, top-arc band only (clear of the horizontal connector line that runs through the node's vertical centre) vs corner background pixel, 4x DPR, light scheme, /work/wedding-planner/, final build"
+  },
+  "sahibSDim": {
+    "sDim": "#545c74",
+    "sPanel": "#e0e2ec",
+    "theme": "light"
+  },
+  "mapCellFill_light": {
+    "tokens": {
+      "sFill": "#868aa0",
+      "sGround": "#eeeff4",
+      "theme": "light"
+    },
+    "filledCount": 10,
+    "emptyCount": 15,
+    "filledPixel": [
+      134,
+      138,
+      160
+    ],
+    "emptyPixel": [
+      238,
+      239,
+      244
+    ],
+    "pixelRatio": 2.9704948901266834,
+    "note": "filled vs empty .map__cell, /sahib/, light, 1024px, ≥1024 matrix layout; patch-averaged 6x6px sample near each cell's padding inset, 4x DPR"
+  },
+  "mapCellFill_dark": {
+    "tokens": {
+      "sFill": "#5e6480",
+      "sGround": "#161c2e",
+      "theme": "dark"
+    },
+    "filledCount": 10,
+    "emptyCount": 15,
+    "filledPixel": [
+      94,
+      100,
+      128
+    ],
+    "emptyPixel": [
+      22,
+      28,
+      46
+    ],
+    "pixelRatio": 2.9124807355599884,
+    "note": "filled vs empty .map__cell, /sahib/, dark, 1024px, ≥1024 matrix layout; patch-averaged 6x6px sample near each cell's padding inset, 4x DPR"
+  }
+}

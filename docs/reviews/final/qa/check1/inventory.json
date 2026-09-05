@@ -1,0 +1,2410 @@
+{
+  "/": {
+    "total": 34,
+    "links": 23,
+    "buttons": 11,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Start a project. Opens an email to thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-cta": "hero-primary",
+          "data-astro-cid-lcdefpme": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "button",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "#studio-floor",
+        "target": null,
+        "accName": "Look around the studio floor",
+        "dataAttrs": {
+          "data-astro-cid-lcdefpme": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "button button--secondary",
+        "action": "in-page anchor -> #studio-floor",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Sahib Singh. Open his card.",
+        "dataAttrs": {
+          "data-station": "sahib-singh",
+          "data-kind": "human",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"sahib-singh\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Tanya Jain. Open her card.",
+        "dataAttrs": {
+          "data-station": "tanya-jain",
+          "data-kind": "human",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"tanya-jain\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Spec Writer, agent. Checked by product spec review. Open its card.",
+        "dataAttrs": {
+          "data-station": "spec-writer",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"spec-writer\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Designer, agent. Checked by design review. Open its card.",
+        "dataAttrs": {
+          "data-station": "designer",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"designer\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Programmer, agent. Checked by code review. Open its card.",
+        "dataAttrs": {
+          "data-station": "programmer",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"programmer\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+        "dataAttrs": {
+          "data-station": "test-engineer",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"test-engineer\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+        "dataAttrs": {
+          "data-station": "security-auditor",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"security-auditor\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Reviewer, agent. Checked by code review. Open its card.",
+        "dataAttrs": {
+          "data-station": "reviewer",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"reviewer\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Release Watcher, agent. Checked by ship approval. Open its card.",
+        "dataAttrs": {
+          "data-station": "release-watcher",
+          "data-kind": "agent",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"release-watcher\"",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Ship approval. The empty chair. Open the card.",
+        "dataAttrs": {
+          "data-station": "ship-approval",
+          "data-kind": "chair",
+          "data-selected": "true",
+          "data-astro-cid-xadyxktq": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "station",
+        "action": "swaps card slot -> station \"ship-approval\"",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib's work in full, on his page",
+        "dataAttrs": {
+          "data-astro-cid-zaaylqeo": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya's work in full, on her page",
+        "dataAttrs": {
+          "data-astro-cid-zaaylqeo": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "target": "_blank",
+        "accName": "Open Pocket Manager in the Play Store Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-lcdefpme": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/pocket-manager/",
+        "target": null,
+        "accName": "Read how it gets built",
+        "dataAttrs": {
+          "data-astro-cid-lcdefpme": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/pocket-manager/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com to start a project",
+        "dataAttrs": {
+          "data-cta": "final-cta",
+          "data-astro-cid-lcdefpme": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "lamp-address",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/work/": {
+    "total": 19,
+    "links": 18,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/pocket-manager/",
+        "target": null,
+        "accName": "Read the Pocket Manager case study",
+        "dataAttrs": {
+          "data-astro-cid-nntkhrjw": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/pocket-manager/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/wedding-planner/",
+        "target": null,
+        "accName": "See what's in build on the wedding planner",
+        "dataAttrs": {
+          "data-astro-cid-nntkhrjw": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/wedding-planner/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/work/pocket-manager/": {
+    "total": 18,
+    "links": 17,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "target": "_blank",
+        "accName": "Open Pocket Manager in the Google Play Store. Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-eph2s77r": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/work/wedding-planner/": {
+    "total": 17,
+    "links": 16,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/sahib/": {
+    "total": 25,
+    "links": 24,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "Back to the studio home page",
+        "dataAttrs": {
+          "data-astro-cid-3haclepf": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7430310577153011712/",
+        "target": "_blank",
+        "accName": "channelFlow versus callbackFlow Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-5kp75vzn": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/feed/update/urn:li:activity:7430310577153011712/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7421603431334932481/",
+        "target": "_blank",
+        "accName": "Android 16 dropping orientation locks and the duplicate-fragment bug it caused Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-5kp75vzn": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/feed/update/urn:li:activity:7421603431334932481/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7420752263364796416/",
+        "target": "_blank",
+        "accName": "ViewModel versus onSaveInstanceState versus SavedStateHandle Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-5kp75vzn": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/feed/update/urn:li:activity:7420752263364796416/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7419068733480022016/",
+        "target": "_blank",
+        "accName": "why coroutine cancellation is cooperative Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-5kp75vzn": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/feed/update/urn:li:activity:7419068733480022016/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:sahiboffc@gmail.com",
+        "target": null,
+        "accName": "Email sahiboffc@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> sahiboffc@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-ufgpzvov": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-ufgpzvov": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:sahiboffc@gmail.com",
+        "target": null,
+        "accName": "Email Sahib at sahiboffc@gmail.com",
+        "dataAttrs": {
+          "data-cta": "person-cta",
+          "data-astro-cid-5kp75vzn": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "close__address",
+        "action": "mailto -> sahiboffc@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/tanya/": {
+    "total": 22,
+    "links": 21,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "Back to the studio home page",
+        "dataAttrs": {
+          "data-astro-cid-3haclepf": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:jaintanya999@gmail.com",
+        "target": null,
+        "accName": "Email jaintanya999@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> jaintanya999@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-ufgpzvov": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-ufgpzvov": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:jaintanya999@gmail.com",
+        "target": null,
+        "accName": "Email Tanya at jaintanya999@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-ufgpzvov": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> jaintanya999@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:jaintanya999@gmail.com",
+        "target": null,
+        "accName": "Email Tanya at jaintanya999@gmail.com",
+        "dataAttrs": {
+          "data-cta": "person-cta",
+          "data-astro-cid-kjzdkyzc": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "close__address",
+        "action": "mailto -> jaintanya999@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/contact/": {
+    "total": 19,
+    "links": 18,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-ogjzdvpc": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:sahiboffc@gmail.com",
+        "target": null,
+        "accName": "sahiboffc@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-ogjzdvpc": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> sahiboffc@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:jaintanya999@gmail.com",
+        "target": null,
+        "accName": "jaintanya999@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-ogjzdvpc": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> jaintanya999@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/hellosahib",
+        "target": "_blank",
+        "accName": "Sahib on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/hellosahib",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://github.com/Tanya-jain99",
+        "target": "_blank",
+        "accName": "Tanya on GitHub Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://github.com/Tanya-jain99",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "target": "_blank",
+        "accName": "Sahib on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/sahib-singh-876959143/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "target": "_blank",
+        "accName": "Tanya on LinkedIn Opens a new tab.",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "external new-tab -> https://www.linkedin.com/in/tanyajain06/",
+        "flags": []
+      }
+    ]
+  },
+  "/404.html": {
+    "total": 10,
+    "links": 9,
+    "buttons": 1,
+    "elements": [
+      {
+        "tag": "a",
+        "href": "#main",
+        "target": null,
+        "accName": "Skip to main content",
+        "dataAttrs": {},
+        "type": null,
+        "visible": true,
+        "classes": "skip-link",
+        "action": "in-page anchor -> #main",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "TheGeekDogs, home",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__wordmark",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/work/",
+        "target": null,
+        "accName": "Work",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /work/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/sahib/",
+        "target": null,
+        "accName": "Sahib",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /sahib/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/tanya/",
+        "target": null,
+        "accName": "Tanya",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /tanya/",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/contact/",
+        "target": null,
+        "accName": "Contact",
+        "dataAttrs": {
+          "data-astro-cid-nen7h5rs": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "site-header__link",
+        "action": "navigate -> /contact/",
+        "flags": []
+      },
+      {
+        "tag": "button",
+        "href": null,
+        "target": null,
+        "accName": "Switch to dark mode",
+        "dataAttrs": {
+          "data-theme-toggle": "",
+          "data-name-to-light": "Switch to light mode",
+          "data-name-to-dark": "Switch to dark mode",
+          "data-says-light": "Light mode on.",
+          "data-says-dark": "Dark mode on.",
+          "data-astro-cid-l6lhmie6": ""
+        },
+        "type": "button",
+        "visible": true,
+        "classes": "theme-toggle__button",
+        "action": "toggles theme (data-theme-toggle)",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "/",
+        "target": null,
+        "accName": "Back to the studio home page",
+        "dataAttrs": {
+          "data-astro-cid-ibpinaeu": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "navigate -> /",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "dataAttrs": {
+          "data-cta": "contact-plate",
+          "data-astro-cid-njphknof": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "plate",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      },
+      {
+        "tag": "a",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "target": null,
+        "accName": "thegeekdogs@gmail.com",
+        "dataAttrs": {
+          "data-astro-cid-jo6i4kqk": ""
+        },
+        "type": null,
+        "visible": true,
+        "classes": "link",
+        "action": "mailto -> thegeekdogs@gmail.com",
+        "flags": []
+      }
+    ]
+  }
+}

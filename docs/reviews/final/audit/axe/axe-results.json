@@ -1,0 +1,222 @@
+[
+  {
+    "route": "home",
+    "scheme": "light",
+    "violations": [],
+    "passes": 40,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          [
+            "text[data-plate=\"sahib-singh\"][transform=\"translate(320 0)\"][y=\"100\"]"
+          ],
+          [
+            "text[data-plate=\"tanya-jain\"][transform=\"translate(192 64)\"][y=\"100\"]"
+          ],
+          [
+            "text[data-plate=\"spec-writer\"][transform=\"translate(448 64)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"designer\"][transform=\"translate(320 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"programmer\"][transform=\"translate(448 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"test-engineer\"][transform=\"translate(576 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"security-auditor\"][transform=\"translate(320 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"reviewer\"][transform=\"translate(448 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"release-watcher\"][transform=\"translate(576 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[y=\"64\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "work",
+    "scheme": "light",
+    "violations": [],
+    "passes": 38,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          [
+            "ol[aria-label=\"Pocket Manager build stage\"] > .full-track__step[data-state=\"complete\"]:nth-child(1) > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            "ol[aria-label=\"Pocket Manager build stage\"] > .full-track__step[data-state=\"current\"][aria-current=\"step\"] > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            "ol[aria-label=\"Wedding planner build stage\"] > .full-track__step[data-state=\"complete\"]:nth-child(1) > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            ".full-track__step[data-state=\"upcoming\"]:nth-child(5) > .full-track__label[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "pocket-manager",
+    "scheme": "light",
+    "violations": [],
+    "passes": 41,
+    "incomplete": []
+  },
+  {
+    "route": "wedding-planner",
+    "scheme": "light",
+    "violations": [],
+    "passes": 40,
+    "incomplete": []
+  },
+  {
+    "route": "sahib",
+    "scheme": "light",
+    "violations": [],
+    "passes": 46,
+    "incomplete": []
+  },
+  {
+    "route": "tanya",
+    "scheme": "light",
+    "violations": [],
+    "passes": 39,
+    "incomplete": []
+  },
+  {
+    "route": "contact",
+    "scheme": "light",
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  },
+  {
+    "route": "404",
+    "scheme": "light",
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  },
+  {
+    "route": "home",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 40,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          [
+            "text[data-plate=\"sahib-singh\"][transform=\"translate(320 0)\"][y=\"100\"]"
+          ],
+          [
+            "text[data-plate=\"tanya-jain\"][transform=\"translate(192 64)\"][y=\"100\"]"
+          ],
+          [
+            "text[data-plate=\"spec-writer\"][transform=\"translate(448 64)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"designer\"][transform=\"translate(320 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"programmer\"][transform=\"translate(448 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"test-engineer\"][transform=\"translate(576 128)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"security-auditor\"][transform=\"translate(320 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"reviewer\"][transform=\"translate(448 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[data-plate=\"release-watcher\"][transform=\"translate(576 192)\"][y=\"32\"]"
+          ],
+          [
+            "text[y=\"64\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "work",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 38,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": [
+          [
+            "ol[aria-label=\"Pocket Manager build stage\"] > .full-track__step[data-state=\"complete\"]:nth-child(1) > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            "ol[aria-label=\"Pocket Manager build stage\"] > .full-track__step[data-state=\"current\"][aria-current=\"step\"] > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            "ol[aria-label=\"Wedding planner build stage\"] > .full-track__step[data-state=\"complete\"]:nth-child(1) > .full-track__label[aria-hidden=\"true\"]"
+          ],
+          [
+            ".full-track__step[data-state=\"upcoming\"]:nth-child(5) > .full-track__label[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "pocket-manager",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 41,
+    "incomplete": []
+  },
+  {
+    "route": "wedding-planner",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 40,
+    "incomplete": []
+  },
+  {
+    "route": "sahib",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 46,
+    "incomplete": []
+  },
+  {
+    "route": "tanya",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 39,
+    "incomplete": []
+  },
+  {
+    "route": "contact",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  },
+  {
+    "route": "404",
+    "scheme": "dark",
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  }
+]

@@ -1,0 +1,879 @@
+{
+  "404": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "This page isn't here."
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [],
+    "images": [],
+    "externalBlank": [],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "home": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "AI writes a lot of our code. It doesn't get the last word."
+      },
+      {
+        "level": 2,
+        "text": "Two desks have people at them. The rest are agents."
+      },
+      {
+        "level": 3,
+        "text": "Sahib Singh"
+      },
+      {
+        "level": 3,
+        "text": "Tanya Jain"
+      },
+      {
+        "level": 3,
+        "text": "Spec Writer"
+      },
+      {
+        "level": 3,
+        "text": "Designer"
+      },
+      {
+        "level": 3,
+        "text": "Programmer"
+      },
+      {
+        "level": 3,
+        "text": "Test Engineer"
+      },
+      {
+        "level": 3,
+        "text": "Security Auditor"
+      },
+      {
+        "level": 3,
+        "text": "Reviewer"
+      },
+      {
+        "level": 3,
+        "text": "Release Watcher"
+      },
+      {
+        "level": 3,
+        "text": "Ship approval"
+      },
+      {
+        "level": 2,
+        "text": "Sahib Singh"
+      },
+      {
+        "level": 2,
+        "text": "Tanya Jain"
+      },
+      {
+        "level": 2,
+        "text": "Four things we don't hand to an agent."
+      },
+      {
+        "level": 3,
+        "text": "Architecture review."
+      },
+      {
+        "level": 3,
+        "text": "Code review."
+      },
+      {
+        "level": 3,
+        "text": "QA on real devices."
+      },
+      {
+        "level": 3,
+        "text": "Security and privacy review."
+      },
+      {
+        "level": 2,
+        "text": "We run this on our own app first."
+      },
+      {
+        "level": 2,
+        "text": "You'll be holding something before you're bored of the kickoff."
+      },
+      {
+        "level": 2,
+        "text": "Tell us what you're building."
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [
+      {
+        "value": "step",
+        "text": "Live. Where it is now.",
+        "tag": "li"
+      },
+      {
+        "value": "step",
+        "text": "Final touches. Where it is now.",
+        "tag": "li"
+      }
+    ],
+    "images": [],
+    "externalBlank": [
+      {
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "text": "Open Pocket Manager in the Play Store Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Open Pocket Manager in the Play Store Opens a new tab."
+      },
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "work": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Two products, both ours."
+      },
+      {
+        "level": 2,
+        "text": "Pocket Manager"
+      },
+      {
+        "level": 2,
+        "text": "A wedding planner"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [
+      {
+        "value": "step",
+        "text": "Live. Where it is now.Live",
+        "tag": "li"
+      },
+      {
+        "value": "step",
+        "text": "Final touches. Where it is now.Final touches",
+        "tag": "li"
+      }
+    ],
+    "images": [],
+    "externalBlank": [
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "pocket-manager": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Pocket Manager"
+      },
+      {
+        "level": 2,
+        "text": "Problem"
+      },
+      {
+        "level": 2,
+        "text": "Build"
+      },
+      {
+        "level": 2,
+        "text": "Review process"
+      },
+      {
+        "level": 2,
+        "text": "Outcome"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [
+      {
+        "value": "step",
+        "text": "Live. Where it is now.Live",
+        "tag": "li"
+      }
+    ],
+    "images": [
+      {
+        "src": "/_astro/01-home.oKRNNGQv_DtXdz.png",
+        "alt": "The Pocket Manager home screen, showing September's balance with the month's income and spending under it, above the day's transactions.",
+        "hasAlt": true
+      },
+      {
+        "src": "/_astro/02-calendar.DJOo52UH_Z1N77X8.png",
+        "alt": "The Pocket Manager calendar screen, with 3 September picked out on the month grid and that day's three records below it, beside the day's balance and the month's.",
+        "hasAlt": true
+      },
+      {
+        "src": "/_astro/04-categories.BvdDXerm_Z24Facs.png",
+        "alt": "The Pocket Manager statistics screen, showing seven days of spending as a bar chart and, further down the same screen, each category's share of it as a percentage.",
+        "hasAlt": true
+      },
+      {
+        "src": "/_astro/05-export.D5ZJN9tA_1vgTTj.png",
+        "alt": "The Pocket Manager settings screen, scrolled to the rows that export the data, import it and share it as a CSV file, each of the three tagged Beta.",
+        "hasAlt": true
+      }
+    ],
+    "externalBlank": [
+      {
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "text": "Open Pocket Manager in the Play Store",
+        "ariaLabel": "Open Pocket Manager in the Google Play Store. Opens a new tab.",
+        "accessibleName": "Open Pocket Manager in the Google Play Store. Opens a new tab."
+      },
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "wedding-planner": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "The second one, in build."
+      },
+      {
+        "level": 2,
+        "text": "One wedding, several functions, one screen."
+      },
+      {
+        "level": 2,
+        "text": "What's in it"
+      },
+      {
+        "level": 2,
+        "text": "Why it isn't out yet"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [
+      {
+        "value": "step",
+        "text": "Final touches. Where it is now.Final touches",
+        "tag": "li"
+      }
+    ],
+    "images": [
+      {
+        "src": "/_astro/01-planning-board-functions.BNcipb1J_ZhueGk.png",
+        "alt": "The planning board, with a card for each function of the wedding, each carrying its own date and its own colour.",
+        "hasAlt": true
+      }
+    ],
+    "externalBlank": [
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "sahib": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Sahib Singh"
+      },
+      {
+        "level": 2,
+        "text": "What he ships and where"
+      },
+      {
+        "level": 2,
+        "text": "The roles behind the map"
+      },
+      {
+        "level": 2,
+        "text": "He writes it down"
+      },
+      {
+        "level": 2,
+        "text": "Background"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [],
+    "images": [],
+    "externalBlank": [
+      {
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7430310577153011712/",
+        "text": "channelFlow versus callbackFlow Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "channelFlow versus callbackFlow Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7421603431334932481/",
+        "text": "Android 16 dropping orientation locks and the duplicate-fragment bug it caused Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Android 16 dropping orientation locks and the duplicate-fragment bug it caused Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7420752263364796416/",
+        "text": "ViewModel versus onSaveInstanceState versus SavedStateHandle Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "ViewModel versus onSaveInstanceState versus SavedStateHandle Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7419068733480022016/",
+        "text": "why coroutine cancellation is cooperative Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "why coroutine cancellation is cooperative Opens a new tab."
+      },
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": {
+      "role": "table",
+      "display": "table",
+      "rows": 6,
+      "columnHeaders": [
+        "Place",
+        "native iOSiOS",
+        "native AndroidAnd",
+        "KMPKMP",
+        "FlutterFlt",
+        "end to end with AIAI"
+      ],
+      "rowHeaders": [
+        "Keenai Global2025 - now",
+        "Motive2023 - 2025",
+        "smallcase2020 - 2023",
+        "Cleartrip2019 - 2020",
+        "TheGeekDogs2020 - now"
+      ],
+      "cells": 25
+    }
+  },
+  "tanya": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Tanya Jain"
+      },
+      {
+        "level": 2,
+        "text": "How the work gets made"
+      },
+      {
+        "level": 2,
+        "text": "Background"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [],
+    "images": [],
+    "externalBlank": [
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [
+      {
+        "cite": null,
+        "hasFooterCite": false,
+        "text": "\"always looking for ways to improve developer productivity, whether by refining "
+      },
+      {
+        "cite": null,
+        "hasFooterCite": false,
+        "text": "\"go-to person for KMP-related discussions\""
+      }
+    ],
+    "tableInfo": null
+  },
+  "contact": {
+    "landmarks": [
+      {
+        "tag": "header",
+        "role": "banner",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Primary"
+      },
+      {
+        "tag": "main",
+        "role": "main",
+        "ariaLabel": null
+      },
+      {
+        "tag": "footer",
+        "role": "contentinfo",
+        "ariaLabel": null
+      },
+      {
+        "tag": "nav",
+        "role": "navigation",
+        "ariaLabel": "Footer"
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Two people, one inbox."
+      },
+      {
+        "level": 2,
+        "text": "Where to send it"
+      },
+      {
+        "level": 3,
+        "text": "The studio"
+      },
+      {
+        "level": 3,
+        "text": "Sahib"
+      },
+      {
+        "level": 3,
+        "text": "Tanya"
+      },
+      {
+        "level": 2,
+        "text": "Elsewhere"
+      }
+    ],
+    "h1Count": 1,
+    "ariaCurrent": [],
+    "images": [],
+    "externalBlank": [
+      {
+        "href": "https://github.com/hellosahib",
+        "text": "Sahib on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://github.com/Tanya-jain99",
+        "text": "Tanya on GitHub Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on GitHub Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "text": "Sahib on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Sahib on LinkedIn Opens a new tab."
+      },
+      {
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "text": "Tanya on LinkedIn Opens a new tab.",
+        "ariaLabel": null,
+        "accessibleName": "Tanya on LinkedIn Opens a new tab."
+      }
+    ],
+    "blockquotes": [],
+    "tableInfo": null
+  },
+  "sahib-map-at-768": {
+    "display": "block",
+    "tableRole": "table",
+    "rowCount": 6,
+    "firstRowCells": [
+      {
+        "role": "rowheader",
+        "scope": "row",
+        "tag": "th"
+      },
+      {
+        "role": "cell",
+        "scope": null,
+        "tag": "td"
+      },
+      {
+        "role": "cell",
+        "scope": null,
+        "tag": "td"
+      },
+      {
+        "role": "cell",
+        "scope": null,
+        "tag": "td"
+      },
+      {
+        "role": "cell",
+        "scope": null,
+        "tag": "td"
+      },
+      {
+        "role": "cell",
+        "scope": null,
+        "tag": "td"
+      }
+    ],
+    "columnHeaderCount": 6,
+    "rowHeaderCount": 5
+  }
+}

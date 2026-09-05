@@ -1,0 +1,22 @@
+{
+ "seam": {
+  "n": 1,
+  "display": "inline",
+  "stroke": "rgba(232, 237, 233, 0.22)",
+  "op": "1"
+ },
+ "storeLinkOnIndex": [
+  "Read the case study",
+  "See what's in build",
+  "Emailthegeekdogs@gmail.com"
+ ],
+ "contactHeader": {
+  "cls": "shell grid intro",
+  "html": "Two people, one inbox.Email is the whole intake. Tell us what you're building, which platforms it has to run on, and roughly when you need it in someone's hands. You'll get a reply from Sahib or Tanya, and a straight answer about whether we're the right fit. If we're not, we'll say so and tell you what we'd look for instead.Where to send itThe studioEverything starts here. Both of us read it.thege"
+ },
+ "tanyaIntro": [
+  "Mobile engineer. Native Android and KMP, and the iOS side too.",
+  "Software Engineer 2 at Motive, on the Fleet App, where she owns releases: phased rollouts, crash and ANR monitoring, and the fixes that follow. Here she owns QA on real devices and the security and privacy review outright, and shares code review with Sahib. She also owns the spec that starts the work and the ASO that ships it.",
+  "jaintanya999@gmail.com"
+ ]
+}

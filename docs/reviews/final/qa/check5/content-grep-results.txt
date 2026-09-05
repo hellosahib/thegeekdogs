@@ -1,0 +1,7 @@
+Scanned 8 HTML files for 10 extra slop patterns.
+PASS: no extra template-slop strings found
+
+--- Screenshot authenticity ---
+Pocket Manager: 0 of 12 source screenshots found byte-identical among built assets (expect 4 referenced on the page, source folder holds 12 incl. dark variants).
+Wedding planner: 0 of 7 source screenshots found byte-identical among built assets (expect 1 referenced on the page).
+  NOTE: zero-byte-identical could mean Astro re-encoded/optimized the images (common for <Image>). Falling back to dimension check.

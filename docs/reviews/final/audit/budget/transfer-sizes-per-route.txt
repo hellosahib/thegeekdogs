@@ -1,0 +1,11 @@
+Route | HTML gz | Inline JS gz | External scripts
+---|---|---|---
+/ | 13221 B | 1165 B (3 inline script(s), 2436 B raw) | 0
+/work/ | 4457 B | 532 B (2 inline script(s), 1027 B raw) | 0
+/work/pocket-manager/ | 5738 B | 532 B (2 inline script(s), 1027 B raw) | 0
+/work/wedding-planner/ | 4605 B | 532 B (2 inline script(s), 1027 B raw) | 0
+/sahib/ | 6748 B | 532 B (2 inline script(s), 1027 B raw) | 0
+/tanya/ | 6622 B | 532 B (2 inline script(s), 1027 B raw) | 0
+/contact/ | 3893 B | 532 B (2 inline script(s), 1027 B raw) | 0
+404.html | 3843 B | 532 B (2 inline script(s), 1027 B raw) | 0
+

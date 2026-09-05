@@ -1,0 +1,38 @@
+[
+  {
+    "route": "/",
+    "scheme": "light",
+    "animationCount": 0,
+    "animations": []
+  },
+  {
+    "route": "/sahib/",
+    "scheme": "light",
+    "animationCount": 0,
+    "animations": []
+  },
+  {
+    "route": "/tanya/",
+    "scheme": "light",
+    "animationCount": 0,
+    "animations": []
+  },
+  {
+    "route": "/",
+    "scheme": "dark",
+    "animationCount": 0,
+    "animations": []
+  },
+  {
+    "route": "/sahib/",
+    "scheme": "dark",
+    "animationCount": 0,
+    "animations": []
+  },
+  {
+    "route": "/tanya/",
+    "scheme": "dark",
+    "animationCount": 0,
+    "animations": []
+  }
+]

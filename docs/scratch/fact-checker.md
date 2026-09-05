@@ -272,3 +272,11 @@ image findings, and six numbered differences with route, built string and approv
 ### Verdict
 
 **APPROVED**, one difference (pre-flagged, non-blocking). Written to `docs/reviews/runB-fact-check.md`.
+
+## Round 7 — final parity pass, `dist-final` (commit `6283b4a`)
+
+Diffed `/sahib/` and `/tanya/` line-for-line against a fresh extraction of round 6's own `dist-runB`, not just against `COPY.md`, to catch anything that moved beyond the three expected strings. All three land verbatim in the right place: `/sahib/`'s two section lines (`What he ships and where`, `The roles behind the map`) and `/tanya/`'s Motive Android-edge annotation, with `Motive` now printed on all three of the band's layers. The sub-768 plate gap from round 6 is closed on all eight routes — `.plate__label`/`.plate__address` swap at the `767px` breakpoint in the shipped CSS, and every route's `aria-label` reads `Email <address>. Opens a new message about a project.` with the right address. Full round-6 sweep (20 terms + pronouns): zero hits, unchanged. JSON-LD byte-identical to round 6 on every route checked. Font subsets (`anek-latin-subset.woff2`, `instrument-sans-subset.woff2`) read directly with `fontTools`: every non-ASCII character actually used on the site (`©`, en dash) is in both subsets' cmaps; `₹` is missing from both but is never used, so not a live gap; zero replacement characters anywhere in the build. One difference recorded, not blocking: `COPY.md` §7.1's intro second paragraph ("Underneath that is the shape she works on...") is no longer rendered on `/tanya/` — it's been moved into an HTML comment that itself documents the reasoning ("§J round 12, `/tanya/`'s 'remove one thing'"), matching `docs/scratch/engineer.md`'s Build run D/E notes. A real, reasoned design cut, but `COPY.md` was never updated to reflect it, so it's on the record rather than silently passed.
+
+### Verdict
+
+**APPROVED**, one difference (a documented design removal, not a copy bug or regression). Written to `docs/reviews/final-fact-check.md`.

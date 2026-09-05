@@ -1761,8 +1761,10 @@ The finance thread is the texture, per §5.4's instruction to pick one spine and
 
 | Cell state | Treatment | Means |
 |---|---|---|
-| Attributed | filled, product name printed inside | we can name the product |
-| Empty | nothing | no claim |
+| Attributed | **1.5px `--s-ink` stroke on every edge** (§F.4c), `--s-fill` inside it, product name printed inside that | we can name the product |
+| Empty | nothing — no stroke, no fill | no claim |
+
+**Round 14: the stroke is the state, and the fill is the reinforcement.** The two-state grammar is carried by the **presence or absence of a 1.5px `--s-ink` stroke**, which measures **14.09 : 1 in light and 14.11 : 1 in dark** against `--s-ground`. `--s-fill` is unchanged (2.97 : 1 light / 2.91 : 1 dark) and is no longer asked to carry the distinction on its own — §F.4c prints the arithmetic showing that it arithmetically cannot, in either scheme, without breaking the product name's AA body inside the cell. Where two filled cells are adjacent — the Motive and smallcase three-cell bars — **the shared edge draws once**, at the same 1.5px, never a doubled 3px seam: the ten cells read as one bounded region with internal divisions, which is the staircase this section argues from, now with a 14 : 1 outer boundary instead of a 2.97 : 1 one. The lit 2025 cell keeps its **2px** `--s-ink` border unchanged (§F.4a) — heavier than the 1.5px, and the only chromatic fill on the map, so it still stands apart as the one lit region. **At 360 the row strips are unchanged**, as §F.4b already rules.
 
 Keeping the third state *drawn* "in case we need it" would be keeping a rendered way to make an unattributed claim, and a drawn affordance gets used. **The one line of prose this section used to reserve beneath the map is deleted with it**, because nothing under the map is unattributed and a disclaimer under a fully attributed diagram only teaches the reader to doubt the diagram. A two-state map cannot lie by omission, because the only thing it can say is "here is a product". That is a stronger position than a grammar, and it costs one CSS rule less.
 
@@ -1790,7 +1792,7 @@ Sahib's world inverts the studio: his page is a dark ground, because a coverage 
 |---|---|---|---|
 | `--s-ground` | `#161C2E` | 0.011983 | Page ground. |
 | `--s-panel` | `#1F2841` | 0.021905 | Raised surface — **section blocks** (§F.4b). The map's filled cells left this token in round 12 and took `--s-fill`. |
-| `--s-ink` | `#E9EAF0` | 0.824605 | Primary text, filled cells. |
+| `--s-ink` | `#E9EAF0` | 0.824605 | Primary text; the text inside a filled cell; **and the filled cell's 1.5px stroke** (§F.4c). Value unchanged in round 14. |
 | `--s-dim` | `#8E96AC` | 0.305420 | Secondary text, row and column labels. |
 | `--lamp` | `#F2A93B` | 0.475689 | Shared with the studio. Used **only** on the 2025 end-to-end-with-AI column. |
 
@@ -1825,7 +1827,7 @@ So `/sahib/` is the one route where the toggle's two positions are "as designed"
 |---|---|---|---|---|
 | `--s-ground` | `#161C2E` | **`#EEEFF4`** | 0.864418 | Page ground. |
 | `--s-panel` | `#1F2841` | **`#E0E2EC`** | 0.762961 | **Section blocks** (§F.4b); no longer the map's field. Steps *darker* than the ground in light, *lighter* in dark — the same "step away from the extreme" rule as the studio's band (§B.2a). |
-| `--s-ink` | `#E9EAF0` | **`#1A2033`** | 0.014917 | Primary text, filled cells. |
+| `--s-ink` | `#E9EAF0` | **`#1A2033`** | 0.014917 | Primary text; the text inside a filled cell; **and the filled cell's 1.5px stroke** (§F.4c). Value unchanged in round 14. |
 | `--s-dim` | `#8E96AC` | **`#545C74`** | 0.108001 | Secondary text, row and column labels. |
 | `--lamp` | `#F2A93B` | `#F2A93B` | 0.475689 | Unchanged. Still only on the 2025 end-to-end-with-AI column. |
 
@@ -1894,6 +1896,55 @@ The two schemes now match on **ratio**, which is §B.2a's rule, rather than on h
 Two blocks, not six, and neither is adjacent to the map. §D.7's controlled-backdrop rule already names `--s-ground` and `--s-panel` as the only permitted card backdrops, so the cards on `--s-panel` are inside a case that is already costed, and §F.4's own note applies — panels on a dark ground are separated by an inset 1px `rgba(233,234,240,.14)` top-left edge highlight plus space, never by fill contrast.
 
 **S6 — the map and the cards arrive with no section line, and that is a copy gap, not a build fault.** §F.7 and §F.8 both draw `Where he has shipped` above the map and `Seven years, four companies` above the cards; rendered, the page has three headings — the h1, `He writes it down` and `Background` — because COPY.md writes neither string. The wireframes are right and the build is right against COPY. Recorded here so it routes: `[COPY NEEDED: the display-section line above the coverage map on /sahib/, ≤ 5 words.]` `[COPY NEEDED: the display-section line above the work cards on /sahib/, ≤ 5 words.]` Both are display-section size, `--s-ink`, on the left edge of their own section.
+
+### F.4c Round 14 — S2 closed on the stroke, because the fill cannot reach 3.2 : 1 without breaking the cell's own text
+
+The final audit does not waive S2: `--s-fill` on `--s-ground` measures **2.97 : 1 light / 2.91 : 1 dark**, under SC 1.4.11's 3 : 1 for a meaningful graphic. The auditor's proposed action was to nudge `--s-fill`'s luminance further from `--s-ground`. **That route is arithmetically closed, and the proof is short enough to print.**
+
+**The two constraints on `--s-fill`, in light.** Method is §B.2's, unchanged. `--s-ground` `#EEEFF4` is L = 0.864418; `--s-ink` `#1A2033` is L = 0.014917.
+
+- For the fill to reach **3.2 : 1** against the ground it must be *darker*, so `L_fill ≤ (0.864418 + 0.05) / 3.2 − 0.05 = 0.914418 / 3.2 − 0.05 = **0.235756**`.
+- For the product name printed inside the cell to hold **AA body, 4.5 : 1**, the fill must be *lighter*, so `L_fill ≥ 4.5 × (0.014917 + 0.05) − 0.05 = 4.5 × 0.064917 − 0.05 = **0.242124**`.
+
+**0.242124 > 0.235756: the window is empty.** The best the fill can do in light while the product name still clears AA body is `L_fill = 0.242124`, which gives `0.914418 / 0.292124 = **3.13 : 1**` — over 3, under the 3.2 the margin asks for, and one rendering rounding away from the line it just cleared.
+
+**The same in dark.** `--s-ground` `#161C2E` is L = 0.011983; `--s-ink` `#E9EAF0` is L = 0.824605.
+
+- For **3.2 : 1** the fill must be *lighter*: `L_fill ≥ 3.2 × (0.011983 + 0.05) − 0.05 = 3.2 × 0.061983 − 0.05 = **0.148347**`.
+- For the product name at **4.5 : 1** the fill must be *darker*: `L_fill ≤ (0.824605 + 0.05) / 4.5 − 0.05 = 0.874605 / 4.5 − 0.05 = **0.144357**`.
+
+**0.144357 < 0.148347: empty again**, and the ceiling is `0.194357 / 0.061983 = **3.14 : 1**`.
+
+So in both schemes the fill route tops out at ~3.13 : 1, has no margin, and buys that by walking the cell's own text down onto the AA line. **Refused.** Raising it further would mean either dropping the product name below AA body — the thing §F.1 spent two rounds putting *into* every filled cell — or minting a seventh palette value for cell text, which item 49's own reasoning rules out.
+
+**Taken instead: a 1.5px `--s-ink` stroke on every filled cell, carrying the distinction on its own.**
+
+| Pair | Light | Dark | Against |
+|---|---|---|---|
+| **1.5px `--s-ink` stroke vs `--s-ground`** — the map's field, and the contract | **14.09 : 1** | **14.11 : 1** | 3 : 1 |
+| 1.5px `--s-ink` stroke vs `--s-fill` — the stroke against the cell it encloses | 4.74 : 1 | 4.84 : 1 | 3 : 1 |
+| 1.5px `--s-ink` stroke vs `--s-panel` — if the map ever sat on one; it does not (§F.4b) | 12.52 : 1 | 12.16 : 1 | 3 : 1 |
+| `--s-fill` vs `--s-ground` — now reinforcement, not the contract | 2.97 : 1 | 2.91 : 1 | — |
+| `--s-ink` inside a filled cell — the product name | 4.74 : 1 | 4.84 : 1 | 4.5 : 1 |
+
+**Why `--s-ink` and not `--s-dim`.** `--s-dim` clears the field — 5.79 : 1 light, 5.73 : 1 dark — but against the fill it encloses it is **1.95 : 1 light and 1.97 : 1 dark**, so the stroke would dissolve into its own cell and the cell would read as a soft blob rather than a bounded one. A boundary has two sides and both have to hold. `--s-ink` clears 3 : 1 on both sides in both schemes, at 14.09/14.11 outward and 4.74/4.84 inward, with margin measured in multiples rather than hundredths. **`--s-dim` is refused for this mark and stays on the row and column labels**, where it is a text token and 5.79/5.73 on the ground is what it is for.
+
+**Why 1.5px and not 1px.** 1px is a hairline at 1× and the mark has to survive the auditor's 4× DPR sample and a 125% browser zoom. 1.5px is 6 device px at 4×, which is exactly the auditor's own 6×6 patch, and it stays a stroke rather than becoming a border — the lit cell's 2px `--s-ink` border (§F.4a) is still the heavier mark and still unchanged.
+
+**The channel that is the contract for the pixel check, stated so the auditor does not have to infer it.** The S2 check is a **stroke-vs-adjacent-colour** check, not a fill-vs-ground one. Sample the **1.5px `--s-ink` stroke against `--s-ground`**, taking the patch along a filled cell's long edge on the *outer* side of the boundary, away from corners and away from any adjacent filled cell's shared edge. At 4× DPR the stroke is 6 device px, so the existing 6×6 averaged patch fits it exactly when centred on the stroke's run. **The number the check must return is 14.09 : 1 in light and 14.11 : 1 in dark, against a 3 : 1 line.** `--s-fill` vs `--s-ground` remains 2.97 : 1 / 2.91 : 1 and is **not** a pass/fail channel — it is the second half of a two-part mark, exactly as §E.1's stage indicator and §C.8's selected desk are two-part, and this document's standing rule is that no state is ever carried by fill alone.
+
+**The lit cell against the new grammar, printed as asked.** `--s-fill` does not move, so nothing about the lamp's neighbourhood changes:
+
+| Pair | Light | Dark |
+|---|---|---|
+| `--lamp` `#F2A93B` vs `--s-fill` — the lit cell against its filled neighbours | **1.71 : 1** | **2.91 : 1** |
+| `--lamp` vs `--s-ground` | 1.74 : 1 | 8.48 : 1 |
+| The lit cell's **2px `--s-ink` border** vs `--s-ground` — its boundary | **14.09 : 1** | **14.11 : 1** |
+| The ink set inside the lit cell — the product name on amber | `--s-ink`, **8.10 : 1** | `--s-ground`, **8.48 : 1** |
+
+The lamp is **fill-only** on the light page by §B.2a's rule and always was; its boundary is the 2px `--s-ink` border, which is the same 14.09/14.11 the new stroke gets. The lit cell's *text* flips token with the scheme — `--s-ink` on amber is 8.10 : 1 in light but only **1.66 : 1** in dark, so dark takes `--s-ground` at 8.48 : 1, which is §F.4's own `--lamp` / `--s-ground` pair read the other way round. **This was derived correctly in build run D and is not written down here**, which is the gap this round closes by printing it: it is a consequence of §B.2's method, not a new value, and it mints nothing. **What the round changes for the lamp is that it is no longer the only cell on the map with a stroke** — so the lit cell now reads as *the amber one among ten bounded cells* rather than *the one bounded cell*. That is the stronger read, not the weaker one: §F.1's argument is that the shape of the filled region comes first and the lamp sits at its head, and a region whose ten cells are all bounded at 14 : 1 is a region a low-vision reader can actually see the shape of before finding the lamp at its corner.
+
+**Nothing else moves.** `--s-fill`, `--s-ground`, `--s-panel`, `--s-ink`, `--s-dim` and `--lamp` keep every value in §F.4 and §F.4a, hex for hex, in both schemes; no ratio in either of those tables changes; §F.4b's split of `--s-fill` off `--s-panel` stands and is what makes the fill safe to demote. The round adds one mark and one number.
 
 ### F.5 Typefaces on Sahib's page
 
@@ -2629,7 +2680,7 @@ Thirty items. **Twenty-six are spec-side and are applied above; four are build-s
 
 ### I.1 Round 13 — the reconciliation round after build run D
 
-Four items, all of them places where two sections of this document disagreed or where a number I wrote could not be reached. **No new rule, no weakened rule, nothing deferred.**
+Four items in round 13, all of them places where two sections of this document disagreed or where a number I wrote could not be reached, **plus row 5 added in round 14** for the final audit's one non-waived finding. **No new rule, no weakened rule, nothing deferred.**
 
 | # | What run D reported | Sections touched | Disposition |
 |---|---|---|---|
@@ -2637,6 +2688,7 @@ Four items, all of them places where two sections of this document disagreed or 
 | 2 | §G.3a's tick geometry is not expressible: "top-aligned to the tick" needs a row aligned across three independent columns | §G.3a | **Spec, and the wording was mine.** **A tick attaches to the layer's *name*, not to a card:** its stroke centre sits on the **platform label's first baseline**, one baseline shared by all three fields because all three take the same 36px lead-in and the same label type — **50px below the band's top border edge** on the shipped face. The baseline is the spec and 50 is its consequence. T2's "top-aligned to the core's first card row" becomes "top-aligned to the band's body row", for the same reason. **The tick no longer waits on T1.** |
 | 3 | §C.8's selected fill measures **2.36 : 1 light / 2.61 : 1 dark**, and its own ≥ 30% pixel-share test is unreachable | §C.8 | **Spec, and the 30% was mine.** The share is a number about the desk's drawing — the top face is ~25% of the station's box at 1440 and ~16% at 360 — so no fill on that face can move 30% of it. The test is **replaced, not lowered**: delta ≥ 60 on the top face (met, 67 / 69) **and ≥ 100 on the 1px `--chalk` edge** (met, 106–178), with the share reported. **The edge carries the selected state**, because 3 : 1 on fill alone is unreachable under the glow ceiling this section keeps — 100% `--chalk` is only 4.9 : 1. |
 | 4 | §C.4's 6% warm offset, open since run A | §C.4, §C.1, §C.10 | **Deleted from the spec.** A fifth fill in a four-fill scene, spent on a difference this document itself calls sub-threshold, on the one distinction §C.4 says is *not* carried by colour. The step-2 review already ruled it out; round 13 removes it from the text so it stops being reported as open. |
+| **5** (round 14) | The final audit's **Finding 1**: `--s-fill` on `--s-ground` is **2.97 : 1 light / 2.91 : 1 dark**, under SC 1.4.11's 3 : 1, **not waived** | §F.1, §F.4, §F.4a, **§F.4c** (new) | **Spec, and the auditor's proposed fix is refused on arithmetic while the finding is upheld in full.** Nudging `--s-fill` cannot reach the 3.2 : 1 margin in either scheme: the fill is squeezed between the ground on one side and the product name's AA body 4.5 : 1 on the other, and §F.4c prints both bounds — light needs `L ≤ 0.235756` and `L ≥ 0.242124`, dark needs `L ≥ 0.148347` and `L ≤ 0.144357`. Both windows are empty; the ceiling is ~3.13 : 1 with no margin, bought by walking the cell's own text onto the AA line. **Taken instead: a 1.5px `--s-ink` stroke on every filled cell, at 14.09 : 1 light / 14.11 : 1 dark against `--s-ground` and 4.74 / 4.84 : 1 against the fill it encloses — the distinction carried on its own, with margin in multiples rather than hundredths.** `--s-dim` refused for this mark: 1.95 / 1.97 : 1 against its own fill, so it would dissolve into the cell it bounds. **No token value changes in either scheme.** The contract for the auditor's pixel check is restated as the **stroke against the ground**, not the fill against the ground; `--s-fill`'s 2.97 / 2.91 : 1 is demoted to the quiet half of a two-part mark, the same discipline §E.1 and §C.8 already take. |
 
 **One wording correction, owed to the Engineer and made in §B.10.** The promise "the plate never covers content — not prose" and reserve 1's "prose and headings are exempt at both widths" are two different rules, and reserve 1 is the built and testable one. The promise's "not prose" is struck. A sticky element in normal flow passes over what is above it — that is what makes it free — so the promise is about load-bearing marks plus the named regions the wrapper does not span, and nothing else. Correcting the promise rather than the reserve is what keeps the rule from being weakened.
 

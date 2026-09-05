@@ -1,0 +1,9 @@
+mailto addresses found: [
+  'thegeekdogs@gmail.com',
+  'jaintanya999@gmail.com',
+  'sahiboffc@gmail.com'
+]
+  thegeekdogs@gmail.com: 16 occurrence(s)
+  jaintanya999@gmail.com: 4 occurrence(s)
+  sahiboffc@gmail.com: 3 occurrence(s)
+PASS check6

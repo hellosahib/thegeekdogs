@@ -1,0 +1,653 @@
+[
+ {
+  "route": "home",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 160,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 155,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 141,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 144,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 144,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 125,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 142,
+  "hits": []
+ },
+ {
+  "route": "home",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 143,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 35,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 34,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 32,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 32,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 24,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 25,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 28,
+  "hits": []
+ },
+ {
+  "route": "work",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 28,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 136,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 133,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 89,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 90,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 85,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 87,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 87,
+  "hits": []
+ },
+ {
+  "route": "pm",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 87,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 75,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 73,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 84,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 93,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 89,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 52,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 58,
+  "hits": []
+ },
+ {
+  "route": "wp",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 58,
+  "hits": []
+ },
+ {
+  "route": "contact",
+  "w": 360,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 390,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 768,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 930,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 931,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 1024,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 1440,
+  "plate": false
+ },
+ {
+  "route": "contact",
+  "w": 1920,
+  "plate": false
+ },
+ {
+  "route": "sahib",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 153,
+  "hits": [
+   {
+    "sel": ".section-line",
+    "text": "What he ships and where",
+    "inkRight": 312.8,
+    "y": 400
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Motive Fleet and Driver apps; Views to Compo",
+    "inkRight": 279.6,
+    "y": 960
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Design-components library across Fleet and D",
+    "inkRight": 319.3,
+    "y": 1040
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Tickertape Flutter for iOS, Android migrated",
+    "inkRight": 317.8,
+    "y": 1320
+   },
+   {
+    "sel": ".section-line",
+    "text": "The roles behind the map",
+    "inkRight": 315.7,
+    "y": 1920
+   },
+   {
+    "sel": ".card__what",
+    "text": "Wealth-tech, Singapore and Bengaluru. Built ",
+    "inkRight": 312.7,
+    "y": 2040
+   },
+   {
+    "sel": ".card__what",
+    "text": "Fleet management, US. Formerly KeepTruckin. ",
+    "inkRight": 251.2,
+    "y": 2400
+   },
+   {
+    "sel": ".card__what",
+    "text": "Investing platform, India. Curated portfolio",
+    "inkRight": 304,
+    "y": 2800
+   },
+   {
+    "sel": ".card__what",
+    "text": "Travel booking, India. Flights, hotels, trai",
+    "inkRight": 313.2,
+    "y": 3120
+   }
+  ]
+ },
+ {
+  "route": "sahib",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 148,
+  "hits": [
+   {
+    "sel": ".section-line",
+    "text": "What he ships and where",
+    "inkRight": 312.8,
+    "y": 360
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Motive Fleet and Driver apps; Views to Compo",
+    "inkRight": 345.3,
+    "y": 920
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Design-components library across Fleet and D",
+    "inkRight": 319.3,
+    "y": 1000
+   },
+   {
+    "sel": ".map__cell-product",
+    "text": "Tickertape Flutter for iOS, Android migrated",
+    "inkRight": 317.8,
+    "y": 1280
+   },
+   {
+    "sel": ".section-line",
+    "text": "The roles behind the map",
+    "inkRight": 315.7,
+    "y": 1880
+   },
+   {
+    "sel": ".card__what",
+    "text": "Wealth-tech, Singapore and Bengaluru. Built ",
+    "inkRight": 343.2,
+    "y": 2000
+   },
+   {
+    "sel": ".card__what",
+    "text": "Fleet management, US. Formerly KeepTruckin. ",
+    "inkRight": 352.4,
+    "y": 2360
+   },
+   {
+    "sel": ".card__what",
+    "text": "Investing platform, India. Curated portfolio",
+    "inkRight": 319.9,
+    "y": 2720
+   },
+   {
+    "sel": ".card__what",
+    "text": "Travel booking, India. Flights, hotels, trai",
+    "inkRight": 312.6,
+    "y": 3040
+   }
+  ]
+ },
+ {
+  "route": "sahib",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 143,
+  "hits": []
+ },
+ {
+  "route": "sahib",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 143,
+  "hits": []
+ },
+ {
+  "route": "sahib",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 143,
+  "hits": []
+ },
+ {
+  "route": "sahib",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 114,
+  "hits": []
+ },
+ {
+  "route": "sahib",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 116,
+  "hits": []
+ },
+ {
+  "route": "sahib",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 117,
+  "hits": []
+ },
+ {
+  "route": "tanya",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 122,
+  "hits": [
+   {
+    "sel": ".edge__note",
+    "text": "MotiveJetpack Compose migration, and the And",
+    "inkRight": 340,
+    "y": 2360
+   },
+   {
+    "sel": ".card__what",
+    "text": "Mobile and product studio, Noida. Around 20 ",
+    "inkRight": 267.4,
+    "y": 2760
+   }
+  ]
+ },
+ {
+  "route": "tanya",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 117,
+  "hits": [
+   {
+    "sel": ".edge__note",
+    "text": "MotiveJetpack Compose migration, and the And",
+    "inkRight": 370,
+    "y": 2200
+   },
+   {
+    "sel": ".card__what",
+    "text": "Mobile and product studio, Noida. Around 20 ",
+    "inkRight": 338.8,
+    "y": 2640
+   }
+  ]
+ },
+ {
+  "route": "tanya",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 102,
+  "hits": [
+   {
+    "sel": ".edge__note",
+    "text": "MotiveJetpack Compose migration, and the And",
+    "inkRight": 506,
+    "y": 1840
+   }
+  ]
+ },
+ {
+  "route": "tanya",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 102,
+  "hits": []
+ },
+ {
+  "route": "tanya",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 102,
+  "hits": []
+ },
+ {
+  "route": "tanya",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 87,
+  "hits": [
+   {
+    "sel": ".edge__label",
+    "text": "iOS",
+    "inkRight": 799.2,
+    "y": 520
+   },
+   {
+    "sel": ".edge__note",
+    "text": "Motive Fleet App",
+    "inkRight": 895.9,
+    "y": 560
+   }
+  ]
+ },
+ {
+  "route": "tanya",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 91,
+  "hits": [
+   {
+    "sel": ".edge__note",
+    "text": "Motive Fleet App",
+    "inkRight": 1171.9,
+    "y": 720
+   }
+  ]
+ },
+ {
+  "route": "tanya",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 92,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 360,
+  "plate": true,
+  "band": 232,
+  "positions": 7,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 390,
+  "plate": true,
+  "band": 262,
+  "positions": 7,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 768,
+  "plate": true,
+  "band": 492,
+  "positions": 12,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 930,
+  "plate": true,
+  "band": 654,
+  "positions": 12,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 931,
+  "plate": true,
+  "band": 655,
+  "positions": 12,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 1024,
+  "plate": true,
+  "band": 748,
+  "positions": 14,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 1440,
+  "plate": true,
+  "band": 1164,
+  "positions": 16,
+  "hits": []
+ },
+ {
+  "route": "404",
+  "w": 1920,
+  "plate": true,
+  "band": 1644,
+  "positions": 16,
+  "hits": []
+ }
+]

@@ -1,0 +1,180 @@
+{
+  "touch": {
+    "360": [
+      {
+        "station": "sahib-singh",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutt"
+      },
+      {
+        "station": "tanya-jain",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Tanya JainNative Android and KMP, and the iOS side too.Software Engineer 2 at Mo"
+      },
+      {
+        "station": "spec-writer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Spec WriterTurns the brief into a written spec: scope, constraints, and what the"
+      },
+      {
+        "station": "designer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "DesignerLayouts, states, and the empty and error screens everyone else forgets.C"
+      },
+      {
+        "station": "programmer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "ProgrammerWrites the code. Fast, and far more of it than a person would.Checked "
+      },
+      {
+        "station": "test-engineer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Test EngineerWrites the tests around the edges you'd have shipped without. The a"
+      },
+      {
+        "station": "security-auditor",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Security AuditorScans dependencies, permissions, and what the app collects and w"
+      },
+      {
+        "station": "reviewer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "ReviewerReads every diff for what a tired human misses at 1am.Checked byCode rev"
+      },
+      {
+        "station": "release-watcher",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Release WatcherWatches crashes and performance in production and files the ticke"
+      },
+      {
+        "station": "ship-approval",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Ship approvalThis chair stays empty. No agent decides that something is ready fo"
+      }
+    ],
+    "390": [
+      {
+        "station": "sahib-singh",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutt"
+      },
+      {
+        "station": "tanya-jain",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Tanya JainNative Android and KMP, and the iOS side too.Software Engineer 2 at Mo"
+      },
+      {
+        "station": "spec-writer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Spec WriterTurns the brief into a written spec: scope, constraints, and what the"
+      },
+      {
+        "station": "designer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "DesignerLayouts, states, and the empty and error screens everyone else forgets.C"
+      },
+      {
+        "station": "programmer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "ProgrammerWrites the code. Fast, and far more of it than a person would.Checked "
+      },
+      {
+        "station": "test-engineer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Test EngineerWrites the tests around the edges you'd have shipped without. The a"
+      },
+      {
+        "station": "security-auditor",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Security AuditorScans dependencies, permissions, and what the app collects and w"
+      },
+      {
+        "station": "reviewer",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "ReviewerReads every diff for what a tired human misses at 1am.Checked byCode rev"
+      },
+      {
+        "station": "release-watcher",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Release WatcherWatches crashes and performance in production and files the ticke"
+      },
+      {
+        "station": "ship-approval",
+        "cardShownAfterTap": true,
+        "selectedMatches": true,
+        "cardSnippet": "Ship approvalThis chair stays empty. No agent decides that something is ready fo"
+      }
+    ]
+  },
+  "mouse": [
+    {
+      "station": "sahib-singh",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "tanya-jain",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "spec-writer",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "designer",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "programmer",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "test-engineer",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "security-auditor",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "reviewer",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "release-watcher",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    },
+    {
+      "station": "ship-approval",
+      "hoverShowedPreview": true,
+      "clickCommitted": true
+    }
+  ]
+}

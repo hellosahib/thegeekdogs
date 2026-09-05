@@ -1,0 +1,3035 @@
+{
+ "wrapper-360": {
+  "chain": [
+   "plate-span__after-floor",
+   "plate-span",
+   "MAIN"
+  ],
+  "wrapCls": "plate-span__after-floor",
+  "containsFloor": false,
+  "containsSlot": false,
+  "wrapTop": 1927.6,
+  "floorBottom": 1927.6
+ },
+ "wrapper-390": {
+  "chain": [
+   "plate-span__after-floor",
+   "plate-span",
+   "MAIN"
+  ],
+  "wrapCls": "plate-span__after-floor",
+  "containsFloor": false,
+  "containsSlot": false,
+  "wrapTop": 1906.6,
+  "floorBottom": 1906.6
+ },
+ "wrapper-768": {
+  "chain": [
+   "plate-span__after-floor",
+   "plate-span",
+   "MAIN"
+  ],
+  "wrapCls": "plate-span__after-floor",
+  "containsFloor": false,
+  "containsSlot": false,
+  "wrapTop": 1661.7,
+  "floorBottom": 1661.7
+ },
+ "wrapper-1024": {
+  "chain": [
+   "plate-span__after-floor",
+   "plate-span",
+   "MAIN"
+  ],
+  "wrapCls": "plate-span__after-floor",
+  "containsFloor": false,
+  "containsSlot": false,
+  "wrapTop": 1512.7,
+  "floorBottom": 1512.7
+ },
+ "wrapper-1440": {
+  "chain": [
+   "plate-span__after-floor",
+   "plate-span",
+   "MAIN"
+  ],
+  "wrapCls": "plate-span__after-floor",
+  "containsFloor": false,
+  "containsSlot": false,
+  "wrapTop": 1800.8,
+  "floorBottom": 1800.8
+ },
+ "gates-360": {
+  "band": 232,
+  "ulBox": {
+   "x": 36,
+   "right": 324
+  },
+  "ulInk": {
+   "l": 36,
+   "r": 207.2
+  },
+  "items": [
+   {
+    "t": "Spec",
+    "box": 73,
+    "ink": 73
+   },
+   {
+    "t": "code and design review",
+    "box": 207.2,
+    "ink": 207.2
+   },
+   {
+    "t": "device QA",
+    "box": 111.6,
+    "ink": 111.6
+   },
+   {
+    "t": "security and privacy",
+    "box": 181.7,
+    "ink": 181.7
+   },
+   {
+    "t": "ASO",
+    "box": 69.5,
+    "ink": 69.5
+   },
+   {
+    "t": "release cut",
+    "box": 115.9,
+    "ink": 115.9
+   }
+  ],
+  "plateLeft": 232
+ },
+ "gates-390": {
+  "band": 262,
+  "ulBox": {
+   "x": 36,
+   "right": 354
+  },
+  "ulInk": {
+   "l": 36,
+   "r": 207.2
+  },
+  "items": [
+   {
+    "t": "Spec",
+    "box": 73,
+    "ink": 73
+   },
+   {
+    "t": "code and design review",
+    "box": 207.2,
+    "ink": 207.2
+   },
+   {
+    "t": "device QA",
+    "box": 111.6,
+    "ink": 111.6
+   },
+   {
+    "t": "security and privacy",
+    "box": 181.7,
+    "ink": 181.7
+   },
+   {
+    "t": "ASO",
+    "box": 69.5,
+    "ink": 69.5
+   },
+   {
+    "t": "release cut",
+    "box": 115.9,
+    "ink": 115.9
+   }
+  ],
+  "plateLeft": 262
+ },
+ "gates-768": {
+  "band": 492,
+  "ulBox": {
+   "x": 48,
+   "right": 720
+  },
+  "ulInk": {
+   "l": 48,
+   "r": 219.2
+  },
+  "items": [
+   {
+    "t": "Spec",
+    "box": 85,
+    "ink": 85
+   },
+   {
+    "t": "code and design review",
+    "box": 219.2,
+    "ink": 219.2
+   },
+   {
+    "t": "device QA",
+    "box": 123.6,
+    "ink": 123.6
+   },
+   {
+    "t": "security and privacy",
+    "box": 193.7,
+    "ink": 193.7
+   },
+   {
+    "t": "ASO",
+    "box": 81.5,
+    "ink": 81.5
+   },
+   {
+    "t": "release cut",
+    "box": 127.9,
+    "ink": 127.9
+   }
+  ],
+  "plateLeft": 492
+ },
+ "gates-1024": {
+  "band": 748,
+  "ulBox": {
+   "x": 318,
+   "right": 706
+  },
+  "ulInk": {
+   "l": 318,
+   "r": 489.2
+  },
+  "items": [
+   {
+    "t": "Spec",
+    "box": 355,
+    "ink": 355
+   },
+   {
+    "t": "code and design review",
+    "box": 489.2,
+    "ink": 489.2
+   },
+   {
+    "t": "device QA",
+    "box": 393.6,
+    "ink": 393.6
+   },
+   {
+    "t": "security and privacy",
+    "box": 463.7,
+    "ink": 463.7
+   },
+   {
+    "t": "ASO",
+    "box": 351.5,
+    "ink": 351.5
+   },
+   {
+    "t": "release cut",
+    "box": 397.9,
+    "ink": 397.9
+   }
+  ],
+  "plateLeft": 748
+ },
+ "gates-1440": {
+  "band": 1164,
+  "ulBox": {
+   "x": 458,
+   "right": 982
+  },
+  "ulInk": {
+   "l": 458,
+   "r": 635.2
+  },
+  "items": [
+   {
+    "t": "Spec",
+    "box": 496.3,
+    "ink": 496.3
+   },
+   {
+    "t": "code and design review",
+    "box": 635.2,
+    "ink": 635.2
+   },
+   {
+    "t": "device QA",
+    "box": 536.2,
+    "ink": 536.2
+   },
+   {
+    "t": "security and privacy",
+    "box": 608.8,
+    "ink": 608.8
+   },
+   {
+    "t": "ASO",
+    "box": 492.7,
+    "ink": 492.7
+   },
+   {
+    "t": "release cut",
+    "box": 540.7,
+    "ink": 540.7
+   }
+  ],
+  "plateLeft": 1164
+ },
+ "map-360": {
+  "band": 232,
+  "prods": [
+   {
+    "t": "Keenai Wealth, Keenai Pulse",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 217.5,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Backend, frontend, tests",
+    "box": 206.4,
+    "ink": {
+     "l": 50,
+     "r": 206.4,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 218.9,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps; Views to C",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 279.6,
+     "lines": 2
+    }
+   },
+   {
+    "t": "Design-components library across Fleet a",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 319.3,
+     "lines": 2
+    }
+   },
+   {
+    "t": "Tickertape",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 105.2,
+     "lines": 1
+    }
+   },
+   {
+    "t": "smallcase Android app",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 181.7,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Tickertape Flutter for iOS, Android migr",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 317.8,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Cleartrip Android app",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 175.1,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Pocket Manager",
+    "box": 324,
+    "ink": {
+     "l": 36,
+     "r": 141,
+     "lines": 1
+    }
+   }
+  ],
+  "strips": [
+   {
+    "n": 5,
+    "right": 324
+   },
+   {
+    "n": 5,
+    "right": 324
+   },
+   {
+    "n": 5,
+    "right": 324
+   },
+   {
+    "n": 5,
+    "right": 324
+   },
+   {
+    "n": 5,
+    "right": 324
+   }
+  ],
+  "marksMaxRight": 232,
+  "wrapperSpansMap": true
+ },
+ "map-390": {
+  "band": 262,
+  "prods": [
+   {
+    "t": "Keenai Wealth, Keenai Pulse",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 217.5,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Backend, frontend, tests",
+    "box": 206.4,
+    "ink": {
+     "l": 50,
+     "r": 206.4,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 218.9,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps; Views to C",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 345.3,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Design-components library across Fleet a",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 319.3,
+     "lines": 2
+    }
+   },
+   {
+    "t": "Tickertape",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 105.2,
+     "lines": 1
+    }
+   },
+   {
+    "t": "smallcase Android app",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 181.7,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Tickertape Flutter for iOS, Android migr",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 317.8,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Cleartrip Android app",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 175.1,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Pocket Manager",
+    "box": 354,
+    "ink": {
+     "l": 36,
+     "r": 141,
+     "lines": 1
+    }
+   }
+  ],
+  "strips": [
+   {
+    "n": 5,
+    "right": 354
+   },
+   {
+    "n": 5,
+    "right": 354
+   },
+   {
+    "n": 5,
+    "right": 354
+   },
+   {
+    "n": 5,
+    "right": 354
+   },
+   {
+    "n": 5,
+    "right": 354
+   }
+  ],
+  "marksMaxRight": 232,
+  "wrapperSpansMap": true
+ },
+ "map-768": {
+  "band": 492,
+  "prods": [
+   {
+    "t": "Keenai Wealth, Keenai Pulse",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 229.5,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Backend, frontend, tests",
+    "box": 218.4,
+    "ink": {
+     "l": 62,
+     "r": 218.4,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 230.9,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Motive Fleet and Driver apps; Views to C",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 357.3,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Design-components library across Fleet a",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 373.3,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Tickertape",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 117.2,
+     "lines": 1
+    }
+   },
+   {
+    "t": "smallcase Android app",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 193.7,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Tickertape Flutter for iOS, Android migr",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 329.8,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Cleartrip Android app",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 187.1,
+     "lines": 1
+    }
+   },
+   {
+    "t": "Pocket Manager",
+    "box": 720,
+    "ink": {
+     "l": 48,
+     "r": 153,
+     "lines": 1
+    }
+   }
+  ],
+  "strips": [
+   {
+    "n": 5,
+    "right": 720
+   },
+   {
+    "n": 5,
+    "right": 720
+   },
+   {
+    "n": 5,
+    "right": 720
+   },
+   {
+    "n": 5,
+    "right": 720
+   },
+   {
+    "n": 5,
+    "right": 720
+   }
+  ],
+  "marksMaxRight": 244,
+  "wrapperSpansMap": true
+ },
+ "slotres-360": {
+  "min": "320px",
+  "n": 10,
+  "tallest": 329,
+  "res": [
+   {
+    "name": "Sahib Singh. Open his card.",
+    "contentH": 329,
+    "slotH": 377
+   },
+   {
+    "name": "Tanya Jain. Open her card.",
+    "contentH": 329,
+    "slotH": 377
+   },
+   {
+    "name": "Spec Writer, agent. Checked by p",
+    "contentH": 191.5,
+    "slotH": 320
+   },
+   {
+    "name": "Designer, agent. Checked by desi",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Programmer, agent. Checked by co",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Test Engineer, agent. Checked by",
+    "contentH": 217.4,
+    "slotH": 320
+   },
+   {
+    "name": "Security Auditor, agent. Checked",
+    "contentH": 217.4,
+    "slotH": 320
+   },
+   {
+    "name": "Reviewer, agent. Checked by code",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Release Watcher, agent. Checked ",
+    "contentH": 191.5,
+    "slotH": 320
+   },
+   {
+    "name": "Ship approval. The empty chair. ",
+    "contentH": 109.7,
+    "slotH": 320
+   }
+  ]
+ },
+ "slotres-390": {
+  "min": "320px",
+  "n": 10,
+  "tallest": 303.1,
+  "res": [
+   {
+    "name": "Sahib Singh. Open his card.",
+    "contentH": 303.1,
+    "slotH": 351.1
+   },
+   {
+    "name": "Tanya Jain. Open her card.",
+    "contentH": 277.2,
+    "slotH": 325.2
+   },
+   {
+    "name": "Spec Writer, agent. Checked by p",
+    "contentH": 191.5,
+    "slotH": 320
+   },
+   {
+    "name": "Designer, agent. Checked by desi",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Programmer, agent. Checked by co",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Test Engineer, agent. Checked by",
+    "contentH": 217.4,
+    "slotH": 320
+   },
+   {
+    "name": "Security Auditor, agent. Checked",
+    "contentH": 217.4,
+    "slotH": 320
+   },
+   {
+    "name": "Reviewer, agent. Checked by code",
+    "contentH": 165.6,
+    "slotH": 320
+   },
+   {
+    "name": "Release Watcher, agent. Checked ",
+    "contentH": 191.5,
+    "slotH": 320
+   },
+   {
+    "name": "Ship approval. The empty chair. ",
+    "contentH": 109.7,
+    "slotH": 320
+   }
+  ]
+ },
+ "slotres-768": {
+  "min": "264px",
+  "n": 10,
+  "tallest": 251.3,
+  "res": [
+   {
+    "name": "Sahib Singh. Open his card.",
+    "contentH": 225.4,
+    "slotH": 273.4
+   },
+   {
+    "name": "Tanya Jain. Open her card.",
+    "contentH": 251.3,
+    "slotH": 299.3
+   },
+   {
+    "name": "Spec Writer, agent. Checked by p",
+    "contentH": 165.6,
+    "slotH": 264
+   },
+   {
+    "name": "Designer, agent. Checked by desi",
+    "contentH": 165.6,
+    "slotH": 264
+   },
+   {
+    "name": "Programmer, agent. Checked by co",
+    "contentH": 139.7,
+    "slotH": 264
+   },
+   {
+    "name": "Test Engineer, agent. Checked by",
+    "contentH": 191.5,
+    "slotH": 264
+   },
+   {
+    "name": "Security Auditor, agent. Checked",
+    "contentH": 191.5,
+    "slotH": 264
+   },
+   {
+    "name": "Reviewer, agent. Checked by code",
+    "contentH": 139.7,
+    "slotH": 264
+   },
+   {
+    "name": "Release Watcher, agent. Checked ",
+    "contentH": 165.6,
+    "slotH": 264
+   },
+   {
+    "name": "Ship approval. The empty chair. ",
+    "contentH": 83.8,
+    "slotH": 264
+   }
+  ]
+ },
+ "slotres-1024": {
+  "min": "416px",
+  "n": 10,
+  "tallest": 406.7,
+  "res": [
+   {
+    "name": "Sahib Singh. Open his card.",
+    "contentH": 406.7,
+    "slotH": 454.7
+   },
+   {
+    "name": "Tanya Jain. Open her card.",
+    "contentH": 380.8,
+    "slotH": 428.8
+   },
+   {
+    "name": "Spec Writer, agent. Checked by p",
+    "contentH": 217.4,
+    "slotH": 416
+   },
+   {
+    "name": "Designer, agent. Checked by desi",
+    "contentH": 191.5,
+    "slotH": 416
+   },
+   {
+    "name": "Programmer, agent. Checked by co",
+    "contentH": 165.6,
+    "slotH": 416
+   },
+   {
+    "name": "Test Engineer, agent. Checked by",
+    "contentH": 243.3,
+    "slotH": 416
+   },
+   {
+    "name": "Security Auditor, agent. Checked",
+    "contentH": 269.2,
+    "slotH": 416
+   },
+   {
+    "name": "Reviewer, agent. Checked by code",
+    "contentH": 165.6,
+    "slotH": 416
+   },
+   {
+    "name": "Release Watcher, agent. Checked ",
+    "contentH": 217.4,
+    "slotH": 416
+   },
+   {
+    "name": "Ship approval. The empty chair. ",
+    "contentH": 135.6,
+    "slotH": 416
+   }
+  ]
+ },
+ "slotres-1440": {
+  "min": "352px",
+  "n": 10,
+  "tallest": 339.2,
+  "res": [
+   {
+    "name": "Sahib Singh. Open his card.",
+    "contentH": 339.2,
+    "slotH": 387.2
+   },
+   {
+    "name": "Tanya Jain. Open her card.",
+    "contentH": 339.2,
+    "slotH": 387.2
+   },
+   {
+    "name": "Spec Writer, agent. Checked by p",
+    "contentH": 197.1,
+    "slotH": 352
+   },
+   {
+    "name": "Designer, agent. Checked by desi",
+    "contentH": 170.2,
+    "slotH": 352
+   },
+   {
+    "name": "Programmer, agent. Checked by co",
+    "contentH": 170.2,
+    "slotH": 352
+   },
+   {
+    "name": "Test Engineer, agent. Checked by",
+    "contentH": 223.9,
+    "slotH": 352
+   },
+   {
+    "name": "Security Auditor, agent. Checked",
+    "contentH": 223.9,
+    "slotH": 352
+   },
+   {
+    "name": "Reviewer, agent. Checked by code",
+    "contentH": 170.2,
+    "slotH": 352
+   },
+   {
+    "name": "Release Watcher, agent. Checked ",
+    "contentH": 197.1,
+    "slotH": 352
+   },
+   {
+    "name": "Ship approval. The empty chair. ",
+    "contentH": 114.4,
+    "slotH": 352
+   }
+  ]
+ },
+ "track-768": {
+  "band": 492,
+  "nodes": [
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 99
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 99
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   }
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 688,
+    "lines": 1
+   }
+  ],
+  "orientation": "block/row/row",
+  "trackBox": {
+   "x": 80,
+   "right": 688
+  },
+  "blockBox": {
+   "x": 0,
+   "right": 768
+  },
+  "trackCls": "work-entry__track"
+ },
+ "track-930": {
+  "band": 654,
+  "nodes": [
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 99
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 99
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 90,
+    "right": 95
+   }
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 850,
+    "lines": 1
+   }
+  ],
+  "orientation": "block/row/row",
+  "trackBox": {
+   "x": 80,
+   "right": 850
+  },
+  "blockBox": {
+   "x": 0,
+   "right": 930
+  },
+  "trackCls": "work-entry__track"
+ },
+ "track-931": {
+  "band": 655,
+  "nodes": [
+   {
+    "cls": "full-track__node",
+    "cx": 41,
+    "right": 46
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 186.3,
+    "right": 191.3
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 331.5,
+    "right": 336.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 476.8,
+    "right": 481.8
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 622,
+    "right": 631
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 41,
+    "right": 46
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 186.3,
+    "right": 191.3
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 331.5,
+    "right": 340.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 476.8,
+    "right": 481.8
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 622,
+    "right": 627
+   }
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 73.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 216.9,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 378.8,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 548.7,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 639.3,
+    "lines": 2
+   },
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 73.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 216.9,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 379.5,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 547.7,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 639.1,
+    "lines": 2
+   }
+  ],
+  "orientation": "block/row/row",
+  "trackBox": {
+   "x": 32,
+   "right": 899
+  },
+  "blockBox": {
+   "x": 0,
+   "right": 931
+  },
+  "trackCls": "work-entry__track"
+ },
+ "track-1024": {
+  "band": 748,
+  "nodes": [
+   {
+    "cls": "full-track__node",
+    "cx": 57,
+    "right": 62
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 221.5,
+    "right": 226.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 386,
+    "right": 391
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 550.5,
+    "right": 555.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 715,
+    "right": 724
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 57,
+    "right": 62
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 221.5,
+    "right": 226.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 386,
+    "right": 395
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 550.5,
+    "right": 555.5
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 715,
+    "right": 720
+   }
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 89.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 252.2,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 433.3,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 622.5,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 732.3,
+    "lines": 2
+   },
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 89.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 252.2,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 434,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 621.5,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 732.1,
+    "lines": 2
+   }
+  ],
+  "orientation": "block/row/row",
+  "trackBox": {
+   "x": 48,
+   "right": 738
+  },
+  "blockBox": {
+   "x": 0,
+   "right": 1024
+  },
+  "trackCls": "work-entry__track"
+ },
+ "track-1440": {
+  "band": 1164,
+  "nodes": [
+   {
+    "cls": "full-track__node",
+    "cx": 129,
+    "right": 134
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 348,
+    "right": 353
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 567,
+    "right": 572
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 786,
+    "right": 791
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 1005,
+    "right": 1014
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 129,
+    "right": 134
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 348,
+    "right": 353
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 567,
+    "right": 576
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 786,
+    "right": 791
+   },
+   {
+    "cls": "full-track__node",
+    "cx": 1005,
+    "right": 1010
+   }
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 161.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 378.7,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 614.3,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 858,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 1022.3,
+    "lines": 2
+   },
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 161.5,
+    "lines": 2
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 378.7,
+    "lines": 2
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 615,
+    "lines": 2
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 857,
+    "lines": 2
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 1022.1,
+    "lines": 2
+   }
+  ],
+  "orientation": "block/row/row",
+  "trackBox": {
+   "x": 120,
+   "right": 1014
+  },
+  "blockBox": {
+   "x": 0,
+   "right": 1440
+  },
+  "trackCls": "work-entry__track"
+ },
+ "proof-360": {
+  "band": 232,
+  "figs": [
+   {
+    "t": "4.3",
+    "ink": {
+     "l": 20,
+     "r": 46.4
+    }
+   },
+   {
+    "t": "24",
+    "ink": {
+     "l": 20,
+     "r": 42.2
+    }
+   },
+   {
+    "t": "1,000+",
+    "ink": {
+     "l": 20,
+     "r": 78.7
+    }
+   }
+  ],
+  "labs": [
+   {
+    "t": "stars",
+    "ink": {
+     "l": 104,
+     "r": 132.8
+    }
+   },
+   {
+    "t": "reviews",
+    "ink": {
+     "l": 104,
+     "r": 148.9
+    }
+   },
+   {
+    "t": "downloads",
+    "ink": {
+     "l": 104,
+     "r": 168.8
+    }
+   }
+  ],
+  "sec": {
+   "x": 0,
+   "right": 360,
+   "y": 4225.7,
+   "h": 1328.8
+  },
+  "lead": {
+   "x": 20,
+   "right": 340,
+   "y": 4297.7,
+   "h": 596.8
+  },
+  "aside": {
+   "x": 20,
+   "right": 340,
+   "y": 5248.5,
+   "h": 162
+  },
+  "track": {
+   "x": 20,
+   "right": 340,
+   "y": 4990.5,
+   "h": 186
+  },
+  "nodes": [
+   35.3,
+   65.8,
+   96.3,
+   126.8,
+   151,
+   36.3,
+   68.8,
+   101.3,
+   133.8,
+   155
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 0
+   }
+  ],
+  "figItemBoxes": [
+   {
+    "x": 20,
+    "right": 340,
+    "y": 4534.6,
+    "h": 24.8
+   },
+   {
+    "x": 20,
+    "right": 340,
+    "y": 4575.5,
+    "h": 24.8
+   },
+   {
+    "x": 20,
+    "right": 340,
+    "y": 4616.3,
+    "h": 24.8
+   }
+  ]
+ },
+ "proof-390": {
+  "band": 262,
+  "figs": [
+   {
+    "t": "4.3",
+    "ink": {
+     "l": 20,
+     "r": 46.4
+    }
+   },
+   {
+    "t": "24",
+    "ink": {
+     "l": 20,
+     "r": 42.2
+    }
+   },
+   {
+    "t": "1,000+",
+    "ink": {
+     "l": 20,
+     "r": 78.7
+    }
+   }
+  ],
+  "labs": [
+   {
+    "t": "stars",
+    "ink": {
+     "l": 104,
+     "r": 132.8
+    }
+   },
+   {
+    "t": "reviews",
+    "ink": {
+     "l": 104,
+     "r": 148.9
+    }
+   },
+   {
+    "t": "downloads",
+    "ink": {
+     "l": 104,
+     "r": 168.8
+    }
+   }
+  ],
+  "sec": {
+   "x": 0,
+   "right": 390,
+   "y": 4123.2,
+   "h": 1307.8
+  },
+  "lead": {
+   "x": 20,
+   "right": 370,
+   "y": 4195.2,
+   "h": 596.8
+  },
+  "aside": {
+   "x": 20,
+   "right": 370,
+   "y": 5146,
+   "h": 141
+  },
+  "track": {
+   "x": 20,
+   "right": 370,
+   "y": 4888,
+   "h": 186
+  },
+  "nodes": [
+   35.3,
+   65.8,
+   96.3,
+   126.8,
+   151,
+   36.3,
+   68.8,
+   101.3,
+   133.8,
+   155
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Building",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Final touches",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Submitted for review",
+    "align": "start",
+    "right": 0
+   },
+   {
+    "t": "Live",
+    "align": "start",
+    "right": 0
+   }
+  ],
+  "figItemBoxes": [
+   {
+    "x": 20,
+    "right": 370,
+    "y": 4432.1,
+    "h": 24.8
+   },
+   {
+    "x": 20,
+    "right": 370,
+    "y": 4473,
+    "h": 24.8
+   },
+   {
+    "x": 20,
+    "right": 370,
+    "y": 4513.8,
+    "h": 24.8
+   }
+  ]
+ },
+ "proof-768": {
+  "band": 492,
+  "figs": [
+   {
+    "t": "4.3",
+    "ink": {
+     "l": 32,
+     "r": 58.4
+    }
+   },
+   {
+    "t": "24",
+    "ink": {
+     "l": 182.8,
+     "r": 205
+    }
+   },
+   {
+    "t": "1,000+",
+    "ink": {
+     "l": 333.7,
+     "r": 392.4
+    }
+   }
+  ],
+  "labs": [
+   {
+    "t": "stars",
+    "ink": {
+     "l": 32,
+     "r": 60.8
+    }
+   },
+   {
+    "t": "reviews",
+    "ink": {
+     "l": 182.8,
+     "r": 227.7
+    }
+   },
+   {
+    "t": "downloads",
+    "ink": {
+     "l": 333.7,
+     "r": 398.4
+    }
+   }
+  ],
+  "sec": {
+   "x": 0,
+   "right": 768,
+   "y": 3789.3,
+   "h": 1173.3
+  },
+  "lead": {
+   "x": 32,
+   "right": 555,
+   "y": 3885.3,
+   "h": 403.8
+  },
+  "aside": {
+   "x": 32,
+   "right": 736,
+   "y": 4674.5,
+   "h": 120
+  },
+  "track": {
+   "x": 32,
+   "right": 736,
+   "y": 4385,
+   "h": 217.5
+  },
+  "nodes": [
+   32,
+   132,
+   232,
+   332,
+   432,
+   32,
+   132,
+   232,
+   332,
+   432
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 82
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 182
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 282
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 382
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 482
+   }
+  ],
+  "figItemBoxes": [
+   {
+    "x": 32,
+    "right": 162.8,
+    "y": 4040.7,
+    "h": 46.8
+   },
+   {
+    "x": 182.8,
+    "right": 313.7,
+    "y": 4040.7,
+    "h": 46.8
+   },
+   {
+    "x": 333.7,
+    "right": 464.5,
+    "y": 4040.7,
+    "h": 46.8
+   }
+  ]
+ },
+ "proof-1024": {
+  "band": 748,
+  "figs": [
+   {
+    "t": "4.3",
+    "ink": {
+     "l": 48,
+     "r": 74.4
+    }
+   },
+   {
+    "t": "24",
+    "ink": {
+     "l": 233.1,
+     "r": 255.3
+    }
+   },
+   {
+    "t": "1,000+",
+    "ink": {
+     "l": 418.2,
+     "r": 477
+    }
+   }
+  ],
+  "labs": [
+   {
+    "t": "stars",
+    "ink": {
+     "l": 48,
+     "r": 76.8
+    }
+   },
+   {
+    "t": "reviews",
+    "ink": {
+     "l": 233.1,
+     "r": 278
+    }
+   },
+   {
+    "t": "downloads",
+    "ink": {
+     "l": 418.2,
+     "r": 483
+    }
+   }
+  ],
+  "sec": {
+   "x": 0,
+   "right": 1024,
+   "y": 3188.8,
+   "h": 1003.4
+  },
+  "lead": {
+   "x": 48,
+   "right": 579.3,
+   "y": 3316.8,
+   "h": 405.6
+  },
+  "aside": {
+   "x": 603.3,
+   "right": 976,
+   "y": 3316.8,
+   "h": 141
+  },
+  "track": {
+   "x": 48,
+   "right": 738,
+   "y": 3770.4,
+   "h": 221.8
+  },
+  "nodes": [
+   252,
+   352,
+   452,
+   552,
+   652,
+   252,
+   352,
+   452,
+   552,
+   652
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 302
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 402
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 502
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 602
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 702
+   }
+  ],
+  "figItemBoxes": [
+   {
+    "x": 48,
+    "right": 209.1,
+    "y": 3474.1,
+    "h": 46.8
+   },
+   {
+    "x": 233.1,
+    "right": 394.2,
+    "y": 3474.1,
+    "h": 46.8
+   },
+   {
+    "x": 418.2,
+    "right": 579.3,
+    "y": 3474.1,
+    "h": 46.8
+   }
+  ]
+ },
+ "proof-1440": {
+  "band": 1164,
+  "figs": [
+   {
+    "t": "4.3",
+    "ink": {
+     "l": 120,
+     "r": 150.1
+    }
+   },
+   {
+    "t": "24",
+    "ink": {
+     "l": 290,
+     "r": 315.3
+    }
+   },
+   {
+    "t": "1,000+",
+    "ink": {
+     "l": 460,
+     "r": 527
+    }
+   }
+  ],
+  "labs": [
+   {
+    "t": "stars",
+    "ink": {
+     "l": 120,
+     "r": 148.8
+    }
+   },
+   {
+    "t": "reviews",
+    "ink": {
+     "l": 290,
+     "r": 334.9
+    }
+   },
+   {
+    "t": "downloads",
+    "ink": {
+     "l": 460,
+     "r": 524.8
+    }
+   }
+  ],
+  "sec": {
+   "x": 0,
+   "right": 1440,
+   "y": 3587.7,
+   "h": 1088.4
+  },
+  "lead": {
+   "x": 120,
+   "right": 606,
+   "y": 3747.7,
+   "h": 526.5
+  },
+  "aside": {
+   "x": 732,
+   "right": 1320,
+   "y": 4322.2,
+   "h": 121.9
+  },
+  "track": {
+   "x": 732,
+   "right": 1320,
+   "y": 3747.7,
+   "h": 223.7
+  },
+  "nodes": [
+   732,
+   832,
+   932,
+   1032,
+   1132,
+   732,
+   832,
+   932,
+   1032,
+   1132
+  ],
+  "heads": [
+   {
+    "t": "Specced",
+    "align": "center",
+    "right": 782
+   },
+   {
+    "t": "Building",
+    "align": "center",
+    "right": 882
+   },
+   {
+    "t": "Final touches",
+    "align": "center",
+    "right": 982
+   },
+   {
+    "t": "Submitted for review",
+    "align": "center",
+    "right": 1082
+   },
+   {
+    "t": "Live",
+    "align": "center",
+    "right": 1182
+   }
+  ],
+  "figItemBoxes": [
+   {
+    "x": 120,
+    "right": 266,
+    "y": 3991,
+    "h": 50.2
+   },
+   {
+    "x": 290,
+    "right": 436,
+    "y": 3991,
+    "h": 50.2
+   },
+   {
+    "x": 460,
+    "right": 606,
+    "y": 3991,
+    "h": 50.2
+   }
+  ]
+ },
+ "plates-360": {
+  "order": [
+   {
+    "t": "Sahib Singh",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Spec Writer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Designer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Programmer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Test Engineer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Security Auditor",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Reviewer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Release Watcher",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Ship approval",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Sahib Singh",
+    "x": 142.4,
+    "y": 875.7
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 146.4,
+    "y": 971.7
+   },
+   {
+    "t": "Spec Writer",
+    "x": 34.1,
+    "y": 1071.7
+   },
+   {
+    "t": "Designer",
+    "x": 152.2,
+    "y": 1071.7
+   },
+   {
+    "t": "Programmer",
+    "x": 250,
+    "y": 1071.7
+   },
+   {
+    "t": "Test Engineer",
+    "x": 28.5,
+    "y": 1147.7
+   },
+   {
+    "t": "Security Auditor",
+    "x": 130.1,
+    "y": 1147.7
+   },
+   {
+    "t": "Reviewer",
+    "x": 261.5,
+    "y": 1147.7
+   },
+   {
+    "t": "Release Watcher",
+    "x": 19.2,
+    "y": 1223.7
+   },
+   {
+    "t": "Ship approval",
+    "x": 246.3,
+    "y": 1375.7
+   }
+  ],
+  "cards": [
+   322.6,
+   321.5,
+   323.9,
+   323.2
+  ]
+ },
+ "plates-768": {
+  "order": [
+   {
+    "t": "Sahib Singh",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Spec Writer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Designer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Programmer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Test Engineer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Security Auditor",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Reviewer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Release Watcher",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Ship approval",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Spec Writer",
+    "x": 426.4,
+    "y": 909.7
+   },
+   {
+    "t": "Sahib Singh",
+    "x": 320.1,
+    "y": 913
+   },
+   {
+    "t": "Designer",
+    "x": 329.9,
+    "y": 962.3
+   },
+   {
+    "t": "Programmer",
+    "x": 423.7,
+    "y": 962.3
+   },
+   {
+    "t": "Test Engineer",
+    "x": 526.1,
+    "y": 962.3
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 218.8,
+    "y": 965.6
+   },
+   {
+    "t": "Security Auditor",
+    "x": 307.8,
+    "y": 1015
+   },
+   {
+    "t": "Reviewer",
+    "x": 435.1,
+    "y": 1015
+   },
+   {
+    "t": "Release Watcher",
+    "x": 516.8,
+    "y": 1015
+   },
+   {
+    "t": "Ship approval",
+    "x": 368.6,
+    "y": 1120.2
+   }
+  ],
+  "cards": [
+   422.6,
+   421.5,
+   423.8,
+   423.1
+  ]
+ },
+ "plates-1440": {
+  "order": [
+   {
+    "t": "Sahib Singh",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Spec Writer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Designer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Programmer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Test Engineer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Security Auditor",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Reviewer",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Release Watcher",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Ship approval",
+    "x": 0,
+    "y": 0
+   },
+   {
+    "t": "Spec Writer",
+    "x": 567.5,
+    "y": 1216
+   },
+   {
+    "t": "Sahib Singh",
+    "x": 438.4,
+    "y": 1220
+   },
+   {
+    "t": "Designer",
+    "x": 448.2,
+    "y": 1280
+   },
+   {
+    "t": "Programmer",
+    "x": 564.7,
+    "y": 1280
+   },
+   {
+    "t": "Test Engineer",
+    "x": 689.8,
+    "y": 1280
+   },
+   {
+    "t": "Tanya Jain",
+    "x": 314.4,
+    "y": 1284
+   },
+   {
+    "t": "Security Auditor",
+    "x": 426.1,
+    "y": 1344
+   },
+   {
+    "t": "Reviewer",
+    "x": 576.2,
+    "y": 1344
+   },
+   {
+    "t": "Release Watcher",
+    "x": 680.6,
+    "y": 1344
+   },
+   {
+    "t": "Ship approval",
+    "x": 498.3,
+    "y": 1472
+   }
+  ],
+  "cards": [
+   422.6,
+   421.5,
+   423.9,
+   423.2
+  ]
+ },
+ "sahib-cards-360": {
+  "cards": [
+   328.5,
+   324.9,
+   331.2,
+   327.1,
+   322.2
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 960
+   },
+   {
+    "cls": "map-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1551
+   },
+   {
+    "cls": "bleed cards-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 2062
+   },
+   {
+    "cls": "writing-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 706
+   },
+   {
+    "cls": "bleed background-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 613
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 256
+   }
+  ],
+  "doc": 6874
+ },
+ "sahib-cards-768": {
+  "cards": [
+   428,
+   424.3,
+   430.5,
+   426.5,
+   422.2
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 881
+   },
+   {
+    "cls": "map-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1531
+   },
+   {
+    "cls": "bleed cards-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 1962
+   },
+   {
+    "cls": "writing-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 599
+   },
+   {
+    "cls": "bleed background-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 557
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ],
+  "doc": 6445
+ },
+ "sahib-cards-1024": {
+  "cards": [
+   341.8,
+   338.3,
+   345.3,
+   340.5,
+   335.3
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 604
+   },
+   {
+    "cls": "map-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1008
+   },
+   {
+    "cls": "bleed cards-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 1545
+   },
+   {
+    "cls": "writing-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 585
+   },
+   {
+    "cls": "bleed background-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 595
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ],
+  "doc": 5317
+ },
+ "sahib-cards-1440": {
+  "cards": [
+   291.9,
+   287.7,
+   295.3,
+   290.3,
+   284.3
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "map-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1026
+   },
+   {
+    "cls": "bleed cards-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 1344
+   },
+   {
+    "cls": "writing-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 657
+   },
+   {
+    "cls": "bleed background-",
+    "bg": "rgb(224, 226, 236)",
+    "h": 613
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ],
+  "doc": 5387
+ },
+ "tanya-cards-360": {
+  "cards": [
+   298.2,
+   297.4,
+   305.2
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 859
+   },
+   {
+    "cls": "quotes-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 516
+   },
+   {
+    "cls": "background-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 653
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ],
+  "doc": 5618
+ },
+ "tanya-cards-768": {
+  "cards": [
+   428.8,
+   423.1,
+   429.8
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 805
+   },
+   {
+    "cls": "quotes-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 487
+   },
+   {
+    "cls": "background-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 571
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ],
+  "doc": 4838
+ },
+ "tanya-cards-1024": {
+  "cards": [
+   397.5,
+   194.1,
+   206.2
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 581
+   },
+   {
+    "cls": "quotes-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 602
+   },
+   {
+    "cls": "background-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 583
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ],
+  "doc": 4207
+ },
+ "tanya-cards-1440": {
+  "cards": [
+   429.2,
+   261.6,
+   270.7
+  ],
+  "fills": [
+   {
+    "cls": "intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "quotes-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 619
+   },
+   {
+    "cls": "background-",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 655
+   },
+   {
+    "cls": "close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ],
+  "doc": 4372
+ },
+ "sahib": {
+  "ground": "rgb(238, 239, 244)",
+  "filledBg": "rgba(0, 0, 0, 0)",
+  "emptyBg": "rgba(0, 0, 0, 0)",
+  "ratioFilledGround": 18.29,
+  "sectionLines": [
+   "What he ships and where",
+   "The roles behind the map"
+  ],
+  "personLinks": "Sahib on GitHub Opens a new tab.Sahib on LinkedIn Opens a new tab.",
+  "closeAddress": "sahiboffc@gmail.com",
+  "panelSections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "cls": "section bleed cards-section section--reserve",
+    "bg": "rgb(224, 226, 236)"
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "cls": "section bleed background-section section--reserve",
+    "bg": "rgb(224, 226, 236)"
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)"
+   }
+  ]
+ },
+ "tanya": {
+  "quotes": [
+   {
+    "raw": "\"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices\"",
+    "borderLeft": "0px solid"
+   },
+   {
+    "raw": "\"go-to person for KMP-related discussions\"",
+    "borderLeft": "0px solid"
+   }
+  ],
+  "attr": {
+   "text": "Sahib Singh, who worked alongside her at Motive.",
+   "style": "normal",
+   "family": "\"Instrument Sans Variable\"",
+   "citeStyle": "normal"
+  },
+  "edgeA": {
+   "x": 120,
+   "right": 402,
+   "y": 1391.1,
+   "h": 830
+  },
+  "edgeI": {
+   "x": 1038,
+   "right": 1320,
+   "y": 1391.1,
+   "h": 102
+  },
+  "core": {
+   "x": 426,
+   "right": 1014,
+   "y": 1391.1,
+   "h": 1242.3
+  },
+  "edgeARule": "0px",
+  "edgeIRule": "0px",
+  "quotesSection": {
+   "x": 0,
+   "right": 1440,
+   "y": 772,
+   "h": 619.1
+  },
+  "edges": [
+   {
+    "cls": "edge edge--android",
+    "label": "Android",
+    "note": "MotiveJetpack Compose migration, and the Android releases she owns: phased rollouts, crash and ANR monitoring.",
+    "cards": [
+     "HSBC",
+     "Naskay Technologies"
+    ]
+   },
+   {
+    "cls": "edge edge--ios",
+    "label": "iOS",
+    "note": "Motive Fleet App",
+    "cards": []
+   }
+  ],
+  "coreCards": [
+   "Motive"
+  ],
+  "coreBodyWidth": 524
+ },
+ "tanya-1024": {
+  "coreBodyW": 388,
+  "font": "16px",
+  "lines": 15,
+  "core": {
+   "x": 286,
+   "right": 738
+  },
+  "edgeI": {
+   "x": 762,
+   "right": 976,
+   "h": 102
+  },
+  "edgeA": {
+   "h": 979.7
+  },
+  "coreH": 1327.6
+ },
+ "lists-pm": [
+  {
+   "cls": "shots",
+   "type": "none",
+   "pad": "0px",
+   "marker": "normal",
+   "n": 4,
+   "first": ""
+  },
+  {
+   "cls": "product-section__features",
+   "type": "none",
+   "pad": "0px",
+   "marker": "normal",
+   "n": 4,
+   "first": "A simple interface with multiple categor"
+  }
+ ],
+ "shots-pm": [
+  {
+   "w": 280,
+   "h": 607,
+   "x": 120,
+   "y": 522.4,
+   "loading": "eager",
+   "aw": "280",
+   "ah": "607"
+  },
+  {
+   "w": 280,
+   "h": 607,
+   "x": 424,
+   "y": 522.4,
+   "loading": "lazy",
+   "aw": "280",
+   "ah": "607"
+  },
+  {
+   "w": 280,
+   "h": 607,
+   "x": 120,
+   "y": 1153.4,
+   "loading": "lazy",
+   "aw": "280",
+   "ah": "607"
+  },
+  {
+   "w": 280,
+   "h": 607,
+   "x": 424,
+   "y": 1153.4,
+   "loading": "lazy",
+   "aw": "280",
+   "ah": "607"
+  }
+ ],
+ "lists-wp": [
+  {
+   "cls": "product-section__features",
+   "type": "none",
+   "pad": "0px",
+   "marker": "normal",
+   "n": 7,
+   "first": "Works fully offline. No account needed t"
+  }
+ ],
+ "shots-wp": [
+  {
+   "w": 384,
+   "h": 834.9,
+   "x": 120,
+   "y": 612.8,
+   "loading": "eager",
+   "aw": "603",
+   "ah": "1311"
+  }
+ ]
+}

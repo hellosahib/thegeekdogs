@@ -1,0 +1,38 @@
+{
+  "noFlash": {
+    "themeAttrPresentAtCommit": true
+  },
+  "keyboard": {
+    "focusedIsToggle": true,
+    "before": "light",
+    "after": "dark",
+    "changed": true,
+    "announce": "Dark mode on.",
+    "ariaLabelAfter": "Switch to light mode"
+  },
+  "tap": {
+    "before": "light",
+    "after": "dark",
+    "changed": true
+  },
+  "persistence": {
+    "themeAfterClick": "dark",
+    "stored": "dark",
+    "themeAfterReload": "dark",
+    "persisted": true,
+    "metas": [
+      {
+        "content": "#F1F3F0",
+        "media": "(prefers-color-scheme: light)"
+      },
+      {
+        "content": "#18292D",
+        "media": "(prefers-color-scheme: dark)"
+      }
+    ]
+  },
+  "themeColorFollowsScheme": {
+    "light": "#F1F3F0",
+    "dark": "#18292D"
+  }
+}

@@ -357,3 +357,62 @@ Verdict: **APPROVED.** Android-edge annotation for Motive, 15 words, resume-sour
 ## 2026-09-05 · DESIGN.md round 13 · Orchestrator
 
 Verdict: **APPROVED.** Below 768 the proof figures stack in three rows (numeral column from x 20, label from x 104, ink ends x 162, 70px clear of the band); the "Owns" line wraps in the same width; ticks align to the platform label's baseline 50px below the band's top and attach to the layer, not a card; §C.8 records the selected fill at 2.36 / 2.61:1 with the 1px chalk edge carrying the state; the warm offset is deleted; new §I.1 disposition table. Spec is complete for run E.
+
+## 2026-09-05 · Final loop opened · Orchestrator
+
+Build at 6283b4a; docs committed at b24a9a1; ten `qa:*` gates re-run by the Orchestrator, all green; frozen copy `scratchpad/dist-final`. Running on it: final rendered review with the Tanya packet (`docs/reviews/final-design-review.md`, `docs/reviews/tanya-packet.md`), QA evidence gate (`docs/reviews/final-qa-gate.md`), fact parity on the strings changed since run B (`docs/reviews/final-fact-check.md`), final Perf & A11y numbers (`docs/reviews/final-a11y-perf-audit.md`).
+Orchestrator finding for run F: the subset fonts under `public/fonts/` are committed and CI does not regenerate them, so a copy edit that introduces a glyph outside the subset would render tofu with no gate catching it. Run F adds `qa:glyphs`: every character in `dist/` visible text must be covered by the committed subsets, else fail with the missing characters listed. README already documents the font step as separate.
+
+## 2026-09-05 · Final QA evidence gate · QA → Orchestrator
+
+Verdict: **APPROVED** (`docs/reviews/final-qa-gate.md`, 47 evidence files). 164 controls across eight routes, every one wired to a real action; zero `href="#"`; ten stations swap the card by touch at 360 and 390 and by mouse at 1440, 40 of 40; toggle works by keyboard and tap, no flash, persists across reload; reduced motion leaves zero running animations on the three animated routes; screenshots verified against the asset READMEs; 23 mailto links on the three allowed addresses only; zero console messages on 16 loads. Real-device checklist handed to the owners in the report.
+Note: COPY.md §10.2's "Close" control has no counterpart in the build because the slot never empties (DESIGN.md §C.6). Ruling: the build is right; the Copywriter removes the two lines in the final copy tidy (run F).
+
+## 2026-09-05 · `qa:glyphs` gate · Engineer → Orchestrator verification
+
+Orchestrator ran `qa:glyphs`: pass, 21,459 characters across eight pages, none uncovered. Proof of failure shown by the Engineer with a "₹" injected and reverted. `fontkit` pinned as a devDependency; wired into the `qa` chain and CI; README updated. Eleven gates now.
+
+## 2026-09-05 · Final fact parity · Fact Checker → Orchestrator
+
+Verdict: **APPROVED**, one difference. The three new strings land verbatim; sub-768 plate label on all eight routes; sweep zero on twenty terms; no tofu (every non-ASCII character used is in the subsets); JSON-LD byte-identical to round 6. Difference: COPY.md §7.1's second intro paragraph was cut from `/tanya/` under §J round 12 and the build keeps it in an HTML comment. Ruling: the cut stands; COPY.md marks the paragraph as long form not printed (Copywriter round 17, after round 16); the HTML comment comes out of the build (run F), since copy in comments is neither content nor documentation.
+
+## 2026-09-05 · COPY.md rounds 16 and 17 · Orchestrator
+
+Verdict: **APPROVED.** The "Close" control block is gone and the slot's never-empty rule is stated; §7.1's second paragraph is marked as cut under §J and not printed. COPY.md now matches the build line for line except the two asset-bound markers (headshots, wedding screenshots 03 and 04).
+
+## 2026-09-05 · Final Perf & A11y audit · Auditor → Orchestrator
+
+Verdict: **CHANGES REQUESTED, not blocking on budget; one AA line short.** Home: 100 × 4 both schemes; LCP avg 1.46 s (max 1.52 s site-wide); CLS 0.0001 in 48 of 48; TBT 0; JS 0 B external (1,253 B inline); CSS 13.3 KB; floor 6.8 KB; total 95.5 KB; fonts 69.0 KB subset. axe 0 in 16 combinations. Print collapse, subsetting and the 404 SEO assertion confirmed closed.
+Finding upheld: Sahib's map filled-cell step in light is 2.97:1 (dark 2.91:1) against WCAG 1.4.11's 3:1 for meaningful graphics. Auditor's veto stands until it passes. → Design Lead round 14 sets the filled-cell value (or the §F.1 stroke) to ≥ 3.2:1 in both schemes with the arithmetic; Engineer run F applies and the auditor's pixel check re-runs.
+Informational, no change: Tanya's DOM order vs visual order at ≥ 1024 (reading order is the spec's); two quotes sharing one `<cite>` (one source, attributed once, matches COPY.md §7.1). Human passes still owed: real device, VoiceOver.
+
+## 2026-09-05 · Comment strip · Engineer → Orchestrator verification
+
+43 HTML comments were shipping verbatim in `dist/` (Astro's `compressHTML` strips whitespace, not comments); all removed from templates and the SVG defs; `qa:no-slop` now fails on any HTML comment in `dist/`. Orchestrator confirmed zero comments in the home and Tanya pages after rebuild. Commit `3051d8a`. Twelve gates.
+
+## 2026-09-05 · DESIGN.md round 14 · Orchestrator
+
+Verdict: **APPROVED.** A 3.2:1 fill step is arithmetically impossible in both schemes without breaking the cell text's AA, so the filled cells take a 1.5px `--s-ink` stroke: 14.09:1 light and 14.11:1 dark against the ground, which is the auditor's pixel-check contract; the fill step stays as reinforcement. No token value moves. → Run F.
+
+## 2026-09-05 · Map-cell stroke · Engineer → Orchestrator verification
+
+`qa:contrast` re-run by the Orchestrator: pass, with the new stroke assertion. Stroke 14.09:1 light / 14.11:1 dark against the ground; cell text unchanged. Engineer staged but did not commit; Orchestrator committed the staged paths. The auditor's S2 finding is closed on the design's contract; pixel re-check follows on the final copy.
+
+## 2026-09-05 · Final Perf & A11y audit · S2 closed · verdict APPROVED
+
+Pixel-sampled at 4× device scale on commit df1da79: filled-cell stroke 14.09:1 light / 14.11:1 dark against the ground; lit column border the same; empty-cell edge 1.00:1 (two-state grammar intact); ten filled cells and their text unchanged. Informational: Chromium's `border-collapse` renders the 1.5px stroke at 1 CSS px; colour ratio unaffected. Auditor's veto lifted. Owed to the humans: real-device pass over throttled 4G, VoiceOver pass.
+
+## 2026-09-05 · Final rendered review · Design Lead reviewer → Orchestrator
+
+Verdict as filed: **CHANGES REQUESTED, 4 new items** (`docs/reviews/final-design-review.md`). 30 of 30 run B items closed; all three blockers gone by rule; plate sweep of 4,756 positions across eight routes and eight widths found zero hits on any §B.10 mark; §J nine of ten cuts spent. Packet for Tanya at `docs/reviews/tanya-packet.md`.
+Must fix (run F): N1, at 360 and 390 the plate strikes three of `/sahib/`'s map product names (ink to x 319, band at 232); the `.map__cell-product` mark was never on `qa:plate`'s list, so the gate add and the layout fix go together. N2, the card slot's `min-height` is border-box and the longest card needs 48px more, so opening a card grows the page 57px at 360. Recorded, not gating: N3 (proof axis 204px inside its row at 1024, the reviewer's own earlier ruling; DESIGN.md round 12's numbers stand), N4 (plate over `/tanya/`'s "iOS" label at one width; a label, exempt as prose, but run F closes it if free). `/`'s seam grid is the unspent §J cut; the Orchestrator leaves it, since the floor review found the seams carry the room's plan.
+
+## 2026-09-05 · Tanya packet · Orchestrator correction
+
+`docs/reviews/tanya-packet.md` frame 5 said "her recommendation of Sahib"; the quotes are Sahib's recommendation of her (brief §5.4, 3 July 2026). Corrected in place by the Orchestrator; a handoff document, not copy. The rest reads plainly for someone who has not seen the project.
+
+## 2026-09-05 · Build run F · Engineer → Orchestrator verification · release candidate
+
+Orchestrator rebuilt (8 pages) and ran the full `qa` chain: 13 of 13 pass (build, no-slop incl. HTML comments, images, links, console, contrast incl. the map stroke, weight, glyphs, worlds, plate with 640 marks, floor pointer, floor slot, floor budget). Engineer's numbers: N1 closed, widest product ink 222.4 at 360 against the band at 232, 0 of 10 over in both schemes; N2 closed, slot min-heights re-derived to 384 / 304 / 464 / 392 and a new `check-floor-slot` gate proves 0px page growth across 50 card openings; Lighthouse 100 × 4 on `/` and `/sahib/` both schemes, LCP 1.45 to 1.48 s, CLS 0.0001, TBT 0. N4 stays recorded: at 1024 Tanya's iOS field starts 14px inside the band, a label exempt as prose under §B.10; moving it needs a §G.3a column change and is a Pass 2 design item, not a release blocker.
+
+**Release candidate: commit 08abebe.** Every specialist verdict on the final build is APPROVED (QA gate, fact parity, Perf & A11y) or closed by run F (rendered review N1, N2). Human gate 4 (Release) is the owners': push, DNS, Firebase keys, the real-device and VoiceOver passes, Tanya's sign-off from the packet, headshots (item 23), wedding screenshots 03 and 04 (item 73). No agent pushes.

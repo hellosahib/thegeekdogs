@@ -1,0 +1,158 @@
+{
+  "home": {
+    "360": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "thegeekdogs@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  },
+  "work": {
+    "360": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "thegeekdogs@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  },
+  "pocket-manager": {
+    "360": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "thegeekdogs@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  },
+  "wedding-planner": {
+    "360": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+      "href": "mailto:thegeekdogs@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "thegeekdogs@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  },
+  "sahib": {
+    "360": {
+      "ariaLabel": "Email sahiboffc@gmail.com. Opens a new message about a project.",
+      "href": "mailto:sahiboffc@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email sahiboffc@gmail.com. Opens a new message about a project.",
+      "href": "mailto:sahiboffc@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "sahiboffc@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  },
+  "tanya": {
+    "360": {
+      "ariaLabel": "Email jaintanya999@gmail.com. Opens a new message about a project.",
+      "href": "mailto:jaintanya999@gmail.com",
+      "visibleLabelText": "Email",
+      "visibleAddressText": null,
+      "labelDisplay": "block",
+      "addressDisplay": "none",
+      "rect": {
+        "w": 112,
+        "h": 56
+      }
+    },
+    "1440": {
+      "ariaLabel": "Email jaintanya999@gmail.com. Opens a new message about a project.",
+      "href": "mailto:jaintanya999@gmail.com",
+      "visibleLabelText": null,
+      "visibleAddressText": "jaintanya999@gmail.com",
+      "labelDisplay": "none",
+      "addressDisplay": "block",
+      "rect": {
+        "w": 260,
+        "h": 56
+      }
+    }
+  }
+}

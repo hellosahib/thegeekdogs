@@ -1,0 +1,77 @@
+===== qa-console.mjs =====
+      8 route(s) visited: /404.html, /contact/, /, /sahib/, /tanya/, /work/, /work/pocket-manager/, /work/wedding-planner/
+PASS  qa:console
+exit: 0
+===== qa-images.mjs =====
+PASS  qa:images
+exit: 0
+===== qa-links.mjs =====
+      46 link(s) OK, 71 skipped (mailto and other non-http schemes)
+PASS  qa:links
+exit: 0
+===== qa-worlds.mjs =====
+      / light                #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /work/ light           #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /sahib/ light          #eeeff4 / #e0e2ec / #1a2033 / #f2a93b
+      /tanya/ light          #edeeee / #dcdede / #1b2020 / #8a5a08
+      / dark                 #18292d / #213539 / #e8ede9 / #f2a93b
+      /work/ dark            #18292d / #213539 / #e8ede9 / #f2a93b
+      /sahib/ dark           #161c2e / #1f2841 / #e9eaf0 / #f2a93b
+      /tanya/ dark           #191b1b / #282b2b / #e9eaea / #f2a93b
+      /tanya/ @ 1024   2 tick(s) ending on the core's own x 286 and 738, three labels on one baseline, 51.0px below the band's top edge (§G.3a's 50 is reported, never asserted)
+      /tanya/ @ 1440   2 tick(s) ending on the core's own x 426 and 1014, three labels on one baseline, 51.0px below the band's top edge (§G.3a's 50 is reported, never asserted)
+      40 computed token(s) and baseline(s) checked on 4 routes in 2 schemes
+PASS  qa:worlds
+exit: 0
+===== qa-plate.mjs =====
+      560 load-bearing mark(s) measured across 8 routes at 8 widths
+PASS  qa:plate
+exit: 0
+===== check-floor-budget.mjs =====
+      floor markup + 0 external + 2 inline module script(s): 34174 B raw, 6813 B gzipped
+      budget 81920 B gzipped
+PASS  check-floor-budget
+exit: 0
+===== check-floor-pointer.mjs =====
+      pointer 360 light: 10 of 10 stations
+      nameplates 360 light: 10 of 10 clear of every other station
+      pointer 390 light: 10 of 10 stations
+      nameplates 390 light: 10 of 10 clear of every other station
+      pointer 768 light: 10 of 10 stations
+      nameplates 768 light: 10 of 10 clear of every other station
+      pointer 1024 light: 10 of 10 stations
+      nameplates 1024 light: 10 of 10 clear of every other station
+      pointer 1440 light: 10 of 10 stations
+      nameplates 1440 light: 10 of 10 clear of every other station
+      pointer 1920 light: 10 of 10 stations
+      nameplates 1920 light: 10 of 10 clear of every other station
+      pointer 360 dark: 10 of 10 stations
+      nameplates 360 dark: 10 of 10 clear of every other station
+      pointer 390 dark: 10 of 10 stations
+      nameplates 390 dark: 10 of 10 clear of every other station
+      pointer 768 dark: 10 of 10 stations
+      nameplates 768 dark: 10 of 10 clear of every other station
+      pointer 1024 dark: 10 of 10 stations
+      nameplates 1024 dark: 10 of 10 clear of every other station
+      pointer 1440 dark: 10 of 10 stations
+      nameplates 1440 dark: 10 of 10 clear of every other station
+      pointer 1920 dark: 10 of 10 stations
+      nameplates 1920 dark: 10 of 10 clear of every other station
+PASS  check-floor-pointer
+exit: 0
+===== measure-bundles.mjs =====
+      JavaScript
+        (none)
+        subtotal                                                                      0 B gz
+      CSS
+        dist-final/_astro/style.DrcBOPU7.css                        74896 B raw     13312 B gz
+        subtotal                                                                  13312 B gz
+      Fonts (woff2, already compressed)
+        dist-final/fonts/anek-latin-subset.woff2                    48432 B raw     48432 B gz
+        dist-final/fonts/instrument-sans-subset.woff2               20552 B raw     20552 B gz
+        subtotal                                                                  68984 B gz
+      inline JS in the home HTML (counted inside it)                 1253 B gz  (3356 B raw)
+      home HTML                                                   13221 B gz
+      home page total (HTML + CSS + JS + fonts)                   95517 B gz
+PASS  qa:weight
+exit: 0
