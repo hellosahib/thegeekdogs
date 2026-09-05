@@ -355,3 +355,53 @@ rationing rule so a later round does not put the phrase back on all three. Nothi
 number, zero "New Delhi" and zero "Delhi", "slop" still zero, the one triple negation still §2.9's.
 "By his own account" appears once on `/sahib/` and "By her account" once on `/tanya/`, which §7.2's
 own note requires; no other page carries either.
+
+Round 10. Closed the three strings the Engineer's build step 2 flagged as missing. §2.3 gained the
+human cards' gate block: the field label `Owns`, the counterpart to the agent cards' `Checked by`,
+and one gate list each, built from item 19 plus item 56's release cut and item 71's design review,
+so both shared gates appear on both lists rather than on neither. The lists use §C.6's short forms,
+not §2.4's `Checked by` strings, because `QA on real devices` and `Security and privacy review` at
+full length do not fit a 318px measure; noted in place so the Engineer does not assert them against
+the gate collection. Tanya's line is 96 characters against a two-line budget, so §C.6's 344 and 320
+reservations need 372 and 348. Flagged rather than solved by cutting a gate she owns; if the
+Design Lead would rather cut, ASO is the only item on the list that is not one of the six gates.
+§2.4 gained the roster label `The full pipeline`, which is §B.8's own wireframe string, and the
+seven roles as a wrapped sentence in the table's order. New §2.9a carries the work-card strip:
+two row labels, two link labels (`Sahib's work in full`, `Tanya's work in full`) with accessible
+names that name the person and the page, and the section heading `Where they've worked` as an
+accessible name rather than a printed line, because neither §B.8 nor §B.9 draws a heading or an
+intro above the first row. The section number is out of order and its position is not. No new
+company or date string was written; the strip's two fields per card are §6.2 cards 1 and 2 and
+§7.2 cards 1 and 2 as those sections already give them. Scan after editing: zero banned words,
+zero em-dashes, sentence case throughout, nothing invented.
+
+**Round 11.** §2.6's "fifth thing" and "sixth" lines argued with the headline above them, so both
+collapse into one 24-word line that names design review and the release together and keeps the
+closing line under it; §10.2 already pointed at "the line under the four", singular, so nothing
+downstream moved. §4.7 is rewritten against the twelve real captures item 60 produced: four screens
+used, `01-home`, `02-calendar`, `04-categories` (which is the foot of the statistics screen, bar
+chart and the percentage card on one screen) and `05-export` (which is the settings data section,
+all three rows tagged Beta), one alt line per screen because alt text does not change with theme
+and the light file and its `-dark` twin share it. Two filenames are older than the images and say
+so in the section. The category card prints percentages, not totals, so the line says percentage;
+the statistics range is seven days while home and calendar are monthly, so the line says seven
+days. §4.3's feature list now reads `Export to CSV from settings.` The Beta tag stays out of the
+marketing line and the line claims nothing about how finished export is. §5.5: only `01` is written,
+and its alt names the per-function cards and their dates and stops there, because the capture shows
+no guest list and no headcount; `03` and `04` carry `[CONFIRM: item 73]`; `02` and `05` never ship,
+in any round, and get no alt at all. Tanya's `Owns` list came from 96 characters to exactly 80 with
+all seven responsibilities intact, by grouping code and design review, shortening `product spec` to
+`Spec` (the body two lines above spells it out) and dropping the article off `the release cut`. No
+gate was cut. If 80 still overflows two lines at the 360 measure, §C.6 says the remainder is
+padding. Appendix B rebuilt: C1 is §5.5's pair of money-screenshot alts on item 73, C2 is the
+headshots on item 23. Three markers, two questions, and the appendix says so. Scan after editing:
+zero banned words, zero em-dashes, no phone number, no Delhi, and no screen named categories or
+export anywhere, including in the sentences that deny they exist.
+
+**Round 12 · three reconciliations from the Fact Checker's run A built-output pass.** §1's contact affordance now prints the address as its own visible label (item 53), with the per-world table restated from DESIGN.md §B.10 and item 66's person addresses, and one accessible-name pattern serving all three: `Email <address>. Opens a new message about a project.` The old `Start a project` label is gone; the mailto behaviour note stays, because item 69 is still the reason there is no form. §9 gains a sentence saying the plate is site chrome specified by DESIGN.md §B.10 rather than the 404's link, so "a headline and one link home" still describes the page's own content and the built page is not in breach of it. §7.2's three month-bearing ranges become `2024 – now`, `2021 – 2023` and `2020 – 2021`, matching §6.2, which was already years-only; the section's provenance paragraph now says the months settle which card a boundary belongs to and are not printed, so the resume note and the printed field no longer look like they disagree. Hyphen style untouched: the file's en dash with spaces, as every other Years field already has it. Scan after editing: zero banned words, zero em-dashes, no phone number, no Delhi.
+
+**Round 13 · the sub-768 plate label.** DESIGN.md §B.10's round-10 narrowing (112 × 56, ~73px of type, 9 characters at small/14px Instrument 600) means the address cannot print below 768, so §1 now carries `Label, below 768`: `Email`, 5 characters. Three candidates were measured and two were dropped. `Email us` (8) reads as the most unmistakably imperative of the set and fails on the person pages, where the `mailto:` is Sahib's or Tanya's own address and §B.10 requires the plate and the page never to disagree about who is being written to; a pronoun that says studio over a link that says one person is exactly that disagreement, and a per-world label would be three strings where the plate is one component. `Reach out` (9) is person-neutral but drops the mechanism, and the mechanism is the one thing the label still has to carry once the printed proof is gone. `Email` keeps the verb, names what happens when it is tapped, works in all three worlds unchanged, and is the first word of the round-12 accessible-name pattern, which stays whole at both widths so the address is still spoken where it is no longer printed. The ≥ 768 label is untouched and is still the address, per item 53. Scan after editing: zero banned words, zero em-dashes, sentence case, no arrow, no icon-only label, nothing invented.
+
+**Round 14 · the two display-section lines on `/sahib/`, runB S6.** The map and the work cards were rendering with no heading because DESIGN.md §F.7 and §F.8 drew `Where he has shipped` and `Seven years, four companies` and COPY.md wrote neither string; both are now fields in §6, with word counts. Map: `What he ships and where`, 5 words, added to §6.1 above the existing lead-in. The heading and the lead-in sit one under the other, so they cannot both name the axes the same way: the heading is the plain gloss and the lead-in keeps *five surfaces, five places* and the rule for reading a filled cell. `Where he has shipped` was extended rather than reused because the map has columns as well as rows, and where alone describes half of it. Candidates dropped: `Five surfaces, five places` (restates the line directly beneath it word for word), `Platforms by company` (the fifth column is `end to end with AI`, which is not a platform, and the Fact Checker would be right to say so), `Every platform, five companies` (`every` is an absolute the map does not support: no web, no desktop), `The coverage map` (the file's internal name for the component, and on a mobile page it reads as network coverage). Cards: `The roles behind the map`, 5 words, added at the top of §6.2. §F.6 already says what the section is for, the map makes the claim and the cards are the receipts, and the heading carries that link so five company names under the map read as the same five, not a second history. `Seven years, four companies` is not used: §6.1's body already opens with that clause, and four is the employer count where the list runs to five cards. Scan after editing: zero banned words, zero em-dashes, sentence case, no question, nothing invented.
+
+**Round 15 · the Android edge's Motive card, runB T1.** DESIGN.md §G.3a rules that the Android edge's card order is Motive → HSBC → Naskay, so Motive lands on all three layers and "one company, three layers" reads without a caption. The card needed a line and COPY had none: §7.2's Motive card put the Compose migration inside the core card's stack line, which is where the build printed it and which is half of why T1 says the page's central claim is half built. §7.2 now carries `Android-edge annotation (Motive)`: `Jetpack Compose migration, and the Android releases she owns: phased rollouts, crash and ANR monitoring.` Fifteen words against a ≤ 20 slot. The split is drawn on the platform, not on the employer: Compose is an Android toolkit and the release path is a Play Store path, so both are edge facts, while the KMP business-logic modules and Clean Architecture stay in the core card's stack line and the Fleet App stays on the iOS edge. FACTS.md row 51 sources both halves and marks them OWNER-PROVIDED, so the line describes her work and claims nothing about Motive's engineering at large. The two figures are not repeated: row 52 requires attribution, §7.2 gives it once on the core card, and once per page holds. Candidates dropped: `Jetpack Compose migration` alone (accurate, but it leaves the release ownership sitting only in the core where the Play Store half of it does not belong), `Compose migration, phased rollouts, crash and ANR monitoring` (a stack list with no verb, and it reads as three tools rather than as work she owns), `The Android half of the same job` (says the layout's argument out loud instead of supplying the evidence the layout is arranging). Scan after editing: zero banned words, zero em-dashes, sentence case, no question, no figures repeated, nothing invented.

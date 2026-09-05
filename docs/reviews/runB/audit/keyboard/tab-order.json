@@ -1,0 +1,2842 @@
+{
+  "404": {
+    "totalStops": 18,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Back to the studio home page",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 321.390625,
+          "w": 135.5625,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 521.21875,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 746.875,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 794.703125,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 794.703125,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 794.703125,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 794.703125,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 855.703125,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 855.703125,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 855.703125,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 855.703125,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "home": {
+    "totalStops": 34,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Start a project. Opens an email to thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 493.265625,
+          "w": 163.53125,
+          "h": 47.875
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Look around the studio floor",
+        "href": "#studio-floor",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 299.53125,
+          "y": 493.265625,
+          "w": 216.5625,
+          "h": 47.875
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Sahib Singh. Open his card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 412,
+          "y": 381.9609375,
+          "w": 128,
+          "h": 135.984375
+        },
+        "dataStation": "sahib-singh"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Tanya Jain. Open her card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 283.984375,
+          "y": 445.9609375,
+          "w": 128,
+          "h": 135.984375
+        },
+        "dataStation": "tanya-jain"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Spec Writer, agent. Checked by product spec review. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 548.0078125,
+          "y": 453.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "spec-writer"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Designer, agent. Checked by design review. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 675.9921875,
+          "y": 517.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "designer"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Programmer, agent. Checked by code review. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 548.0078125,
+          "y": 517.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "programmer"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 675.9921875,
+          "y": 581.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "test-engineer"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 420.0078125,
+          "y": 517.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "security-auditor"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Reviewer, agent. Checked by code review. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 548.0078125,
+          "y": 581.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "reviewer"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Release Watcher, agent. Checked by ship approval. Open its card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 420.0078125,
+          "y": 581.9765625,
+          "w": 111.984375,
+          "h": 55.984375
+        },
+        "dataStation": "release-watcher"
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Ship approval. The empty chair. Open the card.",
+        "href": null,
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 475.984375,
+          "y": 659.96875,
+          "w": 128,
+          "h": 88
+        },
+        "dataStation": "ship-approval"
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib's work in full, on his page",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 427.71875,
+          "w": 136.53125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya's work in full, on her page",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 580.984375,
+          "w": 138.421875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Open Pocket Manager in the Play Store Opens a new tab.",
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 439.5625,
+          "w": 295.40625,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Read how it gets built",
+        "href": "/work/pocket-manager/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 490.390625,
+          "w": 161.328125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com to start a project",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 427.84375,
+          "w": 367.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 801.5,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 849.328125,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 849.328125,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 849.328125,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 849.328125,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 676.328125,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 676.328125,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 676.328125,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 676.328125,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "work": {
+    "totalStops": 20,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Read the Pocket Manager case study",
+        "href": "/work/pocket-manager/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 168,
+          "y": 640.78125,
+          "w": 151.4375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Open in the Play Store Opens a new tab.",
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 351.4375,
+          "y": 640.78125,
+          "w": 167.953125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "See what's in build on the wedding planner",
+        "href": "/work/wedding-planner/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 168,
+          "y": 427.78125,
+          "w": 137.640625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 695.78125,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 527.4375,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 575.265625,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 575.265625,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 575.265625,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 575.265625,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 676.265625,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 676.265625,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 676.265625,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 676.265625,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "pocket-manager": {
+    "totalStops": 18,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Open Pocket Manager in the Google Play Store. Opens a new tab.",
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 414.390625,
+          "w": 295.40625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 526.859375,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 574.6875,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 574.6875,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 574.6875,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 574.6875,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 675.6875,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 675.6875,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 675.6875,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 675.6875,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "wedding-planner": {
+    "totalStops": 17,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 527.3125,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 575.140625,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 575.140625,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 575.140625,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 575.140625,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 676.140625,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 676.140625,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 676.140625,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 676.140625,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "sahib": {
+    "totalStops": 26,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Back to the studio home page",
+        "href": "/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 104,
+          "w": 114.609375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "channelFlow versus callbackFlow Opens a new tab.",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7430310577153011712/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 630,
+          "y": 426.34375,
+          "w": 481.890625,
+          "h": 46.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Android 16 dropping orientation locks and the duplicate-fragment bug it caused Opens a new tab.",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7421603431334932481/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 630,
+          "y": 453.171875,
+          "w": 502.9375,
+          "h": 46.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "ViewModel versus onSaveInstanceState versus SavedStateHandle Opens a new tab.",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7420752263364796416/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 630,
+          "y": 480,
+          "w": 399.171875,
+          "h": 46.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "why coroutine cancellation is cooperative Opens a new tab.",
+        "href": "https://www.linkedin.com/feed/update/urn:li:activity:7419068733480022016/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 630,
+          "y": 506.828125,
+          "w": 505.21875,
+          "h": 46.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email sahiboffc@gmail.com. Opens a new message about a project.",
+        "href": "mailto:sahiboffc@gmail.com",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 427.765625,
+          "w": 123.875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 275.875,
+          "y": 427.765625,
+          "w": 134.0625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email Sahib at sahiboffc@gmail.com",
+        "href": "mailto:sahiboffc@gmail.com",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 441.9375,
+          "y": 427.765625,
+          "w": 163.984375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email Sahib at sahiboffc@gmail.com",
+        "href": "mailto:sahiboffc@gmail.com",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 495.765625,
+          "w": 252.328125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 869.421875,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 575.25,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 575.25,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 575.25,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 575.25,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 676.25,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 676.25,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 676.25,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(26, 32, 51)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 676.25,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "tanya": {
+    "totalStops": 22,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Back to the studio home page",
+        "href": "/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 104,
+          "w": 114.609375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email jaintanya999@gmail.com. Opens a new message about a project.",
+        "href": "mailto:jaintanya999@gmail.com",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 428.34375,
+          "w": 125.75,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 277.75,
+          "y": 428.34375,
+          "w": 135.9375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email Tanya at jaintanya999@gmail.com",
+        "href": "mailto:jaintanya999@gmail.com",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 445.6875,
+          "y": 428.34375,
+          "w": 192.015625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email Tanya at jaintanya999@gmail.com",
+        "href": "mailto:jaintanya999@gmail.com",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 496.34375,
+          "w": 299.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 870,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 574.828125,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 574.828125,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 574.828125,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 574.828125,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 675.828125,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 675.828125,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 675.828125,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(27, 32, 32)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 675.828125,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  },
+  "contact": {
+    "totalStops": 20,
+    "stops": [
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Skip to main content",
+        "href": "#main",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 196.34375,
+          "h": 54.828125
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "TheGeekDogs, home",
+        "href": "/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 14,
+          "w": 128.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1018.546875,
+          "y": 14,
+          "w": 35.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1077.890625,
+          "y": 14,
+          "w": 36.1875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1138.078125,
+          "y": 14,
+          "w": 37.765625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1199.84375,
+          "y": 14,
+          "w": 52.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "button",
+        "type": "button",
+        "role": null,
+        "name": "Switch to dark mode",
+        "href": null,
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1276,
+          "y": 14,
+          "w": 44,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 855.703125,
+          "w": 199.015625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "sahiboffc@gmail.com",
+        "href": "mailto:sahiboffc@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 426,
+          "y": 855.53125,
+          "w": 169.15625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "jaintanya999@gmail.com",
+        "href": "mailto:jaintanya999@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 732,
+          "y": 856.359375,
+          "w": 197.5625,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Email thegeekdogs@gmail.com. Opens a new message about a project.",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(15, 42, 46)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 1164,
+          "y": 828,
+          "w": 260,
+          "h": 56
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "thegeekdogs@gmail.com",
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 527.328125,
+          "w": 193.3125,
+          "h": 20
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Work",
+        "href": "/work/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 575.15625,
+          "w": 41.8125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib",
+        "href": "/sahib/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 193.8125,
+          "y": 575.15625,
+          "w": 42.796875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya",
+        "href": "/tanya/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 268.609375,
+          "y": 575.15625,
+          "w": 44.671875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Contact",
+        "href": "/contact/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 345.28125,
+          "y": 575.15625,
+          "w": 61.6875,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on GitHub Opens a new tab.",
+        "href": "https://github.com/hellosahib",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 120,
+          "y": 676.15625,
+          "w": 104.734375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on GitHub Opens a new tab.",
+        "href": "https://github.com/Tanya-jain99",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 256.734375,
+          "y": 676.15625,
+          "w": 106.3125,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Sahib on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 395.046875,
+          "y": 676.15625,
+          "w": 113.34375,
+          "h": 44
+        },
+        "dataStation": null
+      },
+      {
+        "tag": "a",
+        "type": null,
+        "role": null,
+        "name": "Tanya on LinkedIn Opens a new tab.",
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outline": "solid 3px rgb(232, 237, 233)",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "rect": {
+          "x": 540.390625,
+          "y": 676.15625,
+          "w": 114.921875,
+          "h": 44
+        },
+        "dataStation": null
+      }
+    ]
+  }
+}

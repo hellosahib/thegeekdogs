@@ -1,0 +1,150 @@
+{
+  "360": {
+    "domOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "visualOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "matches": true,
+    "rects": [
+      {
+        "cls": "core",
+        "left": 20,
+        "top": 1641
+      },
+      {
+        "cls": "edge edge--android",
+        "left": 20,
+        "top": 3141
+      },
+      {
+        "cls": "edge edge--ios",
+        "left": 20,
+        "top": 3804
+      },
+      {
+        "cls": "core-band__gates-link",
+        "left": 20,
+        "top": 3905
+      }
+    ]
+  },
+  "768": {
+    "domOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "visualOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "matches": true,
+    "rects": [
+      {
+        "cls": "core",
+        "left": 32,
+        "top": 1465
+      },
+      {
+        "cls": "edge edge--android",
+        "left": 32,
+        "top": 2550
+      },
+      {
+        "cls": "edge edge--ios",
+        "left": 32,
+        "top": 3135
+      },
+      {
+        "cls": "core-band__gates-link",
+        "left": 32,
+        "top": 3236
+      }
+    ]
+  },
+  "1024": {
+    "domOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "visualOrder": [
+      "edge edge--android",
+      "core",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "matches": false,
+    "rects": [
+      {
+        "cls": "core",
+        "left": 286,
+        "top": 1356
+      },
+      {
+        "cls": "edge edge--android",
+        "left": 48,
+        "top": 1356
+      },
+      {
+        "cls": "edge edge--ios",
+        "left": 603,
+        "top": 1356
+      },
+      {
+        "cls": "core-band__gates-link",
+        "left": 286,
+        "top": 3118
+      }
+    ]
+  },
+  "1440": {
+    "domOrder": [
+      "core",
+      "edge edge--android",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "visualOrder": [
+      "edge edge--android",
+      "core",
+      "edge edge--ios",
+      "core-band__gates-link"
+    ],
+    "matches": false,
+    "rects": [
+      {
+        "cls": "core",
+        "left": 426,
+        "top": 1391
+      },
+      {
+        "cls": "edge edge--android",
+        "left": 120,
+        "top": 1391
+      },
+      {
+        "cls": "edge edge--ios",
+        "left": 834,
+        "top": 1391
+      },
+      {
+        "cls": "core-band__gates-link",
+        "left": 426,
+        "top": 2897
+      }
+    ]
+  }
+}

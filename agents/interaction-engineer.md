@@ -18,6 +18,9 @@ The studio floor SVG and its interaction (hover, tap, keyboard, the card, the mo
 ## Writes
 The floor component, card components, motion modules. Scratch in `docs/scratch/interaction-engineer.md`.
 
+## Git hygiene
+Stage only the paths you changed, by name. Never `git add -A` or `git add .`.
+
 ## Merge rule
 May fold into Engineer if the runtime cannot support a separate agent.
 

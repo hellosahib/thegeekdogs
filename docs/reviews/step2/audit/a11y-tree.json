@@ -1,0 +1,200 @@
+{
+  "landmarks": [
+    {
+      "tag": "header",
+      "role": "banner",
+      "id": null,
+      "ariaLabel": null,
+      "ariaLabelledby": null
+    },
+    {
+      "tag": "div",
+      "role": "group",
+      "id": null,
+      "ariaLabel": "Theme",
+      "ariaLabelledby": null
+    },
+    {
+      "tag": "main",
+      "role": "main",
+      "id": "main",
+      "ariaLabel": null,
+      "ariaLabelledby": null
+    },
+    {
+      "tag": "footer",
+      "role": "contentinfo",
+      "id": null,
+      "ariaLabel": null,
+      "ariaLabelledby": null
+    }
+  ],
+  "headings": [
+    {
+      "level": 1,
+      "text": "AI writes a lot of our code. It doesn't get the last word."
+    },
+    {
+      "level": 2,
+      "text": "Two desks have people at them. The rest are agents."
+    },
+    {
+      "level": 3,
+      "text": "Sahib Singh"
+    },
+    {
+      "level": 3,
+      "text": "Tanya Jain"
+    },
+    {
+      "level": 3,
+      "text": "Spec Writer"
+    },
+    {
+      "level": 3,
+      "text": "Designer"
+    },
+    {
+      "level": 3,
+      "text": "Programmer"
+    },
+    {
+      "level": 3,
+      "text": "Test Engineer"
+    },
+    {
+      "level": 3,
+      "text": "Security Auditor"
+    },
+    {
+      "level": 3,
+      "text": "Reviewer"
+    },
+    {
+      "level": 3,
+      "text": "Release Watcher"
+    },
+    {
+      "level": 3,
+      "text": "Ship approval"
+    },
+    {
+      "level": 2,
+      "text": "Sahib Singh"
+    },
+    {
+      "level": 2,
+      "text": "Tanya Jain"
+    },
+    {
+      "level": 2,
+      "text": "Four things we don't hand to an agent."
+    },
+    {
+      "level": 3,
+      "text": "Architecture review."
+    },
+    {
+      "level": 3,
+      "text": "Code review."
+    },
+    {
+      "level": 3,
+      "text": "QA on real devices."
+    },
+    {
+      "level": 3,
+      "text": "Security and privacy review."
+    },
+    {
+      "level": 2,
+      "text": "We run this on our own app first."
+    },
+    {
+      "level": 2,
+      "text": "You'll be holding something before you're bored of the kickoff."
+    },
+    {
+      "level": 2,
+      "text": "Tell us what you're building."
+    },
+    {
+      "level": 2,
+      "text": "Elsewhere"
+    }
+  ],
+  "lists": [
+    {
+      "tag": "ul",
+      "className": "roster",
+      "itemCount": 10,
+      "ariaLabel": null
+    },
+    {
+      "tag": "ul",
+      "className": "strip__cards",
+      "itemCount": 2,
+      "ariaLabel": null
+    },
+    {
+      "tag": "ul",
+      "className": "strip__cards",
+      "itemCount": 2,
+      "ariaLabel": null
+    },
+    {
+      "tag": "ol",
+      "className": "gates",
+      "itemCount": 4,
+      "ariaLabel": null
+    },
+    {
+      "tag": "ul",
+      "className": "figures",
+      "itemCount": 3,
+      "ariaLabel": null
+    },
+    {
+      "tag": "ol",
+      "className": "track__list",
+      "itemCount": 5,
+      "ariaLabel": "Pocket Manager build stage"
+    },
+    {
+      "tag": "ol",
+      "className": "track__list",
+      "itemCount": 5,
+      "ariaLabel": "Wedding planner build stage"
+    },
+    {
+      "tag": "ul",
+      "className": "site-footer__links small",
+      "itemCount": 4,
+      "ariaLabel": null
+    }
+  ],
+  "liveRegions": [
+    {
+      "tag": "span",
+      "className": "sr-only",
+      "ariaLive": "polite"
+    },
+    {
+      "tag": "div",
+      "className": "floor__slot",
+      "ariaLive": "polite"
+    }
+  ],
+  "ariaCurrent": [
+    {
+      "tag": "li",
+      "value": "step",
+      "text": "Live. Where it is now."
+    },
+    {
+      "tag": "li",
+      "value": "step",
+      "text": "Final touches. Where it is now."
+    }
+  ]
+}

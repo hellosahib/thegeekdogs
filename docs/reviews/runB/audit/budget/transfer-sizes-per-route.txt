@@ -1,0 +1,10 @@
+home	html_gz=11944	inlineJs_gz=1255	externalScripts=0	html+inlineJS+css=24369
+work	html_gz=4101	inlineJs_gz=898	externalScripts=0	html+inlineJS+css=16526
+pocket-manager	html_gz=5718	inlineJs_gz=831	externalScripts=0	html+inlineJS+css=18143
+wedding-planner	html_gz=4599	inlineJs_gz=628	externalScripts=0	html+inlineJS+css=17024
+sahib	html_gz=6508	inlineJs_gz=716	externalScripts=0	html+inlineJS+css=18933
+tanya	html_gz=6003	inlineJs_gz=707	externalScripts=0	html+inlineJS+css=18428
+contact	html_gz=3945	inlineJs_gz=755	externalScripts=0	html+inlineJS+css=16370
+404	html_gz=3053	inlineJs_gz=451	externalScripts=0	html+inlineJS+css=15478
+
+shared CSS gz = 12425 (raw 69043)

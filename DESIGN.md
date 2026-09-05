@@ -4,6 +4,8 @@ Design Lead, Pass 2 (round 3), amended in round 4. Pass 1 cleared the Direction 
 
 **Round 4.** Two owner decisions reverse `QUESTIONS.md` item 49: **every page ships a dark scheme**, and **every page carries a manual light/dark toggle**. Applied in place. Six palettes now exist, three light and three dark, all computed to AA by §B.2's method: §B.2 / §B.2a (studio), §F.4 / §F.4a (Sahib — his existing palette *is* his dark scheme), §G.1 / §G.1a (Tanya). The toggle is specified in §B.10a; the stage indicator is re-checked on dark in §E.1a; print (§D.8) always uses the light tokens; §H.4 confirms the toggle adds no motion. Round 3's other decisions are untouched.
 
+**Round 13 — reconciliation, after build run D.** Four items, no new rules and no weakened ones; the full disposition is §I.1. **(1)** §B.8 and §B.10 disagreed below 768 and §B.8 was wrong: the three proof figures **stack** rather than set three across, and §B.10's claim that Tanya's `Owns` line was covered "by being full width" is deleted — the gates block sets **one gate per line below 1024**. Between them those close all seven of `qa:plate`'s sub-768 collisions by composition, with no exemption and no region leaving the plate's wrapper. **(2)** §G.3a's tick aligns to the **platform label's baseline**, because a tick attaches a layer to the core by its name and not by a card. **(3)** §C.8 records the selected fill at **2.36 : 1 light / 2.61 : 1 dark** and hands the state to the 1px `--chalk` edge; the unreachable 30%-pixel-share test is replaced by a channel-delta test on that edge. **(4)** §C.4's 6% warm offset is **deleted** — four fills is the line.
+
 Scope of this document: art direction, three token systems, layout, hierarchy, responsive behaviour, the studio floor composition, the work-card treatment, the build-stage indicator, motion spec. No application code. No user-facing copy — drafted copy from §7 is quoted only to size the boxes, and copy that does not exist yet is marked `[COPY NEEDED]`. Facts that do not exist in §5 are marked `[BLOCKED]` and never guessed.
 
 Contrast arithmetic is done, not estimated. Method is printed in §B.2 so anyone can re-run it.
@@ -281,6 +283,16 @@ Page max-width 1320 (content 1200); it stops growing there. Section vertical pad
 
 The floor section and the final CTA section are the only two full-bleed regions; they break the container to the viewport edge. Everything else stays in the grid.
 
+**One grid, every section, no exceptions.** Every section on every page is laid out on the table above and on nothing else. No section carries an extra `padding-right`, a reserved right band or a keep-out lane, and there is never more than one content width or one column width on a page at a time. The persistent plate (§B.10) is kept clear by a composition rule about where marks go, never by taking width away from the grid — a page whose right edge steps in and out down its own length has two grids, and §B.5 gives one.
+
+**The split forms engage at 1024.** The twelve-column grid arrives at 1024, and so does every two-column arrangement in this document: the gates' anchored closing line (cols 9–12) and §C.6's side-by-side card slot (cols 9–12). **1024, not 1440.** Below 1024 they stack in DOM order — gates then closing line, scene then card panel. Nothing in this document holds a split back to 1440 for the sake of caution, and any wording that appears to is stale.
+
+**Two arrangements do not split at 1024, and round 12 gives them a rule rather than an exception.** §B.9's proof band and §G.3's three-field core band are both a two-column arrangement whose second column is **a diagram with a fixed minimum extent** — a five-node track at §B.10's 100px pitch, a core field at §B.4's measure. A split that does not fit such a diagram does not degrade gracefully; it either crushes the diagram or crushes the prose beside it, and round 11 chose a third thing that was worse than both.
+
+> **Ruled, round 12, arbitrated by the Orchestrator against the rendered run-B pages. "The split forms engage at 1024" holds for §C.6's card slot and for the gates' anchored closing line. It does *not* hold for a two-column arrangement whose second column is a diagram with a fixed minimum extent. Those arrangements engage where their diagram fits, and below that width they are one grid, two rows — never a stack in one half of the page, and never a second content width.**
+
+The instrument is one grid and two rows, both rows on §B.5's table: row 1 carries the prose and whatever the prose owns; row 2 carries the diagram at the width the diagram needs. Nothing is narrowed, nothing is indented, no section carries a `padding-right`, and the void §B.9 permits exactly once is still spent exactly once. **Round 11's "stacks 768–1439, splits at 1440" is withdrawn** — the rendered evidence is `home-proof-1024-light.png`, where the stack put two content widths in one block and left the right 46% of a 918px section empty from top edge to bottom edge, which is the shape run A item 5 was written about. Rendered evidence outranks arithmetic alone. §B.9 and §E.3 carry the coordinates; §G.3 carries Tanya's.
+
 ### B.6 Design principles
 
 Five, each specific to this brief. Generic ones are not here on purpose.
@@ -351,8 +363,8 @@ Content 320, margins 20. Sections in §7 order.
 │▓  ┌──────────────────────────────┐    ▓│  32
 │▓  │ portrait room, 320 x 520     │    ▓│      iso scene. plan and stations
 │▓  │ 3 modules wide, 6 deep       │    ▓│      in §C.7. TEN stations. agent
-│▓  │ see §C.7 for the plan        │    ▓│      targets 101 x 64, cabins
-│▓  │                              │    ▓│      320 x 88, chair 104 x 96.
+│▓  │ see §C.7 for the plan        │    ▓│      targets 101 x 68, cabins
+│▓  │                              │    ▓│      320 x 88, chair 104 x 92.
 │▓  └──────────────────────────────┘    ▓│
 │▓                                      ▓│  20
 │▓  ┌──────────────────────────────┐    ▓│      CARD PANEL. below the scene,
@@ -410,21 +422,28 @@ Content 320, margins 20. Sections in §7 order.
 │   Four things we don't hand            │      display-section
 │   to an agent.                         │
 │                                        │  40
-│ 01  Architecture review                │      the ONLY numbered sequence on
-│     Before a line is written, a        │      the site. §9.4 permits it: the
-│     person decides the shape...        │      gates are genuinely ordered.
+│ 01  Architecture review.               │      the ONLY numbered sequence on
+│     Sahib decides the shape before a   │      the site. §9.4 permits it: the
+│     line is written...                 │      gates are genuinely ordered.
 │                                        │      numeral hung in the 20px
-│ 02  Code review                        │      margin at 360; title Anek 600
-│     Every change is read by a          │      20px; body 16/26 --muted
-│     human before it merges...          │
-│                                        │
-│ 03  QA on real devices                 │
-│     Physical phones, not just an       │
-│     emulator...                        │
-│                                        │
-│ 04  Security and privacy review        │
-│     What the app collects, where       │
-│     it goes, what's stored...          │
+│ 02  Code review.                       │      margin at 360; title Anek 600
+│     Every change is read by a person   │      20px; body 16/26 --muted.
+│     before it merges, and both of us   │
+│     are on this one...                 │      THE FOUR BODIES ARE COPY.md
+│                                        │      §2.6 VERBATIM AND THEY NAME
+│ 03  QA on real devices.                │      THEIR OWNERS. the excerpts
+│     Tanya runs the build on physical   │      drawn here are wireframe
+│     phones, not just an emulator...    │      placeholders and never print.
+│                                        │      the slot is unbounded in
+│ 04  Security and privacy review.       │      height, so the longer strings
+│     Tanya reads what the app collects, │      cost LINES, not layout: at
+│     where it goes, what's stored...    │      ~28ch on 320, gate 01 sets to
+│                                        │  24  6 lines and 02-04 to 4-5.
+│     Design review and the release      │
+│     itself stay with Sahib and         │      THE LINE UNDER THE FOUR
+│     Tanya...                           │      (COPY.md §2.6). body 16/26
+│                                        │      --muted, NO hung numeral --
+│                                        │      it is not a fifth gate.
 │                                        │  40
 │   That's the difference between        │      closing line, display-section
 │   generated software and shipped       │      --floor. NOT a card, NOT a
@@ -439,10 +458,16 @@ Content 320, margins 20. Sections in §7 order.
 │░  Play Store since 2020, maintained   ░│
 │░  by the same pipeline...             ░│
 │░                                      ░│  16
-│░  4.3★   24 reviews   1K+ installs    ░│      numeral-large 24px tabular
-│░  ────   ──────────   ───────────     ░│      + micro label under each.
-│░                                      ░│      3 across at 320: 96px each.
-│░                                      ░│  24
+│░  4.3★      rating                    ░│      THE THREE FIGURES STACK
+│░                                      ░│  16  BELOW 768 (round 13, and the
+│░  24        reviews                   ░│      arithmetic is in §B.10).
+│░                                      ░│  16  numeral-large 24px tabular in
+│░  1,000+    downloads                 ░│      a 68px column from x 20; the
+│░                                      ░│      micro label from x 104, on
+│░                                      ░│      the SAME baseline, so each
+│░                                      ░│      row reads "1,000+ downloads".
+│░                                      ░│      widest ink ends x 162 -- 70
+│░                                      ░│  24  clear of the 128 band at 232.
 │░  Open it in the Play Store           ░│      real link, no arrow glyph
 │░                                      ░│  40
 │░  ┌──────────────────────────────┐    ░│      COMPACT STAGE VIEW (§E.3)
@@ -493,12 +518,38 @@ Content 320, margins 20. Sections in §7 order.
 │▓  © 2026 TheGeekDogs                  ▓│      note, stacked on their own
 │▓  Company names on this site are the  ▓│      lines. no middle dots anywhere
 │▓  founders' employment history...     ▓│      in this block (§9.4).
-│▓                                      ▓│  56  reserve for the sticky plate
-╞════════════════════════════════════════╡
-│▒▒▒▒ thegeekdogs@gmail.com  (--lamp) ▒▒▒│  56  PERSISTENT CONTACT (§B.10)
-└────────────────────────────────────────┘      sticky bottom bar, released
-                                                before the final CTA.
+│▓                                      ▓│  72  RESERVE: +72 bottom padding on
+└────────────────────────────────────────┘      every section the plate can
+                             ┌────────┐         overlay (56 plate + 16 inset,
+                             │ [COPY] │  56     §B.10). that is the WHOLE
+                             └────────┘         reservation -- no lane, no
+                              ◀─112─▶ 16        padding-right, content stays
+                                                the full 320.
+    band begins x 232 ───────▲
+                                                PERSISTENT CONTACT (§B.10):
+                                                112 x 56 BELOW 768, NOT the
+                                                260 plate 1440 carries -- one
+                                                object, two widths (round 10).
+                                                --lamp fill, 2px --floor
+                                                border, inset 16px from the
+                                                bottom and right of the
+                                                VIEWPORT, sticky, released
+                                                before the final CTA, and
+                                                ABSENT over the floor section
+                                                at every width (round 12).
+                                                NOT A BAR: 128 of 360, so it
+                                                never rules a line across the
+                                                page (§9.4). The band it casts
+                                                begins at x 232 (100vw - 128)
+                                                and BINDS below 768: no load-
+                                                bearing mark's right edge may
+                                                fall inside it. That is why
+                                                the three figures above stack.
 ```
+
+**The three proof figures stack below 768 — round 13, and it replaces "3 across at 320: 96px each".** That line was written in Pass 1 against a plate whose band began at x 84, and it does not survive the 128px band §B.10 has cast below 768 since round 10: three across at 320 puts the third column at x 244–340, so `1,000+` ends at **x 309** and `downloads` at **~302** against a band beginning at **x 232**. Both are load-bearing by §B.10's own definition — a figure whose last digit is hidden is a different number — and `qa:plate` flags them at 360 and 390. **Narrowing the row is refused on arithmetic:** three columns inside x 20 → 232 is 212px, which at §B.5's 16px gutter gives 60px a column against `1,000+`'s own **65px of ink** at numeral-large 24px Anek 500 `wdth` 87.5, and the only ways to make 60 work are a fourth numeral size (§B.4 gives two sizes and this is not one of them) or an 8px gutter that lands the ink 0.3px inside its column. So the row stacks:
+
+> **Below 768 the proof figures set one per row, three rows: the numeral in a 68px column from x 20, its micro label from x 104 on the same baseline, rows 16px apart.** 68 is §B.5's own 360 column and it is 3px wider than the widest numeral; 104 is col 2's left edge. The widest ink in the block is `downloads` at micro 13px Instrument 500 — ~58px from x 104, ending at **x 162**. That is a constant at every width below 768, against a band that never begins before **x 232**, so the clearance is **70px at 360**, 100 at 390, and it only grows. The cost is **57px of height, once** — three 24px rows and two 16px gaps is 104 against the 46.85 the figure-over-label row measured — and it is paid on the one section where §B.6 principle 2 says the numerals are the argument. It also puts three tabular numerals in a single left column, which is the arrangement `tnum` exists for and which three-across never gave them.
 
 **The work-card strip, specified.** Item 50 says include it, so here is what it is and what it is
 not. It is **two rows, one per person, two cards each, two fields per card** — company in the title
@@ -577,8 +628,8 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 │▓                                                                        ▓│
 │▓ ┌────────────────────────────────────────┐  ┌───────────────────────┐  ▓│
 │▓ │                                        │  │ CARD SLOT             │  ▓│
-│▓ │   isometric scene, cols 1-8            │  │ cols 9-12, 366 wide   │  ▓│
-│▓ │   792 x 560, 6 wide x 5 deep plan      │  │ vertically centred    │  ▓│
+│▓ │   isometric scene, cols 1-8            │  │ cols 9-12, 384 wide   │  ▓│
+│▓ │   856 x 520, 6 wide x 5 deep plan      │  │ vertically centred    │  ▓│
 │▓ │   TEN stations, see §C.3               │  │ to the scene          │  ▓│
 │▓ │                                        │  │                       │  ▓│
 │▓ │   the empty chair sits alone at        │  │ min-height 344px      │  ▓│
@@ -611,22 +662,32 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 │░                                                                   128  ░│  the tilts never
 ╞══════════════════════════════════════════════════════════════════════════╡  read as a pile.
 │                                                                     160  │  --sheet
-│ 01  Architecture review                    │  That's the difference      │
-│     Before a line is written, a person     │  between generated          │  the closing line
-│     decides the shape: what the data       │  software and shipped       │  is anchored in
-│     looks like, where the boundaries       │  software.                  │  cols 9-12,
-│     are.                (cols 2-7)         │                             │  vertically
-│                                            │  (cols 9-12,                │  centred to the
-│ 02  Code review                            │   display-section)          │  whole group.
-│     Every change is read by a human...     │                             │  it is not a
-│                                            │                             │  card and not a
-│ 03  QA on real devices                     │                             │  pull-quote.
-│     Physical phones, not just an           │                             │
-│     emulator...                            │                             │
+│ 01  Architecture review.                   │  That's the difference      │
+│     Sahib decides the shape before a line  │  between generated          │  the closing line
+│     is written: what the data looks like,  │  software and shipped       │  is anchored in
+│     where the boundaries are, what this    │  software.                  │  cols 9-12 = 384,
+│     has to survive in two years.           │                             │  vertically
+│                  (cols 2-7 = 588 wide)     │  (cols 9-12,                │  centred to the
+│                                            │   display-section)          │  whole group.
+│ 02  Code review.                           │                             │  it is not a
+│     Every change is read by a person       │                             │  card and not a
+│     before it merges, and both of us are   │                             │  pull-quote.
+│     on this one.                           │                             │
+│                                            │                             │  THE FOUR BODIES
+│ 03  QA on real devices.                    │                             │  ARE COPY.md §2.6
+│     Tanya runs the build on physical       │                             │  VERBATIM AND THEY
+│     phones, not just an emulator.          │                             │  NAME THEIR OWNERS.
+│                                            │                             │  what is drawn here
+│ 04  Security and privacy review.           │                             │  is a wireframe
+│     Tanya reads what the app collects,     │                             │  placeholder and it
+│     where it goes, what's stored.          │                             │  never prints.
 │                                            │                             │
-│ 04  Security and privacy review            │                             │
-│     What the app collects, where it        │                             │
-│     goes, what's stored, what's exposed.   │                             │
+│     Design review and the release itself   │                             │  THE LINE UNDER THE
+│     stay with Sahib and Tanya.             │                             │  FOUR (COPY.md
+│                            (cols 2-7)      │                             │  §2.6): body 17/28,
+│                                            │                             │  NO hung numeral,
+│                                            │                             │  set on the gate
+│                                            │                             │  bodies' left edge.
 │                                                                     160  │
 ╞══════════════════════════════════════════════════════════════════════════╡
 │░░░░░░░░░░░░░░░░░░░░ FULL BLEED --band ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 128 ░│
@@ -637,10 +698,10 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 │░ Store since 2020, maintained by the      │                             ░│  ONE set of
 │░ same pipeline and the same review        │  [second app]               ░│  column headers,
 │░ gates.                                   │  ●───●───◉╌╌╌○╌╌╌○          ░│  two runners.
-│░                                          │                             ░│  (cols 7-12)
-│░ 4.3★      24          1K+                │  one shipped, one nearly    ░│  §E.3
-│░ rating    reviews     installs           │  there.                     ░│
-│░                                          │  [COPY NEEDED: <=8 words]   ░│
+│░                                          │                             ░│  band cols 7-12,
+│░ 4.3★      24          1K+                │  one shipped, one nearly    ░│  full 1200 width.
+│░ rating    reviews     installs           │  there.                     ░│  THE AXIS STOPS
+│░                                          │  [COPY NEEDED: <=8 words]   ░│  AT x 1132 (§B.10)
 │░ Open it in the Play Store                │                             ░│
 │░                                                                    128 ░│
 ╞══════════════════════════════════════════════════════════════════════════╡
@@ -669,9 +730,65 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
                               ┌──────────────────────────┐
                               │ thegeekdogs@gmail.com    │  PERSISTENT CONTACT:
                               └──────────────────────────┘  260x56 plate, --lamp
-                                            (bottom-right, 16px inset, released
-                                             before the final CTA section)
+                                            (bottom-right, 16px inset from the
+                                             VIEWPORT, released before the
+                                             final CTA section)
+
+                              THE SAME PLATE AT EVERY BREAKPOINT, 360 to 1440
+                              (§B.10). there is no full-bleed variant at any
+                              width. the 276 x 72 corner it claims is kept
+                              clear by §B.10's composition rule, NOT by a
+                              keep-out lane: every section above keeps the
+                              full 1200 content width and §B.5's one grid.
 ```
+
+**The proof band above is drawn at 1440, and that drawing is unchanged. Round 12 gives it its 1024–1439 form: one grid, two rows.**
+
+Round 11 costed three ways out of the 1024 collision and took the wrong one. The collision is real and its arithmetic still stands: §B.10 fixes the track's pitch at 100px, five nodes at that pitch is a 400px axis plus the last node's 9px ring, and at 1024 col 7's left edge is x 524 against a band beginning at x 748 — 215px of usable axis against the 409 the form needs. Two of round 11's three options remain refused **and are refused permanently, so they stop coming back**:
+
+- **Re-split as cols 1–4 / 5–12, keeping the 100px pitch — refused, twice over.** The axis would start at col 5's left edge, x 365.3, and its last ring would close at **774.2, 26.2px inside the band**, which is the same collision one column further left. And the prose it displaces would be 293.2px wide — 17.2em at 17/28, roughly half of `--measure-body`'s 32em and about 34 characters a line. The section's left column is a paragraph, not a caption; four columns is not a measure.
+- **Scale the pitch to fit cols 7–12 — refused.** x 524 to 739 (the band, less the ring) is 215.2px of axis, a **53.8px pitch**. The 85px pitch already refused for `/work/`'s full track at 768–930 (§B.10) is 58% wider than that. The compact view's labels are **not** shorter: its header row carries §E.2's own five strings, which is why §B.10's 1440 note reasons about `Submitted for review` setting in two lines *in this band*. The same reservation, the same objection, and here it fails harder — at 53.8 the word `touches` alone is 53.8px wide at small/14 Instrument 600, so `Final touches` takes three lines and the label row has no gap between neighbours at all.
+- **Stack it in cols 1–6 and let cols 7–12 stand empty for the section's whole height — taken in round 11 and now withdrawn.** `home-proof-1024-light.png` is why: two content widths in one block, and the right 46% of a 918px-tall section empty from its top edge to its bottom. It also squeezed §G.3's core to 31 characters by the same reasoning applied one page over. It was refused on render, and render outranks arithmetic alone.
+
+**The proof grid, 1024–1439. One grid, two rows, no second content width.**
+
+```
+   ├──1──┼──2──┼──3──┼──4──┼──5──┼──6──┼──7──┼──8──┼──9──┼─10──┼─11──┼─12──┤
+┌──────────────────────────────────────────────────────────────────────────┐
+│░░░░░░░░░░░░░░░░░░░░ FULL BLEED --band ░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 128 ░░│
+│░                                                                        ░│
+│░ We run this on our own app first.       │ One shipped, one nearly     ░│  ROW 1.
+│░                                          │ there.                      ░│  prose, figures
+│░ Pocket Manager has been in the Play      │                             ░│  and the store
+│░ Store since 2020, maintained by the      │ [COPY NEEDED: <=8 words]    ░│  link, cols 1-7.
+│░ same pipeline and the same review        │                             ░│  the caption and
+│░ gates.                                   │ (cols 8-12, top-aligned,    ░│  its note, cols
+│░                                          │  PROSE -- exempt under      ░│  8-12, top-
+│░ 4.3*      24          1K+                │  §B.10's own rule, which    ░│  aligned.
+│░ rating    reviews     installs           │  is why the right of the    ░│
+│░                                          │  row is filled by writing   ░│  the figures now
+│░ Open it in the Play Store                │  and not by a void)         ░│  live inside a
+│░                        (cols 1-7)        │                             ░│  seven-column
+│░                                                                     48 ░│  measure, 168.7
+│░                                                                        ░│  clear of the
+│░  Pocket Manager                                                        ░│  band at 1024.
+│░        ●───────●───────●───────●───────◉                               ░│
+│░  [second app]                                                          ░│  ROW 2.
+│░        ●───────●───────◉╌╌╌╌╌╌╌○╌╌╌╌╌╌╌○                               ░│  the two-runner
+│░     Specced Building  Final  Submitted  Live                           ░│  shared axis,
+│░                      touches for review                                ░│  block cols 1-9.
+│░                                          (block cols 1-9)              ░│  ALL FIVE LABELS
+│░                                                                    128 ░│  CENTRED.
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+- *Row 1.* COPY §2.7's headline, its paragraph, the three figures and the store link in **cols 1–7** — x 48 → 579.3 at 1024, **531.3px = 31.2em** at 17/28, inside `--measure-body`'s 32em, which the full 928 is not. COPY §2.8's caption `One shipped, one nearly there.` and its `[COPY NEEDED: ≤ 8 words]` note in **cols 8–12**, top-aligned, x 603.1 → 975.6. That block sits inside the plate's band and is *supposed to* — it is prose, which §B.10's rule exempts by name, and filling the right of the row with writing rather than with emptiness is the whole point of the arrangement. **The figures stop being the only thing that crosses the block**, which is blocker B1's actual cause: the rightmost figure's ink now ends at or before 579.3 against a band at 748, **168.7px clear** at 1024 and 353.5 at 1439.
+- *Row 2.* The two-runner shared-axis track, block **cols 1–9** (x 48 → 737.7 at 1024). The product labels sit **above** their runners as the 1440 wireframe already draws them, so the block takes col 1's left edge and no label column is subtracted. Five node centres at the **100px pitch**, anchored on the right.
+- *The right anchor, written once so it is reproducible.* **Last node centre = `min(block right − 33, 100vw − 372)`.** The second term is the plate's band (`100vw − 276`) less **96px**, one step on §B.5's spacing scale; the first is the block's right edge less the ring's 9px and one 24px gutter. The anchor is band-relative because the plate is a viewport object and §B.10's rule is a viewport rule — this is the one place in the document where a viewport-relative constraint sets a coordinate rather than only testing one. At **1024** the band term governs: **last node x 652**, centres **252 / 352 / 452 / 552 / 652**, axis ink (including the last ring) **243 → 661**, **96px clear** of the band at 748 measured node-centre-to-band and **87px** measured ring-to-band. The block has 76.7px to spare to its right, which is where the centred `Live` label's overhang goes.
+- *All five stage labels centre on their nodes*, here and in every other form of this component. See §E.3.
+- *≥ 1440 — the split band above, unchanged, and its numbers stated in the same terms.* Row 1's prose in cols 1–5 with the figures and the store link beneath it; the band's diagram in **cols 7–12**; axis **x 732 → 1132**, centres **732 / 832 / 932 / 1032 / 1132**, last ring closing at **1141** against a band at **1164** — **23px clear**. It clears, so it keeps the split; the two-row instrument is not applied where the split already works. The only change at 1440 is that all five labels now centre (item H7), and the two end labels' ink may overhang the axis by up to half a label — `Live` at small/14 overhangs to ~1145, still inside 1164, and it is prose in any case.
+- *768–1023.* The 8-column grid, so the twelve-column instrument does not apply. §E.3's stacked form holds — axis x 32 → 432, last ring 441, band 492, **51px clear** — and **the prose takes cols 1–6 and the three figures and the store link take cols 1–5**, which is the rule that closes blocker B1 at these widths: cols 1–5 ends at x 464.5 at 768 (**27.5 clear** of a band at 492), 545.3 at 900 (78.8 clear) and 620 at 1023 (127 clear). The figures were struck at 768–1022 because they ran the full content width; they now run a column allocation, and no width in the range needs a case of its own.
+- *< 768.* Unchanged: §E.3's one-row-per-product form.
 
 **The header row above carries one more item than it did in round 3:** the light/dark toggle sits 24px to the right of `Contact`, right-aligned to the 1200 content edge, 44 × 44, last in the header's tab order (§B.10a). The header height stays 72px and no other element in this wireframe moves.
 
@@ -695,10 +812,109 @@ Content 1200, 12 cols × 78 + 11 gutters × 24, outer 60. Column ruler shown as 
 
 The same rule governs each page's own closing line: a person page closes with that person's address, the studio pages close with the studio's. The plate and the page never disagree about who is being written to, which is the whole reason the person pages get their own addresses at all.
 
-- **Mechanism:** `position: sticky; bottom: 0` on an element inside a wrapper that spans from the end of the hero to the start of the final CTA. It appears when the hero leaves, follows down the page, and retires on its own when the real CTA arrives. No JS, no scroll listener, no dismiss state.
-- **< 768:** full-bleed bar, 56px tall, `--lamp` fill, 2px `--floor` top border, the address as a `mailto:` link filling the bar. Whole bar is the target. No width question here — the bar is the viewport.
-- **≥ 768:** 260 × 56 plate, bottom-right, 16px inset from the viewport, same colours, same 2px border. **The plate width does not change between pages**, and that is checked rather than assumed: set at small/14px Instrument 600 with 20px padding each side, the longest of the three addresses (`jaintanya999@gmail.com`, 22 characters ≈ 169px) needs 209px of the 260 available; `thegeekdogs@gmail.com` needs ~202px and `sahiboffc@gmail.com` ~186px. All three clear 260 with ≥ 51px to spare, so **no wireframe in §B.8, §B.9, §F.7, §F.8 or §G.3 changes width**, and the plate stays one component with one size at every breakpoint on every page.
-- **Reserve:** every section it can overlay gets +56px bottom padding, so it never covers content and never causes CLS.
+- **Mechanism:** `position: sticky; bottom: 0` on an element inside a wrapper that spans from the end of the hero — or, on `/`, from the **end of the floor section** (round 12, at every width) — to the start of the final CTA. It appears when that region begins, follows down the page, and retires on its own when the real CTA arrives. On `/contact/` there is no wrapper and no plate. No JS, no scroll listener, no dismiss state.
+- **One component, every page, every breakpoint. One height, one fill, one border, one radius, one type size, one inset — and, from round 10, two widths: a 260 × 56 plate at ≥ 768 and a 112 × 56 plate below it.** `--lamp` fill, 2px theme-`--floor` border, inset **16px from the bottom and right of the viewport**, sticky in the wrapper above. **There is no full-bleed variant at any width, on any page, in any world**, and the two widths are the same object at two sizes, not two components: same fill, same border, same 3px radius, same small/14px Instrument 600, same focus ring, same `display: none` in print.
+- **≥ 768: the plate prints the address**, as a `mailto:` filling the plate. The width does not change between pages, and that is checked rather than assumed: set at small/14px Instrument 600 with 20px padding each side, the longest of the three addresses (`jaintanya999@gmail.com`, 22 characters ≈ 169px) needs 209px of the 260 available; `thegeekdogs@gmail.com` needs ~202px and `sahiboffc@gmail.com` ~186px. All three clear 260 with ≥ 51px to spare, so **no wireframe in §B.9, §F.8 or §G.3 changes width**. The composition rule below binds from 768 up at a 276px band.
+- **< 768: the plate is 112 × 56 and it carries a label, not the address — and it is not present over the floor section. Round 10, and it is two changes because neither one alone is sufficient.** The full-bleed bar stays withdrawn; a docked strip is refused again below. The evidence is `docs/reviews/floor2/engineer/floor-360-{light,dark}.png`: at 360 the 260 plate plus its 16px inset occupies x 84–344 against a card panel whose measure runs x 40–320, so it covers **236 of 280 CSS px — 84% of the line width — while the visitor is reading the default card.** 84px of clear space to the plate's left is not an object on the page; at this width it is the page.
+  - **Change one, the width. 112 × 56, inset 16, so the band below 768 is 128px** and begins at `100vw − 128` — x **232** at 360, x **262** at 390. §B.10's amended composition rule now **binds below 768 as well as above it**, at this narrower band, with the same two exemptions. Measured at 360, the marks it protects: the work-card strip's date line (`2023 – 2025`, numeral-large 24px Anek 500 `wdth` 87.5, from x 60) ends at **~181** — 51 clear, where the 260 plate struck it through; `/contact/`'s stacked addresses (169px from x 40) end at **209** — **23 clear**, the same margin §B.9's stage track holds at 1440; `/work/`'s vertical stage track label `Submitted for review` (20 ch, small/14px, from x 56) ends at **~210** — 22 clear. All three failed against the 260 plate's band at x 84. **This is the change that makes the plate obey the rule §B.10 already wrote for itself.**
+  - **Change two, the label.** 112 with 19.5px padding each side leaves ~73px of type — 9 characters at small/14px Instrument 600 (7.68px/char, the same measurement the 260 proof uses). `[COPY NEEDED: the plate's label below 768, ≤ 9 characters, the action rather than the address.]` `[COPY NEEDED: the plate's accessible name below 768, ≤ 8 words — it must speak the address the plate links to, because the printed proof is what the label gives up and the screen-reader path must not give it up too.]` The `mailto:` target is unchanged and stays per world (the table above). **Item 53 is amended below 768, not overturned**: the address is still printed in plain text, at every width, in the page's own final CTA and three times on `/contact/`, and each person page still closes with that person's address. What the plate gives up below 768 is being *the* printed proof; what it keeps is being the way to act. On a phone the address is tapped, never transcribed, and the proof already sits in the flow two screens down. That is a smaller loss than 84% of the card panel.
+  - **Change three, the floor — made in round 10 below 768 and made *unconditional* in round 12.** See "Where the plate is not" below; it is no longer a property of this breakpoint and it no longer lives in this bullet.
+  - **Why not a docked full-width strip (the option this round considered and refused).** A slim strip differs from the withdrawn bar only if content never passes *under* it, and that requires the document to become an inner scroller — `main { flex: 1; overflow-y: auto }` under a 72px fixed row. It costs 72 of a 640px viewport permanently (11%), on a page where §B.8 already has the primary CTA's bottom edge at ~464; it breaks iOS URL-bar collapse, find-in-page scrolling and scroll restoration; and a fixed 360-wide amber row is the horizontal rule across `/404` that §9.4 bans by name and that round 9 removed. Refused here and wherever it is proposed again.
+**Where the plate is not — the third mechanism, and in round 12 it is unconditional.**
+
+Run B blocked on this section three times (`plate-over-figures-900-light.png`, `plate-over-scene-900-light.png`, `plate-over-panel-1024-light.png`), and two of the three were the same fault: §B.10 promised in one sentence that the floor's panel is *never covered* and in another sentence exempted the card slot from the band **as prose**. Both sentences cannot stand. An exemption says *this mark may be covered and survive it*; the promise says *nothing here is covered at all*. **The promise wins and the exemption goes.**
+
+> **The promise, restated so it is one sentence and it is testable: the plate never covers a load-bearing mark. Not a stage node, not a figure, not a printed address, not a card, ~~not prose~~ (round 13: struck — see the wording correction below), not at rest, not mid-scroll, not at any scroll position, at any width, on any route. Where a region cannot be kept clear by where its marks go, the plate's wrapper does not span that region, and the region is named below rather than argued case by case.**
+
+- **The floor section on `/`, at every width.** The plate's wrapper on `/` begins at the **end of the floor section**, not at the end of the hero. Round 10 made this true below 768 and priced it there; round 12 removes the width condition, because the trade is identical at 1440 and the evidence at ≥ 768 is worse. At 768–1023 the plate covered the whole Designer station — artwork and nameplate together (blocker B2) — and at 768, 1024 and 1440 it struck through the card's `Owns` line so that the page said Sahib owns "architecture review, code review, design review, the releas" (blocker B3). The room is the site's one bold moment (§9.4) and a station is a mark read as a unit; the `Owns` line is §6's answer to *which human checks it* and §6 forbids splitting it from the flex. **A contact plate over the room is the definition of obtrusive at 1440 as much as at 360**, and §8 asks for unobtrusive first.
+- **The whole of `/contact/`, at every width.** Run A said this exception would be written and round 12 writes it. §J's row for the route is "the second call to action. One email, one link, one answer." The page's entire content is three printed addresses, and the plate is a fourth printing of the first of them, 300px from itself. A persistent affordance that repeats the page it is resting on is not persistent, it is redundant. **`/contact/` carries no plate.** This also retires the tightest clearance on the site (738 against 748 at 1024) as something anyone has to keep checking.
+- **The mechanism, unchanged and still free.** `position: sticky` inside a wrapper that does not span the region — the same mechanism §B.10 already uses at the other end to retire the plate before the final CTA. **No JS, no scroll listener, no `view-timeline`, no scroll-driven animation — and therefore nothing to cancel under `prefers-reduced-motion` and nothing to fall back from in a browser without scroll-driven animation, both of which would have landed back on the defect.** Reduced motion, forced colours, no-JS and print all render exactly this. It is one containing block per route, and it needs no new component.
+- **The cost, stated.** On `/` the plate is absent for the hero plus the floor — ~1,770px at 360, ~2,050px at 1440 — during which the hero's own `Start a project` button has been on screen and the room is being read; on `/contact/` it is absent entirely. That is the trade change three already priced below 768 and accepted, taken at every width, plus one route. It buys the removal of three blockers and it takes the one amber rectangle off the one bold moment, which is also §J's row for `/`.
+
+- **Reserve — restated, and it is three numbers, none of them a lane.**
+  1. **Horizontal.** The band is **276px at ≥ 768** and **128px below 768**, measured from the viewport's right edge. No load-bearing mark's right edge may fall inside it, at any width, anywhere in the plate's wrapper. Prose and headings are exempt at both widths. **The band does not exist in a region the wrapper does not span** — that is what makes the promise above a rule and not a second exemption.
+  2. **Vertical. Every section the plate can overlay carries +72px bottom padding** — the plate's 56 plus its 16px inset. **This corrects the +56 this section previously specified**, which under-reserved by exactly the inset and left a section's last line 16px inside the plate's lowest rest position. It stops the plate resting on a last line and it stops any CLS. That is the entire vertical reservation. A section the wrapper does not span carries no such padding, because there is nothing to reserve for.
+  3. **The floor's card panel takes no plate allowance at all — and now it needs none.** Its `min-height` (§C.6) is derived purely from the longest card at every breakpoint, with no plate term in the arithmetic, because the wrapper does not span the floor section at any width. **The round-11 wording — that at ≥ 768 the panel is the card slot, "which the band exempts as prose" — is deleted.** It was the half of the contradiction that lost.
+
+  **Each struck mark run B found is now covered by a rule, not by a case.** The `1,000+` figure at 768–1022: §B.9's column allocation for the figures row (cols 1–5 of 8, cols 1–7 of 12) — reserve 1, applied by composition. The Designer station at 768–1023 and the card's `Owns` line at 768/1024/1440: the wrapper does not span the floor section — the promise above. Tanya's `Owns` line at 768: ~~it sits in the core field, which §G.3 keeps left of col 9 at ≥ 1024 and full-width below 768 where the band is 128 — reserve 1 again~~ — **this clause was false and round 13 replaces it below.** Full width is not clearance; a line that sets to its field's own width ends where the field ends. Three marks, two rules, no exemptions.
+
+  **`qa:plate` measures four more marks than the 432 it measured in run B**: `.figures__figure`, `.figures__label`, the floor's SVG `text` nodes, and `.core__gates-line`. All four are load-bearing by the rule's own definition and none of the four was in the set.
+
+  **Round 13 — the seven marks the four new selectors found below 768, reconciled. The rule does not move.** `qa:plate` flagged seven collisions on the run-D build and failed none of them, pending this section. They are two marks on `/` at two widths and one mark on `/tanya/` at three, and each one is a place where a *different* section of this document promised clearance it had not measured. Both promises were mine.
+
+  | # | Route, widths | Mark | Band | Ink ended | Which section was wrong |
+  |---|---|---|---|---|---|
+  | 1–2 | `/` at 360 | `.figures__figure` `1,000+`, `.figures__label` `downloads` | 232 | **309**, ~302 | §B.8's "3 across at 320: 96px each" — Pass 1 arithmetic against a band at x 84 |
+  | 3–4 | `/` at 390 | the same two | 262 | ~330 | the same line |
+  | 5–6 | `/tanya/` at 360, 390 | `.core__gates-line` | 232, 262 | **305** | this section's "full-width below 768 … reserve 1 again" |
+  | 7 | `/tanya/` at 768 | `.core__gates-line` | 492 | **539** | the same clause |
+
+  **1–4 are fixed by composition, in §B.8: the three figures stack below 768** — numeral in a 68px column from x 20, micro label from x 104 on the same baseline, three rows. The block's widest ink ends at **x 162** at every width below 768, against a band that never begins before **232**: **70px clear at 360**, three times the 23px `/contact/`'s addresses hold. §B.8 carries the derivation and the refusal of the narrow-row alternative. §E.3's allocation already closed the same mark at 768–1023 (cols 1–5 of 8) and above (cols 1–7 of 12), so the figures row is now ruled at every width and by the same instrument — reserve 1, applied to where the marks go.
+
+  **5–7 are fixed by composition too, in §G.3a: the gates block sets one gate per line below 1024, and the core keeps every pixel of its width.** The mark is a five-item list read as a unit, and a comma-separated list is the only thing in the core that runs to its field's full measure. Set one per line, the longest item is `security and privacy` — 20 characters, **157px** at body 16/1.62 from the core's inner left at x 40, ending at **x 197 at 360**, 35 clear of 232; **x 221 at 390**, 41 clear of 262; and at 768 the core's inner left is x 64 and 20 characters at body 17/1.62 is 167px, ending at **x 231** against a band at **492 — 261px clear**. The block's right edge is a constant per breakpoint and does not move with the viewport, so every width in the range is looser than its floor.
+
+  **Why the core's measure does not yield, stated so it stops being re-proposed.** Capping the gates block to clear the band by measure needs it to end at `100vw − 128` from an inner left of 40, which is **192px at 360 — about 23 characters**, under the 29-character floor §C.6 sets for a *card* and inside the 245px/31-character field item T4 was raised to remove. §B.5's round-12 ruling names the core a diagram with a fixed minimum extent; you do not narrow one of those to clear a band, which is the whole reason that ruling exists. Line-breaking is free, measure is not, so the line breaking changes and the field does not.
+
+  **And it is a better line.** Five owned gates set as five lines is a list rendered as a list, which is what §B.2 asked for when PM1 and WP2 took the markers off and left the separation to space. The comma-separated form stays on §C.6's floor cards, where the slot is 293px wide and a stacked list would be five lines of two words.
+
+  **Neither fix is an exemption and neither region leaves the wrapper.** The plate is still present on `/` from the end of the floor section and on `/tanya/` from the end of the hero, at every width; nothing gained a `padding-right`; no content width changed; the band is 276 at ≥ 768 and 128 below it, as it was. Seven marks, two compositions, no new rule. **`qa:plate` should now fail rather than flag**, and the four selectors stay in the set.
+
+  **One wording correction the Engineer is owed** (run D, "and one wording note under both of them"). The restated promise above says the plate never covers "not a load-bearing mark, not a card, **not prose**", while reserve 1 says "prose and headings are exempt at both widths". Those are two rules and the second is the built one. **The first is corrected here, not the second:** the promise's subject is *load-bearing marks, plus the named regions the wrapper does not span at all*. A sticky element in normal flow passes over whatever is above it on a page long enough to scroll — that is precisely what makes it cost no JS — so a promise that no prose is ever passed over is a promise no sticky affordance can keep, and asserting it hid a real defect behind an unmeasurable sentence. Strike "not prose" from the promise; prose and headings may run under the band, everywhere except the named regions, where nothing runs under anything because the plate is not there.
+
+  **There is still no keep-out lane.** No section carries a `padding-right`, no section has a reserved right band, and every section keeps the full content width and §B.5's one grid at every breakpoint. A lane buys the same collision for a second content width, a second column width, a right edge that steps in and out down the page, and four more voids where §B.9 allows exactly one — which costs more of the design than the collision it removes.
+
+**The 360 wireframe — the floor section's bottom, with the plate in place.** Drawn as a 360 × 640 viewport at the scroll position where the floor section ends and the plate's wrapper begins, which is the first position at 360 where the plate exists at all.
+
+```
+┌────────────────────────────────────────┐ 360 x 640 viewport
+│▓  │ is ready for your users.     │    ▓│  CARD PANEL, min-height 320.
+│▓  │ A person does, every         │    ▓│  text measure x 40-320, all
+│▓  │ release, every time.         │    ▓│  280 of it. NOTHING over it:
+│▓  └──────────────────────────────┘    ▓│  the plate's wrapper does not
+│▓                                      ▓│  span this section AT ANY WIDTH.
+│▓  The full pipeline                   ▓│  40
+│▓  Spec Writer, Designer, Programmer,  ▓│  small 14px, chalk@72%
+│▓  Test Engineer, Security Auditor,    ▓│
+│▓  Reviewer, Release Watcher.          ▓│
+│▓                                      ▓│  72  <- the reserve, +72 not
+╞════════════════════════════════════════╡      +56 (56 plate + 16 inset)
+│░░░░░░░░░░░░░ --band ░░░░░░░░░░░░░░░░░░░│  END OF FLOOR. the plate's
+│░                                      ░│  wrapper starts on this edge
+│░  Sahib Singh                         ░│  and runs to the final CTA.
+│░                                      ░│  16
+│░  ┌──────────────────────────────┐    ░│
+│░  │ Keenai Global                │    ░│  compressed card, x 40-320
+│░  │ 2025 - now                   │    ░│  date line ends x ~181,
+│░  └──────────────────────────────┘    ░│  51 clear of the band
+│░       ▁▁▁▁▁▁▁▁▁▁                     ░│
+│░                                      ░│  28
+│░  ┌──────────────────────────────┐    ░│
+│░  │ Motive                       │    ░│
+│░  │ 2023 - 2025                  │    ░│
+│░  └──────────────────────────────┘    ░│
+│░       ▁▁▁▁▁▁▁▁▁▁          ┌────────┐ ░│  THE PLATE. 112 x 56.
+│░                           │ [COPY] │ ░│  --lamp fill, 2px --floor
+│░                           └────────┘ ░│  border, x 232-344, y 568-624.
+│░                                      ░│  16
+└────────────────────────────────────────┘
+    band begins x 232 ─────────▲
+    (100vw - 128). content x 20-340, measure x 40-320:
+    the plate covers the last 88px of a 280 measure on the
+    sections it does overlay, and none of the card panel.
+```
+
+**The composition rule.** Stated once, here, and owned here. **Amended in round 9, and the amendment is mine.** The round-8 test — inside the 276px band *and* within 72px of the bottom of its own section — measured the wrong thing. It was a rest test on a **section**, and the plate is a **viewport** object: on `/contact/` a printed address sitting 351px above its section's bottom passes that test and is struck through on first paint at 1024 (run A blocker 2), and on `/work/` the last two stage nodes are covered while passing it too (blocker 3). The 72px box is retired. The 276px band is kept, and the test becomes one number per mark — its right edge:
+
+> **No load-bearing mark — one whose meaning is lost when part of it is hidden: a stage node, a printed address, a CTA, a form control, a card's price line — may have its *right edge* inside the plate's 276px band at ≥ 768, anywhere inside the plate's wrapper. Prose and headings may run under the band; a mark that is read as a unit may not end inside it.**
+
+The band is the plate's 260 plus its 16px inset, measured from the viewport's right edge: it begins at `100vw − 276`. Like the box it replaces this is a constraint on **where marks go**, not a tax on how wide the page is — no container, no column, no measure and no padding changes, and there is still no keep-out lane — and it is still independent of scroll position, because the plate's *horizontal* rest position is. **Round 10 extends it below 768 rather than exempting it there.** The round-9 wording — that it does not bind below 768, because the plate has 84px of clear space beside it — was the same error one level down: 84px of clear space in a 360px viewport is not clearance, and the rendered 360 screenshots show the 260 plate's band at x 84 striking the work-card date line, `/contact/`'s addresses and `/work/`'s vertical track labels. The rule is one rule at every width; only the band's width changes, 276 at ≥ 768 and 128 below it, and the bullets above give the measured clearances. It is the same instrument §B.9's proof band already answers to — the shared axis stops at x 1132 at 1440, the last ring closes at **1141**, the band begins at **1164**, 23px clear, measured — and its two exemptions are in the rule itself: prose and headings may run under the band.
+
+**The measured consequence, `/work/`.** *(Round 12: the fixed geometry described in this paragraph is superseded by §E.2's block-anchored axis; the 930/931 breakpoint it derives is unchanged and the derivation is kept because it is what produced that breakpoint.)* §E.2's horizontal track capped its node pitch at 124px and anchored its axis at x 137, so its right end is fixed at 647 from 900 up while the band moves with the viewport. The two cross at vw 923 for the last node and vw ≈ 931 for its label — at 768 the band starts at 492 against a label end of 644.5, at 900 it starts at 624 against 655.3, and at 1024 it starts at 748 against 671, clear by 85. **The horizontal track therefore collides from 768 to 930 and is clear at 931 and above, so §E.2's vertical form runs up to 930 and its horizontal form starts at 931.** The remedy is deliberately *not* a narrower cap: capping the axis at `band − 16` gives an **85px pitch at 768, which drops `Submitted for review` to three lines and breaks §E.2's two-line label reservation** — the defect this build just closed — so the cap is refused here and wherever it is proposed again. The vertical form is the same component, the same 44px rows, already built, and it has no right-hand extent to collide with. `/work/` is the only route affected: both product pages put their track directly under the h1, above every plate rest position, and are clear at every width.
+
+**What it costs the two sections that could collide.**
+
+- **§B.9's proof band, at every width from 768 up** (round 12: 768–1023 stacked, 1024–1439 one grid in two rows, split at 1440; see §B.5, §B.9 and §E.3). The shared stage track's fifth node is a load-bearing mark, so this is the one place the rule does real work — and at 1024–1439 it is also the one place the rule *sets* a coordinate rather than only testing one: §B.9 anchors the last node centre at `100vw − 372`, the band less 96px, giving **x 652 at 1024**. The clearances the rule buys, end to end: **51** at 768, **96** at 1024, **23** at 1440. The band keeps cols 7–12 and the page keeps its full 1200 content width; what changes is where the **axis** stops. At 1440 the content runs to x 1320 and the plate's leading edge is at x 1164, so **the track's axis runs x 732 → x 1132** — from the left edge of col 7 to 188px short of the content edge — with the five node centres at a 100px pitch: **732 / 832 / 932 / 1032 / 1132**. (§E.3's product row labels sit *above* their runners in this band, as §B.9's wireframe draws them, so the axis takes col 7's left edge rather than being indented behind a label column.) The last node's 18px ring closes at 1141, 23px clear of the plate. The band's right column keeps clear by **ending the track there**; the caption and the `[COPY NEEDED: ≤ 8 words]` line still use the full cols 7–12 width, as prose the amended rule exempts, and the stage labels ride the axis they belong to. The band is not padded, not narrowed and not indented, and §E.2's two-line label reservation gets a 100px column pitch rather than 67px, which is what lets `Submitted for review` set in two lines instead of three.
+- **§C.6's side-by-side slot at 1024 — and this bullet is rewritten in round 12.** The slot returns to **cols 9–12 at 1024**, as §C.6 has always stated: x 682–976 in a 1024 viewport whose band begins at x 748. Round 9 passed it on the rule's prose exemption, and run B showed what that exemption actually bought — the plate striking through the card's `Owns` line at 768, 1024 and 1440, so that the page said Sahib owns "the releas". **The exemption is withdrawn. The slot is not exempt; it is out of the wrapper's reach**, because the wrapper does not span the floor section at any width (above). The slot's position, its width and its reservations are unchanged and were never the problem — what changes is that the plate is not there to test them against. The card slot is now the one region on the site that the composition rule does not have to speak about at all.
 - Contrast: `--floor` on `--lamp` = 7.56 : 1; plate boundary against `--sheet` via its ink border = 13.53 : 1. On Sahib's `--s-ground` and Tanya's `--t-ground` the same ink border carries 14.11 : 1 and 14.18 : 1 respectively, so the plate needs no per-world variant. **In dark** the plate's own amber fill carries the boundary (7.54 : 1 on the dark studio sheet, 8.66 : 1 on Tanya's dark ground) and its text is the theme's `--floor` at 9.10 : 1; the 2px border stays for box-model reasons only. See §B.2a.
 - Print: the plate is `display: none` (§D.8). A sticky amber bar is not a thing that belongs on paper, and the address prints once at the top of page 1 instead.
 
@@ -762,8 +978,9 @@ Same tokens, same grid, no new devices.
 - **`/work/`** — two entries, each a `--band` block: product name, one line, the full labelled build-stage track (§E), a store link where one exists. No hero image. `[COPY NEEDED: /work/ index intro, ≤ 20 words]`
 - **`/work/pocket-manager/`** — problem, build, review process, outcome, store link, per §8. Screenshots in the real device aspect ratio (portrait 9:19.5), max two above the fold, explicit dimensions. The full stage track sits directly under the h1 because "Live" is the strongest fact on the page.
 - **`/work/wedding-planner/`** — identical shell, descriptive title, stage at Final touches, no dates anywhere, no store link (there is nothing to link to). **The route ships** (item 9a: full page, name-agnostic), so the layout is built, not held. `[COPY NEEDED: the name-agnostic page title, ≤ 5 words — the placeholder name may not appear (§5.3).]`
-- **`/contact/`** — three addressed blocks per §8 (studio `thegeekdogs@gmail.com`, Sahib `sahiboffc@gmail.com`, Tanya `jaintanya999@gmail.com`) as a 3-up at ≥1024, stacked at 360. **No form** (item 11): three printed addresses and nothing to submit, which removes a service dependency, a success state, a spam surface and a whole class of validation design. No orchestrated moment; a contact page's job is to be answered, not performed.
-- **`/404`** — the only page that shows an **empty room**: the floor slab and the lamp, no desks, no chair. It reuses the floor's slab symbol and its lamp gradient and adds nothing, so it costs roughly zero new bytes. One line, one link home. `[COPY NEEDED: 404 line, ≤ 12 words.]` This is the one joke the site gets, and it is a joke that is also the argument.
+  - **The differentiator screenshot gets a composition, round 12** (review item WP1, `wp-1440-light-full.png`). Run A item 9 asked for a grid built for one screenshot instead of a four-column grid with three collapsed tracks, and the build delivered that. The composition did not follow: rendered, the one real screen of the multi-function view is a **280 × 609 thumbnail alone at the far left of a 1200px row**, the smallest object on a 3,104px page, with ~940px of empty sheet beside it and nothing to read there. §J's row for this route says that one screen **is** the differentiator; it cannot also be the page's smallest mark. **At ≥ 1024 the shot runs at 2× in cols 1–4 with COPY §5.2's differentiator paragraph in cols 6–10 beside it**, top-aligned to the shot, so the row carries the picture and the sentence that explains it and no third thing. Below 1024 the shot is full content width with the paragraph beneath it. The image keeps its explicit `width`/`height` and the real 9:19.5 device aspect at both sizes, so nothing about §B.11's layout-holds-with-images-aborted guarantee changes.
+- **`/contact/`** — three addressed blocks per §8 (studio `thegeekdogs@gmail.com`, Sahib `sahiboffc@gmail.com`, Tanya `jaintanya999@gmail.com`) as a **3-up inside cols 1–9 at ≥ 1024**, stacked below. Run A blocker 2: at full content width the third column ran x 682.7–976 at 1024 against a plate band beginning at 748, and the plate struck through `jaintanya999@gmail.com` on first paint in a 900-tall viewport. A printed address is the first mark §B.10's amended rule names, and this page is nothing but three of them, so the fix is the column allocation and not the breakpoint — going 3-up only at ≥ 1200 does not help, because at full width the third column would end at 1140 against a band at 924 and fail again. **Cols 1–9** is 9 × 55.3 + 8 × 24 = 690 at 1024, so the row ends at x **738** against a band at **748**, and 9 × 78 + 8 × 24 = 894 at 1440, ending at x **954** against **1164**. 1024 is the tightest width and every width above it is looser, because the band moves 1px per viewport px and the row's right edge moves ~0.75. Each block is (690 − 48) / 3 = **214px** at 1024 and **282px** at 1440; the longest address, `jaintanya999@gmail.com`, needs ~169px (§B.10), so all three set on one line at both. Cols 10–12 are this page's one §B.9 void and the plate rests in them. **No form** (item 11): three printed addresses and nothing to submit, which removes a service dependency, a success state, a spam surface and a whole class of validation design. No orchestrated moment; a contact page's job is to be answered, not performed.
+- **`/404`** — the only page that shows an **empty room**: the floor slab and the lamp, no desks, no chair. It reuses the floor's slab symbol and its lamp gradient and adds nothing, so it costs roughly zero new bytes. One line, one link home. `[COPY NEEDED: 404 line, ≤ 12 words.]` This is the one joke the site gets, and it is a joke that is also the argument. **Review item E1 is build-side, not spec-side**: this bullet has specified the empty room since round 3, the Engineer recorded it as outside run B's scope rather than as a disagreement, and run B rendered a headline, a link and the site chrome (`404-1440-light-full.png`). Nothing here changes; it is owed. **The slab renders at the same 2:1 isometry and the same `--floor` fill as `/`'s, at the section's own width, with the lamp cone over the cell where the chair would be** — the absence is the joke and it only works if the room is recognisably the same room.
 
 ### B.12 Favicon and app icons
 
@@ -834,7 +1051,7 @@ Four fills in the whole scene, all derived from the six tokens:
 
 ### C.2 Seven agent desks, two cabins, one empty chair — ten stations
 
-**Decision taken by the owners (items 32 and 51): two human cabins + seven agent desks + one empty chair = ten stations.** Pass 1 argued for five agent desks on the grounds that ten would drop touch targets below comfort. That argument was right about the constraint and wrong about the arithmetic: it assumed the eight-station portrait plan (2 wide × 4 deep) had to absorb two more desks, when the honest answer is a different plan. Re-planned at 3 wide × 6 deep (§C.7), ten stations hold **101 × 64 CSS px** for the seven agent desks, 320 × 88 for the cabins and 104 × 96 for the chair — every one of them clear of the 44 × 44 floor, the smallest dimension in the set sitting 45% above it. So the count changed and nothing was cut to pay for it. Item 51 also closes Pass 1's own flag: Designer is on the floor, and the studio is not quietly admitting it has no design discipline.
+**Decision taken by the owners (items 32 and 51): two human cabins + seven agent desks + one empty chair = ten stations.** Pass 1 argued for five agent desks on the grounds that ten would drop touch targets below comfort. That argument was right about the constraint and wrong about the arithmetic: it assumed the eight-station portrait plan (2 wide × 4 deep) had to absorb two more desks, when the honest answer is a different plan. Re-planned at 3 wide × 6 deep (§C.7), ten stations hold **101.3 × 68 CSS px** for the seven agent desks, 320 × 88 for the cabins and 104 × 92 for the chair — every one of them clear of the 44 × 44 floor, the smallest dimension in the set sitting 55% above it. So the count changed and nothing was cut to pay for it. Item 51 also closes Pass 1's own flag: Designer is on the floor, and the studio is not quietly admitting it has no design discipline.
 
 All seven roles are now on the visible floor **and** in the roster text beneath it. The roster is no longer a place to park the two that did not fit; it is the readable, screen-reader-first copy of the same list, in the same order, which is what §6's semantic-first requirement wanted in the first place. The station count does **not** change between breakpoints — one DOM list, two CSS arrangements.
 
@@ -859,23 +1076,23 @@ The order of the table is **COPY.md §2.4's pipeline order** — spec, design, c
 
 ASCII cannot honestly draw isometry, so this is the **plan** (top-down). The projection maps plan-x to screen right-down and plan-y to screen right-up; the near corner of the plan is the bottom of the screen.
 
-**Desktop plan, 6 modules wide × 5 deep (scene box 792 × 560 at 1440, cols 1–8):**
+**Wide plan, 6 modules wide × 5 deep (scene box 856 × 520, drawn 1:1 at ≥ 1440; it runs down to 768, not to 1024 — §C.7):**
 
 ```
   back-left ─────────────────────────────────────────────────────── back-right
        A        B        C        D        E        F
    ┌────────┬────────┬────────┬────────┬────────┬────────┐
- 1 │                 │ SPEC   │        │ DESI-  │        │   row 1, far
-   │   SAHIB CABIN   │ WRITER │   ·    │ GNER   │   ·    │
+ 1 │                 │ SPEC   │        │ TEST   │        │   row 1, far
+   │   SAHIB CABIN   │ WRITER │   ·    │ ENGIN. │   ·    │
    ├      2 x 2      ┼────────┼────────┼────────┼────────┤
- 2 │      (§C.4)     │        │ PROG-  │        │ TEST   │   row 2
-   │                 │   ·    │ RAMMER │   ·    │ ENGIN. │
+ 2 │      (§C.4)     │        │ PROG-  │        │RELEASE │   row 2
+   │                 │   ·    │ RAMMER │   ·    │WATCHER │
    ├────────┬────────┼────────┼────────┼────────┼────────┤
- 3 │                 │ SECUR. │        │ REVIEW │        │   row 3
-   │   TANYA CABIN   │ AUDITOR│   ·    │ -ER    │   ·    │
+ 3 │                 │ DESI-  │        │ REVIEW │        │   row 3
+   │   TANYA CABIN   │ GNER   │   ·    │ -ER    │   ·    │
    ├      2 x 2      ┼────────┼────────┼────────┼────────┤
- 4 │      (§C.4)     │        │RELEASE │        │        │   row 4
-   │                 │   ·    │WATCHER │   ·    │   ·    │
+ 4 │      (§C.4)     │        │ SECUR. │        │        │   row 4
+   │                 │   ·    │ AUDITOR│   ·    │   ·    │
    ├────────┬────────┼────────┼────────┼────────┼────────┤
  5 │        │        │        │        │        │ ┌────┐ │   row 5, near
    │   ·    │   ·    │   ·    │   ·    │   ·    │ │CHAIR│ │
@@ -886,19 +1103,68 @@ ASCII cannot honestly draw isometry, so this is the **plan** (top-down). The pro
                               the whole of row 5 is empty except this
 ```
 
-The seven agent desks sit on a checkerboard through columns C–F, rows 1–4, and read **row-major in COPY.md §2.4's pipeline order**: Spec Writer and Designer across the far row, Programmer and Test Engineer across row 2, Security Auditor and Reviewer across row 3, Release Watcher alone in row 4. The checkerboard is not decoration — it is what keeps a neighbour within one module of every agent desk, which is the condition mechanism 3 below depends on.
+**Round 12 re-assigns the seven roles to the same seven modules, because the wide plan read its own pipeline backwards on screen.** Review item H4, measured off `floor-1440-light.png` against this section's own projection: the previous assignment put Security Auditor and Release Watcher at screen x 396, Spec Writer / Programmer / Reviewer at 524, and Designer and Test Engineer at 652, so the two lower screen rows read left-to-right as **5 · 3 · 2** and **7 · 6 · 4**. A visitor reading the labels across got Security Auditor → Programmer → Designer. The build rendered this section's coordinates exactly; **the defect was in the plan, and it is mine.** The DOM, the tab order, the roster sentence and the portrait plan at 360 all ran forwards; only the wide plan ran backwards.
 
-Scene arithmetic, so the box is not a guess: at 2:1 isometry with 128 × 64 modules, a 6 × 5 plan projects to (6+5) × 64 = **704px wide** and (6+5) × 32 = **352px tall** on screen, plus ~40px of cabin wall elevation and ~60px for the lamp cone above the chair, giving a drawn room of roughly **704 × 500** inside the 792 × 560 box. That leaves 44px of horizontal margin each side and 30px vertical — enough that the focus ring on an edge station never clips.
+**The fix is the assignment, and nothing else moves.** The projection maps plan (c, r) to screen x `396 + 64(c − r)` and screen y `72 + 32(c + r)`, so the plan's own row-major order is *not* the screen's row-major order — and the screen is what is read. **The seven occupied modules are unchanged** (C1, C3, D2, D4, E1, E3, F2 — the same set, the same checkerboard parity, the same footprint), so every coordinate, button box, target size, clearance proof and scale figure in this section holds without recomputation. Only which nameplate sits on which module changes:
 
-Desktop touch and pointer targets: agent-desk buttons ≈ **112 × 56**, cabin buttons ≈ **232 × 148**, the chair ≈ **128 × 88**. All are well past 44 × 44; at this breakpoint the binding constraint is legibility of the nameplate, not the target.
+| Pipeline order (COPY §2.4) | Module | Screen centre (x, y) | Screen row | Was |
+|---|---|---|---|---|
+| 1 Spec Writer | C1 | (524, 200) | 1 | C1 — unchanged |
+| 2 Designer | C3 | (396, 264) | 2, left | E1 |
+| 3 Programmer | D2 | (524, 264) | 2, middle | D2 — unchanged |
+| 4 Test Engineer | E1 | (652, 264) | 2, right | F2 |
+| 5 Security Auditor | D4 | (396, 328) | 3, left | C3 |
+| 6 Reviewer | E3 | (524, 328) | 3, middle | E3 — unchanged |
+| 7 Release Watcher | F2 | (652, 328) | 3, right | D4 |
+
+Read across the screen, top to bottom, the room now says **1 / 2 · 3 · 4 / 5 · 6 · 7** — COPY §2.4's order exactly, which is what mechanism 5 has always claimed and what the portrait plan at 360 already did. **Two plate clearances re-checked** because the two widest strings moved: `Release Watcher` (~107px at 13 units) now sits at x 652, so it runs 598.5–705.5 — 18.5 clear of the Reviewer button's right edge at 580 and 74.5 inside the floor's right corner at 780; `Security Auditor` (~114px) at x 396 runs 339–453, 15 clear of the Reviewer button's left edge at 468. Both were already inside the 76-unit box margin this section sized for exactly these two strings.
+
+The seven agent desks sit on a checkerboard through columns C–F, rows 1–4, and read **row-major on screen in COPY.md §2.4's pipeline order**. The checkerboard is not decoration — it is what keeps a neighbour within one module of every agent desk, which is the condition mechanism 3 below depends on, and it is preserved exactly because the module set did not change.
+
+Scene arithmetic, so the box is not a guess: at 2:1 isometry with 128 × 64 modules, a 6 × 5 plan projects to (6+5) × 64 = **704px wide** and (6+5) × 32 = **352px tall** on screen. The cabin walls add ~40 above the floor's back edge and the pendant's cord and cone hang *above the chair*, which is the near-front cell, so they do not extend the drawn room upward: the drawn room is **704 × 392**.
+
+**The wide scene box is 856 × 520, and the room draws at 1:1 inside it.** 704 + 76 each side = 856; 392 + 64 each side = 520. The 76 is not slack: the nameplates now sit on their own modules (below), and the widest of them — `Release Watcher`, `Security Auditor` — overhang their module's 128 by up to 51 at each end, and the focus ring adds 8 beyond a button's box. The 64 vertical carries the same overhang at the back wall and the chair's contact shadow at the near corner. **520 is the same height as the portrait box (§C.7), so the scene's vertical footprint does not change when the plan switches at 768.** The old 792 × 560 is withdrawn: it was 88 too narrow for the plates and 40 too tall for a room whose lamp hangs over its nearest cell, and the review measured its consequence at 1440 (item 6).
+
+**Where the box sits, and how it scales.** The box's **right edge is the card slot's left edge**; its left edge is where the floor section's full bleed allows it to go, because what sits in that margin is empty scene and never a mark. At ≥ 1440 the box is capped at 856 and the room draws at **1:1** — the room stops growing where the page stops growing (§B.5's 1320/1200), and 1440 and 1920 are the same picture. Below 1440 the box takes what is left between the section's bleed limit and the slot, and the whole scene scales as one unit.
+
+| Viewport | Scene box, CSS px | Scale | Agent desk | Cabin | Chair | Smallest target |
+|---|---|---|---|---|---|---|
+| 1920 | 856 × 520 (x 320 → 1176) | 1.000 | 112 × 56 | 128 × 136 | 128 × 88 | **56** |
+| 1440 | 856 × 520 (x 80 → 936) | 1.000 | 112 × 56 | 128 × 136 | 128 × 88 | **56** |
+| 1024 | 682 × 414 (x 0 → 682) | 0.797 | 89 × 44.6 | 102 × 108 | 102 × 70 | **44.6** |
+| 768 | 704 × 428, stacked, full content width | 0.822 | 92 × 46.1 | 105 × 112 | 105 × 72 | **46.1** |
+| < 768 | portrait plan, 320 × 520 | 1.000 | 101 × 68 | 320 × 88 | 104 × 92 | **68** |
+
+1024 is the tightest point on the site: cols 1–8 is 610, the gutter it may borrow is 24 and the section's left outer margin is 48, so the box gets 682 and the smallest target lands at **89 × 44.6** — 0.6px of margin over the floor, stated rather than rounded up. It is tight because 1024 is the width at which the side-by-side card arrives (§C.6, §B.5) and the room pays 22px for it. That is the one place the room does not grow with the viewport, and it is a trade the visitor can see, unlike a room that shrinks into a void. **If the built page measures below 44 at 1024, the fix is the scene's left bleed or the box's 76-unit margin — never the target, never the station count, and never the side-by-side** (§C.10's cut order and §B.5 both say so).
+
+Desktop touch and pointer targets, in scene units: agent-desk buttons **112 × 56**, cabin buttons **128 × 136**, the chair **128 × 88**. **The 232 × 148 this section used to print was wrong and is withdrawn.** Two 2 × 2 cabins one module apart project to centres 128 apart in x and 64 in y, so any pair of buttons wider than 128 overlaps and the nearer one steals the farther cabin's clicks; at exactly 128 the x separation equals the sum of the half-widths and no overlap is possible whatever the height, which is what makes 136 free. Both dimensions clear 44 by a wide margin at every breakpoint in the table above.
+
+**Buttons are centred on the drawn station, not on the plan module.** A desk is 104 units tall and its button is 56, so where those 56 land decides whether a pointer on the monitor hits the desk it is over; centred on the module, the monitor sits outside its own target. A target that does not contain the thing it names is not a target, and the module centre is an accident of the projection rather than a design decision.
+
+**Nameplates sit on their own module.** Each plate is set horizontally on the **near half of its own station's module**, inside its own button and nearer its own station than any other. This is the checkerboard's constraint, not a preference: a desk and the desk behind-left of it share a screen x and are 64 apart in y, so a plate set *above* a desk lands squarely inside the button of the desk behind it. Below, it is inside its own hit target with 8 units of clearance to the next button's leading edge. No plate is printed across its station's artwork — text beside the thing, never on it.
+
+**The projection, written down once so the coordinates below are reproducible.** In the 856 × 520 box, module (c, r) — c = 1…6 for columns A–F, r = 1…5 for rows 1–5 — centres at **(396 + 64(c − r), 72 + 32(c + r))**. That puts the floor's back vertex at y 104, its near vertex at y 456, its left corner at x 76 and its right at x 780: 704 × 352 with the 76 and 64 margins above.
+
+**The two cabin plates follow the same rule, horizontally, on their own cabin floor** (§C.4 — the wall-mounted skewed plate is removed). The cabins' 2 × 2 footprints centre at (396, 168) for Sahib and (268, 232) for Tanya in the 856 × 520 box, and their 128 × 136 buttons — centred on the artwork, which the 40-unit walls lift 20 above the footprint — run **x 332–460, y 80–216** and **x 204–332, y 144–280**. Sahib's plate is the one the review found inside Tanya's button, because it was hung on his left wall, which faces down-left straight into her cabin. It moves to the near face of his own cabin floor:
+
+| Plate | Centre | Box, 15px Anek 600 | Inside its own button | Nearest other button |
+|---|---|---|---|---|
+| Sahib Singh | **(396, 204)** | x 358.5–433.5, y 196–212 | yes, 4 clear of its bottom edge | Tanya's, x ≤ 332 — **26 clear**; Security Auditor's, y ≥ 236 — 24 clear |
+| Tanya Jain | **(268, 268)** | x 234–302, y 260–276 | yes, 4 clear of its bottom edge | Sahib's, x ≥ 332 — 30 clear |
+
+**No plate renders below 13 CSS px** (§B.4's smallest step). The scene scales and its text scales with it, so the plate's `font-size` is expressed in scene units per breakpoint to land on the same rendered size: 13 units at ≥ 1440, 16.3 at 1024, 15.8 at 768, 13 in the portrait plan. Cabin plates take the step above, 15px rendered, at every width.
 
 **How the eye is led to the empty chair — five mechanisms, all free, all unchanged by the count going from eight stations to ten:**
 
 1. **It is the only station that does not move.** Every other station has a monitor glow on a slow idle loop. The chair does not. In a moving field, the still thing is what you look at (principle 4). This is the whole trick and it costs nothing. Nine idling stations make it work *better* than seven did.
-2. **It is the only lit thing.** A pendant lamp above it casts a cone in `--lamp` onto the desk. It is the single largest area of accent colour on the entire site, and `--lamp` appears nowhere else in the scene — not in the cabins, not on a prop, not on a painting.
+2. **It is the only lit thing.** A pendant lamp above it casts a cone in `--lamp` onto the chair and the floor immediately around it, and that cone is the room's only chromatic mark: `--lamp` appears nowhere else in the scene — not in the cabins, not on a prop, not on a painting, not on a nameplate — so in a room drawn entirely in `--floor` and `--chalk`, the one place colour lands is the one place nobody sits. (Round 10 withdraws the claim that this is the largest area of accent colour on the site; the mechanism is the cone's uniqueness inside the scene, and a comparison against marks outside the scene is neither true nor needed.)
 3. **Emptiness around it.** Row 5 is otherwise completely bare — **five** empty modules to its left, up from four in the eight-station plan, plus F4 empty directly behind it. Every other station has a neighbour within one module. From A.3: one thing is allowed to be loud, and it earns it with the space around it. The bigger room bought the chair more isolation, not less.
 4. **It is nearest.** Front-right in an isometric projection is the closest cell to the viewer and renders largest.
-5. **It is downstream.** Reading the plan as a pipeline, work moves back-to-front and left-to-right, and it reads in COPY.md §2.4's order exactly, terminating at the chair. The two cabins in columns A–B are open on their near and right sides so both occupants' monitors face across the room toward it.
+5. **It is downstream.** Reading the room as a pipeline, work moves back-to-front and left-to-right **on screen** — round 12's re-assignment above is what makes that sentence true rather than aspirational — and it reads in COPY.md §2.4's order exactly, terminating at the chair, which is nearest the viewer and downstream of every station. The two cabins in columns A–B are open on their near and right sides so both occupants' monitors face across the room toward it.
+
+**The chair has to be identifiable as a chair, and at 250ms it is not.** Review item H5, `lightson-1440-250ms.png`: before the cone comes up the chair is a lit slab over a small dark box — no back, no legs, no silhouette, at any width. The card that opens on it says "This chair stays empty" about an object nobody can name, and §B.12's whole favicon argument is that "the chair is implied by what the cone points at", which requires the thing being pointed at to be a chair. Step 3 raised this, run B raised it again, and it is a drawing problem this section never specified. **It is specified now: `#fl-chair` carries three parts, not one — a seat plane, a back panel standing at the far edge of the seat at roughly 0.6 of the seat's depth in height, and a visible support beneath the seat**, all in the room's existing `--floor` / `--chalk` vocabulary with the §C.1 light from upper-left, so the back's near face is the lit one and the support reads in shade. No new token, no new gradient, no additional `<symbol>` beyond the parts of the one that already exists. **The acceptance test is the 250ms frame, not the finished frame**: at `lightson-*-250ms.png`, with the cone absent, the object must be nameable as a chair at every width in both schemes.
+
+**And below 768 the chair's nameplate must come off the cone.** At 360 and 390, `Ship approval` sets across the cone — chalk@72% on `--lamp`, roughly **1.6 : 1**, the least legible text on the page, at the width that carries 80%+ of the traffic. §C.3 is explicit that text goes *beside* the thing and never on it, and §C.7's portrait rule puts every plate in the top 20 units of its own button, which is precisely the band the cone rises through. The cone is the mark and it does not move. **The chair is the one exception to the portrait plate rule: its plate sets in the bottom 20 units of its own button, below the cone's pool, on `--floor`.** The disjointness proof the portrait rule rests on is untouched — a rectangle inside one member of a disjoint set is inside no other, and top or bottom does not enter that argument — and the plate returns to chalk@72% on `--floor`, the same contrast every other plate in the room gets.
 
 ### C.4 Human cabins vs agent desks
 
@@ -910,12 +1176,16 @@ They must read as the same room but not the same class of thing. §6: humans get
 | Enclosure | Two waist-high partition walls on the **far and left** plan edges, 40 scene units tall. Open on the near and right sides so the camera sees straight in. **No ceiling and no fourth wall** — a cabin that closes is a box, and a box has no contents. | None |
 | Silhouette | Bespoke geometry per person: the two walls, a floor patch in a slightly lit fill, the wall piece, and two props. Desk, monitor and chair are the **shared sub-symbols**, `<use>`d, not redrawn. | One shared `<symbol>`, instanced **seven** times with only a translate. Identical to each other on purpose. |
 | Chair | Present, occupied, pulled out at a slight angle | Present, pushed in, square to the desk |
-| Nameplate | Name in `--chalk`, title case, Anek 600, mounted on the near face of the left wall so it reads as a door plate | Role in `--chalk` @72%, Instrument 600, smaller, floating above the desk |
+| Nameplate | Name in `--chalk`, title case, Anek 600, **set horizontally on the near half of the cabin's own floor, on the same baseline treatment as every other plate in the room** (§C.3 for the coordinates) | Role in `--chalk` @72%, Instrument 600, one step smaller, **on the near half of its own module** (§C.3) |
 | Detail budget | **≤ 16 bespoke path segments per cabin, plus 3 shared `<use>`s.** See the accounting note below. | ~9 path segments, shared once across all seven |
-| Warmth | The cabin floor patch and desk top get the lit fill at 22% with a 6% warm offset toward `--lamp` — below the threshold at which it reads as a colour, above the threshold at which the room feels uneven. The walls take the shadow fill on their right faces, which is what gives a cabin its interior. | Neutral lit fill only |
+| Warmth | The cabin floor patch and desk top take the same lit fill at 22% as every other surface in the room. **The warmth is the interior, not a tint:** the two walls take the shadow fill on their right faces, so a cabin has a lit floor with a shaded inside edge and an agent desk has neither. *(Round 13: the "6% warm offset toward `--lamp`" this row asked for since Pass 1 is **deleted**. See the note below.)* | Neutral lit fill only |
 | Glow | **One** glow rectangle, on the main monitor only. Sahib's portrait monitor is drawn dark. | One glow rectangle |
 
 The distinction is carried by **enclosure, footprint, uniqueness and occupancy**, in that order. Not by colour, and not by size alone — seven identical things next to two rooms is the read, and it is the honest one.
+
+**The 6% warm offset is deleted — round 13, and it is closed rather than deferred.** It has been carried as an open item since run A, reported unbuilt in every engineering pass since, and ruled against once already by the step-2 review ("the four-fill line wins"). It was a **fifth fill value in a scene §C.1 and §C.10 both cap at four**, spent on a difference the same row calls "below the threshold at which it reads as a colour" — which is the definition of a value that costs a fill and buys nothing. It also cuts against the sentence directly above it: the distinction is enclosure, footprint, uniqueness and occupancy, *not colour*, and a warm tint on the two human surfaces is exactly the pastel-for-the-humans move §9.4 bans one step down. **Four fills is the line; the offset is out of the spec, and it stops appearing on anyone's open list.**
+
+**The wall-mounted, skewed door plate is removed** (step 3's "remove one thing", §J). It was the only skewed type on the site, the only nameplate treatment that changed between breakpoints — `matrix(1 -0.5 0 1 0 0)` at ≥ 1024, plain horizontal below 768, so the two widths disagreed about what the object was — the least legible text on the page, and at ≥ 1024 it put "Sahib Singh" inside Tanya's button. It costs nothing to lose: the four distinctions above are enclosure, footprint, uniqueness and occupancy, and none of them is the plate. **One room, one nameplate treatment, one baseline, at every width.**
 
 **The props.** Two per cabin plus one wall piece, all `[APPROVE: prop list]` in §I. They are **decor, not facts**: none of them is a claim, none carries text, and removing any one of them changes nothing the site asserts. They are chosen against item 19's personas and then deliberately crossed so the pair cannot be read as the split §9.4 bans.
 
@@ -954,11 +1224,39 @@ One loop for the whole scene, on one property.
 
 **Placement — a fixed slot, not a cursor-following popover.** This is a change from PLAN.md §4.3 and it is a visual-judgement call, not a feasibility one (it is also strictly less code — no `popover`, no anchor positioning, no light-dismiss, no focus containment). The Engineer updated PLAN.md §4.3 to the fixed slot in round 3, so the popover and the bottom sheet are out of that document and the two specs do not disagree.
 
-- **≥ 1024:** cols 9–12, 366px wide, vertically centred to the scene, **`min-height: 344px`**.
-- **768–1023:** below the scene, full content width, `min-height: 344px`.
+- **≥ 1440:** cols 9–12, **384px** wide (4 × 78 + 3 × 24), vertically centred to the scene, **`min-height: 352px`**.
+- **1024–1439:** cols 9–12, **293px** wide (4 × 55.3 + 3 × 24), vertically centred to the scene, **`min-height: 416px`**.
+- **768–1023:** below the scene, full content width, **`min-height: 264px`**.
 - **< 768:** below the scene, full width, **`min-height: 320px`**. See C.7.
 
-**The ≥ 1024 min-height, derived rather than reserved-in-the-abstract.** PLAN.md §13 item 1 and §4.3 ask for this number so the Engineer does not have to invent one or measure it at build time. It is computed from the longest card at §B.4's ≥ 1024 type sizes, in the 366px slot with 24px padding — a 318px measure, which at Instrument Sans 17px (average advance ≈ 0.49em ≈ 8.33px) holds **≈ 38 characters per line**.
+**Round 12 re-derives three of those four, against measurement rather than against arithmetic** (review item H6, `measure-floor.json`). §C.6 computed 392 from *Tanya's* card, before design review and the release cut had owners; COPY §2.3 round 12 put both names on both lists and **Sahib's gate line is now the long one**. Measured with each card forced visible in the slot: at 1024 the tallest card is **Sahib's at 406.7** against a 392 reservation — the reservation was 15px short of its own longest card and PLAN.md §4.3's assertion should have failed the build. At 1440 the two humans tie at **339.2** against 344, which is 4.8px of slack and not the ~13 this section claimed. At 768 the tallest is **251.3** against 344 — 93px of reserved void under a two-line card, which reads as an unfinished panel.
+
+| Breakpoint | Measured tallest card | Reservation | Slack | Was |
+|---|---|---|---|---|
+| ≥ 1440 | 339.2 (both humans) | **352** | 12.8 | 344 |
+| 1024–1439 | **406.7 (Sahib)** | **416** | 9.3 | 392 — **15px short** |
+| 768–1023 | 251.3 | **264** | 12.7 | 344 — 93px over |
+| < 768 | 313.2 (computed) | 320 | 6.8 | unchanged |
+
+The rule this applies is §C.6's own: *"the fix is the copy or the padding — never a shorter reservation."* Every number above is the measured maximum rounded up to the next 8px step with at least one step of slack, and **PLAN.md §4.3's build-time assertion keeps asserting the measured maximum against 352 / 416 / 264 / 320 and failing the build loudly** if a copy edit overflows. Reserving 93px of nothing is as much a defect as reserving 15px too few; it is just a quieter one.
+
+**The side-by-side arrives at 1024, and it always did.** The slot is beside the scene from 1024 up, at the width §B.5's grid gives cols 9–12 at that breakpoint. It is not held back to 1440, it does not drop below the roster, and it is not narrowed to make room for the plate. **Round 12 changes why.** Round 9 passed the slot on §B.10's prose exemption — the card being a name, a line and a gate list in a container — and run B showed the plate striking through the card's `Owns` line at 768, 1024 and 1440 anyway, because a gate list *is* read as a unit even when it sets as prose. **The exemption is withdrawn and replaced by absence: the plate's wrapper does not span the floor section at any width** (§B.10), so no part of this panel is ever under the plate at any scroll position, and §C.6's promise is kept by geometry instead of by an argument about what counts as prose. Any wording that puts this arrangement at 1440, or that defends it with an exemption, is stale and is overruled by this line.
+
+**The floor's two-column layout, restated with the keep-out lane gone** (§B.5, §B.10; step 3 review items 3, 5 and 6). Every number below is on §B.5's one grid at the full content width, and the scene is the width its own column gives it rather than what a lane left over.
+
+| Viewport | Content | Scene box | Card slot | `min-height` |
+|---|---|---|---|---|
+| 1920 | 1200 (x 360–1560) | **856 × 520**, 1:1, x 320 → 1176 | cols 9–12, **384**, x 1176–1560 | 352 |
+| 1440 | 1200 (x 120–1320) | **856 × 520**, 1:1, x 80 → 936 | cols 9–12, **384**, x 936–1320 | 352 |
+| 1024 | 928 (x 48–976) | **682 × 414**, x 0 → 682 | cols 9–12, **293**, x 682–976 | 416 |
+| 768 | 704 | **704 × 428**, below the intro, full width | below the scene, full width **704** | 264 |
+| < 768 | 320 / 350 | portrait plan, **320 × 520** (§C.7) | below the scene, full width | 320 |
+
+The slot's widths, its reservations and its cols 9–12 position are **unchanged** by this round — the lane never gave the slot anything, it took from the scene. What changes is the room: it was rendering 654 × 462 at 1440 and 700 × 495 at 1024, which is smaller at the larger width, and it now renders 856 × 520 at both 1440 and 1920 with the whole card beside it. The scene box's transparent right margin (76 units, 76px at 1:1) meets the slot's left edge with no gutter drawn between them, and the optical air between the room's right corner and the card's first character is that 76 plus the slot's own 24 of padding — 100px at 1440.
+
+**The slot has no container.** It is a reservation, not a box: no border, no outline, no fill, no radius, no shadow. §C.6 specifies contents and a min-height and has never asked for a frame, and a 1px rule drawn round a 344px reservation converts invisible space into a visible empty container — on the two human cards, which carry no `Checked by` block, roughly 45% of it is ruled-off emptiness. It would also be the only outlined rectangle on the site, which is the SaaS-card-kit tell §9.4 bans by name. The card's own internal 1px rule above `Checked by` stays; that one separates two things and carries meaning. See §J, where this is `/`'s pre-committed cut.
+
+**The ≥ 1440 min-height, derived rather than reserved-in-the-abstract.** PLAN.md §13 item 1 and §4.3 ask for this number so the Engineer does not have to invent one or measure it at build time. It is computed from the longest card at §B.4's ≥ 1024 type sizes, in the 366px slot with 24px padding — a 318px measure, which at Instrument Sans 17px (average advance ≈ 0.49em ≈ 8.33px) holds **≈ 38 characters per line**.
 
 The longest card is **Tanya's**, not an agent's, because the human cards gained the gate-ownership block above: COPY.md §2.3's body is 154 characters → 5 lines, and her five gates set to 2 lines.
 
@@ -975,9 +1273,11 @@ The longest card is **Tanya's**, not an agent's, because the human cards gained 
 | padding-bottom | | 24.00 |
 | **Total** | | **331.03** |
 
-Rounded up to the 8px grid: **344px**, with ~13px of slack. Security Auditor — the longest agent card, 160 characters of body over 5 lines plus a one-line gate — computes to ~306, so it sits 38px inside the reservation. At 360 the same arithmetic with §B.4's mobile sizes (title 20/1.2, body 16/1.62, 280px measure ≈ 35 ch/line) gives 313.15 → **320px**. Pass 1's §C.7 wireframe said 168, which was simply wrong: the chair's own four-line card already computed to ~180 at 360, so the reservation had never been checked against the copy. It is now.
+Rounded up to the 8px grid that gave **344px** — and round 12 supersedes it with the measured number, **352px**, because the derivation above was run against Tanya's card and COPY §2.3 round 12 made Sahib's gate line the long one. The arithmetic is kept because it is the method; the table above is the answer.
 
-**This number does not remove the build-time assertion.** 38 characters per line is an estimate of Instrument Sans's average advance, not a measurement, and one extra wrapped line is 28px. PLAN.md §4.3's script should keep asserting the measured maximum against 344 and 320 and **fail the build loudly** if a copy edit overflows, rather than the value being quietly raised. If it does overflow, the fix is the copy or the padding — never a shorter reservation.
+**At 1024 the same slot is narrower and the reservation is not the same number.** Cols 9–12 at 1024 is 293px, a 245px measure, ≈ **29** characters a line against the 38 above. Tanya's card computes to 386.11 there — 6 body lines and 3 gate lines rather than 5 and 2 — which is where 392 came from; **Sahib's measures 406.7, so 1024–1439 reserves 416** (table above). The narrower column costs height, not the arrangement, and it costs it in a reservation rather than in reflow. 29 characters is also the narrowest measure this document tolerates for a card, which is the number §G.3's core is now held above (§G.3, item T4). This is the honest price of the side-by-side at 1024 and it is cheaper than the alternatives, both of which were tried and rejected: dropping the slot below the roster renders a 700 × 344 void, and taking width off the grid re-grids five sections (§B.5, §B.10). Security Auditor — the longest agent card, 160 characters of body over 5 lines plus a one-line gate — computes to ~306, so it sits 38px inside the reservation. At 360 the same arithmetic with §B.4's mobile sizes (title 20/1.2, body 16/1.62, 280px measure ≈ 35 ch/line) gives 313.15 → **320px**. Pass 1's §C.7 wireframe said 168, which was simply wrong: the chair's own four-line card already computed to ~180 at 360, so the reservation had never been checked against the copy. It is now.
+
+**This number does not remove the build-time assertion.** 38 characters per line is an estimate of Instrument Sans's average advance, not a measurement, and one extra wrapped line is 28px. PLAN.md §4.3's script should keep asserting the measured maximum against **352, 416, 264** and 320 at their breakpoints and **fail the build loudly** if a copy edit overflows, rather than the value being quietly raised. If it does overflow, the fix is the copy or the padding — never a shorter reservation.
 - **Default content at every breakpoint: the empty chair's card.** Nobody has to interact to receive the argument. This is the single highest-value decision in the floor spec, because most visitors will not touch anything.
 - Hover, focus and tap all replace the slot's content, identically, in the same place. Nothing important is behind a hover (principle 3).
 
@@ -991,13 +1291,35 @@ Why not a bottom sheet (PLAN.md §4.3's default): a sheet covers the room, so yo
 
 Why not shrink the desktop plan to fit: 6 modules across 320px gives ~53px desks. Below a comfortable target and illegible.
 
-**The move:** the same **ten** stations are re-planned into a **portrait room, 3 modules wide × 6 deep**, scene **320 × 520**. Same `<symbol>`s, same DOM, same order, different `<use>` transforms and `viewBox` — a layout change, not a content change.
+**The switch is at 768. The wide plan runs at ≥ 768; the portrait plan runs below it.** Not below 1024. The premise for below-1024 was that the floor sat inside the contact plate's keep-out lane and had 460 of 704 to draw in — and the lane was withdrawn entirely by the step 2 review and is forbidden in terms by §B.5. With it gone, 768's content width is 704, which is the wide room's own projected width to the pixel, and §C.3's box scales into it at 0.822: agent desks **92 × 46**, cabins 105 × 112, the chair 105 × 72, every one of them past 44 × 44. (The review's estimate of ~100 × 50 assumed a box with no margins; the real box carries 76 units of plate overhang each side, which costs the 4px.) 46 is the tightest the wide plan ever gets, and it is still 5% clear. The plan swap is a **layout** decision — below 768 a 6-module room is 53px a desk and unreadable — and it is taken at the width where that becomes true.
+
+**The move:** the same **ten** stations are re-planned into a **portrait room, 3 modules wide × 6 deep**, scene **320 × 520** — the same height as the wide box (§C.3), so the section does not jump when the plan switches. Same `<symbol>`s, same DOM, same order, different `<use>` transforms and `viewBox` — a layout change, not a content change.
 
 **The two cabins span the full three-module width** and take the top two rows. That is not a compromise, it is the humans-first read made structural: at 360 the two largest objects in the room are the two people's rooms, they are the first thing on screen, the first thing in tab order and the first thing a screen reader meets. The seven agent desks then run 3-up beneath them in pipeline order, read row-major, and the chair sits alone at the bottom-right.
 
-**Targets, and the honest numbers.** Agent desks: **101 × 64 CSS px** (320 less two 8px gaps, divided by three, and a 64px row). Cabins: **320 × 88**. The chair: **104 × 96** — the largest agent-class target in the room, because it is nearest and because it is the one thing the whole scene is pointing at. The smallest dimension anywhere in the set is 64px, which is 45% above the 44 × 44 floor. Pass 1's eight-station plan gave 88 × 72; ten stations trade 8px of height for 13px of width and stay clear. This is the number I can hold, and it is stated rather than rounded up.
+**The module grid, re-derived.** Three columns of **101.3** with two 8px gaps fill the 320 box exactly (3 × 101.3 + 16 = 320). Six rows: the two cabins span all three columns, three rows of agent desks run 3-up beneath them, and the chair takes the near-right cell of the last row. Every button carries its own **20-unit plate band across its top**, above the station's artwork and inside its own target (below), which is where the extra 4px of row height went.
 
-**Height arithmetic**, so 520 is derived and not chosen: 88 (cabin) + 8 + 88 (cabin) + 12 + 64 + 8 + 64 + 8 + 64 + 12 + 96 (chair) = **512**, in a 520 box with 8px for the lamp cone's spill above the chair.
+| Row | y | Height | Contents |
+|---|---|---|---|
+| 1 | 0 | 88 | Sahib's cabin, x 0, **320 × 88** |
+| — | 88 | 8 | |
+| 2 | 96 | 88 | Tanya's cabin, x 0, **320 × 88** |
+| — | 184 | 12 | |
+| 3 | 196 | 68 | Spec Writer x 0 · Designer x 109.3 · Programmer x 218.7, each **101.3 × 68** |
+| — | 264 | 8 | |
+| 4 | 272 | 68 | Test Engineer x 0 · Security Auditor x 109.3 · Reviewer x 218.7 |
+| — | 340 | 8 | |
+| 5 | 348 | 68 | Release Watcher x 0. **c2 and c3 empty** — the lamp's cord and cone rise through c3, over floor and not over a station |
+| — | 416 | 12 | |
+| 6 | 428 | 92 | **c1 and c2 empty**; Ship approval, x 216, **104 × 92** |
+
+**Height arithmetic**, so 520 is derived and not chosen: 88 + 8 + 88 + 12 + 68 + 8 + 68 + 8 + 68 + 12 + 92 = **520**. The scene renders 1:1 at 360 and 390 — 320 units wide, centred in the content (x 20 at 360, x 35 at 390) — so every number above is a CSS pixel at both widths, and the two widths are the same picture.
+
+**The nameplate rule for the portrait plan: the plate sits at the top of its own button, above its own station's artwork, never below it.** This is the opposite of the wide plan's rule and it is opposite for a reason: "below" is forced on the checkerboard by the occlusion of the desk behind-left (§C.3), and a 3-up orthogonal grid has nothing behind-left to occlude. Each plate is centred on its button's x-axis inside the button's top **20 units** — box y `top + 2` to `top + 18`, 13px micro, the artwork taking the remaining 48 (agents), 68 (cabins) or 72 (the chair).
+
+**Why no plate can land in another station's target, at 360 and at 390.** Every plate lies wholly inside its own button's top band, and the ten buttons are pairwise disjoint — 8 units between columns, 8 or 12 between rows. A rectangle inside one member of a disjoint set is inside no other member. That is a proof and not a screenshot, which is what the previous rule lacked: with plates drawn *below* their stations, nine of the ten sat inside a neighbour's target at 360 and 768, the focus ring on Spec Writer was drawn around a box labelled "Test Engineer", and "Tanya Jain" and "Designer" abutted at a 0px gap and read as one two-line label saying that Tanya Jain is the Designer. Under this rule Tanya's plate sits at y 98–114, at the top of her own 88-unit cabin, and Designer's at y 198–214, at the top of its own desk — 84 units of cabin, gap and desk between two labels that used to touch.
+
+**Targets, and the honest numbers.** Agent desks: **101.3 × 68 CSS px**. Cabins: **320 × 88**. The chair: **104 × 92** — the largest agent-class target in the room, because it is nearest and because it is the one thing the whole scene is pointing at. **The smallest target anywhere in the portrait set is 101.3 × 68, and 68 is 55% above the 44 × 44 floor.** It is 4px taller than the previous plan's 64 because the plate came inside the button; the plate rule bought target height rather than costing it. This is the number I can hold, and it is stated rather than rounded up.
 
 **360 wireframe of the floor section:**
 
@@ -1023,7 +1345,7 @@ Why not shrink the desktop plan to fit: 6 modules across 320px gives ~53px desks
 │▓  │ │      ▓▓▓▓▓▓▓▓▓▓▓▓        │ │    ▓│  first in tab order
 │▓  │ ├────────┬────────┬────────┤ │    ▓│
 │▓  │ │ SPEC   │ DESI-  │ PROG-  │ │ r3 ▓│  seven agent desks 3-up at
-│▓  │ │ WRITER │ GNER   │ RAMMER │ │    ▓│  101 x 64, read ROW-MAJOR in
+│▓  │ │ WRITER │ GNER   │ RAMMER │ │    ▓│  101 x 68, read ROW-MAJOR in
 │▓  │ ├────────┼────────┼────────┤ │    ▓│  COPY.md §2.4's pipeline order
 │▓  │ │ TEST   │ SECUR. │ REVIEW │ │ r4 ▓│
 │▓  │ │ ENGIN. │ AUDITOR│ -ER    │ │    ▓│
@@ -1033,7 +1355,7 @@ Why not shrink the desktop plan to fit: 6 modules across 320px gives ~53px desks
 │▓  │ ├────────┼────────┼────────┤ │    ▓│  modules adjacent (r5 c2-c3,
 │▓  │ │        │        │ ┌────┐ │ │ r6 ▓│  r6 c1-c2), nearest to the
 │▓  │ │   ·    │   ·    │ │CHAIR│ │ │ ◀─ ▓│  viewer, lit, and still.
-│▓  │ └────────┴────────┴─┴────┴─┘ │    ▓│  104 x 96.
+│▓  │ └────────┴────────┴─┴────┴─┘ │    ▓│  104 x 92.
 │▓  └──────────────────────────────┘    ▓│
 │▓                                      ▓│  20
 │▓  ┌──────────────────────────────┐    ▓│  CARD PANEL, always visible,
@@ -1062,8 +1384,19 @@ At 360 the room is entered from the top where the two people's cabins are, and r
 
 - **Tab order, ten stops:** Sahib → Tanya → Spec Writer → Designer → Programmer → Test Engineer → Security Auditor → Reviewer → Release Watcher → Ship approval. Humans first, chair last, and the seven agents in COPY.md §2.4's pipeline order — spec, design, code, tests, scan, review, watch. This is DOM order at every breakpoint regardless of visual position, because the order is the argument, and the argument is Copy's to state. Ten stops is two more than Pass 1 and still well under the point at which a keyboard user would want a bypass; the skip link below already jumps the whole section for anyone who does not want it.
 - **Focus treatment:** the two-tone ring from §B.2, on the room's surface: 3px `--chalk` outer (12.74 : 1 against `--floor`) + 2px `--lamp` inner, 3px offset, 4px radius, following the desk button's rectangle rather than the desk's silhouette — a ring that traces an isometric parallelogram is illegible at 2px and expensive to draw.
-- **Focus is never the only indicator.** A focused desk also takes the selected fill (its desk-top surface lifts to `--chalk` @ 34%) and updates the card slot, exactly as hover and tap do.
+- **Focus is never the only indicator.** A focused desk also takes the selected fill and updates the card slot, exactly as hover and tap do.
+- **The selected fill is `--chalk` @ 52%, up from 34% (round 12).** Review item H9: the 34% lift was built exactly and cannot be seen. Pixel-differenced under `reduce` so that only the state differs, `desk-selected-1440.png` against `desk-unselected-1440.png` gives **13.4% of the desk's pixels changed at a maximum channel delta of 27** at 1440 and 3.0% at 360; at 1:1 the two frames are indistinguishable. **The amplitude was my spec's and it was too small.** 22% → 52% roughly doubles the step over the unlit desk top (§C.1's `--chalk` @ 22%) and keeps the selected desk below the monitor glow's 55–85%, so the room's brightest thing is still a screen and not a table. This matters most at < 768, where §C.7 puts the card panel below the scene's fold and the selected desk is the only thing on screen connecting the panel to the room it came from.
+- **Acceptance test, because "built to spec and invisible" is the failure this replaces:** the same pixel-difference method, under `reduce`, at 360 and 1440 in both schemes — ~~**≥ 30% of the desk's pixels changed** at~~ a maximum channel delta ≥ 60. If 52% does not reach it, the priced fallback is a **1px `--chalk` top-edge inset on the selected station**, a mark the room already draws elsewhere; the fallback is a second indicator and is taken only on measurement, never in addition on preference.
+
+- **Round 13 records what was measured, takes the fallback, and retires the 30% (review item H9, build run D).** At 52% alone the delta passes and the share does not: **67 light / 69 dark** against the ≥ 60 line, on **15.5% of the station's pixels at 360 and 24.6% at 1440**. The fallback is therefore taken **on measurement, as this bullet requires** — the 1px `--chalk` edge on the selected desk top ships — and with it the delta goes to **106–178** while the share moves only to 16.6% / 25.4%.
+
+  **The 30% was my number and it was a number about the drawing, not about the state.** The only thing that differs between the two frames is the desk's top face, and that face is ~25% of the station's own box at 1440 and ~16% at 360 — the box also holds the monitor, the chair, the shadow faces and the empty scene around them. No fill value and no second mark *on the top face* can move 30% of those pixels, so the test was unreachable by construction and would have stayed red however good the indicator got. **It is replaced, not lowered:**
+
+  > **Acceptance test, round 13.** Under `reduce`, at 360 and 1440 in both schemes, pixel-differencing selected against unselected: **maximum channel delta ≥ 60 on the desk's top face** (met at 67 / 69) **and ≥ 100 on the selected station's 1px `--chalk` top edge** (met at 106–178). The changed-pixel share is **reported, not gated** — it is a property of how much of the station's box the top face occupies, and the Engineer records it (16.6% at 360, 25.4% at 1440) so a future change to the drawing is visible.
+
+- **The selected fill measures 2.36 : 1 in light and 2.61 : 1 in dark against the unlit desk top, and 3 : 1 is not reachable by this mechanism.** `--chalk` @ 52% over `--floor` against `--chalk` @ 22% over the same ground is under the 3 : 1 a meaningful non-text mark wants, and raising the fill does not fix it: at 100% `--chalk` the step is only **4.9 : 1**, and this section caps the selected desk below the monitor glow's 55–85% so the brightest thing in the room stays a screen. That cap is a design decision I am keeping — a table brighter than the screens is a different room — so the ratio is what the cap costs. **The 1px `--chalk` edge is what carries the selected state at full contrast**, which is why it was priced here as the fallback and why it is now shipped rather than optional. `--chalk` on `--floor` is 12.74 : 1 (§B.2), so the edge clears 3 : 1 by four times over, and the state is never carried by fill alone — the same discipline §F.6's map takes with its 2px `--s-ink` border and §E.1's indicator takes with a stroke plus a size difference. The fill is now the *quiet* half of a two-part indicator, and 2.36 / 2.61 is recorded as measured rather than defended as sufficient.
 - Skip link above the floor. The floor's roster is reachable and readable in order by screen reader with the SVG `aria-hidden`, per PLAN.md §4.1.
+- **Keyboard is not the whole of it.** The same ten buttons must be hit-testable by mouse and by touch on their own boxes, which is §C.11 and which the step 3 build failed at every width while every keyboard path above passed.
 
 ### C.9 Reduced motion — the still state
 
@@ -1120,21 +1453,34 @@ The Engineer calls this the tightest line on the site (PLAN.md §7). The composi
 
 **The headroom is still deliberately not spent.** If the floor ever has to shrink, the cut order is: (1) the faint floor-seam lines, (2) the second prop in each cabin, (3) the cabin walls, leaving the cabins as open desks with their props. A station is never the cut, and neither is a target size.
 
+### C.11 Pointer — every station is reachable by mouse and by touch
+
+This was implicit and it should never have been. §C.6 says hover, focus and tap replace the slot's content identically; §C.7's whole mobile decision is the word *tappable*; §B.6 principle 3 says every state a pointer can reach is reachable by tap and by keyboard. None of those sentences says the thing a build can fail: **each of the ten station buttons must be the topmost hit-tested element over its own drawn station, at every breakpoint, in both schemes.** Hit testing is on the button's own box — the same rectangle the focus ring traces and the same one §C.3's target table measures — and nothing may intercept it: not the decorative `<svg>` (it is `aria-hidden` and `pointer-events: none`, which makes it invisible to the pointer, not a lid over it), not a `content-visibility` or `contain` declaration on the section, not a stacking context, a transform, an overlay, a pseudo-element, or a `pointer-events: none` inherited from any wrapper the floor sits inside — including the sticky contact-plate wrapper of §B.10, which is where the step 3 build lost the whole floor to the pointer at every width. A target-size table proves nothing here: it measures rectangles, and the rectangles were correct while `document.elementFromPoint` returned `<main>` at 0 of 9 sampled stations.
+
+**Acceptance test, and it is a test rather than a look:** for each of the ten stations, at 360, 390, 768, 1024, 1440 and 1920, `document.elementFromPoint(cx, cy)` at that station's button centre returns that station's own button (or a node inside it whose `closest('[data-station]')` is that button), and a synthetic `click` at the same point puts that station's card in the slot and its selected state on the station in the room. Ten of ten, at every width, in both schemes, in CI — not a CSS edit checked by eye.
+
 ---
 
 ## D. Work cards (§6.1)
 
 ### D.1 Dimensions
 
-| | 360 | 1024 |
-|---|---|---|
-| Layout | 1 column | 2 columns |
-| Card width | 320 (full content) | 316 |
-| Min height | 168 | 196 |
-| Gap | 28 vertical | 32 vertical, 32 horizontal |
-| Padding | 20 all round, 24 bottom | 24 all round, 28 bottom |
+| | 360 | **768** | 1024 |
+|---|---|---|---|
+| Layout | 1 column | **1 column, left-aligned** | 2 columns |
+| Card width | 320 (full content) | **420 (capped)** | 316 |
+| Min height | 168 | **196** | 196 |
+| Gap | 28 vertical | **28 vertical** | 32 vertical, 32 horizontal |
+| Padding | 20 all round, 24 bottom | **24 all round, 28 bottom** | 24 all round, 28 bottom |
 
 The 28px vertical gap is not arbitrary: a 320px card tilted 2.5° overshoots ~7px at each end, so 28px keeps ≥ 20px of real air between cards and stops the tilts from reading as collisions. At 1440 the grid goes to 3 columns at 328 wide.
+
+**The 768 row is new in round 12, and it is a ruling on a question the Engineer recorded rather than invented.** This table had a 360 row and a 1024 row and no 768 row, and the build filled the gap with "full width": a compressed strip card renders **704 × 112** on `/` and a full card renders **710 × 250–330** on `/sahib/` (review items H8 and S3; `home-768-light-full.png`, `sahib-cards-768-light.png`). Two things break at that width, and both are this section's own arguments turned against it.
+
+- **§D.2's stand is 56% of the card width.** On a 710px card the stand is ~398 and the card overhangs its own lip by ~155px at each end, so the object reads as a slab balanced on a wedge rather than as a thing resting on a counter — which §D.2 says is the entire illusion and the reason the shadow pair exists.
+- **§D.5's shelf-talker hierarchy needs the date in the price position at the right of a *narrow* object.** At 710px the company and the date sit together at the left with ~500px of white beside them, and the price position stops being a position.
+
+> **Ruled: no work card is wider than 420px, at any width, on any page, in any world — and where the grid gives more, the card is left-aligned in its column and the remaining space is left as space.** 420 is the width at which the stand is 235 (§D.2), the company line still sets on one line at §D.5's 24/28, and the date's right edge is close enough to the company's to be read as the same object. The cap binds only at 768–1023, where the grid runs one column of cards; 360 is 320 by content width, 1024 is 316 by the two-column grid and 1440 is 328 by the three-column grid, all already inside it. This is one number rather than a per-page fix, and it covers the strip on `/`, both person pages, and anything later that uses the card.
 
 ### D.2 The base and the contact shadow
 
@@ -1234,6 +1580,10 @@ Option 2 is also the only one of the three that prints correctly, that is identi
 
 Cards flatten to a plain CV, because somebody will print or PDF a person page. Under `@media print` the tilt goes to `transform: none`, the fill goes to solid `#fff`, every shadow and the stand and the edge highlight are removed, the card's own padding drops to zero, and the `<ul>` reflows to a single column with a single 1px bottom rule between items and no rule under the last; the company and the date range set on one line with the date right-aligned so a printed column of dates still scans, `--muted` resolves to `#444`, `--lamp` never prints, `page-break-inside: avoid` applies per item, and the person's name and email print once at the top of page 1 — the person's own address per §B.10, since a printed CV that routes replies to a studio inbox is a worse document.
 
+**The whole person page collapses to one column in print, not just the cards** (round 12; Perf & A11y audit ruling 1, and the S5 audit found `/tanya/` printing as three columns). §D.8 said "the `<ul>` reflows to a single column" and the build read that as *the cards* reflow, which is literally what it said — so `/tanya/`'s three-field band printed as Android / core / iOS side by side on paper, at a third of a page width each, with the core's measure at roughly 20 characters. **The rule is the page, not the component: under `@media print` every multi-column arrangement on `/sahib/` and `/tanya/` becomes one column in DOM order** — the cards, the coverage map's grid, the core band's three fields, the quotes block, the links row, and anything a later round adds. A printed CV is a single column of information read top to bottom; a three-column layout on A4 is a screen layout that happened to be sent to a printer. The map keeps its shape because it is a `<table>` and a table is not a layout column; everything else flattens. §G.3's ticks do not print — a connector between two blocks that are now stacked says nothing — and each edge field prints under its own platform label, which is the same structure §G.3's 360 form already uses and is therefore already drawn.
+
+**In default print the map's marks must keep their state** (review item S5, `print-sahib-nobg-p1.png` against `print-sahib-p1.png`). With the browser's own print-background suppression on — the default, and the one nobody chooses — `/sahib/`'s five-mark row strips lose their fill: empty marks vanish entirely, filled marks become a thin outline, and the lit mark becomes an amber outline at **1.87 : 1 on white**. The state is carried by fill alone, which is exactly what §E.1 refuses to do for the stage indicator and refuses for the same reason. **The marks take the stage indicator's discipline: a stroke plus a size difference, so the three states survive with every fill suppressed** — filled is the larger mark with a solid stroke, empty is the smaller mark with a hairline stroke, and the lit mark is the larger mark with a doubled stroke and a `--s-ink` outer ring, which is a shape difference and not a colour one. `print-color-adjust: exact` on the strip is the cheaper fix and it is refused: it asks the visitor's printer for permission the rest of §D.8 is built not to need.
+
 **Print omits the floor entirely** (item 54). The whole floor section — scene, buttons, card slot and roster — is `display: none` on every page that carries it, and no text substitute is printed in its place. The persistent contact plate is `display: none` too. The reasoning is that the roster-as-a-text-list would print as an unexplained list of seven job titles under a person's CV, which raises a question the paper cannot answer; the room is an argument that needs the screen, and a document that tries to carry it becomes a worse document. What survives is the thing people actually print these pages for: name, address, and a clean column of roles and dates. The output should be a document you would attach to an email, which is the actual reason anyone prints this.
 
 ---
@@ -1307,7 +1657,7 @@ All four grounds, both schemes, clear 3 : 1. The state is still carried by size 
 
 ### E.2 The full track
 
-**≥ 768 — horizontal**, five nodes evenly spaced, labels beneath. "Submitted for review" wraps to two lines, so the label row reserves two lines of height for all five nodes and no layout shifts.
+**≥ 931 — horizontal**, five nodes evenly spaced, labels beneath. "Submitted for review" wraps to two lines, so the label row reserves two lines of height for all five nodes and no layout shifts.
 
 ```
    ●───────●───────◉───────○╌╌╌╌╌╌╌○
@@ -1315,7 +1665,7 @@ Specced  Building  Final    Submitted   Live
                    touches  for review
 ```
 
-**< 768 — vertical**, because five labels across 320px gives 64px each and "Submitted for review" cannot set. Nodes in a column, connector vertical, label to the right, 44px row height.
+**≤ 930 — vertical**, for two reasons that now stack. Below 768, five labels across 320px gives 64px each and "Submitted for review" cannot set. From 768 to 930, the horizontal axis ends inside the plate's 276px band and the last two nodes — the two that say the product is not out yet — are covered, which §B.10's amended rule forbids; the vertical form has no right-hand extent, so it is the remedy rather than a narrower pitch. **The breakpoint moves from 768 to 930 and nothing else about the component changes.** Nodes in a column, connector vertical, label to the right, 44px row height.
 
 ```
  ●  Specced
@@ -1328,6 +1678,18 @@ Specced  Building  Final    Submitted   Live
  ╎
  ○  Live
 ```
+
+**The horizontal axis takes its block's own inner edges (round 12, review item W1).** Run A item 6 asked for a track that answers the grid instead of being a fixed 567px object, and the build gave the pitch a column span, which was the mechanism asked for. The composition did not follow: rendered at 1440 the label row runs x **168 → 966** inside a `--band` block running x **120 → 1014**, so the axis starts 48 inside its block and stops 48 short of it, and at 930 the vertical track sits in the left 250px of an 866-wide block. **48px of dead margin at each end is what makes a diagram look dropped in rather than laid out**, and it is `/work/`'s "remove one thing" (§J).
+
+> **The axis's first node centre sits at the block's left inner edge + 9 (the ring), and its last node centre at `min(block right inner edge − 9, 100vw − 300)` — the block, or the plate's band less 24px, whichever is smaller. The pitch is whatever those two ends and five nodes make it. There is no pitch ceiling; the floor is 100px, below which the section changes shape (§B.10) rather than the component.**
+
+| vw | Block inner edges | Band | Last node | Pitch | Clear of band |
+|---|---|---|---|---|---|
+| 931 | 42 → 889 | 655 | 622 | **142.8** | 24 |
+| 1024 | 48 → 976 | 748 | 715 | **164.5** | 24 |
+| 1440 | 120 → 1014 | 1164 | 1005 | **219.0** | 150 |
+
+**This supersedes the "124px pitch cap, axis anchored at x 137" wording in §B.10**, which described a fixed object and is stale; the collision arithmetic in that paragraph is what produced the 930/931 breakpoint and *that* is unchanged and verified in render (`work-track-930-light.png`, `work-track-931-light.png`). The switch stays where run A put it: the anchor above governs the horizontal form only, and below 931 the vertical form runs for its own two reasons, which are the label row's legibility and the fact that a vertical track has no right-hand extent to collide with.
 
 No dates, no estimates, no "expected in" anywhere in this component. There is no slot for one, which is the point.
 
@@ -1344,6 +1706,23 @@ No dates, no estimates, no "expected in" anywhere in this component. There is no
                     │          │            │             │         │
  [second app]       ●──────────●────────────◉─────────────○╌╌╌╌╌╌╌╌╌○
 ```
+
+**The label row carries §E.2's five strings, unabbreviated** — `Specced`, `Building`, `Final touches`, `Submitted for review`, `Live`. The wireframe above elides the fourth for ASCII width only; it is not a shorter label set. So this row inherits §E.2's two-line reservation whole: the row reserves two lines of height for all five, and the pitch that lets `Submitted for review` set in two lines rather than three is **100px**, the number §B.10 fixes. There is no width at which this component gets a smaller pitch — where 100 does not fit, the section changes shape instead (below).
+
+**All five stage labels centre on their nodes, in every form of this component, at every width.** The label row's ink may overhang the axis at either end by up to half a label; §B.10 exempts prose and this row is five words, not five marks. Round 10's fix for run A item 10 edge-aligned `Specced` and `Live` to nodes 1 and 5 so that the row's ink matched the axis exactly, and the cost was visible in `home-proof-1440-light.png`: three labels centred and two half a pitch off the dot they name, which in a five-item row reads as a mistake and not as a rule. **The axis is what the rule constrains; the label row is prose that rides it.** This retires the two-alignment inconsistency (item H7) and it is now the same rule everywhere.
+
+**Where the two-runner block sits, by width (round 12).** The pitch is **100px at every width**, and where 100 does not fit the section changes shape rather than the component. The product label rides *above* its runner rather than beside it (§B.10), so no label column is subtracted from the axis.
+
+| Width | Form | Block | Axis ink | Node centres | Last ring closes | Band begins | Clear |
+|---|---|---|---|---|---|---|---|
+| < 768 | one row per product | content | mini-track, 140 total | — | — | 128-band | n/a |
+| 768–1023 | stacked, prose cols 1–6, figures cols 1–5 | cols 1–6 of 8 | x 32 → 441 | 32 / 132 / 232 / 332 / 432 | 441 | 492 | **51** |
+| 1024–1439 | **one grid, two rows** (§B.9) | cols 1–9 of 12 | x 243 → 661 | 252 / 352 / 452 / 552 / **652** | 661 | 748 | **87** (ring) / **96** (node centre) |
+| ≥ 1440 | split band (§B.9) | cols 7–12 | x 723 → 1141 | 732 / 832 / 932 / 1032 / 1132 | 1141 | 1164 | **23** |
+
+The 1024 row is the round-12 ruling: the block spans cols 1–9 and the axis is anchored on its right at `min(block right − 33, 100vw − 372)`, which at 1024 is the band term — **x 652**, 96px clear of a band at 748. §B.9 carries the derivation and the row-1 allocation. The 1439 end of the same range is governed by the block term instead, so the axis fills its block there rather than floating in it; the anchor is one expression and it hands over between the two terms without a breakpoint.
+
+768–1023 is listed because it is the tighter of the two non-split widths and it still clears by 51px, which is what proves one pitch serves the whole range. **The figures and the store link take cols 1–5 at 768–1023 and cols 1–7 at 1024–1439** — that allocation, not a per-width case, is what closes blocker B1.
 
 **< 768: one row per product,** product name, a 5-node mini-track (nodes only, 140px total, no per-node labels), and the current stage printed as text beside it. Only the four non-current labels are dropped — the fact a visitor actually needs stays as words.
 
@@ -1410,7 +1789,7 @@ Sahib's world inverts the studio: his page is a dark ground, because a coverage 
 | Token | Hex | L | Role |
 |---|---|---|---|
 | `--s-ground` | `#161C2E` | 0.011983 | Page ground. |
-| `--s-panel` | `#1F2841` | 0.021905 | Raised surface — the map's field, section blocks. |
+| `--s-panel` | `#1F2841` | 0.021905 | Raised surface — **section blocks** (§F.4b). The map's filled cells left this token in round 12 and took `--s-fill`. |
 | `--s-ink` | `#E9EAF0` | 0.824605 | Primary text, filled cells. |
 | `--s-dim` | `#8E96AC` | 0.305420 | Secondary text, row and column labels. |
 | `--lamp` | `#F2A93B` | 0.475689 | Shared with the studio. Used **only** on the 2025 end-to-end-with-AI column. |
@@ -1445,7 +1824,7 @@ So `/sahib/` is the one route where the toggle's two positions are "as designed"
 | Token | Dark value (his default) | **Light value** | L (light) | Role |
 |---|---|---|---|---|
 | `--s-ground` | `#161C2E` | **`#EEEFF4`** | 0.864418 | Page ground. |
-| `--s-panel` | `#1F2841` | **`#E0E2EC`** | 0.762961 | The map's field, section blocks. Steps *darker* than the ground in light, *lighter* in dark — the same "step away from the extreme" rule as the studio's band (§B.2a). |
+| `--s-panel` | `#1F2841` | **`#E0E2EC`** | 0.762961 | **Section blocks** (§F.4b); no longer the map's field. Steps *darker* than the ground in light, *lighter* in dark — the same "step away from the extreme" rule as the studio's band (§B.2a). |
 | `--s-ink` | `#E9EAF0` | **`#1A2033`** | 0.014917 | Primary text, filled cells. |
 | `--s-dim` | `#8E96AC` | **`#545C74`** | 0.108001 | Secondary text, row and column labels. |
 | `--lamp` | `#F2A93B` | `#F2A93B` | 0.475689 | Unchanged. Still only on the 2025 end-to-end-with-AI column. |
@@ -1478,6 +1857,43 @@ Every light pair is within 0.2 of its dark twin (14.09/14.11, 12.52/12.16, 5.79/
 **Focus ring on his light page:** 3px `--s-ink` outer (14.09 : 1 on the ground, 12.52 : 1 on the panel) + 2px `--lamp` inner, unchanged geometry. On his dark page the outer is `--s-ink` at 14.11 : 1, also unchanged.
 
 **"The map fills" (§H.3) is scheme-agnostic.** Four columns fade up, 300ms hold, then the end-to-end column arrives alone in `--lamp`. Nothing in that sequence depends on the ground's lightness — the lamp column is the only chromatic event in either scheme — so the orchestrated moment is one animation, not two.
+
+### F.4b Round 12 — the map's fill leaves `--s-panel`, and `--s-panel` goes back to work
+
+Two run-B items (S1, S2) are one token doing two jobs badly, and the fix is to split it.
+
+**S2, the map's two-state grammar is a 1.13 : 1 step in light.** Sampled off `sahib-map-1440-light.png`: filled cells `#E0E2EC`, empty cells `#EEEFF4`, lit cell `#F2A93B` with its 2px `--s-ink` border — §F.1 and §F.4a exactly, and honestly built. But §F.1's whole argument is that "the takeaway is the **shape** of the filled region… a staircase descending right to left", and at 1.13 : 1 that shape is at the edge of perception: the product names do the work and the diagram reads as a table. The dark map is arithmetically the same step — `#1F2841` on `#161C2E` is **1.16 : 1** — and reads better only because of where those two values sit on the tone curve. **That is a coincidence, not a design, and this site does not ship a diagram whose legibility depends on the visitor's scheme.**
+
+**New token `--s-fill`, the map's filled cell and nothing else.**
+
+| Token | Dark | Light | L (dark / light) | Role |
+|---|---|---|---|---|
+| `--s-fill` | **`#5E6480`** | **`#868AA0`** | 0.130504 / 0.257833 | The coverage map's filled cells. Used nowhere else, in either scheme. |
+
+| Pair | Dark | Light |
+|---|---|---|
+| `--s-fill` against `--s-ground` (the shape) | **2.91 : 1** | **2.97 : 1** |
+| `--s-ink` inside a filled cell (the product name) | **4.85 : 1** | **4.74 : 1** |
+| `--lamp` against `--s-fill` (the lit cell against its neighbours) | **2.91 : 1** | **1.71 : 1** |
+
+The two schemes now match on **ratio**, which is §B.2a's rule, rather than on hex distance. Three things this buys beyond the shape: the product names inside the cells still clear AA body in both schemes; the lit cell separates from its neighbours *better* than it did (1.55 : 1 before, in light), because the fill has stepped past `--lamp` rather than toward it; and the 2px `--s-ink` border on the lit cell stays, so the map keeps §E.1's discipline — the state is never carried by fill alone. **At 360 the row strips are unchanged**; the review found the shape already reads better at 360 than at 1440 (`sahib-map-360-light.png`), and the strips' mark discipline is what the wide map is now borrowing rather than replacing.
+
+**S1, `/sahib/` is 5,235px of one fill and `--s-panel` is never a section block.** §F.4 has always named `--s-panel` for "the map's field, **section blocks**"; measured, every section on the page computes `rgba(0,0,0,0)` over the body at every width in both schemes, and only the map's cells took the token. Run A item 8 blocked both product pages for exactly this and they were fixed; the fault moved to the longer page, where six sections separated by space alone — with 390 / 540 / 400px gaps between the map, the cards and the writing — read as an unfinished page rather than as a quiet one.
+
+**With `--s-fill` carrying the cells, `--s-panel` is free for the job it was named for. The alternation on `/sahib/`, and it steps around the map:**
+
+| Section | Fill |
+|---|---|
+| Intro | `--s-ground` |
+| The coverage map | `--s-ground` — the map is the page's one loud thing and nothing sits behind it |
+| Work cards | **`--s-panel`**, full-bleed |
+| He writes it down | `--s-ground` |
+| Background | **`--s-panel`**, full-bleed |
+| Links and closing | `--s-ground` |
+
+Two blocks, not six, and neither is adjacent to the map. §D.7's controlled-backdrop rule already names `--s-ground` and `--s-panel` as the only permitted card backdrops, so the cards on `--s-panel` are inside a case that is already costed, and §F.4's own note applies — panels on a dark ground are separated by an inset 1px `rgba(233,234,240,.14)` top-left edge highlight plus space, never by fill contrast.
+
+**S6 — the map and the cards arrive with no section line, and that is a copy gap, not a build fault.** §F.7 and §F.8 both draw `Where he has shipped` above the map and `Seven years, four companies` above the cards; rendered, the page has three headings — the h1, `He writes it down` and `Background` — because COPY.md writes neither string. The wireframes are right and the build is right against COPY. Recorded here so it routes: `[COPY NEEDED: the display-section line above the coverage map on /sahib/, ≤ 5 words.]` `[COPY NEEDED: the display-section line above the work cards on /sahib/, ≤ 5 words.]` Both are display-section size, `--s-ink`, on the left edge of their own section.
 
 ### F.5 Typefaces on Sahib's page
 
@@ -1736,7 +2152,7 @@ Her work history attaches as **annotations pinned to the layer they belong to**,
 | **Shared core** | **KMP business-logic modules + Clean Architecture** at Motive, 2024 to now. CI/CD pipelines and workflow automation. Release ownership: phased rollouts, crash and ANR monitoring. Bluetooth device-verification flows. Plus the review gates she owns (item 19). | All cross-platform, all shared. This is the field's content, named and dated. |
 | **iOS edge** | The **Motive Fleet App** (item 46). | The edge that consumes the shared modules. |
 
-**Motive appears on all three layers, and that is the page's argument, not a duplication bug.** The card lives in the core, where the KMP work is; the Android and iOS edges each carry a short connector — a 2px `--t-ink` tick running out of the core's card into the edge column, with a label at its end — showing the same product arriving on each platform. That is literally what a KMP architecture looks like, it fills the iOS column with a named product rather than with structure alone, and it costs one label per side rather than two duplicate cards.
+**Motive appears on all three layers, and that is the page's argument, not a duplication bug.** The card lives in the core, where the KMP work is; the Android and iOS edges each carry a short connector — a 2px `--t-ink` tick leaving the core's card horizontally, with the edge's own Motive card top-aligned to it one gutter beyond (geometry in §G.3a) — showing the same product arriving on each platform. That is literally what a KMP architecture looks like, it fills the iOS column with a named product rather than with structure alone, and it costs one label per side rather than two duplicate cards.
 
 Two numerals from the resume take the core's numeral slots, because a claim gets a number or it gets cut (principle 2): **99.8% crash-free** and **~20% faster startup**, both at Motive. `[CONFIRM: both figures are resume-sourced, not publicly verifiable — the Fact Checker signs them off before publish or they drop out.]`
 
@@ -1761,24 +2177,24 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 │ work gets made.                  └───────────────────────────────────┘   │
 │                                                                     128  │
 ├──────────────────────────────────────────────────────────────────────────┤
-│  ANDROID       │▒▒▒▒▒▒▒▒ SHARED CORE ▒▒▒▒▒▒▒▒│        iOS               │
-│  cols 1-3      │▒     cols 4-9, --t-core     ▒│        cols 10-12        │
-│  --t-ground    │▒  4px --lamp-ink top cap    ▒│        --t-ground        │
+│  ANDROID       │▒◀────── SHARED CORE ───────▶▒│        iOS               │  ROUND 13: THE TWO TICKS
+│  cols 1-3      │▒     cols 4-9, --t-core     ▒│        cols 10-12        │  SIT ON THIS ROW, on the
+│  --t-ground    │▒  4px --lamp-ink top cap    ▒│        --t-ground        │  PLATFORM LABEL BASELINE
+│                │▒                            ▒│                          │  -- one baseline shared
+│                │▒  What belongs to everyone  ▒│                          │  by all three fields.
 │                │▒                            ▒│                          │
-│                │▒  What belongs to everyone  ▒│                          │  the core is
-│                │▒                            ▒│                          │  ONE continuous
-│  Android-only  │▒  [COPY NEEDED: the core    ▒│  iOS-only concerns       │  field running
-│  concerns      │▒   statement, ~40 words]    ▒│  live here. narrower,    │  the section's
-│  live here.    │▒                            ▒│  indented, --t-edge      │  full height,
-│  narrower,     │▒  99.8%        ~20%         ▒│  labels.                 │  not a stack
-│  indented.     │▒  crash-free   faster start ▒│                          │  of blocks.
+│  Android-only  │▒  [COPY NEEDED: the core    ▒│  iOS-only concerns       │  the core is ONE
+│  concerns      │▒   statement, ~40 words]    ▒│  live here. narrower,    │  continuous field running
+│  live here.    │▒                            ▒│  indented, --t-edge      │  the section's full
+│  narrower,     │▒  99.8%        ~20%         ▒│  labels.                 │  height, not a stack of
+│  indented.     │▒  crash-free   faster start ▒│                          │  blocks.
 │                │▒  [CONFIRM: resume-sourced] ▒│                          │
-│                │▒                            ▒│                          │  edges are
-│  ┌──────────┐  │▒  ┌──────────────────────┐  ▒│                          │  narrower AND
-│  │ Motive   │  │▒  │ Motive               │  ▒│  ┌──────────┐            │  indented, so
-│  │ Compose  │◀─┼▒──│ Fleet management, US │──▒┼─▶│ Motive   │            │  the hierarchy
-│  │ migration│  │▒  │ 2024 - now           │  ▒│  │ Fleet    │            │  survives even
-│  └──────────┘  │▒  │ ─────────────────────│  ▒│  │ App      │            │  in greyscale
+│                │▒                            ▒│                          │  edges are narrower AND
+│  ┌──────────┐  │▒  ┌──────────────────────┐  ▒│                          │  indented, so the
+│  │ Motive   │  │▒  │ Motive               │  ▒│  ┌──────────┐            │  hierarchy survives even
+│  │ Compose  │  │▒  │ Fleet management, US │  ▒│  │ Motive   │            │  in greyscale.
+│  │ migration│  │▒  │ 2024 - now           │  ▒│  │ Fleet    │            │
+│  └──────────┘  │▒  │ ─────────────────────│  ▒│  │ App      │            │
 │                │▒  │ Software Engineer 2  │  ▒│  └──────────┘            │
 │  ┌──────────┐  │▒  │ Motive Fleet App     │  ▒│  [COPY NEEDED: the iOS   │  ONE COMPANY,
 │  │ HSBC     │  │▒  │ Kotlin, KMP business │  ▒│   edge card's small      │  THREE LAYERS.
@@ -1788,16 +2204,18 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 │  │ 2021-23  │  │▒  CI/CD and workflow        ▒│   46 attributes the      │  KMP shape,
 │  └──────────┘  │▒  automation. Releases:     ▒│   Fleet App, and the     │  drawn.
 │                │▒  phased rollouts, crash    ▒│   resume names KMP       │
-│  ┌──────────┐  │▒  and ANR monitoring.       ▒│   shared modules, not    │  2px --t-ink
-│  │ Naskay   │  │▒  Bluetooth device          ▒│   Swift.]                │  ticks, labelled
-│  │ Kotlin,  │  │▒  verification flows.       ▒│                          │  at the end
+│  ┌──────────┐  │▒  and ANR monitoring.       ▒│   shared modules, not    │  2px --t-ink ticks; they
+│  │ Naskay   │  │▒  Bluetooth device          ▒│   Swift.]                │  attach to the LAYER'S
+│  │ Kotlin,  │  │▒  verification flows.       ▒│                          │  NAME, not to a card.
 │  │ APK size │  │▒                            ▒│                          │
-│  │ 2020-21  │  │▒  THE GATES SHE OWNS        ▒│                          │  item 19, set
-│  └──────────┘  │▒  Product spec, code        ▒│                          │  as a block in
-│                │▒  review, device QA,        ▒│                          │  the CORE -- a
-│                │▒  security and privacy, ASO ▒│                          │  gate shared
-│                │▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│                          │  with Sahib is
-│                                                                     128  │  shared work.
+│  │ 2020-21  │  │▒  THE GATES SHE OWNS        ▒│                          │  item 19, set as a block
+│  └──────────┘  │▒  Product spec              ▒│                          │  in the CORE -- a gate
+│                │▒  code review               ▒│                          │  shared with Sahib is
+│                │▒  device QA                 ▒│                          │  shared work. ROUND 13:
+│                │▒  security and privacy      ▒│                          │  ONE GATE PER LINE below
+│                │▒  ASO                       ▒│                          │  1024, and kept above it
+│                │▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒│                          │  -- five owned gates read
+│                                                                     128  │  as five gates.
 ├──────────────────────────────────────────────────────────────────────────┤
 │ Those are the same four gates the home page names. (cols 4-9)            │  the §9.3
 │ [COPY NEEDED: the link back to the home page's four gates, ~25 words]    │  connection,
@@ -1805,6 +2223,50 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 │ github.com/Tanya-jain99      jaintanya999@gmail.com                      │  core column
 └──────────────────────────────────────────────────────────────────────────┘
 ```
+
+### G.3a T1's three fields — the allocation at 1024 and up (round 12), the ticks and the gates block at every width (round 13)
+
+The run-B render of this band is the reason §B.5 gained a ruling this round. Measured at 1440 (`tanya-band-1440-light.png`): Android edge **x 120–402**, core **x 426–810**, iOS edge **x 834–1014** — that is Android cols 1–3, **core cols 4–7** and **iOS cols 8–9**, with **cols 10–12 empty down the whole band**. §G.3 draws the core at cols 4–9 and the iOS edge at cols 10–12. The build moved two fields left and left three columns standing empty, which is a **keep-out lane for the contact plate in all but name**, and §B.5 forbids one in terms. At 1024 the same allocation crushed the core to a **245px field — 31 characters over 24 lines** (item T4), which is a newspaper column and narrower than §C.6's own floor for a *card*.
+
+**The allocation, restored, at every width from 1024 up:**
+
+| Field | Cols | 1024 (content 928, x 48–976) | 1440 (content 1200, x 120–1320) |
+|---|---|---|---|
+| Android edge | **1–3** | x 48 → 261.9, **213.9** wide | x 120 → 402, **282** wide |
+| Shared core | **4–9** | x 285.9 → **737.7**, **451.8** wide | x 426 → **1014**, **588** wide |
+| iOS edge | **10–12** | x 761.7 → 976, **214.3** wide | x 1038 → 1320, **282** wide |
+
+**Measures.** The core's field carries 32px of inner padding at both widths, so its measure is **387.8px at 1024 — ~47 characters at 17/28** — and **524px at 1440 — 30.8em, inside `--measure-body`'s 32em, ~63 characters**. 47 is well past the ≥ 45 this band has to clear and past §C.6's 29-character card floor; item T4 closes on the allocation and needs no copy change. The edge fields are 213.9 and 282 — narrower than the core at both widths, which is §G.3's hierarchy, and wide enough for a card at §D.1's 420 cap.
+
+**The core stays left of the plate's band, and that is the whole of the plate's effect on this page.** Col 9's right edge is **737.7** at 1024 against a band beginning at **748** — **10.3px clear** — and 1014 against 1164 at 1440, 150 clear. **No load-bearing mark on this page goes right of col 9 at any width**, which is what puts the `Owns` line, the gates block and both ticks out of the plate's reach by rule rather than by case. The iOS field sits inside the band and carries only a heading and a card — prose in a container — which §B.10 exempts, and which is the same standing §C.6's slot used to claim and no longer needs.
+
+**Below 1024 the core is full width, and round 13 rules what that costs the gates block.** §B.10 asserted that the `Owns` line was covered below 768 "by being full width". It is not: a line that sets to its field's own measure ends where the field ends, and measured on the run-D build the gates line ends at **x 305 at 360** against a band at **232**, and at **x 539 at 768** against **492** — three of `qa:plate`'s seven flags (`/tanya/` at 360, 390 and 768). The core does not narrow; §B.5 calls it a diagram with a fixed minimum extent and item T4 exists because it was narrowed once already. **What changes is the line breaking:**
+
+> **Below 1024 the gates block sets one gate per line — five lines, no commas, separated by space (§B.2), a real `<ul>` with no markers and no indent, as PM1 and WP2 left every other list on this site.** The label above it is unchanged.
+
+The numbers, and they are constants rather than viewport expressions. The longest gate is `security and privacy`, 20 characters. At 360 the core's inner left is **x 40** (content x 20–340, the field full-bleed to the content edges, 20px pad) and 20 characters at body 16/1.62 is **157px**, so the line ends at **x 197 — 35px clear** of the band at 232. At 390, **x 221** against 262, 41 clear. At 768 the core's inner left is **x 64** and 20 characters at body 17/1.62 is **167px**, ending at **x 231** against a band at **492 — 261px clear**. Nothing in that arithmetic moves with the viewport, so every width inside each range is looser than the width quoted. At ≥ 1024 the block may keep either form and keeps this one: five owned gates read as five gates, and the comma-separated run-on was always the compromise the narrow column forced. §C.6's floor cards keep the comma form, because a 293px slot turns five lines into five lines of two words.
+
+**The two ticks, and where they stop.** §G.3's claim is that "the two ticks out of the core **are** the KMP shape, drawn". Round 12 fixes their horizontal geometry: **each tick is a 2px `--t-ink` stroke leaving the core horizontally and terminating at the core field's own boundary** — x 285.9 and x 737.7 at 1024, x 426 and x 1014 at 1440. The ticks do not cross the gutter, for two reasons and both are rules already in this document: no component on this site draws across one of §B.5's gutters, and a tick crossing the right gutter at 1024 would end at 761.7, **13.7px inside the plate's band**, which the composition rule forbids for a connector whose meaning is exactly its continuity. Symmetric, one rule, both sides, every width ≥ 1024.
+
+**Round 13 gives them their vertical geometry, and it is a different y than round 12 implied.** Round 12 said the edge card sat one gutter beyond, "top-aligned to the tick", and the Engineer is right that this is not expressible: each edge field's first mark is its platform label, so the card's top is a label's height below the field's top, and aligning a row across three independent columns needs either the core split into grid rows — which costs "one continuous field" — or a measurement in JS, which §H.1 forbids for layout. The wording is withdrawn. What replaces it is a decision about **what the tick means**, and the geometry falls out of it:
+
+> **A tick is the point at which a platform layer attaches to the core. It attaches to the layer's *name*, not to any card in it.** Each tick's stroke centre sits on the **platform label's first baseline** — `SHARED` at the core end, `ANDROID` and `iOS` at the edge ends — which is one baseline shared by all three fields, because all three labels are the same type at the same lead-in.
+
+Three things follow, and each one closes something that was open.
+
+- **The offset is a constant, not a measurement.** The core field's lead-in is its 4px `--lamp-ink` cap plus 32px of inner padding; **the two edge fields carry no cap and no fill and take the same 36px of lead-in**, so three identical labels — Anek 500 `wdth` 75 at micro 13/1.45 — land on one baseline with nothing measured. On the shipped Anek subset that baseline is **50px below the band's top border edge**, and the tick is a 2px stroke centred on it. **50 is the consequence and the baseline is the spec:** if the shipped face's ascent moves the number, the number is corrected and the alignment is not, and PLAN.md §4.3's assertion checks the two labels' baselines against the core's rather than checking 50.
+- **The pairing is carried by content, which is where it was always carried.** `Motive` appears in all three fields (item T1) and that is what says one company, three layers; the tick says the *layer* comes out of the core. Round 12 asked a stroke to do a job the cards were already doing, and paid for it in an alignment nobody can build. **The tick therefore no longer waits on T1** — it is buildable the day this line lands, with or without the Android edge's Motive string.
+- **The band's rows, restated so the tick's y is unambiguous.** The band is two rows: a label row carrying the three platform labels on one baseline, and a body row where all three fields' content begins. **Item T2's "the edge fields are top-aligned to the core's first card row" is superseded by "top-aligned to the band's body row"** — same reason, same defect: the core's first card sits below a ~40-word statement and two numerals, so its y is a measurement and not a grid line. Everything else in T2 stands: the band's height is the core's height, each edge field stops at its own last card, and no field draws a boundary, fill or rule below its content.
+
+**At 360 the same rule, rotated.** The two ticks leave the **core field's bottom edge** and terminate at the top of each edge block, meeting that block's platform label on its baseline — the same 2px `--t-ink` stroke, the same meaning, one turn. They no longer leave the Motive card mid-field as the wireframe below draws them; that drawing is round 12's and the ticks in it move to the foot of the core.
+
+**Item T1 — Motive lands on two layers and there is one tick — is build-side, not spec-side.** Rendered, the core holds the Motive card, the iOS edge holds a label, a 20px dash and the three words `Motive Fleet App`, and **the Android edge holds HSBC and Naskay and no Motive at all**: the Jetpack Compose migration is printed inside the core card's small print instead. §G.3's practice table has named the Compose migration as the **Android edge's first content** since round 3, §G.4's own table lists it at row 2, and COPY §7.2's Motive card supplies the string. The spec is right and it is unbuilt; the page's central claim is half built and it is the first thing to fix here. **The Android edge's card order is Motive (Compose migration) → HSBC → Naskay, and the iOS edge's is Motive (Fleet App)**, so Motive is the first card in all three fields and "one company, three layers" is legible without reading a word.
+
+**Item T2 — each field's block ends where its content ends.** Measured at 1440 the Android cards ended at y 675 and then 775px of nothing followed; the iOS field carried three words at the top and **1,395px of nothing**; at 1024 the band was 1,705px tall and roughly 60% of its area was empty. §G.3's own words for what item 46 bought are that it "fills the iOS column with a named product **rather than with structure alone**", and structure-with-a-caption-in-it is the condition §G.5 recorded as closed. **The band's height is the core's height. The edge fields are top-aligned to ~~the core's first card row~~ the band's body row (round 13 — see the ticks above; the core's first card sits below a ~40-word statement and two numerals, so its y is a measurement and not a grid line) and stop at their own last card — they are not stretched to the core's foot, and no field draws a boundary, fill or rule below its content.** With T1 built, the iOS field carries a real card and the Android field carries three, so the remaining difference in column heights is the honest one: the core has more in it, which is the argument.
+
+**Item T3 — no full-height rules at ≥ 1024. Cut them.** Both edge columns took a 2px `--t-ink` left rule running the **full 1,450px height of the band**, and in dark those two rules are near-white and the brightest things on her page — brighter than her text. §9.4 bans the broadsheet hairline by name, §B.2 says structural separation is done with fill and space and never with rules, and §B.6 principle 4 says the site never has two loud things at once. **§G.3 asks for that rule at 360 and only at 360**, where depth replaces horizontal position and the rule is the only thing doing the separating; at ≥ 1024 the three fields are already separated by the core's fill, by the grid's gutters and by the edges' indentation, and the rules were drawing a box around emptiness. This is `/tanya/`'s "remove one thing" (§J).
+
+**Item T5 — the quotes keep their quotation marks and lose the rule.** COPY §7.1 supplies both quotes inside typographic quotation marks and addresses a note to me: "the two quotes are short and load-bearing… **they must read as quotation, not as pull-quote decoration**." Rendered, the marks are dropped, the text sets at body size in `--t-ink`, and the only cue is a left rule — which is the pull-quote convention, so the instruction is inverted exactly. **Print the marks; drop the rule** (§B.2 again, and §T3's ruling one paragraph up applies to the same 2px stroke). The attribution sets in **Instrument Sans regular, never oblique** — the family ships no italic and the browser was synthesising one. The quotes block takes **cols 4–9**, the core's own columns, so the two quotes sit under the field whose argument they support rather than in a band of their own.
 
 **T1 at 360** — the three columns collapse to one, and the structure survives as **indentation depth plus a rule**, not as horizontal position. Core content is full width on `--t-core`; edge content is inset 24px with a 2px `--t-ink` left rule and a condensed platform label above it. The two ticks out of the Motive card rotate from left-and-right to **down-and-down**, pointing at the two edge blocks that now sit below rather than beside — the same 2px stroke, the same labels, the same claim. The reader still learns which things are shared, which are platform-specific, and that one product is all three, which is the only thing the layout has to survive.
 
@@ -1843,30 +2305,34 @@ The connection §9.3 requires to the home page is now **named, not gestured at**
 │ ▒  │ Kotlin, KMP business logic,  │  ▒ │
 │ ▒  │ Clean Architecture           │  ▒ │
 │ ▒  └──────────────────────────────┘  ▒ │
-│ ▒     │                       │      ▒ │      the two TICKS out of the card
-│ ▒     ▼ to Android            ▼ to   ▒ │      survive the collapse: at 360
-│ ▒       edge                    iOS  ▒ │      they point DOWN to the two
-│ ▒                                    ▒ │      edge blocks instead of left
-│ ▒  CI/CD and workflow automation.    ▒ │      and right. same 2px --t-ink.
+│ ▒                                    ▒ │
+│ ▒  CI/CD and workflow automation.    ▒ │
 │ ▒  Releases: phased rollouts, crash  ▒ │
 │ ▒  and ANR monitoring. Bluetooth     ▒ │
 │ ▒  device verification flows.        ▒ │
 │ ▒                                    ▒ │
-│ ▒  THE GATES SHE OWNS                ▒ │      item 19, in the CORE
-│ ▒  Product spec, code review,        ▒ │
-│ ▒  device QA, security and privacy,  ▒ │
-│ ▒  ASO                               ▒ │
-│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
-│                                        │  40
-│  │ ANDROID EDGE                        │      inset 24px + 2px --t-ink
-│  │                                     │      left rule. depth replaces
-│  │ ┌────────────────────────────────┐  │      horizontal position.
-│  │ │ Motive                         │  │
-│  │ │ 2024 - now                     │  │      Motive appears here too, as
-│  │ │ ───────────────────────────────│  │      the Compose migration -- the
-│  │ │ Jetpack Compose migration      │  │      Android-only half of the same
-│  │ └────────────────────────────────┘  │      job. that is the layout doing
-│  │      ▁▁▁▁▁▁▁▁▁▁▁                    │      its work, not a duplicate.
+│ ▒  THE GATES SHE OWNS                ▒ │      item 19, in the CORE. ROUND
+│ ▒  Product spec                      ▒ │      13: ONE GATE PER LINE below
+│ ▒  code review                       ▒ │      1024, no commas, separation
+│ ▒  device QA                         ▒ │      by space (§B.2). longest is
+│ ▒  security and privacy              ▒ │      "security and privacy", 157px
+│ ▒  ASO                               ▒ │      from x 40 -> ends x 197, 35
+│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │      clear of the band at 232.
+│       │                       │        │      THE TWO TICKS, round 13:
+│       ▼                       ▼        │      they leave the CORE'S BOTTOM
+│                                        │  40  EDGE, not the Motive card,
+│  │ ANDROID EDGE                        │      and land on each edge block's
+│  │                                     │      PLATFORM LABEL BASELINE --
+│  │ ┌────────────────────────────────┐  │      the layer's name is what a
+│  │ │ Motive                         │  │      tick attaches to. inset 24px
+│  │ │ 2024 - now                     │  │      + 2px --t-ink left rule;
+│  │ │ ───────────────────────────────│  │      depth replaces horizontal
+│  │ │ Jetpack Compose migration      │  │      position. Motive appears
+│  │ └────────────────────────────────┘  │      here too, as the Compose
+│  │      ▁▁▁▁▁▁▁▁▁▁▁                    │      migration -- the Android-only
+│  │                                     │      half of the same job. that is
+│  │                                     │      the layout doing its work,
+│  │                                     │      not a duplicate.
 │  │ ┌────────────────────────────────┐  │
 │  │ │ HSBC                           │  │
 │  │ │ Global bank                    │  │
@@ -1985,6 +2451,22 @@ Pass 1 recommended T1 for one reason only: T2's content did not exist. `docs/tan
 
 **What would flip it.** If the floor were ever cut back to five agent desks, argument 1 evaporates and T2 becomes the stronger page. Tanya's sign-off comes after the build (§9.3), and T2 is now a live, unblocked option at that review rather than a documented might-have-been — which is a materially better position than it was in Pass 1. The swap remains a layout-module change and touches no token and no shared component (§G.4).
 
+**Round 12 — what changed, and why equality now holds in render and not only in design.**
+
+The run-B review passed this section's design argument and refused its render, and the distinction is the point. *In design*, nothing on her page is softer, rounder, paler or more decorative than his: same two families, same card object, same numeral treatment, no hue on hers that his does not have and none on his that hers does not, and in dark hers is the stricter of the two. Brief §9.3's stereotype trap is cleanly avoided and it was avoided on paper in round 3. *In render, at 1024–1439, hers read as the lesser page* — **a 31-character prose column between two mostly empty gutters, with the iOS field carrying three words down 1,700px, against a map on his page that is a dense diagram naming ten products across nine columns.** A visitor comparing the two pages at that width was not comparing two designs; she was comparing a built page with an under-built one, and no amount of token symmetry answers that.
+
+Four things close it, and **none of them needs new content** — the Compose migration, the Fleet App, the second tick and the core statement are all already written, in COPY §7.2 and §7.3 and in this section's own practice table:
+
+| | Was, rendered | Is, specified |
+|---|---|---|
+| Core measure at 1024 | 245px, **31 characters** over 24 lines | 387.8px, **~47 characters** — cols 4–9 restored (T4) |
+| Motive's layers | two — the Compose migration buried in the core card's small print | **three**, one card per field, Motive first in each (T1) |
+| Ticks | one, a floating dash 60px above and 300px right of its card | **two**, symmetric, leaving the core's own boundary (T1) |
+| iOS field | a label, a dash and three words above 1,395px of nothing | a named product card; **the field ends where its content ends** (T2) |
+| Loudest marks on the page | two full-height 2px rules, brighter than her text in dark | **cut at ≥ 1024**; separation by fill, space and indentation (T3) |
+
+**The test this section now holds itself to is a rendered one**, and it is the one the packet in §K asks her to answer: at 1024 and at 1440, in both schemes, her band must carry **three occupied fields, three Motive cards, two ticks and a core at a full measure**, and the page must read as the denser of the two at the width where his map is densest. Equality of ambition was never in doubt in this document; equality of *execution* is what run B measured and what round 12 specifies. Her page still carries the harder layout problem of the two and it still does not pad.
+
 On equality: her page carries the harder layout problem of the two (a three-field structure that has to survive collapse to one column while keeping its meaning, versus Sahib's matrix which collapses by rotation), and it does not pad. §7 warns against padding her row count to match his; she has three companies and gets four cards — three companies plus the iOS-edge card, and the fourth exists because Motive genuinely lands on two layers, not because his page has five. The test is whether removing the iOS-edge card would remove information: it would, because item 46 is the answer to a question §I asked, so it stays. Nothing on her page is softer, rounder, paler or more decorative than his; if anything hers is the stricter of the two.
 
 ---
@@ -2019,7 +2501,7 @@ Every animation is interruptible. Nothing blocks text paint. There are **no scro
 | `/` | **Lights on** | Fires only after the h1 has painted. Nine monitor glows come up in DOM order — Sahib's cabin, Tanya's cabin, then the seven agents — at **70ms** stagger, `--dur-4` each, opacity 0 → their §C.9 still-frame value. Then a **400ms hold with nothing happening**, and the empty chair's lamp cone comes up alone over 900ms. Total ≈ **2.5s** (last glow starts at 8 × 70 = 560ms, ends at 1200ms; + 400 hold; + 900 lamp). Pass 1's 90ms stagger was sized for seven stations and would run nine to ~2.7s, which starts to feel like a load screen — the stagger tightened rather than the hold shortening, because **the hold is the moment** and it is the one part of this that must not be cut. Nothing moves position; nothing is offscreen-then-onscreen; nothing blocks paint. The room fills, then stops, then one light comes on where nobody is sitting. |
 | `/work/pocket-manager/`, `/work/wedding-planner/` | **The track fills** | Stage nodes fill left to right at 90ms stagger and **stop hard at the current node**. Future nodes never animate at all — no fade, no pulse, nothing. The animation stops exactly where the truth stops, which is the same rule the whole site is selling. |
 | `/sahib/` | **The map fills** | Coverage cells fade up column by column: iOS, Android, KMP, Flutter — then a 300ms hold — then the end-to-end-with-AI column arrives alone in `--lamp`. 120ms per column. The hold makes the 2025 fact the event. Item 45 is what makes this moment work: every one of the first four columns now has a cell to fade up, so the sequence reads as four filling and one arriving, rather than as two filling, two staying blank, and one arriving. |
-| `/tanya/` (T1) | **The core draws** | The shared-core field's boundary draws top to bottom over 900ms; each edge column's content becomes visible only as the core passes its row. The edges cannot appear before the core does, which is the architectural claim made as choreography. |
+| `/tanya/` (T1) | **The core draws** | The shared-core field's boundary draws top to bottom over 900ms; each edge column's content becomes visible only as the core passes its row, **and it appears 120ms *after* the core has passed it** (round 12). The edges cannot appear before the core does, which is the architectural claim made as choreography. **The lag is the whole moment and it is one delay.** Run B rendered core and edges clipped at the same y at 300ms (`tanya-coredraws-300ms.png`), which makes the claim technically true and visually absent: with zero lag a visitor sees a reveal wipe, the generic scroll-effect move §H.1 removes from the rest of the site by banning scroll-driven effects. At 120ms — one step below `--dur-4` and above the threshold at which two events read as one — the edges are visibly *following* the core, and the dependency is watched rather than asserted. |
 | `/tanya/` (T2) | **The path resolves** | Graph edges draw in traversal order, including the loop-back from review, 140ms per edge. |
 | `/work/`, `/contact/`, `/404` | none | A contact page's job is to be answered, not performed. |
 
@@ -2078,23 +2560,127 @@ Each is stated there in the owners' terms and none of them is repeated below. If
 
 **Out of the dark scheme, still open:**
 
-4. **Does the studio floor band keep its full-bleed inversion in dark?** It does in this spec, and the arithmetic supports it — the floor sits 1.21 : 1 below the dark page, it is the only region with lit surfaces, and it takes a 1px `rgba(232,237,233,.14)` top edge (§B.2a). But 1.21 : 1 is a *quiet* boundary next to the 13.53 : 1 the light scheme gets for free, and the room is the site's one bold moment. This is still the one thing I would most like seen rendered at 360 and at 1440 before it is called settled, and it should be the first screenshot of the first review that ships the dark scheme rather than a question answered on paper. The step 1 review rendered light only, so it is not yet answered.
+4. **Does the studio floor band keep its full-bleed inversion in dark? — CLOSED, round 12, on render.** Run B rendered it at 360 and at 1440 in both schemes and the answer is yes: the 1.21 : 1 boundary reads, **because the region carries the only lit surfaces on the page**, which is exactly what §B.2a predicted and could not prove on paper. `home-1440-dark-full.png`, `plate-over-scene-900-light.png`. The question asked for a screenshot rather than an argument and it got four; nothing in §B.2a changes. The original text is kept below for the record and the item is off the list — **§I is down to three, all three with the Copywriter.**
+
+   ~~It does in this spec, and the arithmetic supports it — the floor sits 1.21 : 1 below the dark page, it is the only region with lit surfaces, and it takes a 1px `rgba(232,237,233,.14)` top edge (§B.2a). But 1.21 : 1 is a *quiet* boundary next to the 13.53 : 1 the light scheme gets for free, and the room is the site's one bold moment. This is still the one thing I would most like seen rendered at 360 and at 1440 before it is called settled, and it should be the first screenshot of the first review that ships the dark scheme rather than a question answered on paper. The step 1 review rendered light only, so it is not yet answered.~~
 
 ## J. Before-ship: remove one thing (§9.4)
 
-Per page, the thing to cut in the final pass. These are pre-committed so the decision is not relitigated when everyone is attached to the work. Every row below was re-checked against the round-3 decisions; three moved.
+Per page, the thing to cut in the final pass. These are pre-committed so the decision is not relitigated when everyone is attached to the work. **Round 12 re-checks all ten rows against the run-B render, and six move.**
+
+**The discipline that moved them, stated once.** §J's own rule since round 7 is that **a pre-committed cut cannot be spent on something the spec forbids in terms** — a spec violation is a defect and gets fixed, and spending the route's one discretionary cut on it means the route gets nothing. Round 12 turned four of the run-B reviewer's eight nominations into rules: the plate over the room and the plate on `/contact/` (§B.10), the axis's dead end-margins on `/work/` (§E.2), and Tanya's two full-height edge rules (§G.3). **That is the right outcome and it costs those four routes their nomination**, so each gets a live one below. Two more rows are spent: `/`'s skewed cabin plate and `/work/`'s one-line descriptions were both verified built in run B (items 12 and 13).
 
 | Page | Remove | Changed this round? |
 |---|---|---|
-| `/` | **The floor's faint floor-seam lines.** The desks, the cabin walls and the empty modules define the room without them, and at 6 × 5 there are 30 of them rather than 20. | **Yes.** Pass 1's answer was the work-card strip, which item 50 has now put in the page on purpose. A pre-committed cut cannot be the thing the owners just asked for, so the fallback becomes the commitment. |
-| `/work/` | The one-line description under each product name. The product name and its stage track say enough on an index page. | No. |
-| `/work/pocket-manager/` | The Play Store badge graphic. The 4.3 / 24 / 1K+ figures already carry it, and the badge is Google's chrome sitting inside our composition. | No. |
-| `/work/wedding-planner/` | The second device screenshot. One real screen of the multi-function view is the differentiator (§5.3); a second one dilutes it. | No — and the row is now live rather than conditional, since item 9a ships the page. |
-| `/sahib/` | The finance-domain annotation running down the map's row labels. It is texture competing with the map, and the work cards below already carry the domains. | No, and the case is **stronger**: item 45 took the map from 6 filled cells to 10, every one now printing a product name. The map got busier, so the second annotation running down its left edge has less room to earn than it did. |
-| `/tanya/` | The platform glyphs at the edge columns. The words "Android" and "iOS" are shorter, clearer and cheaper than any icon. | No, and the case is **stronger**: Motive now appears on all three layers (§G.3), so the edge labels are carrying a real distinction and an icon would blur exactly the thing the layout is arguing. |
-| `/contact/` | The second call to action. One email, one link, one answer. | No — and with item 11 removing the form, the page is now three addresses, which makes the cut easier rather than harder. |
-| `/404` | Everything except the line and the link home. The empty room is the joke; a nav menu underneath it is not. | No. |
+| `/` | **The floor's seam grid** (§C.10, first in the weight order). Round 8's row — the skewed wall-mounted cabin nameplate — is **spent**: run B verified both plates horizontal, 15px, `--chalk`, on the near half of their own cabin floor, each inside its own button and no other at every width. The run-B reviewer nominated *the plate over the room* and round 12 made that §B.10's unconditional rule instead, so it is not available. The seam grid is: it is already first in §C.10's cut order, it is the cheapest byte on the page, and it has the second reason round 8 recorded — **the grid renders a full module past the occupied plan on every side, so the room's footprint reads larger than anything standing in it.** Cutting it makes the room the size of what is in it. | **Yes.** |
+| `/` | ~~**The cabin nameplate mounted on the wall, skewed.**~~ Set "Sahib Singh" and "Tanya Jain" on the same horizontal baseline as every other plate in the room, in `--chalk` at the same size step, on the near half of their own cabin floors (§C.3, §C.4), and drop the door-plate conceit. It buys back the only skewed type on the site, the only nameplate treatment that changes between breakpoints, the least legible text on the page, and the plate that landed inside Tanya's button at 1024, 1440 and 1920. It costs nothing: §C.4 carries the cabin/desk distinction on enclosure, footprint, uniqueness and occupancy, in that order, and none of the four is the plate.~~ **SPENT — verified built in run B (item 12).** | **Yes.** Step 3's rendered review named it. The previous row — the border around §C.6's card slot — leaves this list because it is no longer a discretionary cut: §C.6 now forbids the container in terms, the border is a spec violation the step 3 review raised as an item, and a pre-committed cut cannot be spent on something the spec already bans. The floor-seam lines stay in the fallback, first in §C.10's weight order, and they now have a second reason to go (the seam grid renders a full module past the occupied plan on every side, so the room's footprint reads larger than anything standing in it). |
+| `/work/` | **The store link on the index row.** The previous row — the one-line description under each product name — is **spent**: run B verified neither entry prints its one-liner. The run-B reviewer nominated the axis's 48px dead end-margins and §E.2 now rules them out by construction, so they are not available. The store link is: `/work/pocket-manager/` prints the same link ~400px later on the page the index row exists to send you to, and an index whose job is to route does not need to convert twice. The product name and its stage track carry the row, which is what run B proved when the one-liner came off. | **Yes.** |
+| `/work/pocket-manager/` | **The seven-item bulleted list in `Build`.** It is one of only two bulleted lists on the site, §B.2 separates with space rather than with glyphs, and the four feature lines read faster without a marker in front of them. This displaces the Play Store badge graphic and run A's fourth-screenshot nomination (`05-export.png`, by COPY §4.7's own account a row in settings tagged Beta, not a screen); **both stay on the bench and either is right if this one is refused.** The two-above-the-fold fix did not need the screenshot cut, so it is genuinely unspent. | **Yes**, to the run-B reviewer's preferred nomination. |
+| `/work/wedding-planner/` | **The bullet markers on "What's in it".** Seven short lines separated by space read faster than seven with a glyph in front of them, and this is the site's other bulleted list. It displaces the second device screenshot, which is not spendable this round for a mechanical reason — item 73 has not supplied screenshots 03 and 04, so the page ships one shot and there is no second one to cut. That row returns the moment the owners supply them. | **Yes**, and the previous row is deferred rather than dropped. |
+| `/sahib/` | **The duplicated email address in the closing links row** (item S4). The page closes with `Sahib on GitHub · Sahib on LinkedIn · sahiboffc@gmail.com` and then, 40px under it, `sahiboffc@gmail.com` again at display size with a rule beneath. COPY §6.5 writes **one** email link. Drop it from the links row and keep the closing one, which is the one §B.10's per-world address rule is about. The previous row — the finance-domain annotation down the map's row labels — **was never built, so it cannot be cut**; it stays on the bench and its case is still stronger than it was, since item 45 took the map from 6 filled cells to 10 and item 72 put a product name in every one. | **Yes.** |
+| `/tanya/` | **The intro's second paragraph** (COPY §7.1: "Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart."). Her page **is** that sentence — §G.3's whole argument is that the visitor learns the shape of KMP by reading a page built in it — and saying it as well as building it is the one place on this page the layout explains its own joke before the reader gets it. The run-B reviewer nominated the two full-height edge rules and §G.3 now cuts them by rule, so they are not available; the platform glyphs were never built and cannot be cut either, and their case is **stronger** now that Motive appears on all three layers, since the edge labels carry a real distinction an icon would blur. | **Yes.** |
+| `/contact/` | **The split header.** The previous row — the second call to action, "one email, one link, one answer" — is **spent by rule**: the second call to action on this page was the sticky plate, and §B.10 now removes the plate from `/contact/` at every width, because a persistent affordance that repeats the page it rests on is redundant rather than persistent. What is left to cut is the header's two-part split; on a page whose entire content is three printed addresses inside cols 1–9, one header line is enough and the split is a composition borrowed from pages that have more to say. | **Yes.** |
+| `/404` | **The footer's nav repeat and the `Elsewhere` block** — this row made specific (item E2). Rendered, the page is 1,120px of which **615px is footer**: the studio line, the location line, the address, a four-item nav repeat, an `Elsewhere` block with four outbound links, the employer note and the rights line. "A nav menu underneath the joke" is exactly that nav repeat and that `Elsewhere` block, and naming them is what makes this row spendable instead of aspirational. **The header nav stays** — it is site chrome on every route — and so do the studio line, the location line, the address and the rights line, which are the footer everywhere else. | **Yes**, made specific. |
 | everywhere | The noise texture on the work-card surface (§D.6). The base, the edge and the tilt carry the object; the noise is the fourth thing propping up three that already work. | No, and it now applies to four more objects: the compressed strip's cards use the same surface. |
 | everywhere | **The light/dark toggle is exempt: it is a control, not decoration.** A pre-committed cut cannot remove a thing a visitor operates, and item 49 puts it on every page by decision. What *is* removable, if this row ever has to pay, is the toggle's 28 × 28 plate (§B.10a) — the glyph alone inside its 44 × 44 target reads at 12.7–14.4 : 1 in all six palettes and loses nothing but a visible box. The two shapes, the target size and the focus ring are not on the table. | **New this round.** |
 
-**Not on this list, and deliberately.** The two cabins' props (§C.4) are not a "remove one thing" candidate, because item 52 asked for them by name. If the floor ever has to lose weight the order is in §C.10 — seam lines, then the second prop in each cabin, then the cabin walls — and a station is never the cut.
+**Not on this list, and deliberately.** The two cabins' props (§C.4) are not a "remove one thing" candidate, because item 52 asked for them by name. If the floor ever has to lose weight the order is in §C.10 — seam lines, then the second prop in each cabin, then the cabin walls — and a station is never the cut. **Note that `/`'s round-12 row now spends the seam lines, so if the floor later needs weight the order starts at the second prop in each cabin.**
+
+---
+
+## Round 12 disposition — every run-B review item, appendix to §J
+
+Thirty items. **Twenty-six are spec-side and are applied above; four are build-side, where this document is right and unbuilt.** Nothing is deferred and nothing is refused.
+
+| # | Item | Sections touched | Disposition |
+|---|---|---|---|
+| H1 / B1 | Plate strikes `1,000+` at 768–1022 | §B.9, §E.3, §B.10 | **Spec.** Figures take cols 1–5 of 8 and cols 1–7 of 12; a column allocation, not a per-width case. |
+| H2 / B2 | Plate covers the Designer station at 768–1023 | §B.10, §C.3 | **Spec.** The wrapper does not span the floor section at any width. |
+| H3 / B3 | Plate strikes the card's `Owns` line at 768 / 1024 / 1440 | §B.10, §C.6 | **Spec, and the contradiction was mine.** The card-slot exemption is deleted; the promise stands. |
+| H4 | The room reads its pipeline backwards at ≥ 768 | §C.3 | **Spec.** Seven roles re-assigned to the same seven modules; no coordinate moves. |
+| H5 | The chair does not read as a chair; its plate sets on the cone < 768 | §C.3, §C.7 | **Spec.** Seat + back + support specified, with a 250ms acceptance test; the chair's plate moves to the bottom of its own button. |
+| H6 | The 1024 slot reservation is 15px short of its own longest card | §C.6 | **Spec.** Re-derived from measurement: 352 / 416 / 264 / 320. |
+| H7 | Five stage labels, two alignments | §E.3, §E.2 | **Spec.** All five centre, in every form, at every width. |
+| H8 | The strip card is full content width at 768 | §D.1, §D.2, §D.5 | **Spec.** New 768 row; no card wider than 420 anywhere. |
+| H9 | The selected fill is built to spec and cannot be seen | §C.8 | **Spec, and the amplitude was mine.** 34% → 52%, with a pixel-difference acceptance test. |
+| H10 | The proof band at 1024–1439 | §B.5, §B.9, §E.3 | **Spec.** One grid, two rows; round 11's stack withdrawn. |
+| W1 | The horizontal axis fills 70% of its own band block | §E.2 | **Spec.** The axis takes its block's inner edges; the pitch falls out. |
+| PM1 | Run A's cut is unspent, and there is a better one | §J | **Spec.** §J's row is now the `Build` bulleted list. |
+| WP1 | The differentiator is a 280px thumbnail in a 1200px row | §B.11 | **Spec.** 2× in cols 1–4 with §5.2's paragraph in cols 6–10. |
+| WP2 | The bullet markers on "What's in it" | §J | **Spec.** §J's row for the route. |
+| C1 | The plate prints the studio address 300px from itself | §B.10, §J | **Spec.** `/contact/` carries no plate; §J's row becomes the split header. |
+| S1 | 5,235px of one fill; `--s-panel` is never a section block | §F.4b | **Spec.** Two full-bleed `--s-panel` blocks, stepping around the map. |
+| S2 | The map's two-state grammar is 1.13 : 1 in light | §F.4b | **Spec.** New `--s-fill`, 2.97 : 1 light and 2.91 : 1 dark. |
+| S3 | The work card at 768 overhangs its own stand | §D.1 | **Spec.** Same ruling as H8. |
+| S4 | The closing address prints twice | §J | **Spec.** §J's row for the route. |
+| S5 | In default print the map's marks lose their state | §D.8 | **Spec.** Stroke plus size difference; `print-color-adjust` refused. |
+| S6 | The map and the cards arrive with no section line | §F.4b | **Copy gap, recorded as spec.** The wireframes draw both strings and COPY writes neither; two `[COPY NEEDED]` markers added. |
+| **T1** | Motive lands on two layers; one tick, floating | §G.3 | **BUILD.** §G.3's practice table has named the Compose migration as the Android edge's first content since round 3 and COPY §7.2 supplies the string. The spec is right and unbuilt. Geometry clarified above so it cannot be built the other way again. |
+| T2 | The iOS column is a labelled void | §G.3 | **Spec.** Each field's block ends where its content ends; the band's height is the core's. |
+| **T3** | Two 2px full-height rules are the loudest marks on her page | §G.3 | **BUILD.** §G.3 asks for the rule at 360 and only at 360; the ≥ 1024 rules were added by the build against §B.2 and §9.4. Written into §G.3 as a prohibition so it cannot recur. |
+| T4 | The core's measure is 31 characters at 1024 | §G.3 | **Spec.** Core restored to cols 4–9; ~47 characters at 1024. |
+| **T5** | The quotes lost their marks and kept the pull-quote rule | §G.3 | **BUILD.** COPY §7.1 supplies both quotes inside typographic quotation marks and addresses the note to me; the instruction was inverted exactly. The treatment is now written down so it is not a note in a copy file. |
+| T6 | "The core draws" is a single wipe | §H.3 | **Spec.** A 120ms lag behind the core's boundary. |
+| T7 | The plate takes her `Owns` line at 768 | §B.10, §G.3 | **Spec.** Same ruling as H3, plus "no load-bearing mark right of col 9". |
+| **E1** | There is no empty room on `/404` | §B.11 | **BUILD.** §B.11 has specified the empty room since round 3; the Engineer recorded it as out of run B's scope. Owed, not disputed. |
+| E2 | §J's cut is unspent, and it is the clearest of the eight | §J | **Spec.** §J's row now names the footer's nav repeat and the `Elsewhere` block. |
+
+**Plus the Perf & A11y audit's design ruling:** `/tanya/` printing as three columns → §D.8, **spec**, the whole person page collapses to one column in print.
+
+### I.1 Round 13 — the reconciliation round after build run D
+
+Four items, all of them places where two sections of this document disagreed or where a number I wrote could not be reached. **No new rule, no weakened rule, nothing deferred.**
+
+| # | What run D reported | Sections touched | Disposition |
+|---|---|---|---|
+| 1 | `qa:plate`'s **seven** sub-768 collisions, flagged not failed: `/`'s `1,000+` and `downloads` at 360 and 390, and `/tanya/`'s `Owns` line at 360, 390 and 768 | §B.8, §B.10, §G.3a | **Spec, and both wrong sentences were mine.** §B.8's "3 across at 320: 96px each" predates the 128px band and is replaced — **the three figures stack below 768**, numeral in a 68px column from x 20, label from x 104 on the same baseline, widest ink at **x 162 against a band at 232**. §B.10's claim that the `Owns` line was covered "by being full width" is deleted — **the gates block sets one gate per line below 1024**, longest line ending **x 197 at 360** and **x 231 at 768**. Two compositions, seven marks, **no exemption and no region left the wrapper**. `qa:plate` should now fail rather than flag. |
+| 2 | §G.3a's tick geometry is not expressible: "top-aligned to the tick" needs a row aligned across three independent columns | §G.3a | **Spec, and the wording was mine.** **A tick attaches to the layer's *name*, not to a card:** its stroke centre sits on the **platform label's first baseline**, one baseline shared by all three fields because all three take the same 36px lead-in and the same label type — **50px below the band's top border edge** on the shipped face. The baseline is the spec and 50 is its consequence. T2's "top-aligned to the core's first card row" becomes "top-aligned to the band's body row", for the same reason. **The tick no longer waits on T1.** |
+| 3 | §C.8's selected fill measures **2.36 : 1 light / 2.61 : 1 dark**, and its own ≥ 30% pixel-share test is unreachable | §C.8 | **Spec, and the 30% was mine.** The share is a number about the desk's drawing — the top face is ~25% of the station's box at 1440 and ~16% at 360 — so no fill on that face can move 30% of it. The test is **replaced, not lowered**: delta ≥ 60 on the top face (met, 67 / 69) **and ≥ 100 on the 1px `--chalk` edge** (met, 106–178), with the share reported. **The edge carries the selected state**, because 3 : 1 on fill alone is unreachable under the glow ceiling this section keeps — 100% `--chalk` is only 4.9 : 1. |
+| 4 | §C.4's 6% warm offset, open since run A | §C.4, §C.1, §C.10 | **Deleted from the spec.** A fifth fill in a four-fill scene, spent on a difference this document itself calls sub-threshold, on the one distinction §C.4 says is *not* carried by colour. The step-2 review already ruled it out; round 13 removes it from the text so it stops being reported as open. |
+
+**One wording correction, owed to the Engineer and made in §B.10.** The promise "the plate never covers content — not prose" and reserve 1's "prose and headings are exempt at both widths" are two different rules, and reserve 1 is the built and testable one. The promise's "not prose" is struck. A sticky element in normal flow passes over what is above it — that is what makes it free — so the promise is about load-bearing marks plus the named regions the wrapper does not span, and nothing else. Correcting the promise rather than the reserve is what keeps the rule from being weakened.
+
+**Still open after this round, and none of it is mine:** T1's Android-edge Motive label (Copywriter), both headshots (QUESTIONS.md item 23), and §K's packet.
+
+---
+
+## K. Presentation packet for Tanya
+
+Brief §9.3 gives her the sign-off and it gives it to her **after** the build. §G.5 is the argument for T1 over T2, and an argument she cannot see the alternative to is not an argument she can answer — she could only say yes, or "something's off". This section is what the owners put in front of her, in order, and the one thing they ask.
+
+**Show it after the consolidated fix run, not before.** T1, T2, T3, T4 and §D.8's print ruling are all open against her page, and asking her to sign off on a defect is how a review gets a polite yes. The one exception is `tanya-band-1024-light.png`, which goes in the packet *as a named defect* — see step 3.
+
+### K.1 What she is shown, in this order
+
+| # | File, under `docs/reviews/runB/` | Why it is in the packet |
+|---|---|---|
+| 1 | `tanya-band-1440-light.png` | The three-field structure at its best: the shared core as a continuous field, the 4px `--lamp-ink` cap, one company in the core. This is the page's argument in one frame. |
+| 2 | `tanya-band-1440-dark.png` | The same band in dark, where hers is the stricter of the two person pages. Shown second so the structure is read before the scheme. |
+| 3 | `tanya-band-1024-light.png` | **Shown with the defect named out loud.** The narrow core and the empty iOS column are items T4 and T2 and they are being fixed; §G.3 carries the numbers. She is being asked about the structure, not about a build state. |
+| 4 | `tanya-band-360-light.png` | The honest proof that the structure survives collapse — as indentation plus a rule rather than as horizontal position. This is the hardest thing on her page and the frame that shows it works. |
+| 5 | `tanya-quotes-1440-light.png` | How her recommendation of Sahib is quoted back on her own page. She wrote the words; she should see the setting. |
+| 6 | `print-tanya-p1.png` | What her page prints as — the document someone attaches to an email. |
+
+Six frames. No measurement files, no wireframes, no token tables: she is reviewing a page, not a spec.
+
+### K.2 What she is given to read
+
+Three passages, and the first two are the alternative:
+
+1. **§G.4 in full — Direction T2, "the pipeline she owns".** The practice-to-node table, the 1440 graph wireframe and the 360 vertical traversal. This is the page she is *not* getting, and it is unblocked and buildable — the resume and item 19 closed its content gap, and swapping to it is a layout-module change that touches no token and no shared component. She has to see it or she cannot disagree with the decision.
+2. **§G.5 — the decision, and what would flip it.** The argument for T1 over T2, and the one fact that reverses it, named: the floor dropping back to five agent desks. **Include §G.5's round-12 block**, which says plainly that the design held and the render did not, and what closes the gap.
+3. **Brief §9.3 itself, and §G.1's paragraph on why her world is the most achromatic surface on the site.** Both, together, because the second is a consequence of the first and she is the only person who can say whether the consequence is acceptable.
+
+### K.3 The one question
+
+Everything above is context for a single question, and it is the one no screenshot answers:
+
+> **"Does the strictness read as rigour, or as austerity?"**
+
+Her page is the most achromatic surface on the site by design (§G.1) — one 4px `--lamp-ink` cap and nothing else — and that decision was taken to avoid brief §9.3's stereotype trap, not because anyone asked her. It is the one judgement in this document made *about* her rather than *with* her, and it is the one thing that cannot be settled by measurement, by contrast ratio or by a rendered frame.
+
+Ask it after frame 4 and before frames 5 and 6, so she answers on the structure rather than on the quotes.
+
+**Two things not to ask.** Do not ask whether she prefers T1 or T2 as a first question — §G.5 has taken that decision on stated grounds and asking it cold invites a courtesy answer; ask the question above, and let T2 be the thing she reaches for if the answer is "austerity". And do not ask her to approve the two resume-sourced numerals: `FACTS.md` row 52 cleared them for publication in their attributed form and the attribution is not hers to waive.
+
+**If the answer is "austerity",** the fix is not a hue on her page — that is §9.3's trap arriving by the back door. It is §G.1's own lever: the `--lamp-ink` cap earns a second placement, on the two ticks out of the core, which are the page's structural claim and the one mark that would carry colour without softening anything.

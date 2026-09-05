@@ -1,0 +1,3872 @@
+{
+ "home-360-light": {
+  "docH": 6890,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 3,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 530.5
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(15, 42, 46)",
+    "h": 1285
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(226, 230, 225)",
+    "h": 904
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1250.2
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1221.1
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.2
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(15, 42, 46)",
+    "h": 387.1
+   }
+  ]
+ },
+ "work-360-light": {
+  "docH": 2204,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1478.1
+   }
+  ]
+ },
+ "pm-360-light": {
+  "docH": 6211,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 5485.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 845.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 598.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 271.2
+   }
+  ]
+ },
+ "wp-360-light": {
+  "docH": 3670,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2944
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 498.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 604.2
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 390.8
+   }
+  ]
+ },
+ "contact-360-light": {
+  "docH": 2192,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 428.4
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1038.5
+   }
+  ]
+ },
+ "sahib-360-light": {
+  "docH": 6799,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(238, 239, 244)",
+  "ink": "#1a2033",
+  "surface": "#eeeff4",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 960.5
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1489.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2000.4
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 706.3
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 612.8
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-360-light": {
+  "docH": 5579,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(237, 238, 238)",
+  "ink": "#1b2020",
+  "surface": "#edeeee",
+  "accent": "#8a5a08",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 986.4
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 542.2
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2367.8
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 652.6
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-360-light": {
+  "docH": 1031,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 305.4
+   }
+  ]
+ },
+ "home-390-light": {
+  "docH": 6697,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 3,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 530.5
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(15, 42, 46)",
+    "h": 1264
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(226, 230, 225)",
+    "h": 904
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1168.7
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1200.1
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.2
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(15, 42, 46)",
+    "h": 343.4
+   }
+  ]
+ },
+ "work-390-light": {
+  "docH": 2152,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1452.2
+   }
+  ]
+ },
+ "pm-390-light": {
+  "docH": 6056,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 5356.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 767.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 546.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 271.2
+   }
+  ]
+ },
+ "wp-390-light": {
+  "docH": 3514,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2814.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 446.4
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 526.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 390.8
+   }
+  ]
+ },
+ "contact-390-light": {
+  "docH": 2141,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 428.4
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1012.6
+   }
+  ]
+ },
+ "sahib-390-light": {
+  "docH": 6590,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(238, 239, 244)",
+  "ink": "#1a2033",
+  "surface": "#eeeff4",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 934.6
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1468.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1941.7
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 654.5
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.8
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-390-light": {
+  "docH": 5342,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(237, 238, 238)",
+  "ink": "#1b2020",
+  "surface": "#edeeee",
+  "accent": "#8a5a08",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 986.4
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 516.3
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2208.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 626.7
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-390-light": {
+  "docH": 1005,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 305.4
+   }
+  ]
+ },
+ "home-768-light": {
+  "docH": 6283,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 451.9
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(15, 42, 46)",
+    "h": 1217.8
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(226, 230, 225)",
+    "h": 952
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1031.5
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1125.3
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 526.8
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(15, 42, 46)",
+    "h": 365.5
+   }
+  ]
+ },
+ "work-768-light": {
+  "docH": 2010,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1398.7
+   }
+  ]
+ },
+ "pm-768-light": {
+  "docH": 4292,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3680.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 323
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 586.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 442.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 219.4
+   }
+  ]
+ },
+ "wp-768-light": {
+  "docH": 3181,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2568.8
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 394.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 474.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 287.2
+   }
+  ]
+ },
+ "contact-768-light": {
+  "docH": 1980,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 385
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 982.8
+   }
+  ]
+ },
+ "sahib-768-light": {
+  "docH": 6280,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(238, 239, 244)",
+  "ink": "#1a2033",
+  "surface": "#eeeff4",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 880.9
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1469.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1858.2
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 598.8
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 557.1
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-768-light": {
+  "docH": 4703,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(237, 238, 238)",
+  "ink": "#1b2020",
+  "surface": "#edeeee",
+  "accent": "#8a5a08",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 906.8
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 486.5
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1822.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 571
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-768-light": {
+  "docH": 965,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 369.4,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 353.4
+   }
+  ]
+ },
+ "home-1024-light": {
+  "docH": 5805,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 534.9
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(15, 42, 46)",
+    "h": 904.7
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(226, 230, 225)",
+    "h": 520
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1012.1
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(226, 230, 225)",
+    "h": 1195.4
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 594.5
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(15, 42, 46)",
+    "h": 431.3
+   }
+  ]
+ },
+ "work-1024-light": {
+  "docH": 1749,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1137
+   }
+  ]
+ },
+ "pm-1024-light": {
+  "docH": 4226,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3613.9
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 335.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 650.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 454.9
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 231.6
+   }
+  ]
+ },
+ "wp-1024-light": {
+  "docH": 3040,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2428.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 351.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 461
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 325.3
+   }
+  ]
+ },
+ "contact-1024-light": {
+  "docH": 1790,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 385.5
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 792.7
+   }
+  ]
+ },
+ "sahib-1024-light": {
+  "docH": 5190,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(238, 239, 244)",
+  "ink": "#1a2033",
+  "surface": "#eeeff4",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 604.2
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 944.8
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1481
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 585.2
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 595.3
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ]
+ },
+ "tanya-1024-light": {
+  "docH": 4712,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(237, 238, 238)",
+  "ink": "#1b2020",
+  "surface": "#edeeee",
+  "accent": "#8a5a08",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 682
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 602.3
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1865
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 583.3
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ]
+ },
+ "404-1024-light": {
+  "docH": 1039,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 442.9,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.9
+   }
+  ]
+ },
+ "home-1440-light": {
+  "docH": 6103,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 629.1
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(15, 42, 46)",
+    "h": 1099.7
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(226, 230, 225)",
+    "h": 586.5
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1056.4
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(226, 230, 225)",
+    "h": 918.5
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 689
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(15, 42, 46)",
+    "h": 509.7
+   }
+  ]
+ },
+ "work-1440-light": {
+  "docH": 1867,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1252.8
+   }
+  ]
+ },
+ "pm-1440-light": {
+  "docH": 4181,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3566.2
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 315.8
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 586.4
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 439.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 208.5
+   }
+  ]
+ },
+ "wp-1440-light": {
+  "docH": 3104,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2489.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 358.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 471.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 278.1
+   }
+  ]
+ },
+ "contact-1440-light": {
+  "docH": 1921,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 454.1
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(226, 230, 225)",
+    "h": 852.5
+   }
+  ]
+ },
+ "sahib-1440-light": {
+  "docH": 5235,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(238, 239, 244)",
+  "ink": "#1a2033",
+  "surface": "#eeeff4",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 950.4
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1268
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 657.5
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 613
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ]
+ },
+ "tanya-1440-light": {
+  "docH": 4607,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(237, 238, 238)",
+  "ink": "#1b2020",
+  "surface": "#edeeee",
+  "accent": "#8a5a08",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 619.1
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1586.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 654.6
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ]
+ },
+ "404-1440-light": {
+  "docH": 1120,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 521.2,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(241, 243, 240)",
+  "ink": "#0f2a2e",
+  "surface": "#f1f3f0",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 505.2
+   }
+  ]
+ },
+ "home-360-dark": {
+  "docH": 6890,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 3,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 530.5
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(7, 24, 27)",
+    "h": 1285
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(33, 53, 57)",
+    "h": 904
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1250.2
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1221.1
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.2
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(7, 24, 27)",
+    "h": 387.1
+   }
+  ]
+ },
+ "work-360-dark": {
+  "docH": 2204,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1478.1
+   }
+  ]
+ },
+ "pm-360-dark": {
+  "docH": 6211,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 5485.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 845.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 598.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 271.2
+   }
+  ]
+ },
+ "wp-360-dark": {
+  "docH": 3670,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2944
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 498.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 604.2
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 390.8
+   }
+  ]
+ },
+ "contact-360-dark": {
+  "docH": 2192,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 428.4
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1038.5
+   }
+  ]
+ },
+ "sahib-360-dark": {
+  "docH": 6799,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(22, 28, 46)",
+  "ink": "#e9eaf0",
+  "surface": "#161c2e",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 960.5
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1489.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2000.4
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 706.3
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 612.8
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-360-dark": {
+  "docH": 5579,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(25, 27, 27)",
+  "ink": "#e9eaea",
+  "surface": "#191b1b",
+  "accent": "#f2a93b",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 986.4
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 542.2
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2367.8
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 652.6
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-360-dark": {
+  "docH": 1031,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 360,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 305.4
+   }
+  ]
+ },
+ "home-390-dark": {
+  "docH": 6697,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 3,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 530.5
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(7, 24, 27)",
+    "h": 1264
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(33, 53, 57)",
+    "h": 904
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1168.7
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1200.1
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.2
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(7, 24, 27)",
+    "h": 343.4
+   }
+  ]
+ },
+ "work-390-dark": {
+  "docH": 2152,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1452.2
+   }
+  ]
+ },
+ "pm-390-dark": {
+  "docH": 6056,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 5356.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 767.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 546.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 271.2
+   }
+  ]
+ },
+ "wp-390-dark": {
+  "docH": 3514,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2814.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 446.4
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 526.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 390.8
+   }
+  ]
+ },
+ "contact-390-dark": {
+  "docH": 2141,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 428.4
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1012.6
+   }
+  ]
+ },
+ "sahib-390-dark": {
+  "docH": 6590,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(22, 28, 46)",
+  "ink": "#e9eaf0",
+  "surface": "#161c2e",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 934.6
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1468.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1941.7
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 654.5
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 586.8
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-390-dark": {
+  "docH": 5342,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(25, 27, 27)",
+  "ink": "#e9eaea",
+  "surface": "#191b1b",
+  "accent": "#f2a93b",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 986.4
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 516.3
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2208.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 626.7
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-390-dark": {
+  "docH": 1005,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 112
+  },
+  "shellPadL": "20px",
+  "shellPadR": "20px",
+  "plate": {
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0
+  },
+  "plateW": 0,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 305.4
+   }
+  ]
+ },
+ "home-768-dark": {
+  "docH": 6283,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 451.9
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(7, 24, 27)",
+    "h": 1217.8
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(33, 53, 57)",
+    "h": 952
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1031.5
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1125.3
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 526.8
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(7, 24, 27)",
+    "h": 365.5
+   }
+  ]
+ },
+ "work-768-dark": {
+  "docH": 2010,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1398.7
+   }
+  ]
+ },
+ "pm-768-dark": {
+  "docH": 4292,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3680.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 323
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 586.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 442.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 219.4
+   }
+  ]
+ },
+ "wp-768-dark": {
+  "docH": 3181,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2568.8
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 394.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 474.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 287.2
+   }
+  ]
+ },
+ "contact-768-dark": {
+  "docH": 1980,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 385
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 982.8
+   }
+  ]
+ },
+ "sahib-768-dark": {
+  "docH": 6280,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(22, 28, 46)",
+  "ink": "#e9eaf0",
+  "surface": "#161c2e",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 880.9
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1469.3
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1858.2
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 598.8
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 557.1
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "tanya-768-dark": {
+  "docH": 4703,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(25, 27, 27)",
+  "ink": "#e9eaea",
+  "surface": "#191b1b",
+  "accent": "#f2a93b",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 906.8
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 486.5
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1822.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 571
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 304
+   }
+  ]
+ },
+ "404-768-dark": {
+  "docH": 965,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 768,
+   "h": 72
+  },
+  "shellPadL": "32px",
+  "shellPadR": "32px",
+  "plate": {
+   "x": 492,
+   "y": 369.4,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 353.4
+   }
+  ]
+ },
+ "home-1024-dark": {
+  "docH": 5805,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 534.9
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(7, 24, 27)",
+    "h": 904.7
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(33, 53, 57)",
+    "h": 520
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1012.1
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(33, 53, 57)",
+    "h": 1195.4
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 594.5
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(7, 24, 27)",
+    "h": 431.3
+   }
+  ]
+ },
+ "work-1024-dark": {
+  "docH": 1749,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1137
+   }
+  ]
+ },
+ "pm-1024-dark": {
+  "docH": 4226,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3613.9
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 335.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 650.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 454.9
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 231.6
+   }
+  ]
+ },
+ "wp-1024-dark": {
+  "docH": 3040,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2428.5
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 351.3
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 461
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 325.3
+   }
+  ]
+ },
+ "contact-1024-dark": {
+  "docH": 1790,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 385.5
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 792.7
+   }
+  ]
+ },
+ "sahib-1024-dark": {
+  "docH": 5190,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(22, 28, 46)",
+  "ink": "#e9eaf0",
+  "surface": "#161c2e",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 604.2
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 944.8
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1481
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 585.2
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 595.3
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ]
+ },
+ "tanya-1024-dark": {
+  "docH": 4712,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(25, 27, 27)",
+  "ink": "#e9eaea",
+  "surface": "#191b1b",
+  "accent": "#f2a93b",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 682
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 602.3
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1865
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 583.3
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 368
+   }
+  ]
+ },
+ "404-1024-dark": {
+  "docH": 1039,
+  "shell": {
+   "x": 0,
+   "y": 0,
+   "w": 1024,
+   "h": 72
+  },
+  "shellPadL": "48px",
+  "shellPadR": "48px",
+  "plate": {
+   "x": 748,
+   "y": 442.9,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 426.9
+   }
+  ]
+ },
+ "home-1440-dark": {
+  "docH": 6103,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "AI writes a lot of our code. It doesn't get the last word.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section hero",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 629.1
+   },
+   {
+    "cls": "section bleed room floor",
+    "bg": "rgb(7, 24, 27)",
+    "h": 1099.7
+   },
+   {
+    "cls": "section bleed strip",
+    "bg": "rgb(33, 53, 57)",
+    "h": 586.5
+   },
+   {
+    "cls": "section gates-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1056.4
+   },
+   {
+    "cls": "section bleed proof section--reserve",
+    "bg": "rgb(33, 53, 57)",
+    "h": 918.5
+   },
+   {
+    "cls": "section offer section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 689
+   },
+   {
+    "cls": "section bleed room cta",
+    "bg": "rgb(7, 24, 27)",
+    "h": 509.7
+   }
+  ]
+ },
+ "work-1440-dark": {
+  "docH": 1867,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two products, both ours.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve work-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1252.8
+   }
+  ]
+ },
+ "pm-1440-dark": {
+  "docH": 4181,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Pocket Manager",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 3566.2
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 315.8
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 586.4
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 439.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 208.5
+   }
+  ]
+ },
+ "wp-1440-dark": {
+  "docH": 3104,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "The second one, in build.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section section--reserve page-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 2489.7
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 358.6
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 471.1
+   },
+   {
+    "cls": "product-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 278.1
+   }
+  ]
+ },
+ "contact-1440-dark": {
+  "docH": 1921,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "Two people, one inbox.",
+  "h1Lines": 2,
+  "sections": [
+   {
+    "cls": "section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 454.1
+   },
+   {
+    "cls": "section section--reserve routes-section",
+    "bg": "rgb(33, 53, 57)",
+    "h": 852.5
+   }
+  ]
+ },
+ "sahib-1440-dark": {
+  "docH": 5235,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "sahiboffc@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(22, 28, 46)",
+  "ink": "#e9eaf0",
+  "surface": "#161c2e",
+  "accent": "#f2a93b",
+  "h1": "Sahib Singh",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "section map-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 950.4
+   },
+   {
+    "cls": "section cards-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1268
+   },
+   {
+    "cls": "section writing-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 657.5
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 613
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ]
+ },
+ "tanya-1440-dark": {
+  "docH": 4607,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 828,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "jaintanya999@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(25, 27, 27)",
+  "ink": "#e9eaea",
+  "surface": "#191b1b",
+  "accent": "#f2a93b",
+  "h1": "Tanya Jain",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section intro-section",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 700
+   },
+   {
+    "cls": "section quotes-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 619.1
+   },
+   {
+    "cls": "core-band",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 1586.6
+   },
+   {
+    "cls": "section background-section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 654.6
+   },
+   {
+    "cls": "section close",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 432
+   }
+  ]
+ },
+ "404-1440-dark": {
+  "docH": 1120,
+  "shell": {
+   "x": 60,
+   "y": 0,
+   "w": 1320,
+   "h": 72
+  },
+  "shellPadL": "60px",
+  "shellPadR": "60px",
+  "plate": {
+   "x": 1164,
+   "y": 521.2,
+   "w": 260,
+   "h": 56
+  },
+  "plateW": 260,
+  "plateText": "thegeekdogs@gmail.com",
+  "plateBg": "rgb(242, 169, 59)",
+  "plateBorder": "2px",
+  "bodyBg": "rgb(24, 41, 45)",
+  "ink": "#e8ede9",
+  "surface": "#18292d",
+  "accent": "#f2a93b",
+  "h1": "This page isn't here.",
+  "h1Lines": 1,
+  "sections": [
+   {
+    "cls": "section section--reserve",
+    "bg": "rgba(0, 0, 0, 0)",
+    "h": 505.2
+   }
+  ]
+ }
+}

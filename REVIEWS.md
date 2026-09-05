@@ -208,3 +208,152 @@ Verdict: **CHANGES REQUESTED, 3 items** (round 9). Bengaluru-only footer, design
 ## 2026-09-05 · COPY.md round 9 · Orchestrator
 
 Verdict: **APPROVED. COPY.md is final for the build.** Role line restored to the brief's wording; attribution once per page; card lines at 35/35/14 words. Two markers remain (screenshot and headshot alt lines), both tied to assets that do not exist yet; the Engineer omits those `alt` sources until the assets land. Engineer step 3 transcribes every route from this version.
+
+## 2026-09-05 · Build step 2 · Orchestrator verification and routing
+
+Orchestrator rebuilt and re-ran `qa:no-slop`, `qa:images`, `qa:contrast`, `qa:weight`, `check-floor-budget`: all pass; six commits; `data-theme` wired. Viewed `docs/reviews/step2/engineer/home-1440-light.png`: section order and fill alternation match §B.9; no template chrome; ambers limited to the plate and the address.
+Routed: rendered review → Design Lead reviewer (`docs/reviews/step2-design-review.md`, both schemes, rules on the two plate conflicts). Three `[COPY NEEDED]` strings → Copywriter round 10. Step 3 (Astro 7, favicon files, the SVG scene, "Lights on") → Interaction Engineer.
+Queued for Copywriter round 11 (after round 10 frees the file): §2.6 ends with "a fifth thing" and "a sixth" under a headline that says four. Remove the ordinals; one plain sentence that design review and the release itself stay with both of them.
+
+## 2026-09-05 · Asset capture (QUESTIONS.md 10, 60) · QA → Orchestrator
+
+Pocket Manager: 12 emulator captures (Pixel 6 Pro, Android 15, app 2.0.0), light and dark, ten seeded INR transactions, no names. Three mismatches with the drafted alt lines (no separate categories screen; percentages not totals; export lives in Settings and is labelled Beta) → Copywriter round 11. Wedding planner: icons and five screenshots copied from `~/FlutterProjects/wedme`, feature graphic excluded, no screenshot shows the placeholder name. 01 shows the multi-function board (cleared). 02 and 05 show a vendor-comparison board: excluded under brief §5.3. 03 (who paid what) and 04 (payment schedule) show features on §5.3's reachable list; the Orchestrator reads them as usable and item 73 asks the owner to confirm. The repo records the captures as simulator, not physical device; the site prints no "real-device screenshots" claim, so nothing is wrong on the page.
+Process fault: the Engineer's blanket `git add` in step 2 committed superseded captures. Orchestrator committed the corrected set (`d4566df`) and added a git-hygiene rule to both engineer charters.
+
+## 2026-09-05 · COPY.md round 10 · Orchestrator
+
+Verdict: **APPROVED**, with one flag routed: Tanya's "Owns" list runs 96 characters against a two-line card; round 11 trims it or the Design Lead raises the slot min-heights to 372/348.
+
+## 2026-09-05 · COPY.md round 11 · Orchestrator
+
+Verdict: **APPROVED.** §2.6 ordinals gone; Tanya's gate list at exactly 80 characters with all seven kept, so the slot min-heights stand; Pocket Manager alt lines now describe the captured screens (home, calendar, statistics with the percentage card, settings data rows); wedding planner alt for 01 only, 03 and 04 marked for item 73, 02 and 05 never ship. Two markers remain (item 73, headshots). Copy is final for Engineer steps 4 to 7.
+
+## 2026-09-05 · Step 2 rendered review · Design Lead reviewer → Orchestrator
+
+Verdict: **CHANGES REQUESTED, 15 items** (13 defects, 2 recorded), `docs/reviews/step2-design-review.md`, 130 screenshots across five breakpoints, both schemes, focus, activation, reduced motion, mid-scroll, toggle states. Step 1 items: 15 of 17 closed; 1 and 9 closed above 768 only.
+Rulings accepted by the Orchestrator: (a) below 768 the plate is the same 260 × 56 inset plate, not a full-bleed bar; (b) the keep-out lane is withdrawn, the reserve is the +56px bottom padding plus a composition rule (no load-bearing mark in the bottom-right 276 × 72 at ≥ 768), and the split forms and side-by-side slot return to 1024. → Design Lead round 7 writes both into `DESIGN.md` §B.10 and §B.5; Engineer applies the 15 items in the steps 4 to 7 run.
+Most important: the lane re-gridded five of seven sections to 1044px against 1200px elsewhere; the plate covers the default chair card and the track at 360; the four gate bodies are not `COPY.md` §2.6 (the owners' names are missing) and must be re-transcribed from the final copy. Remove one thing: the card slot's border.
+
+## 2026-09-05 · Step 2 Perf & A11y audit · Auditor → Orchestrator
+
+Verdict: **CHANGES REQUESTED, not blocking.** Lighthouse mobile ×3, both schemes: 100 / 100 / 96 / 100, LCP ~1.39 s, CLS 0, TBT 0; every §11 line clears. axe-core: 0 violations on four route × scheme combinations. Keyboard: skip link first, ten stations in the specified order with byte-exact names, visible two-tone ring on every stop, no trap. Report at `docs/reviews/step2-a11y-perf-audit.md`.
+Rulings:
+1. Favicon (BP 96): lands in step 3.
+2. The card slot's `aria-live="polite"` re-announces a full card on every Tab through the roster (also the design reviewer's item 14). Ruling: focus and hover write to the slot silently, because the station button's own name already speaks the name and gate; only activation (Enter, Space, click) announces the card. Engineer implements in steps 4 to 7.
+3. Two inline text links at 20px tall at 360: WCAG 2.2's inline-text exception applies; no change required; the Engineer may add vertical padding if free.
+4. Screen-reader pass not run: enabling VoiceOver is a system setting no agent changes. → `QUESTIONS.md` 74, a human task before gate 4.
+
+## 2026-09-05 · DESIGN.md round 7 · Orchestrator
+
+Verdict: **APPROVED.** Spec now agrees with the step 2 rulings: one inset 260 × 56 plate at every breakpoint; keep-out lane withdrawn; the composition rule stated once in §B.10 ("No load-bearing mark … bottom-right 276 × 72 CSS px at ≥ 768 while the plate is present"); the proof track's axis ends at x 1132 on a 100px pitch with the band keeping cols 7 to 12; split forms and the side-by-side slot back at 1024 (slot min-height 392px there); card-slot border removed per §J. Engineer steps 4 to 7 build to this.
+
+## 2026-09-05 · Build step 3 (floor scene, Astro 7, favicon) · Interaction Engineer → Orchestrator
+
+Orchestrator rebuilt and re-ran the QA gates and the floor budget: all pass; `npm audit --omit=dev` finds 0 vulnerabilities. Engineer's numbers: Astro 7.3.1; floor 5,125 B gzipped against the 80 KB line; smallest target at 360 is 64 px; Lighthouse 100 / 100 / 100 / 100 in both schemes; LCP is the h1 at 1.40 to 1.46 s; no motion library (CSS keyframes carry the stagger and the hold). Orchestrator viewed `floor-1440-light.png` and `floor-360-dark.png`: the room reads and the lit chair is alone at the front; at 360 the still-unapplied step 2 plate ruling covers the card title and two nameplates collide. Four measured deviations from §C are argued in `docs/scratch/engineer.md` for the Design Lead to rule on.
+Routed: floor rendered review → Design Lead reviewer (`docs/reviews/step3-floor-review.md`). Step 2 items, audit rulings, copy re-transcription, steps 4, 5 and 7 → Engineer run A. Person pages → run B after A.
+
+## 2026-09-05 · Step 3 floor rendered review · Design Lead reviewer → Orchestrator
+
+Verdict as filed: **BLOCKED, 17 items, 3 blockers** (`docs/reviews/step3-floor-review.md`, 47 screenshots, `measurements.json`). Orchestrator classification: merge-blocking defects for the Interaction Engineer, not a human question; no owner decision is needed.
+Blockers: (1) the floor is dead to pointer and touch at every breakpoint; `elementFromPoint` returns `<main>` at all ten stations; only the keyboard reaches a station. This is the "control wired to nothing" failure brief §14 names and it ships under no circumstances. (2) Below 768 the plate is still the full-bleed bar over the chair's default card (step 2 ruling (a), being applied in run A). (3) The keep-out lane still pads the floor shell and shrinks the 1440 scene to 654 × 462 (ruling (b), run A).
+Deviation rulings accepted by the Orchestrator: cabin buttons 128 × 136 (accepted, §C.3 corrected; Sahib's nameplate moves out of Tanya's target); buttons centred on artwork (accepted); nameplates on their own module (accepted for the wide plan only); portrait plan below 1024 (sent back: its arithmetic assumed the withdrawn lane; §C.3's 704-wide room fits 768's content width). Remove one thing: the skewed wall-mounted cabin nameplate.
+Routing: Design Lead round 8 writes the accepted deviations into §C now. Interaction Engineer floor fix runs after run A releases the repo, before run B.
+
+## 2026-09-05 · DESIGN.md round 8 · Orchestrator
+
+Verdict: **APPROVED.** §C now carries the accepted deviations and the corrected portrait plan: wide plan at ≥ 768 (856 × 520 at 1440, 682 × 414 at 1024 with the tightest target 89 × 44.6); portrait 3 × 6 below 768 with rows summing to 520, plates confined to each button's top band, smallest target 101.3 × 68; cabin nameplate horizontal on its own cabin floor, Sahib's at (396, 204); new §C.11 pointer requirement with the acceptance test (`elementFromPoint` at each station centre returns that button, ten of ten, at six widths in both schemes). Interaction Engineer floor fix builds to this once run A frees the repo.
+
+## 2026-09-05 · Build run A · Engineer → Orchestrator verification
+
+Orchestrator rebuilt (6 pages), re-ran no-slop, images, links, contrast, weight and the floor budget (all pass), confirmed five OG PNGs, and ran an independent pointer hit-test: `elementFromPoint` at every station centre returns that station's button, 10 of 10 at 360, 768 and 1440. The step 3 blocker (a `pointer-events: none` wrapper) is closed. Engineer's numbers: Lighthouse 100 / 100 / 100 / 100 on all five routes in both schemes; LCP 1.40 to 1.48 s; CLS 0 except `/contact/` 0.030; home CSS 9.7 KB and inline JS 1.2 KB gzipped; keyless build ships 0 B analytics; JSON-LD typed with `schema-dts`, not validated against a network validator. Step 2 items 1 to 13 fixed, 14 as ruled, 15 recorded. Flagged for the Design Lead: `/work/` at 768 to 1023 puts the tracks inside the plate's band.
+Routing: floor pass to the round 8 spec → Interaction Engineer now (repo free). Rendered review of run A → Design Lead reviewer on `scratchpad/dist-runA`. Built-output fact pass → Fact Checker on the same copy. Run B (person pages) after the floor pass.
+
+## 2026-09-05 · Run A built-output fact pass · Fact Checker → Orchestrator
+
+Fact Checker verdict as filed: BLOCKED, because `/sahib/` and `/tanya/` are absent. Orchestrator reclassifies to **CHANGES REQUESTED**: the person pages are run B by the brief's build order (§14 step 6, Tanya last) and their absence is recorded in `docs/scratch/engineer.md`; nav and strip links land with them. Clean: every forbidden term and marker at zero across HTML, JSON-LD, OG filenames, sitemap; meta verbatim; JSON-LD matches FACTS.md with no invented pronouns and no address beyond Bengaluru; five alt lines verbatim; shipped images show no placeholder branding; stage strings exact.
+Rulings on the three findings:
+1. `/404.html` carries the contact plate in addition to its one link. Arbitration: the plate is site chrome specified by DESIGN.md §B.10 for every page; COPY.md §9's "one link" governs page content. The plate stays; COPY.md §9 gains a sentence saying so.
+2. COPY.md §1 still describes the plate as a "Start a project" label; QUESTIONS.md 53 chose the plain address and the build follows 53. COPY.md §1 is stale → Copywriter round 12 updates the label and its accessible name.
+3. The strip prints years only per DESIGN.md §D.5 while COPY.md §7.2 holds "Jan 2024 – now". Years only is the rule; COPY.md §7.2 conforms → round 12.
+
+## 2026-09-05 · COPY.md round 12 · Orchestrator
+
+Verdict: **APPROVED.** Plate label is the address per page with the accessible name "Email <address>. Opens a new message about a project."; 404 note records the plate as chrome; §7.2 years only. Engineer run B applies the plate's accessible name and the person-page addresses.
+
+## 2026-09-05 · Run A rendered review · Design Lead reviewer → Orchestrator
+
+Verdict as filed: **BLOCKED, 13 items (3 blockers)**, `docs/reviews/runA-design-review.md`, 288 screenshots. Orchestrator classification: merge-blocking engineering defects, no human decision. All 15 step 2 items verified closed; the plate is one component at 80 route × width × scheme combinations; §B.5's grid holds everywhere.
+Blockers: (1) the floor scene never instantiates the lamp cone, chair seat or lit desk tops on the page in either scheme, although the OG card draws them (the Orchestrator's earlier 1440 screenshot from step 3 showed a cone, so run A regressed it or the frozen copy predates a fix; the floor pass now running re-checks); (2) `/contact/` at 1024, the plate strikes Tanya's address on first paint; (3) the future-node stroke shipped at `.45`, not the round 5 `.60`, 2.65:1, failing SC 1.4.11.
+Ruling accepted: `/work/` 768 to 930 puts track marks under the plate; §B.10's composition rule is amended to "no load-bearing mark's right edge inside the plate's 276px band at ≥ 768, anywhere in the wrapper"; §E.2's vertical track runs to 930. → Design Lead round 9 writes it. Items 1 to 13 → Engineer run B, with the floor pass's output.
+
+## 2026-09-05 · DESIGN.md round 9 · Orchestrator
+
+Verdict: **APPROVED.** Composition rule now reads on right edges anywhere in the plate's wrapper, with prose and headings exempt; `/contact/` goes 3-up inside cols 1 to 9 at ≥ 1024 (row ends at x 738 against the band at 748) and stacks below; `/work/` runs the vertical track to 930 and the horizontal from 931; §E.1 carries `.60` only, so the `.45` in the build is an engineering miss. Spec is stable for run B.
+
+## 2026-09-05 · Floor pass 2 · Interaction Engineer → Orchestrator verification
+
+Orchestrator rebuilt and ran `qa:floor` (pointer 10 of 10 at six widths in both schemes; nameplates 10 of 10 clear) and the floor budget: pass. Engineer's numbers: floor 6,149 B gzipped; smallest target 101.3 × 68 at 360 and 89 × 44.7 at 1024; scene 856 × 520 at 1440; Lighthouse 100 × 4 in both schemes. Root cause of the unlit scene (run A review blocker 1): the SVG defs moved to `set:html` in run A were outside Astro's style scoping, so every `.fl-*` fill fell back to black; fixed. Floor review items all closed (10 this pass, 7 already by run A).
+Open, ruled: the lamp cone (~8,600 units²) is smaller than the 260 × 56 plate, so §C.3's "largest area of accent colour on the site" is literally false. Ruling: the sentence describes the scene, not the chrome; the plate is chrome; the Design Lead rewrites the sentence to say "in the scene" at the next spec touch. The 6% warm offset stays unbuilt (four-fill line wins). Below 768 the plate crossing the default card at some scroll offsets is §B.10's own ruling and stands.
+Routing: run B → Engineer (person pages Sahib then Tanya, the 13 run A items, copy round 12, nav and strip links, §J cuts). Rendered review of run B covers the floor again.
+
+## 2026-09-05 · DESIGN.md round 10 · Orchestrator
+
+Verdict: **APPROVED.** Below 768 the plate is 112 × 56 with the composition rule now binding there too; on `/` the sticky wrapper begins after the floor section so the card panel is never overlaid; bottom reserve +72; no JS, identical under reduced motion. The 112 plate cannot print the address, so it carries a ≤ 9-character label with the address in its accessible name → Copywriter round 13. §C.3 mechanism 2 now describes the scene only. Engineer applies at the end of run B (instructed to re-read §B.10).
+
+## 2026-09-05 · COPY.md round 13 · Orchestrator
+
+Verdict: **APPROVED.** Sub-768 plate label "Email" (5 characters), address kept in the accessible name. Run B applies it with the round 10 plate.
+
+## 2026-09-05 · Build run B · Engineer → Orchestrator verification
+
+Orchestrator rebuilt (8 pages) and re-ran no-slop, images, links, contrast, weight, floor, plate, worlds and the floor budget: all pass. Engineer's numbers: 13 of 13 run A items closed; Lighthouse 100 × 4 on all seven routes in both schemes; LCP 1.42 to 1.51 s; CLS 0 except `/contact/` 0.030; person pages 0 B external JS, 450 B inline; shared CSS 12.4 KB gzipped. Sahib's map is a real `<table>` with explicit roles; Tanya's T1 is one layout module plus one token partial with shared components on generic tokens only, so T2 is a one-import swap. Two new gates added (`qa:worlds`, `qa:plate`).
+Held by the Engineer: the sub-768 plate (its label landed in copy round 13 after the run started) and `/404`'s empty room. Flagged for the Design Lead: §B.9's proof split cannot hold a 100px axis at 1024.
+Routing, all on the frozen `scratchpad/dist-runB`: Design Lead rendered review of all routes and the floor; Fact Checker built-output pass; Perf & A11y final audit. On the repo: Engineer pass for the plate label and the 404 room. Design Lead round 11 for the 1024 proof split.
+
+## 2026-09-05 · DESIGN.md round 11 · Orchestrator
+
+Verdict: **APPROVED.** Proof section stacks below 1440 (prose cols 1 to 7; the two-runner track cols 1 to 6 with the axis at x 48 to 448, 100px pitch, last ring 291px clear of the band at 1024) and splits only at 1440 where it already works. The 1200 threshold was rejected by arithmetic (axis would end 97px inside the band). Engineer applies in the consolidated fix run after the three reviews land.
+
+## 2026-09-05 · Run B built-output fact pass · Fact Checker → Orchestrator
+
+Verdict: **APPROVED**, one pre-flagged difference (the sub-768 plate label, being applied in pass C). Sweep: zero hits on twenty terms across HTML, sitemap, OG filenames; pronouns clean. `/sahib/` and `/tanya/` match `COPY.md` §6 and §7 verbatim, four post hrefs in the right order, both quotes as `<blockquote>`, no headshot placeholder. All ten map cells trace to item 72 and `FACTS.md`. JSON-LD, meta and both new OG images verbatim. Facts gate (human gate 2) is satisfied from the checker's side; the remaining owner items are 23 (headshots) and 73 (wedding screenshots 03 and 04).
+
+## 2026-09-05 · Run B Perf & A11y audit · Auditor → Orchestrator
+
+Verdict: **CHANGES REQUESTED, not blocking.** 48 Lighthouse runs (8 routes × 2 schemes × 3): 100 × 4 everywhere except 404's SEO at 66 (noindex, expected); worst LCP 1,514 ms on `/work/pocket-manager/`; worst CLS 0.0063; TBT 0 in 48 of 48. axe: 0 violations in 16 combinations. Contrast: every pair matches `DESIGN.md`. Fonts: 133,852 B shipped against a 70,708 B target, a 63 KB gap for subsetting (PLAN.md §1.5) → the consolidated fix run.
+Rulings: (1) `/tanya/` print keeps the three-column grid; DESIGN.md §D.8 says cards flatten to one column and the output is a document you would attach to an email; the whole page collapses to one column in print → fix run. (2) Tanya's DOM order diverging from visual order at ≥ 1024 via grid areas: DOM order is the reading order the spec defines (core, then edges); recorded, no change. (3) The concurrent edit adding a 404 SEO assertion of 0.9 to `lighthouserc.json` cannot pass while the page is `noindex`; the fix run either exempts 404 from the SEO category or asserts what noindex allows.
+Auditor's veto: not exercised. Human passes still owed: real device (brief §14) and VoiceOver (`QUESTIONS.md` 74).
+
+## 2026-09-05 · Run B full-site rendered review · Design Lead reviewer → Orchestrator
+
+Verdict as filed: **BLOCKED, 30 items** (`/` 3 blockers + 7; `/work/` 1; pocket-manager 1; wedding-planner 2; contact 1; `/sahib/` 6; `/tanya/` 7; 404 2), `docs/reviews/runB-design-review.md`, 221 screenshots, 5 print PDFs. Orchestrator classification: merge-blocking engineering and spec items; no owner decision. Verified closed: 13 of 13 run A items; six palettes hex-exact on eight routes; pointer 10/10 at six widths.
+Blockers: the plate strikes `1,000+ downloads` at 768 to 1022, covers the Designer station at 768 to 1023, and strikes the card's "Owns" line at three widths. Root: §B.10's wrapper still spans the floor above 768 and the spec exempted the card slot, contradicting its own "never covers content" promise.
+Arbitration, two Design Lead sessions in conflict on the proof band at 1024: round 11 chose stacking below 1440; the reviewer refuses the stacked render (right 46% empty for 918px) and prescribes one grid in two rows (prose, figures and links cols 1 to 7, caption cols 8 to 12, then the two-runner track spanning cols 1 to 9 at 100px pitch, last node x 652, 96px clear). Rendered evidence outranks arithmetic alone: **the reviewer's layout wins.** Same instrument for Tanya's band, her core back to cols 4 to 9 at 1024 to 1439. The plate wrapper becomes unconditional at every width; the card-slot exemption is removed.
+Equality of ambition: the design holds; the render at 1024 to 1439 does not (a 31-character prose column against his ten-product diagram); items T1, T2, T4 close it with content already written.
+Routing: Design Lead round 12 writes the arbitration into §B.9, §B.10, §E.3, §G.3. Consolidated Engineer fix run after pass C: all 30 items, the audit's three, font subsetting.
+
+## 2026-09-05 · COPY.md round 14 · Orchestrator
+
+Verdict: **APPROVED.** Map section line "What he ships and where"; cards section line "The roles behind the map". Both to the consolidated fix run.
+
+## 2026-09-05 · Pass C · Engineer → Orchestrator verification
+
+Orchestrator rebuilt and re-ran no-slop, links, plate, floor: pass. Engineer's numbers: sub-768 plate 112 × 56 labelled "Email" with per-world mailto and the unchanged accessible name; wrapper on `/` starts at the floor's end, sweep 0 of 88 positions escaping; `qa:plate` 566 marks at eight widths, 0 inside the band; 404 empty room at 615 B gzipped; a real CLS 0.0596 on 404 from `contain-intrinsic-size` found and fixed; 404's SEO assertion now targets the eight audits noindex allows, closing the audit's finding 3. Lighthouse 100 × 4 on eight routes in both schemes.
+Open for the consolidated run: the 30 review items (several plate collisions at 768 to 1023 may already be closed by this pass's wrapper change; the run verifies each by number), round 12 spec, round 14 strings, Tanya print collapse, font subsetting and fallback metrics (`/contact/` CLS 0.030).
+
+## 2026-09-05 · DESIGN.md round 12 · Orchestrator
+
+Verdict: **APPROVED.** The arbitration is in the spec: proof band at 1024 to 1439 as one grid in two rows (track cols 1 to 9, centres 252 to 652, 96px clear), the 1440 split kept (23px clear); the plate rule now absolute ("never covers content … at any scroll position, at any width, on any route") with named no-span regions (the floor section on `/`, all of `/contact/`) and the card-slot exemption gone; Tanya at 1024 to 1439 with Android cols 1 to 3, core 4 to 9 (47-character measure, was 31), iOS 10 to 12; print collapses to one column; §K presentation packet for Tanya with six frames, three passages and one question. Of the 30 review items, 26 were spec-side and are now written; 4 (T1, T3, T5, E1) are build-side. Run D's part E is unblocked; the "Round 12" line exists in the scratch file.
+
+## 2026-09-05 · Build run D · Engineer → Orchestrator verification
+
+Orchestrator rebuilt and re-ran every gate: pass (`qa:plate` reports 7 sub-768 collisions as flagged, not failed, pending the spec reconciliation below). Engineer's numbers: 28 items closed incl. part E after round 12 landed mid-run; fonts 68,460 B (under the 70,708 target); home 94,841 B gzipped total; CLS 0.0001 on all eight routes both schemes; map states 2.97:1 light / 2.91:1 dark; selected station fill 2.36 / 2.61:1 with the 1px chalk edge carrying the distinction; Lighthouse 100 everywhere except 404's SEO by design; worst LCP 1,506 ms.
+Left: T1 (copy: the Android-edge Motive annotation; COPY.md §7.2 has one sentence and splitting it is writing copy) → Copywriter round 15. Tick geometry in §G.3a not expressible with the platform label first → Design Lead round 13. Seven `qa:plate` collisions below 768 because §B.8's 360 wireframe draws the figures to x 309 against the 128px band at 232, and §B.10 declares Tanya's "Owns" line covered by being full width → Design Lead round 13 reconciles. H9's selected fill at 2.36:1: the spec's own glow ceiling makes 3:1 unreachable and the stroke carries it; Orchestrator accepts, Design Lead records it in §C.8.
+
+## 2026-09-05 · COPY.md round 15 · Orchestrator
+
+Verdict: **APPROVED.** Android-edge annotation for Motive, 15 words, resume-sourced, no repeated figures. To run E.
+
+## 2026-09-05 · DESIGN.md round 13 · Orchestrator
+
+Verdict: **APPROVED.** Below 768 the proof figures stack in three rows (numeral column from x 20, label from x 104, ink ends x 162, 70px clear of the band); the "Owns" line wraps in the same width; ticks align to the platform label's baseline 50px below the band's top and attach to the layer, not a card; §C.8 records the selected fill at 2.36 / 2.61:1 with the 1px chalk edge carrying the state; the warm offset is deleted; new §I.1 disposition table. Spec is complete for run E.

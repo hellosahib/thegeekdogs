@@ -1,0 +1,614 @@
+{
+  "axe": {
+    "/index.html__light": {
+      "violations": [],
+      "passes": 39,
+      "incomplete": []
+    },
+    "/index.html__dark": {
+      "violations": [],
+      "passes": 39,
+      "incomplete": []
+    },
+    "/404.html__light": {
+      "violations": [],
+      "passes": 38,
+      "incomplete": []
+    },
+    "/404.html__dark": {
+      "violations": [],
+      "passes": 38,
+      "incomplete": []
+    }
+  },
+  "keyboard": {
+    "tabOrder": [
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Skip to main content",
+        "dataStation": null,
+        "href": "#main",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "skip-link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "TheGeekDogs, home",
+        "dataStation": null,
+        "href": "/",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "site-header__wordmark",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Switch to dark mode",
+        "dataStation": null,
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px inset",
+        "classList": "theme-toggle__button",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Start a project. Opens an email to thegeekdogs@gmail.com",
+        "dataStation": null,
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "button",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Look around the studio floor",
+        "dataStation": null,
+        "href": "#studio-floor",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "button button--secondary",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Sahib Singh. Open his card.",
+        "dataStation": "sahib-singh",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Tanya Jain. Open her card.",
+        "dataStation": "tanya-jain",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Spec Writer, agent. Checked by product spec review. Open its card.",
+        "dataStation": "spec-writer",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Designer, agent. Checked by design review. Open its card.",
+        "dataStation": "designer",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Programmer, agent. Checked by code review. Open its card.",
+        "dataStation": "programmer",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+        "dataStation": "test-engineer",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+        "dataStation": "security-auditor",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Reviewer, agent. Checked by code review. Open its card.",
+        "dataStation": "reviewer",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Release Watcher, agent. Checked by ship approval. Open its card.",
+        "dataStation": "release-watcher",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "button",
+        "role": "button",
+        "name": "Ship approval. The empty chair. Open the card.",
+        "dataStation": "ship-approval",
+        "href": null,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "station",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Open Pocket Manager in the Play Store\n Opens a new tab.",
+        "dataStation": null,
+        "href": "https://play.google.com/store/apps/details?id=com.thegeekdogs.pocketguard2",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "thegeekdogs@gmail.com",
+        "dataStation": null,
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "plate",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Email thegeekdogs@gmail.com to start a project",
+        "dataStation": null,
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "lamp-address",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "thegeekdogs@gmail.com",
+        "dataStation": null,
+        "href": "mailto:thegeekdogs@gmail.com",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Sahib on GitHub  Opens a new tab.",
+        "dataStation": null,
+        "href": "https://github.com/hellosahib",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Tanya on GitHub  Opens a new tab.",
+        "dataStation": null,
+        "href": "https://github.com/Tanya-jain99",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Sahib on LinkedIn  Opens a new tab.",
+        "dataStation": null,
+        "href": "https://www.linkedin.com/in/sahib-singh-876959143/",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      },
+      {
+        "tag": "a",
+        "role": "link",
+        "name": "Tanya on LinkedIn  Opens a new tab.",
+        "dataStation": null,
+        "href": "https://www.linkedin.com/in/tanyajain06/",
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "boxShadow": "rgb(242, 169, 59) 0px 0px 0px 2px",
+        "classList": "link",
+        "visible": true
+      }
+    ],
+    "focusNavLinkShot": {
+      "file": "screenshots/focus-nav-link.png",
+      "activeElementText": "Sahib Singh"
+    },
+    "focusStationShot": {
+      "file": "screenshots/focus-station.png",
+      "station": "tanya-jain"
+    },
+    "interaction": {
+      "beforeCard": "tanya-jain",
+      "station1": "tanya-jain",
+      "afterEnter": "tanya-jain",
+      "station2": "spec-writer",
+      "afterSpace": "spec-writer",
+      "focusBeforeEscape": "BUTTON",
+      "focusAfterEscape": "BUTTON",
+      "urlAfterEscape": "http://localhost:8791/index.html"
+    },
+    "fullSequenceTagsAbbrev": [
+      "a",
+      "a",
+      "button",
+      "a",
+      "a",
+      "button[sahib-singh]",
+      "button[tanya-jain]",
+      "button[spec-writer]",
+      "button[designer]",
+      "button[programmer]",
+      "button[test-engineer]",
+      "button[security-auditor]",
+      "button[reviewer]",
+      "button[release-watcher]",
+      "button[ship-approval]",
+      "a",
+      "a",
+      "a",
+      "a",
+      "a",
+      "a",
+      "a",
+      "a"
+    ]
+  },
+  "touchTargets": {
+    "at360": [
+      {
+        "tag": "a",
+        "text": "Skip to main content",
+        "dataStation": null,
+        "className": "skip-link",
+        "width": 190.92,
+        "height": 53.91,
+        "x": 0,
+        "y": -65
+      },
+      {
+        "tag": "a",
+        "text": "TheGeekDogs",
+        "dataStation": null,
+        "className": "site-header__wordmark",
+        "width": 320,
+        "height": 44,
+        "x": 20,
+        "y": 12
+      },
+      {
+        "tag": "button",
+        "text": "",
+        "dataStation": null,
+        "className": "theme-toggle__button",
+        "width": 44,
+        "height": 44,
+        "x": 296,
+        "y": 56
+      },
+      {
+        "tag": "a",
+        "text": "Start a project",
+        "dataStation": null,
+        "className": "button",
+        "width": 159.77,
+        "height": 47.19,
+        "x": 20,
+        "y": 462
+      },
+      {
+        "tag": "a",
+        "text": "Look around the floor",
+        "dataStation": null,
+        "className": "button button--secondary",
+        "width": 210.92,
+        "height": 45.19,
+        "x": 20,
+        "y": 525
+      },
+      {
+        "tag": "button",
+        "text": "Sahib Singh",
+        "dataStation": "sahib-singh",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 875
+      },
+      {
+        "tag": "button",
+        "text": "Tanya Jain",
+        "dataStation": "tanya-jain",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 931
+      },
+      {
+        "tag": "button",
+        "text": "Spec Writer",
+        "dataStation": "spec-writer",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 987
+      },
+      {
+        "tag": "button",
+        "text": "Designer",
+        "dataStation": "designer",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1043
+      },
+      {
+        "tag": "button",
+        "text": "Programmer",
+        "dataStation": "programmer",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1099
+      },
+      {
+        "tag": "button",
+        "text": "Test Engineer",
+        "dataStation": "test-engineer",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1155
+      },
+      {
+        "tag": "button",
+        "text": "Security Auditor",
+        "dataStation": "security-auditor",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1211
+      },
+      {
+        "tag": "button",
+        "text": "Reviewer",
+        "dataStation": "reviewer",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1267
+      },
+      {
+        "tag": "button",
+        "text": "Release Watcher",
+        "dataStation": "release-watcher",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1323
+      },
+      {
+        "tag": "button",
+        "text": "Ship approval",
+        "dataStation": "ship-approval",
+        "className": "station",
+        "width": 320,
+        "height": 56,
+        "x": 20,
+        "y": 1379
+      },
+      {
+        "tag": "a",
+        "text": "Open Pocket Manager in the Play Store\n Opens a new tab.",
+        "dataStation": null,
+        "className": "link",
+        "width": 285.42,
+        "height": 20,
+        "x": 20,
+        "y": 4488
+      },
+      {
+        "tag": "a",
+        "text": "thegeekdogs@gmail.com",
+        "dataStation": null,
+        "className": "plate",
+        "width": 360,
+        "height": 56,
+        "x": 0,
+        "y": 844
+      },
+      {
+        "tag": "a",
+        "text": "thegeekdogs@gmail.com",
+        "dataStation": null,
+        "className": "lamp-address",
+        "width": 260.08,
+        "height": 44,
+        "x": 20,
+        "y": 5991
+      },
+      {
+        "tag": "a",
+        "text": "thegeekdogs@gmail.com",
+        "dataStation": null,
+        "className": "link",
+        "width": 186.78,
+        "height": 20,
+        "x": 20,
+        "y": 6283
+      },
+      {
+        "tag": "a",
+        "text": "Sahib on GitHub  Opens a new tab.",
+        "dataStation": null,
+        "className": "link",
+        "width": 104.73,
+        "height": 44,
+        "x": 20,
+        "y": 6364
+      },
+      {
+        "tag": "a",
+        "text": "Tanya on GitHub  Opens a new tab.",
+        "dataStation": null,
+        "className": "link",
+        "width": 106.31,
+        "height": 44,
+        "x": 157,
+        "y": 6364
+      },
+      {
+        "tag": "a",
+        "text": "Sahib on LinkedIn  Opens a new tab.",
+        "dataStation": null,
+        "className": "link",
+        "width": 113.34,
+        "height": 44,
+        "x": 20,
+        "y": 6412
+      },
+      {
+        "tag": "a",
+        "text": "Tanya on LinkedIn  Opens a new tab.",
+        "dataStation": null,
+        "className": "link",
+        "width": 114.92,
+        "height": 44,
+        "x": 165,
+        "y": 6412
+      }
+    ]
+  },
+  "reducedMotion": {
+    "home": {
+      "count": 0,
+      "details": [],
+      "documentReadyState": "complete"
+    }
+  },
+  "pixelSpotChecks": {
+    "plateLight": {
+      "color": "rgb(15, 42, 46)",
+      "backgroundColor": "rgb(242, 169, 59)",
+      "rect": {
+        "x": 1164,
+        "y": 1328,
+        "w": 260,
+        "h": 56
+      }
+    },
+    "plateDark": {
+      "color": "rgb(7, 24, 27)",
+      "backgroundColor": "rgb(242, 169, 59)",
+      "rect": {
+        "x": 1164,
+        "y": 1328,
+        "w": 260,
+        "h": 56
+      }
+    },
+    "mutedTextDark": {
+      "color": "rgb(147, 166, 168)",
+      "effectiveBackground": "rgb(24, 41, 45)"
+    }
+  }
+}

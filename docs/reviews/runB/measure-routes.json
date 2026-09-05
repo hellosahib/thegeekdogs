@@ -1,0 +1,2371 @@
+{
+ "home-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "home-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "home-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "figures__figure numeral",
+    "right": 573.4,
+    "band": 492,
+    "t": "1,000+"
+   },
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "figures__figure numeral",
+    "right": 661.4,
+    "band": 624,
+    "t": "1,000+"
+   },
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "figures__figure numeral",
+    "right": 681.4,
+    "band": 654,
+    "t": "1,000+"
+   },
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "figures__figure numeral",
+    "right": 682.1,
+    "band": 655,
+    "t": "1,000+"
+   },
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "home-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "work-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "work-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "work-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "pm-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "pm-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "pm-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "wp-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "wp-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "wp-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "contact-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "contact-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "contact-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "sahib-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "sahib-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "sahib-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "map__place",
+    "right": 720,
+    "band": 492,
+    "t": "Keenai Global2025 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "FlutterKeenai Wealth, Keenai Pulse"
+   },
+   {
+    "sel": "map__place",
+    "right": 720,
+    "band": 492,
+    "t": "Motive2023 - 2025"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native iOSMotive Fleet and Driver apps"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native AndroidMotive Fleet and Driver ap"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "KMPDesign-components library across Flee"
+   },
+   {
+    "sel": "map__place",
+    "right": 720,
+    "band": 492,
+    "t": "smallcase2020 - 2023"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native iOSTickertape"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native Androidsmallcase Android app"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "FlutterTickertape Flutter for iOS, Andro"
+   },
+   {
+    "sel": "map__place",
+    "right": 720,
+    "band": 492,
+    "t": "Cleartrip2019 - 2020"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native AndroidCleartrip Android app"
+   },
+   {
+    "sel": "map__place",
+    "right": 720,
+    "band": 492,
+    "t": "TheGeekDogs2020 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 720,
+    "band": 492,
+    "t": "native AndroidPocket Manager"
+   },
+   {
+    "sel": "link",
+    "right": 497.6,
+    "band": 492,
+    "t": "channelFlow versus callbackFlow Opens a "
+   },
+   {
+    "sel": "link",
+    "right": 517.9,
+    "band": 492,
+    "t": "Android 16 dropping orientation locks an"
+   },
+   {
+    "sel": "link",
+    "right": 501.6,
+    "band": 492,
+    "t": "ViewModel versus onSaveInstanceState ver"
+   },
+   {
+    "sel": "link",
+    "right": 520.1,
+    "band": 492,
+    "t": "why coroutine cancellation is cooperativ"
+   },
+   {
+    "sel": "plate",
+    "right": 703.7,
+    "band": 492,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "map__place",
+    "right": 852,
+    "band": 624,
+    "t": "Keenai Global2025 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "FlutterKeenai Wealth, Keenai Pulse"
+   },
+   {
+    "sel": "map__place",
+    "right": 852,
+    "band": 624,
+    "t": "Motive2023 - 2025"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native iOSMotive Fleet and Driver apps"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native AndroidMotive Fleet and Driver ap"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "KMPDesign-components library across Flee"
+   },
+   {
+    "sel": "map__place",
+    "right": 852,
+    "band": 624,
+    "t": "smallcase2020 - 2023"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native iOSTickertape"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native Androidsmallcase Android app"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "FlutterTickertape Flutter for iOS, Andro"
+   },
+   {
+    "sel": "map__place",
+    "right": 852,
+    "band": 624,
+    "t": "Cleartrip2019 - 2020"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native AndroidCleartrip Android app"
+   },
+   {
+    "sel": "map__place",
+    "right": 852,
+    "band": 624,
+    "t": "TheGeekDogs2020 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 852,
+    "band": 624,
+    "t": "native AndroidPocket Manager"
+   },
+   {
+    "sel": "plate",
+    "right": 835.7,
+    "band": 624,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "map__place",
+    "right": 882,
+    "band": 654,
+    "t": "Keenai Global2025 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "FlutterKeenai Wealth, Keenai Pulse"
+   },
+   {
+    "sel": "map__place",
+    "right": 882,
+    "band": 654,
+    "t": "Motive2023 - 2025"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native iOSMotive Fleet and Driver apps"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native AndroidMotive Fleet and Driver ap"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "KMPDesign-components library across Flee"
+   },
+   {
+    "sel": "map__place",
+    "right": 882,
+    "band": 654,
+    "t": "smallcase2020 - 2023"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native iOSTickertape"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native Androidsmallcase Android app"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "FlutterTickertape Flutter for iOS, Andro"
+   },
+   {
+    "sel": "map__place",
+    "right": 882,
+    "band": 654,
+    "t": "Cleartrip2019 - 2020"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native AndroidCleartrip Android app"
+   },
+   {
+    "sel": "map__place",
+    "right": 882,
+    "band": 654,
+    "t": "TheGeekDogs2020 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 882,
+    "band": 654,
+    "t": "native AndroidPocket Manager"
+   },
+   {
+    "sel": "plate",
+    "right": 865.7,
+    "band": 654,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "map__place",
+    "right": 883,
+    "band": 655,
+    "t": "Keenai Global2025 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "FlutterKeenai Wealth, Keenai Pulse"
+   },
+   {
+    "sel": "map__place",
+    "right": 883,
+    "band": 655,
+    "t": "Motive2023 - 2025"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native iOSMotive Fleet and Driver apps"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native AndroidMotive Fleet and Driver ap"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "KMPDesign-components library across Flee"
+   },
+   {
+    "sel": "map__place",
+    "right": 883,
+    "band": 655,
+    "t": "smallcase2020 - 2023"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native iOSTickertape"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native Androidsmallcase Android app"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "FlutterTickertape Flutter for iOS, Andro"
+   },
+   {
+    "sel": "map__place",
+    "right": 883,
+    "band": 655,
+    "t": "Cleartrip2019 - 2020"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native AndroidCleartrip Android app"
+   },
+   {
+    "sel": "map__place",
+    "right": 883,
+    "band": 655,
+    "t": "TheGeekDogs2020 - now"
+   },
+   {
+    "sel": "map__cell-inner",
+    "right": 883,
+    "band": 655,
+    "t": "native AndroidPocket Manager"
+   },
+   {
+    "sel": "plate",
+    "right": 866.7,
+    "band": 655,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "link",
+    "right": 910.3,
+    "band": 748,
+    "t": "channelFlow versus callbackFlow Opens a "
+   },
+   {
+    "sel": "link",
+    "right": 930.6,
+    "band": 748,
+    "t": "Android 16 dropping orientation locks an"
+   },
+   {
+    "sel": "link",
+    "right": 914.3,
+    "band": 748,
+    "t": "ViewModel versus onSaveInstanceState ver"
+   },
+   {
+    "sel": "link",
+    "right": 932.8,
+    "band": 748,
+    "t": "why coroutine cancellation is cooperativ"
+   },
+   {
+    "sel": "plate",
+    "right": 959.7,
+    "band": 748,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "link",
+    "right": 1016.9,
+    "band": 1004,
+    "t": "channelFlow versus callbackFlow Opens a "
+   },
+   {
+    "sel": "link",
+    "right": 1037.3,
+    "band": 1004,
+    "t": "Android 16 dropping orientation locks an"
+   },
+   {
+    "sel": "link",
+    "right": 1020.9,
+    "band": 1004,
+    "t": "ViewModel versus onSaveInstanceState ver"
+   },
+   {
+    "sel": "link",
+    "right": 1039.5,
+    "band": 1004,
+    "t": "why coroutine cancellation is cooperativ"
+   },
+   {
+    "sel": "plate",
+    "right": 1215.7,
+    "band": 1004,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "sahib-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1378.6,
+    "band": 1164,
+    "t": "sahiboffc@gmail.com"
+   }
+  ]
+ },
+ "tanya-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "tanya-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "tanya-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "core__gates-line",
+    "right": 539.4,
+    "band": 492,
+    "t": "Spec, code and design review, device QA,"
+   },
+   {
+    "sel": "plate",
+    "right": 717.4,
+    "band": 492,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 849.4,
+    "band": 624,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 879.4,
+    "band": 654,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.4,
+    "band": 655,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 973.4,
+    "band": 748,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1229.4,
+    "band": 1004,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "tanya-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1392.8,
+    "band": 1164,
+    "t": "jaintanya999@gmail.com"
+   }
+  ]
+ },
+ "404-360": {
+  "vw": 360,
+  "band": 232,
+  "plateShown": false,
+  "violations": []
+ },
+ "404-390": {
+  "vw": 390,
+  "band": 262,
+  "plateShown": false,
+  "violations": []
+ },
+ "404-768": {
+  "vw": 768,
+  "band": 492,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 718.1,
+    "band": 492,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-900": {
+  "vw": 900,
+  "band": 624,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 850.1,
+    "band": 624,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-930": {
+  "vw": 930,
+  "band": 654,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 880.1,
+    "band": 654,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-931": {
+  "vw": 931,
+  "band": 655,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 881.1,
+    "band": 655,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-1024": {
+  "vw": 1024,
+  "band": 748,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 974.1,
+    "band": 748,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-1280": {
+  "vw": 1280,
+  "band": 1004,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1230.1,
+    "band": 1004,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "404-1440": {
+  "vw": 1440,
+  "band": 1164,
+  "plateShown": true,
+  "violations": [
+   {
+    "sel": "plate",
+    "right": 1393.5,
+    "band": 1164,
+    "t": "thegeekdogs@gmail.com"
+   }
+  ]
+ },
+ "worktrack-768-light": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 457,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 501,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 545,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 589,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 633,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 958.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1002.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1046.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1090.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1134.7,
+    "w": 608,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-900-light": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 460.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 504.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 548.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 592.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 636.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 962.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1006.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1050.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1094.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1138.3,
+    "w": 740,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-930-light": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 462,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 506,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 550,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 594,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 638,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 963.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1007.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1051.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1095.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1139.7,
+    "w": 770,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-931-light": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 180,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 280,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 380,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 480,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 180,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 280,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 380,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 480,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   }
+  ]
+ },
+ "worktrack-1024-light": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 96,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 214.8,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 333.6,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 452.4,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 571.2,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 96,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 214.8,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 333.6,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 452.4,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 571.2,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   }
+  ]
+ },
+ "worktrack-1440-light": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 168,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 327.6,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 487.2,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 646.8,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 806.4,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 168,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 327.6,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 487.2,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 646.8,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 806.4,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   }
+  ]
+ },
+ "worktrack-768-dark": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 457,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 501,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 545,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 589,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 633,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 958.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1002.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1046.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1090.7,
+    "w": 608,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1134.7,
+    "w": 608,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-900-dark": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 460.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 504.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 548.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 592.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 636.6,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 962.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1006.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1050.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1094.3,
+    "w": 740,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1138.3,
+    "w": 740,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-930-dark": {
+  "orientation": "vertical",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 462,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 506,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 80,
+    "y": 550,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 80,
+    "y": 594,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 80,
+    "y": 638,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 963.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 80,
+    "y": 1007.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 80,
+    "y": 1051.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 80,
+    "y": 1095.7,
+    "w": 770,
+    "h": 44
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 80,
+    "y": 1139.7,
+    "w": 770,
+    "h": 44
+   }
+  ]
+ },
+ "worktrack-931-dark": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 180,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 280,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 380,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 480,
+    "y": 462,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 80,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 180,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 280,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 380,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 480,
+    "y": 807.7,
+    "w": 100,
+    "h": 64
+   }
+  ]
+ },
+ "worktrack-1024-dark": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 96,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 214.8,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 333.6,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 452.4,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 571.2,
+    "y": 473.5,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 96,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 214.8,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 333.6,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 452.4,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 571.2,
+    "y": 821,
+    "w": 118.8,
+    "h": 64
+   }
+  ]
+ },
+ "worktrack-1440-dark": {
+  "orientation": "horizontal",
+  "items": [
+   {
+    "t": "Specced. Done.Specced",
+    "x": 168,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 327.6,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Done.Final touc",
+    "x": 487.2,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Done.Sub",
+    "x": 646.8,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Live. Where it is now.Live",
+    "x": 806.4,
+    "y": 544.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Specced. Done.Specced",
+    "x": 168,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Building. Done.Building",
+    "x": 327.6,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Final touches. Where it is now",
+    "x": 487.2,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Submitted for review. Not yet.",
+    "x": 646.8,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   },
+   {
+    "t": "Live. Not yet.Live",
+    "x": 806.4,
+    "y": 904.8,
+    "w": 159.6,
+    "h": 64
+   }
+  ]
+ },
+ "shots-pm-768": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 679.3,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "eager"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 679.3,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1310.3,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1310.3,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   }
+  ],
+  "docH": 4292,
+  "grid": "none",
+  "aboveFold": 2
+ },
+ "shots-pm-1024": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 479.8,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "eager"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 479.8,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1110.8,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1110.8,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   }
+  ],
+  "docH": 4226,
+  "grid": "none",
+  "aboveFold": 2
+ },
+ "shots-pm-1440": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 522.4,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "eager"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 522.4,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1153.4,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   },
+   {
+    "w": 280,
+    "h": 607,
+    "ar": 0.4613,
+    "y": 1153.4,
+    "wAttr": "280",
+    "hAttr": "607",
+    "loading": "lazy"
+   }
+  ],
+  "docH": 4181,
+  "grid": "none",
+  "aboveFold": 2
+ },
+ "shots-pm-lazy": {
+  "docH": 4181,
+  "imgs": [
+   {
+    "w": 280,
+    "h": 607
+   },
+   {
+    "w": 280,
+    "h": 607
+   },
+   {
+    "w": 280,
+    "h": 607
+   },
+   {
+    "w": 280,
+    "h": 607
+   }
+  ]
+ },
+ "shots-wp-768": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 609,
+    "ar": 0.4598,
+    "y": 611.3,
+    "wAttr": "280",
+    "hAttr": "609",
+    "loading": "eager"
+   }
+  ],
+  "docH": 3181,
+  "grid": "none",
+  "aboveFold": 1
+ },
+ "shots-wp-1024": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 609,
+    "ar": 0.4598,
+    "y": 458,
+    "wAttr": "280",
+    "hAttr": "609",
+    "loading": "eager"
+   }
+  ],
+  "docH": 3040,
+  "grid": "none",
+  "aboveFold": 1
+ },
+ "shots-wp-1440": {
+  "imgs": [
+   {
+    "w": 280,
+    "h": 609,
+    "ar": 0.4598,
+    "y": 516.8,
+    "wAttr": "280",
+    "hAttr": "609",
+    "loading": "eager"
+   }
+  ],
+  "docH": 3104,
+  "grid": "none",
+  "aboveFold": 1
+ },
+ "shots-wp-lazy": {
+  "docH": 3104,
+  "imgs": [
+   {
+    "w": 280,
+    "h": 609
+   }
+  ]
+ }
+}

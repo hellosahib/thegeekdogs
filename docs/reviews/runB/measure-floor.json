@@ -1,0 +1,3170 @@
+{
+ "floor-360-light": {
+  "sceneVB": "0 0 320 520",
+  "scene": {
+   "x": 20,
+   "y": 873.7,
+   "w": 320,
+   "h": 520
+  },
+  "useCount": 18,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-cabin-t",
+   "#fl-mod",
+   "#fl-agent",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 20,
+   "y": 1417.7,
+   "w": 320,
+   "h": 320
+  },
+  "slotBorder": "0px",
+  "slotMinH": "320px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 20,
+     "y": 873.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 20,
+     "y": 969.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 129.3,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 238.7,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 129.3,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 238.7,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1221.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 236,
+     "y": 1301.7,
+     "w": 104,
+     "h": 92
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "none",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 142.4,
+     "y": 875.7,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 146.4,
+     "y": 971.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 34.1,
+     "y": 1071.7,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 152.2,
+     "y": 1071.7,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 250,
+     "y": 1071.7,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 28.5,
+     "y": 1147.7,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 130.1,
+     "y": 1147.7,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 261.5,
+     "y": 1147.7,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 19.2,
+     "y": 1223.7,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 246.3,
+     "y": 1303.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-390-light": {
+  "sceneVB": "0 0 320 520",
+  "scene": {
+   "x": 35,
+   "y": 873.7,
+   "w": 320,
+   "h": 520
+  },
+  "useCount": 18,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-cabin-t",
+   "#fl-mod",
+   "#fl-agent",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 20,
+   "y": 1417.7,
+   "w": 350,
+   "h": 320
+  },
+  "slotBorder": "0px",
+  "slotMinH": "320px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 35,
+     "y": 873.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 35,
+     "y": 969.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 144.3,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 253.7,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 144.3,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 253.7,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1221.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 251,
+     "y": 1301.7,
+     "w": 104,
+     "h": 92
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "none",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 157.4,
+     "y": 875.7,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 161.4,
+     "y": 971.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 49.1,
+     "y": 1071.7,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 167.2,
+     "y": 1071.7,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 265,
+     "y": 1071.7,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 43.5,
+     "y": 1147.7,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 145.1,
+     "y": 1147.7,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 276.5,
+     "y": 1147.7,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 34.2,
+     "y": 1223.7,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 261.3,
+     "y": 1303.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-768-light": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 32,
+   "y": 753.2,
+   "w": 704,
+   "h": 427.7
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 32,
+   "y": 1204.9,
+   "w": 704,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 305,
+     "y": 819,
+     "w": 105.3,
+     "h": 111.8
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 199.8,
+     "y": 871.6,
+     "w": 105.3,
+     "h": 111.8
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 878.2,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 522.2,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 522.2,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 311.6,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 311.6,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 357.7,
+     "y": 1047.6,
+     "w": 105.3,
+     "h": 72.4
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "flex",
+  "hit": [
+   true,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "18.2308px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 320.1,
+     "y": 913,
+     "w": 75.2,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "18.2308px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 218.8,
+     "y": 965.6,
+     "w": 67.2,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 426.4,
+     "y": 909.7,
+     "w": 73,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 540.5,
+     "y": 962.3,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 423.7,
+     "y": 962.3,
+     "w": 78.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 526.1,
+     "y": 1015,
+     "w": 84.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 307.8,
+     "y": 962.3,
+     "w": 99.8,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 435.1,
+     "y": 1015,
+     "w": 55.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 306.3,
+     "y": 1015,
+     "w": 102.8,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "15.8px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 368.6,
+     "y": 1120.2,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1024-light": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 0,
+   "y": 871.8,
+   "w": 683,
+   "h": 414.9
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 683,
+   "y": 883.3,
+   "w": 293,
+   "h": 392
+  },
+  "slotBorder": "0px",
+  "slotMinH": "392px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 264.9,
+     "y": 935.7,
+     "w": 102.1,
+     "h": 108.5
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 162.8,
+     "y": 986.7,
+     "w": 102.1,
+     "h": 108.5
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 993.1,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 475.5,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 475.5,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 271.3,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 271.3,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 316,
+     "y": 1157.5,
+     "w": 102.1,
+     "h": 70.2
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "18.8077px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 278.3,
+     "y": 1026.6,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "18.8077px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 180.2,
+     "y": 1077.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 381.6,
+     "y": 1023.4,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 492.5,
+     "y": 1074.5,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 378.8,
+     "y": 1074.5,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 478,
+     "y": 1125.6,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 266,
+     "y": 1074.5,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 390.3,
+     "y": 1125.6,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 264.5,
+     "y": 1125.6,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "16.3px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 325.3,
+     "y": 1227.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1440-light": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 80,
+   "y": 1024,
+   "w": 856,
+   "h": 520
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 936,
+   "y": 1112,
+   "w": 384,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 412,
+     "y": 1104,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 284,
+     "y": 1168,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1176,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 676,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 676,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 420,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 420,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 476,
+     "y": 1382,
+     "w": 128,
+     "h": 88
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 438.4,
+     "y": 1220,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 314.4,
+     "y": 1284,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 567.5,
+     "y": 1216,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 704.2,
+     "y": 1280,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 564.7,
+     "y": 1280,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 689.8,
+     "y": 1344,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 426.1,
+     "y": 1280,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 576.2,
+     "y": 1344,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 424.6,
+     "y": 1344,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 498.3,
+     "y": 1472,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1920-light": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 320,
+   "y": 1027.3,
+   "w": 856,
+   "h": 520
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 1176,
+   "y": 1115.3,
+   "w": 384,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 652,
+     "y": 1107.3,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 524,
+     "y": 1171.3,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1179.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 916,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 916,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 660,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 660,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 716,
+     "y": 1385.3,
+     "w": 128,
+     "h": 88
+    }
+   }
+  ],
+  "floorBg": "rgb(15, 42, 46)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 678.4,
+     "y": 1223.3,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 554.4,
+     "y": 1287.3,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 807.5,
+     "y": 1219.3,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 944.2,
+     "y": 1283.3,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 804.7,
+     "y": 1283.3,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 929.8,
+     "y": 1347.3,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 666.1,
+     "y": 1283.3,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 816.2,
+     "y": 1347.3,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 664.6,
+     "y": 1347.3,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(171, 182, 181)",
+    "box": {
+     "x": 738.3,
+     "y": 1475.3,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-360-dark": {
+  "sceneVB": "0 0 320 520",
+  "scene": {
+   "x": 20,
+   "y": 873.7,
+   "w": 320,
+   "h": 520
+  },
+  "useCount": 18,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-cabin-t",
+   "#fl-mod",
+   "#fl-agent",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 20,
+   "y": 1417.7,
+   "w": 320,
+   "h": 320
+  },
+  "slotBorder": "0px",
+  "slotMinH": "320px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 20,
+     "y": 873.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 20,
+     "y": 969.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 129.3,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 238.7,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 129.3,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 238.7,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 20,
+     "y": 1221.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 236,
+     "y": 1301.7,
+     "w": 104,
+     "h": 92
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "none",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 142.4,
+     "y": 875.7,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 146.4,
+     "y": 971.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 34.1,
+     "y": 1071.7,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 152.2,
+     "y": 1071.7,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 250,
+     "y": 1071.7,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 28.5,
+     "y": 1147.7,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 130.1,
+     "y": 1147.7,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 261.5,
+     "y": 1147.7,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 19.2,
+     "y": 1223.7,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 246.3,
+     "y": 1303.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-390-dark": {
+  "sceneVB": "0 0 320 520",
+  "scene": {
+   "x": 35,
+   "y": 873.7,
+   "w": 320,
+   "h": 520
+  },
+  "useCount": 18,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-cabin-t",
+   "#fl-mod",
+   "#fl-agent",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 20,
+   "y": 1417.7,
+   "w": 350,
+   "h": 320
+  },
+  "slotBorder": "0px",
+  "slotMinH": "320px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 35,
+     "y": 873.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 35,
+     "y": 969.7,
+     "w": 320,
+     "h": 88
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 144.3,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 253.7,
+     "y": 1069.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 144.3,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 253.7,
+     "y": 1145.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 35,
+     "y": 1221.7,
+     "w": 101.3,
+     "h": 68
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 251,
+     "y": 1301.7,
+     "w": 104,
+     "h": 92
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "none",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 157.4,
+     "y": 875.7,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 161.4,
+     "y": 971.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 49.1,
+     "y": 1071.7,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 167.2,
+     "y": 1071.7,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 265,
+     "y": 1071.7,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 43.5,
+     "y": 1147.7,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 145.1,
+     "y": 1147.7,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 276.5,
+     "y": 1147.7,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 34.2,
+     "y": 1223.7,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 261.3,
+     "y": 1303.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-768-dark": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 32,
+   "y": 753.2,
+   "w": 704,
+   "h": 427.7
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 32,
+   "y": 1204.9,
+   "w": 704,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 305,
+     "y": 819,
+     "w": 105.3,
+     "h": 111.8
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 199.8,
+     "y": 871.6,
+     "w": 105.3,
+     "h": 111.8
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 878.2,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 522.2,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 522.2,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 311.6,
+     "y": 930.9,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 416.9,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 311.6,
+     "y": 983.5,
+     "w": 92.1,
+     "h": 46
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 357.7,
+     "y": 1047.6,
+     "w": 105.3,
+     "h": 72.4
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "flex",
+  "hit": [
+   true,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "18.2308px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 320.1,
+     "y": 913,
+     "w": 75.2,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "18.2308px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 218.8,
+     "y": 965.6,
+     "w": 67.2,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 426.4,
+     "y": 909.7,
+     "w": 73,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 540.5,
+     "y": 962.3,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 423.7,
+     "y": 962.3,
+     "w": 78.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 526.1,
+     "y": 1015,
+     "w": 84.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 307.8,
+     "y": 962.3,
+     "w": 99.8,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 435.1,
+     "y": 1015,
+     "w": 55.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 306.3,
+     "y": 1015,
+     "w": 102.8,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "15.8px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 368.6,
+     "y": 1120.2,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1024-dark": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 0,
+   "y": 871.8,
+   "w": 683,
+   "h": 414.9
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 683,
+   "y": 883.3,
+   "w": 293,
+   "h": 392
+  },
+  "slotBorder": "0px",
+  "slotMinH": "392px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 264.9,
+     "y": 935.7,
+     "w": 102.1,
+     "h": 108.5
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 162.8,
+     "y": 986.7,
+     "w": 102.1,
+     "h": 108.5
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 993.1,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 475.5,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 475.5,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 271.3,
+     "y": 1044.2,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 373.4,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 271.3,
+     "y": 1095.3,
+     "w": 89.4,
+     "h": 44.7
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 316,
+     "y": 1157.5,
+     "w": 102.1,
+     "h": 70.2
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "18.8077px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 278.3,
+     "y": 1026.6,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "18.8077px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 180.2,
+     "y": 1077.7,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 381.6,
+     "y": 1023.4,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 492.5,
+     "y": 1074.5,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 378.8,
+     "y": 1074.5,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 478,
+     "y": 1125.6,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 266,
+     "y": 1074.5,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 390.3,
+     "y": 1125.6,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 264.5,
+     "y": 1125.6,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "16.3px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 325.3,
+     "y": 1227.7,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1440-dark": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 80,
+   "y": 1024,
+   "w": 856,
+   "h": 520
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 936,
+   "y": 1112,
+   "w": 384,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 412,
+     "y": 1104,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 284,
+     "y": 1168,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1176,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 676,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 676,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 420,
+     "y": 1240,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 548,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 420,
+     "y": 1304,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 476,
+     "y": 1382,
+     "w": 128,
+     "h": 88
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 438.4,
+     "y": 1220,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 314.4,
+     "y": 1284,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 567.5,
+     "y": 1216,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 704.2,
+     "y": 1280,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 564.7,
+     "y": 1280,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 689.8,
+     "y": 1344,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 426.1,
+     "y": 1280,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 576.2,
+     "y": 1344,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 424.6,
+     "y": 1344,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 498.3,
+     "y": 1472,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "floor-1920-dark": {
+  "sceneVB": "0 0 856 520",
+  "scene": {
+   "x": 320,
+   "y": 1027.3,
+   "w": 856,
+   "h": 520
+  },
+  "useCount": 10,
+  "useRefs": [
+   "#fl-cabin-s",
+   "#fl-agent",
+   "#fl-cabin-t",
+   "#fl-seat"
+  ],
+  "cone": 0,
+  "seat": 1,
+  "symbols": [
+   "#fl-mod",
+   "#fl-dk",
+   "#fl-mon",
+   "#fl-ch",
+   "#fl-agent",
+   "#fl-occ",
+   "#fl-seat",
+   "#fl-cabin-s",
+   "#fl-cabin-t"
+  ],
+  "slot": {
+   "x": 1176,
+   "y": 1115.3,
+   "w": 384,
+   "h": 344
+  },
+  "slotBorder": "0px",
+  "slotMinH": "344px",
+  "slotBg": "rgba(0, 0, 0, 0)",
+  "slotName": "Sahib Singh",
+  "slotGate": "OwnsArchitecture review, code review, design review, the release cut.",
+  "slotText": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+  "lead": "Two desks have people at them. The rest are agents.",
+  "instruction": "Open any desk to see the job and the human who checks it.",
+  "rosterLabel": "The full pipeline",
+  "rosterLine": "Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.",
+  "stations": [
+   {
+    "n": "Sahib Singh. Open his card.",
+    "box": {
+     "x": 652,
+     "y": 1107.3,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Tanya Jain. Open her card.",
+    "box": {
+     "x": 524,
+     "y": 1171.3,
+     "w": 128,
+     "h": 136
+    }
+   },
+   {
+    "n": "Spec Writer, agent. Checked by product spec review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1179.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Designer, agent. Checked by design review. Open its card.",
+    "box": {
+     "x": 916,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Programmer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Test Engineer, agent. Checked by QA on real devices. Open its card.",
+    "box": {
+     "x": 916,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Security Auditor, agent. Checked by security and privacy review. Open its card.",
+    "box": {
+     "x": 660,
+     "y": 1243.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Reviewer, agent. Checked by code review. Open its card.",
+    "box": {
+     "x": 788,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Release Watcher, agent. Checked by ship approval. Open its card.",
+    "box": {
+     "x": 660,
+     "y": 1307.3,
+     "w": 112,
+     "h": 56
+    }
+   },
+   {
+    "n": "Ship approval. The empty chair. Open the card.",
+    "box": {
+     "x": 716,
+     "y": 1385.3,
+     "w": 128,
+     "h": 88
+    }
+   }
+  ],
+  "floorBg": "rgb(7, 24, 27)",
+  "plateDisplay": "flex",
+  "hit": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "plates": [
+   {
+    "t": "Sahib Singh",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 678.4,
+     "y": 1223.3,
+     "w": 75.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Tanya Jain",
+    "size": "15px",
+    "fill": "rgb(232, 237, 233)",
+    "box": {
+     "x": 554.4,
+     "y": 1287.3,
+     "w": 67.3,
+     "h": 16
+    }
+   },
+   {
+    "t": "Spec Writer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 807.5,
+     "y": 1219.3,
+     "w": 73.1,
+     "h": 16
+    }
+   },
+   {
+    "t": "Designer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 944.2,
+     "y": 1283.3,
+     "w": 55.5,
+     "h": 16
+    }
+   },
+   {
+    "t": "Programmer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 804.7,
+     "y": 1283.3,
+     "w": 78.6,
+     "h": 16
+    }
+   },
+   {
+    "t": "Test Engineer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 929.8,
+     "y": 1347.3,
+     "w": 84.4,
+     "h": 16
+    }
+   },
+   {
+    "t": "Security Auditor",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 666.1,
+     "y": 1283.3,
+     "w": 99.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Reviewer",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 816.2,
+     "y": 1347.3,
+     "w": 55.7,
+     "h": 16
+    }
+   },
+   {
+    "t": "Release Watcher",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 664.6,
+     "y": 1347.3,
+     "w": 102.9,
+     "h": 16
+    }
+   },
+   {
+    "t": "Ship approval",
+    "size": "13px",
+    "fill": "rgb(169, 177, 175)",
+    "box": {
+     "x": 738.3,
+     "y": 1475.3,
+     "w": 83.4,
+     "h": 16
+    }
+   }
+  ]
+ },
+ "enter-360-light": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "click-360-light": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "enter-1440-light": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "click-1440-light": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "enter-360-dark": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "click-360-dark": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "enter-1440-dark": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod",
+ "click-1440-dark": "Sahib SinghMobile across all four stacks: native iOS, native Android, KMP, Flutter.Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in prod"
+}

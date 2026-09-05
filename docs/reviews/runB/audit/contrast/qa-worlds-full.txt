@@ -1,0 +1,10 @@
+      / light                #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /work/ light           #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /sahib/ light          #eeeff4 / #e0e2ec / #1a2033 / #f2a93b
+      /tanya/ light          #edeeee / #dcdede / #1b2020 / #8a5a08
+      / dark                 #18292d / #213539 / #e8ede9 / #f2a93b
+      /work/ dark            #18292d / #213539 / #e8ede9 / #f2a93b
+      /sahib/ dark           #161c2e / #1f2841 / #e9eaf0 / #f2a93b
+      /tanya/ dark           #191b1b / #282b2b / #e9eaea / #f2a93b
+      32 computed token(s) checked on 4 routes in 2 schemes
+PASS  qa:worlds

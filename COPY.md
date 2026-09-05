@@ -61,8 +61,21 @@ Wordmark accessible name when it is the link home: `TheGeekDogs, home`.
 
 Follows the visitor down the home page. Not a modal, not a chat bubble.
 
-- Label: `Start a project`
-- Accessible name: `Start a project. Opens an email to thegeekdogs@gmail.com`
+- Visible label, 768 and above: the address itself, in plain text. Item 53 chose the address over a
+  label, and DESIGN.md §B.10 holds the same table: `thegeekdogs@gmail.com` on `/`, `/work/*`,
+  `/contact/` and `/404.html`; `sahiboffc@gmail.com` on `/sahib/` and `jaintanya999@gmail.com` on
+  `/tanya/`, per item 66.
+- **Label, below 768:** `Email` (5 characters). DESIGN.md §B.10 round 10 narrowed the plate to
+  112 × 56 there, which leaves about 73px of type, 9 characters at small/14px, so the address
+  cannot print and the plate carries the action instead. One string for all three worlds, and it
+  carries no pronoun on purpose: `us` would name the studio while the `mailto:` names one person,
+  and §B.10 requires that the plate and the page never disagree about who is being written to. It
+  is also the first word of the accessible name below, so the printed word and the spoken name
+  start on the same verb.
+- Accessible name, one pattern for all three addresses and both widths: `Email <address>. Opens a new message about a project.`
+  Substitute the page's own address for `<address>`, so the spoken name and the printed label never
+  name different people. Below 768 this is the only place the address is spoken, which is why the
+  pattern does not shorten with the plate.
 - Behaviour note for Engineer: this is a `mailto:` link, not a button that opens a form. One
   affordance, one destination.
 
@@ -175,6 +188,33 @@ Equal weight. Neither is the assistant. Each card names what that person owns, f
 - **Role line:** `Native Android and KMP, and the iOS side too.`
 - **Body:** `Software Engineer 2 at Motive, where she owns releases. Here she owns the product spec, real-device QA, and the security, privacy and ASO review. She shares code review with Sahib.`
 
+**The gate block, both cards.** DESIGN.md §C.6 item 4 gives the two human cards the same sub-block
+geometry the agent cards have, with a micro label and then the gates that person owns. The agent
+cards say `Checked by`. Its counterpart here is one word, because on a human card the person is the
+one doing the checking rather than the one being checked:
+
+- **Field label above the gate list on the human cards:** `Owns`
+- **Gate list, Sahib:** `Architecture review, code review, design review, the release cut.`
+- **Gate list, Tanya:** `Spec, code and design review, device QA, security and privacy, ASO, release cut.`
+
+Item 19 assigned the first five, item 56 put both names on the release cut, and item 71 put both
+names on design review, so those two appear on both lists rather than on neither. The short forms
+here are §C.6's own, not §2.4's `Checked by` strings: this block is a comma list inside a 318px
+measure, and `QA on real devices` and `Security and privacy review` set at full length push it past
+its budget. The Engineer should not assert these against the gate collection the way the agent
+cards' single label is asserted.
+
+Note for Design Lead and Engineer, on height. §C.6's reservation budgets two lines for the gate
+list and was computed before design review and the release cut had owners. Sahib's line is 65
+characters and sets to two. Tanya's was 96, which set to three at both the ≥ 1024 measure
+(≈ 38 characters) and the 360 measure (≈ 35). It is 80 now, and all seven responsibilities are
+still on it: code review and design review are grouped into one phrase, `product spec` is the
+`Spec` the body two lines above spells out in full, and `the release cut` is `release cut`. Nothing
+was dropped. That is as far as the copy goes without dropping a gate somebody owns, so if 80 still
+overflows two lines at the 360 measure, §C.6's own rule applies and the remainder is padding, never
+a shorter reservation and never a gate. Copy does not choose which gate would go, because none of
+them would.
+
 Item 19 assigned every gate but one, and it assigned them unevenly: two of the four are hers
 outright, code review is shared, architecture is his, and the product spec, which is not one of the
 four, is hers as well. The cards print that split rather than balancing it, because a card that
@@ -223,6 +263,18 @@ for length. If the card is too small for it, the card gets bigger.
 
 Field label above the gate name on each card: `Checked by`
 
+**The roster line.** DESIGN.md §B.8 and §B.9 set the seven roles as a readable wrapped sentence
+under the scene, at every breakpoint, with a short label above it. It is the screen-reader-first
+copy of the same list the floor draws, so it carries the same seven names in the same order as the
+table above and nothing else.
+
+- **Roster label:** `The full pipeline`
+- **Roster line, as a sentence:** `Spec Writer, Designer, Programmer, Test Engineer, Security Auditor, Reviewer and Release Watcher.`
+
+The label is §B.8's own wireframe string and stays it. Do not print a count above or beside this
+line, for the reason §2.2 and §10.2 both give: a number in body copy goes stale the day the roster
+changes. The line itself is the count anyone needs.
+
 ### 2.5 The empty chair
 
 - **Nameplate:** `Ship approval`
@@ -230,6 +282,39 @@ Field label above the gate name on each card: `Checked by`
 
 This card has no worker in it and should not pretend otherwise. There is no role line, no
 "checked by" field.
+
+### 2.9a Work-card strip
+
+Numbered 2.9a, positioned here. It sits directly after the floor and before the four gates, which
+is where DESIGN.md §B.8 and §B.9 put it: the room has just said two of the desks have people at
+them, and the strip answers who they are. The number is out of order and the position is not.
+
+Two rows, one per person, two compressed cards each, and one link per row. The cards carry company
+and years only. Both fields are already written: Sahib's two are §6.2 cards 1 and 2, Tanya's are
+§7.2 cards 1 and 2, and they print as those sections give them. No new company string, no new date
+string, and no role or stack line here, because §B.8 makes the person pages the only complete
+rendering of a work card.
+
+- **Row label, first row:** `Sahib Singh`
+- **Row label, second row:** `Tanya Jain`
+- **Link label, first row:** `Sahib's work in full`
+- **Accessible name:** `Sahib's work in full, on his page`
+- **Link label, second row:** `Tanya's work in full`
+- **Accessible name:** `Tanya's work in full, on her page`
+
+Both labels are four words and both name the person, so a screen reader user tabbing out of the
+strip hears which page each link goes to without the row label as context. "In full" is the honest
+promise: the strip shows two of Sahib's five companies and two of Tanya's three, with two of the
+four card levels dropped, and the person page is where all of it prints. The pronouns are items 20
+and 21's.
+
+- **Section heading:** `Where they've worked`
+
+Neither wireframe draws a heading or an intro line above the strip. §B.8 and §B.9 both open the
+section with the first row label, and adding a printed line above it would take height the strip
+was included on the condition of not taking. So the heading above is the section's accessible name
+rather than a printed line, and there is no intro. If the Design Lead adds a visible slot later,
+that is the string for it and it needs no rewrite.
 
 ### 2.6 The four gates
 
@@ -243,12 +328,11 @@ numbers.
 3. **`QA on real devices.`** `Tanya runs the build on physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit.`
 4. **`Security and privacy review.`** `Tanya reads what the app collects, where it goes, what's stored and what's exposed, against what we told your users we'd do.`
 
-- **Ship-approval line, under the four:** `The release itself is a fifth thing no agent touches. Sahib and Tanya cut every release together, both names on it, every time.`
-- **Design-review line, under the ship-approval line:** `Design review is a sixth. Both of them read the layouts, the states, and the empty and error screens before anything is built to them.`
+- **Line under the four:** `Design review and the release itself stay with Sahib and Tanya: both read the layouts before build, and both names go on every release.`
 - **Closing line:** `That's the difference between generated software and shipped software.`
 
 Item 56 settled ship approval and item 70 settled design review, both of them jointly in each case.
-The two lines sit under the numbered four rather than inside them, because the four are the gates
+That line sits under the numbered four rather than inside them, because the four are the gates
 §2.4's cards map to, item 42 put the release gate on the empty chair, and design review arrived
 after the four were set. The empty chair's own card in §2.5 stays exactly as written and names
 nobody; a chair with two names on it is a chair with someone in it.
@@ -462,7 +546,12 @@ claim false. Item 14's ban on privacy claims covers the rest.
   - `A simple interface with multiple categories.`
   - `A calendar screen showing a chosen day's records, with the daily and monthly balance.`
   - `A statistics screen with graphs and date ranges up to 90 days.`
-  - `Transaction export.`
+  - `Export to CSV from settings.`
+
+The last item says where export lives and stops there. The app tags the export, import and share
+rows Beta, which is a state and not a feature, so the label stays off the marketing line and the
+line claims nothing about how finished the feature is. It is not called a screen anywhere on this
+site, because it is a row in settings that hands off to the system file picker.
 
 ### 4.4 Review process
 
@@ -501,16 +590,29 @@ later.
 
 ### 4.7 Screenshots
 
-New screenshots, captured from the latest build rather than pulled off the store listing (item 16).
-The alt lines below describe the screens the §5.2 feature list names, and each is checked against
-the image that actually ships before it publishes.
+The screenshots exist. Item 60 captured twelve of them from the latest local build rather than off
+the store listing (item 16): six screens, each in the app's own light and dark themes, with ten
+seeded September 2026 transactions in them. `docs/assets/pocket-manager/README.md` records what is
+on each one, and the four lines below are written against those images, not against the old ones.
 
-- **Alt, calendar screen:** `The Pocket Manager calendar screen, showing one day's transactions with the daily and monthly balance above them.`
-- **Alt, statistics screen:** `The Pocket Manager statistics screen, showing spending as a graph over a selected date range.`
-- **Alt, categories screen:** `The Pocket Manager category list, with a spending total beside each category.`
-- **Alt, export:** `The Pocket Manager export screen.`
+The case study uses four screens. Alt text describes what is on screen, and what is on screen does
+not change with the theme, so each screen has one alt line and the light file and its `-dark` twin
+share it. Two of the filenames are older than the images: `04-categories.png` is the foot of the
+statistics screen and `05-export.png` is the data section of settings. They are file names, not
+screen names, and nothing user-facing repeats them.
 
-`[CONFIRM: every alt line above, against the new screenshots, once they exist. QUESTIONS.md item 60 is open on who captures them and at which device size; the calendar and statistics screens are the two the case study cannot do without. If a captured screen shows something other than the line describes, the alt is rewritten, not stretched.]`
+- **Alt, `01-home.png` and `01-home-dark.png`:** `The Pocket Manager home screen, showing September's balance with the month's income and spending under it, above the day's transactions.`
+- **Alt, `02-calendar.png` and `02-calendar-dark.png`:** `The Pocket Manager calendar screen, with 3 September picked out on the month grid and that day's three records below it, beside the day's balance and the month's.`
+- **Alt, `04-categories.png` and `04-categories-dark.png`:** `The Pocket Manager statistics screen, showing seven days of spending as a bar chart and, further down the same screen, each category's share of it as a percentage.`
+- **Alt, `05-export.png` and `05-export-dark.png`:** `The Pocket Manager settings screen, scrolled to the rows that export the data, import it and share it as a CSV file, each of the three tagged Beta.`
+
+Three things this section used to get wrong, all of them settled by the images. There is no
+categories list on a screen of its own: it is the last card on the statistics screen, which is why
+the third line describes one screen and not two. That card prints percentages, not rupee totals,
+so the line says percentage. And export has no screen of its own: it is a row in settings, and the
+app tags it and its two neighbours Beta on screen, so the alt says so rather than cropping it out.
+The statistics range on that capture is seven days while the home and calendar screens are monthly,
+which the third line states rather than smoothing over.
 
 ### 4.8 Meta
 
@@ -590,15 +692,29 @@ The email-capture section that stood here is cut: item 11 was answered no, so th
 no address, ships no field, and posts to no endpoint. Item 69 closed the same question for the
 whole site, email only and no form anywhere, so nothing reopens this one either.
 
-What ships instead is images. Item 10 cleared the five real-device screenshots and the store icon
-from `assets/brand/store/`. The feature graphic is excluded, because it carries the placeholder
-wordmark and no asset on this site prints that name.
+What ships instead is images. Item 10 cleared five screenshots and the store icon from
+`assets/brand/store/`, copied to `docs/assets/wedding-planner/`. The feature graphic is excluded,
+because it carries the placeholder wordmark and no asset on this site prints that name. Of the
+five, one is cleared to publish, two are waiting, and two never publish at all.
 
-- **Alt, planning board:** `The planning board, with each function of the wedding on its own row, carrying its own guest list and its own headcount.`
-- **Alt pattern for the other four:** `{What the screen shows}, in the app's own words.` Each line
-  is written against the image that ships and names only features the §5.3 list already names. A
-  screenshot showing anything outside that list is not used, because describing it here would
-  describe the feature §5.3 forbids describing.
+- **Alt, `01-planning-board-functions.png`:** `The planning board, with a card for each function of the wedding, each carrying its own date and its own colour.`
+
+That is the only line settled. It describes the screen and stops there: the card for each function
+is §5.2's whole argument and §5.3's first board item, and the alt claims nothing the image does not
+show, so it does not say guest list or headcount, which this capture does not print.
+
+`03-money-who-paid-what.png` and `04-money-payment-schedule.png` are the two money screens. Both
+sit inside §5.3's money item, and neither is written until item 73 answers, because an alt line
+that describes an image the page may not use is a line written twice.
+
+- **Alt, `03-money-who-paid-what.png`:** `[CONFIRM: item 73]`
+- **Alt, `04-money-payment-schedule.png`:** `[CONFIRM: item 73]`
+
+`02-planning-board-compare.png` and `05-compare-view-hindi.png` do not ship, in any round. Both
+show a board of shortlisted options with quoted prices, which is outside the §5.3 list, and this
+page does not print an image of a feature it will not describe. No alt line is written for either,
+because copy that is never used still has to be read by somebody. The Hindi interface §5.3 names
+is real, but the only capture of it is one of these two, so this page ships no Hindi screenshot.
 
 ### 5.6 Meta
 
@@ -633,11 +749,20 @@ that makes the studio's delivery model credible.
 - **Headline:** `Sahib Singh`
 - **Role line:** `AVP, Mobile. Native iOS, native Android, KMP and Flutter, with production work shipped in all four.`
 - **Body:** `Seven years, four companies, and no single platform to narrow him to. At Keenai Global he's a Builder: features end to end, backend through testing, with AI, in wealth-tech for Indian HNIs, UHNIs and family offices. That matters here more than anything else on this page. The delivery model this studio sells isn't a theory he's trying out on clients. It's how he already works every day, in a regulated domain with real money and real auditors attached.`
-- **Map lead-in**, the one line above the coverage map (DESIGN.md §F.7, ≤ 14 words): `Five surfaces, five places. A filled cell means a product we can name.`
+- **Map section line**, the display-section heading above the coverage map, sitting above the lead-in (DESIGN.md §F.7, §F.8, ≤ 5 words): `What he ships and where` **(5 words)**
+- **Map lead-in**, the one line above the coverage map, under the section line (DESIGN.md §F.7, ≤ 14 words): `Five surfaces, five places. A filled cell means a product we can name.`
 - **Texture line, placed after the work cards:** `One more thing worth noticing about the list above: travel bookings, then investing, then wealth, with fleet telematics the one exception. Three of the four put him next to other people's money, which is not a place anyone lands by accident.`
 
 Note on the lead-in. It is 13 words and names the axes, not a claim: five surfaces against five
 places, and a filled cell is one with a product behind it.
+
+Note on the section line, which closes the copy gap `docs/reviews/runB-design-review.md` S6
+recorded. The heading and the lead-in under it do different jobs and must not say the same thing
+twice: the heading is the plain-English subject of the thing below it, and the lead-in is the
+precise one, with the numbers and the rule for reading a cell. So the heading names the two axes in
+words a stranger has already, what he ships and where he shipped it, and leaves *five*, *surfaces*
+and *filled cell* to the line beneath it. It is the design's drafted `Where he has shipped` with the
+other axis added, because a map with columns is not only about where.
 
 Item 72 is the owner's own clarification of item 45 and it settles both open columns, which is the
 case DESIGN.md §F.1 designed for and the better of the two outcomes it planned around. At smallcase
@@ -647,6 +772,18 @@ behind it, so the honest line drafted for the outlined state comes out of the pa
 existed to name a gap, and there is no gap. Nothing else on the page changed with it.
 
 ### 6.2 Work cards
+
+- **Cards section line**, the display-section heading above the work-card list (DESIGN.md §F.7,
+  §F.8, ≤ 5 words): `The roles behind the map` **(5 words)**
+
+The second half of S6. DESIGN.md §F.6 gives this section its job in one sentence: the map makes the
+claim and the cards are the receipts, and each attributed cell is the same company as a card below
+it. The heading says that and nothing else, so a reader arriving at a list of five companies knows
+it is the same five they have just read across the top of the map rather than a second, unrelated
+history. The design's drafted `Seven years, four companies` is not used: §6.1's body opens with that
+exact clause, four is the count of employers where the list below runs to five cards, and a count is
+not what the section is for. Sentence case, no marker, nothing here that the map does not already
+print.
 
 Content per role, in the §7 table. Every *confirm* row in that table has now been read against the
 resume, in `FACTS.md` section (g), and cards 2, 3 and 4 carry the result. Card hierarchy per §6.1:
@@ -823,17 +960,31 @@ history is not a weaker one and visible padding says otherwise.
 
 Dates and titles on all three cards are the resume's, not the brief's. The brief was wrong in three
 places and `FACTS.md` rows 47, 48 and 50 caught each one: her Naskay title, her Motive title, and
-the Naskay-to-HSBC boundary, which is August 2021 on both sides rather than a July handover.
+the Naskay-to-HSBC boundary, which is August 2021 on both sides rather than a July handover. The
+months settle which card a boundary belongs to; they are not printed. Every `Years` field on this
+page and on `/sahib/` prints years only, because DESIGN.md §D.5 puts the years in the price position
+and a month makes that line longer without making it more useful to a reader scanning duration.
 
 **Card 1: Motive**
 
 - **Company:** `Motive`
 - **What they do:** `Fleet management, US.`
-- **Years:** `Jan 2024 – now`
+- **Years:** `2024 – now`
 - **Role:** `Software Engineer 2`
 - **Products and stack:** `Motive Fleet App. Kotlin, Coroutines, Compose, and KMP business-logic modules under Clean Architecture. Bluetooth device-verification flows, CI/CD and workflow automation.`
 - **Ownership line:** `She owns app releases there: phased rollouts, crash and ANR monitoring, and the fixes that follow.`
 - **Her own account, attributed:** `By her account, a 99.8% crash-free rate held and about 20% off startup time, from cold-start and dependency work.`
+- **Android-edge annotation (Motive)**, the small print on the Android edge's Motive card (DESIGN.md
+  §G.3a, item T1, ≤ 20 words): `Jetpack Compose migration, and the Android releases she owns: phased rollouts, crash and ANR monitoring.`
+
+Fifteen words. This is the third printing of the name Motive in the band and the only one that is
+Android-only, which is what makes "one company, three layers" legible: Compose is an Android
+toolkit, and the release path she owns is a Play Store path, so neither can sit in the shared core.
+The KMP business-logic modules and Clean Architecture stay in the core card's stack line above, and
+the Fleet App stays on the iOS edge. `FACTS.md` row 51 is the source for both halves of the line and
+marks them OWNER-PROVIDED, so the line stays descriptive of her work and claims nothing about
+Motive's engineering at large. The two figures do not repeat here: §7.2 attributes them once, on the
+core card, and once per page is the rule.
 
 The two figures print only in that attributed form. `FACTS.md` row 52 clears them for publication
 and is explicit about why the attribution is not optional: Motive does not publish the numbers, so
@@ -844,7 +995,7 @@ uncheckable statistic as if it had checked it.
 
 - **Company:** `HSBC`
 - **What they do:** `Global bank.`
-- **Years:** `Aug 2021 – Dec 2023`
+- **Years:** `2021 – 2023`
 - **Role:** `Software Engineer`
 - **Products and stack:** `Mobile banking. Migration to MVVM, UI performance work, and diagnosis of production issues.`
 
@@ -855,7 +1006,7 @@ answer wins over the document.
 
 - **Company:** `Naskay Technologies`
 - **What they do:** `Mobile and product studio, Noida. Around 20 people, client work.`
-- **Years:** `Nov 2020 – Aug 2021`
+- **Years:** `2020 – 2021`
 - **Role:** `Android Intern`
 - **Products and stack:** `Kotlin, Glide, Retrofit. A UI rebuild, APK size cut through code and resource work, and refactoring.`
 - **Project line:** `The Jillian Michaels fitness app, built at Naskay for a US client.`
@@ -1008,6 +1159,10 @@ second link and the third are cut. The joke is the empty room and it lives entir
 so the copy names none of it: no desks, no chairs, no "nobody's at this desk". A line explaining a
 visual joke kills the joke and doubles the page.
 
+The persistent contact plate also renders here, and it is site chrome specified by DESIGN.md §B.10
+for every page rather than this page's link, so the page's own content stays a headline and one link
+home.
+
 ---
 
 ## 10. Alt text and accessible names
@@ -1145,23 +1300,22 @@ the scene is actually on screen and the lines do the work they were written for.
 
 ## Appendix B. Every `[CONFIRM]` and `[FILL]`, numbered for QUESTIONS.md
 
-Rebuilt again in round 8, on the same rule round 4 set: a marker survives only if it names an open
+Rebuilt again in round 11, on the same rule round 4 set: a marker survives only if it names an open
 item in QUESTIONS.md, or a fact that no round can ever verify and only the owners can supply.
 Numbering follows the surviving markers in document order, so the old C-numbers do not carry across
-rounds. Round 8 closed four of round 7's six. Design review has an owner, both of them, under item
-70 and human gate 3. The resume cross-check item 61 made possible has been run, and section (g)'s
-corrections are in the page. The post mapping is resolved out of the Orchestrator's Chrome notes.
-And the reaction figure stopped being permanently unverifiable the moment somebody read it off the
-post page in a logged-in session, which is what `FACTS.md` rows 40 to 42 record.
+rounds. Round 8 closed four of round 7's six. Round 11 closed round 8's first one: the Pocket
+Manager captures exist, item 60 recorded what is on each of them, and §4.7's four alt lines are
+written against the images rather than against a plan for them, so §4.7 carries no marker now.
 
-What is left is the two markers that wait on images nobody has made yet. Both are alt text, and an
-alt line cannot be settled against an image that does not exist.
+What is left is one marker on an image nobody has made yet and two on images nobody has cleared
+yet. All three are alt text, which is the only kind of copy that cannot be settled by a copy round:
+it describes a specific picture, and either the picture or the permission to use it is missing.
 
 ### CONFIRM. Fact Checker owns these. An unverifiable claim gets cut, not softened.
 
 | # | Where | What needs confirming | Traces to |
 |---|---|---|---|
-| C1 | §4.7 | Every Pocket Manager screenshot alt line, against the new screenshots. Item 16 replaced the store screenshots with fresh ones from the latest build, and item 60 put the capture on an agent running that build on an emulator or simulator. The images do not exist yet, and no alt line is settled until they do. | Item 60, capture pending |
+| C1 | §5.5 | The alt lines for the two wedding-planner money screenshots, `03-money-who-paid-what.png` and `04-money-payment-schedule.png`. The images exist and are described in `docs/assets/wedding-planner/README.md`; what is open is whether the page uses them. Item 73 asks. Two markers, one question: the pair is answered together or not at all. | Item 73, open |
 | C2 | §10.1 | Both headshot alt lines, once the owners supply the portraits item 23 chose. Only they can produce the images, each approves their own, and the alt has to describe what actually ships. | Item 23, images pending |
 
 ### FILL. Only the owners can answer these.
@@ -1174,24 +1328,22 @@ and 18 (no personal data beyond GitHub and LinkedIn); F3 by items 4 to 8; F4, F5
 which chose the full name-agnostic page, so a missing product name and a missing store link are the
 shipping state of that page rather than a hole in it; F7 and F13 by item 69, which answered email
 only and no form, on this site and on the wedding planner page alike; F8 by
-item 44 and the codebase audit in `FACTS.md` section (d); F9 by item 16, with only the capture
-logistics left open as C1; F10, F11 and F12 by items 1, 2, 3 and 53.
+item 44 and the codebase audit in `FACTS.md` section (d); F9 by item 16 and item 60, whose captures
+closed the last of it; F10, F11 and F12 by items 1, 2, 3 and 53.
 
 **Totals: 2 distinct `[CONFIRM]` questions and 0 `[FILL]`. 2 open items, down from 6, from 8 and
 from 33.**
 
-A grep of this document finds 2 `[CONFIRM:` and 0 `[FILL:` markers, once the two legend lines in
+A grep of this document finds 3 `[CONFIRM:` and 0 `[FILL:` markers, once the two legend lines in
 "How to read this document" and the quoted strings in this appendix's own heading, totals line and
-count paragraph are excluded. There are no cross-references: every marker appears exactly once, in
-one section, so the marker count and the question count are the same number.
+count paragraph are excluded. Three markers, two questions: C1 stands twice, once on each of the
+two money screenshots item 73 rules on together, and it is the only marker in this document that
+appears more than once. C2 appears once.
 
-Round 8 resolved four markers and added none. Design review went to Sahib and Tanya under item 70
-and human gate 3; it has its own gate label in §2.4 now and its own line in §2.6. The resume
-cross-check ran, so §6's page-level marker is replaced by the corrections it produced. The post
-mapping came out of item 62's Chrome notes and prints as four link targets in §6.3. The reaction
-figure came off the post page itself, so the sentence that carried it lost both its hedge and its
-marker.
+Round 11 resolved one marker and added one question's worth of them. The Pocket Manager captures
+landed, so §4.7's alt lines are written and its marker is gone; the wedding-planner captures landed
+too, but two of the five are outside §5.3 and never ship, one is cleared and written, and the last
+two wait on item 73. Neither survivor can be resolved by a copy round: C1 unblocks when item 73 is
+answered, C2 when the owners supply their portraits.
 
-Neither of the two survivors may reach production unresolved, and neither of them can be resolved
-by a copy round: both wait on an image. C1 unblocks when the screenshots are captured, C2 when the
-owners supply their portraits.
+Neither survivor may reach production unresolved.

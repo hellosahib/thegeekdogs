@@ -199,3 +199,76 @@ Four of these were real resolutions to previously-open items, not new informatio
 Section (g) resume cross-check: 3 CONTRADICTED (Motive title, Motive start month, smallcase end date/duration) + 1 CONTRADICTED (Pocket Manager date range, two owner sources disagreeing) + 1 CONTRADICTED (Udacity nanodegree naming) = **5 CONTRADICTED rows**. 1 N/A (Motive end date, resume predates it, cannot speak to it either way). 1 dedicated CONTRADICTED (partial) row for the item 45 native-iOS/KMP tension. Remaining resume rows (Tickertape/smallcase work, Motive work, Cleartrip work, education, three of five certification lines, languages) are OWNER-PROVIDED, several newly corroborating what was previously LinkedIn-only, two flagging brand-new unprinted facts. LinkedIn posts: 4 rows (40, 41, 42, 42a) upgraded OWNER-PROVIDED -> CONFIRMED, 1 new row (42b) added as CONFIRMED. Owner-answer rows: 4 new OWNER-CONFIRMED rows (items 56, 63, 68, 69) plus one logged engineering note (item 67). Seven new questions for the owners raised in section (j), all narrowly scoped to what this round could not resolve on its own.
 
 Written to /Users/sahib.singh/FlutterProjects/tgd_website/FACTS.md: updated the intro paragraph to name the three Round 4 sources; edited rows 40, 41, 42, 42a in place and added row 42b; added section (g) (resume cross-check, ~17 rows including the item 45 discussion), section (h) (LinkedIn posts pointer/caveat), section (i) (owner answers 56-69, 5 rows), and section (j) (7 questions for the owners); updated the Round 3 must-cut-or-confirm list items 1, 2, 3 and 6, and item 8's sub-bullets, with resolution notes rather than deleting the original text.
+
+---
+
+## Round 5 (2026-09-05) — built-output fact check, `dist-runA`
+
+Different job this round: not auditing `COPY.md` against sources, but auditing the frozen build at
+`.../scratchpad/dist-runA` against `COPY.md` itself — what a browser actually renders. Wrote a small
+Python script to strip tags and pull out visible text, JSON-LD, meta tags, `<img>` alts and
+`<a href>` targets from all six HTML files, then diffed by hand against `COPY.md` §1–§10 and
+Appendix B, plus spot-checked images (four Pocket Manager screenshots, one wedding-planner
+screenshot, all five OG PNGs) with the Read tool directly rather than trusting filenames or alt
+text.
+
+**Headline finding: `/sahib/` and `/tanya/` do not exist in this build.** Sitemap lists only five
+URLs (`/`, `/contact/`, `/work/`, `/work/pocket-manager/`, `/work/wedding-planner/`); no
+`/sahib/index.html` or `/tanya/index.html` anywhere in `dist-runA`, and no sitemap entry for either.
+`COPY.md` §6/§7 write two complete pages that are simply not present in what a visitor would see.
+Cross-checked against `docs/reviews/runA/notes-a.json` (this same run's own a11y tab-stop capture)
+and it independently corroborates: tab order on every page jumps `"TheGeekDogs, home"` →
+`"Work"`, confirming the nav was already missing its Sahib/Tanya items at capture time, not an
+artifact of my extraction method.
+
+Direct consequences traced and written up as separate numbered findings rather than folded into
+finding 1, since each is independently checkable and each would need its own fix even after the
+missing routes are built: the header/footer nav is short two of its four required items; the
+`/` work-card strip (§2.9a) has no `<a>` element in either row (the "Sahib's/Tanya's work in full"
+links have nowhere to point); and the persistent contact plate — wired sitewide including onto
+`/404.html` — puts a second link on the 404 page, directly contradicting §9's explicit "one link
+only, the second and third are cut" rule.
+
+**Other findings, independent of the missing routes:**
+- Tanya's two work-card-strip entries on `/` print year-only ("2024 – now", "2021 – 2023") where
+  §7.2 (which §2.9a says to print verbatim) gives month-level dates ("Jan 2024 – now", "Aug 2021 –
+  Dec 2023"). Sahib's two cards are correctly year-only, because his own source fields are
+  year-only — this is specific to Tanya's row.
+- The persistent contact plate's rendered text (`thegeekdogs@gmail.com`, no `aria-label`) doesn't
+  match `COPY.md` §1's own spec for it (`Start a project` label, an accessible name built around
+  that label) — but does match the *later* `QUESTIONS.md` item 53 decision and §8.2's own note
+  about "the plate" being an address-over-mailto, not a label-over-mailto. §1 was never edited to
+  reconcile with that later decision, so `COPY.md` itself now carries two contradictory specs for
+  one element. Flagged as a copy fix, not a build bug — the build followed the newer, correct
+  intent; the document didn't catch up.
+
+**Clean sweep, worth recording since it's the majority of the audit:** marker/forbidden-word grep
+across the whole build (`[CONFIRM`, `[FILL`, `TODO`, `placeholder`, `Milan`, `wedme`, `lorem`,
+`example.com`, `href="#"`, `New Delhi`, `Delhi`, both phone numbers, `on-device`, `bride`, `groom`,
+`ad-free`, `invite`, `co-planner`, `plan together`) returned **zero hits, on every term**. JSON-LD
+(Organization, two Persons, two SoftwareApplications) matches `FACTS.md`-confirmed facts exactly —
+names, `sameAs` URLs, the 4.3/24 `aggregateRating`, the Play Store URL, no invented pronouns, no
+address beyond Bengaluru. Meta (title/description/OG/canonical/robots/theme-color) is fully
+compliant on all six pages, including `noindex` correctly scoped to 404 only and both light/dark
+`theme-color` values present everywhere. All five alt lines that do ship (four Pocket Manager, one
+wedding-planner) match `COPY.md` verbatim, and the images behind them were opened directly and show
+no placeholder branding. Stage-indicator strings match §10.4's exact patterns on every page they
+appear. No stale 4.6★ rating and no "50+" anywhere in the build (the only `4.6` substring found is
+unrelated SVG icon path data). No Engineer-authored copy found anywhere — every shipped string
+traces to `COPY.md`, `FACTS.md`, or a `QUESTIONS.md` owner answer.
+
+### Verdict
+
+**BLOCKED**, not merely changes-requested — two of the site's core routes, extensively fact-checked
+across three prior rounds, render nowhere in this build, and that absence actively breaks the nav
+and the 404 page's own explicit single-link rule. Everything that did ship is clean. Written to
+`docs/reviews/runA-fact-check.md`: verdict, per-route parity table, marker-leak sweep, JSON-LD/meta/
+image findings, and six numbered differences with route, built string and approved string for each.
+
+## Round 6 — built-output pass, `dist-runB` (all seven routes + 404)
+
+`/sahib/` and `/tanya/` now exist and match `COPY.md` §6/§7 verbatim, including the map, all work cards, both quotes, the four LinkedIn post links in the correct order/mapping (`FACTS.md` rows 40-42b), and the coverage-map cells (checked against item 72 and `DESIGN.md` line 1563 gloss — no cell claims an unsupported product). Run A's three findings are all resolved: 4-item nav everywhere, work-card-strip links present with correct accessible names, Tanya's strip years fixed to year-only. Marker/forbidden-word sweep: zero hits on all 20 terms, including on the two new routes and their OG PNGs. Pronouns clean (he/his for Sahib, she/her for Tanya, no crossover). JSON-LD `sameAs` exact on both Persons; no `jobTitle` field exists anywhere (never specified, not a gap). Meta and both new OG images match `COPY.md` §6.6/§7.6 character for character. No `<img>` on either person page (headshots correctly still pending). One difference recorded: the sub-768 plate still prints the full address instead of the `Email` label (`COPY.md` §1 round 10/13) — no CSS or JS in the build shortens it at any breakpoint. This was already known and assigned to the Engineer before this pass (`REVIEWS.md`, build run B note) and is recorded once here per instruction, not raised as new.
+
+### Verdict
+
+**APPROVED**, one difference (pre-flagged, non-blocking). Written to `docs/reviews/runB-fact-check.md`.

@@ -176,3 +176,7 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer: Recorded.
 72. Item 45 clarified by the owner, 2026-09-05: at smallcase (Tickertape) the work was native Android and native iOS first, then the move to a Flutter codebase. At Motive it is native Android, native iOS and KMP. Sahib's coverage map and work cards print exactly that. The resume's Tickertape lines (leading the Flutter iOS launch, migrating Android to Flutter) describe the later phase and do not contradict it.
     Answer: Recorded.
+73. Wedding planner screenshots (item 10). Of the five in the product repo, 02 and 05 show a vendor-comparison board, which the brief §5.3 forbids showing or implying. 01 shows the multi-function planning board and is the one the page needs. 03 (who paid what) and 04 (payment schedule) show features on the brief's reachable list, so the Orchestrator treats them as usable unless you say otherwise. Also: the repo records them as iPhone simulator captures, not physical-device captures; the site does not say "real-device screenshots" anywhere, so nothing prints wrong, noted for the record.
+    Answer:
+74. Screen-reader pass (brief §12): one of you runs VoiceOver over the home page and one person page once the floor scene is in, and notes anything read out of order or silent. No agent can enable VoiceOver. The keyboard order and accessible names are already verified by script.
+    Answer:

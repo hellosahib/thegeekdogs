@@ -1,0 +1,157 @@
+{
+  "requestedUrl": "http://localhost:8901/sahib/",
+  "finalUrl": "http://localhost:8901/sahib/",
+  "fetchTime": "2026-09-05T12:27:38.123Z",
+  "formFactor": "mobile",
+  "throttlingMethod": "devtools",
+  "categories": {
+    "performance": {
+      "score": 1,
+      "title": "Performance"
+    },
+    "accessibility": {
+      "score": 1,
+      "title": "Accessibility"
+    },
+    "best-practices": {
+      "score": 1,
+      "title": "Best Practices"
+    },
+    "seo": {
+      "score": 1,
+      "title": "SEO"
+    }
+  },
+  "audits": {
+    "largest-contentful-paint": {
+      "score": 1,
+      "numericValue": 1446.447,
+      "displayValue": "1.4 s"
+    },
+    "cumulative-layout-shift": {
+      "score": 1,
+      "numericValue": 0,
+      "displayValue": "0"
+    },
+    "total-blocking-time": {
+      "score": 1,
+      "numericValue": 0,
+      "displayValue": "0 ms"
+    },
+    "interactive": {
+      "score": 1,
+      "numericValue": 1446.447,
+      "displayValue": "1.4 s"
+    },
+    "speed-index": {
+      "score": 1,
+      "numericValue": 1464,
+      "displayValue": "1.5 s"
+    },
+    "first-contentful-paint": {
+      "score": 0.96,
+      "numericValue": 1446.447,
+      "displayValue": "1.4 s"
+    },
+    "errors-in-console": {
+      "score": 1
+    },
+    "is-crawlable": {
+      "score": 1
+    },
+    "resource-summary": {
+      "score": 1,
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "label",
+            "valueType": "text",
+            "label": "Resource Type"
+          },
+          {
+            "key": "requestCount",
+            "valueType": "numeric",
+            "label": "Requests"
+          },
+          {
+            "key": "transferSize",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          }
+        ],
+        "items": [
+          {
+            "resourceType": "total",
+            "label": "Total",
+            "requestCount": 6,
+            "transferSize": 154501
+          },
+          {
+            "resourceType": "font",
+            "label": "Font",
+            "requestCount": 2,
+            "transferSize": 134157
+          },
+          {
+            "resourceType": "stylesheet",
+            "label": "Stylesheet",
+            "requestCount": 1,
+            "transferSize": 12614
+          },
+          {
+            "resourceType": "document",
+            "label": "Document",
+            "requestCount": 1,
+            "transferSize": 6697
+          },
+          {
+            "resourceType": "other",
+            "label": "Other",
+            "requestCount": 2,
+            "transferSize": 1033
+          },
+          {
+            "resourceType": "image",
+            "label": "Image",
+            "requestCount": 0,
+            "transferSize": 0
+          },
+          {
+            "resourceType": "media",
+            "label": "Media",
+            "requestCount": 0,
+            "transferSize": 0
+          },
+          {
+            "resourceType": "script",
+            "label": "Script",
+            "requestCount": 0,
+            "transferSize": 0
+          },
+          {
+            "resourceType": "third-party",
+            "label": "Third-party",
+            "requestCount": 0,
+            "transferSize": 0
+          }
+        ]
+      }
+    },
+    "color-contrast": {
+      "score": 1
+    },
+    "image-alt": {
+      "score": null
+    },
+    "link-name": {
+      "score": 1
+    },
+    "button-name": {
+      "score": 1
+    },
+    "aria-allowed-attr": {
+      "score": 1
+    }
+  }
+}

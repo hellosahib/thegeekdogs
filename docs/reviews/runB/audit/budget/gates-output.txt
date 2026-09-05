@@ -1,0 +1,74 @@
+=== check-floor-budget ===
+      floor markup + 0 external + 2 inline module script(s): 32602 B raw, 6149 B gzipped
+      budget 81920 B gzipped
+PASS  check-floor-budget
+
+=== measure-bundles (qa:weight) ===
+      JavaScript
+        (none)
+        subtotal                                                                      0 B gz
+      CSS
+        ../../../../private/tmp/claude-502/-Users-sahib-singh-FlutterProjects-tgd-website/5beb27f0-7e2b-48fb-a55a-4ca9ee01f2ad/scratchpad/dist-runB/_astro/style.DXSXCiaU.css    69043 B raw     12425 B gz
+        subtotal                                                                  12425 B gz
+      Fonts (woff2, already compressed)
+        ../../../../private/tmp/claude-502/-Users-sahib-singh-FlutterProjects-tgd-website/5beb27f0-7e2b-48fb-a55a-4ca9ee01f2ad/scratchpad/dist-runB/fonts/anek-latin-latin-standard-normal.woff2   103760 B raw    103760 B gz
+        ../../../../private/tmp/claude-502/-Users-sahib-singh-FlutterProjects-tgd-website/5beb27f0-7e2b-48fb-a55a-4ca9ee01f2ad/scratchpad/dist-runB/fonts/instrument-sans-latin-wght-normal.woff2    30092 B raw     30092 B gz
+        subtotal                                                                 133852 B gz
+      inline JS in the home HTML (counted inside it)                 1253 B gz  (3356 B raw)
+      home HTML                                                   11944 B gz
+      home page total (HTML + CSS + JS + fonts)                  158221 B gz
+PASS  qa:weight
+
+=== check-floor-pointer (independent re-run against frozen dist-runB) ===
+      pointer 360 light: 10 of 10 stations
+      nameplates 360 light: 10 of 10 clear of every other station
+      pointer 390 light: 10 of 10 stations
+      nameplates 390 light: 10 of 10 clear of every other station
+      pointer 768 light: 10 of 10 stations
+      nameplates 768 light: 10 of 10 clear of every other station
+      pointer 1024 light: 10 of 10 stations
+      nameplates 1024 light: 10 of 10 clear of every other station
+      pointer 1440 light: 10 of 10 stations
+      nameplates 1440 light: 10 of 10 clear of every other station
+      pointer 1920 light: 10 of 10 stations
+      nameplates 1920 light: 10 of 10 clear of every other station
+      pointer 360 dark: 10 of 10 stations
+      nameplates 360 dark: 10 of 10 clear of every other station
+      pointer 390 dark: 10 of 10 stations
+      nameplates 390 dark: 10 of 10 clear of every other station
+      pointer 768 dark: 10 of 10 stations
+      nameplates 768 dark: 10 of 10 clear of every other station
+      pointer 1024 dark: 10 of 10 stations
+      nameplates 1024 dark: 10 of 10 clear of every other station
+      pointer 1440 dark: 10 of 10 stations
+      nameplates 1440 dark: 10 of 10 clear of every other station
+      pointer 1920 dark: 10 of 10 stations
+      nameplates 1920 dark: 10 of 10 clear of every other station
+PASS  check-floor-pointer
+
+=== qa-worlds ===
+      / light                #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /work/ light           #f1f3f0 / #e2e6e1 / #0f2a2e / #f2a93b
+      /sahib/ light          #eeeff4 / #e0e2ec / #1a2033 / #f2a93b
+      /tanya/ light          #edeeee / #dcdede / #1b2020 / #8a5a08
+      / dark                 #18292d / #213539 / #e8ede9 / #f2a93b
+      /work/ dark            #18292d / #213539 / #e8ede9 / #f2a93b
+      /sahib/ dark           #161c2e / #1f2841 / #e9eaf0 / #f2a93b
+      /tanya/ dark           #191b1b / #282b2b / #e9eaea / #f2a93b
+      32 computed token(s) checked on 4 routes in 2 schemes
+PASS  qa:worlds
+
+=== qa-plate ===
+      432 load-bearing mark(s) measured across 8 routes at 8 widths
+PASS  qa:plate
+
+=== qa-console ===
+      8 route(s) visited: /404.html, /contact/, /, /sahib/, /tanya/, /work/, /work/pocket-manager/, /work/wedding-planner/
+PASS  qa:console
+
+=== qa-images ===
+PASS  qa:images
+
+=== qa-links ===
+      46 link(s) OK, 71 skipped (mailto and other non-http schemes)
+PASS  qa:links

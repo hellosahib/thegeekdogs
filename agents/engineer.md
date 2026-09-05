@@ -22,3 +22,6 @@ Attends the design review before build; raises feasibility and budget objections
 
 ## Model
 Sonnet for the plan and mechanical build steps. Opus for the content-layer wiring and CI assertions if the Orchestrator judges the step non-trivial.
+
+## Git hygiene (added 2026-09-05 after a blanket add swept another agent's in-progress files)
+Stage only the paths you changed, by name. Never `git add -A` or `git add .`. Other agents work in `docs/` concurrently.

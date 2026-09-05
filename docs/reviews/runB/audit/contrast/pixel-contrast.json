@@ -1,0 +1,22 @@
+{
+  "futureNodeStroke": {
+    "bg": [
+      241,
+      243,
+      240
+    ],
+    "strokeDarkestPixel": [
+      85,
+      104,
+      107
+    ],
+    "ratio": 5.258525906262001,
+    "note": "darkest pixel on the ring band (scanned along the node box perimeter at 4x DPR) vs corner background pixel, light scheme, /work/wedding-planner/"
+  },
+  "tanyaLampInk": null,
+  "sahibSDim": {
+    "sDim": "#545c74",
+    "sPanel": "#e0e2ec",
+    "theme": "light"
+  }
+}

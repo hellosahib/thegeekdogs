@@ -1,0 +1,48 @@
+{
+  "sahib": {
+    "schemeBeforePrint": "dark",
+    "floorDisplay": "absent",
+    "toggleDisplay": "none",
+    "plateDisplay": "none",
+    "bodyBg": "rgb(238, 239, 244)",
+    "bodyColor": "rgb(26, 32, 51)",
+    "cardStyles": [
+      {
+        "transform": "none",
+        "boxShadow": "none",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "transform": "none",
+        "boxShadow": "none",
+        "background": "rgb(255, 255, 255)"
+      }
+    ],
+    "h1": "Sahib Singh",
+    "printAddress": "sahiboffc@gmail.com",
+    "printAddressCount": 1
+  },
+  "tanya": {
+    "schemeBeforePrint": "dark",
+    "floorDisplay": "absent",
+    "toggleDisplay": "none",
+    "plateDisplay": "none",
+    "bodyBg": "rgb(237, 238, 238)",
+    "bodyColor": "rgb(27, 32, 32)",
+    "cardStyles": [
+      {
+        "transform": "none",
+        "boxShadow": "none",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "transform": "none",
+        "boxShadow": "none",
+        "background": "rgb(255, 255, 255)"
+      }
+    ],
+    "h1": "Tanya Jain",
+    "printAddress": "jaintanya999@gmail.com",
+    "printAddressCount": 1
+  }
+}

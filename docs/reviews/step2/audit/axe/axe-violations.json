@@ -1,0 +1,22 @@
+{
+  "/index.html__light": {
+    "violations": [],
+    "passes": 39,
+    "incomplete": []
+  },
+  "/index.html__dark": {
+    "violations": [],
+    "passes": 39,
+    "incomplete": []
+  },
+  "/404.html__light": {
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  },
+  "/404.html__dark": {
+    "violations": [],
+    "passes": 38,
+    "incomplete": []
+  }
+}
