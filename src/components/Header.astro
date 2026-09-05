@@ -1,0 +1,40 @@
+---
+import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME } from '../lib/copy';
+
+/**
+ * COPY.md §1 gives four nav labels (Work, Sahib, Tanya, Contact). Those four
+ * routes are not built in this step, so their links are not rendered: a nav
+ * item pointing at a page that does not exist is a broken link, and the link
+ * checker is right to fail on one. They come back with the routes.
+ *
+ * QUESTIONS.md item 48: there is no logo. The name sets in the display face.
+ */
+---
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="site-header__wordmark" href="/" aria-label={WORDMARK_ACCESSIBLE_NAME}>{SITE_NAME}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background-color: var(--tgd-surface);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    min-block-size: 64px;
+  }
+
+  .site-header__wordmark {
+    font-family: var(--tgd-font-display);
+    font-weight: var(--wght-display);
+    font-variation-settings: 'wdth' var(--wdth-display);
+    font-size: var(--step-title);
+    line-height: var(--step-title-lh);
+    text-decoration: none;
+    color: var(--tgd-ink);
+  }
+</style>

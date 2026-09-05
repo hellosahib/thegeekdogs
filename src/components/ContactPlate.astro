@@ -1,0 +1,14 @@
+---
+import { STUDIO_EMAIL } from '../lib/copy';
+
+/**
+ * DESIGN.md §B.10 — `position: sticky; bottom: 0` on an element inside a wrapper
+ * spanning from the end of the hero to the start of the final CTA. It appears
+ * when the hero leaves, follows down the page, and retires on its own when the
+ * real CTA arrives. No JS, no scroll listener, no dismiss state.
+ *
+ * QUESTIONS.md item 53: the plate prints the address itself, not a label.
+ */
+---
+
+<a class="plate" data-cta="contact-plate" href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>

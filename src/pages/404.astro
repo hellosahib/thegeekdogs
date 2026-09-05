@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BACK_TO_STUDIO } from '../lib/copy';
+
+/*
+  COPY.md §9. Four words and one link. DESIGN.md §B.11's empty room is the
+  floor's slab and lamp, and the floor is not built in this step, so the page
+  ships with the copy and nothing standing in for the artwork.
+*/
+---
+
+<BaseLayout
+  title="Page not found | TheGeekDogs"
+  description="That page isn't here. One link back to the studio, and nothing else on it."
+  noindex
+>
+  <section class="section">
+    <div class="shell stack">
+      <h1>This page isn't here.</h1>
+      <p>
+        <a class="link" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>
+          {BACK_TO_STUDIO.label}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

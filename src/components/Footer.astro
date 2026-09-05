@@ -1,0 +1,31 @@
+---
+import { FOOTER, STUDIO_EMAIL } from '../lib/copy';
+
+/**
+ * COPY.md §1 footer, minus three groups that have no approved strings or no
+ * destination yet, listed here so they are not forgotten:
+ *   - the location line is an open [FILL] in COPY.md;
+ *   - the "Elsewhere" group needs the founders' profile URLs, which live on the
+ *     `people` collection and it is empty until the next step;
+ *   - the nav repeat points at four routes that are not built yet.
+ */
+---
+
+<footer class="site-footer">
+  <div class="shell stack">
+    <p>{FOOTER.studioLine}</p>
+    <p>
+      <a class="link" href={`mailto:${STUDIO_EMAIL}`}>{FOOTER.emailLabel}</a>
+    </p>
+    <p class="small muted">{FOOTER.employerNote}</p>
+    <p class="small muted">{FOOTER.rightsLine}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--tgd-surface-alt);
+    color: var(--tgd-ink);
+    padding-block: var(--space-48);
+  }
+</style>

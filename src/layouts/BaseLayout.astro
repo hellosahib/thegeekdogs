@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+import { SKIP_LINK } from '../lib/copy';
+
+interface Props {
+  /** COPY.md's meta title for the route. */
+  title: string;
+  /** COPY.md's meta description for the route. */
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  /** PLAN.md §1.2 — one attribute picks which token set is live. */
+  world?: 'studio' | 'sahib' | 'tanya';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  world = 'studio',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en" data-world={world}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- PLAN.md §1.5 — only the hero face is preloaded. Nothing else. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/anek-latin-latin-standard-normal.woff2"
+      crossorigin
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TheGeekDogs" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta name="twitter:card" content="summary" />
+
+    <Analytics />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{SKIP_LINK}</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

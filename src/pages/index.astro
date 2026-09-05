@@ -1,0 +1,164 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactPlate from '../components/ContactPlate.astro';
+import StageTrackCompact from '../components/StageTrackCompact.astro';
+import { STUDIO_EMAIL, CONTACT_AFFORDANCE } from '../lib/copy';
+
+/*
+  COPY.md §2. Only the approved, stable sections are built here:
+  §2.1 hero, §2.6 the four gates, §2.7 paragraph 1 and its link labels,
+  §2.8's stage strings for the compact track, §2.10 the final CTA, §2.11 meta.
+
+  Deliberately absent, because the copy or the destination is not settled:
+  - the hero's secondary button ("Look around the floor") -- it hands the
+    visitor to the floor, and the floor is not built in this step;
+  - §2.7's second link ("Read how it gets built") -- /work/pocket-manager/
+    does not exist yet;
+  - §2.2 the floor intro, §2.3-2.5 the cards, §2.9 "What you get", and §2.7's
+    privacy line and paragraph 2, which carry open [CONFIRM]/[FILL] markers.
+*/
+
+const gates = (await getCollection('gates')).sort((a, b) => a.data.order - b.data.order);
+
+const pocketManager = await getEntry('products', 'pocket-manager');
+const weddingPlanner = await getEntry('products', 'wedding-planner');
+
+if (!pocketManager || !weddingPlanner) {
+  throw new Error('Both products must exist in src/data/products before / can render.');
+}
+
+const runners = [pocketManager, weddingPlanner].map((product) => ({
+  label: product.data.descriptiveName,
+  stage: product.data.stage,
+}));
+
+const storeUrl = pocketManager.data.storeUrl;
+---
+
+<BaseLayout
+  title="TheGeekDogs, a two-person mobile studio"
+  description="Two-person mobile studio. Agents write most of the build; a person reviews the architecture, tests on real phones, and signs off before anything ships."
+  ogTitle="AI writes a lot of our code. It doesn't get the last word."
+  ogDescription="A two-person mobile studio with four human gates between the code and your users. Pocket Manager is live in the Play Store."
+>
+  <section class="section hero">
+    <div class="shell stack">
+      <h1>AI writes a lot of our code. It doesn't get the last word.</h1>
+      <p>
+        A two-person mobile studio. Agents do the volume work. Then a person reviews the
+        architecture, tests on real phones, and signs off on security.
+      </p>
+      <p class="cluster">
+        <a
+          class="button"
+          data-cta="hero-primary"
+          href={`mailto:${STUDIO_EMAIL}`}
+          aria-label={CONTACT_AFFORDANCE.accessibleName}
+        >
+          {CONTACT_AFFORDANCE.label}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- DESIGN.md §B.10: the plate spans from the end of the hero to the start of
+       the final CTA, and retires there on its own. -->
+  <div class="plate-span">
+    <section class="section bg-surface-alt section--reserve">
+      <div class="shell stack-loose">
+        <h2>Four things we don't hand to an agent.</h2>
+        <ol class="gates">
+          {
+            gates.map((gate) => (
+              <li class="gates__item stack-tight">
+                <h3>{gate.data.name}</h3>
+                <p>{gate.data.description}</p>
+              </li>
+            ))
+          }
+        </ol>
+        <p>That's the difference between generated software and shipped software.</p>
+      </div>
+    </section>
+
+    <section class="section section--reserve">
+      <div class="shell stack-loose">
+        <div class="stack">
+          <h2>We run this on our own app first.</h2>
+          <p>
+            Pocket Manager has been in the Play Store since 2020, maintained by the same pipeline
+            and the same review gates. 4.3 stars from 24 reviews, 1,000+ downloads, and it still
+            gets updates five years on.
+          </p>
+          {
+            storeUrl && (
+              <p>
+                <a class="link" href={storeUrl} rel="noopener">
+                  Open Pocket Manager in the Play Store
+                  <span class="sr-only"> Opens a new tab.</span>
+                </a>
+              </p>
+            )
+          }
+        </div>
+        <StageTrackCompact runners={runners} />
+      </div>
+    </section>
+
+    <ContactPlate />
+  </div>
+
+  <section class="section bg-room text-on-room">
+    <div class="shell stack">
+      <h2>Tell us what you're building.</h2>
+      <p>
+        One email, a real reply from one of us, and a straight answer about whether we're the right
+        fit. If we're not, we'll say so.
+      </p>
+      <p class="cluster">
+        <a
+          class="button button--lamp"
+          data-cta="final-cta"
+          href={`mailto:${STUDIO_EMAIL}`}
+          aria-label={`Email ${STUDIO_EMAIL} to start a project`}
+        >
+          {`Email ${STUDIO_EMAIL}`}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .gates {
+    list-style: none;
+    counter-reset: gate;
+    display: grid;
+    gap: var(--space-32);
+  }
+
+  .gates__item {
+    counter-increment: gate;
+  }
+
+  /* COPY.md §2.6 -- these are genuinely a sequence, so they are numbered.
+     Nothing else on the page gets numbers. */
+  .gates__item h3::before {
+    content: counter(gate) '. ';
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 768px) {
+    .gates {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-48);
+    }
+  }
+
+  /* DESIGN.md §B.10 -- every section the plate can overlay reserves its height,
+     so it never covers content and never causes CLS. */
+  .section--reserve {
+    padding-block-end: calc(var(--section-pad) + var(--plate-reserve));
+  }
+</style>
