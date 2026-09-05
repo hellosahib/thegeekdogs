@@ -234,6 +234,25 @@ const headings = STAGES.map((key) => STAGE_LABELS[key].label);
       min-block-size: calc(2 * var(--step-micro) * var(--step-micro-lh));
     }
 
+    /*
+      Run A item 10 — the label row is half a pitch wider than the axis it labels, so
+      centring all five put `Specced` 50px left of the band's left edge (into col 6, left
+      of `Pocket Manager`) and `Live` 50px past the axis's end and into the plate's 276px
+      band. The three middle labels stay centred on their own nodes; the two END labels
+      align to the ends of the AXIS instead, by taking half a pitch of padding on their
+      outer side. Measured at 1440 the row's ink now runs x 732 -> 1132, which is the
+      axis exactly (§B.10) and 32px clear of the plate's leading edge at 1164.
+    */
+    .track__head-cell:first-child {
+      text-align: start;
+      padding-inline-start: calc(var(--track-pitch) / 2);
+    }
+
+    .track__head-cell:last-child {
+      text-align: end;
+      padding-inline-end: calc(var(--track-pitch) / 2);
+    }
+
     .track__runner {
       gap: var(--space-12);
     }
