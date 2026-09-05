@@ -357,24 +357,64 @@ const figures = [
     color: var(--tgd-ink);
   }
 
-  /* Step-1 review item 7 — three across, numeral-large, Anek at wdth 87.5 with
-     tabular-nums, a micro label under each. §B.6 principle 2 makes the numbers the
-     second-loudest type on the site. */
+  /*
+    §B.8 round 13 — **below 768 the three figures STACK.** Three rows, one figure each:
+    the numeral in a 68px column from the content's own left edge (x 20 at 360) and the
+    micro label from x 104, on the SAME baseline, so each row reads "1,000+ downloads"
+    as a sentence rather than as a column heading over a caption.
+
+    This is the composition §I.1 row 1 rules in, and it is what closes four of `qa:plate`'s
+    seven sub-768 flags. §B.8's Pass-1 wireframe drew the three "3 across at 320: 96px
+    each", which predates the 128px plate band: the third column ran x 244 → 309 against a
+    band beginning at x 232, so the install count — the second-loudest type on the site by
+    §B.6 principle 2 — ended inside the plate. Stacked, the widest ink in the block is
+    `downloads` ending at **x 162**, a constant at every width below 768, against a band
+    that never begins before 232. 70px clear at 360, three times the 23px `/contact/`'s
+    own addresses hold at 1440.
+
+    68 + 16 = 104 is the label's origin, and the 16px column gap is the only spacing value
+    here that is not §B.8's own: it is the difference between the two coordinates the
+    section gives.
+  */
   .figures {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: var(--gutter);
+    row-gap: var(--space-16);
   }
 
   .figures__item {
     display: grid;
-    gap: var(--space-4);
+    grid-template-columns: 68px minmax(0, auto);
+    column-gap: var(--space-16);
+    /* One baseline for the numeral and its label — the whole of "the same baseline". */
+    align-items: baseline;
+    justify-content: start;
   }
 
   .figures__figure {
     font-size: var(--step-numeral-large);
     line-height: var(--step-numeral-large-lh);
+  }
+
+  /* Step-1 review item 7 — three across, numeral-large, Anek at wdth 87.5 with
+     tabular-nums, a micro label under each. §B.6 principle 2 makes the numbers the
+     second-loudest type on the site. From 768 up the band is 276 and §E.3's column
+     allocation (cols 1-5 of 8, cols 1-7 of 12) already holds the row clear of it, so the
+     row form returns unchanged. */
+  @media (min-width: 768px) {
+    .figures {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      row-gap: 0;
+    }
+
+    .figures__item {
+      grid-template-columns: none;
+      column-gap: 0;
+      align-items: stretch;
+      justify-content: stretch;
+      gap: var(--space-4);
+    }
   }
 
   .proof__caption {
