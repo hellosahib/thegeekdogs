@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContactPlate from '../../components/ContactPlate.astro';
 import { CONTACT } from '../../lib/copy';
 import { studioGraph } from '../../lib/jsonld';
 
@@ -39,6 +38,20 @@ const schema = await studioGraph();
   ogImage="contact"
   schema={schema}
 >
+  <!--
+    §B.10 round 12: **/contact/ carries no plate, at every width.** Review item C1 and §J.
+    Run A said this exception would be written and round 12 writes it: §J's row for the
+    route is "the second call to action. One email, one link, one answer", the page's
+    entire content is three printed addresses, and the plate was a fourth printing of the
+    first of them 300px from itself. A persistent affordance that repeats the page it is
+    resting on is not persistent, it is redundant. The cut is the duplicate; the plate is
+    unchanged everywhere else. It also retires the tightest clearance on the site — 738
+    against a band at 748 at 1024 — as something anyone has to keep checking.
+
+    The wrapper stays. It is what hands `main`'s growth down to the section that carries
+    `flex: 1 0 auto`, which is what keeps a bare --sheet strip from opening above the
+    footer on a short page, and it is now a wrapper with nothing sticky in it.
+  -->
   <div class="plate-span plate-span--page">
     <section class="section">
       <div class="shell grid intro">
@@ -68,8 +81,6 @@ const schema = await studioGraph();
         <p class="routes__engagement muted">{CONTACT.engagementLine}</p>
       </div>
     </section>
-
-    <ContactPlate />
   </div>
 </BaseLayout>
 
