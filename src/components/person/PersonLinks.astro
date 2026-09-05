@@ -36,9 +36,17 @@ interface Props {
     linkedin: LabelledLink;
     email: LabelledLink & { address: string };
   };
+  /**
+   * §J's pre-committed cut for `/sahib/`, review item S4: the page closed with
+   * `Sahib on GitHub · Sahib on LinkedIn · sahiboffc@gmail.com` and then, 40px under it,
+   * `sahiboffc@gmail.com` again at display size with a rule beneath. COPY §6.5 writes ONE
+   * email link. The one that stays is the closing one, which is the one §B.10's per-world
+   * address rule is about; this drops the duplicate from the links row.
+   */
+  omitEmail?: boolean;
 }
 
-const { person, links } = Astro.props;
+const { person, links, omitEmail = false } = Astro.props;
 ---
 
 <ul class="person-links">
@@ -64,11 +72,19 @@ const { person, links } = Astro.props;
       <span class="sr-only"> Opens a new tab.</span>
     </a>
   </li>
-  <li>
-    <a class="link" href={`mailto:${links.email.address}`} aria-label={links.email.accessibleName}>
-      {links.email.label}
-    </a>
-  </li>
+  {
+    !omitEmail && (
+      <li>
+        <a
+          class="link"
+          href={`mailto:${links.email.address}`}
+          aria-label={links.email.accessibleName}
+        >
+          {links.email.label}
+        </a>
+      </li>
+    )
+  }
 </ul>
 
 <style>

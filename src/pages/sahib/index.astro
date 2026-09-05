@@ -72,10 +72,17 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <!-- The page's centre. §F.1: the breadth itself is the composition. -->
+    <!-- The page's centre. §F.1: the breadth itself is the composition.
+
+         §F.4b's alternation puts NOTHING behind the map: it is the page's one loud thing
+         and the two --s-panel blocks step around it. COPY.md §6.1 round 14 supplies the
+         display-section line above it, which closes the copy gap review item S6 recorded:
+         the heading is the plain-English subject of the thing below it and the lead-in
+         under it is the precise one, with the numbers and the rule for reading a cell. -->
     <section class="section map-section section--reserve">
       <div class="shell grid">
         <div class="map-slot">
+          <h2 class="section-line">{SAHIB.mapSectionLine}</h2>
           <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
         </div>
       </div>
@@ -84,8 +91,9 @@ const schema = await personGraph(person);
     <!-- §F.6 — the cards live BELOW the map, as the attribution layer: the map makes the
          claim, the cards are the receipts, and each attributed cell is the same company
          as a card down here. -->
-    <section class="section cards-section section--reserve">
+    <section class="section bleed cards-section section--reserve">
       <div class="shell grid cards-grid">
+        <h2 class="section-line">{SAHIB.cardsSectionLine}</h2>
         <ul class="cards">
           {
             person.data.workHistory.map((role, index) => (
@@ -125,7 +133,7 @@ const schema = await personGraph(person);
       </div>
     </section>
 
-    <section class="section background-section section--reserve">
+    <section class="section bleed background-section section--reserve">
       <div class="shell grid split">
         <h2 class="split__heading">{SAHIB.background.heading}</h2>
         <ul class="split__body background">
@@ -142,7 +150,7 @@ const schema = await personGraph(person);
        CTA line, so the address is the whole block and no line is invented above it. -->
   <section class="section close">
     <div class="shell stack">
-      <PersonLinks person={person} links={SAHIB.links} />
+      <PersonLinks person={person} links={SAHIB.links} omitEmail />
       <p>
         <a
           class="close__address"
@@ -167,6 +175,41 @@ const schema = await personGraph(person);
     row-gap: var(--space-24);
   }
 
+  /*
+    §F.4b round 12, review item S1: **`/sahib/` was 5,235px of one fill and `--s-panel` was
+    never a section block.** Measured, every section computed `rgba(0,0,0,0)` over the body
+    at every width in both schemes, and only the map's cells took the token §F.4 has always
+    named for "the map's field, SECTION BLOCKS". Run A item 8 blocked both product pages
+    for exactly this and the fault moved to the longer page, where six sections separated
+    by space alone — 390 / 540 / 400px between the map, the cards and the writing — read as
+    an unfinished page rather than as a quiet one.
+
+    With `--s-fill` carrying the cells (§F.4b), `--s-panel` is free for the job it was
+    named for. §F.4b's alternation, and it steps around the map: intro ground, MAP GROUND
+    (the page's one loud thing, with nothing behind it), work cards PANEL, writing ground,
+    background PANEL, links and closing ground. Two blocks, not six, and neither is
+    adjacent to the map.
+
+    §D.7's controlled-backdrop rule already names `--s-ground` and `--s-panel` as the only
+    permitted card backdrops, so the cards on `--s-panel` are inside a case that is already
+    costed — 82% white over the light `--s-panel` is §F.4a's own worst case, `#F9FAFC` at
+    14.44 : 1 and 6.00 : 1 — and the stand takes whichever surface the card stands on.
+  */
+  .cards-section,
+  .background-section {
+    background-color: var(--s-panel);
+    color: var(--tgd-ink);
+  }
+
+  /*
+    COPY.md §6.1 and §6.2 round 14 — the two display-section lines review item S6 recorded
+    as a copy gap. §F.7 and §F.8 both draw them; COPY.md now writes them. Display-section
+    size, `--s-ink`, on the left edge of their own section (§F.4b).
+  */
+  .section-line {
+    margin-block-end: var(--space-32);
+  }
+
   /* §D.8 — the person's name and email print once at the top of page 1. On screen the
      address is the plate and the closing block; on paper it is this line. */
   .print-address {
@@ -182,14 +225,14 @@ const schema = await personGraph(person);
     max-inline-size: var(--measure-display);
   }
 
-  /* §F.4/§F.6 — the cards sit on his ground, which in his dark scheme is the worst case
-     and in his light one is the panel; the stand takes whichever the card stands on. */
+  /* §F.4/§F.6 — the cards sit on `--s-panel` from round 12 (§F.4b's alternation), so §D.2's
+     stand takes the panel: the stand's fill is the surface the card is standing ON. */
   .cards {
     list-style: none;
     display: grid;
     /* §D.1 — 28px keeps >= 20px of real air between tilted cards. */
     gap: 28px;
-    --card-stand-fill: var(--tgd-surface);
+    --card-stand-fill: var(--s-panel);
   }
 
   .cards-grid {
@@ -290,6 +333,14 @@ const schema = await personGraph(person);
     .close,
     .intro__portrait {
       display: none;
+    }
+
+    /* §F.4b's alternation is a screen device: on paper §D.8 wants ink on white, and a
+       browser suppresses the fill anyway, which would leave two bands that exist in one
+       printer's output and not another's. */
+    .cards-section,
+    .background-section {
+      background-color: transparent;
     }
 
     .print-address {

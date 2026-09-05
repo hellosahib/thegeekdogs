@@ -205,6 +205,16 @@ export const SAHIB = {
   roleLine:
     'AVP, Mobile. Native iOS, native Android, KMP and Flutter, with production work shipped in all four.',
   body: "Seven years, four companies, and no single platform to narrow him to. At Keenai Global he's a Builder: features end to end, backend through testing, with AI, in wealth-tech for Indian HNIs, UHNIs and family offices. That matters here more than anything else on this page. The delivery model this studio sells isn't a theory he's trying out on clients. It's how he already works every day, in a regulated domain with real money and real auditors attached.",
+  /**
+   * COPY.md §6.1 and §6.2, round 14 — the two display-section lines that close review item
+   * S6's copy gap. DESIGN.md §F.7 and §F.8 both draw a line above the map and a line above
+   * the cards; COPY.md now writes them, and neither is the design's own drafted string.
+   * The map's heading names the two axes in words a stranger already has and leaves
+   * `five`, `surfaces` and `filled cell` to the lead-in beneath it; the cards' heading says
+   * that the five companies above the map are the five below it.
+   */
+  mapSectionLine: 'What he ships and where',
+  cardsSectionLine: 'The roles behind the map',
   mapLeadIn: 'Five surfaces, five places. A filled cell means a product we can name.',
   textureLine:
     "One more thing worth noticing about the list above: travel bookings, then investing, then wealth, with fleet telematics the one exception. Three of the four put him next to other people's money, which is not a place anyone lands by accident.",
@@ -304,10 +314,21 @@ export const TANYA = {
   secondParagraph:
     'Underneath that is the shape she works on: a shared core, native code at the edges, and the developer practices that keep the two from drifting apart.',
 
-  /** COPY.md §7.1 — the only quoted material on the site. They must read as quotation. */
+  /**
+   * COPY.md §7.1 — the only quoted material on the site. They must read as quotation.
+   *
+   * **The quotation marks are part of the string, and they were being dropped** (review
+   * item T5, DESIGN.md §G.3a). COPY.md §7.1 supplies both quotes inside their marks and
+   * addresses a note to the Design Lead: "the two quotes are short and load-bearing… they
+   * must read as quotation, not as pull-quote decoration." Rendered, the marks were gone
+   * and the only cue left was a left rule, which is the pull-quote convention — the
+   * instruction inverted exactly, with `always looking for ways…` opening lower-case with
+   * nothing to say it is someone else's sentence. Transcribed verbatim now, marks
+   * included; the rule is what goes (§B.2, and §G.3a's T3 ruling on the same 2px stroke).
+   */
   quotes: [
-    'always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices',
-    'go-to person for KMP-related discussions',
+    '"always looking for ways to improve developer productivity, whether by refining workflows or introducing better development practices"',
+    '"go-to person for KMP-related discussions"',
   ],
   quoteAttribution: 'Sahib Singh, who worked alongside her at Motive.',
   quoteClosingLine:
