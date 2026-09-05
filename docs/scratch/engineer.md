@@ -1180,4 +1180,11 @@ pages and `/`, taken from a context seeded **dark** so that §D.8's light-token 
 what the PDF proves. Every one was opened and looked at; the studio palette on Tanya's
 page, the three stacked T1 fields, the months on every card date, the shrink-wrapped map
 caption, the centred `th`s, the missing field fill at 360, the map's lit cell inside the
-plate's band and the invisible lit-cell text in print were all found that way and fixed.
+plate's band, the invisible lit-cell text in print, the dark studio printing dark, the
+footer printing --chalk on white, and COPY.md §10.4's `Stage:` line printing above a
+vertical track whose five labels were already visible were all found that way and fixed.
+
+`work-{360,768,930,931}-light-track.png` is §E.2's breakpoint, both sides of it: at 930
+the track is vertical with all five labels and no right-hand extent; at 931 it is
+horizontal and its axis ends at x 580 against a plate band beginning at x 655, 75px clear
+at the tightest width in the range.
