@@ -408,6 +408,23 @@ function productFor(place: (typeof places)[number], key: string): string | undef
       box-shadow: inset 1px 1px 0 var(--s-panel-edge);
     }
 
+    /*
+      §F.4c round 14 — S2 closed on the stroke, not the fill. `--s-fill` cannot reach
+      3.2 : 1 against `--s-ground` in either scheme without walking the cell's own product
+      name below AA body (the arithmetic is printed in DESIGN.md §F.4c), so the two-state
+      grammar is carried by a 1.5px `--s-ink` stroke instead: 14.09 : 1 light / 14.11 : 1
+      dark against the ground, 4.74 / 4.84 : 1 against the fill it encloses. `--s-fill`
+      stays as reinforcement, not the contract. The lamp cell is excluded here — its own
+      2px `--s-ink` border (below, unconditional) is unchanged and heavier, so it still
+      reads as the one lit region among ten now-bounded cells. Because `.map__table` is
+      `border-collapse: collapse`, two horizontally-adjacent filled cells (the Motive and
+      smallcase three-cell bars) share one 1.5px edge rather than drawing a doubled 3px
+      seam — no extra rule needed for that.
+    */
+    .map__cell[data-filled]:not([data-lamp]) {
+      border: 1.5px solid var(--s-ink);
+    }
+
     .map__place {
       display: table-cell;
       inline-size: 16.6667%;

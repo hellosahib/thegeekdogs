@@ -1895,3 +1895,32 @@ except a conditional comment (`<!--[if ...]>`, which Astro's static output never
 here but the allowance costs nothing). Verified both directions — clean build passes;
 injecting `<!-- test leak -->` into a built `dist/index.html` and rerunning fails naming
 the file, line and snippet. Full `npm run qa` (all twelve steps) green after the sweep.
+
+## Run F — §F.4c's stroke, closing the audit's S2 finding (2026-09-05)
+
+DESIGN.md §F.4c (round 14) replaces S2's fill-only grammar with a 1.5px `--s-ink` stroke
+on every filled cell of `/sahib/`'s coverage map, `--s-fill` demoted to reinforcement.
+`src/components/sahib/CoverageMap.astro`: added
+`.map__cell[data-filled]:not([data-lamp]) { border: 1.5px solid var(--s-ink); }` inside
+the existing `@media (min-width: 1024px)` block only — the <1024 row-strip layout is
+untouched per §F.1's own "row strips are unchanged" line, and `:not([data-lamp])` keeps
+the lit cell's 2px `--tgd-ink` border exactly as it was (it also wins on specificity
+alone, but the exclusion is written to be unambiguous). `.map__table`'s existing
+`border-collapse: collapse` does the "shared edge draws once" work for free — the
+Motive and smallcase three-cell bars needed no extra rule.
+
+`scripts/qa-contrast.mjs`: added a `marks` array per sahib palette entry and a loop after
+`forbidden` that checks it as a non-text SC 1.4.11 mark (3:1 line) rather than folding it
+into the existing `--s-ink`/`--s-ground` body-text pair, so a regression reads as
+"the stroke fails S2" by name. Measured: **14.09:1 light / 14.11:1 dark**, both against
+the same 3:1 line §I.1 row 5 states as the contract — matches DESIGN.md exactly, no
+token moved.
+
+Full `npm run qa` (build, no-slop, images, links, console, contrast, worlds, plate,
+floor budget + pointer, weight, glyphs) — all PASS on the rebuilt `dist/`. Playwright
+evidence in `docs/reviews/runF/engineer/`: `sahib-map-1440-{light,dark}.png` (full map,
+`--el .map`, via the existing `scripts/screenshots.mjs`) and
+`sahib-map-cells-zoom4x-1440-{light,dark}.png` (a one-off script, deviceScaleFactor 4,
+clipped to Motive's adjacent iOS/Android cells — the shared-edge case). Viewed all four:
+stroke is clearly visible in both schemes at both zoom levels, the two adjacent filled
+cells share one edge rather than a doubled seam, cell text unchanged.

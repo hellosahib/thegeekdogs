@@ -210,6 +210,17 @@ const PALETTES = [
       ['--s-lamp-ink', '--lamp', 8.48, 'body'],
     ],
     forbidden: [],
+    /*
+      DESIGN.md §F.4c round 14 — S2 is closed on the map's filled-cell stroke, not the
+      fill: `--s-fill` on `--s-ground` cannot reach SC 1.4.11's 3:1 in either scheme
+      without walking the cell's own product name below AA body, so the two-state
+      grammar is carried by a 1.5px `--s-ink` stroke instead. Same token pair as the
+      `--s-ink`/`--s-ground` body-text row above, checked again here as its own
+      non-text-mark assertion against the 3:1 line §F.4c states as the contract, so a
+      change to either token is caught by name as "the stroke fails S2" rather than only
+      as "body text moved."
+    */
+    marks: [['--s-ink', '--s-ground', 14.11, 'large']],
   },
   {
     name: 'sahib, light',
@@ -229,6 +240,9 @@ const PALETTES = [
     ],
     // §F.4a: --lamp on his light ground is fill-only, by the restated lamp rule.
     forbidden: [['--lamp', '--s-ground', 1.74]],
+    // §F.4c round 14, light half — see the dark entry above for why this repeats the
+    // body-text pair as its own non-text-mark check.
+    marks: [['--s-ink', '--s-ground', 14.09, 'large']],
   },
   {
     name: 'tanya, light',
@@ -345,6 +359,37 @@ for (const palette of PALETTES) {
     }
     console.log(
       `        ${`${fg} on ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  fill only, never a mark or text`,
+    );
+  }
+
+  /*
+    DESIGN.md §F.4c round 14 — the coverage map's filled-cell stroke, checked as its own
+    non-text mark against SC 1.4.11's 3:1 line, per §I.1 row 5's contract: "the check
+    must return 14.09:1 in light and 14.11:1 in dark, against a 3:1 line." Solid tokens,
+    no alpha to composite, so this is `ratio()` directly rather than the `composites`
+    path above.
+  */
+  for (const [fg, bg, published, size] of palette.marks ?? []) {
+    const fgHex = tokens.get(fg);
+    const bgHex = tokens.get(bg);
+    if (!fgHex || !bgHex) {
+      failures.push(`${palette.name}: ${fg} stroke vs ${bg} — token not found in that scope`);
+      continue;
+    }
+    const computed = ratio(fgHex, bgHex);
+    if (computed < THRESHOLD[size]) {
+      failures.push(
+        `${palette.name}: ${fg} stroke vs ${bg} — ${computed.toFixed(2)}:1 fails SC 1.4.11 (3:1)`,
+      );
+    }
+    if (Math.abs(computed - published) > tolerance(fg, bg)) {
+      failures.push(
+        `${palette.name}: ${fg} stroke vs ${bg} — computed ${computed.toFixed(2)}:1 but DESIGN.md publishes ${published}:1`,
+      );
+    }
+    checked += 1;
+    console.log(
+      `        ${`${fg} stroke vs ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  graphic 3:1 (map cell stroke, §F.4c)`,
     );
   }
 }
