@@ -31,3 +31,6 @@ qa-output/
 .vscode/
 !.vscode/extensions.json
 .idea/
+
+# Local Python for the font pipeline (scripts/build-fonts.mjs, PLAN.md §1.5).
+.venv-fonts/

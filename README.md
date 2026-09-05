@@ -55,6 +55,37 @@ npm run qa             # every gate, in order, against dist/
 
 The QA scripts run against the **built output**, never against source, so build first.
 
+### The fonts are a build step, and it is not part of `npm run build`
+
+```bash
+python3 -m venv .venv-fonts && .venv-fonts/bin/pip install "fonttools[woff]" brotli   # once
+npm run build && npm run fonts     # rebuild, then re-cut the fonts from what was built
+```
+
+`npm run fonts` is PLAN.md §1.5's pipeline, and it runs **against `dist/`** because that is
+what §1.5 asks for: the subset is the glyph set the built pages actually paint, not a
+hand-picked Latin range. It does four things and asserts three of them:
+
+- subsets both faces to the code points found in `dist/` plus §1.5's own safety set
+  (curly quotes, the ellipsis, the non-breaking space, the star) — currently **108 code
+  points**;
+- restricts **Anek Latin's `wdth` axis to 75–100** with `fonttools varLib.instancer`, which
+  §1.5 makes part of the build step rather than optional. The axis stays *live* and
+  narrower, because §B.3's numerals are `wdth` 87.5 and §G.2's labels are `wdth` 75;
+  `wght` keeps its full 100–800, and the build fails if either axis is gone;
+- **asserts `tnum` survives.** DESIGN.md §B.3's tabular figures are why the Spline Sans
+  Mono fallback is not needed, and a subsetter that quietly dropped the feature would take
+  the argument with it;
+- writes the two metric-matched fallback `@font-face` blocks that make `font-display: swap`
+  cost no layout shift — `ascent-override`, `descent-override`, `line-gap-override` from
+  the subsetted binary's own `hhea`/`head` tables, and `size-adjust` from an advance ratio
+  measured in a real browser against the local face that actually resolves there.
+
+Output: `public/fonts/*.woff2` and **`src/styles/fonts.css`, which is generated and
+committed** — so a fresh checkout builds and deploys with no Python anywhere near it. Only
+re-run it when the copy changes enough to need a glyph the subset does not carry, or when
+either package is upgraded.
+
 | Script | What fails it |
 |---|---|
 | `npm run qa:build` | any TypeScript error, any Astro diagnostic or hint, any build warning |

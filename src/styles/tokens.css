@@ -80,9 +80,20 @@
   --btn-fill: var(--ink);
   --btn-ink: var(--chalk);
 
-  /* --- DESIGN.md §B.3, typeface roles --- */
-  --tgd-font-display: 'Anek Latin Variable', ui-sans-serif, system-ui, sans-serif;
-  --tgd-font-body: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  /*
+    --- DESIGN.md §B.3, typeface roles ---
+
+    The second family in each stack is PLAN.md §1.5's fallback-metric match, generated
+    into `fonts.css` by `npm run fonts`: the visitor's own system sans, re-declared with
+    this face's line box and average advance. It is what `font-display: swap` paints
+    first, and it is why the swap costs no layout shift. The generic families stay behind
+    it for the machine that has none of the `local()` faces.
+  */
+  --tgd-font-display:
+    'Anek Latin Variable', 'Anek Latin fallback', ui-sans-serif, system-ui, sans-serif;
+  --tgd-font-body:
+    'Instrument Sans Variable', 'Instrument Sans fallback', ui-sans-serif, system-ui,
+    sans-serif;
   --wdth-display: 100;
   --wdth-numeral: 87.5;
   --wght-display: 600;
