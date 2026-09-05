@@ -103,21 +103,38 @@ export const FLOOR_DEFS = `<defs>
     <circle class="fl-lit" cx="0" cy="-40" r="6"/>
   </symbol>
 
-  <!-- The empty chair. The step-3 review (item 9) could not find a chair here at any
-       breakpoint: the shared 32 x 40 sub-part read as a plinth under a wedge. This one
-       is drawn for the job it has to do — it is the nearest station, it renders largest
-       (§C.3 mechanism 4), and it is turned away from the desk rather than pushed in,
-       which is the one silhouette in the room that says nobody got up from it. Four
-       segments: the back, its near edge, the seat and the seat's rim, and the back
-       takes the shadow fill so the chair reads as an object standing in the light
-       rather than as another lit plane beside the desk's. -->
+  <!-- The empty chair, redrawn to DESIGN.md §C.3 round 12.
+
+       The previous drawing put its back panel at local x -34.4 to -15.6 rising to y 8.8,
+       which is under the desk's own near-left edge (y -1 to 10 across that span) — so the
+       back was occluded by the thing it stands in front of, and what was left read as "a
+       lit slab over a small dark box" at every width (review item H5,
+       lightson-1440-250ms.png). §C.3 now specifies the object rather than leaving it to
+       the drawing: THREE PARTS — a seat plane, a back panel standing at the far edge of
+       the seat at roughly 0.6 of the seat's depth in height, and a visible support
+       beneath the seat.
+
+       The seat rhombus has half-diagonals 22 x 11, so its plan side is 22 units and 0.6
+       of that is a back 14 units tall — and 14 is the number that keeps the whole back
+       BELOW the desk rather than behind it. Measured against the desk's own near edges:
+       at local x -16 the desk stops at y 10 and the back's top edge starts at 15; at
+       x 0, 18 against 23; at x 6, 15 against 26. Five units of clear floor at the
+       tightest point, at every width, with the cone absent — which is §C.3's acceptance
+       test, the 250ms frame and not the finished one.
+
+       §C.3's light rule, applied: the back's NEAR face is the lit one (the same 22% the
+       seat takes, which reads against the room's ground), and its top cap and the two
+       legs are the shadow fill — so the object is a lit plane, a second lit plane at
+       right angles to it, and dark parts underneath. No new token, no new gradient and
+       no new symbol: five paths in the vocabulary §C.1 already ships. -->
   <symbol id="fl-seat" viewBox="-46 -84 92 140" overflow="visible">
     ${u('lamp', 0, 0)}
     ${u('dk', 0, -14)}
-    <path class="fl-shadow" d="M-34.4 38.2-19.6 30.8-19.6 8.8-34.4 16.2Z"/>
-    <path class="fl-shadow" d="M-19.6 30.8-19.6 8.8-15.6 10.8-15.6 32.8Z"/>
+    <path class="fl-lit" d="M-16 15 6 26 6 40-16 29Z"/>
+    <path class="fl-shadow" d="M-16 15 6 26 2.6 27.7-19.4 16.7Z"/>
     <path class="fl-lit" d="M-16 29 6 40-16 51-38 40Z"/>
     <path class="fl-shadow" d="M-38 40-16 51 6 40 6 45-16 56-38 45Z"/>
+    <path class="fl-shadow" d="M-40 45h4v10h-4ZM4 45h4v10h-4Z"/>
   </symbol>
 
   <!-- Sahib's cabin. Bespoke: two walls, a floor patch, the whiteboard, the portrait

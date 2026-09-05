@@ -238,7 +238,23 @@ export function placements(): Placement[] {
       what makes the plate rule's disjointness proof true of the picture and not only
       of the rectangles.
     */
-    const artTop = tall.y + TALL_PLATE_BAND;
+    /*
+      DESIGN.md §C.3 round 12 — THE CHAIR IS THE ONE EXCEPTION to §C.7's portrait plate
+      rule, and its band is at the bottom of its button rather than at the top. At 360 and
+      390 `Ship approval` was setting across the cone — chalk@72% on --lamp, roughly
+      1.6 : 1, the least legible text on the page at the width that carries most of the
+      traffic (review item H5). §C.3 is explicit that text goes beside the thing and never
+      on it, and the cone is the mark, so the plate moves and the cone does not.
+
+      The band's height and the artwork's height are unchanged; only which end of the
+      button the band takes. The chair's pool bottoms out at exactly y 500 with the band
+      running 500–520, so the plate sits on bare --floor and gets the same chalk@72% every
+      other plate in the room gets. §C.7's disjointness proof is untouched: it says a
+      rectangle inside one member of a disjoint set is inside no other, and top or bottom
+      does not enter that argument.
+    */
+    const bandAtBottom = shape === 'chair';
+    const artTop = bandAtBottom ? tall.y : tall.y + TALL_PLATE_BAND;
     const artH = tall.h - TALL_PLATE_BAND;
     const scale = artH / box.h;
     const tallT = {
@@ -272,7 +288,9 @@ export function placements(): Placement[] {
         0px gap. The anchor below is the band's centre; the plate is set with a central
         dominant baseline so `top + 10` is the box's middle and not a baseline.
       */
-      tallPlateY: tall.y + TALL_PLATE_BAND / 2,
+      tallPlateY: bandAtBottom
+        ? tall.y + tall.h - TALL_PLATE_BAND / 2
+        : tall.y + TALL_PLATE_BAND / 2,
       wideDepth: (cell.c + cell.span) * 100 + (cell.r + cell.span) * 100 + cell.c,
     };
   });
