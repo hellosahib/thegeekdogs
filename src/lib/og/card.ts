@@ -77,8 +77,17 @@ type Node = { type: string; props: Record<string, unknown> };
 const el = (type: string, props: Record<string, unknown>): Node => ({ type, props });
 
 function tree(spec: CardSpec): Node {
-  const bandHeight = spec.showFloor ? 372 : 132;
-  const floorWidth = Math.round((FLOOR_CROP.w / FLOOR_CROP.h) * bandHeight);
+  /*
+    Run A item 11 — the four non-home cards ended in a 1200 x 135 strip of --floor with
+    nothing at all in it. It is not the room, because nothing is in it, and it is not a
+    rule, so it read as a crop that lost its picture. The review offered two remedies and
+    §B.12 rules one of them out in terms — the favicon's cone "never appears ... in an OG
+    card", so putting that mark in the band would make it a logo — which leaves the
+    other: the band comes off and the card is the sheet. The home card keeps its floor,
+    because the floor is IN it.
+  */
+  const bandHeight = spec.showFloor ? 372 : 0;
+  const floorWidth = Math.round((FLOOR_CROP.w / FLOOR_CROP.h) * (bandHeight || 1));
 
   const words = el('div', {
     style: {
@@ -148,19 +157,14 @@ function tree(spec: CardSpec): Node {
       backgroundColor: FLOOR,
       overflow: 'hidden',
     },
-    children: spec.showFloor
-      ? [
-          el('img', {
-            src: floorDataUri(),
-            width: floorWidth,
-            height: bandHeight,
-            style: { marginRight: 40 },
-          }),
-        ]
-      /* Nothing is written in the band on the other cards. It is the room's own
-         ground bookending the card exactly as it bookends the page (§B.9), and
-         COPY.md has no string for this slot — so none is invented for it. */
-      : [],
+    children: [
+      el('img', {
+        src: floorDataUri(),
+        width: floorWidth,
+        height: bandHeight,
+        style: { marginRight: 40 },
+      }),
+    ],
   });
 
   return el('div', {
@@ -170,8 +174,11 @@ function tree(spec: CardSpec): Node {
       width: CARD.width,
       height: CARD.height,
       backgroundColor: SHEET,
+      /* With no band under them the words take the whole card, so they keep the same
+         60px optical margin at the bottom that they already have at the top. */
+      paddingBottom: spec.showFloor ? 0 : 60,
     },
-    children: [words, band],
+    children: spec.showFloor ? [words, band] : [words],
   });
 }
 
