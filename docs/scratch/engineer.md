@@ -1164,9 +1164,19 @@ Still open:
 | "The core draws" | exactly **one** animation on the page, `core-draws`, 900ms |
 | Reduced motion | the complete map and the complete band at first paint, both schemes |
 | Lighthouse mobile, 3 runs, **light**, all seven routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| Lighthouse mobile, 3 runs, **dark**, all seven routes | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
 | LCP, light | 1,415-1,511 ms across the seven routes (line is 2,000); `/sahib/` 1,439-1,448, `/tanya/` 1,438-1,441 |
-| CLS | **0** on six routes; **0.030** on `/contact/`, unchanged from run A and still the font swap (line is 0.05) |
-| TBT | **0 ms** on every route |
+| LCP, dark | 1,422-1,512 ms; `/sahib/` 1,447-1,455, `/tanya/` 1,437-1,443 |
+| CLS | **0** on six routes in both schemes; **0.030** on `/contact/`, unchanged from run A and still the font swap (line is 0.05) |
+| TBT | **0 ms** on every route in both schemes |
+
+The dark runs used a scratch copy of `dist/` whose head-script default was flipped to
+`dark`, the same method steps 2 and 3, run A and floor pass 2 used, because neither LHCI
+nor a Chrome flag can seed `localStorage` or `prefers-color-scheme` for a static run.
+Nothing shipped was changed to produce them. **The first light run of this pass failed its
+own accessibility assertion at 98 on `/sahib/`** — `heading-order` and
+`label-content-name-mismatch`, both above — which is the gate working; both are fixed and
+the numbers here are the re-run.
 
 **Keyless build.** No `.env`, no `PUBLIC_FIREBASE_*` in the environment: the build
 succeeds, **0 external `<script>` files in `dist/`**, and no file in `dist/` mentions
