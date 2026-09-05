@@ -313,10 +313,10 @@ Still open, and why:
 | Thing | Number |
 |---|---|
 | JS shipped, home page | **700 B gzip** (1,686 B raw, two inline modules: the floor's and the toggle's) — the 4 KB line holds with room to spare |
-| CSS shipped, home page | 47,437 B raw / **9,507 B gzip** (23% of the 40 KB line) |
+| CSS shipped, home page | 36,715 B raw / **7,829 B gzip** (19% of the 40 KB line) |
 | Home HTML | 6,531 B gzip |
 | Fonts | 133,852 B (unsubsetted; ~71 KB after step 8) |
-| Home page total | **149,890 B gzip** (12% of the 1.2 MB line) |
+| Home page total | **148,212 B gzip** (12% of the 1.2 MB line) |
 | Floor section + its script | 10,120 B raw / **2,069 B gzip** (2.5% of the 80 KB line) |
 | Lighthouse mobile, 3 runs, light | Performance **100**, Accessibility **100**, Best practices **96**, SEO **100** |
 | Lighthouse mobile, 3 runs, dark | Performance **100**, Accessibility **100**, Best practices **96**, SEO **100** |
