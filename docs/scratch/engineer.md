@@ -790,3 +790,150 @@ portrait nameplates were all found that way and fixed.
   `npm audit --omit=dev` went from 0 to 2. It is back to **0 vulnerabilities against
   everything that ships**, which is the number the deploy gate reads. `npm ci` installs
   devDependencies, so the build is unaffected.
+
+---
+
+## Floor pass 2 — the step-3 floor review's remaining items (2026-09-05)
+
+Scope: bring the studio floor to DESIGN.md §C as corrected in round 8, and close the
+step-3 floor review's seventeen items. Blockers 1, 2 and 3 and items 4, 5 and 11 were
+already closed by run A; the fourteen below are this pass.
+
+### The regression this pass found before it found anything else
+
+**The whole scene was rendering as one flat black silhouette, at every width, in both
+schemes.** Run A moved the `<defs>` out of the component into `src/components/floor/
+symbols.ts` so the OG card could reuse them — which makes them a string injected with
+`set:html`, and **Astro cannot put its scope attribute on markup it did not compile**.
+`.fl-lit[data-astro-cid-…]` matched nothing inside a `<symbol>`, `fill` fell back to its
+initial `black`, and the room, the desks, the monitors, the walls, the seams and the
+lamp's gradient stops all went with it. Nothing in `astro check`, `npm run qa` or the
+target-size numbers moved: it is a rendering fault that only a rendered picture shows,
+which is exactly the argument §C.11 makes about hit testing, one layer up.
+
+The scene's fill rules are `:global` now. They are all prefixed `fl-`, they exist nowhere
+else on the site, and they belong to the drawing rather than to the component's box.
+
+Two things follow from it that are worth recording. **Item 12 was this bug**: §C.8's lift
+of a selected desk top to `--chalk` @ 34% was always declared and was invisible because
+`.fl-top` never matched; measured now, `--fl-desk-top` goes `#e8ede938` → `#e8ede957` on
+selection and the desk is visibly lighter than its neighbours. And **item 16 was not a
+duration**: the declaration always said 900ms, and `--ease-out` is
+`cubic-bezier(.16, 1, .3, 1)`, which is at 90% of its travel inside 330ms — which is why
+the review measured a 620ms rise. The lamp takes `--ease-inout`, §H.1's symmetric curve;
+re-instrumented per frame, the cone starts at 1,666ms and completes at 2,516ms.
+
+### The seventeen items, and how each was closed
+
+| # | Fix |
+|---|---|
+| 1 | Run A. Re-verified here by `scripts/check-floor-pointer.mjs`: **10 of 10 stations, at 360, 390, 768, 1024, 1440 and 1920, in both schemes**. |
+| 2 | Run A. One 260 × 56 plate, inset 16, at every width. |
+| 3 | Run A. `padding-right` occurs **0 times** in the built CSS. |
+| 4 | Run A. The slot has no border, outline, fill or radius. |
+| 5 | Run A, and measured again: at 1024 the slot is **293 × 392 at x 683**, beside a **683 × 415** scene at x 0. |
+| 6 | §C.3's box is **856 × 520** and the room draws 1:1 in it. The old 792 × 560 is withdrawn. Measured: **856 × 520 at 1920 (x 320) and at 1440 (x 80)**, **683 × 415 at 1024**, **704 × 428 at 768**, **320 × 520 below 768**. It was 654 × 462 at 1440 and 700 × 495 at 1024 — smaller at the larger width. |
+| 7 | Run A moved the portrait plates inside their own targets; this pass makes §C.7's rule structural. Every plate is centred in its button's **top 20-unit band**, the grid is §C.7's own 88 / 8 / 88 / 12 / 68 / 8 / 68 / 8 / 68 / 12 / 92 = 520, and the ten cells are pairwise disjoint. Checked on the rendered page at every width, not only at 360. |
+| 8 | `#fl-occ` — a shared `<symbol>`, a shadow-fill torso and a lit head, `<use>`d in both cabins, so neither cabin spends any of §C.4's 16-segment budget on it. Each cabin's chair is turned rather than square, which is §C.4's own "pulled out at a slight angle". |
+| 9 | `#fl-seat` draws its own chair — a shadow-fill back standing out of a lit seat, pulled clear of a desk moved back 14 units. And §C.1's one gradient paints three marks instead of one: the pool the lamp throws on the floor module, the wash on the desk top, and the cone in the air. See the open item below. |
+| 10 | Already live from run A: both human cards carry `Owns` and their gate list, from `ownsLine` on each person's entry. |
+| 11 | Already live from run A: `The full pipeline` and the wrapped sentence, derived from the same collection the desks are. |
+| 12 | The fills regression above. |
+| 13 | No plate renders below 13 CSS px. The size is in scene units per breakpoint, per §C.3 — 13 at 1:1, 16.3 at 1024, 15.8 at 768 — and the cabin plate takes the step above at 15px rendered, the same ratio at every one. The portrait agent plates were 11. |
+| 14 | The wall-mounted skewed cabin plate is gone — §J's pre-committed cut for `/`. Both cabin plates are horizontal on the near half of their own cabin floor, at §C.3's coordinates: **(396, 204)** and **(268, 268)**. One treatment, one baseline, at every width. |
+| 15 | An agent's plate sits on its module's midline with a central baseline, which puts its box below the desk's artwork and 8 units clear of the next button's leading edge — §C.3's own number. |
+| 16 | The easing, above. |
+| 17 | The seam grid is cut. It ran the full 6 × 5 room on every side, so the room's footprint read larger than anything standing in it and the chair's isolation was drawn by ruled lines rather than by emptiness. §C.10 has seams first in its cut order and §J now gives them a second reason. The slab keeps its own 1px edge, which is the room. |
+
+### The two acceptance scripts
+
+`scripts/check-floor-pointer.mjs`, wired into `npm run qa:floor` and into CI:
+
+- **§C.11.** For each of the ten stations, at 360, 390, 768, 1024, 1440 and 1920 in both
+  schemes: `document.elementFromPoint` at the button's centre returns that station's own
+  button, the button measures at least 44 × 44, and a real click at the same point puts
+  that station's card **alone** in the slot and its selected state on the station in the
+  room. **120 of 120 (10 × 6 widths × 2 schemes).**
+- **§C.7.** No nameplate's box intersects another station's button box. §C.7 states it at
+  360 and 390; it runs at all six widths, because the same failure had a wide-plan half
+  (the skewed cabin plate inside Tanya's button at 1024, 1440 and 1920). **10 of 10 clear
+  at every width in both schemes.**
+
+Each station is scrolled to the middle of the viewport before it is hit-tested. That is
+not the test made easy: §B.10's plate is `position: sticky` at the viewport's
+bottom-right, so it is over *something* at every scroll offset, and §C.11's question is
+whether a visitor looking at a station can hit it.
+
+`scripts/lib/serve.mjs` is the static server the screenshot script and this one share.
+
+### Two places this pass had to argue with the spec, and the arithmetic
+
+1. **§C.3's "near half of its own module" and "inside its own button" cannot both hold
+   for an agent plate.** A module is 64 deep, its near half is 32–64, and an
+   artwork-centred 56-tall button (deviation 3, accepted) spans −16 to +40 — an
+   8-unit intersection, which a 13-unit plate does not fit in. The plate is set on the
+   module's **midline** with a central baseline, which is the largest overlap with the
+   near half that stays inside the button, and it lands its box 8.2 units clear of the
+   next button's leading edge — §C.3's own stated clearance. Measured: no plate is inside
+   another station's button at any width, and at 1440 and 1920 nine of ten are wholly
+   inside their own.
+2. **§C.3's clearance note reads Security Auditor's button top as y 236.** That is the
+   module centre, and §C.3's own accepted deviation 3 puts the button on the artwork
+   centre, which is y 216. Sahib's plate box ends at 212, so it is 4 clear rather than
+   §C.3's 24. It collides with nothing; recorded because the number in the table and the
+   number in the prose disagree and the prose is the one that was accepted.
+
+### Still open, with the reason
+
+- **§C.3 mechanism 2: the lamp is not "the single largest area of accent colour on the
+  entire site".** It is now ~8,600 scene units² over three marks against ~3,500 for the
+  old lone wedge, it is the only `--lamp` in the scene, and it is by a wide margin the
+  largest light in the room. It is still smaller than §B.10's contact plate, which is
+  260 × 56 = 14,560 px² of solid `--lamp` on the same screen. Beating that would need a
+  cone about 230 units tall in a room 352 deep. **Design Lead's call**: either mechanism
+  2 means "in the scene", or the plate is what has to give.
+- **§C.4's "6% warm offset toward `--lamp`" on the cabin floor patch and desk top** is
+  still not implemented. It is a fifth fill value against §C.1's four. Carried from
+  step 3, still the Design Lead's call.
+- **Below 768 the contact plate still crosses the default card's middle lines** at some
+  scroll offsets. That is §B.10's own ruling rather than a defect — one 260 × 56 plate at
+  every width, 276 of 360 with 84px clear beside it, and "below 768 the rule does not
+  bind" — but it is the same picture the step-3 review objected to at blocker 2, so it is
+  flagged rather than assumed settled.
+- **The three portrait scales are per station class, not one.** §C.7 gives three artwork
+  bands (48, 68, 72) and each symbol's scale is its band over its own drawn box, so the
+  band above every plate is genuinely empty. A single uniform scale cannot do that: the
+  cabin symbol is 184 deep against a 68 band, so at any scale that suits the agent desks
+  it runs a third of the way into the row below.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| **Floor section + its script** | 32,602 B raw / **6,149 B gzipped — 7.5% of the 80 KB line** |
+| CSS shipped, all routes | 48,944 B raw / **9,804 B gzip** (24% of the 40 KB line) |
+| Home HTML | 11,817 B gzip |
+| JS shipped, home page | **0 B** external; 1,242 B gzip of inline module script |
+| Home page total | **155,473 B gzip** (13% of the 1.2 MB line) |
+| Smallest hit target at 360 and 390 | **101.3 × 68** — 68, 55% above the 44 × 44 floor |
+| Smallest hit target at 768 | **92 × 46** |
+| Smallest hit target at 1024 | **89 × 44.7** — the tightest point on the site, as §C.3 says it is |
+| Smallest hit target at 1440 and 1920 | **112 × 56** |
+| §C.11 pointer acceptance | **10 of 10 stations at 6 widths in 2 schemes** |
+| §C.7 nameplate overlap | **0 collisions, 6 widths, 2 schemes** |
+| Lighthouse mobile, 3 runs, `/`, light | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| Lighthouse mobile, 3 runs, `/`, dark | Performance **100**, Accessibility **100**, Best practices **100**, SEO **100** |
+| LCP | 1,428–1,436 ms light, 1,438–1,444 ms dark (line is 2,000); the LCP element is the `<h1>` |
+| CLS | **0** in both schemes |
+| TBT | **0 ms** in both schemes |
+| "Lights on", re-instrumented | glows in DOM order at 70ms stagger; cone starts **1,666 ms**, completes **2,516 ms** — §H.3's 900ms rise, felt |
+
+The dark Lighthouse runs used a scratch copy of `dist/` whose head-script default was
+flipped to `dark`, the same method steps 2 and 3 and run A used. Nothing shipped was
+changed to produce them.
+
+Evidence in `docs/reviews/floor2/engineer/`: the floor section at 360, 390, 768, 1024,
+1440 and 1920 in both schemes, the same section under `reduce` at 360 and 1440 in both,
+and `lighthouse.json`. Every one was opened and looked at; the black scene, the missing
+chair, the invisible occupants, the clipped `Release Watcher` plate, the portrait chair
+hung below its own cell and the OG card's stale crop were all found that way and fixed.

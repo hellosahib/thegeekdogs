@@ -1,0 +1,63 @@
+{
+  "what": "Lighthouse CI, mobile form factor, devtools throttling, 3 runs per scheme, route / only.",
+  "when": "2026-09-05, floor pass 2, against the built dist/.",
+  "darkMethod": "a scratch copy of dist/ whose head script default was flipped to 'dark'; nothing shipped was changed to produce it.",
+  "light": [
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1431,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1428,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1436,
+      "cls": 0,
+      "tbtMs": 0
+    }
+  ],
+  "dark": [
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1438,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1444,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcpMs": 1438,
+      "cls": 0,
+      "tbtMs": 0
+    }
+  ]
+}

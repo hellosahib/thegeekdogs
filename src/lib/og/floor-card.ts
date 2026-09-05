@@ -35,11 +35,13 @@ const FILLS = {
 } as const;
 
 /**
- * The drawn room's own extent inside DESIGN.md §C.3's 856 x 520 scene box, with four
+ * The drawn room's own extent inside DESIGN.md §C.3's 856 x 520 scene box, with eight
  * units of air on each side: the slab runs x 76 to 780, the cabins' wall tops sit at
- * y 64 and the slab's near corner at y 456.
+ * y 64 and the slab's near corner — where the lamp's pool ends — at y 456. The page's
+ * own box carries 76 and 64 of margin for the nameplates and the focus ring, and the
+ * card prints neither, so it crops to the drawing.
  */
-export const FLOOR_CROP = { x: 72, y: 60, w: 712, h: 400 } as const;
+export const FLOOR_CROP = { x: 68, y: 56, w: 720, h: 408 } as const;
 
 export function floorSceneSvg(): string {
   const scene = wideOrder(placements());
