@@ -1703,3 +1703,149 @@ both schemes, full page; the chair at the 250ms frame and finished, at 360 and 1
 the proof band at 768, 1024 and 1440; `/work/`'s axis at 931 and 1440; the wedding planner's
 differentiator row at 768 and 1440; pocket-manager's `Build` list; both print PDFs and their
 suppressed-background renders at A4's own width; and the Lighthouse reports.
+
+## Build run E — the last fix run before final review (2026-09-05)
+
+Three things were open after run D: T1, §G.3a's tick geometry, and the seven `qa:plate`
+collisions the round-12 selectors found below 768. DESIGN.md round 13 (§I.1) rules on all
+three plus §C.4, and every one of its build-side rows is in this run. **`qa:plate` reports
+560 marks, 0 failed, and there is no flag list left to report anything under.**
+
+### T1 — Motive lands on all three layers
+
+COPY round 15 wrote §7.2's `Android-edge annotation (Motive)`, which is the string run D
+raised as a copy blocker and refused to write. It is one entry in `edgeAnnotations` and it
+leads the Android field, so the card order is **Motive → HSBC → Naskay** and Motive is the
+first thing in all three fields, which is §G.3a's own test: "one company, three layers is
+legible without reading a word."
+
+One rendering decision was needed and it is recorded rather than assumed. The annotation's
+label does not contain the word `Motive` — the string is about the Compose migration and
+the Android release path — so the note prints `fromCompany` above it. `fromCompany` has
+been on the entry since round 3 as "the company whose core card the tick leaves", and
+round 13 is what freed it to print: with the tick attaching to the layer's *name* rather
+than to a card, §G.3a says the pairing "is carried by content, which is where it was always
+carried". Where a label already names its company (the iOS edge's `Motive Fleet App`) it is
+not printed twice. That is one conditional and no new string.
+
+### The two ticks, and the two coordinates they had to hit
+
+§I.1 row 2 replaces round 12's unbuildable "top-aligned to the tick" with a rule about what
+a tick *means*, and the geometry falls out of it: the stroke centre sits on the platform
+label's first baseline, one baseline shared by all three fields.
+
+**Two things had to be built for that baseline to exist.** The edge fields carried no top
+lead-in at all, so their labels sat 36px above the core's; they take `4px + 32px` now, the
+core's cap plus its inner padding, which is §I.1's own arithmetic. And the ticks are hung
+on the core label's own flex line — an empty flex item synthesises its baseline from its
+border box, so a 2px stroke's bottom lands on the text baseline structurally rather than at
+a measured offset. **The alignment is the spec and 50 is its consequence**, so `qa:worlds`
+asserts the three baselines against each other and *prints* the 50. It measures **51.0px**
+below the band's top border edge on the shipped Anek subset, at both 1024 and 1440.
+
+**And a real defect the measurement caught, which reading would not have.** Each tick
+reaches its boundary by hanging the core's own 32px of padding, so it lands on the boundary
+exactly when the label's line runs the field's full inner width. It did not: `--measure-body`
+is 32em, which at the label's size is **448px**, so at 1440 the label stopped at x 906 and
+took the right-hand tick 76px short of the core's edge at 1014. A two-word structural label
+is not prose with a measure; it is the field's name and here it is also the rail the ticks
+hang on. With the cap off, measured: **x 286 and 738 at 1024, x 426 and 1014 at 1440** —
+§G.3a's own four numbers. `qa:worlds` asserts both ends against the core's border box now,
+so it cannot come back quietly.
+
+Below 1024 the same rule rotated: a 2px stroke comes down onto each edge block's label
+baseline, as an inline-block with `vertical-align: baseline` whose three margins sum to
+zero, so it hangs in the edge's own 24px indent and moves no type.
+
+### The seven collisions, closed by two compositions
+
+| | Mark | Band | Was | Now |
+|---|---|---|---|---|
+| 1–4 | `/`'s `1,000+` and `downloads` at 360 and 390 | 232 / 262 | 309, ~302 / ~330 | **169** at both |
+| 5–6 | `/tanya/`'s gates line at 360 and 390 | 232 / 262 | 305 | **207** at both |
+| 7 | the same at 768 | 492 | 539 | **219** |
+
+**The figures.** Three rows below 768, numeral in a 68px column from x 20 and the micro
+label from x 104 on the same baseline. Measured, the numeral column is x 20 and 68 wide and
+the label starts at x 104 at both widths — §B.8's coordinates exactly — and the widest ink
+is `downloads` ending at **x 169**, not the 162 §B.8 derives. The 7px is the shipped
+Instrument subset setting nine characters wider than the section's estimate, and it is the
+same class of number as §G.3a's 50: the coordinates bind and the ink extent is reported.
+63px clear at 360 either way.
+
+**The gates block.** One gate per line, a real `<ul>` with no markers and no indent, split
+at COPY §2.3's own commas. This is line-breaking and not copy: no word is reworded,
+reordered or added. Two notes on it. The sentence's terminal full stop goes with the
+sentence, because a list of items is not a sentence and no other item carries a stop — that
+is the only mark this build touches. And **§G.3a's wireframe draws five gates; the shipped
+line carries six** (`Spec`, `code and design review`, `device QA`, `security and privacy`,
+`ASO`, `release cut`), because the wireframe was written against item 19's list and the
+copy is §2.3's. The count is the copy's. The longest item is therefore `code and design
+review` at 22 characters rather than §G.3a's `security and privacy` at 20, which is why the
+measured ends are 207 and 219 rather than the section's 197 and 231.
+
+**One thing the `<ul>` needed that a `<p>` did not.** A block `<li>` spans the core's whole
+measure, so the *box* reached x 324 at 360 while the ink stopped at 207 — and `qa:plate`
+failed it, correctly, because a line box is what a focus ring and a forced-colours backplate
+draw. `max-content` with a `100%` cap makes each gate's box its own gate.
+
+### §I.1's other rows
+
+- **Row 3, §C.8.** Recorded, nothing to build: the 1px `--chalk` edge that carries the
+  selected state shipped in run D, and round 13 replaces the unreachable 30% pixel-share
+  test with the channel-delta test that edge already passes at 106–178.
+- **Row 4, §C.4's 6% warm offset.** Deleted from the spec, and it was never in the source —
+  grepped: no warm offset, no fifth fill, in `src/styles/` or in the floor's symbols. It
+  comes off the open list without a diff.
+- **The §B.10 wording correction** the run-D note asked for is made in DESIGN.md, and the
+  build already implemented the surviving rule: reserve 1 exempts prose and headings, and
+  `qa:plate`'s mark list is load-bearing marks plus the named regions.
+
+### One thing to look at, and it is prose under the band by rule
+
+At 360 the plate's rest position sits across the middle line of the Android edge's new
+Motive annotation (`tanya-band-360-{light,dark}.png`). `.edge__note` is off `qa:plate`'s
+mark list — §G.3a round 12 took it off as "prose in a container, which §B.10 exempts" — and
+round 13's corrected promise says in terms that prose and headings may run under the band
+everywhere except the named regions. So this passes by rule and not by exemption, and the
+only fix that would remove it is a keep-out lane, which §B.5 and §B.10 both forbid in terms.
+Recorded here so it is a decision on the record rather than something the final review finds.
+
+### Measured, this machine, 2026-09-05
+
+| Thing | Number |
+|---|---|
+| `qa:plate` | **560** marks, 8 routes × 8 widths, **0 failed, 0 flagged** — and no flag list left |
+| Ticks | x **286 / 738** at 1024, x **426 / 1014** at 1440; three labels on one baseline **51.0px** below the band's top edge |
+| Figures below 768 | numeral column x **20**, 68 wide; label from x **104**; widest ink **x 169** against a band at 232 |
+| Gates line | ends x **207** at 360 and 390, x **219** at 768 |
+| Fonts, both faces | **68,984 B** (48,432 + 20,552), 1,724 under PLAN.md §1.5's target; 126 and 134 glyphs |
+| Home page total | **95,517 B** gzipped (HTML 13,221 + CSS 13,312 + fonts 68,984) |
+| `/tanya/` total | **88,949 B** gzipped (HTML 6,653 + the same CSS and fonts) |
+| `/sahib/` total | **89,075 B** gzipped (HTML 6,779) |
+| CSS, all routes | 74,896 B raw / **13,312 B** gzip (33% of the 40 KB line) |
+| JS shipped | **0 B external**, 1,253 B gzip of inline module script in the home HTML |
+| Floor budget | **6,813 B** gzip of 81,920 |
+| `qa` suite | 10 checks, all PASS: build, no-slop, images, links, console, contrast, worlds, plate, floor, weight |
+| `qa:contrast` | 62 pairs across six palettes |
+| `qa:worlds` | 38 assertions — 32 computed tokens plus the tick and baseline geometry at two widths |
+| Lighthouse mobile, 3 runs, 8 routes × 2 schemes | **100 / 100 / 100 / 100**, except `/404.html`'s SEO at 66, which is `is-crawlable` on a `noindex` page and is the design |
+| Worst LCP of the 48 runs | **1,530 ms** on `/work/pocket-manager/` dark (line 2,000) |
+| TBT / CLS | **0 ms** and **0.0001**, 48 of 48 |
+| Keyless build | 8 pages, no `.env` and no `PUBLIC_FIREBASE_*` in the environment, **0 external `<script src>`**, and the only "Firebase" in `dist/` is COPY §4.5's own sentence about Pocket Manager's stack |
+
+Evidence in `docs/reviews/runE/engineer/`: `/` full page and the proof block and the floor's
+`Owns` card at 360 and 390 in both schemes; `/tanya/` full page and the band at 1024 and
+1440 in both, plus the band at 360 for the rotated ticks; both print PDFs and their
+suppressed-background renders at A4's own 794px width; the Lighthouse run log, summary and
+runner; and the two small scripts that produced the print and `Owns` frames.
+
+### Left after this run, and none of it is a build decision
+
+1. **Both headshots.** QUESTIONS.md item 23. The slots are still reserved at §F.7's
+   320 × 320 and §F.8's 366 × 440 with no image and no placeholder, so filling them causes
+   no reflow.
+2. **§K's presentation packet for Tanya.** The six frames it names are `runB` and `runD`
+   files; frames 1 to 4 are now stale against this build and the equivalents are in
+   `docs/reviews/runE/engineer/`. Whose call the packet is has not been settled.
+3. **The 360 plate over the Android annotation**, above — ruled, not open, but worth a look.
