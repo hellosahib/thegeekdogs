@@ -14,7 +14,23 @@ import { FOOTER, STUDIO_EMAIL, NAV, BUILT_ROUTES } from '../lib/copy';
  *
  * The nav repeat still points at four routes that are not built, so it is still out —
  * the same rule the header follows.
+ *
+ * **`quiet` is §J's pre-committed cut for `/404`** (review item E2, and §J's row made
+ * specific in round 12). Rendered, that page was 1,120px of which 615px was footer, and
+ * §J names the cut by hand: "Everything except the line and the link home. The empty room
+ * is the joke; a nav menu underneath it is not." The nav repeat and the `Elsewhere` block
+ * ARE that menu. The header nav stays — it is site chrome on every route — and so do the
+ * studio line, the location line, the address and the rights line, which are the footer
+ * everywhere else. The employer note stays with them: brief §5.4 requires it wherever an
+ * employer name is printed, so it is not a discretionary cut on any route.
  */
+interface Props {
+  /** §J, `/404` — drop the nav repeat and the `Elsewhere` block. */
+  quiet?: boolean;
+}
+
+const { quiet = false } = Astro.props;
+
 const people = await getCollection('people');
 
 /** COPY.md §1's four labels, verbatim, each resolved to that person's own URL. */
@@ -39,7 +55,7 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     </p>
 
     {
-      navRepeat.length > 0 && (
+      !quiet && navRepeat.length > 0 && (
         <nav aria-label="Footer">
           <ul class="site-footer__links">
             {navRepeat.map((item) => (
@@ -55,7 +71,7 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     }
 
     {
-      elsewhere.length > 0 && (
+      !quiet && elsewhere.length > 0 && (
         <section class="stack-tight" aria-labelledby="footer-elsewhere">
           <h2 id="footer-elsewhere" class="site-footer__heading">
             {FOOTER.elsewhereHeading}

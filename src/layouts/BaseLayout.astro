@@ -25,6 +25,11 @@ interface Props {
   /** PLAN.md §1.2 — one attribute picks which token set is live. */
   world?: 'studio' | 'sahib' | 'tanya';
   noindex?: boolean;
+  /**
+   * §J, `/404` — the footer drops its nav repeat and its `Elsewhere` block on the one
+   * route whose pre-committed cut names them (review item E2). See Footer.astro.
+   */
+  quietFooter?: boolean;
 }
 
 const {
@@ -37,6 +42,7 @@ const {
   schema,
   world = 'studio',
   noindex = false,
+  quietFooter = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -159,6 +165,6 @@ const themeColor = THEME_COLOR[world];
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer quiet={quietFooter} />
   </body>
 </html>

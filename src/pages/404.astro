@@ -27,6 +27,13 @@ import { BACK_TO_STUDIO } from '../lib/copy';
   Step-1 review item 15: the page can be shorter than the viewport, so the room section
   grows to fill it and the footer band sits on the viewport's bottom edge. No bare sheet
   shows below the band at any width.
+
+  §J's pre-committed cut for this route, made specific in round 12 and taken here (review
+  item E2): `quietFooter` drops the footer's nav repeat and its `Elsewhere` block. §J names
+  them by hand — "The empty room is the joke; a nav menu underneath it is not" — and
+  rendered, this page was 1,120px of which 615px was footer. The header nav stays, because
+  it is site chrome on every route, and so do the studio line, the location line, the
+  address, the employer note and the rights line, which are the footer everywhere else.
 */
 ---
 
@@ -34,6 +41,7 @@ import { BACK_TO_STUDIO } from '../lib/copy';
   title="Page not found | TheGeekDogs"
   description="That page isn't here. One link back to the studio, and nothing else on it."
   noindex
+  quietFooter
 >
   <div class="plate-span plate-span--page">
     <!--
