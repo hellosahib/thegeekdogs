@@ -189,3 +189,14 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer:
 77. **The sticky header's ground is .9, where the handoff prints .72.** Measured with the page scrolled — which no gate did before this round — the nav's own labels ran 3.17–3.76:1 against the brighter content passing under them. This is the handoff's prescribed remedy applied to the surface it was written for, and the blur is still plainly a blur, but it is a published value and you should know it moved.
     Answer:
+
+## M. The wedding planner's privacy policy · 2026-09-08
+
+78. **The route is `/work/wedding-planner/privacy/`, and the page does not print the name the owner has settled for the store.** Keeping that name for the store listing decides what goes in Play Console. It does not decide what this site calls the product in public, and three things here still hold it open: COPY.md §5's standing instruction that nothing on this route names it, item 9's ruling that the page ships name-agnostic, and `qa:no-slop`, which fails the build on that word appearing anywhere in `dist/`. So the policy calls the product `Wedding planner`, the same `descriptiveName` every other route uses, and the URL keeps the existing slug. A store URL is permanent in practice — reviewers and users read it, and moving it later needs a redirect somebody maintains — which is itself an argument against a route carrying a name that is still open. If you want the name on this site, three things change together: the copy gate's blocked word, `name` in the product JSON, and this route.
+    Answer:
+79. **The policy is linked from the product page and from nowhere else.** Not the primary nav, not the global footer. It is a legal page for a product that is not on a store yet, and a footer link would put it on all nine routes. Google Play needs the URL to resolve publicly, which it does either way. Say if you would rather it sat in the footer with the studio's own lines.
+    Answer:
+80. **The policy tells a signed-in user to email `thegeekdogs@gmail.com` to have their cloud copy deleted, because the app has no in-app control that does it.** That is what is true today and it is the honest version, but it is also a commitment: that inbox now has to answer deletion requests, and Play Console's data-deletion field will point at the same page. Two questions follow. Is that the right address to receive them, or does it want its own? And when a self-serve delete ships in the app, this page changes the same day — a policy may not describe a button before the button exists, and may not keep describing an email route after it does.
+    Answer:
+81. **Nothing on the page mentions Apple sign-in, sharing a wedding with another person, or anything else the current build does not do.** It was written against the shipped code, section by section. If the submitted build adds one of them, the policy is re-read before that build ships, not after.
+    Answer:

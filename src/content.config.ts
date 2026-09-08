@@ -207,6 +207,50 @@ const productSection = z.object({
   showFeatures: z.boolean().default(false),
 });
 
+/**
+ * A privacy policy, per product, for the one place a store console demands a public URL
+ * before it will take a submission.
+ *
+ * It is NOT `privacyClaimEnabled`. That flag is the Pocket Manager marketing claim on
+ * `/work/pocket-manager/` — the "Data safety" paragraph QUESTIONS.md items 14 and 15
+ * turned off ("Do not mention privacy at all. Flag stays off; no flag-ON copy"), pending
+ * a corrected store listing nobody has read yet. This is a legal document at its own
+ * route, and the two are independent: a product can have one, the other, both or neither.
+ *
+ * Nullable and null by default, so a product with no policy has no route and no link
+ * rather than an empty page. Every paragraph is a string in `body`; there is no rich-text
+ * field, because a policy that can carry markup is a policy that can carry a claim the
+ * copy gate never reads.
+ */
+const privacyPolicy = z.object({
+  /** The date printed on the page, and the only date on it. */
+  updated: z.string().min(1),
+  headline: z.string().min(1),
+  /** What the reader needs before the first heading. One paragraph per string. */
+  intro: z.array(z.string().min(1)).min(1),
+  sections: z
+    .array(
+      z.object({
+        heading: z.string().min(1),
+        body: z.array(z.string().min(1)).min(1),
+      }),
+    )
+    .min(1),
+  /*
+    The closing contact block. The address itself is NOT here: it comes off
+    `STUDIO_EMAIL` in src/lib/copy.ts, so the policy cannot print an inbox the rest of
+    the site does not.
+  */
+  contact: z.object({
+    heading: z.string().min(1),
+    body: z.array(z.string().min(1)).min(1),
+  }),
+  meta: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+  }),
+});
+
 const products = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/data/products' }),
   schema: ({ image }) =>
@@ -234,6 +278,9 @@ const products = defineCollection({
         })
         .nullable(),
       privacyClaimEnabled: z.boolean().default(false),
+      // Null where the product has no published policy: no route, no link. See above for
+      // why this is not the same switch as `privacyClaimEnabled`.
+      privacyPolicy: privacyPolicy.nullable().default(null),
       // Only reachable, shippable features belong here. There is no field for
       // unreachable functionality, so it structurally cannot leak.
       features: z.array(z.string().min(1)),

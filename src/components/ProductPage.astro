@@ -170,6 +170,27 @@ const schema = productGraph(product);
           ))
         }
       </div>
+
+      {/*
+        The policy link, and it is a link rather than a section: the page above it makes
+        no privacy claim, and one link at the foot is not a claim. QUESTIONS.md item 14
+        settled that Pocket Manager's page says nothing about privacy at all — that entry
+        has no `privacyPolicy`, so nothing renders here on that route and the ruling is
+        kept by the data rather than by a condition anyone has to remember.
+
+        It is not in the primary nav or the global footer. A legal page for a product
+        that is not on a store yet belongs next to that product, not on every route
+        (QUESTIONS.md item 79).
+      */}
+      {
+        d.privacyPolicy && (
+          <p class="product-policy">
+            <a class="link-row" href={`/work/${d.slug}/privacy/`}>
+              Privacy policy
+            </a>
+          </p>
+        )
+      }
     </div>
   </section>
 </BaseLayout>
@@ -288,5 +309,9 @@ const schema = productGraph(product);
   .product-section__closing {
     margin-block-start: var(--space-28);
     max-inline-size: 30ch;
+  }
+
+  .product-policy {
+    margin-block-start: var(--section-pad);
   }
 </style>

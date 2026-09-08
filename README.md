@@ -2,7 +2,7 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: redesigned. Eight routes, Astro 7, dark-first, twelve CI gates green. The print-inspired visual system that shipped runs A–F has been replaced by the dark, dimensional one in `.design_handoff/` — new palette, new type, glass panels, a lit isometric room. Structure, routes and copy are unchanged. Nothing pushed; a human pushes.** What the owners still owe is listed under "What needs you now".
+**Status: redesigned. Nine routes, Astro 7, dark-first, twelve CI gates green. The print-inspired visual system that shipped runs A–F has been replaced by the dark, dimensional one in `.design_handoff/` — new palette, new type, glass panels, a lit isometric room. Structure, routes and copy are unchanged. Nothing pushed; a human pushes.** What the owners still owe is listed under "What needs you now".
 
 ## What needs you now
 
@@ -109,7 +109,7 @@ naming the character and the file, if that face's committed subset doesn't have 
 | `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
 | `npm run qa:glyphs` | a character `dist/**/*.html` paints (text, or an `alt`/`aria-label`/`title`) that the committed `public/fonts/*.woff2` subset for the face rendering it doesn't contain |
 
-Lighthouse runs the same assertions the brief's budget table states, over all eight routes:
+Lighthouse runs the same assertions the brief's budget table states, over all nine routes:
 
 ```bash
 npm run build && npx lhci autorun --config=lighthouserc.json
@@ -120,7 +120,7 @@ be `noindex`, so Lighthouse's `is-crawlable` audit fails there by design — it 
 4.04 of the SEO category's 12.04, so a correct 404 scores 0.66 and always will. Rather
 than relax `categories:seo` to a number that means nothing, the config asserts the eight
 SEO audits that do apply to that page, each at `minScore: 1`. Every other assertion is
-identical to the other seven routes'.
+identical to the other eight routes'.
 
 ### Adding content
 
@@ -132,7 +132,10 @@ Content lives in `src/data/` as JSON, one file per entry, validated by the Zod s
   is what renders in headings and metadata while `name` is null. `stage` is one of `specced`,
   `building`, `final-touches`, `submitted`, `live`. `features` holds only functionality a user can
   actually reach in the shipped build — there is no field for anything unreachable, so it cannot
-  leak onto the site by accident.
+  leak onto the site by accident. `privacyPolicy` is the product's own privacy policy: present it
+  and the page builds at `/work/<slug>/privacy/` with a link to it at the foot of the case study,
+  leave it `null` and neither exists. It is **not** `privacyClaimEnabled`, which is the Pocket
+  Manager marketing claim QUESTIONS.md item 14 switched off and which stays off.
 - **A person** — `src/data/people/<slug>.json`, matching the `people` schema. `gatesOwned` holds
   slugs from `src/data/gates/`. The directory is empty today and that is a valid state: nothing
   renders a stand-in for a person who is not there yet.

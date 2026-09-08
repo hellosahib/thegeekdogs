@@ -447,3 +447,59 @@ The auditor also proved that `--accent`'s deviation from the handoff was argued 
 Open and not closed: no gate replaces `qa:plate`'s *class* of check — occlusion and horizontal overflow are unmeasured now that the sticky header and the fixed grain are the only overlays. Recorded for a later round.
 
 **State: 12 of 12 gates green. Lighthouse 100/100/100/100 on all eight routes, LCP 1.50–1.53s, CLS ≤ 0.0125.** Human gate 4 is the owners': items 75, 76 and 77, plus everything still owed from run F.
+
+---
+
+## 2026-09-08 · The wedding planner's privacy policy · new route · Orchestrator
+
+Requested by the owner: Google Play will not accept a submission without a public privacy policy
+URL, so the page has to exist before the app does. Ninth route, `/work/wedding-planner/privacy/`.
+
+**The existing flag was not the mechanism, and this was checked before anything was written.**
+`privacyClaimEnabled` is consumed by nothing in `src/` — it is a schema field and two `false`
+values — and PLAN.md §5.2 and README's own findings list say what it was for: the Pocket Manager
+"Data safety" paragraph, which item 14 answered *"Do not mention privacy at all. Flag stays off; no
+flag-ON copy"* pending a corrected store listing nobody has read. That is a marketing claim on a
+case study. This is a legal document at its own URL for the other product. Flipping the first to
+get the second would have turned on copy the owners switched off. It stays `false` on both
+products, untouched. The new field is `privacyPolicy`, nullable and null by default, so a product
+with no policy has no route and no link rather than an empty page — which is also how Pocket
+Manager's page keeps saying nothing about privacy without anyone having to remember to keep it
+that way.
+
+**Every claim was verified against the app's source, and four in the request were wrong.** The
+request described the app from memory; the code says otherwise on four points, and all four moved
+in the direction of the app collecting *less* than claimed, which is the direction that still
+matters. The app reads a stable identifier and a provider off a signed-in account and nothing else
+— not the email, name or picture the request listed, though Firebase Authentication's own record
+holds all three, so the page states both halves rather than the flattering one. Photos never reach
+the cloud copy, where the request had them syncing with everything else. The contacts import reads
+a name and an identifier, not numbers. And there is exactly **one** analytics event,
+`account_slot_interest`, where the request named two invented ones; the page prints the real name
+rather than a count.
+
+Three shipped-looking features are described nowhere, in any tense, because their entry points are
+not mounted: Apple sign-in (entitlement missing, card still open), sharing a wedding (logic exists,
+no sheet opens it), and in-app deletion (the confirm dialog is unbuilt and the sole `SettingsScreen`
+call site passes no `onDelete`). The deletion section therefore gives an email route and says why,
+which is the honest version and also a commitment — raised as item 80.
+
+**Naming.** The owner settled a store listing name; the site still says `A wedding planner`
+everywhere by items 9 and COPY.md §5, and `qa:no-slop` fails the build on that word appearing in
+`dist/`. The route takes the slug and the page takes `descriptiveName`. A store URL is permanent in
+practice, which argues against putting a still-open name in one. Raised as item 78, not decided
+here.
+
+**Discoverability:** linked from the foot of the product page, not from the nav or the global
+footer — a legal page for an unreleased product does not belong on all nine routes. Item 79.
+
+**Gates: 12 of 12 green, and the new route is inside three of them rather than beside them.**
+`qa:contrast` gained it (84 text runs per width per scheme, 6,720 runs total, tightest margin
+unchanged at 4.62:1 on an element that predates this work); `qa:console` picks it up from `dist/`
+automatically and visits nine routes; `lighthouserc.json` gained it and `lhci autorun` passes all
+assertions across 9 URLs and 27 runs. `qa:glyphs` clean, so the committed font subsets already
+cover every character the new copy paints and no re-cut is needed. Rendered and read at 390 and
+1440 in both schemes before merge.
+
+Copy is COPY.md §11. It is the one h1 on this site that is a label rather than a statement, and
+§11.1 says why.

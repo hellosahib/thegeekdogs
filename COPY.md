@@ -1252,6 +1252,89 @@ No dates, no estimates, no "expected", anywhere near this component.
 
 ---
 
+## 11. `/work/wedding-planner/privacy/`
+
+**Read before editing this route.** It is the only page on this site that a machine reads before a
+person does: Google Play will not take a submission without a public privacy policy URL, and this
+is that URL. Two rules follow from that and neither is stylistic.
+
+**Every sentence describes the build that exists today.** Not the next build, not the one being
+submitted if it differs, not a control whose copy is written but whose button is not mounted. Each
+claim below was checked against the app's own source before it was written: the fields the app
+reads off a signed-in account, what the sync codecs actually carry, what the crash reporter strips,
+how many analytics events there are, and which settings rows are reachable. Three things the app
+has code for but does not ship — Apple sign-in, sharing a wedding with another person, and in-app
+deletion — are described nowhere on this page, in any tense.
+
+**It does not name the product.** §5's rule holds here: the page calls it `Wedding planner`, the
+entry's own `descriptiveName`, and the route carries the slug. The owner has settled a name for the
+store listing; that is a decision about the listing, and QUESTIONS.md item 78 asks whether it is
+also a decision about this site. Until it is answered, `qa:no-slop` blocks the word from `dist/`
+and this page has no reason to be the first route to carry it.
+
+The strings live in `privacyPolicy` on `src/data/products/wedding-planner.json`, one paragraph per
+array entry, and the schema in `src/content.config.ts` refuses an empty one. Two things are
+deliberately *not* strings there: the studio address, which is `STUDIO_EMAIL` so a policy cannot
+print an inbox the rest of the site does not, and the product's name, which is `descriptiveName`
+for the reason above.
+
+### 11.1 Head
+
+- **Eyebrow:** the entry's `descriptiveName`.
+- **Headline:** `Privacy policy`. The one h1 on this site that is a label rather than a statement,
+  and deliberately: a store reviewer scanning for the policy needs to find the words they are
+  looking for at the top of the page, and a better line here would cost more than it bought.
+- **Date line:** `Last updated <date>`, from `privacyPolicy.updated`. The only date on the page and
+  the only version marker on it.
+- **Intro:** two paragraphs. The first says what the document is and that it describes the app as
+  built. The second is the whole policy in five sentences, for the reader who stops there.
+
+### 11.2 The eleven sections
+
+In order, and the order is the argument: what never leaves the phone, then the two things that can
+make it leave, then the three permissions, then what is measured, then what is refused, then how to
+get rid of it.
+
+`What is on your phone` · `Signing in, which you do not have to do` · `Cloud backup` ·
+`Your contacts` · `The camera, your photos and your calendar` · `Crash reports` ·
+`What the app measures` · `What the app does not do` · `Deleting your data` · `Children` ·
+`When this page changes`
+
+Four sentences on this page are load-bearing and none of them may be softened by a later round:
+
+- **Photos never sync.** Not "unless you turn on backup" — they are excluded from the cloud copy
+  outright, and the section says so twice because a reader who skims the backup section is the one
+  most likely to assume otherwise.
+- **The account record holds an email address; the app's data does not.** Both halves ship. Firebase
+  Authentication writes the Google account's email, name and picture into its own record and the app
+  reads a stable identifier and a provider out of it. Stating only the second half would understate
+  what is collected, which is the direction a privacy policy may never err in.
+- **Contacts are read for a name, and guest rows sync.** Those are two different sentences about two
+  different things and collapsing them is the easiest mistake on this page.
+- **There is one analytics event, named.** Not "minimal analytics", not "a few events". One, and the
+  page prints its name.
+
+### 11.3 Deletion, and the sentence that has to stay true
+
+The app has no in-app control that deletes cloud data. The section says that plainly and gives the
+studio address instead. It may not describe a button before the button exists, and on the day one
+ships it may not keep describing an email route. QUESTIONS.md item 80 puts both halves to the
+owners, along with whether `STUDIO_EMAIL` is the right inbox to receive deletion requests.
+
+### 11.4 Contact and meta
+
+- **Contact heading:** `Who to write to`
+- **Address:** `STUDIO_EMAIL`, rendered as a `link-row`. No second address: `/contact/`'s three-way
+  split is about routing a project enquiry to the right person, and a deletion request has one
+  destination.
+- **Back link:** `Back to the wedding planner`, built from `descriptiveName`.
+- **Meta title:** `Privacy policy, a wedding planner | TheGeekDogs`
+- **Meta description:** `What our wedding planner app stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in.`
+- **OG:** none written, so none renders. `/404` sets that precedent. A share card for a privacy
+  policy is a thing nobody needs.
+
+---
+
 ## Appendix A. The two unused hero variants, and the long hero body
 
 Kept per §7 so the choice does not get relitigated, and so the human Direction gate has all three

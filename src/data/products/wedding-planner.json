@@ -48,6 +48,110 @@
       "alt": "The planning board, with a card for each function of the wedding, each carrying its own date and its own colour."
     }
   ],
+  "privacyPolicy": {
+    "updated": "8 September 2026",
+    "headline": "Privacy policy",
+    "intro": [
+      "This is the privacy policy for the wedding planner TheGeekDogs builds for Android and iPhone. It is written against the app as it is built today, not against a version that might exist later.",
+      "The app needs no account and no network. Everything you plan is written to a database in the app's own private storage on your phone, and that is the only place the app reads from. Nothing leaves the phone unless you sign in and turn on cloud backup, and even then most of it stays. This page says exactly what does."
+    ],
+    "sections": [
+      {
+        "heading": "What is on your phone",
+        "body": [
+          "Your functions and their dates, your planning boards and the options on them, your guest list and its headcounts, your budget, your bookings and every payment you record are stored in a SQLite database inside the app's private storage. The app reads and writes it with the network off, because there is no second place it reads from.",
+          "Photos you attach are saved as files in that same private storage. They are not copied to a shared album, to removable storage or to any server. Photos never go to the cloud, including when cloud backup is on.",
+          "Uninstalling the app removes all of it. Android and iOS delete an app's private storage along with the app, and unless you signed in there is no other copy of any of it."
+        ]
+      },
+      {
+        "heading": "Signing in, which you do not have to do",
+        "body": [
+          "Every feature works signed out. There is no signup screen, no email gate, and no part of the app that asks who you are before it opens.",
+          "If you want a backup, Settings offers a Google sign-in. Tapping it hands the sign-in to Google and creates an account for you in Firebase Authentication, which is Google's service and the only account system this app uses. That account record holds the email address, name and profile picture of the Google account you picked, because that is what Google writes into it.",
+          "The app reads two things out of that record: a stable account identifier, and which provider you used. Your email address is not stored in the app's own data and nothing in your wedding is keyed to it."
+        ]
+      },
+      {
+        "heading": "Cloud backup",
+        "body": [
+          "Cloud backup does nothing until you sign in, and it exists for one reason: so the same wedding opens on your next phone.",
+          "With it on, a copy of your planning data is written to Cloud Firestore, Google's database, filed under your account identifier. That copy covers your boards and the options on them, your guest list including any address, phone number or email address you typed into a guest yourself, your budget lines, your bookings and your payment records. Photos are not part of it.",
+          "The copy is yours and only yours. It is not shown to another person, not pooled with anyone else's wedding, and not sold, rented or handed to a third party. This version of the app has no way to share a wedding with another person, so there is nobody it could be shown to."
+        ]
+      },
+      {
+        "heading": "Your contacts",
+        "body": [
+          "The guest list has an import that reads your phone's contacts. It is the only thing in the app that asks for that permission, it asks the first time you open that import rather than at launch, and the guest list works without it.",
+          "The import reads a contact's name and the identifier your phone files it under. It does not read phone numbers, email addresses or postal addresses out of your contacts, and your contact list is never uploaded anywhere.",
+          "What it leaves behind is a guest in your own list. If you later type a number or an address onto that guest and cloud backup is on, that guest travels with the rest of your planning data, exactly as a guest you entered by hand would."
+        ]
+      },
+      {
+        "heading": "The camera, your photos and your calendar",
+        "body": [
+          "The camera and photo library permissions are there so you can put a picture of a venue or an outfit on the board you are deciding it on. Those files stay in the app's private storage.",
+          "The calendar permission is one-way. When you export an event, the app hands it to your phone's own calendar app and stops there. It does not read your calendar, and nothing about your calendar reaches us."
+        ]
+      },
+      {
+        "heading": "Crash reports",
+        "body": [
+          "When the app crashes, Firebase Crashlytics sends a report so the fault can be found. The report carries the device model, the operating system version, the type of the error and the stack trace showing where it happened.",
+          "It deliberately does not carry the error's message. A message can quote whatever the app was handling when it failed, and that could be a guest's name, so the app sends the error's type in place of the error itself. No account identifier and no custom values are attached to a crash report either. Both restrictions are enforced by a check that fails the build rather than by anybody remembering them.",
+          "Crash reporting is off in development builds."
+        ]
+      },
+      {
+        "heading": "What the app measures",
+        "body": [
+          "The app sends one product event, through Firebase Analytics. It is called account_slot_interest and it records that somebody tapped one particular row in Settings. It carries no parameters, no identifier of yours and nothing about your wedding.",
+          "That is not a promise about restraint, it is what the code can do. An event is a name from a fixed list and nothing else, the wrapper has no way to attach a value to one, and setting a user identifier or a user property anywhere in the app fails the build.",
+          "Firebase Analytics also collects its own standard measurements about app usage, such as the device type and an app instance identifier Google generates. That collection is Google's and is described at policies.google.com/privacy."
+        ]
+      },
+      {
+        "heading": "What the app does not do",
+        "body": [
+          "No ads, and no advertising library in the build. The dependency list is checked against a blocklist that fails the build if one turns up.",
+          "Nothing is sold. Nothing is shared with a third party for marketing, profiling or any purpose of their own. The only outside companies involved are Google's services named on this page: Firebase Authentication, Cloud Firestore, Crashlytics and Analytics, each of them doing the job described here and nothing else.",
+          "There is no vendor marketplace and no vendor directory. Vendors are notes you keep for yourself. Nothing you write about one is sent to that vendor or to anyone else.",
+          "No money moves through the app. Payments are recorded, never processed, so there is no card number, no bank detail and no payment credential in it at any point."
+        ]
+      },
+      {
+        "heading": "Deleting your data",
+        "body": [
+          "Local data: uninstall the app. The database and the photos go with it.",
+          "Cloud data: write to us. The app has no control that does this yet, and rather than describe a button that does not exist, this is the route. Email the address below, tell us which Google account you signed in with, and the cloud copy of your wedding is removed by hand. Uninstalling does not remove it, because it is not on the phone.",
+          "Two people read that inbox and you will usually hear back within a couple of days. When a delete control ships inside the app, this page is rewritten the same day and the date at the top of it moves."
+        ]
+      },
+      {
+        "heading": "Children",
+        "body": [
+          "The app is not directed at children and collects nothing from one knowingly. It has no age field and no account for a child to create. If you think a child has signed in and left data with us, write to the address below and it is removed."
+        ]
+      },
+      {
+        "heading": "When this page changes",
+        "body": [
+          "If what the app collects changes, this page is updated before that build reaches a store, and the date at the top moves with it. That date is the only version marker on this page and it is the one to check."
+        ]
+      }
+    ],
+    "contact": {
+      "heading": "Who to write to",
+      "body": [
+        "TheGeekDogs is a two-person mobile studio in Bengaluru, India, and it is the developer and publisher of this app. Questions about this policy, requests to delete cloud data, and anything else on this page go to one inbox, which both of us read."
+      ]
+    },
+    "meta": {
+      "title": "Privacy policy, a wedding planner | TheGeekDogs",
+      "description": "What our wedding planner app stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in."
+    }
+  },
   "meta": {
     "title": "A wedding planner, in build | TheGeekDogs",
     "description": "Our second app, in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.",
