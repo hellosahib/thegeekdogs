@@ -39,18 +39,20 @@ import { serveDist } from './lib/serve.mjs';
 const ROUTES = ['/', '/work/', '/sahib/', '/tanya/', '/contact/', '/work/pocket-manager/'];
 
 /*
-  The handoff's published hex, with THREE light-scheme exceptions, all of them recorded
-  in `tokens.css` beside the values themselves and all three forced by `qa:contrast`
-  measuring real pixels:
+  The handoff's published hex, with TWO light-scheme exceptions, both recorded in
+  `tokens.css` beside the values themselves and both forced by `qa:contrast` measuring
+  real pixels:
 
-    --dim    #565E70 → #474E5E   (3.66 : 1 on the darkest ground it meets)
-    --accent #8B2E96 → #7E2988   (4.03 : 1)
-    --lamp   #7A5310 → #6B4809   (3.84 : 1)
+    --dim  #565E70 → #474E5E   (4.22–4.37 : 1 on glass over the raised band)
+    --lamp #7A5310 → #6B4809   (3.84–4.43 : 1 on the --void band and the floor panel)
 
-  Each is one step deeper on the same hue in the same role. They are asserted here at
-  their corrected values rather than quietly exempted, so that a future edit toward
-  either the handoff's number or a lighter one comes back as a failure and has to be
-  argued rather than merged.
+  `--accent` was briefly a third and is not one: it was moved on a worst-case calculation
+  rather than a measured failure, and re-measured, the handoff's #8B2E96 fails nothing.
+
+  Every token below is pinned by string, not only the two that moved. That is deliberate
+  and it is what the gate this replaces did: asserting a published figure catches a
+  mistyped hex BY NAME even when the mistype still passes AA, which measuring ratios
+  alone never will.
 */
 const PALETTE = {
   light: {
@@ -58,20 +60,53 @@ const PALETTE = {
     void: '#e4e5eb',
     raise: '#f7f7fa',
     ink: '#0a0e18',
-    accent: '#7e2988',
+    'ink-2': '#2e3646',
+    dim: '#474e5e',
+    accent: '#8b2e96',
+    'accent-ink': '#ffffff',
     lamp: '#6b4809',
+    'plate-halo': '#ffffff',
     inkRgb: '10, 14, 24',
+    'f-a': '#d8dbe6',
+    'f-b': '#b4bacb',
+    'f-c': '#8d95a8',
+    'f-d': '#767f94',
+    'f-screen-2': '#2c7c8e',
+    'f-cone': '#c98a12',
   },
   dark: {
     ground: '#080c18',
     void: '#04060b',
     raise: '#0d1322',
     ink: '#eaecf2',
+    'ink-2': '#c9cedb',
+    dim: '#96a0b5',
     accent: '#df8fe2',
+    'accent-ink': '#160a18',
     lamp: '#e9b968',
+    'plate-halo': '#04060b',
     inkRgb: '234, 236, 242',
+    'f-a': '#141c2e',
+    'f-b': '#070a12',
+    'f-c': '#0a0f1a',
+    'f-d': '#05070c',
+    'f-screen-2': '#7fd7e8',
+    'f-cone': '#e9b968',
   },
 };
+
+/** Every key above is asserted; `inkRgb` is the one whose token name differs. */
+const TOKEN_OF = (key) => (key === 'inkRgb' ? '--f-ink-rgb' : `--${key}`);
+
+/*
+  A custom property's computed value is the token's text, minified by the CSS pipeline
+  along the way — `#ffffff` comes back as `#fff`. Comparing the two forms as strings would
+  fail on a value that is correct, so both sides are normalised to full six-digit hex
+  first. Anything that is not a hex colour (the `--f-ink-rgb` triple) passes through
+  untouched and is still compared exactly.
+*/
+const norm = (v) =>
+  /^#[0-9a-f]{3}$/.test(v) ? `#${v[1]}${v[1]}${v[2]}${v[2]}${v[3]}${v[3]}` : v;
 
 const { base, close } = await serveDist();
 const browser = await chromium.launch();
@@ -84,40 +119,81 @@ for (const scheme of ['light', 'dark']) {
 
   for (const route of ROUTES) {
     await page.goto(base + route, { waitUntil: 'load' });
-    const got = await page.evaluate(() => {
+    const got = await page.evaluate((names) => {
       const root = document.documentElement;
       const cs = getComputedStyle(root);
       const read = (name) => cs.getPropertyValue(name).trim().toLowerCase();
       return {
         theme: root.dataset.theme,
-        ground: read('--ground'),
-        void: read('--void'),
-        raise: read('--raise'),
-        ink: read('--ink'),
-        accent: read('--accent'),
-        lamp: read('--lamp'),
-        inkRgb: read('--f-ink-rgb'),
+        values: Object.fromEntries(names.map((n) => [n, read(n === 'inkRgb' ? '--f-ink-rgb' : `--${n}`)])),
         /* What the body actually paints, which is the value a reader sees rather than
            the token that was meant to produce it. */
         bodyBg: getComputedStyle(document.body).backgroundColor,
       };
-    });
+    }, Object.keys(PALETTE[scheme]));
 
     if (got.theme !== scheme) {
       failures.push(`${route} (${scheme}): data-theme computed "${got.theme}"`);
     }
 
-    for (const key of ['ground', 'void', 'raise', 'ink', 'accent', 'lamp', 'inkRgb']) {
+    for (const [key, want] of Object.entries(PALETTE[scheme])) {
       checked += 1;
-      const want = PALETTE[scheme][key];
-      if (got[key] !== want) {
-        failures.push(`${route} (${scheme}): --${key} computed "${got[key]}", expected "${want}"`);
+      const had = norm(got.values[key]);
+      if (had !== norm(want)) {
+        failures.push(`${route} (${scheme}): ${TOKEN_OF(key)} computed "${had}", expected "${want}"`);
       }
     }
 
-    console.log(`      ${`${route} ${scheme}`.padEnd(30)} ${got.ground} / ${got.raise} / ${got.ink} / ${got.accent}  body ${got.bodyBg}`);
+    console.log(
+      `      ${`${route} ${scheme}`.padEnd(30)} ${got.values.ground} / ${got.values.raise} / ${got.values.ink} / ${got.values.accent}  body ${got.bodyBg}`,
+    );
   }
 
+  await ctx.close();
+}
+
+/*
+  **The glass actually blurs.**
+
+  This is here because it already went wrong once, silently, in the built artifact rather
+  than the source. Tailwind v4's Lightning CSS pass collapses a prefixed/unprefixed
+  `backdrop-filter` pair to whichever is declared last, and it cannot autoprefix a value
+  written as a custom property at all — so the shipped stylesheet carried seven
+  `-webkit-backdrop-filter` declarations and zero standard ones, Chrome has dropped that
+  alias, and every glass surface on the site rendered as a flat translucent wash. The
+  source was correct throughout, `astro check` was clean, and every other gate passed.
+
+  So this reads the computed value off the rendered page, which is the only place the
+  answer lives.
+*/
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  await page.goto(base + '/', { waitUntil: 'load' });
+  const blurs = await page.evaluate(() => {
+    const read = (sel) => {
+      const el = document.querySelector(sel);
+      return el ? getComputedStyle(el).backdropFilter : '(absent)';
+    };
+    return {
+      '.site-header': read('.site-header'),
+      '.glass': read('.glass'),
+      '.card': read('.card'),
+      '.pill--ghost': read('.pill--ghost'),
+      '.theme-toggle__button': read('.theme-toggle__button'),
+    };
+  });
+  for (const [sel, value] of Object.entries(blurs)) {
+    checked += 1;
+    if (!/blur\(/.test(value)) {
+      failures.push(
+        `${sel}: computed backdrop-filter is "${value}" — the glass is not blurring, and ` +
+          'the `@supports not` fallback will not fire either, because the engine does ' +
+          'support the property. Check the built CSS, not the source.',
+      );
+    }
+  }
+  console.log(`      ${'backdrop-filter'.padEnd(30)} ${Object.values(blurs).join(' / ')}`);
   await ctx.close();
 }
 

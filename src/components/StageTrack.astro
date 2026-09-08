@@ -64,6 +64,17 @@ const steps = stageSteps(stage);
 </div>
 
 <style>
+  /*
+    A container query, not a media query. The constraint is the TRACK's width, never the
+    viewport's: on a product page the same component sits in a 720px panel that is ~450px
+    of usable track at a 1440 viewport, and keyed to the viewport it kept the five-column
+    form there and ran `SUBMITTED FOR REVIEW` into the `LIVE` label. The component now
+    answers the box it is actually in.
+  */
+  .track {
+    container-type: inline-size;
+  }
+
   .track__head {
     display: flex;
     flex-wrap: wrap;
@@ -176,7 +187,7 @@ const steps = stageSteps(stage);
   }
 
   /* Five rows rather than five columns, where five columns would give each label 64px. */
-  @media (max-width: 559px) {
+  @container (max-width: 520px) {
     .track__list {
       grid-template-columns: none;
       row-gap: var(--space-4);

@@ -175,13 +175,13 @@ const figures = [
         <p class="cluster proof__links">
           {
             storeUrl && (
-              <a class="link" href={storeUrl} target="_blank" rel="noopener noreferrer">
+              <a class="link-row" href={storeUrl} target="_blank" rel="noopener noreferrer">
                 Open Pocket Manager in the Play Store
                 <span class="sr-only"> Opens a new tab.</span>
               </a>
             )
           }
-          <a class="link" href="/work/pocket-manager/">Read how it gets built</a>
+          <a class="link-row" href="/work/pocket-manager/">Read how it gets built</a>
         </p>
       </div>
 
@@ -219,18 +219,20 @@ const figures = [
         room is lit by rather than on a flat black. */}
     <span class="cta__glow" aria-hidden="true"></span>
     <div class="shell cta__inner" data-rv>
+      {/* The title first, then the sentence that answers it. Reversed, "One email, a real
+          reply…" reads as a kicker above the heading rather than as its answer. */}
+      <h2 class="cta__title">Tell us what you're building.</h2>
       <p class="lede cta__body">
         One email, a real reply from one of us, and a straight answer about whether we're the
         right fit. If we're not, we'll say so.
       </p>
-      <h2 class="cta__title">Tell us what you're building.</h2>
       <p>
         {/*
           Accent-filled, not lamp-filled. The lamp is reserved for light sources and live
           state, and a call to action is neither.
         */}
         <a
-          class="pill pill--accent pill--lg"
+          class="pill pill--accent pill--lg cta__address"
           data-cta="final-cta"
           href={`mailto:${STUDIO_EMAIL}`}
           aria-label={FINAL_CTA.accessibleName}
@@ -443,9 +445,13 @@ const figures = [
 
   /* --- What you get --- */
 
+  /*
+    Left-aligned on the page's own edge, not centred. Centred, this was the only block on
+    the site whose left edge was not the gutter — its h2 began 347px right of the CTA h2
+    directly beneath it, with nothing establishing the second axis.
+  */
   .offer__inner {
-    max-inline-size: 72ch;
-    margin-inline: auto;
+    max-inline-size: 62ch;
     display: grid;
     gap: var(--space-24);
   }
@@ -480,5 +486,14 @@ const figures = [
 
   .cta__title {
     max-inline-size: 18ch;
+    /* A step down from the section scale: at the full 50px this line wraps to three, and
+       it is the last thing on the page rather than the loudest. */
+    font-size: clamp(26px, 2.8vw, 38px);
+  }
+
+  /* An address is an address, on this page as on both person pages. It was the one
+     address on the site not set in the mono face. */
+  .cta__address {
+    font-family: var(--tgd-font-mono);
   }
 </style>

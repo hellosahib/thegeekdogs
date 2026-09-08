@@ -180,3 +180,12 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer:
 74. Screen-reader pass (brief §12): one of you runs VoiceOver over the home page and one person page once the floor scene is in, and notes anything read out of order or silent. No agent can enable VoiceOver. The keyboard order and accessible names are already verified by script.
     Answer:
+
+## L. Dark-first redesign · 2026-09-08
+
+75. **Two light-scheme brand colours ship one step deeper than the design handoff prints them.** `--dim` #565E70 → #474E5E, `--lamp` #7A5310 → #6B4809. Both fail AA on the rendered page at their published values — 4.22–4.37:1 and 3.84–4.43:1 against 4.5 — and the handoff itself chose them *for* their contrast on a light ground, so its reasoning is kept and its arithmetic corrected. They are a change to published brand colour, which is yours to confirm rather than an engineer's to settle. The handoff's own remedy ("raise the panel's fill alpha rather than lightening the text") does not apply: both live on bands and on the room's labels, where there is no panel alpha to raise, and both changes darken rather than lighten. `--accent` was briefly changed the same way and has been reverted — re-measured, the handoff's #8B2E96 fails nothing.
+    Answer:
+76. **The header now carries a mark** — the same near-abstract dog head the agent desks use, at 26px, beside the wordmark. Item 48 ruled "there is no logo"; the handoff's own header draws one, and the handoff was followed. The design review's verdict on that was blunt and correct: fidelity is not measurement, and fidelity does not outrank a recorded owner decision. It shipped in the release candidate ahead of the confirmation it should have waited for. Removing it costs one component.
+    Answer:
+77. **The sticky header's ground is .9, where the handoff prints .72.** Measured with the page scrolled — which no gate did before this round — the nav's own labels ran 3.17–3.76:1 against the brighter content passing under them. This is the handoff's prescribed remedy applied to the surface it was written for, and the blur is still plainly a blur, but it is a published value and you should know it moved.
+    Answer:

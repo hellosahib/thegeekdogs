@@ -313,17 +313,22 @@
     );
     border: 1px solid rgba(var(--f-ink-rgb), 0.14);
     border-radius: var(--r-panel);
-    backdrop-filter: var(--blur-panel);
-    -webkit-backdrop-filter: var(--blur-panel);
+    backdrop-filter: blur(22px) saturate(1.4);
     box-shadow: var(--shadow-panel), var(--shadow-panel-inset);
+  }
+
+  /* A card resting on a glass panel takes the nested fill: two translucent layers stack,
+     and in dark they stack toward the light, which is the wrong direction for the ink on
+     top of them. */
+  .glass .card {
+    background: var(--card-nested);
   }
 
   .card {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--r-card);
-    backdrop-filter: var(--blur-card);
-    -webkit-backdrop-filter: var(--blur-card);
+    backdrop-filter: blur(14px);
   }
 
   /*
@@ -368,6 +373,20 @@
     box-shadow: var(--shadow-accent);
   }
 
+  /*
+    The drop shadow is a `box-shadow` in `@layer components`, so it beat the focus ring's
+    `box-shadow` in `@layer base` and the lamp half of the ring never painted on the
+    site's primary controls. Both are stated together here: the ring first, then the
+    shadow it is drawn over.
+  */
+  .pill--accent:focus-visible {
+    box-shadow: 0 0 0 var(--focus-inner-width) var(--focus-inner), var(--shadow-accent);
+  }
+
+  .pill--lg:focus-visible {
+    box-shadow: 0 0 0 var(--focus-inner-width) var(--focus-inner), var(--shadow-accent-lg);
+  }
+
   .pill--lg {
     min-block-size: 60px;
     padding-inline: 32px;
@@ -375,12 +394,16 @@
     box-shadow: var(--shadow-accent-lg);
   }
 
+  /*
+    The ghost pill takes `--accent-wash`, which the handoff names as the "accent-tinted
+    fill for ghost buttons" — it was on the neutral glass fill, so the token's only
+    consumer was the header CTA and the hero's second action was a plain grey pill.
+  */
   .pill--ghost {
     border-color: var(--line-2);
-    background: var(--glass);
+    background: var(--accent-wash);
     color: var(--ink);
-    backdrop-filter: var(--blur-card);
-    -webkit-backdrop-filter: var(--blur-card);
+    backdrop-filter: blur(14px);
   }
 
   /* The header's compact affordance: an accent outline over the accent wash. */
@@ -492,6 +515,22 @@
   }
 }
 
+/*
+  The `-webkit-` half of every blurred surface, kept in its own `@supports` block so no
+  minifier can fold it into the standard declaration and drop one of the two. The
+  condition is true on exactly the engines that still need the prefix.
+*/
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .glass {
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  }
+
+  .card,
+  .pill--ghost {
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
 @keyframes riseline {
   from {
     opacity: 0;
@@ -549,16 +588,12 @@
 */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass {
-    background: linear-gradient(
-      160deg,
-      color-mix(in srgb, var(--ink) 14%, var(--ground)),
-      color-mix(in srgb, var(--ink) 7%, var(--ground))
-    );
+    background: linear-gradient(160deg, var(--glass-solid-a), var(--glass-solid-b));
   }
 
   .card,
   .pill--ghost {
-    background: color-mix(in srgb, var(--ink) 9%, var(--ground));
+    background: var(--card-solid);
   }
 }
 
@@ -623,7 +658,6 @@
   .pill--ghost {
     background: none !important;
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
     border-color: #999 !important;
   }

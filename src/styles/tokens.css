@@ -45,7 +45,20 @@
   --card: rgba(var(--f-ink-rgb), 0.05); /* card fill */
   --fill: rgba(var(--f-ink-rgb), 0.1); /* filled matrix cell */
 
-  --head: rgba(8, 12, 24, 0.72); /* sticky header, behind blur */
+  /*
+    The sticky header's ground. The handoff prints .72; this ships .9, and the reason is
+    the one hazard a translucent header has.
+
+    Measured with the page SCROLLED — which the first version of `qa:contrast` never did,
+    because a full-page capture puts nothing behind a sticky element — the nav's own
+    labels ran 3.17–3.76 : 1 against the brighter content passing under them: a portrait
+    hatch, a lit monitor, a glass panel. At .9 the blur is still plainly a blur and the
+    text clears AA over anything the site can put behind it.
+
+    This is the handoff's own prescribed remedy, applied to the surface it was written
+    for: raise the fill rather than lighten the text.
+  */
+  --head: rgba(8, 12, 24, 0.9); /* sticky header, behind blur */
   --halo: rgba(223, 143, 226, 0.16); /* hero glow, outer */
   --halo-2: rgba(233, 185, 104, 0.1); /* hero glow, warm core */
   --grain-o: 0.5; /* film-grain overlay opacity */
@@ -63,6 +76,33 @@
     available and what a printed map would do.
   */
   --plate-halo: var(--void);
+
+  /*
+    The opaque stand-ins for the three translucent fills, for engines with no
+    `backdrop-filter`.
+
+    They are literal per-scheme values rather than `color-mix()`, and that is a fix rather
+    than a style. The fallback used to be written as `color-mix(in srgb, var(--ink) 14%,
+    var(--ground))`, and Lightning CSS emits a pre-`color-mix` fallback ahead of it —
+    `background: var(--ink)` — which is the INK, flat. Every engine that reaches this
+    block (no backdrop-filter) is also old enough to lack `color-mix`, so in practice the
+    degenerate branch is the only one that ran: measured, 498 contrast failures with a
+    tightest of 1.53 : 1, on a background of exactly `--ink`.
+
+    These are the same three mixes, computed once and written down.
+  */
+  --glass-solid-a: #282b37;
+  --glass-solid-b: #181c27;
+  --card-solid: #1c202c;
+
+  /*
+    A card sitting INSIDE a glass panel. Two translucent fills stack, and in the dark
+    scheme they stack toward the light: the shared core's role cards measured a background
+    of rgb(51,57,70) — lighter than the page ground — and `--dim` on it fell to 4.25 : 1.
+    A nested card therefore darkens rather than lightens, which is also what a card resting
+    ON a panel should do.
+  */
+  --card-nested: rgba(4, 6, 11, 0.55);
 
   /*
     --- The studio floor's own ramp, dark. ---
@@ -106,26 +146,34 @@
   --ink: #0a0e18;
   --ink-2: #2e3646;
   /*
-    --- The three light values that are not the handoff's published hex ---
+    --- The two light values that are not the handoff's published hex ---
 
-    The handoff prints --dim #565E70, --accent #8B2E96 and --lamp #7A5310, and it chose
-    all three FOR their contrast on a light ground — orchid and brass both get a second,
-    deeper value in this scheme precisely so that they do not fail here. Measured on the
-    rendered page they still do, by a little, and always in the same place: on the --void
-    and --raise bands under the film grain, and on glass panels sitting over them.
-    #565E70 came out at 3.66:1 on the darkest ground it meets, #7A5310 at 3.84:1 and
-    #8B2E96 at 4.03:1, against AA's 4.5.
+    The handoff prints --dim #565E70 and --lamp #7A5310. Both fail AA on the rendered
+    page, and `qa:contrast` names where: --dim at 4.22–4.37:1 on glass over the raised
+    band and on the floor's nameplates, --lamp at 3.84–4.43:1 on the --void band's roster
+    label and the floor panel's kind-label. Each is now one step deeper on the same hue in
+    the same role.
 
-    Each is therefore one step deeper, on the same hue, at the same role. The handoff's
-    reasoning is kept and its arithmetic is corrected: these are the values that do what
-    it says the light scheme's colours are for. The grain stays at its published .22, the
-    dark scheme is untouched, and `qa:contrast` measures all of it on real pixels, so a
-    future edit that walks any of them back comes back as a failure rather than as drift.
+    **--accent is NOT one of them.** An earlier pass moved it to #7E2988 on the strength of
+    a worst-case calculation — 4.03:1 against the single darkest grain pixel the light
+    scheme produces — rather than a measured failure. Reverted and re-measured, the
+    handoff's own #8B2E96 fails nothing: no run on any route in either scheme at any width.
+    The published value stands, and the arithmetic that argued against it was not evidence.
+
+    A second thing this comment used to get wrong: the handoff's own prescribed remedy is
+    "if a panel fails, raise the panel's fill alpha rather than lightening the text". These
+    two values are not on panels — they are on bands and on the room's own labels, where
+    there is no panel alpha to raise, and both changes darken rather than lighten. That is
+    the safe direction. It is still a change to published brand colour made on the design
+    owner's behalf, so it is raised in QUESTIONS.md rather than settled here.
+
+    `qa:schemes` asserts both corrected values, so an edit back toward either the
+    handoff's number or a lighter one fails rather than merges.
   */
   --dim: #474e5e;
-  --accent: #7e2988;
+  --accent: #8b2e96;
   --accent-ink: #ffffff;
-  --accent-wash: rgba(126, 41, 136, 0.08);
+  --accent-wash: rgba(139, 46, 150, 0.08);
   --lamp: #6b4809;
 
   --line: rgba(var(--f-ink-rgb), 0.12);
@@ -141,8 +189,8 @@
   */
   --card: rgba(255, 255, 255, 0.72);
 
-  --head: rgba(239, 239, 243, 0.78);
-  --halo: rgba(126, 41, 136, 0.13);
+  --head: rgba(239, 239, 243, 0.93);
+  --halo: rgba(139, 46, 150, 0.13);
   --halo-2: rgba(107, 72, 9, 0.1);
   --grain-o: 0.22;
 
@@ -155,10 +203,16 @@
   --f-screen-2: #2c7c8e;
   --f-cone: #c98a12;
 
-  --accent-rgb: 126, 41, 136;
+  --accent-rgb: 139, 46, 150;
   --lamp-rgb: 107, 72, 9;
 
   --plate-halo: #ffffff;
+
+  --glass-solid-a: #cfd0d4;
+  --glass-solid-b: #dfdfe4;
+  --card-solid: #dadbdf;
+
+  --card-nested: rgba(255, 255, 255, 0.82);
 }
 
 :root {
@@ -267,9 +321,32 @@
   --shadow-accent: 0 18px 40px -22px var(--accent);
   --shadow-accent-lg: 0 22px 50px -26px var(--accent);
 
-  --blur-panel: blur(22px) saturate(1.4);
-  --blur-card: blur(14px);
-  --blur-head: blur(18px) saturate(1.3);
+  /*
+    **The three blur values are deliberately NOT tokens, and this is a bug fix.**
+
+    They used to be `--blur-panel`, `--blur-card` and `--blur-head`, and every glass rule
+    read them through `var()`. Lightning CSS — which minifies this stylesheet — cannot
+    autoprefix a declaration whose value is a custom property, because it cannot see the
+    value: given `backdrop-filter: var(--blur-panel)` it emits the `-webkit-` form ALONE,
+    at every target setting, and Chrome has dropped that alias. The result was that no
+    glass surface on the site blurred in Chrome, Edge or Firefox, while the `@supports
+    not (…)` fallback stayed inert because those engines do support the unprefixed
+    property.
+
+    Written as a literal, the standard property survives — but the `-webkit-` form is
+    still dropped, because Tailwind v4's plugin runs its own Lightning CSS pass before
+    Vite's and neither `browserslist` nor `vite.css.lightningcss.targets` reaches it.
+
+    So the pair is made UNMERGEABLE rather than argued with: the standard declaration sits
+    in the rule, and the `-webkit-` one sits in an `@supports (-webkit-backdrop-filter: …)`
+    block beside it. A minifier will not fold a declaration across an `@supports`
+    boundary, and the condition is true on exactly the engines that need the prefix. Both
+    forms ship, on every engine, whatever any later toolchain decides to do to them.
+
+    `qa:schemes` asserts on the rendered page that the header's computed
+    `backdrop-filter` is not `none`, so if this ever regresses it fails rather than
+    quietly un-blurring the site.
+  */
 
   --header-h: 76px;
 

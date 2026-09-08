@@ -23,7 +23,15 @@ const here = Astro.url.pathname;
 
 <header class="site-header" data-theme-anim>
   <div class="shell site-header__inner">
-    <a class="site-header__wordmark" href="/" aria-label={WORDMARK_ACCESSIBLE_NAME}>
+    {/* NAV has no Home entry — the wordmark is the home link — so it is the element that
+        has to say so when you are on it. Without this, `/` was the one route on the site
+        with no `aria-current` anywhere. */}
+    <a
+      class="site-header__wordmark"
+      href="/"
+      aria-label={WORDMARK_ACCESSIBLE_NAME}
+      aria-current={here === '/' ? 'page' : undefined}
+    >
       <svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
         <path d="M7 12 2 1 14 6Z" fill="var(--accent)"></path>
         <path d="M33 12 38 1 26 6Z" fill="var(--accent)"></path>
@@ -78,9 +86,15 @@ const here = Astro.url.pathname;
     inset-block-start: 0;
     z-index: 40;
     background: var(--head);
-    backdrop-filter: var(--blur-head);
-    -webkit-backdrop-filter: var(--blur-head);
+    backdrop-filter: blur(18px) saturate(1.3);
     border-block-end: 1px solid var(--line);
+  }
+
+  /* The prefixed half, in its own block so a minifier cannot fold the pair. */
+  @supports (-webkit-backdrop-filter: blur(1px)) {
+    .site-header {
+      -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    }
   }
 
   /*

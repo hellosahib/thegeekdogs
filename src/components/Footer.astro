@@ -151,7 +151,9 @@ const showElsewhere = links && !quiet && elsewhere.length > 0;
   .site-footer__link {
     display: inline-flex;
     align-items: center;
-    min-block-size: 40px;
+    /* 44, not 40: it is the site's floor everywhere else and there is no reason for the
+       footer to be the one place a target is smaller. */
+    min-block-size: 44px;
     font-size: var(--step-small);
     color: var(--dim);
     text-decoration: none;

@@ -113,10 +113,15 @@ import { THEME_TOGGLE } from '../lib/copy';
     border: 1px solid var(--line);
     border-radius: var(--r-pill);
     background: var(--glass);
-    backdrop-filter: var(--blur-card);
-    -webkit-backdrop-filter: var(--blur-card);
+    backdrop-filter: blur(14px);
     color: var(--ink);
     cursor: pointer;
+  }
+
+  @supports (-webkit-backdrop-filter: blur(1px)) {
+    .theme-toggle__button {
+      -webkit-backdrop-filter: blur(14px);
+    }
   }
 
   .theme-toggle__button:hover {

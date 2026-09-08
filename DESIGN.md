@@ -64,7 +64,7 @@ light.
 | `--ink` | `#EAECF2` | `#0A0E18` | primary text |
 | `--ink-2` | `#C9CEDB` | `#2E3646` | secondary text inside glass panels |
 | `--dim` | `#96A0B5` | `#474E5E` † | body copy, labels, muted text |
-| `--accent` | `#DF8FE2` | `#7E2988` † | orchid, the one signal colour |
+| `--accent` | `#DF8FE2` | `#8B2E96` | orchid, the one signal colour |
 | `--accent-ink` | `#160A18` | `#FFFFFF` | text on an accent-filled surface |
 | `--lamp` | `#E9B968` | `#6B4809` † | brass; light sources and live state only |
 | `--plate-halo` | `var(--void)` | `#FFFFFF` | the outline under a floor nameplate |
@@ -78,14 +78,22 @@ moment it inverts the room.
 reads as light-on-dark and fails on a light ground; the light scheme uses a deeper purple.
 Same for the lamp. They are not to be unified.
 
-† **Three light values are not the handoff's published hex**, and the reason is measured.
-The handoff prints `--dim #565E70`, `--accent #8B2E96` and `--lamp #7A5310`, and chose all
-three *for* their contrast on a light ground. On the rendered page — on the `--void` and
-`--raise` bands, under the film grain, and on glass sitting over them — they measured
-3.66:1, 4.03:1 and 3.84:1 against AA's 4.5. Each is now one step deeper on the same hue in
-the same role. The handoff's reasoning is kept; its arithmetic is corrected. `qa:schemes`
-asserts the corrected values so that a future edit back toward either the published number
-or a lighter one fails rather than merges.
+† **Two light values are not the handoff's published hex**, and the reason is measured.
+`--dim #565E70` runs 4.22–4.37:1 on glass over the raised band and on the floor's
+nameplates; `--lamp #7A5310` runs 3.84–4.43:1 on the `--void` band's roster label and the
+floor panel's kind-label. Both are now one step deeper on the same hue in the same role.
+
+**`--accent` was briefly a third and is not one.** It was moved to `#7E2988` on a
+worst-case calculation — 4.03:1 against the single darkest grain pixel the light scheme
+produces — rather than a measured failure. Reverted and re-measured across 5,858 runs, the
+handoff's own `#8B2E96` fails nothing. The published value stands, and the arithmetic that
+argued against it was not evidence. That distinction matters more than the colour did: a
+number computed against a worst case is not a measurement, and this document had recorded
+it as one.
+
+`qa:schemes` pins every token in both schemes by string — not only the two that moved —
+because asserting a published figure catches a mistyped hex by name even when the mistype
+still passes AA, which measuring ratios alone never will.
 
 ### B.2 The floor's own ramp
 
@@ -357,7 +365,14 @@ drops the grain, the toggle, the header nav and the floor, and removes every res
   bounding box also contains the logo beside the wordmark and the ground outside a pill's
   corners, and neither has a letter anywhere near it. The nameplate halo is deliberately
   left painting, because what a reader's eye meets behind those letters *is* the halo.
-  1,858 runs, two schemes, 390 and 1440. Tightest: 4.48:1.
+
+  **An audit of its first version found it passing while measuring nothing** — a run that
+  could not be measured was neither counted, printed nor failed, and three separate things
+  could cause that silently. It now verifies that the blanking rule actually won, gives
+  clipped scroller content a second pass with the container moved, measures the skip link
+  in its focused state and the sticky header over content at three scroll depths, holds a
+  floor on the run count per route, and **fails by name on anything it cannot measure**.
+  5,858 runs, two schemes, five widths. Tightest margin: 4.62:1 against a 4.5 threshold.
 - **`qa:schemes` — replaces `qa:worlds`.** Same lesson (a fault only a rendered page shows
   needs a check that reads a rendered page), new axis. It asserts the computed palette on
   every route in both schemes, that `--f-ink-rgb` resolves, and that with JavaScript
@@ -372,15 +387,15 @@ three found real defects in this build, which is the argument for having kept th
 
 ## I. Open
 
-- **The studio card's closing line** (`4.3 stars, 1,000+ downloads, still shipping.`) is
-  the design handoff's sentence, not COPY.md's, and one word is changed on purpose: the
-  handoff writes `installs`, COPY.md §2.7's display string is `downloads`, and the site
-  must not round one number two ways. It is in `src/lib/copy.ts` with its provenance and
-  it needs the Copywriter's sign-off.
+- **The two light-scheme token deviations above** are a change to published brand colour
+  made on the design owner's behalf. Both are the safe direction and both are forced by
+  measurement, but neither is the reviewer's call to settle. Raised in QUESTIONS.md.
 - **The wordmark now carries a mark** — the same near-abstract dog head the desks use, at
   26px. QUESTIONS.md item 48 ruled "there is no logo"; the handoff's own header draws one.
-  The handoff was taken. It is the one place this build overrode a recorded owner decision
-  on grounds of design fidelity rather than measurement, and it should be confirmed.
+  The handoff was taken, and the design review's verdict on that is worth recording
+  verbatim: *fidelity is not measurement, and fidelity does not outrank the owner.* It
+  shipped in the release candidate ahead of a confirmation it should have waited for.
+  Removing it costs one component if the owner holds the line.
 - Headshots for both founders (item 23), and the wedding planner's remaining screenshots
   (item 73).
 - Real-device and VoiceOver passes.

@@ -196,7 +196,23 @@ const ogImageUrl = ogImage ? new URL(`/og/${ogImage}.png`, Astro.site).href : un
           { rootMargin: '0px 0px -8% 0px' },
         );
 
+        /*
+          **Anything already on screen is never hidden in the first place.**
+
+          A reveal is for content a reader scrolls to. Applying it to what is already in
+          the first viewport delays that content by the animation's own duration — and
+          because the browser measures Largest Contentful Paint on the frame the element
+          reaches full opacity, it delays the METRIC by the same amount. Measured on
+          /sahib/: LCP 2.36s against a 2.0s budget, of which 2,357ms was render delay on a
+          paragraph that had been laid out at 1,529ms and was simply waiting to fade in.
+        */
+        const vh = window.innerHeight;
         for (const el of targets) {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh && r.bottom > 0) {
+            el.dataset.reveal = 'in';
+            continue;
+          }
           el.dataset.reveal = 'out';
           observer.observe(el);
         }

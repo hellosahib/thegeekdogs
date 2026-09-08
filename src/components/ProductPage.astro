@@ -50,7 +50,12 @@ const SHOT_WIDTH = 280;
   differentiator — it cannot also be the page's smallest mark.
 
   The source is 1206 x 2622, so 603 is the largest display width that still downscales
-  at 2x.
+  at 2x — but 603 is not what it is displayed at. Rendered at its full 603 the frame ran
+  roughly 1,000px tall beside a column of prose that ran out about 600px earlier, and one
+  oversized asset next to 600px of empty column is the visual signature of a page waiting
+  for content. The thin page is supposed to read as restraint. It is capped at 380 in CSS,
+  which is the width its own paragraph supports, and still served at 603 so the raster is
+  never upscaled.
 */
 const singleShot = d.screenshots.length === 1;
 const SOLO_SHOT_WIDTH = 603;
@@ -187,7 +192,6 @@ const schema = productGraph(product);
   .product-head__track {
     margin-block-start: var(--space-32);
     padding: var(--space-24);
-    max-inline-size: 720px;
   }
 
   .product-head__store {
@@ -229,8 +233,15 @@ const schema = productGraph(product);
     gap: var(--section-pad);
   }
 
+  /*
+    Two columns — the heading on the left, its prose on the right — so a case study fills
+    the content width the rest of the site uses. As a single measure-capped column both
+    case studies sat in the left half of a 1360 shell with nothing in the right half at
+    any scroll position, and read as a narrower, different site.
+  */
   .product-section__inner {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: var(--gap-col);
     align-items: start;
   }
@@ -246,10 +257,12 @@ const schema = productGraph(product);
     border-radius: var(--r-panel);
     line-height: 0;
     justify-self: start;
+    max-inline-size: 380px;
   }
 
   .product-section__heading {
-    max-inline-size: 22ch;
+    max-inline-size: 18ch;
+    font-size: var(--step-subsection);
   }
 
   .product-section__body {

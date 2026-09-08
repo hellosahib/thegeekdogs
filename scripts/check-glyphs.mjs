@@ -146,6 +146,33 @@ if (faceRules.length === 0) {
   process.exit(1);
 }
 
+/*
+  **A face with no rules is a face this gate has stopped checking.**
+
+  The scan resolves an element to `sans` when it finds no mono rule above it, and `sans`
+  is also the fallback — so if the mono selectors ever became unreadable to it (a renamed
+  token, a rule written with `:is()` or `:where()`, an attribute selector, a move into a
+  file the walk misses) every element on the site would resolve to the proportional face,
+  the mono subset would never be consulted, and tofu in a nameplate or an address would
+  ship green. The old display/body pair had this hazard written down; the mono name
+  arrived without the guard.
+
+  Both faces must therefore be reachable, and by more than one rule: every number, label
+  and address on this site is mono, so a single surviving mono rule is itself a symptom.
+*/
+for (const [face, floor] of [['sans', 3], ['mono', 6]]) {
+  const found = faceRules.filter((r) => r.face === face).length;
+  if (found < floor) {
+    console.error(
+      `FAIL  qa:glyphs — the CSS scan found ${found} \`${face}\` rule(s) and expects at least ` +
+        `${floor}. Every element would resolve to the other face and this gate would pass ` +
+        'over the whole site. Check that the font-family selectors are still in a form the ' +
+        'scanner can read.',
+    );
+    process.exit(1);
+  }
+}
+
 /** Does this one ancestor (tag + class list) match a given face rule's selector? */
 function matches(tag, classes, selector) {
   if (selector.startsWith('.')) return classes.has(selector.slice(1));

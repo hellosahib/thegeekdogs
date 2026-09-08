@@ -53,5 +53,12 @@
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
-  }
+  },
+  "browserslist": [
+    "chrome >= 120",
+    "edge >= 120",
+    "firefox >= 128",
+    "safari >= 15.4",
+    "ios_saf >= 15.4"
+  ]
 }
