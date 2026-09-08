@@ -64,10 +64,10 @@
       "whatTheyDo": "This studio.",
       "years": "2020 – now",
       "productsStack": [
-        "Pocket Manager.",
-        "4.3 stars, 1,000+ installs, still shipping."
+        "Pocket Manager."
       ],
-      "confirmed": true
+      "confirmed": true,
+      "liveLine": "4.3 stars, 1,000+ installs, still shipping."
     }
   ],
   "coverage": {

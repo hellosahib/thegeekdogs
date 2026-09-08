@@ -37,11 +37,9 @@ interface Props {
     email: LabelledLink & { address: string };
   };
   /**
-   * §J's pre-committed cut for `/sahib/`, review item S4: the page closed with
-   * `Sahib on GitHub · Sahib on LinkedIn · sahiboffc@gmail.com` and then, 40px under it,
-   * `sahiboffc@gmail.com` again at display size with a rule beneath. COPY §6.5 writes ONE
-   * email link. The one that stays is the closing one, which is the one §B.10's per-world
-   * address rule is about; this drops the duplicate from the links row.
+   * The page's closing block prints the address at display size as its own call to
+   * action, so a row that also carried it would print one email link twice. Where the
+   * row is the only place the address appears, it stays.
    */
   omitEmail?: boolean;
 }
@@ -50,9 +48,22 @@ const { person, links, omitEmail = false } = Astro.props;
 ---
 
 <ul class="person-links">
+  {
+    !omitEmail && (
+      <li>
+        <a
+          class="pill pill--accent"
+          href={`mailto:${links.email.address}`}
+          aria-label={links.email.accessibleName}
+        >
+          {links.email.label}
+        </a>
+      </li>
+    )
+  }
   <li>
     <a
-      class="link"
+      class="pill pill--ghost"
       href={person.data.socials.github}
       target="_blank"
       rel="noopener noreferrer"
@@ -63,7 +74,7 @@ const { person, links, omitEmail = false } = Astro.props;
   </li>
   <li>
     <a
-      class="link"
+      class="pill pill--ghost"
       href={person.data.socials.linkedin}
       target="_blank"
       rel="noopener noreferrer"
@@ -72,33 +83,25 @@ const { person, links, omitEmail = false } = Astro.props;
       <span class="sr-only"> Opens a new tab.</span>
     </a>
   </li>
-  {
-    !omitEmail && (
-      <li>
-        <a
-          class="link"
-          href={`mailto:${links.email.address}`}
-          aria-label={links.email.accessibleName}
-        >
-          {links.email.label}
-        </a>
-      </li>
-    )
-  }
 </ul>
 
 <style>
+  /*
+    Three pills: the address filled in the accent, the two profiles as ghosts. The
+    hierarchy is the point — one of these three is the thing the page wants pressed, and
+    a row of three identical outlines would not say which.
+  */
   .person-links {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    column-gap: var(--space-32);
-    row-gap: var(--space-4);
+    gap: var(--space-14);
   }
 
-  .person-links a {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: 44px;
+  /* The address is a mailto and it is set in the mono face, because an address is an
+     address. */
+  .person-links .pill--accent {
+    font-family: var(--tgd-font-mono);
+    font-size: var(--step-small);
   }
 </style>

@@ -139,6 +139,19 @@ const people = defineCollection({
             other rendering of a work card reads it.
           */
           layer: z.enum(['core', 'android', 'ios']).optional(),
+          /*
+            The studio's own card closes on a lamp-coloured line, because it is the one
+            company on either person's list that a reader can go and install right now,
+            and the lamp is what this site reserves for live state.
+
+            It is a field rather than "the last entry in productsStack", because the
+            string is load-bearing — it carries the rating, the install count and the
+            claim that the app is still maintained — and a positional rule would print it
+            as an ordinary stack line the moment someone appended to the array. The text
+            is COPY.md's own and was already in the data; it moved here, it was not
+            written here.
+          */
+          liveLine: z.string().min(1).optional(),
           confirmed: z.boolean(),
         }),
       ),

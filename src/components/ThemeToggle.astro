@@ -2,25 +2,23 @@
 import { THEME_TOGGLE } from '../lib/copy';
 
 /**
- * DESIGN.md §B.10a — one control, one per page, last in the header's tab order.
+ * One control, one per page, last in the header's tab order.
  *
- * 44 x 44 target containing a 28 x 28 plate at the site's one 3px radius containing a
- * 20 x 20 glyph. The glyph is the floor's pendant lamp, the only iconography this site
- * owns, and the two states are distinguished by SHAPE, never by colour: the shade and
- * stem alone when the light scheme is active, the same shade and stem plus a solid
- * filled cone when the dark scheme is. In greyscale, at 20px, with colour removed, the
- * two states are still one-shape-versus-two.
+ * A 44 x 44 round glass target containing a 20 x 20 glyph. The glyph is the floor's
+ * pendant lamp — the only iconography this site owns — and the two states are
+ * distinguished by SHAPE, never by colour: the shade and stem alone when the light
+ * scheme is active, the same shade and stem plus a lit cone when the dark scheme is. In
+ * greyscale, at 20px, with colour removed, the two states are still
+ * one-shape-versus-two.
  *
- * The glyph shows the scheme now in effect; the action lives in the accessible name
- * (COPY.md §1). §B.10a's control carries no visible word — it is 44px wide in §B.8's
- * own header arithmetic (236 + 44 = 280 of 320) — so COPY.md §1's visible labels
- * `Theme` / `Dark` / `Light` are carried as the group's accessible name and the
- * button's accessible name rather than as printed text. Noted in
- * docs/scratch/engineer.md as the one place the two documents disagree.
+ * The glyph shows the scheme now in effect; the action lives in the accessible name.
+ * The control carries no visible word, so COPY.md §1's `Theme` / `Dark` / `Light` are
+ * the group's accessible name and the button's accessible name rather than printed text.
  *
- * The name is written server-side for the light scheme and corrected by the script
- * below the moment it runs, because the scheme itself is decided before first paint by
- * the head script in BaseLayout, which cannot reach an element that does not exist yet.
+ * The name is written server-side for the DARK scheme — the site is dark-first, so dark
+ * is what a document with no stored choice renders — and corrected by the script below
+ * the moment it runs, because the scheme itself is decided before first paint by the
+ * head script in BaseLayout, which cannot reach an element that does not exist yet.
  */
 ---
 
@@ -29,7 +27,7 @@ import { THEME_TOGGLE } from '../lib/copy';
     type="button"
     class="theme-toggle__button"
     data-theme-toggle
-    aria-label={THEME_TOGGLE.toDark.accessibleName}
+    aria-label={THEME_TOGGLE.toLight.accessibleName}
     data-name-to-light={THEME_TOGGLE.toLight.accessibleName}
     data-name-to-dark={THEME_TOGGLE.toDark.accessibleName}
     data-says-light={THEME_TOGGLE.toLight.announcement}
@@ -100,6 +98,11 @@ import { THEME_TOGGLE } from '../lib/copy';
     align-items: center;
   }
 
+  /*
+    A 44 x 44 round glass control. It is the same material as a ghost pill, at the same
+    hairline, so the header reads as one row of objects rather than as a nav plus a
+    widget.
+  */
   .theme-toggle__button {
     display: inline-flex;
     align-items: center;
@@ -107,21 +110,23 @@ import { THEME_TOGGLE } from '../lib/copy';
     inline-size: 44px;
     block-size: 44px;
     padding: 0;
-    border: 0;
-    background: none;
-    color: var(--tgd-ink);
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    background: var(--glass);
+    backdrop-filter: var(--blur-card);
+    -webkit-backdrop-filter: var(--blur-card);
+    color: var(--ink);
     cursor: pointer;
   }
 
-  /* The plate is not a border and not a fill — it is the hit area made visible at
-     the same weight as a nav label (DESIGN.md §B.10a). */
+  .theme-toggle__button:hover {
+    border-color: var(--line-2);
+  }
+
   .theme-toggle__plate {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: 28px;
-    block-size: 28px;
-    border-radius: 3px;
   }
 
   .theme-toggle__glyph {
@@ -129,11 +134,14 @@ import { THEME_TOGGLE } from '../lib/copy';
   }
 
   /*
-    Shape, not colour, is the differentiator. The cone exists only while the dark
-    scheme is in effect. The only thing on the site permitted to move on a theme
-    change is this one shape (§B.10a): --dur-1, opacity and transform only. The page
-    itself never transitions — no colour, background, border or fill anywhere carries
-    one, so no half-themed frame can exist.
+    Shape, not colour, is the differentiator, and that survives the redesign unchanged:
+    the glyph is the room's own pendant lamp, and the two states are the shade and stem
+    alone versus the shade and stem plus a lit cone. In greyscale, at 20px, with colour
+    removed, the two states are still one-shape-versus-two.
+
+    The cone is the one shape on the site permitted to move on a scheme change. The page
+    itself transitions its colours (--dur-scheme) and nothing else, so no half-themed
+    frame can exist.
   */
   .theme-toggle__cone {
     opacity: 0;
@@ -154,19 +162,11 @@ import { THEME_TOGGLE } from '../lib/copy';
     }
   }
 
-  /*
-    §B.10a — the ring traces the 44 x 44 target, not the 28 x 28 plate, at the site's
-    one 3px offset and a 4px radius.
-
-    Step-2 review item 12: it was built differently from every other control's — a 0
-    offset with the --lamp ring INSET, so the amber ran inside the target instead of
-    between the target and the outer ring. It is the §B.2 construction now, identical
-    to a floor station's: the global :focus-visible rule supplies the 3px outer ring,
-    and only the offset and the radius are stated here.
-  */
+  /* The ring traces the 44 x 44 target at the site's one offset, and it is round
+     because the control is. */
   .theme-toggle__button:focus-visible {
     outline-offset: var(--focus-offset);
     box-shadow: 0 0 0 var(--focus-inner-width) var(--focus-inner);
-    border-radius: 4px;
+    border-radius: var(--r-pill);
   }
 </style>

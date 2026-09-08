@@ -2,40 +2,27 @@
 import type { CollectionEntry } from 'astro:content';
 
 /**
- * DESIGN.md §F.1, §F.7, §F.8 — direction S1's coverage map, and the page's centre.
+ * The coverage map, and the page's centre.
  *
  * Five surfaces crossed against five places. A cell is filled only where a real product
- * can be named (QUESTIONS.md items 45 and 72), and the two states are the whole grammar:
- * attributed, with the product printed inside, or empty, which is no claim. §F.1 removed
- * the third "asserted" state and the line of prose that used to sit under the map with
- * it, because a two-state map cannot lie by omission.
+ * can be named, and the two states are the whole grammar: attributed, with the product
+ * printed inside it, or empty, which is no claim at all. There is deliberately no third
+ * "asserted" state, because a two-state map cannot lie by omission — **the gaps are as
+ * informative as the fills.**
  *
- * **It is a real `<table>`**, not a list and not a grid of divs: a matrix whose meaning
- * is "this surface, at this place" needs row and column headers, and a table gives a
- * screen reader both for free through `scope`. Every table element also carries its ARIA
- * role explicitly, because below 1024 the rows are restyled into stacked blocks and
- * changing `display` on a table element drops its implicit role in every engine. The
- * roles are the documented mitigation for exactly that, not decoration.
+ * **It is a real `<table>`**, not a grid of divs: a matrix whose meaning is "this
+ * surface, at this place" needs row and column headers, and a table gives a screen
+ * reader both for free through `scope`.
  *
- * The two layouts, one DOM:
+ * **It does not reflow. It scrolls.** Six columns — a 130px label column and five
+ * company columns — at a 840px minimum, inside a horizontal scroller. The stacked form
+ * this replaces turned a matrix into five lists and lost the one thing a matrix is for:
+ * you cannot see a hole in a column you are reading one row at a time. The scroller is
+ * focusable and labelled, so it is reachable by keyboard rather than by pointer alone.
  *
- * - **>= 1024 (§F.8)** — the matrix. Columns are surfaces, rows are places, and the
- *   product name prints inside its own cell.
- * - **< 1024 (§F.7)** — the row header carries the company, its years and a five-mark
- *   strip showing which surfaces that place fills, and the product names move out of the
- *   cells onto the row's own lines, each prefixed with its surface. A 44px cell cannot
- *   hold text, so §F.7 moves the text and keeps the marks; the marks are `aria-hidden`
- *   because the cells beneath them already carry the truth, and the inline surface label
- *   is `aria-hidden` too because the column header has already been announced.
- *
- * The lit column (§F.1, §F.4): the end-to-end-with-AI surface has exactly one filled
- * cell and it is the only `--lamp` region on the page. In light `--lamp` is 1.74:1 on
- * his ground, so by §B.2a's restated lamp rule it is a FILL there and its text is
- * `--s-ink` at 8.10:1; in dark the same fill takes `--s-ground` at 8.48:1. One token,
- * `--s-lamp-ink`, carries that flip, and both ratios are DESIGN.md's own.
- *
- * §J's pre-committed cut for this page is taken: the finance-domain annotation does not
- * run down the row labels. The work cards below the map carry the domains.
+ * The lit cell: end-to-end-with-AI at Keenai is the only cell that is neither plainly
+ * filled nor empty, and it is the only lamp-coloured region on the page. It is where the
+ * studio's whole argument and this person's day job are the same fact.
  */
 interface Props {
   person: CollectionEntry<'people'>;
@@ -55,16 +42,16 @@ if (!coverage) {
 const { surfaces, places } = coverage;
 
 /*
-  §F.1's own arithmetic, asserted rather than assumed: ten of twenty-five cells filled,
-  no empty column and no empty row. If a content edit ever empties a column the map stops
-  being the figure §F.1 describes and §H.3's orchestrated moment loses a step, so the
-  build fails instead of the page quietly reading differently.
+  The map's own arithmetic, asserted rather than assumed: ten of twenty-five cells
+  filled, no empty column and no empty row. If a content edit ever empties a row the map
+  stops being the figure it is described as, so the build fails instead of the page
+  quietly reading differently.
 */
 const filledPerSurface = new Map(surfaces.map((surface) => [surface.key, 0]));
 let filled = 0;
 for (const place of places) {
   if (place.cells.length === 0) {
-    throw new Error(`Coverage map: the ${place.company} row has no filled cell (§F.1).`);
+    throw new Error(`Coverage map: the ${place.company} column has no filled cell.`);
   }
   for (const cell of place.cells) {
     if (!filledPerSurface.has(cell.surface)) {
@@ -75,15 +62,15 @@ for (const place of places) {
   }
 }
 for (const [key, count] of filledPerSurface) {
-  if (count === 0) throw new Error(`Coverage map: the "${key}" column has no filled cell (§F.1).`);
+  if (count === 0) throw new Error(`Coverage map: the "${key}" row has no filled cell.`);
 }
 if (filled !== 10) {
-  throw new Error(`Coverage map: §F.1 describes ten filled cells; this map has ${filled}.`);
+  throw new Error(`Coverage map: the map is described as ten filled cells; this one has ${filled}.`);
 }
 
 const lampSurfaces = surfaces.filter((surface) => surface.lamp);
 if (lampSurfaces.length !== 1) {
-  throw new Error('Coverage map: §F.1 gives the map exactly one lit column.');
+  throw new Error('Coverage map: the map has exactly one lit row.');
 }
 
 function productFor(place: (typeof places)[number], key: string): string | undefined {
@@ -92,510 +79,170 @@ function productFor(place: (typeof places)[number], key: string): string | undef
 ---
 
 <div class="map">
-  <table class="map__table" role="table">
-    <caption class="map__lead">{leadIn}</caption>
-    <thead role="rowgroup">
-      <tr role="row">
-        <th role="columnheader" scope="col" class="map__corner">
-          <span class="sr-only">Place</span>
-        </th>
+  <p class="map__lead muted" id="map-lead">{leadIn}</p>
+
+  {/*
+    `tabindex="0"` on a scroll container is not a stray tab stop: a region that scrolls
+    and cannot be reached from the keyboard is unreachable content, and the role and
+    label are what make the stop announce itself as something to scroll rather than as a
+    control with no name.
+  */}
+  <div class="map__scroll" role="region" aria-labelledby="map-lead" tabindex="0">
+    <table class="map__table">
+      <caption class="sr-only">{leadIn}</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="map__corner">
+            <span class="sr-only">Surface</span>
+          </th>
+          {
+            places.map((place) => (
+              <th scope="col" class="map__place">
+                <span class="map__company">{place.company}</span>
+                <span class="map__years mono">{place.years}</span>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
         {
           surfaces.map((surface) => (
-            <th
-              role="columnheader"
-              scope="col"
-              class="map__surface"
-              data-lamp={surface.lamp ? '' : undefined}
-            >
-              <span class="map__surface-long">{surface.label}</span>
-              <span class="map__surface-short" aria-hidden="true">
-                {surface.short}
-              </span>
-            </th>
+            <tr data-lamp={surface.lamp ? '' : undefined}>
+              <th scope="row" class="map__surface">
+                {surface.label}
+              </th>
+              {
+                places.map((place) => {
+                  const product = productFor(place, surface.key);
+                  return (
+                    <td class="map__cell" data-filled={product ? '' : undefined}>
+                      {product ? (
+                        <span class="map__product">{product}</span>
+                      ) : (
+                        <span class="sr-only">No product to name.</span>
+                      )}
+                    </td>
+                  );
+                })
+              }
+            </tr>
           ))
         }
-      </tr>
-    </thead>
-    <tbody role="rowgroup">
-      {
-        places.map((place) => (
-          <tr role="row">
-            <th role="rowheader" scope="row" class="map__place">
-              <span class="map__company">{place.company}</span>
-              <span class="map__years numeral">{place.years}</span>
-              <span class="map__strip" aria-hidden="true">
-                {surfaces.map((surface) => (
-                  <span
-                    class="map__mark"
-                    data-filled={productFor(place, surface.key) ? '' : undefined}
-                    data-lamp={surface.lamp ? '' : undefined}
-                  />
-                ))}
-              </span>
-            </th>
-            {surfaces.map((surface, column) => {
-              const product = productFor(place, surface.key);
-              return (
-                <td
-                  role="cell"
-                  class="map__cell"
-                  style={`--map-column: ${column}`}
-                  data-filled={product ? '' : undefined}
-                  data-lamp={surface.lamp ? '' : undefined}
-                >
-                  {product && (
-                    <span class="map__cell-inner">
-                      <span class="map__cell-surface" aria-hidden="true">
-                        {surface.label}
-                      </span>
-                      <span class="map__cell-product">{product}</span>
-                    </span>
-                  )}
-                </td>
-              );
-            })}
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <style>
+  .map__lead {
+    max-inline-size: 56ch;
+    margin-block-end: var(--space-24);
+  }
+
+  .map__scroll {
+    overflow-x: auto;
+    /* A scroll container is a scroll container in every direction unless it is told
+       otherwise; the map only ever scrolls sideways. */
+    overflow-y: hidden;
+    padding-block-end: var(--space-8);
+  }
+
   .map__table {
     inline-size: 100%;
-    border-collapse: collapse;
+    min-inline-size: 840px;
+    border-collapse: separate;
+    border-spacing: var(--space-8);
+    table-layout: fixed;
     text-align: start;
   }
 
-  /* COPY.md §6.1's lead-in is the caption, so the map is named once and the name is the
-     line the reader sees. It sets as body prose, not as a table label — and it is a
-     BLOCK below 1024, because a `table-caption` inside a table that has itself been
-     restyled to `display: block` shrink-wraps to its longest word; from 1024 the table
-     is a real table again and the caption is its caption. */
-  .map__lead {
-    display: block;
-    text-align: start;
-    color: var(--tgd-muted);
-    max-inline-size: var(--measure-body);
-    margin-block-end: var(--space-32);
-  }
-
-  /*
-    < 1024 (§F.7). The matrix rotates into stacked blocks: the row header carries the
-    company, its years and the five-mark strip, and each filled cell becomes a line under
-    it. Every table element keeps its explicit ARIA role, so nothing here costs the map
-    its row and column meaning.
-  */
-  .map__table,
-  .map__table > thead,
-  .map__table > tbody,
-  .map__table > thead > tr,
-  .map__table > tbody > tr,
-  .map__corner,
-  .map__surface,
-  .map__place,
-  .map__cell {
-    display: block;
-  }
-
-  /* The column headers are announced by the row/column relationship rather than read as
-     a row of their own at this width, so the header row is clipped, never removed. */
-  .map__table > thead {
-    position: absolute;
-    inline-size: 1px;
-    block-size: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-
-  /* The field, at this width as at every other: the panel, separated from the ground by
-     an inset edge and space rather than by fill contrast (§F.4). */
-  .map__table > tbody > tr {
-    background-color: var(--tgd-surface-alt);
-    box-shadow: inset 1px 1px 0 var(--s-panel-edge);
-    padding: var(--space-16);
-  }
-
-  .map__table > tbody > tr + tr {
-    border-block-start: 1px solid var(--s-panel-edge);
-  }
-
-  /* A `th` is centred by the UA stylesheet at element level, which outranks the table's
-     own inherited alignment. Both header roles are set explicitly. */
-  .map__place,
-  .map__surface {
-    text-align: start;
+  .map__corner {
+    inline-size: 130px;
   }
 
   .map__place {
-    display: grid;
-    gap: var(--space-4);
-    font-weight: 400;
+    vertical-align: bottom;
+    padding-block-end: var(--space-8);
+    display: table-cell;
   }
 
   .map__company {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-numeral);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
-    color: var(--tgd-ink);
+    display: block;
+    font-size: var(--step-caption);
+    font-weight: 600;
   }
 
   .map__years {
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-muted);
+    display: block;
+    margin-block-start: var(--space-4);
+    font-size: var(--step-micro);
+    color: var(--dim);
   }
 
-  /* §F.7's five 44px marker columns — the shape of the filled region, at 360, where the
-     product names cannot fit inside the cells. */
-  .map__strip {
-    margin-block-start: var(--space-8);
-    display: grid;
-    grid-template-columns: repeat(5, 44px);
-    align-items: center;
+  .map__surface {
+    inline-size: 130px;
+    font-size: var(--step-caption);
+    font-weight: 400;
+    color: var(--dim);
+    vertical-align: middle;
+    padding-inline-end: var(--space-8);
   }
 
-  .map__mark {
-    inline-size: 20px;
-    block-size: 20px;
-    border: 1.5px solid var(--s-panel-edge);
+  .map__cell {
+    block-size: 62px;
+    padding: var(--space-8);
+    border-radius: var(--r-cell);
+    vertical-align: middle;
   }
 
-  .map__mark[data-filled] {
-    background-color: var(--tgd-ink);
-    border-color: var(--tgd-ink);
-  }
-
-  .map__mark[data-filled][data-lamp] {
-    background-color: var(--lamp);
-    border-color: var(--lamp);
-  }
-
+  /* An empty cell is a dashed outline and nothing inside it. It is not a mistake and it
+     is not a "no": it is the absence of a product this site can name. */
   .map__cell:not([data-filled]) {
-    display: none;
+    outline: 1px dashed var(--line);
+    outline-offset: -1px;
   }
 
   .map__cell[data-filled] {
-    margin-block-start: var(--space-12);
+    background: var(--fill);
+    border: 1px solid var(--line-2);
   }
 
-  .map__cell-inner {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .map__cell-surface,
-  .map__surface-long {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-numeral);
-    font-variation-settings: 'wdth' var(--wdth-numeral);
-    font-size: var(--step-micro);
-    line-height: var(--step-micro-lh);
-    color: var(--tgd-muted);
-  }
-
-  .map__cell-product {
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-ink);
-  }
-
-  /* The lit cell: a --lamp fill with a 2px --s-ink border, its text in --s-lamp-ink.
-     Light 8.10:1, dark 8.48:1, both §F.4/§F.4a's own published pairs. */
-  /*
-    Below 1024 a filled cell is a full-width line, and a full-width amber block is both
-    the wrong picture — §F.1 calls the lit cell "the newest, SMALLEST" region — and a mark
-    whose right edge lands deep inside the plate's band (x 706 at 768, against 492). It
-    shrinks to its own content, which fixes the composition and the drawing at once.
-  */
-  .map__cell[data-filled][data-lamp] {
-    inline-size: fit-content;
-    max-inline-size: 100%;
-    background-color: var(--lamp);
-    border: 2px solid var(--tgd-ink);
-    padding: var(--space-8) var(--space-12);
-  }
-
-  .map__cell[data-filled][data-lamp] .map__cell-surface,
-  .map__cell[data-filled][data-lamp] .map__cell-product {
-    color: var(--s-lamp-ink);
+  .map__product {
+    font-size: 12.5px;
+    line-height: 1.35;
+    color: var(--ink);
   }
 
   /*
-    §B.10 reserve 1, and the final review's item N1. Below 768 the strip IS the map — §F.1's
-    lead sentence tells the reader that a filled cell's payload is a name — so the product
-    line is a load-bearing mark read as a unit, and three of the ten ran under the plate:
-    `Design-components library across Fleet and Driver` ended at x 319.3 against a band at
-    232 (360) and 262 (390), so the reader got `Design-components library acr` and then
-    `Driver`.
-
-    The fix is the instrument §B.8 used for the figures and §G.3a for the gates — the line
-    breaks before the band, no lane and no `padding-right`. The cell narrows to clear it,
-    which it may: §B.5's round-12 ruling reserves "a diagram with a fixed minimum extent"
-    from narrowing, and this is the field's own content, not the diagram.
-
-    The constant is arithmetic, not a guess. The cell's right edge sits 36px inside the
-    viewport's right edge at every width below 768 (§B.3's 20px outer gutter plus the row
-    panel's own 16px of padding), and the band begins 128px inside it, so the cell has to
-    give back 128 − 36 = 92px; 96 is that plus one 4px step of slack. Measured after:
-    widest ink x 222.4 at 360 against 232, and 256.5 at 390 against 262. `.map__cell-product`
-    is on `qa:plate`'s mark list from this round, so it cannot come back quietly.
-
-    The lamp cell is named explicitly because its own `max-inline-size: 100%` above carries
-    the same specificity; it shrink-wraps well inside this cap and is unchanged in fact.
+    The one lit cell. It is the intersection of the surface this studio sells and the
+    employer that pays for it, so it is the only cell on the page that is emphasised at
+    all — a lamp border, a lamp wash, and a halo that lifts it off the grid without
+    making it a second colour.
   */
-  @media (max-width: 767px) {
-    .map__cell[data-filled],
-    .map__cell[data-filled][data-lamp] {
-      max-inline-size: calc(100% - 96px);
-    }
+  tr[data-lamp] .map__cell[data-filled] {
+    border: 2px solid var(--lamp);
+    background: rgba(var(--lamp-rgb), 0.14);
+    box-shadow: 0 0 0 6px rgba(var(--lamp-rgb), 0.07);
   }
 
-  .map__surface-short {
-    display: none;
+  tr[data-lamp] .map__cell[data-filled] .map__product {
+    font-weight: 600;
   }
 
-  /*
-    >= 1024 (§F.8) — the matrix. Columns are surfaces, rows are places, the product name
-    prints inside its cell, and the row label is the company and its years.
-  */
-  @media (min-width: 1024px) {
-    .map__table,
-    .map__table > thead,
-    .map__table > tbody,
-    .map__table > thead > tr,
-    .map__table > tbody > tr,
-    .map__corner,
-    .map__surface,
-    .map__place,
-    .map__cell {
-      display: revert;
+  tr[data-lamp] .map__surface {
+    color: var(--lamp);
+  }
+
+  /* On paper the table keeps its shape — a table is not a layout column — but the
+     scroller is meaningless, so it releases its own minimum. */
+  @media print {
+    .map__scroll {
+      overflow: visible;
     }
 
     .map__table {
-      table-layout: fixed;
-    }
-
-    .map__lead {
-      display: table-caption;
-      caption-side: top;
-    }
-
-    /* The field moves back onto the cells, where the matrix draws it. */
-    .map__table > tbody > tr {
-      background-color: transparent;
-      box-shadow: none;
-      padding: 0;
-      border-block-start: 0;
-    }
-
-    .map__table > thead {
-      position: static;
-      inline-size: auto;
-      block-size: auto;
-      overflow: visible;
-      clip-path: none;
-      white-space: normal;
-    }
-
-    .map__corner {
-      inline-size: 16.6667%;
-    }
-
-    .map__surface {
-      inline-size: 16.6667%;
-      vertical-align: bottom;
-      padding: 0 var(--space-8) var(--space-8);
-      font-weight: 400;
-    }
-
-    .map__surface-long {
-      font-size: var(--step-small);
-      line-height: var(--step-small-lh);
-    }
-
-    /*
-      §F.4b round 12, review item S2. The field used to be `--s-panel` on every cell,
-      filled or not, which made the two states a **1.13 : 1** step in light — §F.1's
-      staircase at the edge of perception, and a diagram whose legibility depended on the
-      visitor's scheme. The fill now belongs to the FILLED cells alone and it is
-      `--s-fill`: 2.97 : 1 against the ground in light, 2.91 : 1 in dark, matched on ratio
-      rather than on hex distance. Empty cells are nothing, which is §F.1's own word for
-      that state, and the row labels are labels rather than a field.
-    */
-    .map__place,
-    .map__cell {
-      vertical-align: top;
-      padding: var(--space-16) var(--space-12);
-    }
-
-    .map__cell[data-filled] {
-      background-color: var(--s-fill);
-      box-shadow: inset 1px 1px 0 var(--s-panel-edge);
-    }
-
-    /*
-      §F.4c round 14 — S2 closed on the stroke, not the fill. `--s-fill` cannot reach
-      3.2 : 1 against `--s-ground` in either scheme without walking the cell's own product
-      name below AA body (the arithmetic is printed in DESIGN.md §F.4c), so the two-state
-      grammar is carried by a 1.5px `--s-ink` stroke instead: 14.09 : 1 light / 14.11 : 1
-      dark against the ground, 4.74 / 4.84 : 1 against the fill it encloses. `--s-fill`
-      stays as reinforcement, not the contract. The lamp cell is excluded here — its own
-      2px `--s-ink` border (below, unconditional) is unchanged and heavier, so it still
-      reads as the one lit region among ten now-bounded cells. Because `.map__table` is
-      `border-collapse: collapse`, two horizontally-adjacent filled cells (the Motive and
-      smallcase three-cell bars) share one 1.5px edge rather than drawing a doubled 3px
-      seam — no extra rule needed for that.
-    */
-    .map__cell[data-filled]:not([data-lamp]) {
-      border: 1.5px solid var(--s-ink);
-    }
-
-    .map__place {
-      display: table-cell;
-      inline-size: 16.6667%;
-    }
-
-    .map__company {
-      display: block;
-    }
-
-    .map__years {
-      display: block;
-      margin-block-start: var(--space-4);
-    }
-
-    .map__strip {
-      display: none;
-    }
-
-    .map__cell:not([data-filled]) {
-      display: table-cell;
-    }
-
-    .map__cell[data-filled] {
-      margin-block-start: 0;
-    }
-
-    .map__cell-surface {
-      display: none;
-    }
-
-    .map__cell[data-filled][data-lamp] {
-      inline-size: auto;
-      padding: var(--space-16) var(--space-12);
-    }
-  }
-
-  /*
-    §H.3, "the map fills" — the page's one orchestrated moment. Four columns fade up at a
-    --dur-1 stagger over --dur-2 each, then a 300ms hold with nothing happening, then the
-    end-to-end-with-AI column arrives alone over --dur-4. Opacity only: nothing moves,
-    nothing is offscreen-then-onscreen, nothing blocks paint. §H.2 gives Sahib --dur-1,
-    --dur-2 and --dur-4-once, which is exactly this shape.
-
-    The unconditional state below this block is the COMPLETE map, so §H.4's still frame
-    is the default rendering and `reduce` removes an animation rather than adding a
-    branch. The last column's delay is 3 x 120 + 200 + 300 = 860ms.
-  */
-  @media (prefers-reduced-motion: no-preference) {
-    .map__cell {
-      animation: map-fill var(--dur-2) var(--ease-out) both;
-      animation-delay: calc(var(--map-column, 0) * var(--dur-1));
-    }
-
-    .map__cell[data-lamp] {
-      animation-duration: var(--dur-4);
-      animation-delay: calc(3 * var(--dur-1) + var(--dur-2) + 300ms);
-    }
-  }
-
-  @keyframes map-fill {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* §D.8 — print takes the light tokens and the map prints as the matrix it is, without
-     the panel fill a browser would suppress anyway. */
-  @media print {
-    .map__cell,
-    .map__place,
-    .map__cell[data-filled],
-    .map__table > tbody > tr {
-      background-color: transparent;
-      box-shadow: none;
-      animation: none;
-    }
-
-    /*
-      §D.8 round 12, review item S5 — **in default print the marks must keep their state.**
-      With the browser's own background suppression on (the default, and the one nobody
-      chooses) the five-mark row strips lost their fill: empty marks vanished entirely,
-      filled marks became a thin outline and the lit mark became an amber outline at
-      1.87 : 1 on white. The state was carried by fill alone, which is exactly what §E.1
-      refuses for the stage indicator and refuses for the same reason.
-
-      So the marks take the stage indicator's discipline — **a stroke plus a size
-      difference** — and the three states survive with every fill suppressed: empty is the
-      smaller mark with a hairline stroke, filled is the larger mark with a solid stroke,
-      and the lit mark is the larger mark with a doubled stroke and an outer ring, which is
-      a shape difference and not a colour one. `print-color-adjust: exact` is the cheaper
-      fix and §D.8 refuses it in terms: it asks the visitor's printer for a permission the
-      rest of §D.8 is built not to need.
-    */
-    .map__mark {
-      inline-size: 12px;
-      block-size: 12px;
-      border: 1px solid #444;
-      background-color: transparent;
-    }
-
-    .map__mark[data-filled] {
-      inline-size: 20px;
-      block-size: 20px;
-      border: 2px solid currentColor;
-      background-color: transparent;
-    }
-
-    .map__mark[data-filled][data-lamp] {
-      border-width: 4px;
-      border-color: currentColor;
-      outline: 1.5px solid currentColor;
-      outline-offset: 2px;
-      background-color: transparent;
-    }
-
-    /* The strip is a five-column grid of 44px cells and the marks are now three sizes,
-       so they are centred on their own column rather than left-aligned in it. */
-    .map__strip {
-      justify-items: center;
-    }
-
-    /*
-      §D.8 — --lamp never prints, so the lit cell keeps its 2px boundary and loses its
-      fill. Its text has to come back to the page ink with it: --s-lamp-ink is the ink
-      that reads ON the amber, and with the amber gone it would be a light grey on white,
-      which is the silently-unreadable failure §D.8's whole light-token rule removes.
-    */
-    .map__cell[data-filled][data-lamp] {
-      background-color: transparent;
-      border-color: currentColor;
-    }
-
-    .map__cell[data-filled][data-lamp] .map__cell-surface {
-      color: #444;
-    }
-
-    .map__cell[data-filled][data-lamp] .map__cell-product {
-      color: inherit;
+      min-inline-size: 0;
     }
   }
 </style>

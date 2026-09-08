@@ -1,8 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactPlate from '../components/ContactPlate.astro';
-import StageTrackCompact from '../components/StageTrackCompact.astro';
+import StageTrack from '../components/StageTrack.astro';
 import StudioFloor from '../components/floor/StudioFloor.astro';
 import WorkCardStrip from '../components/WorkCardStrip.astro';
 import { STUDIO_EMAIL, CONTACT_AFFORDANCE, FINAL_CTA } from '../lib/copy';
@@ -10,12 +9,12 @@ import { studioGraph } from '../lib/jsonld';
 import { FLOOR_ALT } from '../lib/floor';
 
 /*
-  COPY.md §2, in §7's section order: hero, the floor, the work-card strip, the four
-  gates, proof, what you get, the final CTA.
+  COPY.md §2, in section order: hero, the floor, where they've worked, the four gates,
+  proof, what you get, the final CTA.
 
-  Still deliberately absent, because the destination does not exist yet: §B.8's one link
-  per work-strip row, which points at /sahib/ and /tanya/. Both labels are written now
-  (COPY.md §2.9a) and both routes land in build run B, so the links land with them.
+  Three headline variants exist and only one ships. The two alternates are recorded in
+  the design handoff so the studio can swap without re-deriving them; the live one is
+  below, and it is the one the prototype's default state carries.
 */
 
 const gates = (await getCollection('gates')).sort((a, b) => a.data.order - b.data.order);
@@ -35,16 +34,13 @@ const runners = [pocketManager, weddingPlanner].map((product) => ({
 const storeUrl = pocketManager.data.storeUrl;
 
 /*
-  DESIGN.md §B.8 line 332 and §B.9 line 528 — the three figures as a numeral-large
-  block with a micro label under each. Every string below is COPY.md §2.7's own
-  ("4.3 stars from 24 reviews, 1,000+ downloads"), split at the word boundary the
-  design asks for; no figure and no label is written here.
+  The three figures, COPY.md §2.7's own ("4.3 stars from 24 reviews, 1,000+ downloads"),
+  split at the word boundary. No figure and no label is written here.
 
   The two countable figures are asserted against the store entry so the block and the
-  content collection cannot drift. `downloads` is a display string and the two
-  documents round it differently — COPY.md §2.7 prints `1,000+`, the store listing's
-  own rounding in src/data/products is `1K+` — so COPY.md's is what prints, and the
-  difference is recorded in docs/scratch/engineer.md rather than reconciled by me.
+  content collection cannot drift. `downloads` is a display string and the two documents
+  round it differently — COPY.md §2.7 prints `1,000+`, the store listing's own rounding
+  in src/data/products is `1K+` — so COPY.md's is what prints.
 */
 const stats = pocketManager.data.storeStats;
 if (!stats || stats.rating !== 4.3 || stats.ratingCount !== 24) {
@@ -70,155 +66,171 @@ const figures = [
   ogImageAlt={FLOOR_ALT}
   schema={schema}
 >
-  <section class="section hero">
-    <div class="shell grid">
-      <div class="hero__inner">
-      <h1>AI writes a lot of our code. It doesn't get the last word.</h1>
-      <p class="hero__body muted">
+  <section class="hero" data-hero>
+    {/*
+      The cursor glow: two stacked radials on one centre, the orchid halo wide and the
+      brass core tight inside it, so the light has a temperature rather than just a
+      radius. The centre is two custom properties written on the section from a
+      pointermove handler and eased home on leave. It is decorative and inert.
+    */}
+    <span class="hero__glow" aria-hidden="true"></span>
+
+    <div class="shell hero__inner">
+      <p class="eyebrow hero__eyebrow accent">Two-person mobile studio · Bengaluru</p>
+      <h1 class="hero__title">
+        <span class="hero__line">AI writes a lot of our code.</span>
+        <span class="hero__line hero__line--2">It doesn't get the last word.</span>
+      </h1>
+      <p class="lede hero__lede">
         A two-person mobile studio. Agents do the volume work. Then a person reviews the
         architecture, tests on real phones, and signs off on security.
       </p>
       <p class="cluster hero__actions">
         <a
-          class="button"
+          class="pill pill--accent"
           data-cta="hero-primary"
           href={`mailto:${STUDIO_EMAIL}`}
           aria-label={CONTACT_AFFORDANCE.accessibleName}
         >
           {CONTACT_AFFORDANCE.label}
         </a>
-        <a
-          class="button button--secondary"
-          href="#studio-floor"
-          aria-label="Look around the studio floor"
-        >
+        <a class="pill pill--ghost" href="#studio-floor" aria-label="Look around the studio floor">
           Look around the floor
         </a>
       </p>
+    </div>
+  </section>
+
+  <StudioFloor />
+
+  <WorkCardStrip />
+
+  <section class="section raised gates-section" data-theme-anim>
+    <div class="shell gates-section__grid">
+      <div class="gates-section__lead" data-rv>
+        <h2>Four things we don't hand to an agent.</h2>
+        <p class="gates-section__extra muted">
+          Design review and the release itself stay with Sahib and Tanya: both read the
+          layouts before build, and both names go on every release.
+        </p>
+        <p class="quote gates-section__quote">
+          That's the difference between generated software and shipped software.
+        </p>
+      </div>
+
+      <ol class="gates" data-rv>
+        {
+          gates.map((gate, i) => (
+            <li
+              class="glass gates__item"
+              data-lift
+              style={`--tilt:${i % 2 === 0 ? '-0.4' : '0.4'}deg`}
+            >
+              <p class="gates__no mono accent">{String(i + 1).padStart(2, '0')}</p>
+              <h3>{gate.data.name}</h3>
+              <p class="gates__body muted">{gate.data.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section proof">
+    <div class="shell proof__grid">
+      <div class="proof__lead" data-rv>
+        <p class="eyebrow accent">Proof</p>
+        <h2 class="proof__title">We run this on our own app first.</h2>
+        <p class="muted proof__body">
+          Pocket Manager has been in the Play Store since 2020, maintained by the same pipeline
+          and the same review gates. 4.3 stars from 24 reviews, 1,000+ downloads, and it still
+          gets updates five years on.
+        </p>
+
+        <ul class="figures">
+          {
+            figures.map((item) => (
+              <li class="card figures__item">
+                {/*
+                  `data-count` counts the number the page ALREADY PRINTS: the element's
+                  own text is the source, so the figure is right before the script runs,
+                  right if it never runs, and right for a reader who has motion turned
+                  off.
+                */}
+                <span class="figures__figure numeral" data-count>
+                  {item.figure}
+                </span>
+                <span class="figures__label micro muted">{item.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="muted proof__body">
+          A second app sits behind it in final touches, built through the same pipeline and
+          stopped at the same gates. There's no date on it. The list of what's left is short,
+          and a person decides when it ends.
+        </p>
+
+        <p class="cluster proof__links">
+          {
+            storeUrl && (
+              <a class="link" href={storeUrl} target="_blank" rel="noopener noreferrer">
+                Open Pocket Manager in the Play Store
+                <span class="sr-only"> Opens a new tab.</span>
+              </a>
+            )
+          }
+          <a class="link" href="/work/pocket-manager/">Read how it gets built</a>
+        </p>
+      </div>
+
+      <div class="glass proof__panel" data-rv>
+        <p class="micro muted proof__panel-label">One shipped, one nearly there</p>
+        {runners.map((runner) => <StageTrack label={runner.label} stage={runner.stage} />)}
+        <p class="caption muted proof__note">
+          The track shows both products and where each one actually is: Pocket Manager shipped
+          and still updated, the second one close enough that the list of what's left is short.
+          Neither carries a date, and neither will. A date we miss in public is worse than no
+          date at all.
+        </p>
       </div>
     </div>
   </section>
 
-  <div class="plate-span">
-    <StudioFloor />
-
-    <div class="plate-span__after-floor">
-    <WorkCardStrip />
-
-    <section class="section gates-section section--reserve">
-      <div class="shell grid">
-        <div class="gates-section__list">
-          <h2>Four things we don't hand to an agent.</h2>
-          <ol class="gates">
-            {
-              gates.map((gate) => (
-                <li class="gates__item">
-                  <div class="gates__text">
-                    <h3>{gate.data.name}</h3>
-                    <p class="muted">{gate.data.description}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-          <p class="gates-section__extra">
-            Design review and the release itself stay with Sahib and Tanya: both read the
-            layouts before build, and both names go on every release.
-          </p>
-        </div>
-        <p class="gates-section__closing">
-          That's the difference between generated software and shipped software.
-        </p>
-      </div>
-    </section>
-
-    <section class="section bleed proof section--reserve">
-      <div class="shell grid">
-        <div class="proof__lead stack">
-          <h2>We run this on our own app first.</h2>
-          <p class="muted">
-            Pocket Manager has been in the Play Store since 2020, maintained by the same pipeline
-            and the same review gates. 4.3 stars from 24 reviews, 1,000+ downloads, and it still
-            gets updates five years on.
-          </p>
-          <ul class="figures">
-            {
-              figures.map((item) => (
-                <li class="figures__item">
-                  <span class="figures__figure numeral">{item.figure}</span>
-                  <span class="figures__label micro muted">{item.label}</span>
-                </li>
-              ))
-            }
-          </ul>
-          <p>
-            A second app sits behind it in final touches, built through the same pipeline and
-            stopped at the same gates. There's no date on it. The list of what's left is short,
-            and a person decides when it ends.
-          </p>
-          {
-            storeUrl && (
-              <p>
-                <a class="link" href={storeUrl} target="_blank" rel="noopener noreferrer">
-                  Open Pocket Manager in the Play Store
-                  <span class="sr-only"> Opens a new tab.</span>
-                </a>
-              </p>
-            )
-          }
-          <p>
-            <a class="link" href="/work/pocket-manager/">Read how it gets built</a>
-          </p>
-        </div>
-
-        <div class="proof__track">
-          <StageTrackCompact runners={runners} />
-        </div>
-
-        <div class="proof__aside">
-          <p class="proof__caption">One shipped, one nearly there.</p>
-          <p class="proof__note small muted">
-            The track shows both products and where each one actually is: Pocket Manager shipped
-            and still updated, the second one close enough that the list of what's left is short.
-            Neither carries a date, and neither will. A date we miss in public is worse than no
-            date at all.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section offer section--reserve">
-      <div class="shell grid">
-        <div class="offer__inner stack">
-          <h2>You'll be holding something before you're bored of the kickoff.</h2>
-          <p class="muted">
-            The first thing we hand over is a working build you can open on your phone. Not a
-            deck, not a Figma walkthrough, not a status update. Everything after that is
-            iteration on a thing that already runs.
-          </p>
-          <p class="muted">
-            One project at a time. Fixed scope or a retainer, both work here. It starts with a
-            short written brief rather than a call, and a first MVP is a few days from the
-            go-ahead.
-          </p>
-        </div>
-      </div>
-    </section>
-
-      <ContactPlate />
-    </div>
-  </div>
-
-  <section class="section bleed room cta">
-    <div class="shell stack">
-      <h2>Tell us what you're building.</h2>
-      <p class="cta__body">
-        One email, a real reply from one of us, and a straight answer about whether we're the right
-        fit. If we're not, we'll say so.
+  <section class="section offer">
+    <div class="shell offer__inner" data-rv>
+      <h2>You'll be holding something before you're bored of the kickoff.</h2>
+      <p class="muted">
+        The first thing we hand over is a working build you can open on your phone. Not a
+        deck, not a Figma walkthrough, not a status update. Everything after that is
+        iteration on a thing that already runs.
       </p>
+      <p class="muted">
+        One project at a time. Fixed scope or a retainer, both work here. It starts with a
+        short written brief rather than a call, and a first MVP is a few days from the
+        go-ahead.
+      </p>
+    </div>
+  </section>
+
+  <section class="room cta" data-theme-anim>
+    {/* A warm radial rising off the bottom edge, so the page ends on the same light the
+        room is lit by rather than on a flat black. */}
+    <span class="cta__glow" aria-hidden="true"></span>
+    <div class="shell cta__inner" data-rv>
+      <p class="lede cta__body">
+        One email, a real reply from one of us, and a straight answer about whether we're the
+        right fit. If we're not, we'll say so.
+      </p>
+      <h2 class="cta__title">Tell us what you're building.</h2>
       <p>
+        {/*
+          Accent-filled, not lamp-filled. The lamp is reserved for light sources and live
+          state, and a call to action is neither.
+        */}
         <a
-          class="lamp-address"
+          class="pill pill--accent pill--lg"
           data-cta="final-cta"
           href={`mailto:${STUDIO_EMAIL}`}
           aria-label={FINAL_CTA.accessibleName}
@@ -230,337 +242,243 @@ const figures = [
   </section>
 </BaseLayout>
 
+<script>
+  /*
+    The hero's light follows the pointer. Two custom properties, written on the section,
+    so the paint is a compositor-side gradient move; nothing measures layout per event
+    except the one bounding rect, which is read from the section the handler is bound to.
+
+    On leave the centre eases back to its resting point rather than snapping, because a
+    light that jumps when you look away reads as a bug rather than as a light.
+  */
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (hero && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    hero.addEventListener('pointermove', (event: PointerEvent) => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty('--hx', `${((event.clientX - r.left) / r.width) * 100}%`);
+      hero.style.setProperty('--hy', `${((event.clientY - r.top) / r.height) * 100}%`);
+      hero.style.setProperty('--hero-ease', '0s');
+    });
+    hero.addEventListener('pointerleave', () => {
+      hero.style.setProperty('--hero-ease', '.5s');
+      hero.style.setProperty('--hx', '50%');
+      hero.style.setProperty('--hy', '38%');
+    });
+  }
+</script>
+
 <style>
-  /* DESIGN.md §B.9 — h1 in cols 1-9, body in cols 1-6, actions in cols 1-5, and
-     cols 8-12 deliberately empty: the only void on the page, reserved so that
-     filling it later causes no reflow. Step-1 review item 8: the body's cap is now
-     in em, so it holds <= 62 characters rather than 79. */
-  .hero__body {
-    margin-block-start: var(--space-24);
+  /* --- Hero --- */
+
+  .hero {
+    position: relative;
+    padding-block: var(--hero-pad-top) var(--hero-pad-bottom);
+    overflow: hidden;
   }
 
-  .hero__actions {
-    margin-block-start: var(--space-32);
+  .hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: background-position var(--hero-ease, 0s) ease;
+    background:
+      radial-gradient(620px circle at var(--hx, 50%) var(--hy, 38%), var(--halo), transparent 68%),
+      radial-gradient(320px circle at var(--hx, 50%) var(--hy, 38%), var(--halo-2), transparent 62%);
+  }
+
+  .hero__inner {
+    position: relative;
   }
 
   /*
-    Step-1 review items 4 and 6 — one hung-numeral column, not a 2 x 2 grid, and the
-    numerals are two-digit and hung in the margin rather than inline list markers.
-    These are the only numbers on the site that are a sequence (§B.8), which is what
-    §9.4's numbering exception is protecting.
+    The hero's four elements rise in sequence rather than fading in together. The stagger
+    is what makes the second line land as an answer to the first: 0 / .1 / .26 / .42 /
+    .56s, which is slow enough to read as deliberate and short enough to be over before
+    a reader has finished the eyebrow.
   */
-  .gates-section__list {
-    /* One pair of numbers describes the hung-numeral column, so the list items and
-       the line under them are set on the same left edge (§B.9). */
-    --numeral-col: var(--outer);
-    --numeral-gap: var(--space-16);
-    /* How far the numeral column hangs outside the content edge. */
-    --gates-hang: var(--outer);
+  .hero__eyebrow {
+    margin-block-end: clamp(20px, 2.4vw, 32px);
+    animation: riseline 0.7s var(--ease-out) both;
+  }
+
+  .hero__title {
+    max-inline-size: 19ch;
+  }
+
+  .hero__line {
+    display: block;
+    animation: riseline 0.9s var(--ease-out) 0.1s both;
+  }
+
+  /* The second line is the argument, and it is set in --dim: the studio concedes the
+     first sentence and only then takes it back. */
+  .hero__line--2 {
+    color: var(--dim);
+    animation-delay: 0.26s;
+  }
+
+  .hero__lede {
+    margin-block-start: clamp(24px, 3vw, 40px);
+    max-inline-size: 56ch;
+    animation: riseline 0.9s var(--ease-out) 0.42s both;
+  }
+
+  .hero__actions {
+    margin-block-start: clamp(28px, 3.4vw, 44px);
+    animation: riseline 0.9s var(--ease-out) 0.56s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow,
+    .hero__line,
+    .hero__lede,
+    .hero__actions {
+      animation: none;
+    }
+
+    .hero__glow {
+      transition: none;
+    }
+  }
+
+  /* --- The four gates --- */
+
+  .gates-section__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: start;
+  }
+
+  .gates-section__extra {
+    margin-block-start: var(--space-24);
+    max-inline-size: 46ch;
+  }
+
+  .gates-section__quote {
+    margin-block-start: var(--space-32);
+    max-inline-size: 20ch;
   }
 
   .gates {
     list-style: none;
-    counter-reset: gate;
     display: grid;
-    gap: var(--space-40);
-    margin-block-start: var(--space-40);
-    margin-inline-start: calc(-1 * var(--gates-hang));
+    gap: var(--space-16);
   }
 
   .gates__item {
-    counter-increment: gate;
+    padding: var(--space-24);
+  }
+
+  .gates__no {
+    font-size: var(--step-caption);
+    letter-spacing: var(--step-mono-tracking);
+    margin-block-end: var(--space-12);
+  }
+
+  .gates__body {
+    margin-block-start: var(--space-8);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  /* --- Proof --- */
+
+  .proof__grid {
     display: grid;
-    grid-template-columns: var(--numeral-col) minmax(0, 1fr);
-    column-gap: var(--numeral-gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: var(--gap-col);
     align-items: start;
   }
 
-  .gates__item::before {
-    content: counter(gate, decimal-leading-zero);
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-numeral);
-    font-variation-settings: 'wdth' var(--wdth-numeral);
-    font-variant-numeric: tabular-nums;
-    font-size: var(--step-body);
-    line-height: var(--step-title-lh);
-    color: var(--tgd-ink);
+  .proof__title {
+    margin-block-start: var(--space-14);
   }
 
-  .gates__text > p {
-    margin-block-start: var(--space-12);
+  .proof__body {
+    margin-block-start: var(--space-24);
+    max-inline-size: 54ch;
   }
 
-  /* Under the four, not inside them, set apart by space, and — §B.9 — set on the gate
-     bodies' own left edge with no hung numeral of its own. */
-  .gates-section__extra {
-    margin-block-start: var(--space-32);
-    margin-inline-start: calc(var(--numeral-col) + var(--numeral-gap) - var(--gates-hang));
+  .proof__links {
+    margin-block-start: var(--space-24);
+    column-gap: var(--space-32);
   }
 
-  /* Step-1 review item 5 — the closing line is anchored right and centred to the whole
-     group at display-section size. It is not a card and not a pull-quote. */
-  .gates-section__closing {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-display-section);
-    line-height: var(--step-display-section-lh);
-    max-inline-size: var(--measure-display);
-  }
-
-  /* Step-1 review item 9 — the proof section is the full-bleed --band split, which is
-     also what restores the page's fill alternation: sheet, floor, band, sheet, band,
-     sheet, floor. */
-  .proof {
-    background-color: var(--tgd-surface-alt);
-    color: var(--tgd-ink);
-  }
-
-  /*
-    §B.8 round 13 — **below 768 the three figures STACK.** Three rows, one figure each:
-    the numeral in a 68px column from the content's own left edge (x 20 at 360) and the
-    micro label from x 104, on the SAME baseline, so each row reads "1,000+ downloads"
-    as a sentence rather than as a column heading over a caption.
-
-    This is the composition §I.1 row 1 rules in, and it is what closes four of `qa:plate`'s
-    seven sub-768 flags. §B.8's Pass-1 wireframe drew the three "3 across at 320: 96px
-    each", which predates the 128px plate band: the third column ran x 244 → 309 against a
-    band beginning at x 232, so the install count — the second-loudest type on the site by
-    §B.6 principle 2 — ended inside the plate. Stacked, the widest ink in the block is
-    `downloads` ending at **x 162**, a constant at every width below 768, against a band
-    that never begins before 232. 70px clear at 360, three times the 23px `/contact/`'s
-    own addresses hold at 1440.
-
-    68 + 16 = 104 is the label's origin, and the 16px column gap is the only spacing value
-    here that is not §B.8's own: it is the difference between the two coordinates the
-    section gives.
-  */
   .figures {
     list-style: none;
+    margin-block-start: var(--space-32);
     display: grid;
-    row-gap: var(--space-16);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+    gap: var(--space-12);
   }
 
   .figures__item {
+    border-radius: var(--r-tile);
+    padding: var(--space-16);
     display: grid;
-    grid-template-columns: 68px minmax(0, auto);
-    column-gap: var(--space-16);
-    /* One baseline for the numeral and its label — the whole of "the same baseline". */
-    align-items: baseline;
-    justify-content: start;
+    gap: var(--space-8);
   }
 
   .figures__figure {
-    font-size: var(--step-numeral-large);
-    line-height: var(--step-numeral-large-lh);
+    font-size: var(--step-figure);
+    line-height: var(--step-figure-lh);
+    letter-spacing: var(--step-figure-tracking);
+    color: var(--ink);
   }
 
-  /* Step-1 review item 7 — three across, numeral-large, Anek at wdth 87.5 with
-     tabular-nums, a micro label under each. §B.6 principle 2 makes the numbers the
-     second-loudest type on the site. From 768 up the band is 276 and §E.3's column
-     allocation (cols 1-5 of 8, cols 1-7 of 12) already holds the row clear of it, so the
-     row form returns unchanged. */
-  @media (min-width: 768px) {
-    .figures {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: var(--gutter);
-      row-gap: 0;
-    }
-
-    .figures__item {
-      grid-template-columns: none;
-      column-gap: 0;
-      align-items: stretch;
-      justify-content: stretch;
-      gap: var(--space-4);
-    }
+  .proof__panel {
+    padding: var(--space-28);
+    display: grid;
+    gap: var(--space-32);
   }
 
-  .proof__caption {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
+  .proof__panel-label {
+    margin-block-end: calc(-1 * var(--space-16));
   }
 
   .proof__note {
-    margin-block-start: var(--space-12);
+    color: var(--dim);
   }
 
-  .proof__track {
-    margin-block-start: var(--space-48);
+  /* --- What you get --- */
+
+  .offer__inner {
+    max-inline-size: 72ch;
+    margin-inline: auto;
+    display: grid;
+    gap: var(--space-24);
   }
 
-  .proof__aside {
-    margin-block-start: var(--space-24);
+  /* --- Closing --- */
+
+  .cta {
+    position: relative;
+    padding-block: var(--cta-pad);
+    overflow: hidden;
   }
 
-  /*
-    §E.3 round 12, and blocker B1. At 768-1023 the section stacks — prose cols 1-6, **the
-    figures and the store link cols 1-5** — and that allocation, not a per-width case, is
-    what closes B1. Measured before: at full content width the third figure's ink ran to
-    x 573.4 at 768 against a band beginning at 492, so the page rendered `1,0` over `dow`,
-    and §B.6 principle 2 makes the install count the second-loudest type on the site.
-    Inside cols 1-5 the same figure ends at x 404.
+  .cta__glow {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: -30%;
+    block-size: 90%;
+    pointer-events: none;
+    background: radial-gradient(60% 100% at 50% 100%, var(--halo-2), transparent 70%);
+  }
 
-    §B.5's grid is arithmetic here rather than a table: `--col` and `--gutter` are the
-    section's own columns, so the cap is five of them and it follows the breakpoint.
-
-    The axis in this range takes the content's own left edge — §E.3's table gives node
-    centres 32 / 132 / 232 / 332 / 432 at 768, the last ring closing at 441 against a band
-    at 492, 51px clear. The label row rides half a pitch earlier, which is the overhang
-    §E.3 exempts as prose.
-  */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .proof__lead {
-      grid-column: 1 / span 6;
-    }
-
-    .figures {
-      max-inline-size: calc(5 * var(--col) + 4 * var(--gutter));
-    }
-
-    .proof__track {
-      --track-list-origin: 0px;
-      --track-head-origin: calc(var(--track-pitch) / -2);
-    }
+  .cta__inner {
+    position: relative;
+    display: grid;
+    gap: var(--space-24);
+    justify-items: start;
   }
 
   .cta__body {
-    color: var(--tgd-on-room-muted);
+    max-inline-size: 56ch;
   }
 
-  /*
-    DESIGN.md §B.5 as amended in round 7: "The split forms engage at 1024." Every
-    two-column arrangement in the document arrives with the twelve-column grid and none
-    of them is held back to 1440 — the keep-out lane that used to force that is
-    withdrawn (step-2 review, ruling (b)), so the closing line has its full cols 9-12
-    and the proof band its full cols 7-12 from 1024 up.
-  */
-  @media (min-width: 1024px) {
-    .hero__inner {
-      grid-column: 1 / span 9;
-    }
-
-    .gates-section__list {
-      grid-column: 1 / span 7;
-      /* Step-2 review item 13: the numeral hung a full column plus a gutter — 106px —
-         from the line it numbers, so the pair read as two adjacent columns rather than
-         as a number bound to its title. It is a two-digit numeral column and one
-         gutter now, which is the same relationship 360 already had. */
-      --numeral-col: 40px;
-      --numeral-gap: var(--gutter);
-      --gates-hang: 0px;
-    }
-
-    .gates__item::before {
-      font-size: var(--step-numeral-large);
-      line-height: var(--step-numeral-large-lh);
-    }
-
-    .gates-section__closing {
-      grid-column: 9 / span 4;
-      align-self: center;
-    }
-
-    .offer__inner {
-      grid-column: 3 / span 8;
-    }
-
-    /*
-      §B.9 round 12 — the proof grid at 1024-1439. **One grid, two rows, and no second
-      content width.**
-
-      Run B rendered this range as round 11's stack: the band's prose in cols 1-5 with the
-      track beneath it in the same half, the three figures crossing the full content width
-      on their own row, and **the right 46% of a 918px-tall section empty from its top edge
-      to its bottom** — two content widths in one block, which is the void §B.9 permits
-      exactly once and spends in the hero. The reviewer refused it on render and §B.5
-      gained the ruling that governs it: "the split forms engage at 1024" holds for §C.6's
-      slot and the gates' closing line, and does NOT hold for a two-column arrangement
-      whose second column is a diagram with a fixed minimum extent. Those engage where
-      their diagram fits and are one grid, two rows below it.
-
-      Row 1: the headline, paragraph 1, the three figures and the two links in cols 1-7 —
-      x 48 → 579.3 at 1024, 531.3px, a 31.2em measure — with the caption and its note in
-      cols 8-12 top-aligned, x 603.1 → 975.6. The right of the row is filled by writing,
-      not by a void, and §B.10's rule exempts prose in terms.
-
-      Row 2: the two-runner track, block cols 1-9, at the 100px pitch §B.10 fixes.
-    */
-    .proof__lead {
-      grid-column: 1 / span 7;
-      grid-row: 1;
-    }
-
-    .proof__aside {
-      grid-column: 8 / span 5;
-      grid-row: 1;
-      margin-block-start: 0;
-    }
-
-    .proof__track {
-      grid-column: 1 / span 9;
-      grid-row: 2;
-      margin-block-start: 0;
-
-      /*
-        The axis's right anchor, written once and BAND-RELATIVE: §E.3 gives it as
-        `min(block right − 33, 100vw − 372)`, and this is the one place in the document
-        where §B.10's viewport rule *sets* a coordinate rather than only testing one.
-
-        `--track-list-origin` is the first node centre, measured from the block's own left
-        edge, and the last node is four 100px pitches beyond it — so the expression below
-        is that anchor less 400. The block term is `100% − 433`; the band term is
-        `100vw − 372 − 400` less the block's left edge, which is §B.5's `--content-left`
-        because this block starts at column 1.
-
-        At 1024 the band term binds: node centres **252 / 352 / 452 / 552 / 652**, axis ink
-        243 → 661, the last ring closing at 661 against a band beginning at 748 — **87px
-        clear ring-to-band, 96 node-centre-to-band**, and it is the component's largest
-        clearance at any width. At 1439 the block term binds instead, so the axis fills its
-        block there rather than floating in it, and the two hand over without a breakpoint.
-      */
-      --track-list-origin: min(
-        calc(100% - 4 * var(--track-pitch) - 33px),
-        calc(100vw - 372px - 4 * var(--track-pitch) - var(--content-left))
-      );
-      --track-head-origin: calc(var(--track-list-origin) - var(--track-pitch) / 2);
-    }
-  }
-
-  /*
-    §B.9's split band **keeps 1440 unchanged, because it clears**: cols 7-12, axis
-    x 732 → 1132, the last ring closing at 1141 against a plate band beginning at 1164,
-    23px clear. Round 12's grid above is what 1024-1439 does instead of trying to hold
-    this split at a width where the axis does not fit — the section changes shape, never
-    the component, and the pitch is 100 at every width.
-  */
-  @media (min-width: 1440px) {
-    .proof__lead {
-      grid-column: 1 / span 5;
-      grid-row: 1;
-    }
-
-    /*
-      §B.10: in the band the axis takes col 7's left edge, so the FIRST NODE sits on it
-      and the label row hangs half a pitch back into the gutter between cols 6 and 7 —
-      which is empty, the prose ending at col 5. The caption and the note go back under
-      the track at the full cols 7-12 width, which is where §B.9's wireframe draws them.
-    */
-    .proof__track {
-      grid-column: 7 / span 6;
-      grid-row: 1;
-      margin-block-start: 0;
-      --track-head-origin: calc(var(--track-pitch) / -2);
-      --track-list-origin: 0px;
-    }
-
-    .proof__aside {
-      grid-column: 7 / span 6;
-      grid-row: 2;
-      margin-block-start: 0;
-    }
+  .cta__title {
+    max-inline-size: 18ch;
   }
 </style>

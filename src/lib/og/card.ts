@@ -12,36 +12,41 @@ import { floorSceneSvg, FLOOR_CROP } from './floor-card';
  * needs no fonts of its own) and `@resvg/resvg-js` turns that into the PNG. Both run
  * inside a prerendered endpoint, so this costs nothing at runtime.
  *
- * DESIGN.md §B.2a — the card is LIGHT ONLY. A share preview has no way to know the
- * reader's scheme, and the light palette is the one every wireframe is drawn in and the
- * one that prints (§D.8). §B.12's mark is deliberately not on it: the favicon is browser
- * chrome and putting it here would make it a logo.
+ * **The card is DARK ONLY, and the redesign is what flipped it.** A share preview has no
+ * way to know the reader's scheme, so it has to pick one, and it should pick the one the
+ * site is: this site is dark-first, a visitor with no stored choice lands in the dark
+ * room, and a card in the light scheme would be a preview of a page most people never
+ * see. The favicon is deliberately not on it: that mark is browser chrome, and putting
+ * it here would make it a logo.
  */
 
-/* DESIGN.md §B.2, light studio. Four values and no fifth. */
-const SHEET = '#F1F3F0';
-const FLOOR = '#0F2A2E';
-const MUTED = '#4E6468';
+/* The dark scheme's own grounds and inks. Four values and no fifth. */
+const GROUND = '#080C18';
+const VOID_BAND = '#04060B';
+const INK = '#EAECF2';
+const MUTED = '#96A0B5';
+const ACCENT = '#DF8FE2';
 
 export const CARD = { width: 1200, height: 630 } as const;
 
 const require = createRequire(import.meta.url);
 
 /*
-  DESIGN.md §B.3's two families, as static instances. The site itself ships the variable
-  woff2 builds; satori reads woff/ttf/otf and cannot apply a variation axis, so the card
-  loads @fontsource's static 600 and 400 cuts of the same two faces rather than rendering
-  Anek at its default weight and calling it the display face. These are build-time
-  devDependencies and nothing about them reaches the browser.
+  The site's two families, as static instances. The site itself ships the variable woff2
+  builds; satori reads woff/ttf/otf and cannot apply a variation axis, so the card loads
+  @fontsource's static 600 and 400 cuts of the same two faces rather than rendering one
+  weight and calling it two. These are build-time devDependencies and nothing about them
+  reaches the browser.
 */
 function face(pkg: string, file: string): Buffer {
   return readFileSync(require.resolve(`@fontsource/${pkg}/files/${file}`));
 }
 
 const FONTS = [
-  { name: 'Anek Latin', data: face('anek-latin', 'anek-latin-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
-  { name: 'Instrument Sans', data: face('instrument-sans', 'instrument-sans-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Instrument Sans', data: face('instrument-sans', 'instrument-sans-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Schibsted Grotesk', data: face('schibsted-grotesk', 'schibsted-grotesk-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Schibsted Grotesk', data: face('schibsted-grotesk', 'schibsted-grotesk-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Spline Sans Mono', data: face('spline-sans-mono', 'spline-sans-mono-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Spline Sans Mono', data: face('spline-sans-mono', 'spline-sans-mono-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
 ];
 
 export interface CardSpec {
@@ -103,13 +108,13 @@ function tree(spec: CardSpec): Node {
         style: {
           display: 'flex',
           height: 30,
-          fontFamily: 'Instrument Sans',
-          fontWeight: 600,
-          fontSize: 24,
-          color: MUTED,
-          letterSpacing: '0.01em',
+          fontFamily: 'Spline Sans Mono',
+          fontWeight: 400,
+          fontSize: 21,
+          color: ACCENT,
+          letterSpacing: '0.14em',
         },
-        children: spec.showFloor ? '' : 'TheGeekDogs',
+        children: spec.showFloor ? '' : 'THEGEEKDOGS',
       }),
       el('div', {
         style: {
@@ -121,12 +126,12 @@ function tree(spec: CardSpec): Node {
         children: [
           el('div', {
             style: {
-              fontFamily: 'Anek Latin',
+              fontFamily: 'Schibsted Grotesk',
               fontWeight: 600,
               fontSize: spec.title.length > 34 ? 56 : 68,
               lineHeight: 1.04,
-              letterSpacing: '-0.015em',
-              color: FLOOR,
+              letterSpacing: '-0.03em',
+              color: INK,
               maxWidth: 1000,
             },
             children: spec.title,
@@ -134,7 +139,7 @@ function tree(spec: CardSpec): Node {
           el('div', {
             style: {
               marginTop: 20,
-              fontFamily: 'Instrument Sans',
+              fontFamily: 'Schibsted Grotesk',
               fontWeight: 400,
               fontSize: 30,
               lineHeight: 1.45,
@@ -154,7 +159,7 @@ function tree(spec: CardSpec): Node {
       alignItems: 'flex-end',
       justifyContent: 'flex-end',
       height: bandHeight,
-      backgroundColor: FLOOR,
+      backgroundColor: VOID_BAND,
       overflow: 'hidden',
     },
     children: [
@@ -173,7 +178,7 @@ function tree(spec: CardSpec): Node {
       flexDirection: 'column',
       width: CARD.width,
       height: CARD.height,
-      backgroundColor: SHEET,
+      backgroundColor: GROUND,
       /* With no band under them the words take the whole card, so they keep the same
          60px optical margin at the bottom that they already have at the top. */
       paddingBottom: spec.showFloor ? 0 : 60,

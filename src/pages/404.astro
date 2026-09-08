@@ -1,75 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactPlate from '../components/ContactPlate.astro';
 import EmptyRoom from '../components/floor/EmptyRoom.astro';
-import { BACK_TO_STUDIO } from '../lib/copy';
+import { BACK_TO_STUDIO, NOT_FOUND } from '../lib/copy';
 
 /*
-  COPY.md §9 and DESIGN.md §B.11.
+  A headline, one link home, and an empty room — the floor slab and the lamp, no desks
+  and no chair, drawn from the floor's own defs.
 
-  The page is a headline, one link home, and an empty room — the floor slab and the lamp,
-  no desks and no chair, drawn from the floor's own defs (see EmptyRoom.astro). COPY.md
-  §9 names none of it on purpose: "A line explaining a visual joke kills the joke and
-  doubles the page." So the room carries no caption, no alt text and no second link, and
-  the whole scene is aria-hidden.
+  COPY.md §9 names none of it on purpose: "A line explaining a visual joke kills the joke
+  and doubles the page." So the room carries no caption, no alt text and no second link,
+  and the whole scene is aria-hidden.
 
-  The room arrives in run C. Run B recorded it as open rather than fixed, because the
-  floor's slab and lamp — the two things §B.11 says this page reuses — did not exist as
-  shared symbols until then.
+  The page carries the room it belongs to: the --void ground the studio floor and the
+  closing CTA sit on, and one accent link out of it.
 
-  Step-1 review item 13: §B.10's address table lists /404 among the pages that print
-  thegeekdogs@gmail.com on the plate, and no plate rendered there at any width. It does
-  now, in the same sticky wrapper the home page uses — the wrapper is the page's whole
-  content, because /404 has neither a hero to leave nor a final CTA to retire into. The
-  plate is site chrome, not this page's link, and COPY.md §9 says so in terms, so it
-  stays and the page's own content is still a headline and one link.
-
-  Step-1 review item 15: the page can be shorter than the viewport, so the room section
-  grows to fill it and the footer band sits on the viewport's bottom edge. No bare sheet
-  shows below the band at any width.
-
-  §J's pre-committed cut for this route, made specific in round 12 and taken here (review
-  item E2): `quietFooter` drops the footer's nav repeat and its `Elsewhere` block. §J names
-  them by hand — "The empty room is the joke; a nav menu underneath it is not" — and
-  rendered, this page was 1,120px of which 615px was footer. The header nav stays, because
-  it is site chrome on every route, and so do the studio line, the location line, the
-  address, the employer note and the rights line, which are the footer everywhere else.
+  `quietFooter` drops the footer's nav repeat. The empty room is the joke; a nav menu
+  underneath it is not. The studio line, the location, the address, the employer note and
+  the rights line stay, because they are the footer everywhere else.
 */
 ---
 
 <BaseLayout
-  title="Page not found | TheGeekDogs"
-  description="That page isn't here. One link back to the studio, and nothing else on it."
+  title={NOT_FOUND.meta.title}
+  description={NOT_FOUND.meta.description}
   noindex
   quietFooter
 >
-  <div class="plate-span plate-span--page">
-    <section class="section bleed room empty-room section--reserve">
-      <div class="shell stack">
-        <h1>This page isn't here.</h1>
-        <p>
-          <a class="link" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>
-            {BACK_TO_STUDIO.label}
-          </a>
-        </p>
-        <EmptyRoom />
-      </div>
-    </section>
-
-    <ContactPlate />
-  </div>
+  <section class="room empty-room" data-theme-anim>
+    <div class="shell empty-room__inner">
+      <h1 class="empty-room__title">{NOT_FOUND.headline}</h1>
+      <p>
+        <a class="link-row" href="/" aria-label={BACK_TO_STUDIO.accessibleName}>
+          {BACK_TO_STUDIO.label}
+        </a>
+      </p>
+      <EmptyRoom />
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  /* The wrapper is the page here, so the one section it holds takes the growth and the
-     footer band sits on the viewport's bottom edge (step-1 review item 15). */
+  /* The page can be shorter than the viewport, so the one section it has takes the
+     growth and the footer sits on the viewport's bottom edge. No bare ground shows
+     below the band at any width. */
   .empty-room {
     flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--section-pad);
   }
 
-  /* The room stands away from the line that sent you into it. `.stack` sets the rhythm
-     between the headline and the link; this is the one step above it. */
+  .empty-room__inner {
+    display: grid;
+    gap: var(--space-24);
+    justify-items: start;
+  }
+
+  .empty-room__title {
+    font-size: var(--step-section);
+    line-height: var(--step-section-lh);
+    letter-spacing: var(--step-section-tracking);
+  }
+
+  /* The room stands away from the line that sent you into it. */
   .empty-room :global(.room404) {
-    margin-block-start: var(--space-48);
+    margin-block-start: var(--space-32);
+    inline-size: 100%;
   }
 </style>

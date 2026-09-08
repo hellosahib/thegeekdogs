@@ -94,32 +94,47 @@ const LAYOUT_FEATURES = 'ccmp,locl,rvrn,tnum,liga,kern';
 
 const FACES = [
   {
-    id: 'anek',
-    family: 'Anek Latin Variable',
-    fallbackFamily: 'Anek Latin fallback',
-    src: 'node_modules/@fontsource-variable/anek-latin/files/anek-latin-latin-standard-normal.woff2',
-    file: 'anek-latin-subset.woff2',
-    /* DESIGN.md §B.3 — display and numerals. */
-    weightRange: '100 800',
-    stretchRange: '75% 100%',
-    /* §1.5's mitigation, and the axis stays live. */
-    instancer: ['wdth=75:100'],
-    /* The weight the face is dominantly set at (§B.3's --wght-display), which is the
-       weight the advance ratio has to be measured at. */
+    id: 'schibsted',
+    family: 'Schibsted Grotesk Variable',
+    fallbackFamily: 'Schibsted Grotesk fallback',
+    src: 'node_modules/@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2',
+    file: 'schibsted-grotesk-subset.woff2',
+    /*
+      The handoff asks for 400/500/600/700 and this is the variable face, so the range
+      is declared rather than four static cuts: one file covers all four, and the
+      in-between weights the type scale never names cost nothing extra.
+    */
+    weightRange: '400 700',
+    stretchRange: undefined,
+    /* One axis, and nothing to restrict on it. */
+    instancer: [],
+    /*
+      The weight the face is dominantly set at — every heading on the site is 600 — which
+      is the weight the advance ratio has to be measured at.
+    */
     measureWeight: 600,
     preloaded: true,
   },
   {
-    id: 'instrument',
-    family: 'Instrument Sans Variable',
-    fallbackFamily: 'Instrument Sans fallback',
-    src: 'node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2',
-    file: 'instrument-sans-subset.woff2',
-    weightRange: '400 700',
+    id: 'spline',
+    family: 'Spline Sans Mono Variable',
+    fallbackFamily: 'Spline Sans Mono fallback',
+    src: 'node_modules/@fontsource-variable/spline-sans-mono/files/spline-sans-mono-latin-wght-normal.woff2',
+    file: 'spline-sans-mono-subset.woff2',
+    weightRange: '400 600',
     stretchRange: undefined,
     instancer: [],
+    /* Eyebrows, micro-labels and nameplates are the bulk of the mono on the page. */
     measureWeight: 400,
-    preloaded: false,
+    /* A monospace face has no `tnum` to keep: every glyph is already one advance wide. */
+    mono: true,
+    /*
+      Preloaded too, and this face is the reason the site needs two preloads where the
+      old one needed one: the mono carries the hero's own eyebrow, every floor nameplate
+      and every figure, so a late swap moves marks inside the isometric scene rather
+      than only reflowing a paragraph.
+    */
+    preloaded: true,
   },
 ];
 
@@ -127,8 +142,16 @@ const FACES = [
  * The local faces the metric-matched fallback tries, in order. They are named rather than
  * left to `sans-serif` because a metric override is only true of the face it was measured
  * against — the script reports which one actually resolved.
+ *
+ * **There are two lists, because there are two kinds of face.** A metric-matched fallback
+ * fixes layout shift, not appearance, and pointing the monospace face at Helvetica would
+ * make every eyebrow, nameplate and figure on the site set in a proportional font for the
+ * length of the swap — the numbers would be right and the room would still look wrong. The
+ * mono list is system monospace, in the order the platforms actually ship it.
  */
 const LOCAL_FALLBACKS = ['Helvetica Neue', 'Arial', 'Helvetica', 'Roboto', 'Segoe UI'];
+const LOCAL_FALLBACKS_MONO = ['SF Mono', 'Menlo', 'Monaco', 'Consolas', 'DejaVu Sans Mono', 'Courier New'];
+const localsFor = (face) => (face.mono ? LOCAL_FALLBACKS_MONO : LOCAL_FALLBACKS);
 
 /**
  * The advance ratio is measured over **the site's own prose**, pulled out of `dist/`.
@@ -246,6 +269,7 @@ async function advanceRatios(faces) {
     id: face.id,
     family: face.family,
     weight: face.measureWeight,
+    candidates: localsFor(face),
     data: readFileSync(join(OUT_FONTS, face.file)).toString('base64'),
   }));
 
@@ -262,12 +286,16 @@ async function advanceRatios(faces) {
         context.font = `${weight} 1000px ${family}`;
         return context.measureText(reference).width;
       };
-      const resolved =
-        candidates.find((name) => document.fonts.check(`16px "${name}"`)) ?? 'sans-serif';
+      const resolvedFor = (list, generic) =>
+        list.find((name) => document.fonts.check(`16px "${name}"`)) ?? generic;
+      const resolved = candidates
+        .map((list) => resolvedFor(list.candidates, list.mono ? 'monospace' : 'sans-serif'))
+        .join(' / ');
       return {
         resolved,
         faces: faces.map((face) => ({
           id: face.id,
+          resolved: resolvedFor(face.candidates, face.mono ? 'monospace' : 'sans-serif'),
           target: width(`"${face.family}"`, face.weight),
           /*
             The fallback is measured at 400 whatever weight the target is measured at, and
@@ -277,11 +305,18 @@ async function advanceRatios(faces) {
             at every weight it is asked for. Measuring the fallback at 600 would measure a
             real Bold the fallback will never paint, and the ratio would come out ~7% small.
           */
-          fallback: width(`"${resolved}", sans-serif`, 400),
+          fallback: width(
+            `"${resolvedFor(face.candidates, face.mono ? 'monospace' : 'sans-serif')}", ${face.mono ? 'monospace' : 'sans-serif'}`,
+            400,
+          ),
         })),
       };
     },
-    { faces: payload, candidates: LOCAL_FALLBACKS, reference },
+    {
+      faces: payload.map((f) => ({ ...f, mono: Boolean(FACES.find((x) => x.id === f.id)?.mono) })),
+      candidates: FACES.map((f) => ({ candidates: localsFor(f), mono: Boolean(f.mono) })),
+      reference,
+    },
   );
 
   await browser.close();
@@ -334,16 +369,35 @@ for (const face of FACES) {
   const after = statSync(destination).size;
   const m = metrics(destination);
 
-  /* §B.3's tabular figures. Without this the Spline Sans Mono fallback §B.3 rules out
-     would be needed, and nothing on the page would say so. */
-  if (!m.features.includes('tnum')) {
-    fail(`${face.family} lost its \`tnum\` feature in subsetting (DESIGN.md §B.3).`);
+  /*
+    Tabular figures, asserted on the face that needs them and not on the one that cannot
+    have them.
+
+    Every number on this site sets in Spline Sans Mono, and a MONOSPACE face has no
+    `tnum` feature because every glyph in it is already one advance wide — tabular is the
+    only thing it can be. Demanding the feature there fails a font for being the kind of
+    font it was chosen for being.
+
+    Schibsted Grotesk is the face that can lose it, and it is asked to keep it because
+    `font-variant-numeric: tabular-nums` is declared site-wide: a subsetter that dropped
+    the feature would take the alignment with it silently, in whatever numerals slip into
+    proportional text.
+  */
+  if (!face.mono && !m.features.includes('tnum')) {
+    fail(`${face.family} lost its \`tnum\` feature in subsetting.`);
   }
   if (m.axes.length === 0) fail(`${face.family} came out of subsetting as a static font.`);
 
+  /*
+    Neither of the two families has a `wdth` axis, so there is no axis to restrict and
+    no instancer step to assert. What is asserted instead is that the axis genuinely is
+    absent: a fontsource update that shipped a second axis would silently double the
+    design space the subset carries, and the size report is not sensitive enough to
+    catch it.
+  */
   const wdth = m.axes.find(([tag]) => tag === 'wdth');
-  if (face.id === 'anek' && (!wdth || wdth[1] !== 75 || wdth[3] !== 100)) {
-    fail(`Anek Latin's wdth axis is ${JSON.stringify(wdth)}, not 75–100 (PLAN.md §1.5).`);
+  if (wdth) {
+    fail(`${face.family} now ships a wdth axis (${JSON.stringify(wdth)}); the subset does not expect one.`);
   }
   const wght = m.axes.find(([tag]) => tag === 'wght');
   if (!wght) fail(`${face.family} lost its wght axis.`);
@@ -396,7 +450,7 @@ for (const row of report) {
   font-family: '${face.fallbackFamily}';
   font-style: normal;
   font-weight: ${face.weightRange};
-  src: ${LOCAL_FALLBACKS.map((name) => `local('${name}')`).join(', ')};
+  src: ${localsFor(face).map((name) => `local('${name}')`).join(', ')};
   ascent-override: ${percent(ascent)};
   descent-override: ${percent(descent)};
   line-gap-override: ${percent(lineGap)};
@@ -410,9 +464,9 @@ writeFileSync(
   GENERATED by scripts/build-fonts.mjs. Do not edit by hand: run \`npm run fonts\`.
 
   PLAN.md §1.5's pipeline, applied to the built output — subset from dist/'s own glyph
-  set, Anek Latin's \`wdth\` axis restricted to 75–100 with \`fonttools varLib.instancer\`,
-  \`wght\` untouched, \`tnum\` asserted present, and one metric-matched local fallback per
-  face so the \`font-display: swap\` costs no layout shift.
+  set, \`wght\` untouched, \`wdth\` asserted absent, \`tnum\` asserted present, and one
+  metric-matched local fallback per face so the \`font-display: swap\` costs no layout
+  shift.
 
   Total: ${total.toLocaleString('en-US')} B for both faces.
   woff2 does not compress further under gzip, so this is also the transfer size.

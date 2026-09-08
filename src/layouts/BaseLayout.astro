@@ -22,13 +22,13 @@ interface Props {
   ogImageAlt?: string;
   /** Structured data for this route, already serialised (see src/lib/jsonld.ts). */
   schema?: string;
-  /** PLAN.md §1.2 — one attribute picks which token set is live. */
-  world?: 'studio' | 'sahib' | 'tanya';
   noindex?: boolean;
   /**
-   * §J, `/404` — the footer drops its nav repeat and its `Elsewhere` block on the one
-   * route whose pre-committed cut names them (review item E2). See Footer.astro.
+   * The footer's `Elsewhere` column carries the two founders' profile links, and those
+   * belong NEXT TO THE PERSON rather than under the studio. It renders on the person
+   * pages and nowhere else. /404 drops the nav repeat as well.
    */
+  footerLinks?: boolean;
   quietFooter?: boolean;
 }
 
@@ -40,48 +40,44 @@ const {
   ogImage,
   ogImageAlt,
   schema,
-  world = 'studio',
   noindex = false,
+  footerLinks = false,
   quietFooter = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = ogImage ? new URL(`/og/${ogImage}.png`, Astro.site).href : undefined;
-
-/**
- * DESIGN.md §I item 4 — `theme-color` ships as two entries keyed to
- * `prefers-color-scheme`. It cannot follow a visitor's *stored* override, which is a
- * known and accepted mismatch, recorded there rather than discovered here. Values are
- * each world's own page ground in each scheme (§B.2, §B.2a, §F.4, §F.4a, §G.1, §G.1a).
- */
-const THEME_COLOR = {
-  studio: { light: '#F1F3F0', dark: '#18292D' },
-  sahib: { light: '#EEEFF4', dark: '#161C2E' },
-  tanya: { light: '#EDEEEE', dark: '#191B1B' },
-} as const;
-const themeColor = THEME_COLOR[world];
 ---
 
 <!doctype html>
-<html lang="en" data-world={world}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline>
+      /*
+        The scheme is decided before first paint, so there is no flash of the wrong room.
+
+        The site is DARK-FIRST now, and that changes what this script defaults to: a
+        visitor with no stored choice gets dark unless their OS asks for light, which is
+        the reverse of the rule it replaces. A visitor with no JavaScript at all gets
+        dark too, because `:root` in tokens.css carries the dark values and no attribute
+        is needed to reach them.
+      */
       (function () {
-        var scheme = 'light';
+        var scheme = 'dark';
         try {
           var stored = localStorage.getItem('tgd-theme');
           if (stored === 'light' || stored === 'dark') {
             scheme = stored;
           } else if (
             window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
+            window.matchMedia('(prefers-color-scheme: light)').matches
           ) {
-            scheme = 'dark';
+            scheme = 'light';
           }
         } catch (error) {
-          scheme = 'light';
+          scheme = 'dark';
         }
         document.documentElement.setAttribute('data-theme', scheme);
       })();
@@ -97,14 +93,32 @@ const themeColor = THEME_COLOR[world];
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <meta name="theme-color" content={themeColor.light} media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content={themeColor.dark} media="(prefers-color-scheme: dark)" />
+    {/*
+      `theme-color` ships as two entries keyed to `prefers-color-scheme`. It cannot
+      follow a visitor's *stored* override, which is a known and accepted mismatch. The
+      values are the page ground in each scheme: --ground.
+    */}
+    <meta name="theme-color" content="#EFEFF3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#080C18" media="(prefers-color-scheme: dark)" />
 
+    {/*
+      Both faces are preloaded, where the design this replaces preloaded one. The mono
+      carries the hero eyebrow, every floor nameplate and every figure on the site, so a
+      late swap moves marks inside the isometric scene rather than only reflowing a
+      paragraph.
+    */}
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/anek-latin-subset.woff2"
+      href="/fonts/schibsted-grotesk-subset.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/spline-sans-mono-subset.woff2"
       crossorigin
     />
 
@@ -134,12 +148,104 @@ const themeColor = THEME_COLOR[world];
 
     <Analytics />
   </head>
-  <body>
+  <body data-theme-anim>
     <a class="skip-link" href="#main">{SKIP_LINK}</a>
+    {/*
+      The grain. Fixed over the viewport, above the page's grounds and below its content,
+      `soft-light` so it is a texture on the ink rather than a veil over it. It is inert
+      to the pointer and hidden from assistive technology: it is a surface, not an object.
+    */}
+    <div class="grain" aria-hidden="true"></div>
     <Header />
     <main id="main">
       <slot />
     </main>
-    <Footer quiet={quietFooter} />
+    <Footer quiet={quietFooter} links={footerLinks} />
+
+    <script>
+      /*
+        The reveal, and the rule it exists to keep: **nothing is hidden until the code
+        that un-hides it has proved it is running.**
+
+        The hidden state is written HERE, by the same module that owns the observer, and
+        only after the observer has been constructed. A page whose JavaScript never
+        executes — a parse error, a blocked bundle, a browser that refuses the module —
+        therefore renders every element visible. A reveal animation that fails leaves
+        content on the page. It never removes it.
+
+        The 1.2s failsafe covers the other direction: an observer that is alive but never
+        fires (a zero-height ancestor, a scroll container this code does not know about)
+        would otherwise leave the page blank forever.
+      */
+      const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-rv]'));
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (targets.length > 0 && !reduced && 'IntersectionObserver' in window) {
+        const reveal = (el: HTMLElement): void => {
+          el.dataset.reveal = 'in';
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              reveal(entry.target as HTMLElement);
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+
+        for (const el of targets) {
+          el.dataset.reveal = 'out';
+          observer.observe(el);
+        }
+
+        window.setTimeout(() => {
+          for (const el of targets) if (el.dataset.reveal !== 'in') reveal(el);
+        }, 1200);
+      }
+
+      /*
+        The counters. They ride the same reveal, and they count the number the page
+        already prints rather than a second copy of it: the element's own text is parsed
+        into a numeric part plus whatever punctuation and suffix surround it, so `1,000+`
+        keeps its separator and its plus through the whole count.
+      */
+      const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count]'));
+      if (counters.length > 0 && !reduced && 'IntersectionObserver' in window) {
+        const run = (el: HTMLElement): void => {
+          const printed = el.textContent ?? '';
+          const target = Number(printed.replace(/[^0-9.]/g, ''));
+          if (!Number.isFinite(target)) return;
+          const decimals = (printed.split('.')[1] ?? '').replace(/[^0-9]/g, '').length;
+          const suffix = printed.trimEnd().endsWith('+') ? '+' : '';
+          const grouped = printed.includes(',');
+          const start = performance.now();
+          const tick = (now: number): void => {
+            const t = Math.min((now - start) / 1100, 1);
+            /* Cubic ease-out: fast enough to read as a count, settled before it bores. */
+            const value = target * (1 - Math.pow(1 - t, 3));
+            const shown = value.toFixed(decimals);
+            el.textContent =
+              (grouped ? Number(shown).toLocaleString('en-US', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+              }) : shown) + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            run(entry.target as HTMLElement);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+        for (const el of counters) counterObserver.observe(el);
+      }
+    </script>
   </body>
 </html>

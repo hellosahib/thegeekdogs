@@ -4,26 +4,9 @@ import { CONTACT } from '../../lib/copy';
 import { studioGraph } from '../../lib/jsonld';
 
 /*
-  COPY.md §8 and DESIGN.md §B.11. Three addressed blocks as a 3-up **inside cols 1-9** at
-  >=1024, stacked below, and no form: QUESTIONS.md items 11 and 69 both answered email
-  only, so there is no field, no endpoint, no success state and no validation design on
-  this page. All three addresses print in full (item 53) as `mailto:` links over the
-  visible address, never a label over a hidden one.
-
-  Run A blocker 2, and §B.11 as amended in round 9. At full content width the third
-  column ran x 682.7-976 at 1024 against a plate band beginning at 748, and the plate
-  struck through `jaintanya999@gmail.com` on first paint in a 900-tall viewport. A
-  printed address is the first mark §B.10's amended rule names, and this page is nothing
-  but three of them, so the fix is the column allocation and not the breakpoint: going
-  3-up only at >=1200 does not help, because at full width the third column would end at
-  1140 against a band at 924 and fail again. Cols 1-9 is 9 x 55.3 + 8 x 24 = 690 at 1024,
-  so the row ends at x 738 against a band at 748, and 894 at 1440, ending at x 954
-  against 1164. 1024 is the tightest width and every width above it is looser, because
-  the band moves 1px per viewport px and the row's right edge moves ~0.75. Each block is
-  (690 - 48) / 3 = 214px at 1024 and 282px at 1440; the longest address needs ~169px
-  (§B.10), so all three set on one line at both.
-
-  Cols 10-12 are this page's one §B.9 void and the plate rests in them.
+  Three addressed blocks and no form: email only, so there is no field, no endpoint, no
+  success state and no validation design on this page. All three addresses print in full
+  as `mailto:` links over the visible address, never a label over a hidden one.
 
   There is no orchestrated moment here. A contact page's job is to be answered.
 */
@@ -38,121 +21,118 @@ const schema = await studioGraph();
   ogImage="contact"
   schema={schema}
 >
-  <div class="plate-span plate-span--page">
-    <section class="section">
-      <div class="shell grid intro">
-        <h1 class="intro__headline">{CONTACT.headline}</h1>
-        <p class="intro__body muted">{CONTACT.body}</p>
+  <section class="section contact-intro">
+    <div class="shell contact-intro__grid">
+      <div>
+        <p class="eyebrow accent">Contact</p>
+        <h1 class="contact-intro__headline">{CONTACT.headline}</h1>
       </div>
-    </section>
+      <p class="lede contact-intro__body">{CONTACT.body}</p>
+    </div>
+  </section>
 
-    <section class="section section--reserve routes-section">
-      <div class="shell grid routes-grid">
-        <h2 class="routes__heading">{CONTACT.routesHeading}</h2>
-        <ul class="routes">
-          {
-            CONTACT.routes.map((route) => (
-              <li class="routes__item">
-                <h3 class="routes__label">{route.label}</h3>
-                <p class="routes__line muted">{route.line}</p>
-                <p class="routes__address">
-                  <a class="link" href={`mailto:${route.address}`}>
-                    {route.address}
-                  </a>
-                </p>
-              </li>
-            ))
-          }
-        </ul>
-        <p class="routes__engagement muted">{CONTACT.engagementLine}</p>
-      </div>
-    </section>
-  </div>
+  <section class="section raised routes-section" data-theme-anim>
+    <div class="shell">
+      <h2 class="routes__heading" data-rv>{CONTACT.routesHeading}</h2>
+      <ul class="routes">
+        {
+          CONTACT.routes.map((route, i) => (
+            <li
+              class="glass routes__item"
+              data-lift
+              data-rv
+              style={`--tilt:${i % 2 === 0 ? '-0.4' : '0.4'}deg`}
+            >
+              <h3 class="routes__label">{route.label}</h3>
+              <p class="routes__line muted">{route.line}</p>
+              <p class="routes__address">
+                <a class="routes__link mono" href={`mailto:${route.address}`}>
+                  {route.address}
+                </a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="routes__engagement muted" data-rv>{CONTACT.engagementLine}</p>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
+  .contact-intro__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: end;
+  }
+
+  .contact-intro__headline {
+    margin-block-start: var(--space-14);
+    max-inline-size: 16ch;
+  }
+
+  .contact-intro__body {
+    max-inline-size: 58ch;
+  }
+
   .routes-section {
     flex: 1 0 auto;
-    background-color: var(--tgd-surface-alt);
-    color: var(--tgd-ink);
+  }
+
+  .routes__heading {
+    font-size: var(--step-subsection);
   }
 
   .routes {
-    margin-block-start: var(--space-40);
+    margin-block-start: var(--gap-block);
     list-style: none;
     display: grid;
-    gap: var(--space-40);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--gap-col);
+    align-items: stretch;
   }
 
-  .intro {
-    row-gap: var(--space-24);
-  }
-
-  /* The three blocks and the engagement line carry their own vertical rhythm, so the
-     grid contributes no extra row gap on top of it. */
-  .routes-grid {
-    row-gap: 0;
+  .routes__item {
+    padding: var(--space-24);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
   }
 
   .routes__label {
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
+    font-size: var(--step-card-title);
   }
 
   .routes__line {
-    margin-block-start: var(--space-12);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
   }
 
+  /* The address is the card's affordance, so it sits at its foot, in the accent, in the
+     mono face — an address is an address. */
   .routes__address {
-    margin-block-start: var(--space-16);
+    margin-block-start: auto;
+    padding-block-start: var(--space-16);
+    border-block-start: 1px solid var(--line);
   }
 
-  .routes__address a {
+  .routes__link {
     display: inline-flex;
     align-items: center;
     min-block-size: 44px;
-    font-weight: 600;
+    color: var(--accent);
+    font-size: var(--step-small);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    /* An address is one word to a reader and it must not break mid-domain, but it also
+       must not push the card wider than its column. */
+    overflow-wrap: anywhere;
   }
 
   .routes__engagement {
-    margin-block-start: var(--space-48);
-  }
-
-  /*
-    §B.11 as amended in round 9 — the three routes are a 3-up INSIDE cols 1-9 at >=1024,
-    stacked below it, and cols 10-12 are the page's one void. Run A item 5: the header's
-    headline and body are the same grid's two columns rather than one 530px measure in a
-    1200px page.
-  */
-  @media (min-width: 1024px) {
-    /*
-      §J round 12, `/contact/`'s "remove one thing": **the split header.** The previous row
-      — the second call to action — is spent by rule, since §B.10 now removes the plate
-      from this route entirely. What is left to cut is the header's two-part split: on a
-      page whose whole content is three printed addresses inside cols 1-9, the headline and
-      its line belong in one column, and a headline in cols 1-5 with its body in cols 7-12
-      is a composition borrowed from pages that have more to say. They stack in cols 1-9
-      now, on the same left edge as everything under them.
-    */
-    .intro__headline,
-    .intro__body {
-      grid-column: 1 / span 9;
-    }
-
-    .routes__heading,
-    .routes,
-    .routes__engagement {
-      grid-column: 1 / span 9;
-    }
-
-    .routes {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: var(--gutter);
-      align-items: start;
-    }
-
-    .routes__engagement {
-      margin-block-start: var(--space-64);
-    }
+    margin-block-start: var(--gap-block);
+    max-inline-size: 66ch;
   }
 </style>

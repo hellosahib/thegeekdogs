@@ -1,13 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="TheGeekDogs">
   <title>TheGeekDogs</title>
-  <desc>DESIGN.md B.12. Not a logo and never rendered on a page: the empty chair's lamp
-  cone, flat lamp amber on flat floor petrol, light values hard-coded. No gradient (a
-  two-stop gradient across 16 physical pixels is a smear), no corner radius (iOS and
-  Android mask the tile themselves) and no prefers-color-scheme block (the tile is dark
-  in both schemes, and a media query here would leave the vector and the three PNGs
-  disagreeing). scripts/build-icons.mjs exports the PNGs from this file.</desc>
-  <rect width="32" height="32" fill="#0F2A2E"/>
-  <path fill="#F2A93B" d="M15 0h2v4h-2z"/>
-  <path fill="#F2A93B" d="M12 4h8l7 21H5z"/>
-  <path fill="#F2A93B" d="M5 28h22v3H5z"/>
+  <desc>Not a logo and never rendered on a page: the empty chair's lamp cone, flat brass
+  on the room's own ground, dark values hard-coded. It is repainted for the dark-first
+  redesign — the ground is --void and the cone is --lamp — and the mark itself is
+  unchanged, because the chair and its light are still what the site is about. No
+  gradient (a two-stop gradient across 16 physical pixels is a smear), no corner radius
+  (iOS and Android mask the tile themselves) and no prefers-color-scheme block (the tile
+  is dark in both schemes, and a media query here would leave the vector and the three
+  PNGs disagreeing). scripts/build-icons.mjs exports the PNGs from this file.</desc>
+  <rect width="32" height="32" fill="#04060B"/>
+  <path fill="#E9B968" d="M15 0h2v4h-2z"/>
+  <path fill="#E9B968" d="M12 4h8l7 21H5z"/>
+  <path fill="#E9B968" d="M5 28h22v3H5z"/>
 </svg>

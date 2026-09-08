@@ -1,398 +1,304 @@
 #!/usr/bin/env node
 /**
- * qa:contrast — PLAN.md §9, §5.2.
+ * qa:contrast — WCAG AA, measured against the pixels the page actually paints.
  *
- * Reads the token values out of src/styles/tokens.css and computes the WCAG 2.x
- * contrast ratio for every text-on-background pair DESIGN.md lists — now for SIX
- * palettes, not three: each of the three worlds in both schemes (§B.2, §B.2a, §F.4,
- * §F.4a, §G.1, §G.1a). Two assertions per pair:
+ * **This is a rewrite, and the reason for it is the redesign's one real accessibility
+ * hazard.** The gate it replaces read `tokens.css` and layered the blocks the way the
+ * cascade should work, which was the right tool for a design made of flat, opaque fills:
+ * every piece of text sat on exactly one named colour, so the ratio could be computed
+ * from the stylesheet.
  *
- *   1. the ratio clears its threshold — 4.5 for body text, 3.0 for large text;
- *   2. the ratio matches the figure DESIGN.md publishes, to two decimals, which is
- *      what catches a mistyped hex in the token layer.
+ * That is no longer true of a single element on this site. Text now sits on glass — a
+ * translucent gradient over a band, sometimes over a cursor-tracked radial, sometimes
+ * over the lit slab of an isometric room — and **a `.05`-alpha fill over a gradient does
+ * not have one measurable background colour.** The design handoff says so in terms and
+ * says what to do about it: check text against the *darkest and lightest* points behind
+ * each panel, not an average, and if a panel fails, raise the panel's fill alpha rather
+ * than lightening the text.
  *
- * The token file is layered exactly as the browser layers it: :root first, then the
- * world's own block, then that world's [data-theme] override block. `var()` references
- * are resolved inside the resulting scope, so an alias like `--ink` is checked at the
- * value it actually computes to in that scheme rather than at the one it was written
- * with.
+ * A stylesheet cannot answer that question. A rendered page can, so this script asks it:
  *
- * Two pairs are checked in the *other* direction, because DESIGN.md's lamp rule depends
- * on them failing: --lamp on the light --sheet is 1.79:1 and on Sahib's light ground
- * 1.74:1. If either ever clears AA, a token moved and the rule needs rewriting.
+ *  1. Collect every visible text run on the page — its box, its colour, its size and
+ *     weight, which is what decides whether AA wants 4.5 : 1 or 3 : 1.
+ *  2. Screenshot the page as it ships.
+ *  3. Make all text invisible WITHOUT changing a single box: `color: transparent` on HTML
+ *     and `fill: transparent` on SVG text. Layout, backgrounds, gradients, borders and
+ *     shadows are all untouched, so what is left is exactly what was behind the words.
+ *     Screenshot that too, and hand both PNGs back to the browser to decode into canvases
+ *     — which is how this runs with no image library at all.
+ *  4. **Diff the two, and keep only the pixels that changed.** Those pixels, and no
+ *     others, are where a letter was painted. This is the step that makes the gate
+ *     honest: a bounding box contains the logo beside the wordmark, the ground outside a
+ *     pill's rounded corners, and the leading above and below the line, and every one of
+ *     those would otherwise be reported as "behind the text" when no letter is anywhere
+ *     near it. Only the glyphs count.
+ *  5. For each run, take the DARKEST and the LIGHTEST of the text-free pixels under its
+ *     own glyphs. Both are checked, and the worse of the two ratios is the element's,
+ *     because a reader meets the worst part of a gradient as readily as the best.
+ *
+ * Every ratio it reports is therefore a ratio a person could actually measure with an
+ * eyedropper on the shipped page, in that scheme, at that width.
+ *
+ * Text over a photograph is exempt and says so: the two product pages put captions
+ * beside their screenshots, never on them, so nothing on this site is text over an
+ * image — and if something ever is, this gate would rightly fail it rather than quietly
+ * average the picture.
  */
-import { readFileSync, readdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { ROOT, report } from './lib/dist.mjs';
+import { chromium } from 'playwright';
+import { report } from './lib/dist.mjs';
+import { serveDist } from './lib/serve.mjs';
 
-/*
-  tokens.css imports one partial per world that owns its own file — today that is
-  Tanya's (PLAN.md §1.2's swappable token partial). This check reads what the browser
-  reads, so it inlines the imports rather than being told about them.
-*/
-function readWithImports(file) {
-  const text = readFileSync(file, 'utf8');
-  return text.replace(/@import\s+(?:url\()?['"]([^'"]+)['"]\)?\s*;/g, (_, href) =>
-    href.startsWith('.') ? readWithImports(resolve(dirname(file), href)) : '',
-  );
-}
-
-/*
-  The world partials are imported by global.css, AFTER tokens.css, because `:root` and
-  `[data-world="…"]` are the same specificity and the later block wins. This check keys
-  its blocks by selector and each selector appears in exactly one file, so reading them
-  in that order reproduces the cascade the browser applies.
-*/
-const STYLES = join(ROOT, 'src', 'styles');
-const raw = [
-  readWithImports(join(STYLES, 'tokens.css')),
-  ...readdirSync(join(STYLES, 'worlds'))
-    .filter((file) => file.endsWith('.css'))
-    .sort()
-    .map((file) => readWithImports(join(STYLES, 'worlds', file))),
-].join('\n');
-
-// Comments and @media wrappers carry no colour decisions; stripping them keeps the
-// block parser below honest about which selector a declaration belongs to.
-const css = raw.replace(/\/\*[\s\S]*?\*\//g, '').replace(/@media[^{]*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}/g, '');
-
-/** selector text -> Map(name -> raw value) */
-const BLOCKS = new Map();
-for (const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
-  const selector = match[1].trim().replace(/\s+/g, ' ');
-  const decls = new Map();
-  for (const decl of match[2].matchAll(/(--[a-z0-9-]+)\s*:\s*([^;]+);/g)) {
-    decls.set(decl[1], decl[2].trim());
-  }
-  BLOCKS.set(selector, decls);
-}
-
-/** Layer the blocks the way the cascade does, then resolve every var() reference. */
-function scope(world, theme) {
-  const selectors = [
-    ':root',
-    `[data-world='${world}']`,
-    `[data-world='${world}'][data-theme='${theme}']`,
-  ];
-  const flat = new Map();
-  for (const selector of selectors) {
-    for (const [name, value] of BLOCKS.get(selector) ?? []) flat.set(name, value);
-  }
-
-  const resolved = new Map();
-  const resolve = (name, seen = new Set()) => {
-    if (resolved.has(name)) return resolved.get(name);
-    if (seen.has(name)) throw new Error(`Cyclic custom property: ${name}`);
-    seen.add(name);
-    const value = flat.get(name);
-    if (value === undefined) return undefined;
-    const ref = /^var\((--[a-z0-9-]+)\)$/.exec(value);
-    const out = ref ? resolve(ref[1], seen) : value;
-    resolved.set(name, out);
-    return out;
-  };
-  for (const name of flat.keys()) resolve(name);
-  return resolved;
-}
-
-function channel(value) {
-  const c = value / 255;
-  return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-}
-
-function luminance(hex) {
-  const r = channel(parseInt(hex.slice(1, 3), 16));
-  const g = channel(parseInt(hex.slice(3, 5), 16));
-  const b = channel(parseInt(hex.slice(5, 7), 16));
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-function ratio(a, b) {
-  const la = luminance(a);
-  const lb = luminance(b);
-  const [light, dark] = la > lb ? [la, lb] : [lb, la];
-  return (light + 0.05) / (dark + 0.05);
-}
-
-/**
- * An `rgba()` token composited over an opaque ground, so a mark declared at an alpha can
- * be checked at the colour it actually renders as. DESIGN.md §E.1 and §E.1a publish the
- * future stage node's stroke this way and nothing else on the site is a coloured mark
- * declared at an alpha, so this is the whole of the mechanism.
- */
-function composite(rgba, groundHex) {
-  const m = /^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)$/.exec(rgba);
-  if (!m) return undefined;
-  const a = Number(m[4]);
-  const over = (i, fg) => Math.round(a * fg + (1 - a) * parseInt(groundHex.slice(i, i + 2), 16));
-  const hex = (v) => v.toString(16).padStart(2, '0');
-  return `#${hex(over(1, Number(m[1])))}${hex(over(3, Number(m[2])))}${hex(over(5, Number(m[3])))}`;
-}
-
-/** [foreground token, background token, DESIGN.md's published ratio, size class] */
-const PALETTES = [
-  {
-    name: 'studio, light',
-    world: 'studio',
-    theme: 'light',
-    // DESIGN.md §B.2.
-    pairs: [
-      ['--ink', '--sheet', 13.53, 'body'],
-      ['--ink', '--band', 11.96, 'body'],
-      ['--card-ink', '--card-surface', 14.55, 'body'],
-      ['--muted', '--sheet', 5.62, 'body'],
-      ['--muted', '--band', 4.97, 'body'],
-      ['--card-ink-2', '--card-surface', 6.05, 'body'],
-      ['--chalk', '--floor', 12.74, 'body'],
-      ['--chalk-72', '--floor', 7.25, 'body'],
-      ['--lamp', '--floor', 7.56, 'body'],
-      ['--floor', '--lamp', 7.56, 'body'],
-      ['--btn-ink', '--btn-fill', 12.74, 'body'],
-    ],
-    // The lamp rule's load-bearing failure.
-    forbidden: [['--lamp', '--sheet', 1.79]],
-    /*
-      DESIGN.md §E.1 — the future stage node's 1.5px stroke, declared at an alpha and
-      therefore checked at its composite. Run A item 4: at .45 these read 2.65 and 2.53
-      and failed SC 1.4.11's 3:1 for a meaningful graphic; round 5 raised the light
-      value to .60 and this is the assertion that keeps it there.
-    */
-    composites: [
-      ['--node-future-stroke', '--sheet', 4.01, 'large'],
-      ['--node-future-stroke', '--band', 3.83, 'large'],
-    ],
-  },
-  {
-    name: 'studio, dark',
-    world: 'studio',
-    theme: 'dark',
-    // DESIGN.md §B.2a.
-    pairs: [
-      ['--ink', '--sheet', 12.71, 'body'],
-      ['--ink', '--band', 10.85, 'body'],
-      ['--muted', '--sheet', 5.93, 'body'],
-      ['--muted', '--band', 5.06, 'body'],
-      ['--chalk', '--floor', 15.34, 'body'],
-      ['--chalk-72', '--floor', 8.33, 'body'],
-      ['--lamp', '--floor', 9.1, 'body'],
-      ['--lamp', '--sheet', 7.54, 'body'],
-      ['--lamp', '--band', 6.44, 'body'],
-      ['--card-ink', '--card-surface', 12.47, 'body'],
-      ['--card-ink-2', '--card-surface', 5.18, 'body'],
-      ['--floor', '--chalk', 15.34, 'body'],
-      ['--floor', '--lamp', 9.1, 'body'],
-      ['--btn-ink', '--btn-fill', 15.34, 'body'],
-    ],
-    forbidden: [],
-    // §E.1a — the dark stroke stays at .45 and is deliberately not raised with the
-    // light one: a light mark on a dark ground is more efficient at the same alpha.
-    composites: [
-      ['--node-future-stroke', '--sheet', 3.76, 'large'],
-      ['--node-future-stroke', '--band', 3.49, 'large'],
-    ],
-  },
-  {
-    name: 'sahib, dark (his default)',
-    world: 'sahib',
-    theme: 'dark',
-    // DESIGN.md §F.4, §F.6.
-    pairs: [
-      ['--s-ink', '--s-ground', 14.11, 'body'],
-      ['--s-ink', '--s-panel', 12.16, 'body'],
-      ['--s-dim', '--s-ground', 5.73, 'body'],
-      ['--s-dim', '--s-panel', 4.94, 'body'],
-      ['--lamp', '--s-ground', 8.48, 'body'],
-      ['--lamp', '--s-panel', 7.31, 'body'],
-      ['--card-ink', '--s-card-surface', 12.34, 'body'],
-      ['--card-ink-2', '--s-card-surface', 5.13, 'body'],
-      // §F.1's lit cell. In dark its ink is --s-ground on --lamp, which is §F.4's own
-      // --lamp-on---s-ground pair read the other way round.
-      ['--s-lamp-ink', '--lamp', 8.48, 'body'],
-    ],
-    forbidden: [],
-    /*
-      DESIGN.md §F.4c round 14 — S2 is closed on the map's filled-cell stroke, not the
-      fill: `--s-fill` on `--s-ground` cannot reach SC 1.4.11's 3:1 in either scheme
-      without walking the cell's own product name below AA body, so the two-state
-      grammar is carried by a 1.5px `--s-ink` stroke instead. Same token pair as the
-      `--s-ink`/`--s-ground` body-text row above, checked again here as its own
-      non-text-mark assertion against the 3:1 line §F.4c states as the contract, so a
-      change to either token is caught by name as "the stroke fails S2" rather than only
-      as "body text moved."
-    */
-    marks: [['--s-ink', '--s-ground', 14.11, 'large']],
-  },
-  {
-    name: 'sahib, light',
-    world: 'sahib',
-    theme: 'light',
-    // DESIGN.md §F.4a.
-    pairs: [
-      ['--s-ink', '--s-ground', 14.09, 'body'],
-      ['--s-ink', '--s-panel', 12.52, 'body'],
-      ['--s-dim', '--s-ground', 5.79, 'body'],
-      ['--s-dim', '--s-panel', 5.15, 'body'],
-      ['--s-ink', '--lamp', 8.1, 'body'],
-      // §F.4a — the same lit cell in light, through the token the cell actually names.
-      ['--s-lamp-ink', '--lamp', 8.1, 'body'],
-      ['--card-ink', '--s-card-surface', 14.44, 'body'],
-      ['--card-ink-2', '--s-card-surface', 6.0, 'body'],
-    ],
-    // §F.4a: --lamp on his light ground is fill-only, by the restated lamp rule.
-    forbidden: [['--lamp', '--s-ground', 1.74]],
-    // §F.4c round 14, light half — see the dark entry above for why this repeats the
-    // body-text pair as its own non-text-mark check.
-    marks: [['--s-ink', '--s-ground', 14.09, 'large']],
-  },
-  {
-    name: 'tanya, light',
-    world: 'tanya',
-    theme: 'light',
-    // DESIGN.md §G.1.
-    pairs: [
-      ['--t-ink', '--t-ground', 14.18, 'body'],
-      ['--t-ink', '--t-core', 12.2, 'body'],
-      ['--t-edge', '--t-ground', 5.59, 'body'],
-      ['--t-edge', '--t-core', 4.81, 'body'],
-      ['--lamp-ink', '--t-ground', 5.09, 'body'],
-      // §G.1 records this one as body-fail, large-pass; the accompanying constraint
-      // restricts --lamp-ink on --t-core to large text and non-text marks.
-      ['--lamp-ink', '--t-core', 4.38, 'large'],
-      ['--card-ink', '--t-card-surface', 15.66, 'body'],
-      ['--card-ink-2', '--t-card-surface', 6.17, 'body'],
-    ],
-    forbidden: [],
-  },
-  {
-    name: 'tanya, dark',
-    world: 'tanya',
-    theme: 'dark',
-    // DESIGN.md §G.1a.
-    pairs: [
-      ['--t-ink', '--t-ground', 14.35, 'body'],
-      ['--t-ink', '--t-core', 11.85, 'body'],
-      ['--t-edge', '--t-ground', 6.19, 'body'],
-      ['--t-edge', '--t-core', 5.11, 'body'],
-      ['--lamp-ink', '--t-ground', 8.66, 'body'],
-      ['--lamp-ink', '--t-core', 7.15, 'body'],
-      ['--card-ink', '--t-card-surface', 13.47, 'body'],
-      ['--card-ink-2', '--t-card-surface', 5.31, 'body'],
-    ],
-    forbidden: [],
-  },
+const ROUTES = [
+  '/',
+  '/work/',
+  '/work/pocket-manager/',
+  '/work/wedding-planner/',
+  '/sahib/',
+  '/tanya/',
+  '/contact/',
+  '/404.html',
 ];
 
-const THRESHOLD = { body: 4.5, large: 3.0 };
+/** The two ends of the range the site is engineered for. */
+const WIDTHS = [390, 1440];
 
 /*
-  DESIGN.md derives four of these tokens by compositing an alpha over a ground and
-  publishes the ratio from the *unrounded* composite while publishing the colour as a
-  rounded hex. The token layer can only carry the hex, so those pairs land within 0.03
-  of the published figure rather than on it. 0.05 is the tolerance for them; every other
-  pair is held to 0.011, which is what catches a mistyped hex — a wrong hex moves a
-  ratio by whole units, never by hundredths.
-*/
-const DERIVED = new Set(['--chalk-72', '--card-surface', '--s-card-surface', '--t-card-surface']);
-const tolerance = (fg, bg) => (DERIVED.has(fg) || DERIVED.has(bg) ? 0.05 : 0.011);
+  How different a pixel has to be between the two renders to count as "a letter was
+  painted here", summed over the three channels.
 
+  It is a threshold rather than a test for any change because subpixel antialiasing tints
+  the pixels at a glyph's edge by a channel or two without a letter covering them, and
+  those edge pixels sit half on the background — including them would report a background
+  that is partly the text's own colour. 90 keeps the body of a stroke and drops its
+  fringe; at 12px mono, the smallest type on the site, a stroke is still 1–2px of core.
+*/
+const MIN_DELTA = 90;
+
+const { base, close } = await serveDist();
+const browser = await chromium.launch();
 const failures = [];
 let checked = 0;
+let worst = { ratio: Infinity };
 
-for (const palette of PALETTES) {
-  const tokens = scope(palette.world, palette.theme);
-  console.log(`      ${palette.name}`);
+for (const scheme of ['dark', 'light']) {
+  for (const width of WIDTHS) {
+    const ctx = await browser.newContext({
+      viewport: { width, height: 900 },
+      colorScheme: scheme,
+      deviceScaleFactor: 1,
+      /* Reveal animations would otherwise leave half the page at opacity 0 and the gate
+         would silently check nothing. */
+      reducedMotion: 'reduce',
+    });
+    const page = await ctx.newPage();
 
-  for (const [fg, bg, published, size] of palette.pairs) {
-    const fgHex = tokens.get(fg);
-    const bgHex = tokens.get(bg);
-    if (!fgHex || !bgHex) {
-      failures.push(`${palette.name}: ${fg} on ${bg} — token not found in that scope`);
-      continue;
-    }
-    const computed = ratio(fgHex, bgHex);
-    const threshold = THRESHOLD[size];
-    if (computed < threshold) {
-      failures.push(
-        `${palette.name}: ${fg} on ${bg} — ${computed.toFixed(2)}:1 fails AA ${size} (${threshold})`,
-      );
-    }
-    if (Math.abs(computed - published) > tolerance(fg, bg)) {
-      failures.push(
-        `${palette.name}: ${fg} on ${bg} — computed ${computed.toFixed(2)}:1 but DESIGN.md publishes ${published}:1`,
-      );
-    }
-    checked += 1;
-    console.log(`        ${`${fg} on ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  AA ${size}`);
-  }
+    for (const route of ROUTES) {
+      await page.goto(base + route, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(250);
 
-  for (const [fg, bg, published, size] of palette.composites ?? []) {
-    const ground = tokens.get(bg);
-    const mark = composite(tokens.get(fg) ?? '', ground ?? '');
-    if (!mark) {
-      failures.push(`${palette.name}: ${fg} over ${bg} — not an rgba() token in that scope`);
-      continue;
-    }
-    const computed = ratio(mark, ground);
-    // A non-text mark's line is SC 1.4.11's 3:1, which is THRESHOLD.large.
-    if (computed < THRESHOLD[size]) {
-      failures.push(
-        `${palette.name}: ${fg} over ${bg} — ${computed.toFixed(2)}:1 fails SC 1.4.11 (3:1)`,
-      );
-    }
-    if (Math.abs(computed - published) > 0.05) {
-      failures.push(
-        `${palette.name}: ${fg} over ${bg} — computed ${computed.toFixed(2)}:1 but DESIGN.md publishes ${published}:1`,
-      );
-    }
-    checked += 1;
-    console.log(
-      `        ${`${fg} over ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  graphic 3:1 (${mark})`,
-    );
-  }
+      /* 1. Every visible text run, with what AA needs to judge it. */
+      const runs = await page.evaluate(() => {
+        const out = [];
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const seen = new Set();
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          const text = (node.nodeValue ?? '').trim();
+          if (!text) continue;
+          const el = node.parentElement;
+          if (!el || seen.has(el)) continue;
+          seen.add(el);
 
-  for (const [fg, bg, published] of palette.forbidden) {
-    const computed = ratio(tokens.get(fg), tokens.get(bg));
-    if (Math.abs(computed - published) > tolerance(fg, bg)) {
-      failures.push(
-        `${palette.name}: ${fg} on ${bg} — computed ${computed.toFixed(2)}:1, the lamp rule is written against ${published}:1`,
-      );
-    }
-    console.log(
-      `        ${`${fg} on ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  fill only, never a mark or text`,
-    );
-  }
+          const cs = getComputedStyle(el);
+          if (cs.visibility === 'hidden' || cs.display === 'none') continue;
+          if (Number(cs.opacity) === 0) continue;
+          /* The visually-hidden pattern: 1px clipped boxes carry the site's spoken text
+             and are never painted, so they have no contrast to have. */
+          if (el.closest('.sr-only')) continue;
 
-  /*
-    DESIGN.md §F.4c round 14 — the coverage map's filled-cell stroke, checked as its own
-    non-text mark against SC 1.4.11's 3:1 line, per §I.1 row 5's contract: "the check
-    must return 14.09:1 in light and 14.11:1 in dark, against a 3:1 line." Solid tokens,
-    no alpha to composite, so this is `ratio()` directly rather than the `composites`
-    path above.
-  */
-  for (const [fg, bg, published, size] of palette.marks ?? []) {
-    const fgHex = tokens.get(fg);
-    const bgHex = tokens.get(bg);
-    if (!fgHex || !bgHex) {
-      failures.push(`${palette.name}: ${fg} stroke vs ${bg} — token not found in that scope`);
-      continue;
-    }
-    const computed = ratio(fgHex, bgHex);
-    if (computed < THRESHOLD[size]) {
-      failures.push(
-        `${palette.name}: ${fg} stroke vs ${bg} — ${computed.toFixed(2)}:1 fails SC 1.4.11 (3:1)`,
+          const r = el.getBoundingClientRect();
+          if (r.width < 2 || r.height < 2) continue;
+          /* Only what is in the first viewport is behind measured pixels; the full-page
+             screenshot below covers the rest, so the box is kept in PAGE coordinates. */
+          const box = {
+            x: Math.round(r.left + scrollX),
+            y: Math.round(r.top + scrollY),
+            w: Math.round(r.width),
+            h: Math.round(r.height),
+          };
+
+          const isSvg = el.ownerSVGElement != null;
+          const colour = isSvg ? cs.fill : cs.color;
+          const size = parseFloat(cs.fontSize) || 16;
+          const weight = Number(cs.fontWeight) || 400;
+          /* AA's large-text threshold: 24px, or 18.66px at 700+. */
+          const large = size >= 24 || (size >= 18.66 && weight >= 700);
+
+          out.push({
+            box,
+            colour,
+            size,
+            weight,
+            large,
+            sample: text.slice(0, 48),
+            where: el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? `.${el.className.trim().split(/\s+/).join('.')}` : ''),
+          });
+        }
+        return out;
+      });
+
+      /* 2. The page exactly as it ships. */
+      const withText = (await page.screenshot({ fullPage: true, type: 'png' })).toString('base64');
+
+      /*
+        3. The same page with the words taken away and everything else left where it was.
+
+        **The floor's nameplate halo stays.** It is a `paint-order: stroke` outline drawn
+        UNDER each glyph in the band's own ground, and it is the whole legibility
+        mechanism for a label that crosses a slab, a desk and a pool of light in the space
+        of one word — the same device a map uses for a place name over a coastline. What a
+        reader's eye meets behind those letters is the halo, so the halo is the background
+        and blanking it would make this gate measure a page nobody is looking at.
+
+        Only the FILL goes. The stroke is left painting, so the pixels the diff finds are
+        exactly the glyph interiors, and what is under them is what is really under them.
+      */
+      await page.addStyleTag({
+        content: `*, *::before, *::after { color: transparent !important; text-shadow: none !important; }
+                  text, tspan { fill: transparent !important; }`,
+      });
+      await page.waitForTimeout(80);
+      const noText = (await page.screenshot({ fullPage: true, type: 'png' })).toString('base64');
+
+      const results = await page.evaluate(
+        async ({ runs, withText, noText, minDelta }) => {
+          const load = async (b64) => {
+            const img = new Image();
+            img.src = 'data:image/png;base64,' + b64;
+            await img.decode();
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const cx = canvas.getContext('2d', { willReadFrequently: true });
+            cx.drawImage(img, 0, 0);
+            return { canvas, cx };
+          };
+          const a = await load(withText);
+          const b = await load(noText);
+          const canvas = b.canvas;
+          const cx = b.cx;
+
+          const lin = (c) => {
+            const s = c / 255;
+            return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+          };
+          const lum = (r, g, b) => 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+          const ratio = (a, b) => (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+
+          const parse = (css) => {
+            const m = css.match(/-?\d*\.?\d+/g);
+            if (!m) return null;
+            return [Number(m[0]), Number(m[1]), Number(m[2])];
+          };
+
+          return runs.map((run) => {
+            const rgb = parse(run.colour);
+            if (!rgb) return { ...run, skipped: 'unparseable colour' };
+            const fg = lum(rgb[0], rgb[1], rgb[2]);
+
+            const x0 = Math.max(0, run.box.x);
+            const y0 = Math.max(0, run.box.y);
+            const x1 = Math.min(canvas.width, run.box.x + run.box.w);
+            const y1 = Math.min(canvas.height, run.box.y + run.box.h);
+            if (x1 <= x0 || y1 <= y0) return { ...run, skipped: 'off-canvas' };
+
+            const w = x1 - x0;
+            const h = y1 - y0;
+            const painted = a.cx.getImageData(x0, y0, w, h).data;
+            const data = cx.getImageData(x0, y0, w, h).data;
+
+            let lo = Infinity;
+            let hi = -Infinity;
+            let loPx = null;
+            let hiPx = null;
+            let glyphPixels = 0;
+            for (let i = 0; i < data.length; i += 4) {
+              /*
+                A pixel counts only if taking the text away CHANGED it, and changed it by
+                more than an antialiasing edge would. That is the definition of "a letter
+                was here", and it is what keeps the logo beside a wordmark, the ground
+                outside a pill's corners and the leading around a line out of the sample.
+              */
+              const delta =
+                Math.abs(painted[i] - data[i]) +
+                Math.abs(painted[i + 1] - data[i + 1]) +
+                Math.abs(painted[i + 2] - data[i + 2]);
+              if (delta < minDelta) continue;
+              glyphPixels += 1;
+              const l = lum(data[i], data[i + 1], data[i + 2]);
+              if (l < lo) {
+                lo = l;
+                loPx = [data[i], data[i + 1], data[i + 2]];
+              }
+              if (l > hi) {
+                hi = l;
+                hiPx = [data[i], data[i + 1], data[i + 2]];
+              }
+            }
+            /* Nothing changed inside the box: the run is occluded, clipped away, or
+               painted in a colour identical to its own ground — none of which this gate
+               can judge, and all of which it must not silently pass as 21 : 1. */
+            if (glyphPixels < 4) return { ...run, skipped: 'no glyph pixels' };
+
+            /* Both ends of whatever is behind the run, and the worse of the two is the
+               one the element is judged on. */
+            const against = [
+              { ratio: ratio(fg, lo), px: loPx, end: 'darkest' },
+              { ratio: ratio(fg, hi), px: hiPx, end: 'lightest' },
+            ].sort((a, b) => a.ratio - b.ratio)[0];
+
+            return {
+              ...run,
+              ratio: against.ratio,
+              end: against.end,
+              behind: against.px,
+              glyphPixels,
+              need: run.large ? 3 : 4.5,
+            };
+          });
+        },
+        { runs, withText, noText, minDelta: MIN_DELTA },
+      );
+
+      for (const r of results) {
+        if (r.skipped) continue;
+        checked += 1;
+        if (r.ratio < worst.ratio) worst = { ...r, route, scheme, width };
+        if (r.ratio + 0.005 < r.need) {
+          const behind = r.behind ? `rgb(${r.behind.join(', ')})` : 'unknown';
+          failures.push(
+            `${route} @ ${width} ${scheme}: ${r.ratio.toFixed(2)} : 1 against its ${r.end} pixel ${behind} ` +
+              `(needs ${r.need}) — ${r.colour} ${Math.round(r.size)}px/${r.weight} on ${r.where} — "${r.sample}"`,
+          );
+        }
+      }
+
+      console.log(
+        `      ${`${route} ${width} ${scheme}`.padEnd(44)} ${results.filter((r) => !r.skipped).length} run(s)`,
       );
     }
-    if (Math.abs(computed - published) > tolerance(fg, bg)) {
-      failures.push(
-        `${palette.name}: ${fg} stroke vs ${bg} — computed ${computed.toFixed(2)}:1 but DESIGN.md publishes ${published}:1`,
-      );
-    }
-    checked += 1;
-    console.log(
-      `        ${`${fg} stroke vs ${bg}`.padEnd(42)} ${computed.toFixed(2)}:1  graphic 3:1 (map cell stroke, §F.4c)`,
-    );
+
+    await ctx.close();
   }
 }
 
-console.log(`      ${checked} pair(s) checked across ${PALETTES.length} palettes`);
+await browser.close();
+close();
+
+if (Number.isFinite(worst.ratio)) {
+  console.log(
+    `\n      tightest: ${worst.ratio.toFixed(2)} : 1 on ${worst.route} @ ${worst.width} ${worst.scheme} ` +
+      `— ${worst.where} — "${worst.sample}"`,
+  );
+}
+console.log(`      ${checked} text run(s) measured against real pixels in 2 schemes at ${WIDTHS.join(' and ')}`);
 process.exit(report('qa:contrast', failures));

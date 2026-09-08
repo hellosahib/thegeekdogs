@@ -1,362 +1,335 @@
 /*
-  tokens.css — the single source of truth for every value DESIGN.md names.
+  tokens.css — the single source of truth for every value the redesign handoff names.
 
-  Layer 1: DESIGN.md's own token names, transcribed verbatim (DESIGN.md §B.2, §B.2a,
-           §F.4, §F.4a, §G.1, §G.1a). A value change in DESIGN.md is a one-line edit
-           here and nowhere else.
-  Layer 2: the semantic names (--tgd-*) shared components consume, remapped per world
-           scope (PLAN.md §1.2). Shared components never reference a world-specific name.
+  Layer 1: the handoff's own token names, transcribed verbatim from its "Design tokens"
+           tables. A value change in the handoff is a one-line edit here and nowhere else.
+  Layer 2: the semantic names (--tgd-*) that shared components and the QA scripts
+           consume, mapped onto layer 1. Components reference layer 2 or a layer-1 name
+           directly; nothing anywhere carries a literal hex.
 
-  Two axes, per DESIGN.md §B.2:
-    world  — `data-world` on the root element. :root is the studio.
-    scheme — `data-theme` on the root element, always set explicitly by the inline
-             head script, because Sahib's world inverts (his stored palette IS the
-             dark scheme and [data-theme="light"] carries the overrides, §F.4a).
+  ONE axis now: scheme. `data-theme` on the root element, always set explicitly by the
+  inline head script in BaseLayout.
 
-  Every dark token keeps the name of its light twin and changes only its value, so a
-  component has exactly one declaration per property.
+  The site is DARK-FIRST. `:root` carries the dark values and `[data-theme="light"]`
+  overrides them. This is the reverse of the file this replaces, and the reversal is the
+  reason the no-JS default is dark: a document with no `data-theme` attribute renders
+  `:root`, and `:root` is the dark room.
+
+  The three-world axis (`data-world`) is gone with the print-inspired design that needed
+  it. Both people now sit in the same room; what distinguishes their pages is the
+  evidence on them, not the palette under it.
 */
 
 :root {
-  /* --- DESIGN.md §B.2, studio world, LIGHT. Six named values. --- */
-  --floor: #0f2a2e; /* L 0.019547 — the room's ground and all primary text on light surfaces */
-  --sheet: #f1f3f0; /* L 0.890932 — the page */
-  --band: #e2e6e1; /* L 0.781986 — section alternation, the only permitted work-card backdrop */
-  --muted: #4e6468; /* L 0.117335 — secondary text on light surfaces only */
-  --chalk: #e8ede9; /* L 0.836074 — text and marks on --floor */
-  --lamp: #f2a93b; /* L 0.475689 — the one signal */
+  /* --- Colour, dark scheme. The default. --- */
+  --ground: #080c18; /* page background */
+  --void: #04060b; /* recessed bands: studio floor, closing CTA, footer */
+  --raise: #0d1322; /* raised bands: "Four things", Sahib's coverage map */
+  --ink: #eaecf2; /* primary text */
+  --ink-2: #c9cedb; /* secondary text inside glass panels */
+  --dim: #96a0b5; /* body copy, labels, muted text */
+  --accent: #df8fe2; /* orchid. The one signal colour */
+  --accent-ink: #160a18; /* text on an accent-filled surface */
+  --accent-wash: rgba(223, 143, 226, 0.1); /* accent-tinted fill for ghost buttons */
+  --lamp: #e9b968; /* brass. ONLY light sources and live/current state */
 
   /*
-    DESIGN.md §B.2 — the one alias that absorbs the role which genuinely inverts.
-    In the light studio --floor does two jobs (room ground and page text); in dark it
-    cannot, because the page is dark. Text *inside* the room stays --chalk in both.
+    The four alpha tokens are written against --f-ink-rgb rather than as literal rgba()
+    so that one variable inverts every translucent surface on the page at the same time
+    as it inverts the room. This is the same mechanism the SVG uses, and it is the
+    mechanism, not the values, that makes the light scheme work.
   */
-  --ink: var(--floor);
+  --line: rgba(var(--f-ink-rgb), 0.1); /* hairline borders */
+  --line-2: rgba(var(--f-ink-rgb), 0.22); /* emphasised borders */
+  --glass: rgba(var(--f-ink-rgb), 0.055); /* glass fill, subtle */
+  --card: rgba(var(--f-ink-rgb), 0.05); /* card fill */
+  --fill: rgba(var(--f-ink-rgb), 0.1); /* filled matrix cell */
+
+  --head: rgba(8, 12, 24, 0.72); /* sticky header, behind blur */
+  --halo: rgba(223, 143, 226, 0.16); /* hero glow, outer */
+  --halo-2: rgba(233, 185, 104, 0.1); /* hero glow, warm core */
+  --grain-o: 0.5; /* film-grain overlay opacity */
 
   /*
-    DESIGN.md §B.2 — the two card inks. Print does not invert, so they never change
-    with the theme. They do change with the world: §G.1a gives Tanya's cards her own
-    two inks, which is the same discipline applied to her achromatic palette.
+    The halo painted under every nameplate in the isometric room, and the one colour on
+    the site that is NOT a band's own ground.
+
+    A nameplate crosses a slab, a desk face and a pool of light inside the space of one
+    word, so what makes it legible is the outline drawn under it — the same device a map
+    uses for a place name over a coastline. In the dark room the deepest ground is the
+    right halo and --void is it. In the light room --void is a mid grey and a 12px glyph's
+    thinnest strokes still let the desk face through it, which `qa:contrast` reads as a
+    3.9:1 label; the halo goes to white there instead, which is both the strongest ground
+    available and what a printed map would do.
   */
-  --card-ink: #0f2a2e;
-  --card-ink-2: #4e6468;
-
-  /* --- DESIGN.md §B.2, the two derived values that carry text --- */
-  --chalk-72: #abb6b5; /* --chalk at 72% over --floor, L 0.454500 */
-  --card-surface: #fafbfa; /* white at 82% over --band, L 0.962205 — §D.6/§D.7 worst case */
-
-  /* --- DESIGN.md §B.2, borders derived at alpha, not tokenised as colours --- */
-  --edge-light: rgba(255, 255, 255, 0.72); /* card edge highlight, top/left */
-  --edge-dark: rgba(15, 42, 46, 0.14); /* card edge highlight, bottom/right */
-  --hairline: rgba(15, 42, 46, 0.12); /* hairlines inside a card */
-  --rule-on-room: rgba(232, 237, 233, 0.16); /* the interaction card's rule, §C.6 */
-  --room-top-edge: transparent; /* §B.2a: a 1px inset top edge, in dark only */
-
-  /* --- DESIGN.md §D.2, the base and the two shadows. Re-based on black in dark. --- */
-  --card-shadow-contact: 0 2px 3px -1px rgba(15, 42, 46, 0.38);
-  --card-shadow-ambient: 0 10px 24px -12px rgba(15, 42, 46, 0.16);
-  --card-stand-base: rgba(15, 42, 46, 0.22);
-
-  /* --- DESIGN.md §E.1, the stage indicator's three states --- */
-  --node-current-core: var(--floor); /* §E.1: --lamp only on --floor grounds */
-  /*
-    DESIGN.md §E.1, raised from .45 to .60 in round 5 and shipped here (run A item 4).
-    At .45 the composite reads 2.65:1 over --sheet and 2.53:1 over --band, both under
-    the 3:1 SC 1.4.11 asks of a meaningful graphic. At .60 the composites are #697A7C
-    on --sheet (4.01:1) and #637576 on --band (3.83:1). The dark twin is NOT raised
-    with it (§E.1a): it already clears 3:1 on both dark grounds at .45.
-  */
-  --node-future-stroke: rgba(15, 42, 46, 0.6);
-  --node-future-connector: rgba(15, 42, 46, 0.22);
-
-  /* --- DESIGN.md §B.2, focus ring: 3px outer + 2px inner, 3px offset --- */
-  --focus-outer-width: 3px;
-  --focus-inner-width: 2px;
-  --focus-offset: 3px;
-  --focus-outer: var(--ink); /* maximum-contrast neutral for the surface it lands on */
-  --focus-inner: var(--lamp); /* always the lamp, one identity everywhere */
-
-  /* --- DESIGN.md §B.2a, buttons. The hero's primary CTA inverts with the scheme. --- */
-  --btn-fill: var(--ink);
-  --btn-ink: var(--chalk);
+  --plate-halo: var(--void);
 
   /*
-    --- DESIGN.md §B.3, typeface roles ---
+    --- The studio floor's own ramp, dark. ---
 
-    The second family in each stack is PLAN.md §1.5's fallback-metric match, generated
-    into `fonts.css` by `npm run fonts`: the visitor's own system sans, re-declared with
-    this face's line box and average advance. It is what `font-display: swap` paints
-    first, and it is why the swap costs no layout shift. The generic families stay behind
-    it for the machine that has none of the `local()` faces.
+    The floor needs a ramp of its own because it is a lit 3D object and not a flat
+    surface: a slab, two wall planes, desk sides and shadow faces all have to read as
+    different angles to one light, and a flat surface's two greys cannot do that.
+
+    Every rgba() inside the SVG is written `rgba(var(--f-ink-rgb), <alpha>)`, so the
+    whole room inverts from this one token. Preserve that.
   */
-  --tgd-font-display:
-    'Anek Latin Variable', 'Anek Latin fallback', ui-sans-serif, system-ui, sans-serif;
-  --tgd-font-body:
-    'Instrument Sans Variable', 'Instrument Sans fallback', ui-sans-serif, system-ui,
+  --f-ink-rgb: 234, 236, 242;
+  --f-ink: #eaecf2; /* glass gradient stops */
+  --f-a: #141c2e; /* slab gradient, near edge */
+  --f-b: #070a12; /* slab gradient, far edge */
+  --f-c: #0a0f1a; /* desk sides, monitor bodies, dog heads */
+  --f-d: #05070c; /* deepest shadow faces */
+  --f-screen-2: #7fd7e8; /* monitor gradient, cool end */
+  --f-cone: #e9b968; /* lamp cone */
+
+  /*
+    The one place a colour is stated twice. `feTurbulence`'s grain layer and the
+    accent-on-glass focus ring both need the accent as raw channels.
+  */
+  --accent-rgb: 223, 143, 226;
+  --lamp-rgb: 233, 185, 104;
+}
+
+/*
+  --- Colour, light scheme. ---
+
+  The accent is a DIFFERENT HUE VALUE per scheme, not the same hue at two lightnesses:
+  orchid #DF8FE2 reads as light-on-dark and fails contrast on a light ground, so light
+  mode uses the deeper #8B2E96. Same for the lamp: #E9B968 becomes #7A5310. They are not
+  to be unified.
+*/
+[data-theme='light'] {
+  --ground: #efeff3;
+  --void: #e4e5eb;
+  --raise: #f7f7fa;
+  --ink: #0a0e18;
+  --ink-2: #2e3646;
+  /*
+    --- The three light values that are not the handoff's published hex ---
+
+    The handoff prints --dim #565E70, --accent #8B2E96 and --lamp #7A5310, and it chose
+    all three FOR their contrast on a light ground — orchid and brass both get a second,
+    deeper value in this scheme precisely so that they do not fail here. Measured on the
+    rendered page they still do, by a little, and always in the same place: on the --void
+    and --raise bands under the film grain, and on glass panels sitting over them.
+    #565E70 came out at 3.66:1 on the darkest ground it meets, #7A5310 at 3.84:1 and
+    #8B2E96 at 4.03:1, against AA's 4.5.
+
+    Each is therefore one step deeper, on the same hue, at the same role. The handoff's
+    reasoning is kept and its arithmetic is corrected: these are the values that do what
+    it says the light scheme's colours are for. The grain stays at its published .22, the
+    dark scheme is untouched, and `qa:contrast` measures all of it on real pixels, so a
+    future edit that walks any of them back comes back as a failure rather than as drift.
+  */
+  --dim: #474e5e;
+  --accent: #7e2988;
+  --accent-ink: #ffffff;
+  --accent-wash: rgba(126, 41, 136, 0.08);
+  --lamp: #6b4809;
+
+  --line: rgba(var(--f-ink-rgb), 0.12);
+  --line-2: rgba(var(--f-ink-rgb), 0.26);
+  --glass: rgba(var(--f-ink-rgb), 0.035);
+  --fill: rgba(var(--f-ink-rgb), 0.07);
+
+  /*
+    The card is the one translucent surface that does NOT invert by alpha: on a light
+    ground a 5%-ink wash is darker than its own page and the card stops reading as a
+    raised object. It is a white wash instead, which is the same relationship the other
+    way up.
+  */
+  --card: rgba(255, 255, 255, 0.72);
+
+  --head: rgba(239, 239, 243, 0.78);
+  --halo: rgba(126, 41, 136, 0.13);
+  --halo-2: rgba(107, 72, 9, 0.1);
+  --grain-o: 0.22;
+
+  --f-ink-rgb: 10, 14, 24;
+  --f-ink: #0a0e18;
+  --f-a: #d8dbe6;
+  --f-b: #b4bacb;
+  --f-c: #8d95a8;
+  --f-d: #767f94;
+  --f-screen-2: #2c7c8e;
+  --f-cone: #c98a12;
+
+  --accent-rgb: 126, 41, 136;
+  --lamp-rgb: 107, 72, 9;
+
+  --plate-halo: #ffffff;
+}
+
+:root {
+  /*
+    --- Typography ---
+
+    Two families. The rule is enforceable and it is enforced by which token a rule
+    reaches for: **if it is a number, a label, or an address, it is mono.** Everything
+    else is Schibsted.
+
+    The --tgd-font-* names are kept from the file this replaces because `qa:glyphs`
+    resolves a rendered character to a face by scanning the CSS for rules that set
+    `font-family: var(--tgd-font-display)` or `var(--tgd-font-body)`. Renaming them would
+    make that gate silently pass over every element on the site.
+  */
+  --tgd-font-display: 'Schibsted Grotesk Variable', 'Schibsted Grotesk fallback', system-ui,
     sans-serif;
-  --wdth-display: 100;
-  --wdth-numeral: 87.5;
-  --wght-display: 600;
-  --wght-numeral: 500;
+  --tgd-font-body: var(--tgd-font-display);
+  --tgd-font-mono: 'Spline Sans Mono Variable', 'Spline Sans Mono fallback', ui-monospace,
+    monospace;
 
-  /* --- DESIGN.md §B.4, type scale. Two sizes do the work. --- */
-  --step-display-hero: clamp(2.375rem, 4.6vw, 3.75rem); /* 38px → 60px */
-  --step-display-hero-lh: 1.04;
-  --step-display-hero-tracking: -0.015em;
-  --step-display-section: clamp(1.6875rem, 2.8vw, 2.5rem); /* 27px → 40px */
-  --step-display-section-lh: 1.1;
-  --step-numeral-large: clamp(1.5rem, 1.9vw, 1.75rem); /* 24px → 28px */
-  --step-numeral-large-lh: 1;
-  --step-title: clamp(1.25rem, 1.5vw, 1.375rem); /* 20px → 22px */
+  /* Role sizes, verbatim from the handoff's type table. */
+  --step-hero: clamp(40px, 6.4vw, 92px);
+  --step-hero-lh: 1.02;
+  --step-hero-tracking: -0.035em;
+
+  --step-person-hero: clamp(38px, 5.6vw, 76px);
+
+  --step-section: clamp(28px, 3.6vw, 50px);
+  --step-section-lh: 1.08;
+  --step-section-tracking: -0.025em;
+
+  --step-subsection: clamp(26px, 3.2vw, 44px);
+
+  --step-quote: clamp(22px, 2.4vw, 32px);
+  --step-quote-lh: 1.16;
+  --step-quote-tracking: -0.02em;
+
+  --step-card-title: 19px;
+  --step-list-title: 17px;
   --step-title-lh: 1.2;
-  --step-body: clamp(1rem, 1.15vw, 1.0625rem); /* 16px → 17px */
+  --step-title-tracking: -0.015em;
+
+  --step-lede: clamp(16px, 1.35vw, 20px);
+  --step-lede-lh: 1.62;
+
+  --step-body: clamp(15px, 1.05vw, 17px);
   --step-body-lh: 1.62;
-  --step-small: 0.875rem; /* 14px */
+
+  --step-small: 15px;
   --step-small-lh: 1.5;
-  --step-micro: 0.8125rem; /* 13px */
-  --step-micro-lh: 1.45;
 
-  /*
-    DESIGN.md §B.4, measure. Step-1 review item 8: a 62ch cap measures 62 zero-widths,
-    which in Instrument Sans renders ~79 average characters — the review measured 79 on
-    the hero body. The cap is therefore expressed in em: 32em holds ≤ 62 characters at
-    this face's average advance (~0.49em), which is what §B.4 actually asks for.
-  */
-  --measure-body: 32em;
-  --measure-display: 28ch;
+  --step-caption: 14px;
+  --step-caption-lh: 1.5;
 
-  /* --- DESIGN.md §B.5, grid and rhythm. 8px base, type on a 4px sub-grid. --- */
+  --step-eyebrow: 12.5px;
+  --step-micro: 11.5px;
+  --step-mono-tracking: 0.14em;
+
+  --step-figure: clamp(26px, 2.6vw, 34px);
+  --step-figure-lh: 1;
+  --step-figure-tracking: -0.02em;
+
+  --step-date: 16px;
+  --step-date-strip: clamp(20px, 1.7vw, 25px);
+
+  /* --- Spacing --- */
+  --outer: clamp(20px, 3.4vw, 56px);
+  --page-max: 1360px;
+  --section-pad: clamp(64px, 7vw, 120px);
+  --hero-pad-top: clamp(72px, 9vw, 150px);
+  --hero-pad-bottom: clamp(56px, 7vw, 110px);
+  --cta-pad: clamp(72px, 8vw, 140px);
+
   --space-4: 4px;
   --space-8: 8px;
   --space-12: 12px;
+  --space-14: 14px;
   --space-16: 16px;
+  --space-20: 20px;
   --space-24: 24px;
+  --space-28: 28px;
   --space-32: 32px;
   --space-40: 40px;
   --space-48: 48px;
   --space-56: 56px;
   --space-64: 64px;
-  --space-96: 96px;
-  --space-128: 128px;
-  --space-160: 160px;
 
-  --page-max: 1320px;
-  --content-max: 1200px;
+  /* Fluid gaps the handoff states as clamps rather than as steps. */
+  --gap-block: clamp(28px, 3.6vw, 52px);
+  --gap-col: clamp(20px, 2.4vw, 36px);
 
-  /*
-    §B.5's grid, as arithmetic rather than as a table, so a component that has to land on a
-    column edge can say so instead of carrying a per-breakpoint number.
+  /* --- Radii --- */
+  --r-cell: 12px;
+  --r-tile: 14px;
+  --r-card: 16px;
+  --r-role: 18px;
+  --r-panel: 20px;
+  --r-pill: 999px;
 
-    --content is the shell's own content box: the page capped at --page-max, less the two
-    outer margins. --col is one column of it. --content-left is where column 1 begins in
-    VIEWPORT coordinates, which is what §B.10's composition rule needs — the rule is
-    measured from the viewport's right edge and the grid is centred in it, so a component
-    that has to stop clear of the plate's band has to know both.
-  */
-  --content: calc(min(100vw, var(--page-max)) - 2 * var(--outer));
-  --col: calc((var(--content) - (var(--cols) - 1) * var(--gutter)) / var(--cols));
-  --content-left: calc(50vw - min(50vw, var(--page-max) / 2) + var(--outer));
-  --outer: 20px; /* 360 */
-  --gutter: 16px; /* 360 */
-  --section-pad: 72px; /* 360 */
-  --cols: 4;
+  /* --- Elevation --- */
+  --shadow-panel: 0 40px 80px -50px #000;
+  --shadow-panel-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --shadow-lift: 0 28px 60px -28px rgba(0, 0, 0, 0.85);
+  --shadow-lift-inset: inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  --shadow-accent: 0 18px 40px -22px var(--accent);
+  --shadow-accent-lg: 0 22px 50px -26px var(--accent);
 
-  /*
-    DESIGN.md §B.10 — every section the contact plate can overlay reserves its footprint.
+  --blur-panel: blur(22px) saturate(1.4);
+  --blur-card: blur(14px);
+  --blur-head: blur(18px) saturate(1.3);
 
-    Round 10 corrects the reserve from 56 to 72: the plate is 56 tall and sits 16 above
-    the viewport's bottom edge, so 56 alone under-reserved by exactly the inset and left
-    a section's last line 16px inside the plate's lowest rest position.
-
-    Round 10 also gives the plate two widths — 260 at >= 768 and 112 below it — which are
-    the same object at two sizes, not two components. The band the composition rule
-    measures is the width plus the inset: 276 at >= 768, 128 below.
-  */
-  --plate-height: 56px;
-  --plate-width: 112px;
-  --plate-inset: 16px;
-  --plate-reserve: 72px;
+  --header-h: 76px;
 
   /*
-    DESIGN.md §B.10 / §E.2 — the shared stage axis runs on a 100px column pitch, which
-    is what lets §E.2's two-line label reservation hold `Submitted for review` in two
-    lines instead of three. In §B.9's proof band at 1440 that puts the five node centres
-    on x 732 / 832 / 932 / 1032 / 1132, the last ring closing at 1141, 23px clear of the
-    plate's leading edge at 1164.
+    The header's height as it actually renders. It wraps rather than collapsing into a
+    disclosure — no hamburger, no aria-expanded state — so it is three sizes, and the
+    three breakpoints below are the widths at which its own content wraps rather than
+    numbers chosen for a layout. Anything that has to clear the sticky header reads this,
+    not `--header-h`.
   */
-  --track-pitch: 100px;
+  --header-real: 169px;
 
-  /* --- DESIGN.md §C.6, the interaction card's reserved slot --- */
-  /*
-    Round 15, review item N2. `min-height` is a BORDER-BOX number and the slot carries 24px
-    of padding top and bottom, so the reservation available to a card is `min-height − 48`.
-    320 reserved 272 for a card measured at 329.0, and the page stepped down 57px under the
-    reader's thumb when they opened a human's card. Every number here is now
-    `tallest card + 48 + slack`, and `qa:floor:slot` opens all ten cards at all five widths
-    and asserts the document's own scrollHeight does not move.
-  */
-  --card-slot-min: 384px; /* < 768 — 329.0 + 48 = 377 */
-  --card-slot-width: 293px; /* cols 9–12 at 1024: 4 × 55.3 + 3 × 24 */
-
-  /* --- DESIGN.md §H.1, shared timing tokens --- */
-  --dur-1: 120ms;
-  --dur-2: 200ms;
-  --dur-3: 360ms;
-  --dur-4: 640ms;
+  /* --- Motion --- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-idle: cubic-bezier(0.4, 0, 0.6, 1);
-  --loop-floor: 4800ms;
+  --dur-1: 0.45s;
+  --dur-2: 0.6s;
+  --dur-3: 0.8s;
+  --dur-scheme: 0.5s;
 
-  /* --- Layer 2: semantic names, studio mapping --- */
-  --tgd-surface: var(--sheet);
-  --tgd-surface-alt: var(--band);
+  /*
+    --- Focus ---
+
+    The room's only invisible controls are the ten floor stations, so the ring has to be
+    legible over the slab, over a glass panel and over the accent fill alike. It is the
+    accent outside and the lamp inside: two hues, so one of them always separates from
+    whatever is behind it.
+  */
+  --focus-outer: var(--accent);
+  --focus-outer-width: 3px;
+  --focus-inner: var(--lamp);
+  --focus-inner-width: 5px;
+  --focus-offset: 3px;
+
+  /* --- Layer 2: the semantic names shared components and QA scripts consume. --- */
+  --tgd-surface: var(--ground);
+  --tgd-surface-alt: var(--raise);
+  --tgd-surface-void: var(--void);
   --tgd-ink: var(--ink);
-  --tgd-muted: var(--muted);
-  --tgd-accent: var(--lamp);
-  --tgd-room: var(--floor);
-  --tgd-on-room: var(--chalk);
-  --tgd-on-room-muted: var(--chalk-72);
-  --tgd-card: var(--card-surface);
+  --tgd-ink-2: var(--ink-2);
+  --tgd-muted: var(--dim);
+  --tgd-accent: var(--accent);
+  --tgd-card: var(--card);
+  /*
+    The inverted regions of the old design are the --void bands of this one. `.room`
+    keeps its name because three components and two QA scripts reach for it; what it
+    means now is "the recessed band", and its text tokens are the page's own.
+  */
+  --tgd-room: var(--void);
+  --tgd-on-room: var(--ink);
+  --tgd-on-room-muted: var(--dim);
 }
 
-/*
-  DESIGN.md §B.2a — dark studio. Same method as §B.2, re-run; nothing estimated.
-  The floor goes *deeper* so the room stays the darkest thing on the site, the sheet
-  is one step above it, and the band steps away from the floor rather than toward it.
-*/
-[data-world='studio'][data-theme='dark'] {
-  --floor: #07181b; /* L 0.007776 — the room's ground only */
-  --sheet: #18292d; /* L 0.019695 — the page, one step above the floor, flat */
-  --band: #213539; /* L 0.031649 — section alternation, steps away from the floor */
-  --muted: #93a6a8; /* L 0.363026 — secondary text on the page */
-  /* --chalk and --lamp are unchanged: the one signal does not change colour. */
-
-  --ink: var(--chalk);
-  --btn-ink: var(--floor);
-
-  --chalk-72: #a9b1af; /* --chalk at 72% over the dark --floor, L 0.431294 */
-  --card-surface: #e8eaea; /* white at 90% over the dark --sheet, L 0.816977 */
-
-  /* §B.2a — a dark ground eats a dark shadow, so both are re-based on black. */
-  --card-shadow-contact: 0 2px 3px -1px rgba(0, 0, 0, 0.55);
-  --card-shadow-ambient: 0 10px 24px -12px rgba(0, 0, 0, 0.34);
-  --card-stand-base: rgba(0, 0, 0, 0.45);
-
-  /* §B.2a — region separation in dark is edge-plus-content, not fill contrast. */
-  --room-top-edge: rgba(232, 237, 233, 0.14);
-
-  /* §E.1a — one token changes, the component does not. */
-  --node-current-core: var(--lamp);
-  --node-future-stroke: rgba(232, 237, 233, 0.45);
-  --node-future-connector: rgba(232, 237, 233, 0.22);
+@media (min-width: 480px) {
+  :root {
+    --header-real: 115px;
+  }
 }
 
-/* DESIGN.md §B.5 — grid and rhythm change by breakpoint; the values do not change by world. */
 @media (min-width: 768px) {
   :root {
-    --outer: 32px;
-    --gutter: 20px;
-    --section-pad: 96px;
-    --cols: 8;
-
-    /* §B.10 round 10 — the 260 plate, which is the one that prints the address. */
-    --plate-width: 260px;
+    --header-real: 77px;
   }
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --outer: 48px;
-    --gutter: 24px;
-    --section-pad: 128px;
-    --cols: 12;
-  }
-}
-
-@media (min-width: 1440px) {
-  :root {
-    --outer: 60px;
-    --gutter: 24px;
-    --section-pad: 160px;
-
-    /* §C.6 — cols 9–12 at 1440: 4 × 78 + 3 × 24. */
-    --card-slot-width: 384px;
-  }
-}
-
-/*
-  --- DESIGN.md §F.4, Sahib's world (direction S1). ---
-  §F.4a: his existing palette IS his dark scheme, hex for hex. The base block below is
-  therefore the DARK one and [data-theme="light"] carries the overrides. This is the one
-  world where the two positions are "as designed" and "the counterpart" in that order —
-  stated in §F.4a explicitly so it is not inverted by pattern-matching the other two.
-*/
-[data-world='sahib'] {
-  --s-ground: #161c2e; /* L 0.011983 — page ground */
-  --s-panel: #1f2841; /* L 0.021905 — the map's field, section blocks */
-  --s-ink: #e9eaf0; /* L 0.824605 — primary text, filled cells */
-  --s-dim: #8e96ac; /* L 0.305420 — secondary text, row and column labels */
-  /* --lamp is shared with the studio, DESIGN.md §F.4. */
-
-  /*
-    DESIGN.md §F.4b round 12 — the map's filled cells leave `--s-panel` and take their own
-    token, and `--s-panel` goes back to the job §F.4 named it for: SECTION BLOCKS.
-
-    Review item S2: the two-state grammar was `--s-panel` on `--s-ground`, a **1.13 : 1**
-    step in light, and §F.1's whole argument is that "the takeaway is the SHAPE of the
-    filled region… a staircase descending right to left". At 1.13 : 1 that shape is at the
-    edge of perception and the product names do the work. The dark map is arithmetically
-    the same step — 1.16 : 1 — and reads better only because of where those two values sit
-    on the tone curve, which is a coincidence and not a design.
-
-    `--s-fill` against `--s-ground`: **2.91 : 1 dark, 2.97 : 1 light** — the two schemes
-    match on RATIO, which is §B.2a's rule, rather than on hex distance. `--s-ink` inside a
-    filled cell is 4.85 : 1 dark and 4.74 : 1 light, so the product names still clear AA
-    body; and the lit cell separates from its neighbours BETTER than before in light
-    (1.71 : 1 against 1.55 : 1), because the fill has stepped past `--lamp` rather than
-    toward it. The lit cell keeps its 2px `--s-ink` border, so the map keeps §E.1's
-    discipline and no state is ever carried by fill alone.
-  */
-  --s-fill: #5e6480; /* L 0.130504 — the coverage map's filled cells, and nothing else */
-
-  --s-panel-edge: rgba(233, 234, 240, 0.14); /* inset 1px top-left edge highlight */
-  --s-card-surface: #e8e8ea; /* white at 90% over his dark ground, §F.6 */
-
-  /*
-    DESIGN.md §F.1 and §F.4a — the ink INSIDE the map's one lit cell, which is a --lamp
-    fill in both schemes. In dark that is --s-ground on --lamp, 8.48:1 (§F.4's own pair,
-    read the other way round); in light it is --s-ink on --lamp, 8.10:1 (§F.4a). It is a
-    token rather than two rules because the cell has one declaration and the value is
-    what changes with the scheme, which is the discipline every other token here follows.
-  */
-  --s-lamp-ink: var(--s-ground);
-
-  --ink: var(--s-ink);
-  --focus-outer: var(--s-ink);
-  --btn-fill: var(--s-ink);
-  --btn-ink: var(--s-ground);
-
-  --tgd-surface: var(--s-ground);
-  --tgd-surface-alt: var(--s-panel);
-  --tgd-ink: var(--s-ink);
-  --tgd-muted: var(--s-dim);
-  --tgd-accent: var(--lamp);
-  --tgd-room: var(--s-ground);
-  --tgd-on-room: var(--s-ink);
-  --tgd-on-room-muted: var(--s-dim);
-  --tgd-card: var(--s-card-surface);
-}
-
-/* DESIGN.md §F.4a — his light counterpart. Same hue, same names, inverted values. */
-[data-world='sahib'][data-theme='light'] {
-  --s-ground: #eeeff4; /* L 0.864418 */
-  --s-panel: #e0e2ec; /* L 0.762961 — steps darker than the ground in light */
-  --s-fill: #868aa0; /* L 0.257833 — §F.4b, 2.97 : 1 against the light ground */
-  --s-ink: #1a2033; /* L 0.014917 */
-  --s-dim: #545c74; /* L 0.108001 */
-
-  --s-panel-edge: rgba(22, 28, 46, 0.1); /* the edge highlight inverts to bottom-right */
-  --s-card-surface: #f9fafc; /* white at 82% over --s-panel, the light worst case */
-  --s-lamp-ink: var(--s-ink); /* §F.4a — --s-ink on --lamp, 8.10:1 */
 }

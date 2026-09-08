@@ -1,6 +1,6 @@
 ---
 import { roster, rosterSentence, FLOOR_INTRO, ROSTER } from '../../lib/floor';
-import { CABIN_DESK_Y, FLOOR_DEFS, SHEAR } from './symbols';
+import { FLOOR_DEFS, WALL_SKEW } from './symbols';
 import {
   BOX,
   STILL_GLOW,
@@ -8,40 +8,43 @@ import {
   WIDE_BOX,
   WIDE_SLAB,
   WIDE_TRANSFORM,
+  pipelinePath,
   placements,
   wideOrder,
 } from './plan';
 
 /**
- * The studio floor: the semantic roster of build step 2 with DESIGN.md §C's isometric
- * scene painted underneath it.
+ * The studio floor: the semantic roster with the isometric scene painted underneath it.
  *
- * PLAN.md §4.1 — the interactive layer is still the same ten real HTML <button>
- * elements in the same DOM order. Step 3 changes where they sit, not what they are:
- * one CSS rule reads a --x / --y pair per button per plan and puts each one over its
- * desk. The SVG under them is decorative and carries aria-hidden="true" (COPY.md
- * §10.2), so a screen reader meets the roster once, never twice.
+ * The interactive layer is ten real HTML <button> elements in roster order. One CSS rule
+ * reads a --x / --y pair per button per plan and puts each one over its own station. The
+ * SVG under them is decorative and carries aria-hidden="true", so a screen reader meets
+ * the roster once, never twice.
  *
- * DESIGN.md §C.10 — one <symbol> for the agent desk, instanced seven times; one for
- * the chair, one for a floor module, and shared desk / monitor / chair sub-symbols the
- * two bespoke cabins <use> rather than redraw. Four fills, one gradient, no <filter>,
- * no raster, no outlined text.
+ * Two plans, one geometry. The 6 x 5 desktop room and the 3 x 6 portrait room are the
+ * same symbols at different <use> transforms and a different viewBox, swapped by CSS.
+ * The portrait plan is what keeps the nameplates legible at 360: the wide scene at that
+ * width would set a 12px plate at roughly 4.5px.
  *
- * DESIGN.md §C.3 / §C.7 — two plans, one geometry. The 6 x 5 desktop room and the
- * 3 x 6 portrait room are the same symbols at different <use> transforms and a
- * different viewBox, swapped by CSS. The <defs> live in their own zero-sized <svg> so
- * whichever scene is display:none, the symbols are still resolvable.
+ * The redesign changes the room's MATERIALS and its LIGHT, not its plan. Every
+ * coordinate below came out of `plan.ts` before and comes out of it now.
  */
 const stations = await roster();
 const rosterLine = await rosterSentence();
 const defaultStation = stations.at(-1);
 if (!defaultStation) throw new Error('The floor roster is empty; the card slot has no default.');
+/*
+  The default selection is the empty chair, and that is not an arbitrary choice of
+  first item: the chair is the page's argument, so it is what a visitor lands on. It is
+  server-rendered, so the panel is right before any JavaScript runs and stays right if
+  none ever does.
+*/
 const defaultId = defaultStation.id;
 
 const plan = placements();
 if (plan.length !== stations.length) {
   throw new Error(
-    `The floor plan has ${plan.length} stations and the roster has ${stations.length}; DESIGN.md §C.2 says ten.`,
+    `The floor plan has ${plan.length} stations and the roster has ${stations.length}; the room is ten.`,
   );
 }
 
@@ -50,22 +53,72 @@ if (plan.length !== stations.length) {
 const scene = plan.map((p) => {
   const station = stations[p.i];
   if (!station) throw new Error(`The floor plan places station ${p.i} and the roster has none.`);
-  return { ...p, station };
+  /*
+    Roster indices 2 to 8 are the seven agent desks in pipeline order, so a desk's own
+    number is its index less the two cabins. It is derived rather than stored because
+    the number a card prints and the number a plan places have to be the same number.
+  */
+  const deskNo = p.shape === 'agent' ? p.i - 1 : 0;
+  return { ...p, station, deskNo };
 });
 
-/** DESIGN.md §C.3 — far to near, so a nearer station paints over a farther one. */
+/** Far to near, so a nearer station paints over a farther one. */
 const wideDrawn = wideOrder(scene);
 
+/**
+ * The panel's kind label. It is generated rather than written into the data layer
+ * because it is a statement about the plan — which desk, which cabin — and the plan is
+ * what changes when the room does.
+ */
+function kindLabel(kind: string, deskNo: number): string {
+  if (kind === 'human') return 'Human · cabin';
+  if (kind === 'chair') return 'The empty chair';
+  return `Agent · desk ${deskNo}`;
+}
+
+/**
+ * The seven role marks: one small lamp-coloured mark above each agent's head, all
+ * different, so a desk is identifiable at a glance before its nameplate is legible.
+ * Dot, two dots, bar, ring, diamond, dash, hollow ring — in pipeline order.
+ */
+/*
+  The mark rides ABOVE the monitor, not just above the head, and the 48 is a clearance
+  rather than a look. The checkerboard puts the station in front of this one exactly 64
+  units down-screen, and that station's nameplate sits 32 units below ITS node — so a
+  mark at -32 lands squarely inside the plate box of the desk behind it, which is where
+  `qa:contrast` found seven lamp-coloured marks sitting under seven nameplates at 1.45:1.
+  At -48 no station's mark shares a row with any station's plate.
+*/
+const MARK_Y = -48;
+const ROLE_MARKS = [
+  `<circle cx="-22" cy="${MARK_Y}" r="2.4"/>`,
+  `<circle cx="-27" cy="${MARK_Y}" r="2.2"/><circle cx="-17" cy="${MARK_Y}" r="2.2"/>`,
+  `<rect x="-29" y="${MARK_Y - 1.5}" width="14" height="3" rx="1.5"/>`,
+  `<circle cx="-22" cy="${MARK_Y}" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/>`,
+  `<path d="M-22 ${MARK_Y - 4.4}-17.6 ${MARK_Y}-22 ${MARK_Y + 4.4}-26.4 ${MARK_Y}Z"/>`,
+  `<rect x="-29" y="${MARK_Y - 1.3}" width="6" height="2.6" rx="1.3"/><rect x="-21" y="${MARK_Y - 1.3}" width="6" height="2.6" rx="1.3"/>`,
+  `<circle cx="-22" cy="${MARK_Y}" r="4.2" fill="none" stroke="currentColor" stroke-width="1.2"/>`,
+];
+
+/** The heads alternate so that no two adjacent desks carry the same form. */
+const headFor = (deskNo: number): string => (deskNo % 2 === 1 ? '#fl-agent' : '#fl-agent-f');
+
+const handoff = pipelinePath();
 const b = BOX;
 ---
 
-<section id="studio-floor" class="section bleed room floor" tabindex="-1" data-floor>
+<section id="studio-floor" class="section room floor" tabindex="-1" data-floor data-theme-anim>
   <div class="shell">
-    <h2 class="floor__lead">{FLOOR_INTRO.leadIn}</h2>
-    <p class="floor__instruction">{FLOOR_INTRO.instruction}</p>
+    <div class="floor__head" data-rv>
+      <div>
+        <p class="eyebrow floor__eyebrow">The floor</p>
+        <h2 class="floor__lead">{FLOOR_INTRO.leadIn}</h2>
+      </div>
+      <p class="floor__instruction">{FLOOR_INTRO.instruction}</p>
+    </div>
 
     <div class="floor__body">
-      <div class="floor__scene">
+      <div class="floor__scene" data-scene-wrap>
         <svg
           class="floor-defs"
           aria-hidden="true"
@@ -81,13 +134,19 @@ const b = BOX;
           focusable="false"
         >
           <g transform={WIDE_TRANSFORM}>
-            {/* Step-3 floor review, item 17: the 6 x 5 seam grid is cut. It ran the
-                full room on every side, so the room's apparent footprint read larger
-                than anything standing in it and the empty chair's isolation was drawn
-                by ruled lines rather than by emptiness. §C.10 has the seam lines first
-                in its cut order and §J now gives them a second reason to go. What is
-                left is the slab and its own edge, which is the room. */}
-            <polygon class="fl-slab fl-edge" points={WIDE_SLAB}></polygon>
+            <polygon class="fl-slab" points={WIDE_SLAB}></polygon>
+            {/* The slab's own accent bloom: a wide, very low-alpha stroke sitting on
+                the room's edge, which is what stops the floor ending on a hard line
+                against the --void band it is cut into. */}
+            <polygon class="fl-bloom" points={WIDE_SLAB}></polygon>
+
+            {/* The handoff. Work moves desk to desk down the pipeline and stops at the
+                chair, and one dashed line says it before any card is opened. The dot
+                rides the same path via `offset-path`, so the line and the travel are
+                one geometry rather than two that have to be kept in step. */}
+            <path class="fl-pipe" d={handoff}></path>
+            <circle class="fl-handoff" r="4" style={`offset-path:path('${handoff}')`}></circle>
+
             {
               wideDrawn.map((p) => {
                 const s = p.station;
@@ -108,63 +167,71 @@ const b = BOX;
                       />
                     )}
                     {p.shape === 'agent' && (
-                      <use href="#fl-agent" x={b.agent.x} y={b.agent.y} width={b.agent.w} height={b.agent.h} />
+                      <>
+                        <use
+                          href={headFor(p.deskNo)}
+                          x={b.agent.x}
+                          y={b.agent.y}
+                          width={b.agent.w}
+                          height={b.agent.h}
+                        />
+                        <g class="fl-role" set:html={ROLE_MARKS[p.deskNo - 1]} />
+                      </>
                     )}
                     {p.shape === 'chair' && (
                       <>
+                        {/* Three cone volumes, not one: the floor pool, the mid
+                            volume and the shaft from the shade. A single triangle
+                            reads as a shape; three stacked ones read as light. */}
                         <path class="fl-cone" d="M0 0 64 32 0 64-64 32Z" />
                         <use href="#fl-seat" x={b.seat.x} y={b.seat.y} width={b.seat.w} height={b.seat.h} />
                         <path class="fl-cone" d="M0-26 44-4 0 18-44-4Z" /><path class="fl-cone" d="M-9-56 9-56 44-4-44-4Z" />
                       </>
                     )}
-                    {p.i < 9 && (
-                      <g class="fl-lit-up">
-                        <rect
-                          class="fl-glow"
-                          x="5"
-                          y={p.shape === 'cabin' ? CABIN_DESK_Y - 37 : -37}
-                          width="28"
-                          height="24"
-                          transform={SHEAR}
-                        />
-                      </g>
-                    )}
                   </g>
                 );
               })
             }
-            {/* DESIGN.md §C.3 and §C.4 — every nameplate paints last, so a nearer
-                cabin's wall can never cross the plate of the one behind it.
 
-                One room, one nameplate treatment, one baseline, at every width. The
-                wall-mounted, skewed cabin door plate is REMOVED — it is §J's
-                pre-committed cut for `/` and §C.4 now forbids it in terms: it was the
-                only skewed type on the site, the only nameplate treatment that changed
-                between breakpoints, the least legible text on the page, and at >= 1024
-                it put "Sahib Singh" inside Tanya's button. Both cabin plates are now
-                set horizontally on the near half of their own cabin floor, at §C.3's
-                own coordinates: (396, 204) for Sahib and (268, 268) for Tanya in the
-                856 x 520 box, which is local (0, 100) on each cabin's own node.
+            {/*
+              Nameplates paint last, so a nearer cabin's wall can never cross the plate
+              of the one behind it.
 
-                An agent's plate sits on the near half of its own module rather than
-                floating above the desk. Measured reason, and §C.3 now carries it: on
-                the checkerboard a desk and the desk behind-left of it share a screen x
-                and are only 64 units apart in y, so a plate above the desk lands
-                squarely on the desk behind it. y is the module's own midline, which
-                with a central baseline puts the plate box's bottom 8 units clear of the
-                next button's leading edge — §C.3's own number. The chair's plate takes
-                its module's near vertex, because nothing stands in front of it. */}
+              The two cabin names are LETTERED ON THE CABIN'S OWN LEFT WALL rather than
+              floated below it: `matrix(1 -0.5 0 1 0 0)` is the isometric skew for a
+              left-facing plane, so type drawn inside it reads as painted on the wall.
+
+              The anchor is -66, -32 and the handoff's is -66, -19. A left wall faces
+              down-screen-left, which is exactly where the other cabin stands, and the
+              skew stretches a plate's box by half its own width in y — so at -19 Sahib's
+              name reached into Tanya's button and `check-floor-pointer` failed it as a
+              nameplate inside another station's target, at every width. 13 units up puts
+              it back inside its own wall and out of her box.
+
+              The agents' plates stay horizontal on the near half of their own module,
+              because a desk and the desk behind-left of it share a screen x and a plate
+              above the desk would land on the one behind it.
+            */}
             <g class="fl-plates">
               {
                 scene.map((p) => {
                   const s = p.station;
+                  if (p.shape === 'cabin') {
+                    return (
+                      <g transform={`${p.wideTransform} ${WALL_SKEW}`}>
+                        <text class="fl-plate fl-plate--wall" data-plate={s.id} x="-66" y="-32" text-anchor="middle">
+                          {s.label}
+                        </text>
+                      </g>
+                    );
+                  }
                   return (
                     <text
-                      class={`fl-plate${p.shape === 'cabin' ? '' : ' fl-plate--agent'}`}
+                      class={`fl-plate${p.shape === 'chair' ? ' fl-plate--chair' : ' fl-plate--agent'}`}
                       data-plate={s.id}
                       transform={p.wideTransform}
                       x="0"
-                      y={p.shape === 'cabin' ? 100 : p.shape === 'chair' ? 64 : 32}
+                      y={p.shape === 'chair' ? 84 : 32}
                       text-anchor="middle"
                     >
                       {s.label}
@@ -205,7 +272,13 @@ const b = BOX;
                     />
                   )}
                   {p.shape === 'agent' && (
-                    <use href="#fl-agent" x={b.agent.x} y={b.agent.y} width={b.agent.w} height={b.agent.h} />
+                    <use
+                      href={headFor(p.deskNo)}
+                      x={b.agent.x}
+                      y={b.agent.y}
+                      width={b.agent.w}
+                      height={b.agent.h}
+                    />
                   )}
                   {p.shape === 'chair' && (
                     <>
@@ -213,18 +286,6 @@ const b = BOX;
                       <use href="#fl-seat" x={b.seat.x} y={b.seat.y} width={b.seat.w} height={b.seat.h} />
                       <path class="fl-cone" d="M0-26 44-4 0 18-44-4Z" /><path class="fl-cone" d="M-9-56 9-56 44-4-44-4Z" />
                     </>
-                  )}
-                  {p.i < 9 && (
-                    <g class="fl-lit-up">
-                      <rect
-                        class="fl-glow"
-                        x="5"
-                        y={p.shape === 'cabin' ? CABIN_DESK_Y - 37 : -37}
-                        width="28"
-                        height="24"
-                        transform={SHEAR}
-                      />
-                    </g>
                   )}
                 </g>
               );
@@ -248,6 +309,13 @@ const b = BOX;
           }
         </svg>
 
+        {/*
+          The room appears lit from wherever the pointer is. It is a decorative layer
+          with no hit area of its own, so it can sit over the whole scene without taking
+          a single click off the ten buttons underneath it.
+        */}
+        <span class="floor__lit" aria-hidden="true"></span>
+
         <ul class="roster">
           {
             scene.map((p) => (
@@ -259,7 +327,7 @@ const b = BOX;
                   data-kind={p.station.kind}
                   data-selected={p.station.id === defaultId ? 'true' : undefined}
                   aria-label={p.station.accessibleName}
-                  style={`--xw:${p.wide.x};--yw:${p.wide.y};--xt:${p.tall.x};--yt:${p.tall.y}`}
+                  style={`--xw:${p.wide.x};--yw:${p.wide.y};--ww:${p.wide.w};--hw:${p.wide.h};--xt:${p.tall.x};--yt:${p.tall.y};--wt:${p.tall.w};--ht:${p.tall.h}`}
                 >
                   <span class="sr-only">{p.station.label}</span>
                 </button>
@@ -269,22 +337,23 @@ const b = BOX;
         </ul>
       </div>
 
-      <div class="floor__slot" data-floor-slot>
+      <div class="floor__slot glass" data-floor-slot>
         {
-          stations.map((station) => (
+          scene.map((p) => (
             <article
               class="station-card"
-              data-card={station.id}
-              hidden={station.id === defaultId ? undefined : true}
+              data-card={p.station.id}
+              hidden={p.station.id === defaultId ? undefined : true}
             >
-              <h3 class="station-card__name">{station.label}</h3>
-              {station.lead && <p class="station-card__lead">{station.lead}</p>}
-              <p class="station-card__body">{station.body}</p>
+              <p class="station-card__kind micro">{kindLabel(p.station.kind, p.deskNo)}</p>
+              <h3 class="station-card__name">{p.station.label}</h3>
+              {p.station.lead && <p class="station-card__lead">{p.station.lead}</p>}
+              <p class="station-card__body">{p.station.body}</p>
               {
-                station.gateBlock && (
+                p.station.gateBlock && (
                   <div class="station-card__gate">
-                    <p class="station-card__gate-label">{station.gateBlock.label}</p>
-                    <p class="station-card__gate-name">{station.gateBlock.value}</p>
+                    <p class="station-card__gate-label micro">{p.station.gateBlock.label}</p>
+                    <p class="station-card__gate-name">{p.station.gateBlock.value}</p>
                   </div>
                 )
               }
@@ -296,29 +365,24 @@ const b = BOX;
     </div>
 
     <p class="floor__roster-label micro">{ROSTER.label}</p>
-    <p class="floor__roster small">{rosterLine}</p>
+    <p class="floor__roster small muted">{rosterLine}</p>
   </div>
 </section>
 
 <script>
   /*
-    PLAN.md §4.2, §4.3 — one "open card" path, reached by pointer, by focus and by tap.
-    The visibility mechanism is the native `hidden` attribute, so the nine cards that
-    are not showing leave the accessibility tree entirely; `data-selected` on the button
-    and `data-on` on its group in the scene are styling hooks only.
+    One "open card" path, reached by pointer, by focus and by tap. The visibility
+    mechanism is the native `hidden` attribute, so the nine cards that are not showing
+    leave the accessibility tree entirely; `data-selected` on the button and `data-on` on
+    its group in the scene are styling hooks only.
 
-    DESIGN.md §C.9 — the slot swaps instantly. No fade, no slide, nothing to animate.
-
-    DESIGN.md §H.3 — "Lights on" is the page's one orchestrated moment. It is a set of
-    CSS animations; this script only decides *whether* and *when* they run, because
-    §H.3 requires the h1 to have painted first and §H.4 requires the moment to be gone
-    entirely under reduced motion. Arming happens at module-execution time, before the
-    section can paint, so the room is never seen lit and then switched off; firing
-    happens on the frame after `load`, which is provably after first paint.
+    The slot swaps instantly. No fade, no slide, nothing to animate — the panel is the
+    answer to a pointer that is already moving.
   */
   const floor = document.querySelector<HTMLElement>('[data-floor]');
   const slot = floor?.querySelector<HTMLElement>('[data-floor-slot]');
   const announce = floor?.querySelector<HTMLElement>('[data-floor-announce]');
+  const wrap = floor?.querySelector<HTMLElement>('[data-scene-wrap]');
 
   if (floor && slot) {
     const cards = new Map<string, HTMLElement>();
@@ -356,16 +420,14 @@ const b = BOX;
       (target as Element | null)?.closest<HTMLElement>('[data-station]')?.dataset.station;
 
     /*
-      REVIEWS.md 2026-09-05, Perf & A11y ruling 2. Focus and hover swap the slot
-      SILENTLY: the button that just took focus has already spoken the role and the
-      gate that checks it (COPY.md §10.2), and a live region here read a whole card
-      over the top of the next Tab's own announcement, ten times in a row.
+      Focus and hover swap the slot SILENTLY: the button that just took focus has already
+      spoken the role and the gate that checks it, and a live region here would read a
+      whole card over the top of the next Tab's own announcement, ten times in a row.
 
       Activation — click, and therefore Enter and Space on a <button> — is the one path
       that announces, and it announces whether or not the content changed, because
       pressing Enter on the station you are already focused on is exactly the "read me
-      this card" gesture. The region is in the DOM from first paint, so it is registered
-      before it is ever written to. Nothing new is spoken: the text is the card's own.
+      this card" gesture.
     */
     const say = (id: string): void => {
       const card = cards.get(id);
@@ -387,79 +449,90 @@ const b = BOX;
       say(id);
     });
 
-    /* DESIGN.md §H.4 — under `reduce` the moment is not shortened, it is absent, and
-       the still frame of §C.9 is what the unconditional CSS already renders. */
-    const wantsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
-    if (wantsMotion.matches) {
-      floor.dataset.lights = 'armed';
-      /* Interruptible: a visitor who reaches for a desk gets the finished room, not a
-         sequence that has to play out first. */
-      const settle = (): void => {
-        delete floor.dataset.lights;
-      };
-      const fire = (): void => {
-        requestAnimationFrame(() => {
-          if (floor.dataset.lights !== 'armed') return;
-          floor.dataset.lights = 'on';
-          /* §H.3's own total: last glow ends at 1200ms, 400ms hold, 900ms lamp. */
-          window.setTimeout(settle, 2500);
-        });
-      };
-      floor.addEventListener('pointerdown', settle, { once: true });
-      floor.addEventListener('focusin', settle, { once: true });
-      if (document.readyState === 'complete') fire();
-      else window.addEventListener('load', fire, { once: true });
+    /*
+      The room lights from the pointer. Two custom properties on the scene wrapper, so
+      the paint is one compositor-side gradient move and no layout is read per event.
+    */
+    if (wrap && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      wrap.addEventListener('pointermove', (event: PointerEvent) => {
+        const r = wrap.getBoundingClientRect();
+        wrap.style.setProperty('--mx', `${((event.clientX - r.left) / r.width) * 100}%`);
+        wrap.style.setProperty('--my', `${((event.clientY - r.top) / r.height) * 100}%`);
+      });
     }
   }
 </script>
 
 <style>
-  /* PLAN.md §4.5 — the section reserves its height so the headline above it paints
-     first and nothing shifts when the section is laid out. */
-  .floor {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1180px;
-  }
+  /* --- The section --- */
 
-  .floor__lead {
-    max-inline-size: 20ch;
-  }
-
-  .floor__instruction {
-    margin-block-start: var(--space-16);
-    color: var(--tgd-on-room-muted);
-  }
-
-  .floor__body {
-    margin-block-start: var(--space-32);
-    display: grid;
+  .floor__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
     gap: var(--space-24);
   }
 
-  /*
-    DESIGN.md §C.1 — four fills in the whole scene, all derived from the six tokens,
-    plus one gradient for the lamp cone. Three of the four follow --floor automatically
-    because they are alphas over it; only the shadow is an absolute value, and it takes
-    §C.1's second hex in dark so it keeps the same relationship to the deeper ground.
-  */
-  .floor__scene {
-    /* §C.3 — the portrait plan renders 1:1, so its plates are set at the size they are
-       read at. The wide plan overrides this per breakpoint, below. */
-    --fl-plate-size: 13px;
-
-    --fl-ground: var(--tgd-room);
-    --fl-lit: rgba(232, 237, 233, 0.22);
-    --fl-shadow: #0a1e21;
-    --fl-glow: var(--chalk);
-    /* §C.8 — a selected or focused desk's top surface lifts to --chalk @ 52% (round 12). */
-    --fl-desk-top: var(--fl-lit);
-
-    position: relative;
-    margin-inline: auto;
+  .floor__eyebrow {
+    /* The lamp is reserved for light sources and live state. The floor is the room the
+       light is in, so its eyebrow is the one label on the page that carries it. */
+    color: var(--lamp);
+    margin-block-end: var(--space-14);
   }
 
-  :global([data-theme='dark']) .floor__scene {
-    --fl-shadow: #051113;
+  .floor__lead {
+    max-inline-size: 22ch;
+  }
+
+  .floor__instruction {
+    max-inline-size: 34ch;
+    color: var(--dim);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  /*
+    The two-up row, and the one place in this build where a measured constraint overruled
+    the handoff's own layout note.
+
+    The handoff puts the scene and the panel side by side "down to roughly 800px". They
+    cannot be: the ten stations are transparent hit targets sized as a percentage of the
+    scene box, so **the room's touch targets are a function of how wide the scene is**,
+    and sharing the row with a 300px panel makes an agent desk's button 43.8px tall at
+    1440 and 37px at 1024 — under the 44 x 44 floor `check-floor-pointer` enforces, at
+    every width the side-by-side form exists at.
+
+    So the row engages where the scene can still carry a legal target and not before:
+
+      >= 1200   two-up, and the scene takes twice the free space the panel does, which is
+                what lifts an agent button to 44.1px at 1200 and 49.8px at 1440
+      740-1199  stacked. The scene takes the full content width, which is more than the
+                two-up form ever gives it, so every target grows rather than shrinks
+      < 740     the portrait plan (below), where a station's button is 68px by
+                construction and the nameplates set at full size
+
+    The room is the site's one bold moment and it is also its only invisible controls.
+    Where those two pull apart, the controls win.
+  */
+  .floor__body {
+    margin-block-start: var(--gap-block);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-col);
+    align-items: center;
+  }
+
+  .floor__scene {
+    position: relative;
+    flex: 1 1 100%;
+    min-inline-size: min(100%, 280px);
+  }
+
+  @media (min-width: 1200px) {
+    .floor__scene {
+      flex: 2 1 460px;
+    }
   }
 
   .floor-defs {
@@ -472,239 +545,322 @@ const b = BOX;
   .scene {
     display: block;
     inline-size: 100%;
-    block-size: 100%;
-    /* §C.3 gives the box 76 units of margin for the plates that overhang their module,
-       and §C.7's widest portrait plate is a little wider than its own 101.3 column. An
-       outermost <svg> clips to its viewport by default, which cut `Release Watcher` at
-       360; the page's own outer margin is where that overhang goes. */
+    block-size: auto;
     overflow: visible;
   }
 
   /*
-    Every rule below is :global on purpose, and it is a bug fix rather than a style.
-    The scene's <defs> are shared with the build-time OG card, so they are a string
-    injected with `set:html` — and Astro cannot add its scope attribute to markup it did
-    not compile. Scoped, `.fl-lit[data-astro-cid-…]` matched nothing inside a <symbol>,
-    every fill in the room fell back to the initial `black`, and the whole scene rendered
-    as one flat silhouette. These class names exist nowhere else on the site and are all
-    prefixed `fl-`, so global is the honest scope for them: they belong to the drawing,
-    not to this component's box.
+    Two plans, swapped on the width at which the wide room's own nameplates stop being
+    legible. Below it the portrait plan sets each plate at full size in its own band.
   */
+  .scene--tall {
+    display: none;
+  }
+
+  @media (max-width: 739px) {
+    .scene--wide {
+      display: none;
+    }
+
+    .scene--tall {
+      display: block;
+      max-inline-size: 320px;
+      margin-inline: auto;
+    }
+  }
+
+  /* The pointer's light. Decorative, and it takes no clicks off the ten buttons. */
+  .floor__lit {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 45%),
+      rgba(var(--lamp-rgb), 0.14),
+      transparent 70%
+    );
+  }
+
+  /* --- The room's materials --- */
+
   :global(.fl-slab) {
-    fill: var(--fl-ground);
-  }
-
-  /* Step-3 review item 17 — with the seam grid cut, the slab's own edge is the room. */
-  :global(.fl-edge) {
-    stroke: var(--fl-lit);
+    fill: url('#fl-slab-g');
+    stroke: rgba(var(--f-ink-rgb), 0.16);
     stroke-width: 1;
   }
 
-  :global(.fl-lit) {
-    fill: var(--fl-lit);
-  }
-
-  :global(.fl-shadow) {
-    fill: var(--fl-shadow);
-  }
-
-  /* A cabin wall is the shadow fill with the lit fill as a one-unit edge. The stroke is
-     not a fifth value and not a segment: it is what separates two abutting cabins, and
-     the lamp rule does not reach it because both values are already in §C.1's four. */
-  :global(.fl-wall) {
-    fill: var(--fl-shadow);
-    stroke: var(--fl-lit);
-    stroke-width: 1;
-  }
-
-  /*
-    The desk's top face, and §C.8's second indicator on it. The edge is `transparent` at
-    rest and `--chalk` on the selected station; it is a custom property rather than a
-    descendant selector because `.fl-top` lives inside a `<use>`'s shadow tree, which a
-    selector cannot reach and an inherited property can. Same mechanism as the fill above.
-  */
-  :global(.fl-top) {
-    fill: var(--fl-desk-top);
-    stroke: var(--fl-desk-edge, transparent);
-    stroke-width: 1;
-  }
-
-  :global(.fl-glow) {
-    fill: var(--fl-glow);
-    opacity: var(--g, 0.7);
-  }
-
-  :global(.fl-seam) {
+  :global(.fl-bloom) {
     fill: none;
-    stroke: var(--fl-lit);
+    stroke: rgba(var(--accent-rgb), 0.1);
+    stroke-width: 14;
+  }
+
+  :global(.fl-slab-a) {
+    stop-color: var(--f-a);
+  }
+
+  :global(.fl-slab-b) {
+    stop-color: var(--f-b);
+  }
+
+  :global(.fl-tile) {
+    fill: url('#fl-slab-g');
+    stroke: rgba(var(--f-ink-rgb), 0.14);
+    stroke-width: 1;
+  }
+
+  /* Glass: the desk tops, the cabin props, anything that reads as a lit pane. */
+  :global(.fl-pane) {
+    fill: url('#fl-glass-g');
+    stroke: rgba(var(--f-ink-rgb), 0.28);
+    stroke-width: 1;
+  }
+
+  :global(.fl-glass-a) {
+    stop-color: var(--f-ink);
+    stop-opacity: 0.2;
+  }
+
+  :global(.fl-glass-b) {
+    stop-color: var(--f-ink);
+    stop-opacity: 0.05;
+  }
+
+  /* The three cabin planes: two walls and a floor, at the alphas that make a corner
+     read as two panes meeting rather than as one folded shape. */
+  :global(.fl-wall-r) {
+    fill: rgba(var(--f-ink-rgb), 0.1);
+    stroke: rgba(var(--f-ink-rgb), 0.3);
+    stroke-width: 1;
+  }
+
+  :global(.fl-wall-l) {
+    fill: rgba(var(--f-ink-rgb), 0.16);
+    stroke: rgba(var(--f-ink-rgb), 0.3);
+    stroke-width: 1;
+  }
+
+  :global(.fl-cabin-floor) {
+    fill: rgba(var(--f-ink-rgb), 0.06);
+    stroke: rgba(var(--f-ink-rgb), 0.2);
+    stroke-width: 1;
+  }
+
+  :global(.fl-side) {
+    fill: var(--f-c);
+  }
+
+  :global(.fl-deep) {
+    fill: var(--f-d);
+  }
+
+  :global(.fl-body) {
+    fill: var(--f-c);
+    stroke: rgba(var(--f-ink-rgb), 0.2);
+    stroke-width: 1;
+  }
+
+  :global(.fl-seatpad) {
+    fill: rgba(var(--f-ink-rgb), 0.22);
+  }
+
+  :global(.fl-headround) {
+    fill: rgba(var(--f-ink-rgb), 0.5);
+  }
+
+  :global(.fl-plant) {
+    fill: rgba(var(--f-ink-rgb), 0.34);
+  }
+
+  :global(.fl-cord) {
+    fill: rgba(var(--f-ink-rgb), 0.4);
+  }
+
+  :global(.fl-shade) {
+    fill: var(--f-c);
+    stroke: rgba(var(--lamp-rgb), 0.55);
     stroke-width: 1;
   }
 
   :global(.fl-mark) {
+    stroke: rgba(var(--f-ink-rgb), 0.45);
+    stroke-width: 1.4;
     fill: none;
-    stroke: var(--fl-glow);
-    stroke-width: 1.5;
-    opacity: 0.55;
   }
 
   :global(.fl-mark-fill) {
-    fill: var(--fl-glow);
-    opacity: 0.4;
+    fill: rgba(var(--f-ink-rgb), 0.24);
   }
 
-  /* §C.1's one gradient, on three marks: the pool the lamp throws on the floor, the
-     wash it throws on the desk top, and the cone of light between them. §C.3 mechanism
-     2 asks for light *falling on* the chair, which one wedge drawn over the object was
-     not delivering (step-3 review, item 9). */
+  /* --- The dogs --- */
+
+  :global(.fl-ear) {
+    fill: rgba(var(--f-ink-rgb), 0.55);
+  }
+
+  :global(.fl-head) {
+    fill: var(--f-c);
+    stroke: rgba(var(--f-ink-rgb), 0.62);
+    stroke-width: 1.6;
+  }
+
+  :global(.fl-muzzle) {
+    fill: rgba(var(--f-ink-rgb), 0.62);
+  }
+
+  /* The role mark. It is the one thing on a desk drawn in the lamp colour, because it
+     is what the desk is FOR, and the room's rule is that lamp means live. */
+  :global(.fl-role) {
+    fill: var(--lamp);
+    color: var(--lamp);
+  }
+
+  /* --- Screens --- */
+
+  :global(.fl-screen-a) {
+    stop-color: var(--accent);
+    stop-opacity: 0.85;
+  }
+
+  :global(.fl-screen-b) {
+    stop-color: var(--f-screen-2);
+    stop-opacity: 0.35;
+  }
+
+  :global(.fl-screen) {
+    fill: url('#fl-screen-g');
+  }
+
+  /*
+    Idle. Staggered per desk off the `--d` index each station carries, because a room
+    whose nine screens breathe in unison looks mechanical rather than occupied.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.fl-glow) {
+      animation: idle 4.8s ease-in-out infinite;
+      animation-delay: calc(var(--d, 0) * -0.53s);
+    }
+
+    :global(.fl-handoff) {
+      animation: handoff 9s linear infinite;
+    }
+
+    :global(.fl-cone) {
+      animation: breathe 6s ease-in-out infinite;
+    }
+  }
+
+  :global(.fl-glow) {
+    opacity: var(--g, 0.75);
+  }
+
+  /* --- The light --- */
+
   :global(.fl-cone) {
-    fill: url(#fl-cone);
+    fill: url('#fl-cone');
+    opacity: 0.7;
   }
 
   :global(.fl-cone-a) {
-    stop-color: var(--lamp);
-    stop-opacity: 0.5;
+    stop-color: var(--f-cone);
+    stop-opacity: 0.55;
   }
 
   :global(.fl-cone-b) {
-    stop-color: var(--lamp);
-    stop-opacity: 0.06;
+    stop-color: var(--f-cone);
+    stop-opacity: 0.03;
   }
 
-  /*
-    DESIGN.md §C.4 — nameplates are real <text>, never outlined paths. One treatment,
-    one baseline, at every width: the cabin plate is Anek 600 one step up, an agent's is
-    Instrument 600 at micro. The floor-coloured stroke behind the glyphs keeps a plate
-    legible where it passes the desk in front of it.
+  /* --- The pipeline --- */
 
-    Step-3 review item 13 — §B.4's smallest step is micro at 13px and there is nothing
-    below it, so NO PLATE RENDERS BELOW 13 CSS px. The scene scales and its text scales
-    with it, so §C.3 expresses the plate's size in scene units per breakpoint to land on
-    the same rendered size: 13 units at 1:1, 16.3 where the box is 682 of 856 (1024) and
-    15.8 where it is 704 of 856 (768). The cabin plate takes the step above at 15px
-    rendered, which is the same ratio at every one of them.
-  */
-  .fl-plate {
-    fill: var(--tgd-on-room);
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-size: calc(var(--fl-plate-size) * 15 / 13);
+  :global(.fl-pipe) {
+    fill: none;
+    stroke: var(--accent);
+    stroke-opacity: 0.42;
+    stroke-width: 1.4;
+    stroke-dasharray: 5 7;
+    stroke-linecap: round;
+  }
+
+  :global(.fl-handoff) {
+    fill: var(--accent);
+    opacity: 0;
+    offset-rotate: 0deg;
+  }
+
+  /* --- Nameplates --- */
+
+  :global(.fl-plate) {
+    font-family: var(--tgd-font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--dim);
+    /*
+      A halo in the band's own ground, painted UNDER the glyphs, so a plate stays legible
+      over the slab, over a desk and over the lamp pool alike. `paint-order` is what makes
+      the stroke go behind rather than through the letterforms.
+    */
     paint-order: stroke;
-    stroke: var(--fl-ground);
-    stroke-width: 3px;
+    stroke: var(--plate-halo);
+    /*
+      6, not 4. A 4px halo on a 12px mono glyph leaves the thinnest parts of a stroke
+      with the desk still showing through, and `qa:contrast` reads exactly those pixels:
+      at 4 the light scheme's `Security Auditor` measured 3.36:1 against a desk face
+      bleeding through its own label, and at 5 it was still 3.72:1. 6 is where the halo
+      closes under every stroke of the site's smallest type, on the darkest face the room
+      has. It is a number the measurement chose, not one that was drawn.
+    */
+    stroke-width: 6;
     stroke-linejoin: round;
-    dominant-baseline: central;
   }
 
-  .fl-plate--agent {
-    fill: var(--tgd-on-room-muted);
-    font-family: var(--tgd-font-body);
+  :global(.fl-plate--wall) {
+    font-size: 15px;
     font-weight: 600;
-    font-size: var(--fl-plate-size);
+    letter-spacing: 0.02em;
+    fill: var(--ink);
   }
 
-  /*
-    DESIGN.md §C.8 round 12 — the selected fill is --chalk @ 52%, up from 34%. Review
-    item H9: 34% was built exactly and could not be seen. Pixel-differenced under
-    `reduce` so only the state differs, 34% moved 13.4% of the desk's pixels at a
-    maximum channel delta of 27 at 1440 and 3.0% at 360, and at 1:1 the two frames were
-    indistinguishable. The amplitude was the spec's and it was too small. 52% roughly
-    doubles the step over §C.1's unlit desk top (--chalk @ 22%) and stays below the
-    monitor glow's 55-85%, so the brightest thing in the room is still a screen and not
-    a table.
-  */
-  .fl-st[data-on] {
-    --fl-desk-top: rgba(232, 237, 233, 0.52);
-    /*
-      **§C.8's priced fallback, taken on measurement.** The section states the acceptance
-      test — the same pixel-difference method under `reduce`, at 360 and 1440 in both
-      schemes, needing ">= 30% of the desk's pixels changed at a maximum channel delta
-      >= 60" — and names what to do if 52% alone does not reach it: "a 1px `--chalk`
-      top-edge inset on the selected station, a mark the room already draws elsewhere",
-      taken "only on measurement, never in addition on preference".
-
-      Measured at 52% alone (scripts/evidence-rund.mjs): max channel delta **67 light, 69
-      dark** — past the 60 — but **24.6% of the station's pixels at 1440 and 15.5% at 360**,
-      which is short of the 30. So the fallback is taken, and it is taken because the
-      measurement said so. The room already draws exactly this stroke twice: the slab's own
-      edge (`.fl-edge`) and the cabin walls both take a 1-unit `--fl-lit` stroke, so this
-      is the existing vocabulary at a higher value rather than a new mark.
-    */
-    --fl-desk-edge: var(--chalk);
+  /* The chair's plate is the room's conclusion, so it is the one plate in the lamp. */
+  :global(.fl-plate--chair) {
+    font-size: 13.5px;
+    fill: var(--lamp);
   }
 
-  /*
-    DESIGN.md §C.9 — the default, unconditional state is the still frame: nine glows at
-    nine different static opacities, the lamp cone at full. There is no JS toggle to get
-    wrong, because the loop below is additive and nothing else is.
-  */
-  @media (prefers-reduced-motion: no-preference) {
-    /* DESIGN.md §C.5 — one loop, one property, 4800ms, symmetric easing, each station
-       offset by index x 533ms so nine stations never share a phase. */
-    .fl-glow {
-      animation: fl-idle var(--loop-floor) var(--ease-idle) calc(var(--d, 0) * -533ms) infinite;
-    }
+  /* --- Selection --- */
 
-    /* DESIGN.md §H.3 — "Lights on". The glows come up in DOM order at 70ms stagger over
-       --dur-4 each; then 400ms of nothing; then the lamp cone alone over 900ms. The
-       fade is on a wrapper, so the idle loop underneath is never interrupted and the
-       room never jumps when the moment ends. */
-    .floor[data-lights='armed'] .fl-lit-up,
-    .floor[data-lights='armed'] .fl-cone {
-      opacity: 0;
-    }
-
-    .floor[data-lights='on'] .fl-lit-up {
-      animation: fl-up var(--dur-4) var(--ease-out) calc(var(--d, 0) * 70ms) both;
-    }
-
-    /*
-      Step-3 review item 16 — the cone was measured coming up in ~620ms against §H.3's
-      900. The declaration always said 900ms; what was 620 was the *shape*. --ease-out
-      is cubic-bezier(.16, 1, .3, 1), which is at 90% of its travel inside 330ms, so the
-      one deliberate slow moment on the page was over before its duration was. The lamp
-      takes --ease-inout instead — §H.1's symmetric curve, half its travel at 450ms —
-      which is the only one of the four tokens whose 900ms is felt as 900ms. The glows
-      keep --ease-out: they are arrivals, and the review passed their timing.
-    */
-    .floor[data-lights='on'] .fl-cone {
-      animation: fl-up 900ms var(--ease-inout) 1600ms both;
-    }
+  :global(.fl-st[data-on]) :global(.fl-pane),
+  :global(.fl-st[data-on]) :global(.fl-wall-l),
+  :global(.fl-st[data-on]) :global(.fl-wall-r) {
+    stroke: var(--accent);
+    stroke-opacity: 0.75;
   }
 
-  @keyframes fl-idle {
-    0%,
-    100% {
-      opacity: 0.55;
-    }
-    50% {
-      opacity: 0.85;
-    }
+  :global(.fl-st[data-on]) :global(.fl-glow) {
+    opacity: 1;
   }
 
-  @keyframes fl-up {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  /* --- The buttons --- */
 
-  /*
-    DESIGN.md §C.10 — no per-desk bespoke CSS. One rule places every station; the only
-    per-station values are the two coordinate pairs on the button itself, and the only
-    per-class values are the three footprints below.
-  */
   .roster {
     position: absolute;
     inset: 0;
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .station {
-    --x: var(--xw);
-    --y: var(--yw);
+  .roster__item {
+    display: contents;
+  }
 
+  /*
+    Ten transparent hit targets, one per station, placed in percentages of whichever
+    scene box is live. They are the page's only invisible controls, which is exactly why
+    their focus ring is not: an invisible control with an invisible focus state is not a
+    control at all.
+  */
+  .station {
     position: absolute;
     inset-inline-start: var(--x);
     inset-block-start: var(--y);
@@ -714,233 +870,125 @@ const b = BOX;
     padding: 0;
     border: 0;
     background: none;
-    color: inherit;
+    border-radius: var(--r-cell);
     cursor: pointer;
-  }
-
-  /* DESIGN.md §C.3 — 112 x 56, 128 x 136 and 128 x 88 of the 856 x 520 box. */
-  .station[data-kind='agent'] {
-    --w: 13.0841%;
-    --h: 10.7692%;
-  }
-
-  .station[data-kind='human'] {
-    --w: 14.9533%;
-    --h: 26.1538%;
-  }
-
-  .station[data-kind='chair'] {
-    --w: 14.9533%;
-    --h: 16.9231%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /*
-    DESIGN.md §C.6 and §C.7 put the portrait plan below 768, and it is back there. Step
-    3 had moved it up to 1024 because the plate's keep-out lane left 460 of the 704px
-    content width at 768, which scaled the 6 x 5 plan's agent buttons to 65 x 33 — under
-    the 44 x 44 floor. The lane is withdrawn (step-2 review, ruling (b)), so 768 has its
-    full 704 and the wide plan measures 99.6 x 49.8 there, clear on both axes.
+    Which plan is live is the ONLY thing this stylesheet decides about a button. Both
+    plans' centres and footprints arrive on the element from `plan.ts`, so a change to
+    the room's geometry moves its targets without touching a line of CSS.
   */
-  @media (max-width: 767px) {
-    .scene--wide {
-      display: none;
-    }
+  .station {
+    --x: var(--xw);
+    --y: var(--yw);
+    --w: var(--ww);
+    --h: var(--hw);
+  }
 
-    .floor__scene {
-      inline-size: 320px;
-      aspect-ratio: 320 / 520;
-    }
-
+  @media (max-width: 739px) {
     .station {
       --x: var(--xt);
       --y: var(--yt);
-    }
-
-    /* DESIGN.md §C.7 — 101.33 x 68, 320 x 88 and 104 x 92 of the 320 x 520 box. The
-       smallest target anywhere in the portrait set is 101.3 x 68, and 68 is 55% above
-       the 44 x 44 floor. */
-    .station[data-kind='agent'] {
-      --w: 31.6667%;
-      --h: 13.0769%;
-    }
-
-    .station[data-kind='human'] {
-      --w: 100%;
-      --h: 16.9231%;
-    }
-
-    .station[data-kind='chair'] {
-      --w: 32.5%;
-      --h: 17.6923%;
+      --w: var(--wt);
+      --h: var(--ht);
     }
   }
 
   /*
-    DESIGN.md §C.3 and §C.6 — the wide box is 856 x 520 and the room draws 1:1 inside
-    it. Below 1440 the box takes what is left between the section's own bleed limit and
-    the slot's left edge, and the whole scene scales as one unit:
-
-      1920 / 1440   856 x 520, 1:1        (the cap; two widths, one picture)
-      1024          682 x 414, 0.797      (cols 1-8 610 + the borrowed gutter 24 + the
-                                           section's left outer margin 48)
-      768           704 x 428, 0.822      (the content width, stacked)
-
-    Step-3 review item 6: the room used to render 654 x 462 at 1440 and 700 x 495 at
-    1024 — smaller at the larger width, in the left half of a section with a void beside
-    it. It uses its column now.
+    The selected station. It is a hairline and nothing else: the panel beside the room is
+    what carries the selection, and a filled rectangle over the artwork covers the thing
+    it is meant to be pointing at.
   */
-  @media (min-width: 768px) {
-    .scene--tall {
-      display: none;
-    }
-
-    .floor__scene {
-      inline-size: 100%;
-      max-inline-size: 856px;
-      aspect-ratio: 856 / 520;
-      --fl-plate-size: 15.8px;
-    }
+  .station[data-selected] {
+    box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0.3);
   }
 
-  @media (min-width: 1024px) {
-    .floor__scene {
-      --fl-plate-size: 16.3px;
-    }
+  .station:hover {
+    box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0.5);
   }
 
-  @media (min-width: 1440px) {
-    .floor__scene {
-      --fl-plate-size: 13px;
-    }
-  }
+  /* --- The panel --- */
 
-  /*
-    DESIGN.md §C.6 — the fixed slot. The reservation is not a guess and it is not
-    arithmetic either: every one of the four numbers is the tallest card MEASURED in this
-    slot at that width, plus this element's own 48px of padding, plus a step of slack.
-    The four are set below, with their derivations. If a copy edit ever overflows one, the
-    fix is the copy or the padding, never a shorter reservation — and `qa:floor:slot` will
-    say so, because the page height is what it asserts.
-  */
-  /*
-    Step-2 review item 4, and §J's pre-committed cut for `/`: the slot has NO
-    container. It is a reservation, not a box — no border, no outline, no fill, no
-    radius, no shadow. A 1px rule drawn round a 344px reservation turns invisible space
-    into a visible empty container, and it was the only outlined rectangle on the site.
-    The card's own internal rule above `Checked by` stays; that one carries meaning.
-  */
   .floor__slot {
-    min-block-size: var(--card-slot-min);
-    padding-block: var(--space-24);
+    flex: 1 1 300px;
+    min-inline-size: min(100%, 280px);
+    padding: var(--space-24);
+    /*
+      A reservation, not a box: it is tall enough for the LONGEST card, so opening a
+      different station never reflows the section under the reader's own thumb.
+
+      Two things about the number. It is a floor on the CONTENT box, because
+      `box-sizing: border-box` is set site-wide and a border-box minimum would be short by
+      this element's own padding at both ends. And it is width-dependent, because the
+      longest card is not the same card at every width: at 1440 the panel is wide and the
+      two human cards set in fewer lines than the chair's; at 360 the panel is the full
+      column and Tanya's card — the longest body plus an `Owns` line — runs 64px past the
+      chair's. Measured, not guessed: `check-floor-slot` opens all ten cards at five
+      widths and fails on any page movement at all.
+    */
+    min-block-size: 380px;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
   }
 
-  .station-card__lead,
-  .station-card__body {
+  @media (min-width: 768px) {
+    .floor__slot {
+      min-block-size: 300px;
+    }
+  }
+
+  .station-card__kind {
+    color: var(--lamp);
+    margin-block-end: var(--space-12);
+  }
+
+  .station-card__name {
+    font-size: var(--step-card-title);
+  }
+
+  .station-card__lead {
     margin-block-start: var(--space-8);
-    color: var(--tgd-on-room-muted);
+    color: var(--ink-2);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  .station-card__body {
+    margin-block-start: var(--space-12);
+    color: var(--dim);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
   }
 
   .station-card__gate {
-    margin-block-start: var(--space-16);
+    margin-block-start: var(--space-20);
     padding-block-start: var(--space-16);
-    border-block-start: 1px solid var(--rule-on-room);
+    border-block-start: 1px solid var(--line);
   }
 
   .station-card__gate-label {
-    font-size: var(--step-micro);
-    line-height: var(--step-micro-lh);
-    color: var(--tgd-on-room-muted);
+    color: var(--dim);
   }
 
   .station-card__gate-name {
     margin-block-start: var(--space-4);
+    color: var(--ink);
     font-weight: 600;
+    font-size: var(--step-small);
   }
 
-  /*
-    §C.6's four reservations, re-derived a second time — the final review's item N2, and
-    the arithmetic is what was wrong both times.
-
-    Round 12 fixed the CONTENT numbers against measurement (item H6): the tallest card is
-    329.0 below 768, 251.3 at 768-1023, 406.7 at 1024-1439 and 339.2 at 1440. What both
-    rounds then missed is that `min-block-size` is a BORDER-BOX number here — `box-sizing`
-    is border-box site-wide — and this slot carries 24px of padding at both ends, so the
-    space a card actually gets is `min-height − 48`. 320 reserved 272 for a 329.0 card,
-    416 reserved 368 for a 406.7 one, 264 reserved 216 for 251.3. Every one of the four
-    was short by roughly its own padding, and opening a human's card stepped the whole
-    floor section and everything under it down the page: +57.0 at 360, +31.1 at 390,
-    +35.3 at 768, +38.7 at 1024. Only 1440 held, and only because the scene is taller
-    than the slot there and absorbed it. Lighthouse never saw it — an input-initiated
-    shift inside 500ms is excluded from CLS — which is why it took a rendered review.
-
-    So each number is now **tallest card + 48 + slack**, rounded to the next 8px step:
-
-      < 768      329.0 + 48 = 377.0  ->  384   (the same number serves 390's 303.1)
-      768-1023   251.3 + 48 = 299.3  ->  304
-      1024-1439  406.7 + 48 = 454.7  ->  464
-      >= 1440    339.2 + 48 = 387.2  ->  392
-
-    §C.6's own rule is what this applies — the fix is the copy or the padding, never a
-    shorter reservation — and `qa:floor:slot` is now the assertion PLAN.md §4.3 asked for:
-    it opens all ten cards at all five widths and fails if `scrollHeight` moves by a pixel.
-  */
-  @media (min-width: 768px) {
-    .floor__slot {
-      min-block-size: 304px;
-    }
-  }
-
-  /*
-    §C.6: "The side-by-side arrives at 1024, and it always did." The keep-out lane that
-    used to hold it back to 1440 is withdrawn (step-2 review, ruling (b)), so the slot
-    takes cols 9-12 at 1024 — 293px there, 384px at 1440 — vertically centred to the
-    scene, and it never drops below the roster.
-  */
-  @media (min-width: 1024px) {
-    .floor__body {
-      grid-template-columns: minmax(0, 1fr) var(--card-slot-width);
-      /*
-        §C.3: "The box's right edge is the card slot's left edge." No gutter is drawn
-        between them — the room's optical air is the scene box's own transparent 76-unit
-        right margin plus the slot's 24 of padding, which is 100px at 1440.
-      */
-      gap: 0;
-      align-items: center;
-    }
-
-    /*
-      §C.3: the box's left edge "is where the floor section's full bleed allows it to
-      go, because what sits in that margin is empty scene and never a mark". That bleed
-      is the section's own outer margin, so the box is its column plus that margin,
-      capped at 856. At 1024 it comes out at 682 (610 + 24 + 48) and at 1440 and 1920 at
-      the 856 cap, with the right edge on the slot in all three.
-    */
-    .floor__scene {
-      justify-self: end;
-      inline-size: min(856px, calc(100% + var(--outer)));
-      margin-inline: 0;
-    }
-
-    .floor__slot {
-      min-block-size: 464px;
-      padding-inline: var(--space-24);
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .floor__slot {
-      min-block-size: 392px;
-    }
-  }
+  /* --- The roster line --- */
 
   .floor__roster-label {
-    margin-block-start: var(--space-32);
-    color: var(--tgd-on-room-muted);
+    margin-block-start: var(--gap-block);
+    color: var(--lamp);
   }
 
   .floor__roster {
-    margin-block-start: var(--space-4);
-    color: var(--tgd-on-room-muted);
-    max-inline-size: 60ch;
+    margin-block-start: var(--space-8);
+    max-inline-size: 62ch;
   }
 </style>

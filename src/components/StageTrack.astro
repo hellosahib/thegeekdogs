@@ -3,57 +3,58 @@ import { STAGE_LABELS, STATE_WORDS, stageSteps, TRACK_GROUP_LABEL, stageSummary 
 import type { Stage } from '../content.config';
 
 /**
- * The full, labelled build-stage track (DESIGN.md §E.1, §E.1a, §E.2; COPY.md §2.8,
- * §10.4). One product, five stages, labels on every node.
+ * The build-stage track. One product, five stages, one column per stage.
  *
- * §B.11 puts it directly under each product page's h1, because "Live" is the strongest
- * fact on that page, and on /work/ under each product's one-line description.
+ * This is the site's one stage device now: the home page's proof panel, `/work/` and
+ * both product pages render exactly this component, so a visitor who learns to read it
+ * once has learned to read it everywhere. The compressed second form it replaces is
+ * gone with the layout that needed it.
  *
- * §E.2 as amended in round 9: **horizontal at >= 931, vertical at <= 930.** Below 768
- * five labels across 320px give 64px each and `Submitted for review` cannot set; from
- * 768 to 930 the horizontal axis ends inside the plate's 276px band and the last two
- * nodes — the two that say the product is not out yet — are covered, which §B.10's
- * amended rule forbids. The vertical form has no right-hand extent, so it is the remedy
- * rather than a narrower pitch: capping the axis at `band - 16` gives an 85px pitch at
- * 768, which drops `Submitted for review` to three lines and breaks §E.2's two-line
- * label reservation. Nothing else about the component changes at the new breakpoint.
+ * The three states differ on THREE redundant channels — the node's size, its internal
+ * structure, and the pattern of the connector leaving it — so the component survives
+ * greyscale and forced colours. The state word is spoken on every item as well, so
+ * nothing at all rests on the graphic.
  *
- * Run A item 6: the horizontal axis is no longer a fixed 567px object that never
- * answers the grid. Its width is `--track-span`, which a page sets to the column span
- * it wants the axis to fill; the default is five times §B.10's own `--track-pitch`,
- * which is the pitch that makes the two-line label reservation hold. Either way the
- * axis has a stated width rather than an accidental one, and the page is what decides
- * where its right edge lands relative to the plate's band.
- *
- * The three states differ on three redundant channels — size, internal structure and
- * the pattern of the connector leaving the node — so the component survives greyscale,
- * and COPY.md §10.4's state word is spoken on every item as well, so nothing rests on
- * the graphic at all. Every value that is --floor in light resolves through --ink, so
- * there is one declaration per property and no second component in dark.
+ * Below 560 the five columns become five rows: five labels across a 320px viewport give
+ * 64px each, and `Submitted for review` cannot set in 64px at any size a person would
+ * read. The vertical form has no horizontal extent to run out of.
  */
 interface Props {
   stage: Stage;
-  /** Names the list, so a page carrying two tracks says which is which (COPY.md §10.4). */
+  /** Names the list, so a panel carrying two tracks says which is which. */
   label: string;
+  /**
+   * Whether to PRINT that name above the track.
+   *
+   * It is on where the track has to identify itself — the home page's proof panel
+   * carries two of them and nothing else says which is which — and off wherever the
+   * thing above it has already named the product, which is every other placement: the
+   * `/work/` card's own heading, and a product page's h1. The accessible name is built
+   * from `label` either way, so a screen reader always hears which track it is in.
+   */
+  showName?: boolean;
 }
 
-const { stage, label } = Astro.props;
+const { stage, label, showName = true } = Astro.props;
 const steps = stageSteps(stage);
 ---
 
-<div class="full-track">
-  <p class="full-track__now small" aria-hidden="true">{stageSummary(stage)}</p>
-  <ol class="full-track__list" aria-label={`${label} ${TRACK_GROUP_LABEL}`}>
+<div class="track">
+  <p class="track__head" data-unnamed={showName ? undefined : ''}>
+    {showName && <span class="track__name">{label}</span>}
+    <span class="track__now mono" aria-hidden="true">{stageSummary(stage)}</span>
+  </p>
+  <ol class="track__list" aria-label={`${label} ${TRACK_GROUP_LABEL}`}>
     {
       steps.map((step) => (
         <li
-          class="full-track__step"
+          class="track__step"
           data-state={step.state}
           aria-current={step.state === 'current' ? 'step' : undefined}
         >
           <span class="sr-only">{`${step.label}. ${STATE_WORDS[step.state]}.`}</span>
-          <span class="full-track__node" aria-hidden="true" />
-          <span class="full-track__label" aria-hidden="true">
+          <span class="track__node" aria-hidden="true" />
+          <span class="track__label micro" aria-hidden="true">
             {STAGE_LABELS[step.key].label}
           </span>
         </li>
@@ -63,192 +64,159 @@ const steps = stageSteps(stage);
 </div>
 
 <style>
-  .full-track__now {
-    color: var(--tgd-muted);
+  .track__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-12);
   }
 
-  /* < 768 — vertical. 44px rows, connector vertical, label to the right. */
-  .full-track__list {
-    margin-block-start: var(--space-12);
+  /* With no name beside it the stage line has the row to itself, and it belongs at the
+     start of that row rather than pushed to the far end of an empty one. */
+  .track__head[data-unnamed] {
+    justify-content: flex-start;
+  }
+
+  .track__name {
+    font-weight: 600;
+    font-size: var(--step-list-title);
+    letter-spacing: var(--step-title-tracking);
+  }
+
+  /* The one line that says where the product actually is. Lamp, because "where it is
+     now" is live state, and live state is what the lamp colour is reserved for. */
+  .track__now {
+    color: var(--lamp);
+    font-size: var(--step-caption);
+  }
+
+  .track__list {
+    margin-block-start: var(--space-20);
     list-style: none;
     display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: start;
   }
 
-  .full-track__step {
+  .track__step {
     position: relative;
     display: grid;
-    grid-template-columns: 20px minmax(0, 1fr);
-    column-gap: var(--space-16);
-    align-items: center;
-    min-block-size: 44px;
+    justify-items: start;
+    row-gap: var(--space-12);
+    padding-inline-end: var(--space-8);
   }
 
-  .full-track__node {
-    position: relative;
-    z-index: 1;
-    justify-self: center;
-    inline-size: 10px;
-    block-size: 10px;
-    border-radius: 50%;
-  }
-
-  /* DESIGN.md §E.1 — a connector belongs to the node it leaves, so the segment out of
-     the current node is solid and the dashes begin at the first future node. */
-  .full-track__step:not(:last-child)::after {
+  /*
+    The connector belongs to the step it LEAVES, so its pattern says what the step
+    behind it is: solid accent out of a completed stage, dashed dim out of anything not
+    reached yet. The last step has nothing to connect to.
+  */
+  .track__step::after {
     content: '';
     position: absolute;
-    inset-inline-start: 10px;
-    inset-block-start: 50%;
-    block-size: 100%;
-    inline-size: 0;
-    border-inline-start: 2px solid var(--tgd-ink);
+    inset-block-start: 9px;
+    inset-inline-start: 20px;
+    inline-size: calc(100% - 20px);
+    border-block-start: 2px solid var(--dim);
+    opacity: 0.5;
   }
 
-  .full-track__step[data-state='upcoming']:not(:last-child)::after {
-    border-inline-start-style: dashed;
-    border-inline-start-color: var(--node-future-connector);
+  .track__step:last-child::after {
+    content: none;
   }
 
-  .full-track__step[data-state='complete'] .full-track__node {
-    background-color: var(--tgd-ink);
+  .track__step[data-state='complete']::after {
+    border-block-start-style: solid;
+    border-block-start-color: var(--accent);
+    opacity: 1;
   }
 
-  .full-track__step[data-state='upcoming'] .full-track__node {
-    background-color: transparent;
-    border: 1.5px solid var(--node-future-stroke);
+  .track__step[data-state='current']::after,
+  .track__step[data-state='upcoming']::after {
+    border-block-start-style: dashed;
   }
 
-  /* The current node: 18px, a ring with a concentric 8px core and a 4px clear gap.
-     The only node on the track with two parts. */
-  .full-track__step[data-state='current'] .full-track__node {
-    inline-size: 18px;
-    block-size: 18px;
-    border: 3px solid var(--tgd-ink);
-    background-color: transparent;
-  }
-
-  .full-track__step[data-state='current'] .full-track__node::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    inline-size: 8px;
-    block-size: 8px;
+  .track__node {
+    inline-size: 12px;
+    block-size: 12px;
     border-radius: 50%;
-    background-color: var(--node-current-core);
+    background: var(--accent);
+    margin-block-start: 3px;
   }
 
-  .full-track__label {
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-muted);
+  /* The one node the reader is meant to find: bigger, hollow, haloed, and in the lamp,
+     which on this site means "live". */
+  .track__step[data-state='current'] .track__node {
+    inline-size: 20px;
+    block-size: 20px;
+    margin-block-start: 0;
+    background: transparent;
+    border: 3px solid var(--lamp);
+    box-shadow: 0 0 0 6px rgba(var(--lamp-rgb), 0.14);
   }
 
-  .full-track__step[data-state='current'] .full-track__label {
+  .track__step[data-state='upcoming'] .track__node {
+    background: transparent;
+    border: 2px solid var(--dim);
+    opacity: 0.7;
+  }
+
+  .track__label {
+    color: var(--dim);
+    line-height: 1.35;
+    /* Two lines are reserved at every width, so a track whose current stage has the
+       longest label is the same height as one whose current stage is `Live`. */
+    min-block-size: 2.7em;
+  }
+
+  .track__step[data-state='current'] .track__label {
+    color: var(--ink);
     font-weight: 600;
-    color: var(--tgd-ink);
   }
 
-  .full-track__step[data-state='complete'] .full-track__label {
-    font-weight: 500;
-  }
-
-  /*
-    Step-1 review item 17 keeps COPY.md §10.4's `Stage:` line below 768 and drops it at
-    768 and above, and that is unchanged by §E.2's breakpoint moving to 931: the line's
-    rule is about whether the five labels are readable, not about which form the track
-    takes, and in the vertical form between 768 and 930 they are. Held at its own
-    breakpoint so the two do not get confused for one.
-  */
-  @media (min-width: 768px) {
-    .full-track__now {
-      display: none;
+  /* Five rows rather than five columns, where five columns would give each label 64px. */
+  @media (max-width: 559px) {
+    .track__list {
+      grid-template-columns: none;
+      row-gap: var(--space-4);
     }
-  }
 
-  /*
-    >= 931 — horizontal, five even columns, labels beneath (§E.2, round 9).
+    .track__step {
+      grid-template-columns: 20px minmax(0, 1fr);
+      column-gap: var(--space-16);
+      align-items: center;
+      row-gap: 0;
+      min-block-size: 44px;
+      padding-inline-end: 0;
+    }
 
-    **The axis takes its block's own inner edges (§E.2 round 12, review item W1).**
-    Run A item 6 asked for a track that answers the grid instead of a fixed 567px object,
-    and giving the pitch a column span was the mechanism. The composition did not follow:
-    with five equal columns and a node centred in each, the first and last node centres
-    sit half a column inside the block, which rendered as 48px of dead margin at each end
-    of a --band block at 1440 and as a vertical track in the left 250px of an 866-wide
-    block at 930. 48px of dead margin at each end is what makes a diagram look dropped in
-    rather than laid out.
-
-    §E.2's rule, verbatim: *the first node centre sits at the block's left inner edge + 9
-    (the ring), and the last at `min(block right inner edge − 9, 100vw − 300)` — the
-    block, or the plate's band less 24px, whichever is smaller. The pitch is whatever
-    those two ends and five nodes make it.*
-
-    Both terms are one expression. The block term is `100% − 18`, a percentage of this
-    list's own containing block, which the page has already sized to the block's border
-    box. The band term needs the block's LEFT edge in viewport coordinates, and that is
-    always §B.5's content left — every block that carries this track starts at column 1 —
-    so it is `50vw − min(50vw, 660px) + --outer`, and the whole right-hand term reduces to
-    `50vw + min(50vw, 660px) − --outer − 318`. One declaration, no breakpoints inside it,
-    and it hands over between the two terms wherever they cross.
-
-    | vw | Block | Axis | Last node | Pitch | Clear of band |
-    |---|---|---|---|---|---|
-    | 931 | 32 → 899 | 581 | 622 | 145.3 | 24 |
-    | 1024 | 48 → 738 | 658 | 715 | 164.5 | 24 |
-    | 1440 | 120 → 1014 | 876 | 1005 | 219.0 | 150 |
-
-    The list is then 1.25 axes wide and starts an eighth of an axis before it, because
-    with five equal columns a node centre sits half a column in: 5w = 1.25 x 4w, and
-    w/2 = axis/8. That is the whole of the arithmetic, and it puts the first node's ring
-    tangent to the block's left edge and the last node's ring on the smaller of the two
-    right-hand limits.
-  */
-  @media (min-width: 931px) {
-    .full-track__list {
-      --axis-span: min(
-        calc(100% - 18px),
-        calc(50vw + min(50vw, 660px) - var(--outer) - 318px)
-      );
+    .track__node {
+      justify-self: center;
       margin-block-start: 0;
-      margin-inline-start: calc(9px - 0.125 * var(--axis-span));
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      inline-size: calc(1.25 * var(--axis-span));
     }
 
-    .full-track__step {
-      grid-template-columns: minmax(0, 1fr);
-      row-gap: var(--space-12);
+    .track__step::after {
+      inset-block-start: 22px;
+      inset-inline-start: 9px;
+      inline-size: 0;
+      block-size: calc(100% - 22px);
+      border-block-start: 0;
+      border-inline-start: 2px solid var(--dim);
+    }
+
+    .track__step[data-state='complete']::after {
+      border-inline-start-color: var(--accent);
+      border-inline-start-style: solid;
+    }
+
+    .track__step[data-state='current']::after,
+    .track__step[data-state='upcoming']::after {
+      border-inline-start-style: dashed;
+    }
+
+    .track__label {
       min-block-size: 0;
-      justify-items: center;
-      text-align: center;
-    }
-
-    .full-track__step:not(:last-child)::after {
-      inset-inline-start: 50%;
-      inset-block-start: 9px;
-      inline-size: 100%;
-      block-size: 0;
-      border-inline-start: 0;
-      border-block-start: 2px solid var(--tgd-ink);
-    }
-
-    .full-track__step[data-state='upcoming']:not(:last-child)::after {
-      border-block-start-style: dashed;
-      border-block-start-color: var(--node-future-connector);
-      border-inline-start: 0;
-    }
-
-    /* §E.2 — two lines reserved for all five, so `Submitted for review` wrapping
-       shifts nothing. */
-    .full-track__label {
-      padding-inline: var(--space-4);
-      min-block-size: calc(2 * var(--step-small) * var(--step-small-lh));
-    }
-
-    /* The 18px current node is centred in its column like every other, so its size
-       pushes nothing rightward; the 4px of extra height is absorbed here. */
-    .full-track__step[data-state='current'] .full-track__node {
-      margin-block: -4px;
     }
   }
 </style>

@@ -1,43 +1,90 @@
 ---
 /**
- * DESIGN.md §F.7, §F.8 and §G.3 reserve a portrait slot beside the h1 — 320 x 320 at
- * 360, 366 x 440 in cols 9-12 from 1024 — "reserved with explicit dimensions so filling
- * it later causes no reflow".
+ * The portrait slot: an empty reserved frame, 366 x 440, beside a person's h1.
  *
- * QUESTIONS.md item 23 chose portraits from a headshot tool trained on each person's own
- * selfies, and the images have not been supplied. COPY.md §10.1's two alt lines are still
- * [CONFIRM]-marked pending them, and an alt line has to describe the image that actually
- * ships. So the slot renders with NO image and NO placeholder: no frame, no fill, no
- * label, no icon and no `placeholder` attribute anywhere. It is reserved space and
- * nothing else, which is the one rendering that cannot be mistaken for a decision.
+ * No headshot exists for either founder. The design's answer is not to hide the space
+ * and not to fill it with a stock face — it is to make the reservation VISIBLY
+ * deliberate. A 135° hairline hatch across the panel, a 96px circle holding the person's
+ * monogram, and a mono micro-label naming the slot and its dimensions. A reader who sees
+ * it understands that a portrait is coming; nobody sees a broken image.
  *
- * `people.headshot` and `headshotAlt` are optional on the schema for the same reason, so
- * dropping the images in later is content work rather than a code change.
+ * When a real headshot arrives it fills this frame and all three of those elements go.
+ * The aspect ratio is stated rather than a fixed height, so the reservation scales with
+ * its column and filling it later causes no reflow.
+ *
+ * `people.headshot` and `headshotAlt` stay optional on the schema for the same reason:
+ * dropping the images in later is content work, not a code change.
  */
+interface Props {
+  /** The person's initials. Two characters, set in the mono face. */
+  monogram: string;
+}
+
+const { monogram } = Astro.props;
 ---
 
-<div class="headshot-slot" aria-hidden="true"></div>
+<div class="portrait glass" aria-hidden="true">
+  <span class="portrait__hatch"></span>
+  <span class="portrait__monogram mono">{monogram}</span>
+  <span class="portrait__label micro">Portrait slot · 366 × 440</span>
+</div>
 
 <style>
-  /* §F.7 — 320 x 320 at 360. The aspect ratio, not a fixed height, so the reservation
-     scales with the column it is in without the page having to know the column width. */
-  .headshot-slot {
+  .portrait {
+    position: relative;
     inline-size: 100%;
-    max-inline-size: 320px;
-    aspect-ratio: 1 / 1;
+    max-inline-size: 366px;
+    aspect-ratio: 366 / 440;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
   }
 
-  /* §F.8, §G.3 — 366 x 440 in cols 9-12 from 1024. */
-  @media (min-width: 1024px) {
-    .headshot-slot {
-      max-inline-size: 366px;
-      aspect-ratio: 366 / 440;
-    }
+  /*
+    The hatch says "reserved" the way a hatched area on a drawing does. 135°, hairline,
+    at an alpha low enough that it never competes with the monogram sitting on it.
+  */
+  .portrait__hatch {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(var(--f-ink-rgb), 0.07) 0 1px,
+      transparent 1px 11px
+    );
+  }
+
+  .portrait__monogram {
+    position: relative;
+    inline-size: 96px;
+    block-size: 96px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    color: var(--dim);
+    background: var(--glass);
+  }
+
+  /*
+    The label takes --ink-2 rather than --dim. It sits on glass over a raised band, which
+    is the lightest ground in the light scheme and the least contrasty in the dark one,
+    and at --dim it measured 3.86:1 in light and 4.48:1 in dark — under AA in both. It is
+    a note about the frame rather than body copy, and the frame is the quiet thing here,
+    so the label can carry the stronger ink without becoming loud.
+  */
+  .portrait__label {
+    position: absolute;
+    inset-block-end: var(--space-16);
+    inset-inline: 0;
+    text-align: center;
+    color: var(--ink-2);
   }
 
   /* Reserved space is not a thing that belongs on paper. */
   @media print {
-    .headshot-slot {
+    .portrait {
       display: none;
     }
   }

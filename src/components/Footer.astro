@@ -3,33 +3,29 @@ import { getCollection } from 'astro:content';
 import { FOOTER, STUDIO_EMAIL, NAV, BUILT_ROUTES } from '../lib/copy';
 
 /**
- * COPY.md §1, footer.
+ * Four columns on the --void ground the closing CTA already sits on, so the page ends
+ * in one continuous recessed band rather than in two stacked ones: studio identity and
+ * address, Pages, Elsewhere, and the disclaimer with the copyright.
  *
- * Step-1 review item 12: the location line was missing at every breakpoint on both
- * pages. It is COPY.md §1's own string and it is back.
+ * **`links` gates the `Elsewhere` column.** The four profile links are the two founders',
+ * and they belong next to the person rather than under the studio, so the column renders
+ * on `/sahib/` and `/tanya/` and nowhere else. It is the one structural difference
+ * between the footer on a person page and the footer everywhere else.
  *
- * The "Elsewhere" group needed the founders' profile URLs, which live on the `people`
- * collection; that collection now exists, so the four outbound links ship. Four links
- * and no more (items 17 and 18).
- *
- * The nav repeat still points at four routes that are not built, so it is still out —
- * the same rule the header follows.
- *
- * **`quiet` is §J's pre-committed cut for `/404`** (review item E2, and §J's row made
- * specific in round 12). Rendered, that page was 1,120px of which 615px was footer, and
- * §J names the cut by hand: "Everything except the line and the link home. The empty room
- * is the joke; a nav menu underneath it is not." The nav repeat and the `Elsewhere` block
- * ARE that menu. The header nav stays — it is site chrome on every route — and so do the
- * studio line, the location line, the address and the rights line, which are the footer
- * everywhere else. The employer note stays with them: brief §5.4 requires it wherever an
- * employer name is printed, so it is not a discretionary cut on any route.
+ * **`quiet` is `/404`'s cut.** That page is a line and a link home; a nav menu underneath
+ * it would be longer than the page. The studio line, the location, the address, the
+ * employer note and the rights line stay, because they are the footer everywhere. The
+ * employer note in particular is not discretionary: it is required wherever an employer
+ * name is printed.
  */
 interface Props {
-  /** §J, `/404` — drop the nav repeat and the `Elsewhere` block. */
+  /** `/404` — drop the nav repeat. */
   quiet?: boolean;
+  /** Person pages — render the `Elsewhere` column. */
+  links?: boolean;
 }
 
-const { quiet = false } = Astro.props;
+const { quiet = false, links = false } = Astro.props;
 
 const people = await getCollection('people');
 
@@ -41,26 +37,29 @@ for (const entry of FOOTER.elsewhere) {
 }
 
 const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
+const showElsewhere = links && !quiet && elsewhere.length > 0;
 ---
 
-<footer class="site-footer">
-  <div class="shell">
-    <hr class="site-footer__rule" />
-  </div>
-  <div class="shell stack">
-    <p>{FOOTER.studioLine}</p>
-    <p>{FOOTER.locationLine}</p>
-    <p>
-      <a class="link" href={`mailto:${STUDIO_EMAIL}`}>{FOOTER.emailLabel}</a>
-    </p>
+<footer class="site-footer" data-theme-anim>
+  <div class="shell site-footer__grid">
+    <div class="site-footer__col stack-tight">
+      <p class="site-footer__studio">{FOOTER.studioLine}</p>
+      <p class="small muted">{FOOTER.locationLine}</p>
+      <p>
+        <a class="site-footer__address mono" href={`mailto:${STUDIO_EMAIL}`}>{FOOTER.emailLabel}</a>
+      </p>
+    </div>
 
     {
       !quiet && navRepeat.length > 0 && (
-        <nav aria-label="Footer">
+        <nav class="site-footer__col" aria-labelledby="footer-pages">
+          <h2 id="footer-pages" class="micro site-footer__heading">
+            Pages
+          </h2>
           <ul class="site-footer__links">
             {navRepeat.map((item) => (
               <li>
-                <a class="link" href={item.href}>
+                <a class="site-footer__link" href={item.href}>
                   {item.label}
                 </a>
               </li>
@@ -71,15 +70,20 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     }
 
     {
-      !quiet && elsewhere.length > 0 && (
-        <section class="stack-tight" aria-labelledby="footer-elsewhere">
-          <h2 id="footer-elsewhere" class="site-footer__heading">
+      showElsewhere && (
+        <section class="site-footer__col" aria-labelledby="footer-elsewhere">
+          <h2 id="footer-elsewhere" class="micro site-footer__heading">
             {FOOTER.elsewhereHeading}
           </h2>
-          <ul class="site-footer__links small">
+          <ul class="site-footer__links">
             {elsewhere.map((item) => (
               <li>
-                <a class="link" href={item.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  class="site-footer__link"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {item.label}
                   <span class="sr-only"> Opens a new tab.</span>
                 </a>
@@ -90,98 +94,86 @@ const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));
       )
     }
 
-    <p class="small muted">{FOOTER.employerNote}</p>
-    <p class="small muted">{FOOTER.rightsLine}</p>
+    <div class="site-footer__col stack-tight">
+      <p class="caption muted">{FOOTER.employerNote}</p>
+      <p class="caption muted mono">{FOOTER.rightsLine}</p>
+    </div>
   </div>
 </footer>
 
 <style>
   /*
-    Step-2 review item 9: §B.8 and §B.9 both put the footer's nav repeat, the two
-    GitHub lines and the micro lines INSIDE the final --floor block, and §B.9 names
-    that block as what "bookends the room". The footer took --band, so the last fill
-    on the page was a light panel and the room was bookended by a sheet. It takes the
-    room's own ground now and follows the final CTA with no seam between them: the
-    1px inset top edge §B.2a asks for belongs to the top of the inverted region, and
-    the region starts at the CTA.
+    The footer takes the same --void ground the closing CTA does, and the two meet with
+    no seam: the page's last band is one recessed block, and the room is bookended by
+    the same darkness it opened on.
   */
   .site-footer {
-    background-color: var(--tgd-room);
-    color: var(--tgd-on-room);
-    padding-block-start: var(--space-32);
-    padding-block-end: var(--space-48);
-    /* §B.2/§C.8 — inside the room the outer ring is --chalk, never --ink, because in
-       the light scheme --ink resolves to the room's own ground. */
-    --focus-outer: var(--tgd-on-room);
+    background-color: var(--void);
+    color: var(--ink);
+    padding-block: var(--space-56);
+    border-block-start: 1px solid var(--line);
   }
 
-  /* §B.9 draws a rule above the two GitHub lines; it separates the CTA's own block
-     from the footer's inside one continuous floor. */
-  .site-footer__rule {
-    border: 0;
-    border-block-start: 1px solid var(--rule-on-room);
-    margin-block-end: var(--space-32);
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: var(--space-40);
+    align-items: start;
   }
 
-  .site-footer :global(.muted) {
-    color: var(--tgd-on-room-muted);
+  .site-footer__studio {
+    font-weight: 600;
+    max-inline-size: 26ch;
   }
 
-  /* COPY.md §10.5 — every outbound link says so in its own name; no icon carries it. */
-  .site-footer__links {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: var(--space-32);
-    row-gap: var(--space-4);
-  }
-
-  .site-footer__links a {
+  .site-footer__address {
     display: inline-flex;
     align-items: center;
     min-block-size: 44px;
+    color: var(--accent);
+    font-size: var(--step-small);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
 
   .site-footer__heading {
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    font-family: var(--tgd-font-body);
-    font-weight: 600;
-    color: var(--tgd-on-room-muted);
+    color: var(--dim);
+    font-weight: 400;
+    margin-block-end: var(--space-8);
   }
 
-  /*
-    DESIGN.md §D.8 — paper cannot follow a link, so the nav repeat and the Elsewhere
-    group do not print. The studio line, the location, the address and the employer note
-    do: brief §5.4 requires the note wherever an employer name is printed, and a person
-    page prints five of them.
-  */
+  /* Every outbound link says so in its own accessible name; no icon carries it. */
+  .site-footer__links {
+    list-style: none;
+  }
+
+  .site-footer__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 40px;
+    font-size: var(--step-small);
+    color: var(--dim);
+    text-decoration: none;
+  }
+
+  .site-footer__link:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Paper cannot follow a link, so the two link columns do not print. The studio line,
+     the location, the address and the employer note do: the note is required wherever
+     an employer name is printed, and a person page prints five of them. */
   @media print {
     .site-footer__links,
     .site-footer__heading {
       display: none;
     }
 
-    /*
-      §D.8's failure class, one layer down. The footer takes the room's ground so the page
-      is bookended by the floor (§B.9), and its text is --chalk. On paper a browser
-      suppresses the ground and leaves --chalk on white at 1.20 : 1 — an unreadable block
-      produced silently. It prints as ink on paper with a rule above it instead, which is
-      the separation the fill was carrying.
-    */
     .site-footer {
-      background-color: transparent;
-      color: var(--floor);
-      box-shadow: none;
-      padding-block-start: var(--space-16);
-      padding-block-end: 0;
-      --tgd-on-room: var(--floor);
-      --tgd-on-room-muted: #444;
-    }
-
-    .site-footer__rule {
-      border-block-start-color: #444;
-      margin-block-end: var(--space-16);
+      padding-block: var(--space-16) 0;
     }
   }
 </style>

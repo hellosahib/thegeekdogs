@@ -26,7 +26,7 @@ export const HH = 32;
  * narrow for the plates and 40 too tall for a room whose lamp hangs over its nearest
  * cell, which is what the step-3 review measured at 1440 (item 6).
  */
-export const WIDE_BOX = { w: 856, h: 520 } as const;
+export const WIDE_BOX = { w: 856, h: 560 } as const;
 /** DESIGN.md §C.7 — the portrait scene box. Same 520, so nothing jumps at the switch. */
 export const TALL_BOX = { w: 320, h: 520 } as const;
 
@@ -36,7 +36,7 @@ export const TALL_BOX = { w: 320, h: 520 } as const;
  * (396 + 64(c - r), 72 + 32(c + r)). That puts the floor's back vertex at y 104, its
  * near vertex at y 456, its left corner at x 76 and its right at x 780.
  */
-const WIDE_ORIGIN = { tx: 76, ty: 104 } as const;
+const WIDE_ORIGIN = { tx: 76, ty: 118 } as const;
 /** x of plan column 0 / row 0, chosen so the projected diamond starts at local x = 0. */
 const WIDE_X0 = 5 * HW;
 
@@ -86,8 +86,8 @@ export interface Placement {
   /** Scene-local transform for the portrait plan. */
   tallTransform: string;
   /** Button centre and size, as percentages of each scene box. */
-  wide: { x: string; y: string };
-  tall: { x: string; y: string };
+  wide: { x: string; y: string; w: string; h: string };
+  tall: { x: string; y: string; w: string; h: string };
   /** Nameplate anchor in the portrait scene's own units. */
   tallPlateX: number;
   tallPlateY: number;
@@ -182,6 +182,10 @@ export const BOX = {
   mon: { x: 0, y: -40, w: 38, h: 50 },
   ch: { x: -16, y: -32, w: 32, h: 40 },
   occ: { x: -11, y: -47, w: 22, h: 49 },
+  /* The two near-abstract dog heads. One box, two forms, so a `<use>` of either is
+     placed by the same four numbers and the alternation costs no second geometry. */
+  'dog-p': { x: -24, y: -34, w: 48, h: 40 },
+  'dog-f': { x: -24, y: -34, w: 48, h: 40 },
   agent: { x: -64, y: -40, w: 128, h: 104 },
   seat: { x: -46, y: -84, w: 92, h: 140 },
   cabin: { x: -136, y: -48, w: 272, h: 184 },
@@ -297,10 +301,23 @@ export function placements(): Placement[] {
       wideTransform: `translate(${node.x} ${node.y})`,
       wideNode: node,
       tallTransform: `translate(${num(tallT.x)} ${num(tallT.y)}) scale(${round(scale)})`,
-      wide: { x: pct(centre.x, WIDE_BOX.w), y: pct(centre.y, WIDE_BOX.h) },
+      /*
+        The footprint travels with the centre, as a percentage of the same box, so a
+        button's size is stated exactly once — here, off TARGETS — instead of being
+        re-derived as a magic number in the component's stylesheet where it could drift
+        away from the plan it is meant to cover.
+      */
+      wide: {
+        x: pct(centre.x, WIDE_BOX.w),
+        y: pct(centre.y, WIDE_BOX.h),
+        w: pct(TARGETS.wide[shape].w, WIDE_BOX.w),
+        h: pct(TARGETS.wide[shape].h, WIDE_BOX.h),
+      },
       tall: {
         x: pct(tall.x + tall.w / 2, TALL_BOX.w),
         y: pct(tall.y + tall.h / 2, TALL_BOX.h),
+        w: pct(TARGETS.tall[shape].w, TALL_BOX.w),
+        h: pct(TARGETS.tall[shape].h, TALL_BOX.h),
       },
       tallPlateX: tall.x + tall.w / 2,
       /*
@@ -330,6 +347,22 @@ export function wideOrder<T extends { wideDepth: number }>(list: T[]): T[] {
   return [...list].sort((a, b) => a.wideDepth - b.wideDepth);
 }
 
+
+/**
+ * The handoff path: the seven agent desks in pipeline order, terminating at the empty
+ * chair. It is the argument of the whole room drawn as one line — work moves desk to
+ * desk and stops at the chair nobody sits in.
+ *
+ * Derived from the same placements everything else uses rather than typed, so a change
+ * to the plan moves the path with it and the two cannot disagree. The 12-unit drop puts
+ * the line on each desk's own top surface instead of on its module's far corner.
+ */
+export function pipelinePath(): string {
+  const stops = placements()
+    .filter((p) => p.shape !== 'cabin')
+    .map((p) => `${p.wideNode.x} ${p.wideNode.y + 12}`);
+  return `M${stops.join('L')}`;
+}
 
 /** The projected outline of the whole 6 x 5 slab. */
 export const WIDE_SLAB = [wpt(0, 0), wpt(6, 0), wpt(6, 5), wpt(0, 5)]

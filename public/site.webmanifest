@@ -1,6 +1,8 @@
 {
   "name": "TheGeekDogs",
   "short_name": "TheGeekDogs",
+  "background_color": "#04060B",
+  "theme_color": "#080C18",
   "icons": [
     {
       "src": "/icon-512.png",

@@ -1,25 +1,22 @@
 ---
 import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContactPlate from '../../components/ContactPlate.astro';
 import QuietBack from '../../components/person/QuietBack.astro';
 import HeadshotSlot from '../../components/person/HeadshotSlot.astro';
 import PersonLinks from '../../components/person/PersonLinks.astro';
+import LayoutA from '../../layouts/tanya/LayoutA.astro';
 import { TANYA } from '../../lib/copy';
 import { personGraph } from '../../lib/jsonld';
 
 /*
-  DESIGN.md §G — Tanya's world. Her axis is the system, not the timeline: nothing on this
-  page is a dated list, and nothing on it is softer, rounder, paler or more decorative
-  than his.
+  Her axis is the system, not the timeline: nothing on this page is a dated list.
 
-  PLAN.md §1.2 — HER DIRECTION IS ONE IMPORT. The line below is the only place T1 is
-  named; `src/styles/worlds/tanya.css` is the only place her tokens live; and every other
-  component on this page is shared and consumes only generic token names. Swapping to T2
-  (§G.4, unblocked and buildable) is changing this import and nothing else.
+  It mirrors `/sahib/` in structure — a hero with a reserved portrait, a positioning
+  paragraph, a centre, the evidence, a background panel, a close — and differs in the one
+  place that matters. His centre is a matrix of what he has shipped; hers is the shape
+  the work is built in. The two people have different evidence, and the structural
+  distinction between their pages is the point rather than an inconsistency.
 */
-import LayoutA from '../../layouts/tanya/LayoutA.astro';
-
 const person = await getEntry('people', 'tanya-jain');
 if (!person) throw new Error('/tanya/ needs src/data/people/tanya-jain.json.');
 
@@ -37,68 +34,89 @@ const schema = await personGraph(person);
   ogDescription={TANYA.meta.ogDescription}
   ogImage="tanya"
   schema={schema}
-  world="tanya"
+  footerLinks
 >
-  <div class="plate-span plate-span--page">
-    <section class="section intro-section">
-      <div class="shell">
-        <QuietBack />
-        <div class="grid intro">
-          <div class="intro__words stack">
-            <h1>{person.data.name}</h1>
-            <p class="intro__role">{TANYA.roleLine}</p>
-            <p class="muted">{TANYA.body}</p>
-            <p class="print-address">{TANYA.links.email.address}</p>
-          </div>
-          <div class="intro__portrait">
-            <HeadshotSlot />
-          </div>
+  <section class="section person-hero">
+    <div class="shell">
+      <QuietBack />
+
+      <div class="person-hero__grid">
+        <div class="person-hero__words">
+          <p class="eyebrow accent">Product spec · Device QA · Security and privacy review</p>
+          <h1 class="person-hero__title">{person.data.name}</h1>
+          <p class="lede person-hero__lede">{TANYA.roleLine}</p>
+          <PersonLinks person={person} links={TANYA.links} />
+        </div>
+
+        <div class="person-hero__portrait">
+          <HeadshotSlot monogram="TJ" />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section quotes-section section--reserve">
-      <div class="shell grid split">
-        <div class="split__body stack">
+  <section class="section positioning">
+    <div class="shell positioning__inner" data-rv>
+      <p class="positioning__body">{TANYA.body}</p>
+      <p class="positioning__body">{TANYA.secondParagraph}</p>
+    </div>
+  </section>
+
+  <section class="section room quotes-section" data-theme-anim>
+    <div class="shell quotes__grid">
+      <div data-rv>
+        {/*
+          The only quoted material on the site, and the quotation marks are part of the
+          strings: they must read as quotation, not as pull-quote decoration. There is no
+          left rule under them for exactly that reason — a rule is the pull-quote
+          convention and would say the opposite of what the marks say.
+        */}
+        {
+          TANYA.quotes.map((quote) => (
+            <blockquote class="quote quotes__quote">
+              <p>{quote}</p>
+            </blockquote>
+          ))
+        }
+        <p class="small muted quotes__attribution">
+          <cite>{TANYA.quoteAttribution}</cite>
+        </p>
+      </div>
+
+      <p class="quotes__closing" data-rv>{TANYA.quoteClosingLine}</p>
+    </div>
+  </section>
+
+  <LayoutA
+    person={person}
+    work={TANYA.work}
+    owns={{ label: 'Owns', line: person.data.ownsLine }}
+  />
+
+  <section class="section background-section">
+    <div class="shell background__grid">
+      <h2 class="background__title" data-rv>{TANYA.background.heading}</h2>
+      <div class="glass background" data-rv>
+        <ol class="background__list">
           {
-            TANYA.quotes.map((quote) => (
-              <blockquote class="quote">
-                <p>{quote}</p>
-              </blockquote>
+            TANYA.background.items.map((item, i) => (
+              <li class="background__item">
+                <span class="background__no mono accent">{String(i + 1).padStart(2, '0')}</span>
+                <span>{item}</span>
+              </li>
             ))
           }
-          <p class="quote__attribution muted">
-            <cite>{TANYA.quoteAttribution}</cite>
-          </p>
-          <p class="quote__closing">{TANYA.quoteClosingLine}</p>
-        </div>
+        </ol>
       </div>
-    </section>
-
-    <LayoutA
-      person={person}
-      work={TANYA.work}
-      owns={{ label: 'Owns', line: person.data.ownsLine }}
-    />
-
-    <section class="section background-section section--reserve">
-      <div class="shell grid split">
-        <h2 class="split__heading">{TANYA.background.heading}</h2>
-        <ul class="split__body background">
-          {TANYA.background.items.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-    </section>
-
-    <ContactPlate address={TANYA.links.email.address} />
-  </div>
+    </div>
+  </section>
 
   <section class="section close">
-    <div class="shell stack">
-      <PersonLinks person={person} links={TANYA.links} />
+    <div class="shell close__inner" data-rv>
+      <h2 class="close__title">Write to Tanya directly.</h2>
       <p>
         <a
-          class="close__address"
+          class="pill pill--accent pill--lg close__address"
           data-cta="person-cta"
           href={`mailto:${TANYA.links.email.address}`}
           aria-label={TANYA.links.email.accessibleName}
@@ -106,120 +124,132 @@ const schema = await personGraph(person);
           {TANYA.links.email.label}
         </a>
       </p>
+      <QuietBack />
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .intro-section {
-    padding-block-start: var(--space-32);
+  .person-hero__grid {
+    margin-block-start: var(--space-32);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--gap-col);
+    align-items: end;
   }
 
-  .intro {
-    margin-block-start: var(--space-24);
-    row-gap: var(--space-24);
+  .person-hero__title {
+    margin-block-start: var(--space-16);
+    font-size: var(--step-person-hero);
   }
 
-  .intro__role {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
-    max-inline-size: var(--measure-display);
-  }
-
-  /* §D.8 — the person's name and email print once at the top of page 1. On screen the
-     address is the plate and the closing block; on paper it is this line. */
-  .print-address {
-    display: none;
+  .person-hero__lede {
+    margin-block: var(--space-24) var(--space-32);
+    max-inline-size: 44ch;
   }
 
   /*
-    §G.3a's T5 ruling — **print the marks; drop the rule.** Quotation is carried by the
-    quotation marks COPY.md §7.1 supplies (they are in the string now), at body size in
-    the body face, separated by space. The 2px left rule is the pull-quote convention and
-    it was the only cue the block had, which inverted §7.1's own instruction; §B.2
-    separates with fill and space and never with a rule, and the same stroke is what T3
-    cuts off the two edge columns one section down.
+    A flex row rather than `justify-self: end` on the grid item. `justify-self` shrinks
+    the item to its own content width, and the frame inside it is sized `100%` of that
+    item — which is circular, and rendered as a 60px square with the monogram and the
+    slot label on top of each other. The item keeps its full column and the frame is
+    pushed to the end of it instead.
   */
-  .quote {
-    margin: 0;
+  .person-hero__portrait {
+    display: flex;
+    justify-content: flex-end;
   }
 
-  .quote + .quote {
+  .positioning {
+    padding-block: 0 var(--section-pad);
+  }
+
+  .positioning__inner {
+    display: grid;
+    gap: var(--space-20);
+  }
+
+  .positioning__body {
+    max-inline-size: 66ch;
+    color: var(--dim);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: var(--step-lede-lh);
+  }
+
+  .quotes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: center;
+  }
+
+  .quotes__quote {
+    margin: 0;
+    max-inline-size: 30ch;
+  }
+
+  .quotes__quote + .quotes__quote {
     margin-block-start: var(--space-24);
   }
 
-  /* §G.3a — the attribution sets in Instrument Sans REGULAR, never oblique. The family
-     ships no italic, so the UA stylesheet's `<cite> { font-style: italic }` was being
-     synthesised by the browser, which is the one place on the site a face was faked. */
-  .quote__attribution {
+  .quotes__attribution {
+    margin-block-start: var(--space-20);
+  }
+
+  .quotes__attribution cite {
+    font-style: normal;
+  }
+
+  .quotes__closing {
+    color: var(--ink-2);
+    max-inline-size: 46ch;
+    font-size: var(--step-lede);
+    line-height: var(--step-lede-lh);
+  }
+
+  .background__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: start;
+  }
+
+  .background__title {
+    font-size: var(--step-subsection);
+  }
+
+  .background {
+    padding: var(--space-28);
+  }
+
+  .background__list {
+    list-style: none;
+    display: grid;
+    gap: var(--space-16);
+  }
+
+  .background__item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    column-gap: var(--space-16);
+    align-items: baseline;
+    color: var(--ink-2);
     font-size: var(--step-small);
     line-height: var(--step-small-lh);
   }
 
-  .quote__attribution cite {
-    font-style: normal;
+  .background__no {
+    font-size: var(--step-micro);
+    letter-spacing: var(--step-mono-tracking);
   }
 
-  .quote__closing {
-    font-weight: 600;
-  }
-
-  .background {
-    list-style: none;
+  .close__inner {
     display: grid;
-    gap: var(--space-12);
+    gap: var(--space-24);
+    justify-items: start;
   }
 
-  /* §G.1 — --lamp-ink is the page's one chromatic mark and it is a 4px cap and a section
-     marker, never a word, in either scheme. The closing address is --t-ink, 14.18 : 1 in
-     light and 14.35 : 1 in dark, with the 2px rule the studio's closing address carries. */
   .close__address {
-    display: inline-block;
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-numeral-large);
-    line-height: var(--step-numeral-large-lh);
-    color: var(--tgd-ink);
-    text-decoration: none;
-    padding-block-end: var(--space-8);
-    border-block-end: 2px solid var(--tgd-ink);
-    min-block-size: 44px;
-  }
-
-  @media (min-width: 1024px) {
-    .intro__words {
-      grid-column: 1 / span 5;
-    }
-
-    .intro__portrait {
-      grid-column: 9 / span 4;
-    }
-
-    .split__heading {
-      grid-column: 1 / span 3;
-    }
-
-    .split__body {
-      grid-column: 4 / span 6;
-    }
-  }
-
-  @media print {
-    .close,
-    .intro__portrait {
-      display: none;
-    }
-
-    .print-address {
-      display: block;
-    }
-
-    .section {
-      padding-block: var(--space-24);
-    }
+    font-family: var(--tgd-font-mono);
   }
 </style>

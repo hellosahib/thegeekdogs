@@ -1,91 +1,70 @@
 ---
 import { getCollection } from 'astro:content';
-import { STRIP_ROW_LINKS, BUILT_ROUTES } from '../lib/copy';
+import { STRIP_ROW_LINKS } from '../lib/copy';
 import { assertYearsOnly, yearsOnly } from '../lib/person';
 
 /**
- * The compressed work-card strip (QUESTIONS.md item 50, DESIGN.md §B.8 and §B.9 as
- * amended in round 3). It sits directly after the floor: the room has just named two
- * people at two desks, and this answers who they are.
+ * "Where they've worked": one row per founder, each row a name, a link to that person's
+ * own page, and their companies as glass cards.
  *
- * Two rows, one per person, two cards each, TWO fields per card — company in the title
- * position, the date range in the price position. Role, product and stack are dropped;
- * that is the compression, and it is what stops the strip being the person page in
- * miniature. Two cards each at every breakpoint: the strip is one DOM list and its
- * contents do not change with viewport width (§B.8 constraint (a)).
+ * The cards carry a company and a date range and nothing else. The row is an index, not
+ * a history: what a person actually did at each of those companies is on their own page,
+ * and the link at the end of the row is how you get there. Two facts per card is what
+ * keeps a row of five scannable.
  *
- * The card keeps §D's base, edge, tilt, radius and shadow pair exactly, and takes §D.6
- * option 2 — a static translucent white, no `backdrop-filter` anywhere. Section ground
- * is `--band`, which is one of the two backdrops §D.7 permits behind a card.
+ * Years only, never months. The month boundaries are real and they live in
+ * `src/data/people/*.json` where they settle which card a boundary belongs to; they are
+ * stripped at the point of printing rather than deleted from the data, which is the only
+ * arrangement in which the source and the page can both be right. `assertYearsOnly`
+ * fails the build if one survives.
  *
- * COPY.md §2.9a's one link per row, to that person's own page. Both routes land in build
- * run B, so both links are live. "In full" is the honest promise: the strip shows two of
- * Sahib's five companies and two of Tanya's three, with two of the four card levels
- * dropped, and the person page is where all of it prints.
- *
- * COPY.md §2.9a: neither wireframe draws a heading above the strip and adding a printed
- * line would take height the strip was included on the condition of not taking, so
- * "Where they've worked" is the section's accessible name rather than a printed line.
+ * The ±0.5° resting tilt is per card and alternates. It is small enough that no single
+ * card looks crooked and large enough that a row of them stops looking printed.
  */
 const people = await getCollection('people');
-
-const STRIP_HEADING = "Where they've worked";
-
-/*
-  Step-2 review item 8, ruled: THE STRIP PRINTS YEARS ONLY. The date is the price
-  position and the reason it is tabular is so a column of them compares; `2025 - now`
-  above `Jan 2024 - now` is two granularities in one column and cannot. COPY.md §7.2
-  round 12 applies the same rule to the person pages, so the helper is shared
-  (src/lib/person.ts) and the strip no longer carries its own copy of it.
-*/
 const order = ['sahib-singh', 'tanya-jain'];
-const rows = order.map((slug) => {
-  const person = people.find((p) => p.data.slug === slug);
-  if (!person) throw new Error(`The work-card strip needs src/data/people/${slug}.json.`);
-  return {
+
+const rows = order
+  .map((slug) => people.find((p) => p.data.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  .map((person) => ({
+    slug: person.data.slug,
     name: person.data.name,
-    link: STRIP_ROW_LINKS[slug] && BUILT_ROUTES.has(STRIP_ROW_LINKS[slug].href)
-      ? STRIP_ROW_LINKS[slug]
-      : undefined,
-    cards: person.data.workHistory
-      .filter((entry) => entry.confirmed)
-      .slice(0, 2)
-      .map((entry) => ({ company: entry.company, years: yearsOnly(entry.years) })),
-  };
-});
-
-for (const row of rows) {
-  for (const card of row.cards) {
-    assertYearsOnly(card.years, `${row.name}, ${card.company}`);
-  }
-}
-
-/** DESIGN.md §D.4 — deterministic by index, so it is reproducible and printable. */
-const TILTS = ['-1.4deg', '0.8deg', '-2.1deg', '1.7deg', '-0.6deg'];
-let tiltIndex = 0;
+    link: STRIP_ROW_LINKS[person.data.slug],
+    cards: person.data.workHistory.map((role) => ({
+      company: role.company,
+      years: assertYearsOnly(yearsOnly(role.years), `${person.data.slug} / ${role.company}`),
+    })),
+  }));
 ---
 
-<section class="section bleed strip section--reserve" aria-label={STRIP_HEADING}>
+<section class="section worked">
   <div class="shell">
+    <p class="eyebrow accent" data-rv>Where they've worked</p>
+
     {
       rows.map((row) => (
-        <div class="strip__row">
-          <h2 class="strip__name">{row.name}</h2>
-          <ul class="strip__cards">
-            {row.cards.map((card) => (
-              <li class="work-card" style={`--tilt: ${TILTS[tiltIndex++ % TILTS.length]}`}>
-                <span class="work-card__company">{card.company}</span>
-                <span class="work-card__years numeral">{card.years}</span>
+        <div class="worked__row" data-rv>
+          <div class="worked__head">
+            <h2 class="worked__name">{row.name}</h2>
+            {row.link && (
+              <a class="link-row" href={row.link.href} aria-label={row.link.accessibleName}>
+                {row.link.label}
+              </a>
+            )}
+          </div>
+          <ul class="worked__cards">
+            {row.cards.map((card, i) => (
+              <li
+                class="card worked__card"
+                data-lift
+                style={`--tilt:${i % 2 === 0 ? '0.5' : '-0.5'}deg`}
+              >
+                <p class="worked__company">{card.company}</p>
+                <p class="worked__years mono">{card.years}</p>
               </li>
             ))}
           </ul>
-          {row.link && (
-            <p class="strip__link">
-              <a class="link" href={row.link.href} aria-label={row.link.accessibleName}>
-                {row.link.label}
-              </a>
-            </p>
-          )}
         </div>
       ))
     }
@@ -93,149 +72,49 @@ let tiltIndex = 0;
 </section>
 
 <style>
-  .strip {
-    background-color: var(--tgd-surface-alt);
-    color: var(--tgd-ink);
+  .worked__row {
+    margin-block-start: var(--gap-block);
   }
 
-  .strip__row + .strip__row {
-    margin-block-start: var(--space-40);
+  .worked__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-12);
+    margin-block-end: var(--space-20);
   }
 
-  .strip__name {
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
+  .worked__name {
+    font-size: var(--step-subsection);
   }
 
-  /* COPY.md §2.9a — one link per row. It sits under the row's cards at every width, so
-     the row reads name, objects, then where the rest of them are. */
-  .strip__link {
-    margin-block-start: var(--space-24);
-  }
-
-  .strip__link a {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: 44px;
-  }
-
-  .strip__cards {
-    margin-block-start: var(--space-16);
+  .worked__cards {
     list-style: none;
     display: grid;
-    /* §D.1 — a 320px card tilted under 3 degrees overshoots ~7px at each end, so 28px
-       keeps real air between cards and the tilts never read as collisions. */
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: var(--gap-col);
   }
 
-  /*
-    DESIGN.md §D.2, §D.3, §D.4, §D.6. The base, the edge and the tilt carry the object;
-    there is no live blur and no fourth detail. The two card inks are theme-invariant
-    (§B.2) because a printed white object does not invert.
-  */
-  .work-card {
-    position: relative;
+  .worked__card {
+    min-block-size: 132px;
+    padding: var(--space-20);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: var(--space-16);
-    min-block-size: 112px;
-    padding: 20px 20px 24px;
-    border-radius: 3px;
-    background-color: var(--tgd-card);
-    color: var(--card-ink);
-    transform: rotate(var(--tilt));
-    transform-origin: bottom center;
-    box-shadow:
-      inset 1px 1px 0 var(--edge-light),
-      inset -1px -1px 0 var(--edge-dark),
-      var(--card-shadow-contact),
-      var(--card-shadow-ambient);
   }
 
-  /* §D.2 — the stand: a 4px bar, 56% of the card's width, flush with its bottom edge.
-     It reads as the lip of an acrylic holder. */
-  .work-card::after {
-    content: '';
-    position: absolute;
-    inset-block-end: -4px;
-    inset-inline-start: 22%;
-    inline-size: 56%;
-    block-size: 4px;
-    background-color: var(--tgd-surface-alt);
-    border-block-end: 1px solid var(--card-stand-base);
+  .worked__company {
+    font-size: var(--step-list-title);
+    font-weight: 600;
+    letter-spacing: var(--step-title-tracking);
   }
 
-  .work-card__company {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
-  }
-
-  /* §D.5 — the number in the price position. */
-  .work-card__years {
-    font-size: var(--step-numeral-large);
-    line-height: var(--step-numeral-large-lh);
-  }
-
-  /*
-    §D.1's table is one column and then two, with no 768 row. A 2-up at 768 put the
-    right-hand card's date line at x 522 against a plate band beginning at 492, and
-    §B.10 names a card's price line by name. The 2-up arrives with the rail at 1024.
-  */
-  /* §B.9 — the row label sits outside the content and the objects run out from it. The
-     only structure on the site that does this, which is what keeps §B.9's
-     seven-sections-seven-families test true. */
-  @media (min-width: 1024px) {
-    .strip__row {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 9fr);
-      column-gap: var(--gutter);
-      align-items: start;
-    }
-
-    .strip__cards {
-      margin-block-start: 0;
-    }
-
-    /* §B.9 puts the row label outside the content and the objects run out from it; the
-       link belongs to the row, so it sits under the label rather than under the objects
-       at this width. Two rows in the label column, one cell for the cards. */
-    .strip__row {
-      grid-template-rows: auto 1fr;
-    }
-
-    .strip__name {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .strip__link {
-      grid-column: 1;
-      grid-row: 2;
-      margin-block-start: var(--space-16);
-    }
-
-    .strip__cards {
-      grid-column: 2;
-      grid-row: 1 / -1;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: var(--gutter);
-    }
-  }
-
-  @media print {
-    .work-card {
-      transform: none;
-      background-color: #fff;
-      box-shadow: none;
-      padding: 0;
-    }
-
-    .work-card::after {
-      display: none;
-    }
+  /* The date is a number, so it is mono. It sits at the bottom of the card, in the
+     position a shelf label puts a price: the thing you scan a row for. */
+  .worked__years {
+    font-size: var(--step-date);
+    color: var(--dim);
   }
 </style>

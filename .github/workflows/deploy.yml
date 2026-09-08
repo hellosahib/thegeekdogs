@@ -59,6 +59,11 @@ jobs:
         run: npm run qa:console
       - name: qa:contrast
         run: npm run qa:contrast
+      # The two schemes, measured on the rendered page rather than read off the token
+      # file — including the claim the whole redesign rests on, that a document with no
+      # JavaScript and no `data-theme` still paints the dark room.
+      - name: qa:schemes
+        run: npm run qa:schemes
       # public/fonts/*.woff2 are committed, hand-cut artifacts (npm run fonts,
       # PLAN.md §1.5) — this build step never regenerates them, so a copy edit
       # that introduces a character outside the committed subset would

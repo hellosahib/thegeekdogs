@@ -2,7 +2,7 @@
 
 Static site for TheGeekDogs, built the way the site says work gets built: agents draft, humans review, nothing ships unchecked.
 
-**Status: built. Eight routes, Astro 7, both schemes, thirteen CI gates green, Lighthouse 100/100/100/100 on every route in both schemes (404's SEO reads 66 by design, it is noindex). Every specialist review is APPROVED except the final rendered review's two must-fix items, closing in run F. Nothing pushed; a human pushes.** What the owners still owe is listed under "What needs you now".
+**Status: redesigned. Eight routes, Astro 7, dark-first, twelve CI gates green. The print-inspired visual system that shipped runs A–F has been replaced by the dark, dimensional one in `.design_handoff/` — new palette, new type, glass panels, a lit isometric room. Structure, routes and copy are unchanged. Nothing pushed; a human pushes.** What the owners still owe is listed under "What needs you now".
 
 ## What needs you now
 
@@ -11,7 +11,7 @@ Static site for TheGeekDogs, built the way the site says work gets built: agents
 3. Run the two passes no agent can: a mid-range Android phone on throttled 4G through the checklist in [docs/reviews/final-qa-gate.md](docs/reviews/final-qa-gate.md), and VoiceOver over the home page and one person page (QUESTIONS.md item 74).
 4. Show Tanya her page using [docs/reviews/tanya-packet.md](docs/reviews/tanya-packet.md) and record her answer in QUESTIONS.md.
 5. Supply the headshots (item 23) and decide wedding planner screenshots 03 and 04 (item 73). Both are the only content still absent.
-2. Read [DESIGN.md](DESIGN.md) §B (studio), §C (the floor), §F (Sahib), §G (Tanya). Say yes, or say what is wrong, per section.
+2. Read [DESIGN.md](DESIGN.md), which is the spec of record for the redesign, and its closing section "I. Open" — three items there need your decision, including a wordmark that contradicts your own "no logo" ruling.
 3. Skim [COPY.md](COPY.md) for anything you would not put your name to. Every `[CONFIRM]` and `[FILL]` in it is a question in QUESTIONS.md.
 
 ## The documents
@@ -19,7 +19,8 @@ Static site for TheGeekDogs, built the way the site says work gets built: agents
 | File | Owner | What it is |
 |---|---|---|
 | [docs/brief.md](docs/brief.md) | you | The brief. Every decision cites a section of it. |
-| [DESIGN.md](DESIGN.md) | Design Lead | Reference study, three token systems with computed contrast, the floor composition, work cards, stage indicator, both person-page directions, motion spec, open questions. |
+| [DESIGN.md](DESIGN.md) | Design Lead | Spec of record for the dark-first redesign: tokens, type, the floor's materials and light, both person-page centres, motion, and what the gates now measure. |
+| [docs/design-legacy.md](docs/design-legacy.md) | Design Lead | The 2,739-line print-inspired spec that shipped runs A–F. History only. **It does not describe the site any more.** |
 | [COPY.md](COPY.md) | Copywriter | Every user-facing string, by route and section, with `[CONFIRM]` and `[FILL]` markers where a fact or decision is missing. |
 | [FACTS.md](FACTS.md) | Fact Checker | Every claim checked against a primary source, with status and URL. Includes the Play Store Data Safety text verbatim and the GitHub profile reads. |
 | [PLAN.md](PLAN.md) | Engineer | Stack, content schemas, floor technique, budget accounting, CI, QA scripts, build order with blockers, risks. |
@@ -73,13 +74,13 @@ hand-picked Latin range. It does four things and asserts three of them:
 - subsets both faces to the code points found in `dist/` plus §1.5's own safety set
   (curly quotes, the ellipsis, the non-breaking space, the star) — currently **108 code
   points**;
-- restricts **Anek Latin's `wdth` axis to 75–100** with `fonttools varLib.instancer`, which
-  §1.5 makes part of the build step rather than optional. The axis stays *live* and
-  narrower, because §B.3's numerals are `wdth` 87.5 and §G.2's labels are `wdth` 75;
-  `wght` keeps its full 100–800, and the build fails if either axis is gone;
-- **asserts `tnum` survives.** DESIGN.md §B.3's tabular figures are why the Spline Sans
-  Mono fallback is not needed, and a subsetter that quietly dropped the feature would take
-  the argument with it;
+- **asserts the axes.** `wght` must survive subsetting, and `wdth` must be absent — neither
+  Schibsted Grotesk nor Spline Sans Mono has one, and a fontsource upgrade that shipped a
+  second axis would silently double the design space the subset carries;
+- **asserts `tnum` survives on the proportional face.** It is not asked of the mono face:
+  a monospace font has no tabular-figures feature because every glyph in it is already one
+  advance wide, and demanding it would fail a font for being the kind of font it was chosen
+  for being;
 - writes the two metric-matched fallback `@font-face` blocks that make `font-display: swap`
   cost no layout shift — `ascent-override`, `descent-override`, `line-gap-override` from
   the subsetted binary's own `hhea`/`head` tables, and `size-adjust` from an advance ratio
@@ -102,9 +103,8 @@ naming the character and the file, if that face's committed subset doesn't have 
 | `npm run qa:images` | an `<img>` with no `alt` attribute (`alt=""` passes), or a referenced image that is not in `dist/` |
 | `npm run qa:links` | a broken internal or external link, or a built page missing from the sitemap |
 | `npm run qa:console` | a console error or warning, an uncaught error, or a failed request on any route |
-| `npm run qa:contrast` | any DESIGN.md colour pair below AA, or any pair whose computed ratio disagrees with the figure DESIGN.md publishes — including the marks declared at an alpha, checked at their composite |
-| `npm run qa:worlds` | a world token that computes to something other than DESIGN.md's hex, measured in a browser on the real page in both schemes. It exists because `[data-world="…"]` and `:root` weigh the same, so a partial imported in the wrong order silently hands a world the studio's palette |
-| `npm run qa:plate` | a load-bearing mark whose right edge falls inside the contact plate's band (DESIGN.md §B.10's composition rule), measured as ink rather than as a box, on every route at eight widths |
+| `npm run qa:contrast` | any text run below AA **measured against the pixels the page actually paints**. It renders each route twice — as it ships, and with the text's fill made transparent — diffs the two to isolate the pixels a letter covered, and checks the text colour against the darkest *and* the lightest real pixel behind those glyphs. Nothing on this site sits on one flat colour any more, so nothing can be checked by layering token values. 1,858 runs, both schemes, 390 and 1440 |
+| `npm run qa:schemes` | a token that computes to something other than the published value, on the real page, in either scheme — plus two things a stylesheet cannot promise: that `--f-ink-rgb` resolves (if it ever does not, every fill in the isometric room falls back to opaque black and the build still passes), and that with JavaScript disabled the page still paints the dark room, which is the whole claim of "dark-first" |
 | `npm run qa:floor` | the studio floor over 80KB gzipped (passes trivially until the floor exists) |
 | `npm run qa:weight` | JS over 100KB, CSS over 40KB, or the home page over 1.2MB, all gzipped |
 | `npm run qa:glyphs` | a character `dist/**/*.html` paints (text, or an `alt`/`aria-label`/`title`) that the committed `public/fonts/*.woff2` subset for the face rendering it doesn't contain |
@@ -152,22 +152,31 @@ references any of those fields by a hard-coded value — the templates branch on
 missing name falls back to `descriptiveName` and a missing store URL renders no link rather than a
 dead one.
 
-### How the theme scopes work
+### How the theme works
 
-`src/styles/tokens.css` holds every value DESIGN.md names, in two layers. The first layer is
-DESIGN.md's own token names, transcribed exactly (`--floor`, `--sheet`, `--s-ground`, `--t-core`,
-and so on) — a value change in DESIGN.md is a one-line edit there and nowhere else. The second
-layer maps those onto semantic names (`--tgd-surface`, `--tgd-ink`, `--tgd-accent`, …) that shared
-components consume, redeclared under `[data-world="sahib"]` and `[data-world="tanya"]`.
+`src/styles/tokens.css` holds every value the design names, in two layers. The first layer is the
+handoff's own token names, transcribed (`--ground`, `--void`, `--raise`, `--ink`, `--accent`,
+`--lamp`, and the `--f-*` ramp the isometric room is lit with) — a value change in the design is a
+one-line edit there and nowhere else. The second layer maps those onto semantic names
+(`--tgd-surface`, `--tgd-ink`, `--tgd-accent`, …) that shared components and the QA scripts
+consume.
 
-`src/styles/global.css` points Tailwind's `@theme` at the semantic layer, so `bg-surface-alt`
-compiles to `background-color: var(--tgd-surface-alt)`. **The block is `@theme inline`, and it has
-to be**: plain `@theme` computes the value once on `:root` and inherits it, which would freeze all
-three worlds to the studio palette. `inline` substitutes the reference into the utility so it
-resolves at the element, inside whichever world scope it sits in.
+**There is one axis now: scheme.** The three-world axis (`data-world`) went with the design that
+needed it. Both people sit in the same room; what distinguishes their pages is the evidence on
+them, not the palette under it.
 
-Setting a world is one prop: `<BaseLayout world="tanya">`. One Tailwind build, one CSS bundle,
-three visual worlds.
+**The site is dark-first.** `:root` carries the dark values and `[data-theme="light"]` overrides
+them — the reverse of the file this replaces. That reversal is what makes the no-JS default dark:
+a document with no attribute renders `:root`, and `:root` is the dark room. `qa:schemes` asserts
+exactly that, with JavaScript disabled and the OS asking for light.
+
+Every translucent surface on the page and every `rgba()` inside the room is written against
+`--f-ink-rgb`, so **one variable inverts the whole site's glass and the whole room at once.** That
+is the mechanism, not the values, that makes light mode work — preserve it.
+
+`src/styles/global.css` points Tailwind's `@theme` at the token layer. The block is `@theme
+inline` so a utility resolves its token at the element rather than once on `:root`, which is what
+lets a utility follow `[data-theme="light"]`.
 
 ### Deploy, and the DNS records someone has to add
 

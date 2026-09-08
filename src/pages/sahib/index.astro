@@ -1,7 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContactPlate from '../../components/ContactPlate.astro';
 import QuietBack from '../../components/person/QuietBack.astro';
 import HeadshotSlot from '../../components/person/HeadshotSlot.astro';
 import WorkCard from '../../components/person/WorkCard.astro';
@@ -11,19 +10,14 @@ import { SAHIB } from '../../lib/copy';
 import { personGraph } from '../../lib/jsonld';
 
 /*
-  DESIGN.md §F — Sahib's world, direction S1, with S2's material as its second section
-  (§F.3). His page is the shape of breadth: the map is the argument, the cards are the
-  footnotes, and the CV order is preserved only inside the footnotes.
+  The page's job is one claim: the delivery model this studio sells is how he already
+  works. The map is the argument, the cards are the footnotes, and the CV order survives
+  only inside the footnotes.
 
-  §F.4a: his existing palette IS his dark scheme, hex for hex, and [data-theme="light"]
-  carries the overrides. `data-world="sahib"` on the page wrapper is the whole of the
-  scoping (PLAN.md §1.2); every component below consumes the generic --tgd-* names.
-
-  COPY.md §6 is the only source of prose on this page. The section labels §F.7 and §F.8
-  draw — `Where he has shipped`, `What he writes about`, `Seven years, four companies` —
-  are wireframe labels rather than COPY.md strings, so the map is named by its own
-  lead-in (§6.1, set as the table's caption), the writing section takes §6.3's heading,
-  and the cards follow the map with no heading above them.
+  COPY.md §6 is the only source of prose here. The section labels the old wireframes drew
+  — `Where he has shipped`, `Seven years, four companies` — were wireframe labels rather
+  than COPY.md strings, so the map is named by §6.1's own lead-in and the cards by
+  §6.2's.
 */
 const person = await getEntry('people', 'sahib-singh');
 if (!person) throw new Error('/sahib/ needs src/data/people/sahib-singh.json.');
@@ -52,298 +46,244 @@ const schema = await personGraph(person);
   ogDescription={SAHIB.meta.ogDescription}
   ogImage="sahib"
   schema={schema}
-  world="sahib"
+  footerLinks
 >
-  <div class="plate-span plate-span--page">
-    <section class="section intro-section">
-      <div class="shell">
-        <QuietBack />
-        <div class="grid intro">
-          <div class="intro__words stack">
-            <h1>{person.data.name}</h1>
-            <p class="intro__role">{SAHIB.roleLine}</p>
-            <p class="muted">{SAHIB.body}</p>
-            <p class="print-address">{SAHIB.links.email.address}</p>
-          </div>
-          <div class="intro__portrait">
-            <HeadshotSlot />
-          </div>
+  <section class="section person-hero">
+    <div class="shell">
+      <QuietBack />
+
+      <div class="person-hero__grid">
+        <div class="person-hero__words">
+          <p class="eyebrow accent">Architecture review · Code review · Release cut</p>
+          <h1 class="person-hero__title">{person.data.name}</h1>
+          <p class="lede person-hero__lede">{SAHIB.roleLine}</p>
+          <PersonLinks person={person} links={SAHIB.links} />
+        </div>
+
+        <div class="person-hero__portrait">
+          <HeadshotSlot monogram="SS" />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section map-section section--reserve">
-      <div class="shell grid">
-        <div class="map-slot">
-          <h2 class="section-line">{SAHIB.mapSectionLine}</h2>
-          <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
-        </div>
-      </div>
-    </section>
+  <section class="section positioning">
+    <div class="shell" data-rv>
+      <p class="positioning__body">{SAHIB.body}</p>
+    </div>
+  </section>
 
-    <section class="section bleed cards-section section--reserve">
-      <div class="shell grid cards-grid">
-        <h2 class="section-line">{SAHIB.cardsSectionLine}</h2>
-        <ul class="cards">
+  <section class="section raised map-section" data-theme-anim>
+    <div class="shell" data-rv>
+      <h2 class="section-line">{SAHIB.mapSectionLine}</h2>
+      <CoverageMap person={person} leadIn={SAHIB.mapLeadIn} />
+      <p class="map-section__texture muted">{SAHIB.textureLine}</p>
+    </div>
+  </section>
+
+  <section class="section cards-section">
+    <div class="shell" data-rv>
+      <h2 class="section-line">{SAHIB.cardsSectionLine}</h2>
+      <ul class="cards">
+        {
+          person.data.workHistory.map((role, index) => (
+            <li>
+              <WorkCard entry={role} index={index} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section room writing-section" data-theme-anim>
+    <div class="shell writing__grid">
+      <div data-rv>
+        <h2>{SAHIB.writing.heading}</h2>
+        <p class="writing__body muted">
+          {SAHIB.writing.lead}
           {
-            person.data.workHistory.map((role, index) => (
-              <li>
-                <WorkCard entry={role} index={index} />
+            SAHIB.writing.links.map((link) => (
+              <>
+                <a class="link" href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.text}
+                  <span class="sr-only"> Opens a new tab.</span>
+                </a>
+                {link.after}
+              </>
+            ))
+          }
+          {SAHIB.writing.tail}
+        </p>
+        <p class="quote writing__quote">{SAHIB.writing.closingLine}</p>
+      </div>
+
+      <div class="glass background" data-rv>
+        <h3 class="background__heading micro muted">{SAHIB.background.heading}</h3>
+        <ol class="background__list">
+          {
+            SAHIB.background.items.map((item, i) => (
+              <li class="background__item">
+                <span class="background__no mono accent">{String(i + 1).padStart(2, '0')}</span>
+                <span>{item}</span>
               </li>
             ))
           }
-        </ul>
-        <p class="cards__texture muted">{SAHIB.textureLine}</p>
+        </ol>
       </div>
-    </section>
-
-    <section class="section writing-section section--reserve">
-      <div class="shell grid split">
-        <h2 class="split__heading">{SAHIB.writing.heading}</h2>
-        <div class="split__body stack">
-          <p>
-            {SAHIB.writing.lead}
-            {
-              SAHIB.writing.links.map((link) => (
-                <>
-                  <a class="link" href={link.href} target="_blank" rel="noopener noreferrer">
-                    {link.text}
-                    <span class="sr-only"> Opens a new tab.</span>
-                  </a>
-                  {link.after}
-                </>
-              ))
-            }
-            {SAHIB.writing.tail}
-          </p>
-          <p class="writing__closing">{SAHIB.writing.closingLine}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section bleed background-section section--reserve">
-      <div class="shell grid split">
-        <h2 class="split__heading">{SAHIB.background.heading}</h2>
-        <ul class="split__body background">
-          {SAHIB.background.items.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-    </section>
-
-    <ContactPlate address={SAHIB.links.email.address} />
-  </div>
+    </div>
+  </section>
 
   <section class="section close">
-    <div class="shell stack">
-      <PersonLinks person={person} links={SAHIB.links} omitEmail />
+    <div class="shell close__inner" data-rv>
+      <h2 class="close__title">Write to Sahib directly.</h2>
       <p>
         <a
-          class="close__address"
-          data-cta="person-cta"
+          class="pill pill--accent pill--lg close__address"
           href={`mailto:${SAHIB.links.email.address}`}
           aria-label={SAHIB.links.email.accessibleName}
         >
           {SAHIB.links.email.label}
         </a>
       </p>
+      <QuietBack />
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .intro-section {
-    padding-block-start: var(--space-32);
+  /* --- Hero --- */
+
+  /*
+    Two columns, bottom-aligned, so the h1's baseline and the portrait's lower edge
+    settle on the same line rather than the words floating in the middle of a tall frame.
+  */
+  .person-hero__grid {
+    margin-block-start: var(--space-32);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--gap-col);
+    align-items: end;
   }
 
-  .intro {
-    margin-block-start: var(--space-24);
-    row-gap: var(--space-24);
+  .person-hero__title {
+    margin-block-start: var(--space-16);
+    font-size: var(--step-person-hero);
+  }
+
+  .person-hero__lede {
+    margin-block: var(--space-24) var(--space-32);
+    max-inline-size: 44ch;
   }
 
   /*
-    §F.4b round 12, review item S1: **`/sahib/` was 5,235px of one fill and `--s-panel` was
-    never a section block.** Measured, every section computed `rgba(0,0,0,0)` over the body
-    at every width in both schemes, and only the map's cells took the token §F.4 has always
-    named for "the map's field, SECTION BLOCKS". Run A item 8 blocked both product pages
-    for exactly this and the fault moved to the longer page, where six sections separated
-    by space alone — 390 / 540 / 400px between the map, the cards and the writing — read as
-    an unfinished page rather than as a quiet one.
-
-    With `--s-fill` carrying the cells (§F.4b), `--s-panel` is free for the job it was
-    named for. §F.4b's alternation, and it steps around the map: intro ground, MAP GROUND
-    (the page's one loud thing, with nothing behind it), work cards PANEL, writing ground,
-    background PANEL, links and closing ground. Two blocks, not six, and neither is
-    adjacent to the map.
-
-    §D.7's controlled-backdrop rule already names `--s-ground` and `--s-panel` as the only
-    permitted card backdrops, so the cards on `--s-panel` are inside a case that is already
-    costed — 82% white over the light `--s-panel` is §F.4a's own worst case, `#F9FAFC` at
-    14.44 : 1 and 6.00 : 1 — and the stand takes whichever surface the card stands on.
+    A flex row rather than `justify-self: end` on the grid item. `justify-self` shrinks
+    the item to its own content width, and the frame inside it is sized `100%` of that
+    item — which is circular, and rendered as a 60px square with the monogram and the
+    slot label on top of each other. The item keeps its full column and the frame is
+    pushed to the end of it instead.
   */
-  .cards-section,
-  .background-section {
-    background-color: var(--s-panel);
-    color: var(--tgd-ink);
+  .person-hero__portrait {
+    display: flex;
+    justify-content: flex-end;
   }
 
-  /*
-    COPY.md §6.1 and §6.2 round 14 — the two display-section lines review item S6 recorded
-    as a copy gap. §F.7 and §F.8 both draw them; COPY.md now writes them. Display-section
-    size, `--s-ink`, on the left edge of their own section (§F.4b).
-  */
+  /* --- Positioning --- */
+
+  .positioning {
+    padding-block: 0 var(--section-pad);
+  }
+
+  .positioning__body {
+    max-inline-size: 66ch;
+    color: var(--dim);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: var(--step-lede-lh);
+  }
+
+  /* --- The map and the cards --- */
+
   .section-line {
-    margin-block-end: var(--space-32);
+    font-size: var(--step-subsection);
+    margin-block-end: var(--space-24);
   }
 
-  /* §D.8 — the person's name and email print once at the top of page 1. On screen the
-     address is the plate and the closing block; on paper it is this line. */
-  .print-address {
-    display: none;
+  .map-section__texture {
+    margin-block-start: var(--space-32);
+    max-inline-size: 66ch;
   }
 
-  .intro__role {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
-    max-inline-size: var(--measure-display);
-  }
-
-  /* §F.4/§F.6 — the cards sit on `--s-panel` from round 12 (§F.4b's alternation), so §D.2's
-     stand takes the panel: the stand's fill is the surface the card is standing ON. */
   .cards {
     list-style: none;
     display: grid;
-    /* §D.1 — 28px keeps >= 20px of real air between tilted cards. */
-    gap: 28px;
-    --card-stand-fill: var(--s-panel);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--gap-col);
+    align-items: stretch;
   }
 
-  .cards-grid {
-    row-gap: 0;
+  .cards > li {
+    display: flex;
   }
 
-  .cards__texture {
-    margin-block-start: var(--space-48);
+  /* --- Writing --- */
+
+  .writing__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: start;
+  }
+
+  .writing__body {
+    margin-block-start: var(--space-24);
+    max-inline-size: 58ch;
+  }
+
+  .writing__quote {
+    margin-block-start: var(--space-32);
+    font-size: clamp(18px, 1.7vw, 24px);
+    max-inline-size: 34ch;
   }
 
   .background {
+    padding: var(--space-28);
+  }
+
+  .background__heading {
+    color: var(--dim);
+    margin-block-end: var(--space-20);
+  }
+
+  .background__list {
     list-style: none;
     display: grid;
-    gap: var(--space-12);
+    gap: var(--space-16);
   }
 
-  .writing__closing {
-    font-weight: 600;
+  .background__item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    column-gap: var(--space-16);
+    align-items: baseline;
+    color: var(--ink-2);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
   }
 
-  /* §F.8's closing line. --lamp is 1.74:1 on his light ground and fill-only there
-     (§F.4a), so the address is set in --s-ink through --tgd-ink, at 14.09 : 1 in light
-     and 14.11 : 1 in dark, with the 2px rule the studio's own closing address carries. */
+  .background__no {
+    font-size: var(--step-micro);
+    letter-spacing: var(--step-mono-tracking);
+  }
+
+  /* --- Close --- */
+
+  .close__inner {
+    display: grid;
+    gap: var(--space-24);
+    justify-items: start;
+  }
+
   .close__address {
-    display: inline-block;
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-numeral-large);
-    line-height: var(--step-numeral-large-lh);
-    color: var(--tgd-ink);
-    text-decoration: none;
-    padding-block-end: var(--space-8);
-    border-block-end: 2px solid var(--tgd-ink);
-    min-block-size: 44px;
-  }
-
-
-  /* §B.5 — the splits engage at 1024, and §F.8 draws them: the words in cols 1-6 with
-     the portrait slot in cols 9-12, and the two prose sections as a heading rail beside
-     their body. */
-  @media (min-width: 1024px) {
-    .intro__words {
-      grid-column: 1 / span 6;
-    }
-
-    .intro__portrait {
-      grid-column: 9 / span 4;
-    }
-
-    /*
-      §D.1's own table is one column and then two; there is no 768 row, and a 2-up at 768
-      put the right-hand card's DATE LINE at x 522 against a plate band beginning at 492.
-      §B.10 names a card's price line by name, so the cards are one column until the
-      twelve-column grid arrives and then live in cols 1-9 like every other mark on this
-      build: 2-up at 1024 (333 wide, date ending x 540 against a band at 748), 3-up at
-      1440 (254 wide, ending x 810 against 1164).
-    */
-    .cards {
-      grid-column: 1 / span 9;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: var(--gutter);
-    }
-
-    .split__heading {
-      grid-column: 1 / span 4;
-    }
-
-    .split__body {
-      grid-column: 6 / span 7;
-    }
-
-    /*
-      §B.10's amended rule — the map's lit cell is the single most important mark on this
-      page and a mark read as a unit, so its right edge may not sit inside the plate's
-      276px band. On cols 1-9 the map ends at x 738 at 1024 and x 930 at 1440, against a
-      band beginning at 748 and 1164. Cols 10-12 are this page's second void and the
-      plate rests in them, which is the allocation every route in this build now uses.
-    */
-    .map-slot {
-      grid-column: 1 / span 9;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .cards {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  /*
-    DESIGN.md §D.8 — the person's name and address print once at the top of page 1, and
-    what survives is a document you would attach to an email. The map and the cards
-    print; the closing block's links and the address repeated at the foot do not, since
-    the address is already at the top.
-  */
-  @media print {
-    .close,
-    .intro__portrait {
-      display: none;
-    }
-
-    /* §F.4b's alternation is a screen device: on paper §D.8 wants ink on white, and a
-       browser suppresses the fill anyway, which would leave two bands that exist in one
-       printer's output and not another's. */
-    .cards-section,
-    .background-section {
-      background-color: transparent;
-    }
-
-    .print-address {
-      display: block;
-    }
-
-    .section {
-      padding-block: var(--space-24);
-    }
-
-    .cards {
-      display: block;
-    }
-
-    .cards > li + li {
-      margin-block-start: var(--space-16);
-      padding-block-start: var(--space-16);
-      border-block-start: 1px solid #444;
-    }
+    font-family: var(--tgd-font-mono);
   }
 </style>

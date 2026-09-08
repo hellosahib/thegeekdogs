@@ -1,29 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContactPlate from '../../components/ContactPlate.astro';
 import StageTrack from '../../components/StageTrack.astro';
 import { WORK_INDEX } from '../../lib/copy';
 import { workIndexGraph } from '../../lib/jsonld';
 
 /*
-  DESIGN.md §B.11: two entries, each a --band block — product name, the full labelled
-  build-stage track (§E), and a store link where one exists. No hero image. COPY.md §3.
+  Two entries, each a glass panel: the product name, the full labelled build-stage track,
+  and the link into its own page. No hero image, and no second description — the name and
+  its stage say enough on an index, and the entry has one job per row.
+
+  The five-stage track is the primary device here, and it is the SAME component the home
+  page's proof panel and both product pages use. A visitor who learned to read it on the
+  home page has already learned to read this page.
 
   COPY.md §3.1 gives a short intro and a long body and says the short one is what prints
-  if only one can; §B.11 caps the slot at 20 words and the short intro is 17, so the
-  short intro is what prints and the long body is not placed.
-
-  Run A item 13, §J's pre-committed cut for this route, taken here: the one-line
-  description under each product name does not print. The name and its stage track say
-  enough on an index page, and the entry now has one job per row. COPY.md §3.2's and
-  §3.3's strings are untouched; they are simply not placed on this page.
-
-  Run A item 5: the intro is a split — the headline in cols 1-5 and the intro line in
-  cols 7-12 — and each entry block is placed on cols 1-9. Cols 10-12 are this page's one
-  §B.9 void, which is where the plate rests, and it is the same allocation §B.11 gives
-  /contact/ for the same reason: at 1024 a mark whose right edge passes x 748 is inside
-  the plate's band, and §B.10's amended rule forbids that for a stage node by name.
+  if only one can, so the short intro prints and the long body is not placed.
 */
 const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
 const schema = await workIndexGraph();
@@ -41,42 +33,52 @@ if (products.length === 0) {
   ogImage="work"
   schema={schema}
 >
-  <div class="plate-span plate-span--page">
-    <section class="section section--reserve work-section">
-      <div class="shell">
-        <div class="grid work-intro">
-          <h1 class="work-intro__headline">{WORK_INDEX.headline}</h1>
-          <p class="work-intro__line muted">{WORK_INDEX.intro}</p>
-        </div>
-
-        <ul class="grid work-list">
-          {
-            products.map((product) => (
-              <li class="work-entry">
-                <div class="work-entry__inner">
-                  <h2 class="work-entry__name">{product.data.indexName}</h2>
-                  <div class="work-entry__track">
-                    <StageTrack stage={product.data.stage} label={product.data.descriptiveName} />
-                  </div>
-                  <p class="work-entry__links cluster">
-                    <a
-                      class="link"
-                      href={`/work/${product.data.slug}/`}
-                      aria-label={product.data.indexLink.accessibleName}
-                    >
-                      {product.data.indexLink.label}
-                    </a>
-                  </p>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
+  <section class="section work-section">
+    <div class="shell">
+      <div class="work-intro">
+        <p class="eyebrow accent">Work</p>
+        <h1 class="work-intro__headline">{WORK_INDEX.headline}</h1>
+        <p class="lede work-intro__line">{WORK_INDEX.intro}</p>
       </div>
-    </section>
 
-    <ContactPlate />
-  </div>
+      <ul class="work-list">
+        {
+          products.map((product) => (
+            <li class="glass work-entry" data-rv>
+              <h2 class="work-entry__name">{product.data.indexName}</h2>
+              <div class="work-entry__track">
+                {/* The card's own h2 has just named the product; the track does not
+                    name it a second time. */}
+                <StageTrack stage={product.data.stage} label={product.data.descriptiveName} showName={false} />
+              </div>
+              <p class="work-entry__links cluster">
+                <a
+                  class="link-row"
+                  href={`/work/${product.data.slug}/`}
+                  aria-label={product.data.indexLink.accessibleName}
+                >
+                  {product.data.indexLink.label}
+                </a>
+                {
+                  product.data.storeUrl && product.data.indexStoreLabel && (
+                    <a
+                      class="link-row"
+                      href={product.data.storeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {product.data.indexStoreLabel}
+                      <span class="sr-only"> Opens a new tab.</span>
+                    </a>
+                  )
+                }
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -84,78 +86,39 @@ if (products.length === 0) {
     flex: 1 0 auto;
   }
 
-  /* Run A item 5 — the headline and the intro line are two columns from 1024 up, on
-     §B.5's own grid. Below that they stack in DOM order, as §B.5 says every split does. */
-  .work-intro {
-    row-gap: var(--space-24);
+  .work-intro__headline {
+    margin-block-start: var(--space-14);
+    max-inline-size: 18ch;
+  }
+
+  .work-intro__line {
+    margin-block-start: var(--space-24);
+    max-inline-size: 56ch;
   }
 
   .work-list {
-    margin-block-start: var(--space-64);
+    margin-block-start: var(--gap-block);
     list-style: none;
-    row-gap: var(--space-48);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: var(--gap-col);
+    align-items: start;
   }
 
-  /* §B.11 — each entry is its own --band block. The gap between them is the page's own
-     --sheet, so two blocks read as two rather than merging into one long band. */
-  .work-entry__inner {
-    background-color: var(--tgd-surface-alt);
-    color: var(--tgd-ink);
-    padding: var(--space-32) var(--space-24);
+  .work-entry {
+    padding: var(--space-28);
+  }
+
+  .work-entry__name {
+    font-size: var(--step-card-title);
   }
 
   .work-entry__track {
-    margin-block-start: var(--space-32);
+    margin-block-start: var(--space-28);
   }
 
   .work-entry__links {
-    margin-block-start: var(--space-32);
-    column-gap: var(--space-32);
-  }
-
-  .work-entry__links a {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: 44px;
-  }
-
-  @media (min-width: 768px) {
-    .work-entry__inner {
-      padding: var(--space-48);
-    }
-  }
-
-  /*
-    §E.2 round 12, review item W1 and §J's `/work/` row: **the track's ends are its
-    block's ends.** The axis anchors on the block's own border box — not inside the
-    block's 48px padding, which is where the 48px of dead margin at each end came from —
-    so the track escapes that padding and StageTrack's own expression measures `100%`
-    against the right box. The axis's right-hand limit is the plate's band less 24px,
-    which is what the component computes; nothing here caps it.
-  */
-  @media (min-width: 931px) {
-    .work-entry__track {
-      margin-inline: calc(-1 * var(--space-48));
-    }
-  }
-
-  /*
-    From 1024 the twelve-column grid arrives and every split in DESIGN.md engages with
-    it (§B.5). The entry block takes cols 1-9 and the axis fills it, so the track has a
-    column span rather than a max-width (item 6): its right edge is x 738 at 1024 and
-    x 930 at 1440, against a band beginning at 748 and 1164.
-  */
-  @media (min-width: 1024px) {
-    .work-intro__headline {
-      grid-column: 1 / span 5;
-    }
-
-    .work-intro__line {
-      grid-column: 7 / span 6;
-    }
-
-    .work-entry {
-      grid-column: 1 / span 9;
-    }
+    margin-block-start: var(--space-28);
+    column-gap: var(--space-24);
   }
 </style>

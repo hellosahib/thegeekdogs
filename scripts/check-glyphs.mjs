@@ -41,9 +41,23 @@ requireDist();
 
 /* --------------------------------------------------------- 1. the two faces' cmaps */
 
+/*
+  Two faces, and the axis between them changed with the redesign.
+
+  It used to be display vs body — two proportional faces, one for headings and numerals,
+  one for prose. It is now proportional vs MONO: Schibsted Grotesk sets every heading and
+  every paragraph on the site, and Spline Sans Mono sets every number, every eyebrow,
+  every uppercase micro-label, every email address, every date range and every nameplate
+  in the isometric room.
+
+  `--tgd-font-display` and `--tgd-font-body` both resolve to Schibsted and are both kept
+  as token names, because a rule that reaches for either means "the proportional face"
+  and this scan reads the CSS rather than a list. `--tgd-font-mono` is the new one, and
+  it is the one that decides whether a character has to exist in the mono subset.
+*/
 const FACES = {
-  display: { file: 'anek-latin-subset.woff2', label: 'Anek Latin (display/numerals)' },
-  body: { file: 'instrument-sans-subset.woff2', label: 'Instrument Sans (body)' },
+  sans: { file: 'schibsted-grotesk-subset.woff2', label: 'Schibsted Grotesk (headings and prose)' },
+  mono: { file: 'spline-sans-mono-subset.woff2', label: 'Spline Sans Mono (numbers, labels, addresses)' },
 };
 
 for (const face of Object.values(FACES)) {
@@ -105,8 +119,8 @@ function extractFaceSelectors(css, selectors) {
   for (const match of css.matchAll(ruleRe)) {
     const [, selectorList, body] = match;
     let face = null;
-    if (/font-family:\s*var\(--tgd-font-display\)/.test(body)) face = 'display';
-    else if (/font-family:\s*var\(--tgd-font-body\)/.test(body)) face = 'body';
+    if (/font-family:\s*var\(--tgd-font-mono\)/.test(body)) face = 'mono';
+    else if (/font-family:\s*var\(--tgd-font-(display|body)\)/.test(body)) face = 'sans';
     if (!face) continue;
     for (let selector of selectorList.split(',')) {
       selector = selector.trim().replace(/\s+/g, ' ');
@@ -140,18 +154,22 @@ function matches(tag, classes, selector) {
 
 /**
  * Resolve the face for one element, walking outward from itself. `chain` is
- * [self, parent, grandparent, …, <html>]. Body-face rules are checked before
- * display-face rules AT EACH LEVEL, so a same-element override (`.fl-plate--agent`
- * declared after `.fl-plate`) wins the way the later cascade rule would.
+ * [self, parent, grandparent, …, <html>].
+ *
+ * The MONO rules are checked first at each level, because mono is always the override:
+ * `body` carries the proportional face for the whole document and every mono element on
+ * the site reaches for it explicitly, on itself or on a wrapper. So a hit on mono at a
+ * level is a deliberate switch, and a hit on sans at the same level is the inherited
+ * default it is switching away from.
  */
 function resolveFace(chain) {
   for (const { tag, classes } of chain) {
-    const bodyHit = faceRules.some((r) => r.face === 'body' && matches(tag, classes, r.selector));
-    if (bodyHit) return 'body';
-    const displayHit = faceRules.some((r) => r.face === 'display' && matches(tag, classes, r.selector));
-    if (displayHit) return 'display';
+    const monoHit = faceRules.some((r) => r.face === 'mono' && matches(tag, classes, r.selector));
+    if (monoHit) return 'mono';
+    const sansHit = faceRules.some((r) => r.face === 'sans' && matches(tag, classes, r.selector));
+    if (sansHit) return 'sans';
   }
-  return 'body'; // <body> always carries the base rule; this is only a fallback.
+  return 'sans'; // <body> always carries the base rule; this is only a fallback.
 }
 
 /* --------------------------------------------------------- 3. a minimal HTML walker */
@@ -273,7 +291,7 @@ function walkHtml(rawHtml, onText) {
 
 /* -------------------------------------------------------------------- 4. run the gate */
 
-/** file -> character -> Set of faces required ('display' | 'body' | 'both') collapsed */
+/** file -> character -> Set of faces required ('sans' | 'mono' | both) collapsed */
 const uncovered = new Map(); // character -> Set<file>
 
 function recordMissing(char, file) {
@@ -298,7 +316,7 @@ for (const file of htmlFiles()) {
       if (source === 'attr') {
         // No CSS path renders an attribute value directly — required in doubt, per the
         // brief, means covered by both faces.
-        if (!FACES.display.has(code) || !FACES.body.has(code)) recordMissing(char, label);
+        if (!FACES.sans.has(code) || !FACES.mono.has(code)) recordMissing(char, label);
         continue;
       }
 
@@ -316,7 +334,8 @@ const failures = [...uncovered.entries()]
   });
 
 console.log(`      ${filesWalked} built file(s) walked, ${charsChecked} character(s) checked`);
-console.log(`      ${FACES.display.file}  ${FACES.display.font.characterSet.length} code points`);
-console.log(`      ${FACES.body.file}  ${FACES.body.font.characterSet.length} code points`);
+for (const face of Object.values(FACES)) {
+  console.log(`      ${face.file.padEnd(34)} ${face.font.characterSet.length} code points`);
+}
 
 process.exit(report('qa:glyphs', failures));

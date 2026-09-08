@@ -1,31 +1,53 @@
 ---
-import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME, NAV, BUILT_ROUTES } from '../lib/copy';
+import { SITE_NAME, WORDMARK_ACCESSIBLE_NAME, NAV, BUILT_ROUTES, CONTACT_AFFORDANCE, STUDIO_EMAIL } from '../lib/copy';
 import ThemeToggle from './ThemeToggle.astro';
 
 /**
- * DESIGN.md §B.8 / §B.9 / §B.10a. One component at every breakpoint: the wordmark, the
- * four COPY.md §1 nav labels, and the light/dark toggle last. It wraps rather than
- * collapsing — no hamburger, no disclosure, no aria-expanded state.
+ * Sticky, 76px, blurred over whatever scrolls under it, with a single hairline at its
+ * bottom edge.
  *
- * COPY.md §1 gives four nav labels. Only the routes that exist are rendered; the rest
- * come back the step their route lands. Today that is `/` alone, which the wordmark
- * already carries, so the nav element itself is omitted rather than shipped empty.
+ * One component at every breakpoint: the wordmark, the nav labels, the studio's one
+ * contact affordance, and the scheme toggle last. It wraps rather than collapsing — no
+ * hamburger, no disclosure, no aria-expanded state.
  *
- * QUESTIONS.md item 48: there is no logo. The name sets in the display face.
+ * Only the routes that exist are rendered: a nav item pointing at a page that has not
+ * been built is a broken link, and `qa:links` is right to fail on one.
+ *
+ * The mark beside the name is the same near-abstract dog head the agent desks carry —
+ * two ears, a rounded head, a muzzle bar — at 26px. It is the studio's one piece of
+ * iconography and it is drawn from the room rather than added beside it.
  */
 const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
+const here = Astro.url.pathname;
 ---
 
-<header class="site-header">
+<header class="site-header" data-theme-anim>
   <div class="shell site-header__inner">
-    <a class="site-header__wordmark" href="/" aria-label={WORDMARK_ACCESSIBLE_NAME}>{SITE_NAME}</a>
+    <a class="site-header__wordmark" href="/" aria-label={WORDMARK_ACCESSIBLE_NAME}>
+      <svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M7 12 2 1 14 6Z" fill="var(--accent)"></path>
+        <path d="M33 12 38 1 26 6Z" fill="var(--accent)"></path>
+        <path
+          d="M6 13Q6 5 14 5H26Q34 5 34 13V23Q34 33 20 33Q6 33 6 23Z"
+          fill="none"
+          stroke="var(--ink)"
+          stroke-width="2.4"></path>
+        <rect x="14" y="21" width="12" height="7" rx="3.5" fill="var(--ink)"></rect>
+      </svg>
+      {SITE_NAME}
+    </a>
+
     {
       links.length > 0 && (
         <nav class="site-header__nav" aria-label="Primary">
           <ul class="site-header__list">
             {links.map((item) => (
               <li>
-                <a class="site-header__link" href={item.href}>
+                <a
+                  class="site-header__link"
+                  href={item.href}
+                  aria-current={here === item.href ? 'page' : undefined}
+                >
                   {item.label}
                 </a>
               </li>
@@ -34,6 +56,16 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
         </nav>
       )
     }
+
+    <a
+      class="pill pill--sm site-header__cta"
+      data-cta="header"
+      href={`mailto:${STUDIO_EMAIL}`}
+      aria-label={CONTACT_AFFORDANCE.accessibleName}
+    >
+      {CONTACT_AFFORDANCE.label}
+    </a>
+
     <div class="site-header__toggle">
       <ThemeToggle />
     </div>
@@ -42,42 +74,61 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
 
 <style>
   .site-header {
-    background-color: var(--tgd-surface);
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 40;
+    background: var(--head);
+    backdrop-filter: var(--blur-head);
+    -webkit-backdrop-filter: var(--blur-head);
+    border-block-end: 1px solid var(--line);
   }
 
-  /* §B.8: 92px at 360 (two rows), §B.9: 72px at >=768 (one row). */
+  /*
+    Where `backdrop-filter` is unsupported the header is the one surface that MUST NOT
+    stay translucent: it sits over scrolling body copy, so a 72%-alpha ground with no
+    blur behind it puts moving text under a static nav. It goes opaque instead.
+  */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header {
+      background: var(--ground);
+    }
+  }
+
   .site-header__inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: var(--space-24);
-    row-gap: 0;
-    min-block-size: 92px;
-    padding-block: var(--space-12);
+    min-block-size: var(--header-h);
+    gap: clamp(10px, 1.4vw, 22px);
+    padding-block: var(--space-8);
   }
 
   .site-header__wordmark {
-    flex: 1 0 100%;
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' var(--wdth-display);
-    font-size: var(--step-title);
-    line-height: var(--step-title-lh);
-    text-decoration: none;
-    color: var(--tgd-ink);
-    min-block-size: 44px;
     display: flex;
     align-items: center;
+    gap: var(--space-12);
+    min-block-size: 44px;
+    font-weight: 600;
+    font-size: clamp(17px, 1.3vw, 20px);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .site-header__wordmark svg {
+    display: block;
+    flex: 0 0 auto;
   }
 
   .site-header__nav {
-    flex: 1 1 auto;
+    margin-inline-start: auto;
   }
 
   .site-header__list {
     display: flex;
     align-items: center;
-    gap: var(--space-24);
+    flex-wrap: wrap;
+    gap: clamp(10px, 1.4vw, 22px);
     list-style: none;
   }
 
@@ -85,46 +136,29 @@ const links = NAV.filter((item) => BUILT_ROUTES.has(item.href));
     display: inline-flex;
     align-items: center;
     min-block-size: 44px;
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-ink);
+    padding-inline: var(--space-4);
+    font-size: var(--step-caption);
     text-decoration: none;
+    color: var(--dim);
   }
 
-  /*
-    §B.10a — right-aligned to the content edge, last in the tab order. At 360 it is the
-    fifth and last item on the nav row, so it takes the free space itself; at >= 768 the
-    NAV takes it and the toggle sits 24px after `Contact`, which is where §B.10a's
-    arithmetic puts it. Step-2 review item 10: two `auto` start margins split the free
-    space between them, which left the nav floating in the middle of the header.
-  */
-  .site-header__toggle {
+  /* The page you are on is stated in ink, not in the accent: the accent is the signal
+     for something to press, and the current page is not something to press. */
+  .site-header__link[aria-current='page'] {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .site-header__link:hover {
+    color: var(--ink);
+  }
+
+  /* With no nav to take it, the free space falls to the CTA instead. */
+  .site-header__inner:not(:has(.site-header__nav)) .site-header__cta {
     margin-inline-start: auto;
-    display: flex;
   }
 
-  @media (min-width: 768px) {
-    .site-header__inner {
-      flex-wrap: nowrap;
-      min-block-size: 72px;
-    }
-
-    .site-header__wordmark {
-      flex: 0 0 auto;
-    }
-
-    .site-header__nav {
-      flex: 0 0 auto;
-      margin-inline-start: auto;
-    }
-
-    .site-header__toggle {
-      margin-inline-start: 0;
-    }
-
-    /* The wordmark keeps the free space when there is no nav to take it. */
-    .site-header__inner:not(:has(.site-header__nav)) .site-header__toggle {
-      margin-inline-start: auto;
-    }
+  .site-header__toggle {
+    display: flex;
   }
 </style>

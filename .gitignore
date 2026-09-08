@@ -34,3 +34,7 @@ qa-output/
 
 # Local Python for the font pipeline (scripts/build-fonts.mjs, PLAN.md §1.5).
 .venv-fonts/
+.claude/
+
+# Design handoff bundle (reference only, not shipped).
+.design_handoff/

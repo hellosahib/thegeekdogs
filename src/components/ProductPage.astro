@@ -2,24 +2,27 @@
 import { Picture } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactPlate from './ContactPlate.astro';
 import StageTrack from './StageTrack.astro';
 import { productGraph } from '../lib/jsonld';
 
 /**
- * The shell both `/work/*` case studies use, per DESIGN.md §B.11. Identical on both
- * routes — the wedding planner is not a reduced version of the Pocket Manager page, it
- * is the same page with a different entry behind it, which is what item 9a's "full
- * name-agnostic page" means in practice.
+ * The shell both `/work/*` case studies use. Identical on both routes — the wedding
+ * planner is not a reduced version of the Pocket Manager page, it is the same page with
+ * a different entry behind it.
  *
- * §B.11: the full stage track sits directly under the h1, because on the shipped
- * product "Live" is the strongest fact on the page and on the other one the stage is
- * the whole answer to "when". Screenshots are in the real device aspect ratio (portrait
- * 9:19.5) with explicit dimensions, and there is no hero image.
+ * That identity is what makes the thin page read as restraint rather than as an
+ * unfinished one. The page with one screenshot gives that screenshot the width the other
+ * page gives four, and the sections it does not have simply are not there — no greyed
+ * headings, no "coming soon", no reserved slots with nothing in them. The design's answer
+ * to having less to show is to show less, at full size.
+ *
+ * The stage track sits directly under the h1: on the shipped product "Live" is the
+ * strongest fact on the page, and on the other one the stage is the whole answer to
+ * "when".
  *
  * Nothing here renders a field that is empty. No store link where there is nothing to
- * link to (COPY.md §5.1), no product name where a human has not picked one (§5.6), no
- * screenshot whose alt line is not written (§5.5, QUESTIONS.md item 73).
+ * link to, no product name where a human has not picked one, no screenshot whose alt
+ * line is not written.
  */
 interface Props {
   product: CollectionEntry<'products'>;
@@ -29,53 +32,32 @@ const { product } = Astro.props;
 const d = product.data;
 
 /*
-  PLAN.md §1.6 — one display width, so the four portrait captures form a column of
-  equal objects and every one of them carries explicit dimensions. 280 CSS px at 2x is
-  560 real pixels against a 1206-1440px source, so the pipeline is always downscaling.
+  One display width, so the portrait captures form a row of equal objects and every one
+  of them carries explicit dimensions. 280 CSS px at 2x is 560 real pixels against a
+  1206–1440px source, so the pipeline is always downscaling.
 
-  The FIRST capture is eager and `fetchpriority="high"`; every other one is lazy. §1.6
-  reserves exactly that for "if an actual image ever becomes the LCP candidate", and on
-  these two routes it does: §B.11 puts up to two screenshots above the fold, and measured
-  on Lighthouse mobile the first one is the LCP element. Lazy, its load did not even
-  start until 1.4s in and LCP came out at 2.49s against the §11 line of 2.0.
+  The FIRST capture is eager and `fetchpriority="high"`; every other one is lazy. On
+  these two routes the first screenshot is the LCP element, and lazy its load did not
+  start until 1.4s in.
 */
 const SHOT_WIDTH = 280;
 
 /*
-  Review item WP1, and DESIGN.md §B.11 round 12. Run A item 9 asked for a grid built for
-  one screenshot instead of a four-column grid with three collapsed tracks, and the build
-  delivered that; the composition did not follow. Rendered, `/work/wedding-planner/`'s one
-  real screen of the multi-function view was a **280 x 609 thumbnail alone at the far left
-  of a 1200px row** — the smallest object on a 3,104px page, with ~940px of empty sheet
-  beside it and nothing to read there — while §J's row for the route says that one screen
-  IS the differentiator. It cannot also be the page's smallest mark.
+  A page with ONE screenshot does not render a standalone screenshot row: the shot is
+  placed inside the section it is evidence for, beside that section's prose, at more than
+  twice the width. A single 280px thumbnail alone at the left of a 1200px row is the
+  smallest object on the page, and on the thin page that one screen is the whole
+  differentiator — it cannot also be the page's smallest mark.
 
-  §B.11's answer: **at >= 1024 the shot runs in cols 1-4 with COPY §5.2's differentiator
-  paragraph in cols 6-10 beside it, top-aligned to the shot; below 1024 the shot is full
-  content width with the paragraph beneath it.** So a one-screenshot page does not render
-  a standalone screenshot row at all — the shot is placed inside the differentiator
-  section, which is the section it is evidence for, and the row carries the picture and
-  the sentence that explains it and no third thing.
-
-  The source is 1206 x 2622, so 603 is the largest display width that still downscales at
-  2x. The `<img>` keeps its explicit width/height and the real 9:19.5 device aspect at
-  both sizes, so §B.11's layout-holds-with-images-aborted guarantee is unchanged.
+  The source is 1206 x 2622, so 603 is the largest display width that still downscales
+  at 2x.
 */
 const singleShot = d.screenshots.length === 1;
 const SOLO_SHOT_WIDTH = 603;
 const soloShot = singleShot ? d.screenshots[0] : undefined;
 
-/*
-  Run A item 7 — §B.11 allows at most TWO screenshots above the fold, and the four-across
-  row at >=1024 ran y 600-1207 in a 900-tall viewport, so all four were. The row is
-  capped at two columns at every width from 768 up; at 768 it was already a 2 x 2 and
-  correct. Nothing is cut to achieve it.
-
-  Run A item 9 — /work/wedding-planner/ computed `280px 0px 0px 0px`: one cleared
-  screenshot in a four-column grid with three collapsed tracks, sitting at the far left
-  of a 1200px row. The column count is the screenshot count, capped at two, so a page
-  with one screenshot is laid out for the one it has.
-*/
+/* At most two screenshots above the fold, and the column count is the screenshot count
+   capped at two, so a page is laid out for the number of shots it actually has. */
 const shotColumns = Math.min(d.screenshots.length, 2);
 
 const schema = productGraph(product);
@@ -89,100 +71,102 @@ const schema = productGraph(product);
   ogImage={d.slug}
   schema={schema}
 >
-  <div class="plate-span plate-span--page">
-    <section class="section section--reserve page-section">
-      <div class="shell">
-        <div class="grid product-head">
-          <h1 class="product-head__headline">{d.headline}</h1>
-          <p class="product-head__subhead muted">{d.subhead}</p>
-          <div class="product-head__track">
-            <StageTrack stage={d.stage} label={d.descriptiveName} />
-          </div>
-          {
-            d.storeUrl && d.storeLink && (
-              <p class="product-head__store">
-                <a
-                  class="link"
-                  href={d.storeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={d.storeLink.accessibleName}
-                >
-                  {d.storeLink.label}
-                </a>
-              </p>
-            )
-          }
+  <section class="section page-section">
+    <div class="shell">
+      <div class="product-head">
+        <p class="eyebrow accent">{d.descriptiveName}</p>
+        <h1 class="product-head__headline">{d.headline}</h1>
+        <p class="lede product-head__subhead">{d.subhead}</p>
+
+        <div class="glass product-head__track">
+          {/* The h1 and the eyebrow above have already named it twice over. */}
+          <StageTrack stage={d.stage} label={d.descriptiveName} showName={false} />
         </div>
 
         {
-          d.screenshots.length > 1 && (
-            <ul class="shots" style={`--shot-columns: ${shotColumns}`}>
-              {d.screenshots.map((shot, index) => (
-                <li class="shots__item">
-                  <Picture
-                    src={shot.src}
-                    alt={shot.alt}
-                    formats={['avif', 'webp']}
-                    width={SHOT_WIDTH}
-                    densities={[1, 2]}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    fetchpriority={index === 0 ? 'high' : undefined}
-                    decoding="async"
-                  />
-                </li>
-              ))}
-            </ul>
+          d.storeUrl && d.storeLink && (
+            <p class="product-head__store">
+              <a
+                class="pill pill--accent"
+                href={d.storeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={d.storeLink.accessibleName}
+              >
+                {d.storeLink.label}
+              </a>
+            </p>
           )
         }
-
-        <div class="product-body">
-          {
-            d.sections.map((section, index) => (
-              <section
-                class="product-section"
-                data-fill={index % 2 === 1 ? 'band' : 'sheet'}
-                data-shot={index === 0 && soloShot ? '' : undefined}
-              >
-                <div class="product-section__inner grid">
-                  <h2 class="product-section__heading">{section.heading}</h2>
-                  {index === 0 && soloShot && (
-                    <div class="product-section__shot">
-                      <Picture
-                        src={soloShot.src}
-                        alt={soloShot.alt}
-                        formats={['avif', 'webp']}
-                        width={SOLO_SHOT_WIDTH}
-                        densities={[1, 2]}
-                        loading="eager"
-                        fetchpriority="high"
-                        decoding="async"
-                      />
-                    </div>
-                  )}
-                  <div class="product-section__content">
-                {section.body && <p class="product-section__body">{section.body}</p>}
-                {section.showFeatures && d.features.length > 0 && (
-                  <ul class="product-section__features">
-                    {d.features.map((feature) => (
-                      <li>{feature}</li>
-                    ))}
-                  </ul>
-                )}
-                {section.closingLine && (
-                  <p class="product-section__closing">{section.closingLine}</p>
-                )}
-                  </div>
-                </div>
-              </section>
-            ))
-          }
-        </div>
       </div>
-    </section>
 
-    <ContactPlate />
-  </div>
+      {/*
+        The frame. A screenshot dropped in raw reads as an asset pasted onto a page; the
+        same capture inside a glass surround with the room's own hairline reads as a
+        device standing in the room. It is padding, a radius and a border — no chrome, no
+        drawn notch, nothing pretending to be hardware.
+      */}
+      {
+        d.screenshots.length > 1 && (
+          <ul class="shots" style={`--shot-columns: ${shotColumns}`} data-rv>
+            {d.screenshots.map((shot, index) => (
+              <li class="glass shots__item">
+                <Picture
+                  src={shot.src}
+                  alt={shot.alt}
+                  formats={['avif', 'webp']}
+                  width={SHOT_WIDTH}
+                  densities={[1, 2]}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  decoding="async"
+                />
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <div class="product-body">
+        {
+          d.sections.map((section, index) => (
+            <section class="product-section" data-shot={index === 0 && soloShot ? '' : undefined}>
+              <div class="product-section__inner" data-rv>
+                {index === 0 && soloShot && (
+                  <div class="glass product-section__shot">
+                    <Picture
+                      src={soloShot.src}
+                      alt={soloShot.alt}
+                      formats={['avif', 'webp']}
+                      width={SOLO_SHOT_WIDTH}
+                      densities={[1, 2]}
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  </div>
+                )}
+                <div class="product-section__content">
+                  <h2 class="product-section__heading">{section.heading}</h2>
+                  {section.body && <p class="product-section__body muted">{section.body}</p>}
+                  {section.showFeatures && d.features.length > 0 && (
+                    <ul class="product-section__features">
+                      {d.features.map((feature) => (
+                        <li class="card product-section__feature">{feature}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {section.closingLine && (
+                    <p class="quote product-section__closing">{section.closingLine}</p>
+                  )}
+                </div>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -190,203 +174,106 @@ const schema = productGraph(product);
     flex: 1 0 auto;
   }
 
-  /* Run A item 5 — the head is on §B.5's grid rather than one 530px measure in a
-     1200px page. Below 1024 its parts stack in DOM order, as every split does. */
-  .product-head {
-    row-gap: var(--space-24);
+  .product-head__headline {
+    margin-block-start: var(--space-14);
+    max-inline-size: 20ch;
   }
 
-  /* §B.11 — directly under the h1. */
+  .product-head__subhead {
+    margin-block-start: var(--space-24);
+    max-inline-size: 56ch;
+  }
+
   .product-head__track {
-    margin-block-start: var(--space-8);
+    margin-block-start: var(--space-32);
+    padding: var(--space-24);
+    max-inline-size: 720px;
   }
 
-  .product-head__store a {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: 44px;
-  }
-
-  /*
-    Item 7 and item 9 — the column count is the screenshot count capped at two, so no
-    page above the fold carries more than §B.11's two and a page with one screenshot is
-    laid out for the one it has instead of leaving three collapsed tracks beside it.
-  */
-  .shots {
-    margin-block-start: var(--space-64);
-    list-style: none;
-    display: grid;
-    gap: var(--space-24);
-    justify-items: start;
-  }
-
-  .shots :global(img) {
-    display: block;
-    block-size: auto;
-    max-inline-size: 100%;
-    border-radius: 3px;
-  }
-
-  .product-body {
-    margin-block-start: var(--space-96);
-  }
-
-  /*
-    Run A item 8 — both product pages ran header to footer on one --sheet, with the four
-    sections separated by space alone. §B.2 separates structure with fill changes AND
-    space, and §B.9's argument for the home page's seven families is that a long page
-    needs the fill to mark where the argument turns. The sections alternate now.
-
-    The fill carrier takes 16px of horizontal padding and pulls the same 16px back as a
-    negative margin, so its CONTENT box is exactly the content width and the grid inside
-    it lands on §B.5's own columns — the fill breathes past the type without the type
-    moving off the grid, and nothing here is full-bleed (§B.5 gives that to two regions
-    on the whole site and neither is on this page).
-  */
-  .product-section {
-    padding-inline: var(--space-16);
-    margin-inline: calc(-1 * var(--space-16));
-    padding-block: var(--space-48);
-  }
-
-  .product-section[data-fill='band'] {
-    background-color: var(--tgd-surface-alt);
-    color: var(--tgd-ink);
-  }
-
-  .product-section__inner {
-    row-gap: var(--space-16);
-  }
-
-  /* WP1 / §B.11 round 12 — the one screenshot, inside the section it is evidence for. */
-  .product-section__shot {
+  .product-head__store {
     margin-block-start: var(--space-24);
   }
 
+  .shots {
+    margin-block-start: var(--gap-block);
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(var(--shot-columns, 2), minmax(0, max-content));
+    gap: var(--gap-col);
+    justify-content: start;
+  }
+
+  .shots__item {
+    padding: var(--space-12);
+    border-radius: var(--r-panel);
+    line-height: 0;
+  }
+
+  .shots :global(img),
   .product-section__shot :global(img) {
     display: block;
-    inline-size: 100%;
     block-size: auto;
-    border-radius: 3px;
+    max-inline-size: 100%;
+    border-radius: var(--r-cell);
   }
 
-  .product-section__body,
-  .product-section__closing {
-    margin-block-start: var(--space-16);
-  }
-
-  .product-section__content > :first-child {
-    margin-block-start: 0;
-  }
-
-  .product-section__closing {
-    font-weight: 600;
-  }
-
-  /*
-    §J's pre-committed cut, taken on BOTH product routes: `/work/pocket-manager/`'s
-    bulleted list in `Build` and `/work/wedding-planner/`'s bullet markers on
-    `What's in it` (review items PM1 and WP2, both nominated in run A and both still
-    unspent). These were the site's only two bulleted lists; §B.2 separates with fill and
-    space and never with a glyph, and short feature lines read faster without a marker in
-    front of them.
-
-    The markers go and the indent goes with them — an indented block with no marker is the
-    thing that reads as a mistake — and the separation moves to space, which is what §B.2
-    asks for. It is still a real `<ul>` of `<li>`s: the list semantics are what a screen
-    reader counts, and the cut is the decoration, not the structure.
-  */
-  .product-section__features {
-    margin-block-start: var(--space-16);
-    max-inline-size: var(--measure-body);
-    list-style: none;
-  }
-
-  .product-section__features > li + li {
-    margin-block-start: var(--space-16);
-  }
-
-  @media (min-width: 768px) {
+  @media (max-width: 719px) {
     .shots {
-      grid-template-columns: repeat(var(--shot-columns, 1), max-content);
-      column-gap: var(--gutter);
+      grid-template-columns: minmax(0, max-content);
     }
   }
 
-  /*
-    §E.2's horizontal track starts at 931 (round 9). Between 931 and 1023 the eight
-    columns give the head cols 1-5, so the axis ends at x 566 at 931 against a plate band
-    beginning at 655 — the tightest width in the range, and looser above it.
-  */
-  @media (min-width: 931px) {
-    .product-head__track {
-      grid-column: 1 / span 5;
-    }
+  .product-body {
+    margin-block-start: var(--section-pad);
+    display: grid;
+    gap: var(--section-pad);
   }
 
-  @media (min-width: 1024px) {
-    .product-head__headline {
-      grid-column: 1 / span 5;
-    }
+  .product-section__inner {
+    display: grid;
+    gap: var(--gap-col);
+    align-items: start;
+  }
 
-    .product-head__subhead {
-      grid-column: 7 / span 6;
-      align-self: end;
-    }
+  /* The section that carries the solo shot is the one two-column arrangement here: the
+     picture and the sentence that explains it, side by side, and no third thing. */
+  .product-section[data-shot] .product-section__inner {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
 
-    /* Cols 1-9 ends at x 738 at 1024 and x 930 at 1440, against a band beginning at 748
-       and 1164, so the axis and the store link are clear of it (§B.10's amended rule)
-       and cols 10-12 are the page's one §B.9 void. The two-column screenshot row is
-       2 x 280 + 24 = 584 wide and ends at x 632 / 704, clear on the same rule. */
-    .product-head__track,
-    .product-head__store {
-      grid-column: 1 / span 9;
-    }
+  .product-section__shot {
+    padding: var(--space-12);
+    border-radius: var(--r-panel);
+    line-height: 0;
+    justify-self: start;
+  }
 
-    /* Item 5 — a left rail carries the section's name and the prose runs beside it, the
-       same second-column device the work-card strip and the proof band already use. */
-    .product-section__heading {
-      grid-column: 1 / span 3;
-    }
+  .product-section__heading {
+    max-inline-size: 22ch;
+  }
 
-    .product-section__content {
-      grid-column: 4 / span 6;
-    }
+  .product-section__body {
+    margin-block-start: var(--space-20);
+    max-inline-size: 62ch;
+  }
 
-    /*
-      §B.11 round 12 — the differentiator row: the shot in cols 1-4, the heading and
-      COPY §5.2's paragraph in cols 6-10 beside it, top-aligned to the shot. The shot
-      spans both rows so the paragraph sits against its top edge rather than centring
-      on a 1,200px-tall picture.
-    */
-    /* The shot spans both rows, so row 2 is the flexible one: without that, an `auto`
-       row-pair splits the picture's height between them and drops the paragraph half a
-       screenshot below its own heading. */
-    .product-section[data-shot] .product-section__inner {
-      grid-template-rows: auto 1fr;
-    }
+  .product-section__features {
+    margin-block-start: var(--space-24);
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--space-12);
+  }
 
-    .product-section[data-shot] .product-section__shot {
-      grid-column: 1 / span 4;
-      grid-row: 1 / span 2;
-      margin-block-start: 0;
-    }
+  .product-section__feature {
+    padding: var(--space-16);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    color: var(--ink-2);
+  }
 
-    .product-section[data-shot] .product-section__heading,
-    .product-section[data-shot] .product-section__content {
-      grid-column: 6 / span 5;
-    }
-
-    .product-section[data-shot] .product-section__heading {
-      grid-row: 1;
-    }
-
-    .product-section[data-shot] .product-section__content {
-      grid-row: 2;
-    }
-
-    .product-section {
-      padding-block: var(--space-64);
-    }
+  .product-section__closing {
+    margin-block-start: var(--space-28);
+    max-inline-size: 30ch;
   }
 </style>

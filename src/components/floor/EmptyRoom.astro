@@ -137,19 +137,9 @@ const box = { w: maxX - minX, h: maxY - minY };
   }
 
   .room404__scene {
-    /* The same fills §C.1 gives the room, read from the same tokens, so the empty room
-       follows the scheme with no palette of its own. */
-    --fl-ground: var(--tgd-room);
-    --fl-lit: rgba(232, 237, 233, 0.22);
-    --fl-shadow: #0a1e21;
-
     display: block;
     inline-size: 100%;
     block-size: 100%;
-  }
-
-  :global([data-theme='dark']) .room404__scene {
-    --fl-shadow: #051113;
   }
 
   /*
@@ -157,39 +147,51 @@ const box = { w: maxX - minX, h: maxY - minY };
     than a style: the `<defs>` above are injected with `set:html`, and Astro cannot add a
     scope attribute to markup it did not compile — scoped, `.fl-cone-a[data-astro-cid-…]`
     matches nothing inside the gradient and every fill falls back to the initial black.
+
     They are restated here rather than borrowed from StudioFloor because this page does
     not render StudioFloor: a route must not depend on the stylesheet of a component it
     never mounts. Every value is the token the floor reads, so there is one source of
-    truth for the colour and two one-line mappings to it.
+    truth for each colour and two one-line mappings to it.
   */
   :global(.fl-slab) {
-    fill: var(--fl-ground);
+    fill: url(#fl-slab-g);
   }
 
   :global(.fl-edge) {
-    stroke: var(--fl-lit);
+    stroke: rgba(var(--f-ink-rgb), 0.16);
     stroke-width: 1;
   }
 
-  :global(.fl-lit) {
-    fill: var(--fl-lit);
+  :global(.fl-slab-a) {
+    stop-color: var(--f-a);
   }
 
-  :global(.fl-shadow) {
-    fill: var(--fl-shadow);
+  :global(.fl-slab-b) {
+    stop-color: var(--f-b);
+  }
+
+  :global(.fl-cord) {
+    fill: rgba(var(--f-ink-rgb), 0.4);
+  }
+
+  :global(.fl-shade) {
+    fill: var(--f-c);
+    stroke: rgba(var(--lamp-rgb), 0.55);
+    stroke-width: 1;
   }
 
   :global(.fl-cone) {
     fill: url(#fl-cone);
+    opacity: 0.7;
   }
 
   :global(.fl-cone-a) {
-    stop-color: var(--lamp);
-    stop-opacity: 0.5;
+    stop-color: var(--f-cone);
+    stop-opacity: 0.55;
   }
 
   :global(.fl-cone-b) {
-    stop-color: var(--lamp);
-    stop-opacity: 0.06;
+    stop-color: var(--f-cone);
+    stop-opacity: 0.03;
   }
 </style>

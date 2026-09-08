@@ -3,58 +3,28 @@ import type { CollectionEntry } from 'astro:content';
 import WorkCard from '../../components/person/WorkCard.astro';
 
 /**
- * Direction T1, "the shared core" — DESIGN.md §G.3, recommended in §G.5.
+ * The shared core — Tanya's page's centre, and the structural counterpart to the
+ * coverage map on Sahib's.
  *
- * **This file is the whole of her direction.** PLAN.md §1.2: `/tanya/` imports one
- * layout module and one token partial (`src/styles/worlds/tanya.css`), and every shared
- * component it uses — the header, the footer, the contact plate, the work card, the
- * links block — consumes only generic token names. Swapping to T2 (§G.4) is changing
- * which module `src/pages/tanya/index.astro` imports; it touches no token and no shared
- * component, which is the condition §9.3 attaches to her sign-off coming after the
- * build.
+ * **The two person pages are not the same page with different names in it.** His
+ * evidence is breadth, so his centre is a matrix; hers is how the work is put together,
+ * so her centre is an architecture. Cloning his layout onto her page would print the one
+ * thing about her that is not true.
  *
- * **The page's own layout is a KMP architecture.** One fixed central column is the
- * shared core; two flanking columns are the native edges, Android on the left, iOS on
- * the right. Content sits in the column that owns it: anything shared sits in the core,
- * anything platform-specific sits in an edge, narrower and indented. The core is a
- * continuous vertical field running the section's full height, so it reads as a spine
- * rather than as a stack of blocks.
+ * **The page's own layout IS a KMP architecture.** One central column is the shared
+ * core; two flanking columns are the native edges, Android on the left, iOS on the
+ * right. Content sits in the column that owns it: anything shared sits in the core,
+ * anything platform-specific sits on an edge, narrower and quieter. The core is a glass
+ * panel running the band's full height, so it reads as a spine rather than as a stack.
  *
- * **Motive appears on all three layers, and that is the argument rather than a
- * duplication bug.** The card lives in the core, where the KMP work is; a 2px `--t-ink`
- * tick runs out of it into the iOS edge with the product at its end, showing the same
- * product arriving on the platform that consumes the shared modules. Her Android-edge
- * cards are the two roles whose work is Android-only.
+ * **Motive appears on more than one layer, and that is the argument rather than a
+ * duplication bug.** The card lives in the core, where the KMP work is; an annotation on
+ * the iOS edge names the same product arriving on the platform that consumes the shared
+ * modules.
  *
- * At 360 the three columns collapse to one and the structure survives as indentation
- * depth plus a rule, not as horizontal position: core content is full width on
- * `--t-core`, edge content is inset 24px with a 2px `--t-ink` left rule under a condensed
- * platform label, and the tick out of the Motive card rotates from sideways to downward.
- * The DOM order is therefore CORE, Android edge, iOS edge — §G.3's own collapse, and the
- * order a screen reader reads at every width. From 1024 the grid places each field by
- * column, so the middle field is the middle column without the source order changing.
- *
- * Column allocation from 1024 (§G.3, §G.2's "which is what lets the three-column layout
- * hold at 1024"). §G.3 draws Android 1-3, core 4-9 and iOS 10-12 at 1440, and §B.10's
- * amended rule will not carry that: at 1024 col 10 STARTS at x 762 against a plate band
- * beginning at 748, so the whole iOS column would sit inside it, and at 1440 the
- * annotation's own right edge lands at ~1178 against 1164. The three fields are placed
- * inside cols 1-9 instead — Android 1-3, core 4-7, iOS 8-9 — which keeps §G.3's
- * hierarchy exactly (the core is the widest field, the edges are narrower and indented)
- * and puts the band's right edge at x 738 at 1024 and x 1014 at 1440. Cols 10-12 are
- * this page's void and the plate rests in them, which is the same allocation /work/,
- * /contact/, both case studies and /sahib/ now use.
- *
- * §J's pre-committed cut for this page is taken: there are no platform glyphs at the
- * edge columns. The words are shorter, clearer and cheaper than any icon, and with
- * Motive on all three layers the edge labels carry a real distinction an icon would
- * blur.
- *
- * §H.3, "the core draws": the field's boundary draws top to bottom over 900ms and each
- * edge column's content becomes visible only as the core passes its row — one wipe on
- * the band, which is the choreography and the architectural claim at once. Nothing else
- * on the page animates. Under `reduce` the band is simply complete, which is §H.4's
- * still frame and also the unconditional rendering.
+ * The DOM order is CORE, Android edge, iOS edge, at every width — the order a screen
+ * reader reads, and the order the columns collapse into when the band is too narrow to
+ * hold three.
  */
 interface Props {
   person: CollectionEntry<'people'>;
@@ -78,70 +48,37 @@ const androidEdgeNotes = person.data.edgeAnnotations.filter((note) => note.layer
 
 if (core.length === 0 || android.length === 0) {
   throw new Error(
-    'T1 needs every role in src/data/people/tanya-jain.json to carry a `layer`, with at least one in the core and one on the Android edge (§G.3).',
+    'The shared core needs every role in src/data/people/tanya-jain.json to carry a `layer`, with at least one in the core and one on the Android edge.',
   );
 }
 
 /*
-  DESIGN.md §G.2 — the three structural labels. They are the layout's own names for its
-  three fields, which is why they are here and not in COPY.md: §J's row for this page
-  says in terms that "the words Android and iOS are shorter, clearer and cheaper than any
-  icon", and §G.3 names the middle field the shared core throughout.
+  The three structural labels. They are the layout's own names for its three fields,
+  which is why they are here and not in COPY.md: the words `Android` and `iOS` are
+  shorter, clearer and cheaper than any icon, and with one company on more than one layer
+  the edge labels carry a real distinction an icon would blur.
 */
 const FIELD_LABELS = { android: 'Android', core: 'Shared core', ios: 'iOS' } as const;
 
 /*
-  §G.3a item T1 — **"one company, three layers" has to be legible without reading a
-  word**, so an edge annotation prints the company it comes out of. `fromCompany` has
-  been on the entry since round 3 as the company whose core card the layer attaches to;
-  round 13 makes the tick attach to the LAYER'S NAME rather than to a card, which leaves
-  the pairing to be carried by content — and content is where §G.3a says it was always
-  carried. Where the annotation's own label already names the company (the iOS edge's
-  `Motive Fleet App`) it is not printed a second time; nothing else on this site names a
+  "One company, three layers" has to be legible without reading a word, so an edge
+  annotation prints the company it comes out of. Where the annotation's own label already
+  names that company it is not printed a second time; nothing else on this site names a
   thing twice in one mark.
 */
 const namesCompany = (note: { fromCompany: string; label: string }) =>
   !note.label.includes(note.fromCompany);
 
-/*
-  DESIGN.md §G.3a round 13, and §I.1 row 1 — **the gates block sets one gate per line**,
-  a real `<ul>` with no markers and no indent, exactly as PM1 and WP2 left every other
-  list on this site (§B.2: separation by space, never by a marker).
-
-  This is a LINE-BREAKING change and not a copy change. Every word rendered is COPY.md
-  §2.3's own `Owns` line, split at the commas that were already in it; nothing is
-  reworded, reordered or added. The sentence's terminal full stop goes with the sentence
-  — a list of items is not a sentence, and no other item carries a stop — and that is the
-  only mark this file touches. §G.3a's wireframe draws five gates because it was written
-  against item 19's list; the shipped line carries six, and the count is the copy's.
-
-  Why it has to break: §B.10 asserted that this mark was covered below 768 "by being full
-  width", and round 13 deletes that clause because it was false. A line that sets to its
-  field's own measure ends where the field ends: measured on the run-D build it ran to
-  x 305 at 360 against a band at 232 and to x 539 at 768 against 492 — three of
-  `qa:plate`'s seven flags. The core does not narrow (§B.5 calls it a diagram with a fixed
-  minimum extent, and item T4 exists because it was narrowed once already), so the line
-  breaking is what yields. Set one per line, the longest item is `code and design review`
-  and it ends far inside the band at every width. §C.6's floor cards keep the comma form,
-  because a 293px slot turns six lines into six lines of two words.
-*/
 const gates = owns.line
-  .replace(/\.\s*$/, '')
-  .split(',')
-  .map((gate) => gate.trim())
-  .filter((gate) => gate.length > 0);
-
-if (gates.length < 2) {
-  throw new Error(
-    "COPY.md §2.3's `Owns` line for /tanya/ no longer separates its gates with commas; §G.3a's one-gate-per-line block has nothing to break on.",
-  );
-}
+  .split(/,\s*/)
+  .map((part) => part.trim())
+  .filter(Boolean);
 ---
 
-<section class="core-band" aria-label={work.heading}>
-  <div class="shell grid core-band__grid">
-    <div class="core">
-      <p class="core__label">{FIELD_LABELS.core}</p>
+<section class="section core-band" aria-label={work.heading}>
+  <div class="shell core-band__grid">
+    <div class="glass core" data-rv>
+      <p class="micro core__label">{FIELD_LABELS.core}</p>
       <h2 class="core__heading">{work.heading}</h2>
       <p class="core__statement">{work.coreStatement}</p>
 
@@ -155,18 +92,18 @@ if (gates.length < 2) {
         }
       </ul>
 
-      <p class="core__body">{work.body}</p>
+      <p class="core__body muted">{work.body}</p>
 
       <div class="core__gates">
-        <p class="core__gates-label">{owns.label}</p>
+        <p class="micro core__gates-label">{owns.label}</p>
         <ul class="core__gates-line">
           {gates.map((gate) => <li>{gate}</li>)}
         </ul>
       </div>
     </div>
 
-    <div class="edge edge--android">
-      <p class="edge__label">{FIELD_LABELS.android}</p>
+    <div class="edge edge--android" data-rv>
+      <p class="micro edge__label">{FIELD_LABELS.android}</p>
       {
         androidEdgeNotes.map((note) => (
           <p class="edge__note">
@@ -186,8 +123,8 @@ if (gates.length < 2) {
       </ul>
     </div>
 
-    <div class="edge edge--ios">
-      <p class="edge__label">{FIELD_LABELS.ios}</p>
+    <div class="edge edge--ios" data-rv>
+      <p class="micro edge__label">{FIELD_LABELS.ios}</p>
       {
         iosEdge.map((note) => (
           <p class="edge__note">
@@ -203,425 +140,141 @@ if (gates.length < 2) {
 </section>
 
 <style>
-  .core-band__grid {
-    row-gap: var(--space-40);
-  }
-
   /*
-    The core field. In light it is a step darker than the ground, in dark a step lighter;
-    either way it is the one step away from the page, and in dark it takes a 1px inset
-    top edge as well (§G.1a). Its top cap is 4px of --lamp-ink — with the section markers
-    below, the only chromatic marks on the page, and both are non-text (§G.1's own
-    constraint, kept in dark as a design rule rather than a contrast consequence).
+    Three fields. The core is the widest, because it is the one everything else agrees
+    on; the edges are narrower, because that is the claim — the platform code at the
+    edges stays small because the core settled it first. The grid says so before a word
+    of the copy does.
   */
-  .core {
-    background-color: var(--tgd-surface-alt);
-    border-block-start: 4px solid var(--tgd-accent);
-    box-shadow: inset 0 1px 0 var(--t-core-edge, transparent);
-    padding: var(--space-24) var(--space-16) var(--space-32);
-    /* The cards inside the core stand ON the core, so the stand takes its fill. */
-    --card-stand-fill: var(--tgd-surface-alt);
+  .core-band__grid {
+    display: grid;
+    gap: var(--gap-col);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
   }
 
-  /* §G.2 — structural labels set in the display face at wdth 75, condensed, so a narrow
-     column carries a full-size label without the type shrinking. */
+  @media (min-width: 1000px) {
+    .core-band__grid {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 3fr);
+    }
+
+    /* Source order is core, Android, iOS — the order it is read in. Placement puts the
+       core between its two edges without moving a line of the DOM. */
+    .core {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .edge--android {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .edge--ios {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .core-band__gates-link {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  .core {
+    padding: var(--space-28);
+    /* The one accent edge on the page: the core's top cap. It is where the spine
+       starts. */
+    border-block-start: 3px solid var(--accent);
+  }
+
   .core__label,
   .edge__label {
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' 75;
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-muted);
-  }
-
-  .core__heading {
-    margin-block-start: var(--space-8);
+    color: var(--dim);
+    margin-block-end: var(--space-12);
   }
 
   .core__statement {
     margin-block-start: var(--space-16);
+    color: var(--ink-2);
+    max-inline-size: 60ch;
   }
 
   .core__cards {
     margin-block-start: var(--space-32);
     list-style: none;
     display: grid;
-    gap: 28px;
+    gap: var(--space-20);
   }
 
   .core__body {
     margin-block-start: var(--space-32);
-    color: var(--tgd-muted);
+    max-inline-size: 62ch;
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
   }
 
   .core__gates {
     margin-block-start: var(--space-32);
+    padding-block-start: var(--space-20);
+    border-block-start: 1px solid var(--line);
   }
 
-  /* A section marker: the second and last --lamp-ink mark on the page, non-text. */
   .core__gates-label {
-    padding-inline-start: var(--space-12);
-    border-inline-start: 4px solid var(--tgd-accent);
-    font-family: var(--tgd-font-display);
-    font-weight: var(--wght-display);
-    font-variation-settings: 'wdth' 75;
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-    color: var(--tgd-muted);
+    color: var(--lamp);
+  }
+
+  .core__gates-line {
+    margin-block-start: var(--space-12);
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .core__gates-line li {
+    padding: var(--space-8) var(--space-14);
+    border-radius: var(--r-pill);
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: var(--step-caption);
+    color: var(--ink);
   }
 
   /*
-    §G.3a round 13 — one gate per line, at every width. A real list with no markers and
-    no indent (§B.2, and the form PM1 and WP2 left every other list on this site in), so
-    the separation is space. §G.3a: "At >= 1024 the block may keep either form and keeps
-    this one: five owned gates read as five gates, and the comma-separated run-on was
-    always the compromise the narrow column forced."
+    An edge is indented behind a rule rather than fenced in a panel, so it reads as
+    something hanging off the core rather than as a third object of the same weight. At
+    one column the rule is what preserves the structure: depth, not horizontal position.
   */
-  .core__gates-line {
-    margin-block-start: var(--space-8);
-    list-style: none;
-    padding-inline-start: 0;
-  }
-
-  /* Each gate's box is its own gate. A block `<li>` spans the core's whole measure, so
-     the line box — the thing the plate rule measures, and the thing a focus ring or a
-     forced-colours backplate would draw — reached x 324 at 360 while the ink stopped at
-     213. `max-content` makes the box the mark; `100%` keeps a long gate wrapping rather
-     than overflowing the field. */
-  .core__gates-line > li {
-    inline-size: max-content;
-    max-inline-size: 100%;
-  }
-
-  /* The edges: narrower AND indented, with a 2px --t-ink left rule carrying the
-     structure where horizontal position cannot (§G.3's 360 collapse). */
   .edge {
-    padding-inline-start: var(--space-24);
-    border-inline-start: 2px solid var(--tgd-ink);
+    padding-inline-start: var(--space-20);
+    border-inline-start: 2px solid var(--line-2);
+  }
+
+  .edge__note {
+    color: var(--dim);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+    margin-block-end: var(--space-16);
+  }
+
+  .edge__note-company {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .edge__cards {
-    margin-block-start: var(--space-16);
     list-style: none;
     display: grid;
-    gap: 28px;
-  }
-
-  /*
-    An edge annotation. It is prose in a container, not a card — round 13's ruling is
-    that the tick attaches a layer to the core by the layer's NAME, so the annotation's
-    only job is to say what that layer holds. §G.3a's card wireframe is superseded on
-    exactly that point and `.edge__note` is off `qa:plate`'s mark list for it.
-  */
-  .edge__note {
-    margin-block-start: var(--space-16);
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-  }
-
-  /*
-    The company the layer comes out of. Item T1's whole point is that this word reads
-    `Motive` in all three fields, so it leads the note on its own line, at the note's own
-    size in the page's ink — no fifth type size (§B.6), and no separator glyph, because a
-    punctuation mark invented in a stylesheet is a character the font subset never walked
-    out of `dist/` and would fall back on.
-  */
-  .edge__note-company {
-    display: block;
-    font-weight: 600;
-    color: var(--tgd-ink);
-  }
-
-  /*
-    **THE TWO TICKS — §G.3a round 13 and §I.1 row 2, and this is a different y than
-    round 12 implied.**
-
-    > A tick is the point at which a platform layer attaches to the core. It attaches to
-    > the layer's *name*, not to any card in it. Each tick's stroke centre sits on the
-    > platform label's first baseline.
-
-    Round 12 asked for the edge card to be "top-aligned to the tick", and that is not
-    expressible: each edge field's first mark is its platform label, so a card's top is a
-    label's height below the field's top, and aligning a row across three independent
-    columns needs either the core split into grid rows — which costs "one continuous
-    field" — or a measurement in JS, which §H.1 forbids for layout. Round 13 withdrew the
-    wording and replaced it with a decision about what the tick MEANS, and the geometry
-    falls out of it: the tick attaches to a name, and the three names share a baseline.
-
-    **Below 1024 the same rule, rotated.** The columns are stacked, so the two ticks leave
-    the core field's bottom edge and come down into each edge block, terminating on that
-    block's platform label baseline. The stroke is an inline-block on the label itself
-    with `vertical-align: baseline`, which puts its bottom margin edge exactly on that
-    baseline — the alignment is structural rather than a measured offset, so it survives
-    any change of face, size or line-height. Its three margins sum to zero
-    (-10 + 2 + 8), so it hangs in the edge's own 24px indent and moves no type.
-  */
-  .edge__label::before {
-    content: '';
-    display: inline-block;
-    vertical-align: baseline;
-    inline-size: 2px;
-    block-size: 24px;
-    margin-inline: -10px 8px;
-    background-color: var(--tgd-ink);
+    gap: var(--space-20);
   }
 
   .core-band__gates-link {
-    color: var(--tgd-muted);
-  }
-
-  @media (min-width: 1024px) {
-    /*
-      §G.3a round 12, review item T2 — **each field's block ends where its content ends.**
-      `align-items: stretch` ran every column to the tallest, so measured at 1440 the
-      Android cards ended at y 675 and then 775px of nothing followed, and the iOS field
-      carried three words at the top and 1,395px of nothing under them; at 1024 the band
-      was 1,705px tall and roughly 60% of its area was empty. **The band's height is the
-      core's height.** The edge fields stop at their own last card, and no field draws a
-      boundary, fill or rule below its content — so the remaining difference in column
-      heights is the honest one: the core has more in it, which is the argument.
-    */
-    .core-band__grid {
-      row-gap: var(--space-56);
-      align-items: start;
-    }
-
-    /*
-      §G.3a's T3 ruling, and §J's "remove one thing" for this page: **no full-height rules
-      at >= 1024. Cut them.** Both edge columns took a 2px --t-ink left rule running the
-      full 1,450px height of the band, and in dark those two rules were near-white and the
-      brightest things on her page — brighter than her text. §9.4 bans the broadsheet
-      hairline by name, §B.2 does structural separation with fill and space and never with
-      rules, and §B.6 principle 4 says the site never has two loud things at once. §G.3
-      asks for the rule **at 360 and only at 360**, where depth replaces horizontal
-      position and the rule is the only thing doing the separating; at >= 1024 the three
-      fields are already separated by the core's fill, by the grid's gutters and by the
-      edges' own indentation, and the rules were drawing a box around emptiness.
-    */
-    /*
-      §I.1 row 2 — **the same 36px of lead-in in all three fields**, which is what makes
-      the three platform labels share one baseline with nothing measured. The core's
-      lead-in is its 4px --lamp-ink cap plus 32px of inner padding; the edges carry no cap
-      and no fill, so they take the sum as padding. On the shipped Anek subset that
-      baseline lands 50px below the band's top border edge — **50 is the consequence and
-      the baseline is the spec**, so this rule sets the lead-in and `qa:worlds` asserts
-      the three labels' baselines against each other rather than against 50.
-    */
-    .edge {
-      border-inline-start: 0;
-      padding-block-start: calc(4px + var(--space-32));
-    }
-
-    /*
-      **The two ticks, at the shared baseline.** §G.3a round 12 fixed their horizontal
-      geometry — "each tick is a 2px --t-ink stroke leaving the core horizontally and
-      terminating at the core field's own boundary", x 285.9 and x 737.7 at 1024, x 426
-      and x 1014 at 1440. They do not cross a gutter: no component on this site draws
-      across one of §B.5's, and a tick crossing the right gutter at 1024 would end at
-      761.7, 13.7px inside the plate's band, which §B.10 forbids for a connector whose
-      whole meaning is its continuity.
-
-      Round 13 gives them their y, and it is the core label's own first baseline. The
-      label becomes a baseline-aligned flex line so both strokes sit ON that baseline
-      structurally: an empty flex item synthesises its baseline from its border box, so a
-      2px stroke's bottom lands on the text baseline and 1px of relative offset centres
-      it. Each stroke reaches its boundary by hanging its 32px of core padding
-      (-32 + 24 + 8 = 0 on the left; `auto` then -32 on the right), so no type moves.
-    */
-    .core__label {
-      display: flex;
-      align-items: baseline;
-      /*
-        The prose measure comes off this one element, and it has to: `--measure-body` is
-        32em, which at the label's own size is 448px, so at 1440 the label's line stopped
-        at x 906 and took the right-hand tick with it — 76px short of the core's boundary
-        at 1014, which is the one coordinate §G.3a fixes for this stroke. A two-word
-        structural label is not prose with a measure; it is the field's name, and here it
-        is also the rail the two ticks are hung on.
-      */
-      max-inline-size: none;
-    }
-
-    .core__label::before,
-    .core__label::after {
-      content: '';
-      position: relative;
-      inset-block-start: 1px;
-      flex: 0 0 auto;
-      inline-size: 24px;
-      block-size: 2px;
-      background-color: var(--tgd-ink);
-    }
-
-    .core__label::before {
-      margin-inline: calc(-1 * var(--space-32)) var(--space-8);
-    }
-
-    .core__label::after {
-      margin-inline-start: auto;
-      margin-inline-end: calc(-1 * var(--space-32));
-    }
-
-    /* The edge labels carry no stroke of their own from 1024: the ticks belong to the
-       core, they leave it, and they stop at its boundary. Below 1024 the columns are
-       stacked and the rule rotates — see `.edge__label::before` above. */
-    .edge__label::before {
-      display: none;
-    }
-
-    /*
-      The three fields are one row, and the row is explicit. DOM order is core, Android,
-      iOS (§G.3's 360 collapse), so auto-placement would put the core in row 1 and then
-      refuse to backtrack to col 1 for the Android edge — which rendered the band as
-      three stacked blocks at every width above 1024. `grid-row` on each field is the
-      whole fix, and it is what lets the source order stay the reading order.
-    */
-    /*
-      §G.3a round 12 restores §G.3's own allocation, and item T4 closes on it.
-
-      The build had core at cols 4–7 and iOS at 8–9, with **cols 10–12 standing empty down
-      the whole band** — which is a keep-out lane for the contact plate in all but name,
-      and §B.5 forbids one in terms. It also crushed the core to a 245px field at 1024:
-      **31 characters over 24 lines**, a newspaper column, and narrower than §C.6's own
-      29-character floor for a *card*.
-
-      | Field | Cols | 1024 (content 928) | 1440 (content 1200) |
-      |---|---|---|---|
-      | Android edge | 1–3  | x 48 → 261.9, 213.9 wide | x 120 → 402, 282 wide |
-      | Shared core  | 4–9  | x 285.9 → 737.7, 451.8   | x 426 → 1014, 588     |
-      | iOS edge     | 10–12| x 761.7 → 976, 214.3     | x 1038 → 1320, 282    |
-
-      The core's field carries 32px of inner padding at both widths, so its measure is
-      **387.8px at 1024 — ~47 characters at 17/28** — and 524px at 1440, 30.8em, inside
-      `--measure-body`'s 32em. 47 is past the >= 45 this band has to clear and past §C.6's
-      29-character card floor, and it closes T4 on the allocation with no copy change. The
-      edge fields are 213.9 and 282 — narrower than the core at both widths, which is
-      §G.3's hierarchy, and wide enough for a card at §D.1's 420 cap.
-
-      Col 9's right edge is **737.7 at 1024 against a band beginning at 748**, 10.3px
-      clear, so no load-bearing mark on this page goes right of col 9 at any width — which
-      is what puts the `Owns` line and the gates block out of the plate's reach by rule
-      rather than by case.
-    */
-    .edge--android {
-      grid-column: 1 / span 3;
-      grid-row: 1;
-    }
-
-    .core {
-      grid-column: 4 / span 6;
-      grid-row: 1;
-      padding: var(--space-32) var(--space-32) var(--space-48);
-    }
-
-    .edge--ios {
-      grid-column: 10 / span 3;
-      grid-row: 1;
-    }
-
-    .core-band__gates-link {
-      grid-column: 4 / span 6;
-      grid-row: 2;
-    }
-
-    .edge__note {
-      margin-block-start: var(--space-24);
-    }
-
-    /* T1: the Motive annotation leads the Android edge, so its cards start below it. */
-    .edge__note + .edge__cards {
-      margin-block-start: var(--space-24);
-    }
-  }
-
-  /*
-    §H.3, "the core draws", **with round 12's lag** (review item T6).
-
-    One clip on the whole band was the previous build, and it made §H.3's claim
-    technically true and visually absent: at 300ms the core and both edge columns were
-    clipped at the SAME y (`tanya-coredraws-300ms.png`), so what a visitor saw was a
-    reveal wipe — the generic scroll-effect move §H.1 removes from the rest of the site by
-    banning scroll-driven effects. The claim §H.3 actually makes is that "each edge
-    column's content becomes visible only as the core passes its row, **and it appears
-    120ms after the core has passed it**", and with zero lag there is nothing to watch.
-
-    So the clip is per field rather than per band, and the edges take a 120ms delay. Same
-    900ms, same `--ease-inout` (§H.1's curve for a thing moving between two known states),
-    same boundary shape — the edges are simply behind, at every row, by one step below
-    `--dur-4` and above the threshold at which two events read as one. **The lag is the
-    whole moment and it is one delay.** Nothing else on this page animates.
-
-    The unconditional rendering is the complete band, so §H.4's still frame is the
-    default and `reduce` removes an animation rather than adding a branch.
-  */
-  @media (prefers-reduced-motion: no-preference) {
-    .core,
-    .core-band__gates-link {
-      animation: core-draws 900ms var(--ease-inout) both;
-    }
-
-    .edge {
-      animation: core-draws 900ms var(--ease-inout) 120ms both;
-    }
-  }
-
-  @keyframes core-draws {
-    from {
-      clip-path: inset(0 0 100% 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
-  }
-
-  /*
-    §D.8 — a fill the browser would suppress anyway, and a rule that survives it.
-
-    **And round 12: the whole page collapses to one column in print, not just the cards**
-    (Perf & A11y audit ruling 1, review item S5's sibling). §D.8 said "the `<ul>` reflows
-    to a single column" and the build read that as *the cards* reflow, which is literally
-    what it said — so this band printed as Android / core / iOS side by side on A4, at a
-    third of a page width each, with the core's measure at roughly 20 characters. The rule
-    is the page, not the component: every multi-column arrangement here becomes one column
-    in DOM order, and the `.grid` reset that does it lives in global.css so it covers both
-    person pages and anything a later round adds. What is left here is this component's own
-    part of it — the ticks do not print, because a connector between two blocks that are
-    now stacked says nothing, and each edge field prints under its own platform label,
-    which is the structure §G.3's 360 form already draws.
-  */
-  @media print {
-    .core,
-    .edge,
-    .core-band__gates-link {
-      animation: none;
-    }
-
-    .core {
-      background-color: transparent;
-      box-shadow: none;
-      padding-inline: 0;
-      border-block-start-width: 2px;
-      border-block-start-color: currentColor;
-    }
-
-    .core__gates-label {
-      border-inline-start-color: currentColor;
-    }
-
-    .edge {
-      padding-inline-start: 0;
-      padding-block-start: 0;
-      border-inline-start: 0;
-    }
-
-    /* The ticks do not print. A connector between two blocks that print one under the
-       other says nothing, and each edge field already prints under its own platform
-       label — which is the structure §G.3's 360 form draws anyway. */
-    .core__label::before,
-    .core__label::after,
-    .edge__label::before {
-      display: none;
-    }
+    margin-block-start: var(--space-32);
+    max-inline-size: 62ch;
+    color: var(--dim);
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
   }
 </style>
