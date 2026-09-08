@@ -446,14 +446,23 @@ const figures = [
   /* --- What you get --- */
 
   /*
-    Left-aligned on the page's own edge, not centred. Centred, this was the only block on
-    the site whose left edge was not the gutter — its h2 began 347px right of the CTA h2
-    directly beneath it, with nothing establishing the second axis.
+    Left-aligned on the page's own gutter, not centred. Centred, this was the only block
+    on the site whose left edge was not the gutter — its h2 began 347px right of the CTA
+    h2 directly beneath it, with nothing establishing the second axis.
+
+    **The measure goes on the children, not on this element.** It is also `.shell`, and
+    `.shell` carries `margin-inline: auto` — so capping it directly narrows the shell
+    itself and the auto margins re-centre the narrow box, which is the same defect
+    wearing a different rule.
   */
   .offer__inner {
-    max-inline-size: 62ch;
     display: grid;
     gap: var(--space-24);
+    justify-items: start;
+  }
+
+  .offer__inner > * {
+    max-inline-size: 62ch;
   }
 
   /* --- Closing --- */
