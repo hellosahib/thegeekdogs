@@ -210,3 +210,5 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer:
 84. **`/work/milan/delete-account/` describes deletion by hand, by two people reading an inbox.** That is what is true today. It is also the one page on this site whose accuracy a store reviewer can test by sending a request, so the commitment on it is real and dated.
     Answer:
+85. **The deletion page names no vendor product; the privacy policy still names all four.** Owner instruction, 2026-09-09. `/work/milan/privacy/` keeps `Firebase Authentication`, `Cloud Firestore`, `Crashlytics` and `Firebase Analytics`, because a policy's job is to say precisely who holds what. `/work/milan/delete-account/` describes the two services it has to mention by what they do — `the sign-in service that created it`, `the cloud database` — and keeps `Google`, without which a request cannot be matched to an account. No factual claim moved on either page. One thing to watch: Play's Data safety form names the real processors, and nothing on either page may contradict it.
+    Answer: Owner instruction, applied 2026-09-09.

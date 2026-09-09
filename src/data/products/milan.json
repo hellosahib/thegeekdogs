@@ -171,8 +171,8 @@
       {
         "heading": "What gets deleted",
         "body": [
-          "The account record itself, held in Firebase Authentication. That record is what Google wrote when you signed in: the account identifier the app uses, and the email address, name and profile picture Google put on it. All of it goes.",
-          "The cloud copy of your planning data, held in Cloud Firestore under that identifier. That covers your boards and the options on them, your guest list including any address, phone number or email address you typed into a guest yourself, your budget lines, your bookings and your payment records.",
+          "The account record itself, held by the sign-in service that created it when you tapped Google sign-in. That record is what Google wrote: the account identifier the app uses, and the email address, name and profile picture Google put on it. All of it goes.",
+          "The cloud copy of your planning data, held in the cloud database under that identifier. That covers your boards and the options on them, your guest list including any address, phone number or email address you typed into a guest yourself, your budget lines, your bookings and your payment records.",
           "Nothing is kept back as a backup of our own afterwards, and there is no archived copy to restore from. Deletion is not reversible, so ask when you mean it."
         ]
       },

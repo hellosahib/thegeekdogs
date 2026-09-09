@@ -1386,7 +1386,21 @@ Three sentences here are load-bearing:
   restated here rather than assumed, because this is the page a reader arrives at when they are
   worried about exactly that.
 
-### 12.3 The request, and meta
+### 12.3 What this page does not name
+
+**No vendor product name appears on this page** (owner, 2026-09-09). §11 names them — `Firebase
+Authentication`, `Cloud Firestore`, `Crashlytics`, `Firebase Analytics` — because the policy's job
+is to say precisely who holds what. This page's job is different: it tells one reader how to get
+their data removed, and the two services it has to mention are described by what they do, `the
+sign-in service that created it` and `the cloud database`. `Google` stays, on both the page and in
+the prefilled message, because the request cannot be acted on without knowing which Google account
+signed in.
+
+Nothing factual is dropped with the names. The page still says what the account record holds, what
+the cloud copy covers, that photos were never uploaded, and that deletion is not reversible. A page
+may lose a brand name; it may not lose a disclosure.
+
+### 12.4 The request, and meta
 
 - **Heading:** `Ask for deletion`
 - **The link:** `Email <STUDIO_EMAIL>`, printing the address the way `/contact/` and the home
