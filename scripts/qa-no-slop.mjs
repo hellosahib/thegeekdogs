@@ -24,8 +24,14 @@ const PATTERNS = [
   { name: 'example.com', re: /example\.com/i },
   { name: 'John Doe', re: /John Doe/i },
   { name: 'Jane Doe', re: /Jane Doe/i },
-  // The placeholder product name, case-sensitive whole word (COPY.md §5.3).
-  { name: 'Milan', re: /\bMilan\b/ },
+  /*
+    `Milan` was blocked here while it was a working title the site had not committed to
+    (COPY.md §5.3). QUESTIONS.md item 78 settled it as the product's public name, so the
+    pattern is gone rather than commented into a disabled state: a blocklist that carries
+    entries it does not enforce stops being readable as the list of what may not ship.
+    The bundle-id fragment below is a different thing and still blocked — an internal
+    identifier has no reason to reach a page.
+  */
   // The second product's bundle-id fragment, in content or in a file path.
   { name: 'wedme', re: /wedme/i },
   // A bare dead-link fragment. href="#section-id" is a legitimate in-page anchor.

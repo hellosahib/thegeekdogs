@@ -9,6 +9,18 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   base: '/',
+  /*
+    The second product's routes were `/work/wedding-planner/…` until QUESTIONS.md item 78
+    settled its name. The rename happened before the app was submitted anywhere, which is
+    the one moment it is free — but the old URLs were live on this site and are in a
+    sitemap Google has already read, so they redirect rather than 404. A static build
+    emits a meta-refresh page with a canonical link for each; `@astrojs/sitemap` leaves
+    redirect routes out of the sitemap on its own, so the new URL is the only one listed.
+  */
+  redirects: {
+    '/work/wedding-planner/': '/work/milan/',
+    '/work/wedding-planner/privacy/': '/work/milan/privacy/',
+  },
   build: {
     format: 'directory',
     inlineStylesheets: 'never',

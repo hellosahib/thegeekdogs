@@ -220,6 +220,14 @@ export const collections = { gates, people, agents: agentsCollection, products }
 
 ### 2.1 The wedding planner entry, today and later
 
+> **Superseded 2026-09-09.** This section describes the entry while the product had no name.
+> QUESTIONS.md item 78 settled it: the file is `src/data/products/milan.json`, its `slug` is
+> `milan`, its `name` is `Milan`, and the routes are `/work/milan/`, `/work/milan/privacy/` and
+> `/work/milan/delete-account/`. The old routes redirect (`astro.config.mjs`). The shape below and
+> the routing table in §3 are kept as the record of what was planned, not as a description of what
+> is on disk.
+
+
 `src/data/products/wedding-planner.json` today:
 
 ```json
@@ -520,7 +528,7 @@ All scripts run against the **built `dist/` output**, never source files (source
 
 | Script | What it checks | Exits non-zero on |
 |---|---|---|
-| `qa:no-slop` | Case-insensitive grep across `dist/**/*.html` for: `lorem`, `ipsum`, `TODO`, `FIXME`, `XXX`, `placeholder`, `[FILL]` (literal brackets), `[CONFIRM` (literal, open bracket only, no closing bracket — COPY.md uses both `[FILL: …]` and `[CONFIRM: …]` markers and neither may reach `dist/`), `coming soon`, `example.com`, `John Doe`, `Jane Doe`; case-sensitive whole-word match for the placeholder product name `Milan`; a scan of `dist/` **file paths** and all HTML content for the bundle id fragment `wedme`; an exact-string check for `href="#"` (bare dead-link fragment — not `href="#section-id"`, which is a legitimate in-page anchor) | Any match found — prints file, line, matched pattern |
+| `qa:no-slop` | Case-insensitive grep across `dist/**/*.html` for: `lorem`, `ipsum`, `TODO`, `FIXME`, `XXX`, `placeholder`, `[FILL]` (literal brackets), `[CONFIRM` (literal, open bracket only, no closing bracket — COPY.md uses both `[FILL: …]` and `[CONFIRM: …]` markers and neither may reach `dist/`), `coming soon`, `example.com`, `John Doe`, `Jane Doe`; a scan of `dist/` **file paths** and all HTML content for the bundle id fragment `wedme` (the `Milan` pattern that sat beside it was removed on 2026-09-09: QUESTIONS.md item 78 made it the product's public name); an exact-string check for `href="#"` (bare dead-link fragment — not `href="#section-id"`, which is a legitimate in-page anchor) | Any match found — prints file, line, matched pattern |
 | `qa:links` | Internal + external link check via `linkinator --recurse` against the built `dist/` output; cross-references `sitemap.xml` against actual generated pages to flag any page not reachable from navigation (orphan check) | Any broken link, any §8 route returning 404, any orphaned page |
 | `qa:images` | Scans `dist/**/*.html` for `<img>` (and `<source>` in `<picture>`) missing an `alt` attribute entirely (`alt=""` is accepted as a deliberate, valid answer; a missing attribute is not); cross-checks every referenced `src`/`srcset` path resolves to a file that exists in `dist/` | Any missing-alt image, any referenced-but-missing image asset |
 | `qa:console` | A Playwright script that visits every route in §8 headless, collects `console.error`/`console.warn` and uncaught `pageerror` events | Any non-empty console error/warning/pageerror on any route |

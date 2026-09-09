@@ -1,24 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from './LegalPage.astro';
 import { STUDIO_EMAIL } from '../lib/copy';
 
 /**
- * The shell a product's privacy policy renders in. It is `ProductPage.astro`'s own
- * arrangement with the pictures taken out: the same eyebrow, the same headline block,
- * and the same two-column section — the heading on the left, its prose on the right —
- * so the page reads as this site rather than as a legal document pasted onto it.
+ * A product's privacy policy. The page's arrangement is `LegalPage.astro`; everything
+ * here is the mapping from one product entry onto it.
  *
- * **The policy is the one page here that a machine reads before a person does.** Google
- * Play will not accept a submission without a public URL for it, and the URL has to
- * resolve before the app is on the store. So this route ships ahead of the product's own
- * launch, and everything on it is written against what the build actually does today —
- * not what the next build will do. There is no "coming soon" sentence anywhere on it and
- * no feature described in the future tense.
- *
- * Nothing here is name-dependent. The product has no settled name (QUESTIONS.md item 9,
- * and item 78), so the policy names it the way every other route on this site does: by
- * the entry's own `descriptiveName`.
+ * Nothing here is name-dependent. The policy names the product the way every other route
+ * on this site does — by the entry's own `descriptiveName` — which is a settled name for
+ * one product (Milan, QUESTIONS.md item 78) and a description for a product that has not
+ * chosen one. Either renders; the page does not know which it was handed.
  *
  * The studio address is `STUDIO_EMAIL`, not a string in the product's JSON. A policy that
  * printed its own inbox could drift from the one on `/contact/`, and the address in a
@@ -39,121 +31,27 @@ if (!policy) {
 }
 
 /*
-  No OG card. `src/pages/og/[slug].png.ts` builds one card per route from that route's own
-  copy, and this page has no OG pair written for it — /404 sets the precedent for a page
-  that emits no `og:image` rather than borrowing another page's. A share preview of a
-  privacy policy is not a thing anyone needs.
+  The back link reads as a sentence, and a named product does not take an article: "Back
+  to Milan", but "Back to the wedding planner". `name` is the entry's own test for which
+  it is — it is null until a name is settled — so the article is decided by the data
+  rather than by a second field nobody would remember to set.
 */
+const backLabel = d.name ? `Back to ${d.name}` : `Back to the ${d.descriptiveName.toLowerCase()}`;
 ---
 
-<BaseLayout title={policy.meta.title} description={policy.meta.description}>
-  <section class="section page-section">
-    <div class="shell">
-      <div class="policy-head">
-        <p class="eyebrow accent">{d.descriptiveName}</p>
-        <h1 class="policy-head__headline">{policy.headline}</h1>
-        <p class="micro muted policy-head__date">Last updated {policy.updated}</p>
-        <div class="policy-head__intro stack">
-          {policy.intro.map((paragraph) => <p class="lede">{paragraph}</p>)}
-        </div>
-      </div>
-
-      <div class="policy-body">
-        {
-          policy.sections.map((section) => (
-            <section class="policy-section">
-              <div class="policy-section__inner" data-rv>
-                <h2 class="policy-section__heading">{section.heading}</h2>
-                <div class="policy-section__content stack">
-                  {section.body.map((paragraph) => (
-                    <p class="policy-section__body muted">{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            </section>
-          ))
-        }
-
-        <section class="policy-section">
-          <div class="policy-section__inner" data-rv>
-            <h2 class="policy-section__heading">{policy.contact.heading}</h2>
-            <div class="policy-section__content stack">
-              {
-                policy.contact.body.map((paragraph) => (
-                  <p class="policy-section__body muted">{paragraph}</p>
-                ))
-              }
-              <p>
-                <a class="link-row" href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <p class="policy-back">
-        <a class="link-row" href={`/work/${d.slug}/`}>Back to the {d.descriptiveName.toLowerCase()}</a>
-      </p>
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  .page-section {
-    flex: 1 0 auto;
-  }
-
-  .policy-head__headline {
-    margin-block-start: var(--space-14);
-    max-inline-size: 20ch;
-  }
-
-  .policy-head__date {
-    margin-block-start: var(--space-16);
-  }
-
-  .policy-head__intro {
-    margin-block-start: var(--space-24);
-    max-inline-size: 62ch;
-  }
-
-  /*
-    Sections sit closer together than a case study's do. A policy is read by scanning for
-    one heading, so the gap between two of them is a gap between paragraphs of one
-    document rather than between two arguments.
-  */
-  .policy-body {
-    margin-block-start: var(--section-pad);
-    display: grid;
-    gap: var(--gap-block);
-  }
-
-  /* ProductPage.astro's arrangement: the heading on the left, its prose on the right, so
-     the page fills the same content width the rest of the site uses. */
-  .policy-section__inner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    gap: var(--gap-col);
-    align-items: start;
-  }
-
-  .policy-section__heading {
-    max-inline-size: 18ch;
-    font-size: var(--step-card-title);
-    line-height: var(--step-title-lh);
-    letter-spacing: var(--step-title-tracking);
-  }
-
-  .policy-section__content {
-    max-inline-size: 62ch;
-  }
-
-  .policy-section__body {
-    font-size: var(--step-small);
-    line-height: var(--step-small-lh);
-  }
-
-  .policy-back {
-    margin-block-start: var(--section-pad);
-  }
-</style>
+<LegalPage
+  title={policy.meta.title}
+  description={policy.meta.description}
+  eyebrow={d.descriptiveName}
+  headline={policy.headline}
+  updated={policy.updated}
+  intro={policy.intro}
+  sections={policy.sections}
+  closing={policy.contact}
+  action={{ href: `mailto:${STUDIO_EMAIL}`, label: STUDIO_EMAIL }}
+  secondaryAction={d.accountDeletion
+    ? { href: `/work/${d.slug}/delete-account/`, label: 'Ask for your account and data to be deleted' }
+    : undefined}
+  backHref={`/work/${d.slug}/`}
+  backLabel={backLabel}
+/>

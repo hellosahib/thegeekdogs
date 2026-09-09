@@ -1,0 +1,24 @@
+---
+import { getEntry } from 'astro:content';
+import PrivacyPolicyPage from '../../../components/PrivacyPolicyPage.astro';
+
+/*
+  `/work/milan/privacy/`. The URL Google Play Console is given.
+
+  The route carries the product's name because QUESTIONS.md item 78 has been answered:
+  the owner settled Milan for this site, not only for the store listing. Item 78 named
+  the three things that had to move together for that to be true — the copy gate's
+  blocked word, `name` in the product JSON, and this route — and all three moved in the
+  same commit.
+
+  A store URL is permanent in practice: a console field that has been submitted is read
+  by reviewers and by users, and moving it later means a redirect that has to be
+  maintained. This route was renamed BEFORE the first submission, which is the one moment
+  the rename is free. `/work/wedding-planner/privacy/` redirects here (astro.config.mjs)
+  so nothing that already linked to the old URL breaks.
+*/
+const product = await getEntry('products', 'milan');
+if (!product) throw new Error('src/data/products/milan.json is missing.');
+---
+
+<PrivacyPolicyPage product={product} />

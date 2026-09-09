@@ -1,0 +1,24 @@
+---
+import { getEntry } from 'astro:content';
+import AccountDeletionPage from '../../../components/AccountDeletionPage.astro';
+
+/*
+  `/work/milan/delete-account/`. The second URL Google Play Console is given, beside the
+  privacy policy: Play's Data safety form asks for a page where a user can request that
+  their account and its data be deleted, and it has to resolve before a submission is
+  accepted.
+
+  It sits next to the product rather than in the global footer, for the reason
+  QUESTIONS.md item 79 gave the policy: a legal page for one app belongs beside that app.
+  Pocket Manager has no account and therefore no `accountDeletion` on its entry, so no
+  route is generated for it and no link renders on its page.
+
+  There is no form on this page. QUESTIONS.md items 11 and 69 both answered no form and
+  this site posts to no endpoint, so the request is an email the reader's own mail app
+  composes, prefilled.
+*/
+const product = await getEntry('products', 'milan');
+if (!product) throw new Error('src/data/products/milan.json is missing.');
+---
+
+<AccountDeletionPage product={product} />

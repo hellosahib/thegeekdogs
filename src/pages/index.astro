@@ -20,13 +20,13 @@ import { FLOOR_ALT } from '../lib/floor';
 const gates = (await getCollection('gates')).sort((a, b) => a.data.order - b.data.order);
 
 const pocketManager = await getEntry('products', 'pocket-manager');
-const weddingPlanner = await getEntry('products', 'wedding-planner');
+const milan = await getEntry('products', 'milan');
 
-if (!pocketManager || !weddingPlanner) {
+if (!pocketManager || !milan) {
   throw new Error('Both products must exist in src/data/products before / can render.');
 }
 
-const runners = [pocketManager, weddingPlanner].map((product) => ({
+const runners = [pocketManager, milan].map((product) => ({
   label: product.data.descriptiveName,
   stage: product.data.stage,
 }));

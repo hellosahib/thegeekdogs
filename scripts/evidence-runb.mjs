@@ -23,7 +23,7 @@ const FIXED = [
   { path: '/', name: 'home' },
   { path: '/work/', name: 'work' },
   { path: '/work/pocket-manager/', name: 'pm' },
-  { path: '/work/wedding-planner/', name: 'wp' },
+  { path: '/work/milan/', name: 'wp' },
   { path: '/contact/', name: 'contact' },
   { path: '/404.html', name: '404' },
 ];

@@ -181,13 +181,24 @@ const schema = productGraph(product);
         It is not in the primary nav or the global footer. A legal page for a product
         that is not on a store yet belongs next to that product, not on every route
         (QUESTIONS.md item 79).
+
+        The deletion link beside it is the same arrangement for the second URL Play's
+        Data safety form requires, gated on its own field for the same reason: a product
+        with no account has nothing to delete and renders no link.
       */}
       {
-        d.privacyPolicy && (
-          <p class="product-policy">
-            <a class="link-row" href={`/work/${d.slug}/privacy/`}>
-              Privacy policy
-            </a>
+        (d.privacyPolicy || d.accountDeletion) && (
+          <p class="product-policy cluster">
+            {d.privacyPolicy && (
+              <a class="link-row" href={`/work/${d.slug}/privacy/`}>
+                Privacy policy
+              </a>
+            )}
+            {d.accountDeletion && (
+              <a class="link-row" href={`/work/${d.slug}/delete-account/`}>
+                Delete your account
+              </a>
+            )}
           </p>
         )
       }

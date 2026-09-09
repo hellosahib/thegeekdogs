@@ -142,18 +142,31 @@ Content lives in `src/data/` as JSON, one file per entry, validated by the Zod s
 - **An agent** — `src/data/agents/<slug>.json`. `checkedBy` references a gate slug; `deskSlot` is a
   `desk-N` id the floor component owns.
 
-### Naming the second product and adding its store link
+### Putting Milan on the store
 
-Open `src/data/products/wedding-planner.json` and change three fields:
+Milan is named (QUESTIONS.md item 78, 2026-09-09) and lives at `src/data/products/milan.json`. To
+take it live, change two fields:
 
 ```json
-{ "name": "<the chosen name>", "stage": "live", "storeUrl": "<the store URL>" }
+{ "stage": "live", "storeUrl": "<the store URL>" }
 ```
 
 Add `storeStats` when the listing has figures worth printing. Nothing else changes: no component
 references any of those fields by a hard-coded value — the templates branch on presence, so a
 missing name falls back to `descriptiveName` and a missing store URL renders no link rather than a
 dead one.
+
+The two URLs Play Console asks for are already live and are the ones to paste into the Data safety
+form:
+
+| Console field | URL |
+|---|---|
+| Privacy policy | `https://thegeekdogs.com/work/milan/privacy/` |
+| Account deletion | `https://thegeekdogs.com/work/milan/delete-account/` |
+
+Both are generated from `privacyPolicy` and `accountDeletion` on that same entry; a product with
+neither gets no route and no link. `/work/wedding-planner/` and `/work/wedding-planner/privacy/`
+redirect to the renamed routes (`astro.config.mjs`).
 
 ### How the theme works
 

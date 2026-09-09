@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import LegalPage from './LegalPage.astro';
+import { STUDIO_EMAIL } from '../lib/copy';
+
+/**
+ * A product's account-deletion route: the second URL Google Play's Data safety form
+ * requires, beside the privacy policy.
+ *
+ * **There is no form on it, and that is the mechanism rather than a shortcut.** This site
+ * posts to no endpoint (QUESTIONS.md items 11 and 69), so a request arrives as an email
+ * the reader's own mail app composes. The link below prefills the subject and the message
+ * so a request carries the one fact it needs — which Google account signed in — instead of
+ * arriving empty and needing a reply before it can be acted on. Nothing is collected by
+ * this page: the text is assembled in the URL, in the reader's browser, and only their own
+ * mail app ever sees it.
+ *
+ * `encodeURIComponent` on both parts, not `URLSearchParams`: the latter form-encodes a
+ * space as `+`, which a mail app prints literally in a subject line.
+ */
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+
+const { product } = Astro.props;
+const d = product.data;
+
+const deletion = d.accountDeletion;
+if (!deletion) {
+  throw new Error(
+    `${product.id} has no accountDeletion. A deletion route may not render an empty page.`,
+  );
+}
+
+const mailto =
+  `mailto:${STUDIO_EMAIL}` +
+  `?subject=${encodeURIComponent(deletion.request.subject)}` +
+  `&body=${encodeURIComponent(deletion.request.bodyLines.join('\n'))}`;
+
+/*
+  The link's visible text is the address itself, the way `/contact/` and the home page's
+  final CTA print theirs, so the reader can see where the request goes before they tap it
+  and can copy it if their browser has no mail app to hand.
+*/
+const productName = d.name ?? d.descriptiveName.toLowerCase();
+const backLabel = d.name ? `Back to ${d.name}` : `Back to the ${d.descriptiveName.toLowerCase()}`;
+---
+
+<LegalPage
+  title={deletion.meta.title}
+  description={deletion.meta.description}
+  eyebrow={d.descriptiveName}
+  headline={deletion.headline}
+  updated={deletion.updated}
+  intro={deletion.intro}
+  sections={deletion.sections}
+  closing={deletion.request}
+  action={{
+    href: mailto,
+    label: `Email ${STUDIO_EMAIL}`,
+    accessibleName: `Email ${STUDIO_EMAIL} to ask for your ${productName} account and data to be deleted`,
+  }}
+  backHref={`/work/${d.slug}/`}
+  backLabel={backLabel}
+/>

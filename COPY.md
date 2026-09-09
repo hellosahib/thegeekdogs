@@ -478,17 +478,17 @@ nothing is invented here.
 - **Accessible name for the link:** `Read the Pocket Manager case study`
 - **Secondary link label:** `Open in the Play Store`
 
-### 3.3 Card: the wedding planner
+### 3.3 Card: Milan
 
-- **Product name:** `A wedding planner`, descriptive. The name is not final and the site ships
-  without one: item 9 chose the full name-agnostic page, so this card, its slug, its page title and
-  its OG fields are descriptive by decision, not by omission. ADR-0046 reduced the working title to
-  an internal label and nothing on this site uses it. If a name is picked later it replaces the
-  descriptive string in five places and nothing else on the page moves.
+- **Product name:** `Milan`. Item 78 settled it on 2026-09-09: the name the owner had chosen for
+  the store listing is the name this site uses too. It replaced the descriptive string in the five
+  places item 9's name-agnostic ruling had reserved — this card, the slug, the page title, the OG
+  fields and the structured data — and nothing else on the page moved. The route is `/work/milan/`
+  and `/work/wedding-planner/` redirects to it.
 - **Stage:** `Final touches`
 - **One-line description:** `Works offline, and handles a wedding that's more than one event.`
 - **Link label:** `See what's in build`
-- **Accessible name for the link:** `See what's in build on the wedding planner`
+- **Accessible name for the link:** `See what's in build on Milan`
 
 ### 3.4 Meta
 
@@ -624,26 +624,28 @@ which the third line states rather than smoothing over.
 
 ---
 
-## 5. `/work/wedding-planner/`
+## 5. `/work/milan/`
 
-**Read before editing this route.** The product has no final name and has not shipped. Nothing on
-this page names it, dates it, or describes the collaboration feature, account deletion, or Apple
-sign-in. Nothing here mentions a vendor directory, a guest-facing app, in-app payments, or a paid
+**Read before editing this route.** The product is named — `Milan`, item 78, 2026-09-09 — and has
+not shipped. Nothing on this page dates it or describes the collaboration feature or Apple sign-in.
+Account deletion is described on its own route, `/work/milan/delete-account/`, and nowhere on this
+page: it is a thing you request, not a feature of the app. Nothing here mentions a vendor directory, a guest-facing app, in-app payments, or a paid
 tier. There is no gendered language. Tone is plain and warm, never chirpy: the reward this product
 offers is relief, and nobody is congratulated.
 
-Item 9 chose option (a): the full page ships, name-agnostic, before the name is settled. Item 12
-was answered no, so nothing on this page or the home page says a feature was cut from the store
-listing. Item 11 was answered no, so there is no email capture here.
+Item 9 chose option (a): the full page ships before the app does. It shipped name-agnostic until
+item 78 settled the name, which is the only thing about it that changed. Item 12 was answered no,
+so nothing on this page or the home page says a feature was cut from the store listing. Item 11 was
+answered no, so there is no email capture here.
 
 ### 5.1 Page header
 
 - **Headline:** `The second one, in build.`
-- **Subhead:** `A wedding planner that works offline, never sells your data, and handles a wedding with more than one function.`
+- **Subhead:** `Milan is a wedding planner that works offline, never sells your data, and handles a wedding with more than one function.`
 - **Stage:** `Final touches`
-- **Product name field:** empty, by decision. Every reference on this page, in its slug, its title,
-  its OG fields and its structured data is descriptive until a human picks a name. The internal
-  bundle id is never user-facing.
+- **Product name field:** `Milan`, item 78. Every reference on this page, in its slug, its title,
+  its OG fields and its structured data carries it. The internal bundle id is still never
+  user-facing, and `qa:no-slop` still blocks the `wedme` fragment from `dist/`.
 - **Store link field:** empty, by decision. The app has not been submitted, so no store link
   renders and no link label is shown. Do not ship a link to nothing.
 
@@ -677,7 +679,7 @@ honest to describe. Nothing is added to this list without checking §5.3.
 Honest, and it does more work than a launch date would.
 
 - **Heading:** `Why it isn't out yet`
-- **Body:** `The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the name isn't final, and the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.`
+- **Body:** `The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.`
 - **Closing line:** `It goes to the store when a person says it's ready, and not before.`
 
 Note: item 12 was answered no. The paragraph that used to sit here referred to a fully built,
@@ -718,13 +720,13 @@ is real, but the only capture of it is one of these two, so this page ships no H
 
 ### 5.6 Meta
 
-No route, title, description, OG field or structured-data value on this page contains the
-product's internal working title.
+No route, title, description, OG field or structured-data value on this page contains the internal
+bundle-id fragment. The product's name is `Milan` and every one of them may carry it.
 
-- **Meta title:** `A wedding planner, in build | TheGeekDogs`
-- **Meta description:** `Our second app, in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.`
+- **Meta title:** `Milan, a wedding planner in build | TheGeekDogs`
+- **Meta description:** `Milan, our second app, is in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.`
 - **OG title:** `One wedding, several functions, one screen.`
-- **OG description:** `The second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.`
+- **OG description:** `Milan, the second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.`
 - **OG image text:** `In build` and, under it, `A wedding planner for more than one function.`
 
 ---
@@ -1252,7 +1254,7 @@ No dates, no estimates, no "expected", anywhere near this component.
 
 ---
 
-## 11. `/work/wedding-planner/privacy/`
+## 11. `/work/milan/privacy/`
 
 **Read before editing this route.** It is the only page on this site that a machine reads before a
 person does: Google Play will not take a submission without a public privacy policy URL, and this
@@ -1266,17 +1268,16 @@ how many analytics events there are, and which settings rows are reachable. Thre
 has code for but does not ship — Apple sign-in, sharing a wedding with another person, and in-app
 deletion — are described nowhere on this page, in any tense.
 
-**It does not name the product.** §5's rule holds here: the page calls it `Wedding planner`, the
-entry's own `descriptiveName`, and the route carries the slug. The owner has settled a name for the
-store listing; that is a decision about the listing, and QUESTIONS.md item 78 asks whether it is
-also a decision about this site. Until it is answered, `qa:no-slop` blocks the word from `dist/`
-and this page has no reason to be the first route to carry it.
+**It names the product `Milan`.** §5's rule holds here: the page calls it whatever the entry's own
+`descriptiveName` says, and item 78 made that `Milan` on 2026-09-09 for the site as well as the
+store listing. The page reads the field rather than a string of its own, so it did not need
+rewriting when the name landed and will not need rewriting if it ever changes again.
 
-The strings live in `privacyPolicy` on `src/data/products/wedding-planner.json`, one paragraph per
-array entry, and the schema in `src/content.config.ts` refuses an empty one. Two things are
-deliberately *not* strings there: the studio address, which is `STUDIO_EMAIL` so a policy cannot
-print an inbox the rest of the site does not, and the product's name, which is `descriptiveName`
-for the reason above.
+The strings live in `privacyPolicy` on `src/data/products/milan.json`, one paragraph per array
+entry, and the schema in `src/content.config.ts` refuses an empty one. Two things are deliberately
+*not* strings there: the studio address, which is `STUDIO_EMAIL` so a policy cannot print an inbox
+the rest of the site does not, and the product's name, which is `descriptiveName` for the reason
+above.
 
 ### 11.1 Head
 
@@ -1316,10 +1317,11 @@ Four sentences on this page are load-bearing and none of them may be softened by
 
 ### 11.3 Deletion, and the sentence that has to stay true
 
-The app has no in-app control that deletes cloud data. The section says that plainly and gives the
-studio address instead. It may not describe a button before the button exists, and on the day one
-ships it may not keep describing an email route. QUESTIONS.md item 80 puts both halves to the
-owners, along with whether `STUDIO_EMAIL` is the right inbox to receive deletion requests.
+The app has no in-app control that deletes cloud data. The section says that plainly and points at
+`/work/milan/delete-account/`, which is where the request is actually made. It may not describe a
+button before the button exists, and on the day one ships it may not keep describing an email
+route. Item 80 answered the address question — `STUDIO_EMAIL`, the studio inbox — and left the
+second half standing as a commitment.
 
 ### 11.4 Contact and meta
 
@@ -1327,11 +1329,79 @@ owners, along with whether `STUDIO_EMAIL` is the right inbox to receive deletion
 - **Address:** `STUDIO_EMAIL`, rendered as a `link-row`. No second address: `/contact/`'s three-way
   split is about routing a project enquiry to the right person, and a deletion request has one
   destination.
-- **Back link:** `Back to the wedding planner`, built from `descriptiveName`.
-- **Meta title:** `Privacy policy, a wedding planner | TheGeekDogs`
-- **Meta description:** `What our wedding planner app stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in.`
+- **Second link:** `Ask for your account and data to be deleted`, to `/work/milan/delete-account/`.
+  It renders only where the product has an `accountDeletion` entry, so it is the data that decides
+  and not a condition anybody has to remember.
+- **Back link:** `Back to Milan`. The label is built from the entry: a named product takes no
+  article (`Back to Milan`), a product still described takes one (`Back to the wedding planner`),
+  and `name` being null is the test for which.
+- **Meta title:** `Privacy policy, Milan | TheGeekDogs`
+- **Meta description:** `What Milan stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in.`
 - **OG:** none written, so none renders. `/404` sets that precedent. A share card for a privacy
   policy is a thing nobody needs.
+
+---
+
+## 12. `/work/milan/delete-account/`
+
+**Read before editing this route.** It is the second URL a machine reads before a person does:
+Google Play's Data safety form has a field for a page where a user can ask for their account and
+data to be deleted, separate from the privacy policy field, and this is that URL. §11's two rules
+hold here unchanged — every sentence describes the build that exists today, and no control is
+described before it is mounted.
+
+**There is no form on this page, and that is the mechanism.** Items 11 and 69 settled that this
+site posts to no endpoint. The page opens the reader's own mail app with the subject and the
+message already written; the text is assembled in their browser and nothing is collected here. A
+third-party form service would mean a dependency, an endpoint the studio does not control, and a
+paragraph in the privacy policy naming whoever now receives the request. Item 82 puts that trade to
+the owners.
+
+**The strings live in `accountDeletion` on `src/data/products/milan.json`.** Pocket Manager has no
+such entry — it has no account — so no route is generated for it and no link renders on its page.
+The address is not in the JSON: it is `STUDIO_EMAIL`, for the same reason the policy's is.
+
+### 12.1 Head
+
+- **Eyebrow:** the entry's `descriptiveName`.
+- **Headline:** `Delete your account and your data`. A label, like §11.1's, and for the same
+  reason: a reviewer and a worried user are both scanning for those words.
+- **Date line:** `Last updated <date>`, from `accountDeletion.updated`.
+- **Intro:** two paragraphs. The first says most readers need nothing — no account means nothing
+  to delete. The second says there is no in-app control yet and that this is the route that works
+  today.
+
+### 12.2 The four sections
+
+`What gets deleted` · `What deletion does not touch` · `How long it takes` · `Afterwards`
+
+Three sentences here are load-bearing:
+
+- **Deletion is not reversible, and the page says so before the link.** A page that made deletion
+  sound casual would be the one page on this site whose tone did damage.
+- **Deleting the cloud copy does not touch the phone.** The two are separate and the page keeps
+  them separate: uninstalling removes the local database, writing to us removes the cloud copy,
+  and neither does the other's job.
+- **Photos were never uploaded, so there are none to delete.** §11's own load-bearing sentence,
+  restated here rather than assumed, because this is the page a reader arrives at when they are
+  worried about exactly that.
+
+### 12.3 The request, and meta
+
+- **Heading:** `Ask for deletion`
+- **The link:** `Email <STUDIO_EMAIL>`, printing the address the way `/contact/` and the home
+  page's final CTA print theirs, so a reader with no mail app can copy it.
+- **Prefill:** subject `Delete my Milan account and data`, and a message that asks for the one
+  fact a request needs — which Google account signed in — and states back what deletion does.
+  Both are `encodeURIComponent`-encoded, not form-encoded: `URLSearchParams` turns a space into a
+  `+` that mail apps print literally.
+- **The commitment:** acted on within 30 days, usually within a couple of days, with a reply when
+  it is done. 30 days is what Play's policy expects; the couple-of-days line describes a two-person
+  inbox and is not a guarantee. Item 83 puts both to the owners.
+- **Back link:** `Back to Milan`, by §11.4's rule.
+- **Meta title:** `Delete your Milan account | TheGeekDogs`
+- **Meta description:** `How to have your Milan account and the cloud copy of your wedding data deleted. One email, acted on within 30 days, and the app keeps working signed out.`
+- **OG:** none written, so none renders, for §11.4's reason.
 
 ---
 

@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * The shell every legal route on this site renders in: the privacy policy, and the
+ * account-deletion page a store console asks for beside it. It is `ProductPage.astro`'s
+ * own arrangement with the pictures taken out — the same eyebrow, the same headline
+ * block, and the same two-column section, the heading on the left and its prose on the
+ * right — so the page reads as this site rather than as a legal document pasted onto it.
+ *
+ * **These are the pages a machine reads before a person does.** Google Play will not
+ * accept a submission without a public URL for the policy and a second one for account
+ * deletion, and both have to resolve before the app is on the store. So they ship ahead
+ * of the product's own launch, and everything on them is written against what the build
+ * actually does today — not what the next build will do. There is no "coming soon"
+ * sentence anywhere on either and no feature described in the future tense.
+ *
+ * The closing block is a prop rather than a `<slot />` on purpose: Astro scopes these
+ * styles to this component, so markup passed in from a parent would arrive with none of
+ * the classes below resolving and the block would render unstyled.
+ */
+interface LegalSection {
+  heading: string;
+  body: string[];
+}
+
+interface Props {
+  title: string;
+  description: string;
+  /** The small accented line above the headline. The product's own name. */
+  eyebrow: string;
+  headline: string;
+  updated: string;
+  intro: string[];
+  sections: LegalSection[];
+  /** The last section on the page: who to write to, or how to ask. */
+  closing: LegalSection;
+  /** The one link that closes the page, if there is one. Always an address, never a form. */
+  action?: { href: string; label: string; accessibleName?: string };
+  /**
+   * A route this page has to hand the reader on to. The policy and the deletion page are
+   * the pair a store console reads, and a reader who has found one of them is owed the
+   * other from where they are standing rather than from the product page they left.
+   */
+  secondaryAction?: { href: string; label: string };
+  backHref: string;
+  backLabel: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  headline,
+  updated,
+  intro,
+  sections,
+  closing,
+  action,
+  secondaryAction,
+  backHref,
+  backLabel,
+} = Astro.props;
+
+/*
+  No OG card. `src/pages/og/[slug].png.ts` builds one card per route from that route's own
+  copy, and these pages have no OG pair written for them — /404 sets the precedent for a
+  page that emits no `og:image` rather than borrowing another page's. A share preview of a
+  privacy policy is not a thing anyone needs.
+*/
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="section page-section">
+    <div class="shell">
+      <div class="policy-head">
+        <p class="eyebrow accent">{eyebrow}</p>
+        <h1 class="policy-head__headline">{headline}</h1>
+        <p class="micro muted policy-head__date">Last updated {updated}</p>
+        <div class="policy-head__intro stack">
+          {intro.map((paragraph) => <p class="lede">{paragraph}</p>)}
+        </div>
+      </div>
+
+      <div class="policy-body">
+        {
+          sections.map((section) => (
+            <section class="policy-section">
+              <div class="policy-section__inner" data-rv>
+                <h2 class="policy-section__heading">{section.heading}</h2>
+                <div class="policy-section__content stack">
+                  {section.body.map((paragraph) => (
+                    <p class="policy-section__body muted">{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))
+        }
+
+        <section class="policy-section">
+          <div class="policy-section__inner" data-rv>
+            <h2 class="policy-section__heading">{closing.heading}</h2>
+            <div class="policy-section__content stack">
+              {closing.body.map((paragraph) => <p class="policy-section__body muted">{paragraph}</p>)}
+              {
+                action && (
+                  <p>
+                    <a class="link-row" href={action.href} aria-label={action.accessibleName}>
+                      {action.label}
+                    </a>
+                  </p>
+                )
+              }
+              {
+                secondaryAction && (
+                  <p>
+                    <a class="link-row" href={secondaryAction.href}>
+                      {secondaryAction.label}
+                    </a>
+                  </p>
+                )
+              }
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="policy-back">
+        <a class="link-row" href={backHref}>{backLabel}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-section {
+    flex: 1 0 auto;
+  }
+
+  .policy-head__headline {
+    margin-block-start: var(--space-14);
+    max-inline-size: 20ch;
+  }
+
+  .policy-head__date {
+    margin-block-start: var(--space-16);
+  }
+
+  .policy-head__intro {
+    margin-block-start: var(--space-24);
+    max-inline-size: 62ch;
+  }
+
+  /*
+    Sections sit closer together than a case study's do. A policy is read by scanning for
+    one heading, so the gap between two of them is a gap between paragraphs of one
+    document rather than between two arguments.
+  */
+  .policy-body {
+    margin-block-start: var(--section-pad);
+    display: grid;
+    gap: var(--gap-block);
+  }
+
+  /* ProductPage.astro's arrangement: the heading on the left, its prose on the right, so
+     the page fills the same content width the rest of the site uses. */
+  .policy-section__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--gap-col);
+    align-items: start;
+  }
+
+  .policy-section__heading {
+    max-inline-size: 18ch;
+    font-size: var(--step-card-title);
+    line-height: var(--step-title-lh);
+    letter-spacing: var(--step-title-tracking);
+  }
+
+  .policy-section__content {
+    max-inline-size: 62ch;
+  }
+
+  .policy-section__body {
+    font-size: var(--step-small);
+    line-height: var(--step-small-lh);
+  }
+
+  .policy-back {
+    margin-block-start: var(--section-pad);
+  }
+</style>

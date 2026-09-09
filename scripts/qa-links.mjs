@@ -49,6 +49,10 @@ for (const link of result.links) {
 const checked = result.links.filter((l) => l.state === 'OK').length;
 const skipped = result.links.filter((l) => l.state === 'SKIPPED').length;
 
+/** Astro's own redirect output: a robots-noindex page whose only job is a meta refresh. */
+const isRedirectStub = (html) =>
+  /<meta http-equiv="refresh"/i.test(html) && /<meta name="robots" content="noindex">/i.test(html);
+
 // Orphan check.
 const sitemapPath = join(DIST, 'sitemap-0.xml');
 if (!existsSync(sitemapPath)) {
@@ -59,6 +63,15 @@ if (!existsSync(sitemapPath)) {
   for (const file of htmlFiles()) {
     const path = relative(DIST, file);
     if (path === '404.html') continue;
+    /*
+      A redirect stub is absent from the sitemap on purpose. `astro.config.mjs`'s
+      `redirects` emit a `noindex` meta-refresh page for a route that has moved, and
+      @astrojs/sitemap leaves them out because the destination is the URL to index. That
+      is the opposite of an orphan — the page exists so an old inbound link still lands
+      somewhere — so it is identified by what it is rather than by a path exemption
+      somebody has to remember to remove.
+    */
+    if (isRedirectStub(read(file))) continue;
     const route = '/' + path.replace(/index\.html$/, '');
     if (!listed.has(route)) failures.push(`${rel(file)}  built but not listed in the sitemap (orphan)`);
   }

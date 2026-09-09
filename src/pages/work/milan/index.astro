@@ -1,0 +1,21 @@
+---
+import { getEntry } from 'astro:content';
+import ProductPage from '../../../components/ProductPage.astro';
+
+/*
+  COPY.md §5. QUESTIONS.md item 9 chose the full page, name-agnostic, before the name was
+  settled. Item 78 settled it: the owner confirmed Milan for this site as well as for the
+  store listing, so the route, the title, the OG fields and the structured data now carry
+  the name, the entry's `name` is `Milan` rather than null, and `qa:no-slop` no longer
+  blocks the word.
+
+  Item 11 and item 69 both answered no form, so this page collects no address and posts
+  to no endpoint. Item 73 is still unanswered, so the two money screenshots — whose alt
+  lines COPY.md §5.5 leaves marked until it is — have no entry on the product, and two
+  of the five captures never ship in any round.
+*/
+const product = await getEntry('products', 'milan');
+if (!product) throw new Error('src/data/products/milan.json is missing.');
+---
+
+<ProductPage product={product} />

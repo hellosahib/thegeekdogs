@@ -251,6 +251,49 @@ const privacyPolicy = z.object({
   }),
 });
 
+/**
+ * The account-deletion route. Google Play's Data safety form has a second required URL
+ * beside the privacy policy — the page a user goes to to ask for their account and its
+ * data to be deleted — and, like the policy, it has to resolve before a submission is
+ * accepted.
+ *
+ * The request itself is an email and there is no field on the page. QUESTIONS.md items 11
+ * and 69 both answered no form: this site posts to no endpoint, so a request that arrives
+ * by `mailto:` is the honest mechanism rather than a form that would need a backend, a
+ * third-party form service and a second privacy disclosure to explain it. `subject` and
+ * `bodyLines` prefill that email so a request arrives with the one fact it needs — which
+ * account signed in — instead of an empty message somebody has to chase.
+ *
+ * The address is NOT here, for the same reason it is not on `privacyPolicy`: it comes off
+ * `STUDIO_EMAIL`, so no route can print an inbox the rest of the site does not.
+ */
+const accountDeletion = z.object({
+  /** The date printed on the page, and the only date on it. */
+  updated: z.string().min(1),
+  headline: z.string().min(1),
+  intro: z.array(z.string().min(1)).min(1),
+  sections: z
+    .array(
+      z.object({
+        heading: z.string().min(1),
+        body: z.array(z.string().min(1)).min(1),
+      }),
+    )
+    .min(1),
+  request: z.object({
+    heading: z.string().min(1),
+    body: z.array(z.string().min(1)).min(1),
+    /** The subject line the link opens the mail app with. */
+    subject: z.string().min(1),
+    /** The prefilled message, one line per entry, joined with newlines. */
+    bodyLines: z.array(z.string()).min(1),
+  }),
+  meta: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+  }),
+});
+
 const products = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/data/products' }),
   schema: ({ image }) =>
@@ -281,6 +324,9 @@ const products = defineCollection({
       // Null where the product has no published policy: no route, no link. See above for
       // why this is not the same switch as `privacyClaimEnabled`.
       privacyPolicy: privacyPolicy.nullable().default(null),
+      // Null where the product has no deletion route: no page and no link. A product with
+      // no account has nothing to delete off a server and gets none.
+      accountDeletion: accountDeletion.nullable().default(null),
       // Only reachable, shippable features belong here. There is no field for
       // unreachable functionality, so it structurally cannot leak.
       features: z.array(z.string().min(1)),

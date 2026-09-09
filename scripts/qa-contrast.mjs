@@ -73,11 +73,12 @@ const ROUTES = [
   '/',
   '/work/',
   '/work/pocket-manager/',
-  '/work/wedding-planner/',
+  '/work/milan/',
   // The policy route. It is a wall of body text at --step-small on the page ground, which
   // is the one thing this gate is least likely to be surprised by and the one page a
   // store reviewer is guaranteed to open, so it is measured rather than assumed.
-  '/work/wedding-planner/privacy/',
+  '/work/milan/privacy/',
+  '/work/milan/delete-account/',
   '/sahib/',
   '/tanya/',
   '/contact/',

@@ -1,8 +1,8 @@
 {
-  "slug": "wedding-planner",
-  "name": null,
-  "descriptiveName": "Wedding planner",
-  "indexName": "A wedding planner",
+  "slug": "milan",
+  "name": "Milan",
+  "descriptiveName": "Milan",
+  "indexName": "Milan",
   "order": 2,
   "stage": "final-touches",
   "storeUrl": null,
@@ -20,10 +20,10 @@
   "oneLine": "Works offline, and handles a wedding that's more than one event.",
   "indexLink": {
     "label": "See what's in build",
-    "accessibleName": "See what's in build on the wedding planner"
+    "accessibleName": "See what's in build on Milan"
   },
   "headline": "The second one, in build.",
-  "subhead": "A wedding planner that works offline, never sells your data, and handles a wedding with more than one function.",
+  "subhead": "Milan is a wedding planner that works offline, never sells your data, and handles a wedding with more than one function.",
   "storeLink": null,
   "storeListingName": null,
   "sections": [
@@ -38,13 +38,13 @@
     },
     {
       "heading": "Why it isn't out yet",
-      "body": "The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the name isn't final, and the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.",
+      "body": "The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.",
       "closingLine": "It goes to the store when a person says it's ready, and not before."
     }
   ],
   "screenshots": [
     {
-      "src": "../../assets/wedding-planner/01-planning-board-functions.png",
+      "src": "../../assets/milan/01-planning-board-functions.png",
       "alt": "The planning board, with a card for each function of the wedding, each carrying its own date and its own colour."
     }
   ],
@@ -52,7 +52,7 @@
     "updated": "8 September 2026",
     "headline": "Privacy policy",
     "intro": [
-      "This is the privacy policy for the wedding planner TheGeekDogs builds for Android and iPhone. It is written against the app as it is built today, not against a version that might exist later.",
+      "This is the privacy policy for Milan, the wedding planner TheGeekDogs builds for Android and iPhone. It is written against the app as it is built today, not against a version that might exist later.",
       "The app needs no account and no network. Everything you plan is written to a database in the app's own private storage on your phone, and that is the only place the app reads from. Nothing leaves the phone unless you sign in and turn on cloud backup, and even then most of it stays. This page says exactly what does."
     ],
     "sections": [
@@ -124,8 +124,8 @@
         "heading": "Deleting your data",
         "body": [
           "Local data: uninstall the app. The database and the photos go with it.",
-          "Cloud data: write to us. The app has no control that does this yet, and rather than describe a button that does not exist, this is the route. Email the address below, tell us which Google account you signed in with, and the cloud copy of your wedding is removed by hand. Uninstalling does not remove it, because it is not on the phone.",
-          "Two people read that inbox and you will usually hear back within a couple of days. When a delete control ships inside the app, this page is rewritten the same day and the date at the top of it moves."
+          "Cloud data: ask us. The app has no delete control inside it yet, and rather than describe a button that does not exist, there is a page for this — linked at the foot of this policy and from Milan's own page. It opens an email with the request already written; tell us which Google account you signed in with and the cloud copy of your wedding is removed by hand. Uninstalling does not remove it, because it is not on the phone.",
+          "Two people read that inbox. A request is acted on within 30 days and usually within a couple of days, and you get a reply when it is done. When a delete control ships inside the app, this page is rewritten the same day and the date at the top of it moves."
         ]
       },
       {
@@ -148,16 +148,76 @@
       ]
     },
     "meta": {
-      "title": "Privacy policy, a wedding planner | TheGeekDogs",
-      "description": "What our wedding planner app stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in."
+      "title": "Privacy policy, Milan | TheGeekDogs",
+      "description": "What Milan stores, where it stores it, and what leaves your phone. It needs no account, it works offline, and cloud backup does nothing until you sign in."
     }
   },
   "meta": {
-    "title": "A wedding planner, in build | TheGeekDogs",
-    "description": "Our second app, in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.",
+    "title": "Milan, a wedding planner in build | TheGeekDogs",
+    "description": "Milan, our second app, is in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.",
     "ogTitle": "One wedding, several functions, one screen.",
-    "ogDescription": "The second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.",
+    "ogDescription": "Milan, the second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.",
     "ogImageTitle": "In build",
     "ogImageLine": "A wedding planner for more than one function."
+  },
+  "accountDeletion": {
+    "updated": "9 September 2026",
+    "headline": "Delete your account and your data",
+    "intro": [
+      "Milan needs no account. If you have never signed in, there is no account to delete and nothing of yours is on any server — everything you planned is in the app's own private storage on your phone, and uninstalling the app takes it with it.",
+      "This page is for the other case: you signed in with Google and turned on cloud backup, and you want the account and the copy of your wedding that goes with it removed. There is no delete control inside the app yet. Rather than describe a button that does not exist, this is the route that works today, and it is one email."
+    ],
+    "sections": [
+      {
+        "heading": "What gets deleted",
+        "body": [
+          "The account record itself, held in Firebase Authentication. That record is what Google wrote when you signed in: the account identifier the app uses, and the email address, name and profile picture Google put on it. All of it goes.",
+          "The cloud copy of your planning data, held in Cloud Firestore under that identifier. That covers your boards and the options on them, your guest list including any address, phone number or email address you typed into a guest yourself, your budget lines, your bookings and your payment records.",
+          "Nothing is kept back as a backup of our own afterwards, and there is no archived copy to restore from. Deletion is not reversible, so ask when you mean it."
+        ]
+      },
+      {
+        "heading": "What deletion does not touch",
+        "body": [
+          "Your phone. The app's local database is the only thing it reads from, and deleting the cloud copy does not reach into it — your wedding keeps opening, offline, signed out. To remove the local copy as well, uninstall the app: Android and iOS delete an app's private storage along with the app.",
+          "Your photos. They were never uploaded. Photos attached to an option are files in the app's private storage and they are not part of cloud backup at all, so there is nothing of them on our side to delete.",
+          "Your contacts. The guest-list import reads a contact's name and the identifier your phone files it under, and it uploads nothing. Guests you kept are your own data and they go with the rest of it."
+        ]
+      },
+      {
+        "heading": "How long it takes",
+        "body": [
+          "A request is acted on within 30 days of it arriving, and in practice within a couple of days: two people read the inbox and the deletion is done by hand.",
+          "You get a reply when it is done. If you asked from a different address than the one you signed in with, the reply goes to the address you wrote from."
+        ]
+      },
+      {
+        "heading": "Afterwards",
+        "body": [
+          "The app signs you out and keeps working. Every feature works signed out — that is the state Milan is built for — so nothing in your planning stops because the account is gone.",
+          "Signing in again later creates a fresh account record, with no connection to the deleted one and none of the old data in it."
+        ]
+      }
+    ],
+    "request": {
+      "heading": "Ask for deletion",
+      "body": [
+        "The link below opens your own mail app with the message already written. It asks for one thing: the Google address you signed in with, which is what identifies the account. Send it from whichever address you like.",
+        "Nothing on this page is sent anywhere by the page. There is no form here and it posts to no server — the message is assembled in your browser and only your mail app ever sees it. If your device has no mail app set up, write to the address below by hand and say the same thing."
+      ],
+      "subject": "Delete my Milan account and data",
+      "bodyLines": [
+        "Please delete my Milan account and the cloud copy of my wedding data.",
+        "",
+        "The Google account I signed in with:",
+        "",
+        "I understand this removes the account record and the cloud copy, that it cannot be undone, and that anything still on my phone stays there until I uninstall the app.",
+        ""
+      ]
+    },
+    "meta": {
+      "title": "Delete your Milan account | TheGeekDogs",
+      "description": "How to have your Milan account and the cloud copy of your wedding data deleted. One email, acted on within 30 days, and the app keeps working signed out."
+    }
   }
 }
