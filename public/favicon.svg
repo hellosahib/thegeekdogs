@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="TheGeekDogs">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="TheGeekDogs">
   <title>TheGeekDogs</title>
-  <desc>Not a logo and never rendered on a page: the empty chair's lamp cone, flat brass
-  on the room's own ground, dark values hard-coded. It is repainted for the dark-first
-  redesign — the ground is --void and the cone is --lamp — and the mark itself is
-  unchanged, because the chair and its light are still what the site is about. No
-  gradient (a two-stop gradient across 16 physical pixels is a smear), no corner radius
-  (iOS and Android mask the tile themselves) and no prefers-color-scheme block (the tile
-  is dark in both schemes, and a media query here would leave the vector and the three
-  PNGs disagreeing). scripts/build-icons.mjs exports the PNGs from this file.</desc>
-  <rect width="32" height="32" fill="#04060B"/>
-  <path fill="#E9B968" d="M15 0h2v4h-2z"/>
-  <path fill="#E9B968" d="M12 4h8l7 21H5z"/>
-  <path fill="#E9B968" d="M5 28h22v3H5z"/>
+  <desc>The navbar wordmark's dog head, dark-first colours hard-coded so the tile reads
+  the same regardless of the visitor's scheme: --void ground, --accent ears, --ink
+  outline and muzzle. scripts/build-icons.mjs exports the PNGs from this file.</desc>
+  <rect width="40" height="40" fill="#04060B"/>
+  <path d="M7 12 2 1 14 6Z" fill="#df8fe2"/>
+  <path d="M33 12 38 1 26 6Z" fill="#df8fe2"/>
+  <path
+    d="M6 13Q6 5 14 5H26Q34 5 34 13V23Q34 33 20 33Q6 33 6 23Z"
+    fill="none"
+    stroke="#eaecf2"
+    stroke-width="2.4"/>
+  <rect x="14" y="21" width="12" height="7" rx="3.5" fill="#eaecf2"/>
 </svg>
