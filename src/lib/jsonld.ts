@@ -86,15 +86,15 @@ export function softwareApplication(product: CollectionEntry<'products'>): Softw
   if (d.storeListingName) app.alternateName = d.storeListingName;
 
   /*
-    Only stated where the store states it. Pocket Manager is a Play Store listing whose
-    own title names the category and whose platform is Android; the second app has not
-    been submitted anywhere, so it gets neither field rather than a guess at both.
+    Only stated where the store states it. Both products are Play Store listings, so the
+    platform is Android; the category is each listing's own (Finance for Pocket Manager,
+    Business for Milan) and comes off the entry rather than being assumed here.
   */
   if (d.storeUrl) {
     app.sameAs = [d.storeUrl];
     app.installUrl = d.storeUrl;
     app.operatingSystem = 'Android';
-    app.applicationCategory = 'FinanceApplication';
+    if (d.applicationCategory) app.applicationCategory = d.applicationCategory;
   }
 
   /* Brief §12 — the rating is Pocket Manager's alone, and it is the live listing's own

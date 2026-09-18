@@ -115,10 +115,10 @@ export const WORK_INDEX = {
   meta: {
     title: 'Work | TheGeekDogs',
     description:
-      'Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches. Both built and maintained by the pipeline this studio sells.',
+      'Pocket Manager, live in the Play Store since 2020. Milan, a wedding planner, live there too. Both built and maintained by the pipeline this studio sells.',
     ogTitle: 'Two products, both ours.',
     ogDescription:
-      'One shipped and still updated. One in final touches. Built with the same review gates a client would get.',
+      'Both shipped, one of them since 2020. Built with the same review gates a client would get.',
   },
 } as const;
 

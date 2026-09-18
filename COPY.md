@@ -359,7 +359,12 @@ against a live Data Safety declaration is the same listing-policy risk as a hard
 
 **Paragraph 2.**
 
-`A second app sits behind it in final touches, built through the same pipeline and stopped at the same gates. There's no date on it. The list of what's left is short, and a person decides when it ends.`
+`Milan, a wedding planner, followed it into the Play Store, built through the same pipeline and stopped at the same gates. Neither one was given a date before it went out. A person decided when each was ready.`
+
+Milan went live in the Play Store in September 2026 (owner, 2026-09-18), so the "in final touches"
+wording that stood here is retired. The paragraph keeps the one fact the old one argued from — a
+person ends it — now in the past tense. It prints no figures for Milan: the listing has no rating
+yet, and no number is printed that the store does not show.
 
 Item 68 came back yes: the second app is built and maintained through the same pipeline and the
 same review gates, so the pipeline clause is the shipping text. The `FACTS.md` §(d) audit still
@@ -376,8 +381,8 @@ any wording.
 
 Both products on one compressed track, so a visitor sees the pipeline at a glance.
 
-- **Headline:** `One shipped, one nearly there.`
-- **Body:** `The track shows both products and where each one actually is: Pocket Manager shipped and still updated, the second one close enough that the list of what's left is short. Neither carries a date, and neither will. A date we miss in public is worse than no date at all.`
+- **Headline:** `Two shipped, both in the store.`
+- **Body:** `The track shows both products and where each one actually is: Pocket Manager shipped in 2020 and still updated, Milan in the Play Store beside it. Neither was given a date before it went out, and nothing next will be. A date we miss in public is worse than no date at all.`
 
 **The five stage labels, in order. These are the exact strings; do not reword them per product.**
 
@@ -392,7 +397,7 @@ Both products on one compressed track, so a visitor sees the pipeline at a glanc
 **Current states**
 
 - Pocket Manager: `Live`
-- The wedding planner: `Final touches`
+- Milan: `Live` (was `Final touches` until 2026-09-18)
 
 **Product labels in this compressed view**
 
@@ -408,9 +413,9 @@ does not fit.
 
 **Caption, beside the two-product track (DESIGN.md §B.9, ≤ 8 words)**
 
-- **Caption:** `One shipped, one nearly there.`
+- **Caption:** `Two shipped, both in the store.`
 
-Five words. This is the same string as the §2.8 headline above, reused rather than rewritten: at
+Six words. This is the same string as the §2.8 headline above, reused rather than rewritten: at
 1440 the compact track sits inside the proof band under §2.7's headline, so the §2.8 headline has
 no separate slot there and becomes the caption. One string, used in whichever slot the breakpoint
 gives it. Do not write a second, near-identical line for the other case.
@@ -444,7 +449,7 @@ anywhere, per item 7.
 - **Meta title:** `TheGeekDogs, a two-person mobile studio`
 - **Meta description:** `Two-person mobile studio. Agents write most of the build; a person reviews the architecture, tests on real phones, and signs off before anything ships.`
 - **OG title:** `AI writes a lot of our code. It doesn't get the last word.`
-- **OG description:** `A two-person mobile studio with four human gates between the code and your users. Pocket Manager is live in the Play Store.`
+- **OG description:** `A two-person mobile studio with four human gates between the code and your users. Pocket Manager and Milan are live in the Play Store.`
 - **OG image text** (the build-time image shows the floor, per §12): `TheGeekDogs` and, under it, `Two people. A floor of agents. One chair kept empty.`
 - **Alt for the OG image, if it is ever rendered inline:** see §10.2.
 
@@ -456,7 +461,7 @@ anywhere, per item 7.
 
 - **Headline:** `Two products, both ours.`
 - **Short intro:** `The two apps this studio builds and maintains, with the same review gates a client would get.`
-- **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains with the same pipeline and the same review gates a client would get. One is in the Play Store. One is in final touches.`
+- **Long body:** `The work below isn't a portfolio of things we made for other people. It's the two apps this studio builds and maintains with the same pipeline and the same review gates a client would get. Both are in the Play Store.`
 
 Item 68 confirmed both products run through the same pipeline and the same gates, so the clause
 prints here rather than waiting behind a variant.
@@ -485,17 +490,18 @@ nothing is invented here.
   places item 9's name-agnostic ruling had reserved — this card, the slug, the page title, the OG
   fields and the structured data — and nothing else on the page moved. The route is `/work/milan/`
   and `/work/wedding-planner/` redirects to it.
-- **Stage:** `Final touches`
+- **Stage:** `Live`
 - **One-line description:** `Works offline, and handles a wedding that's more than one event.`
-- **Link label:** `See what's in build`
-- **Accessible name for the link:** `See what's in build on Milan`
+- **Link label:** `See what's in it`
+- **Accessible name for the link:** `See what's in Milan`
+- **Secondary link label:** `Open in the Play Store`
 
 ### 3.4 Meta
 
 - **Meta title:** `Work | TheGeekDogs`
-- **Meta description:** `Pocket Manager, live in the Play Store since 2020. A wedding planner in final touches. Both built and maintained by the pipeline this studio sells.`
+- **Meta description:** `Pocket Manager, live in the Play Store since 2020. Milan, a wedding planner, live there too. Both built and maintained by the pipeline this studio sells.`
 - **OG title:** `Two products, both ours.`
-- **OG description:** `One shipped and still updated. One in final touches. Built with the same review gates a client would get.`
+- **OG description:** `Both shipped, one of them since 2020. Built with the same review gates a client would get.`
 
 Both descriptions are the item 68 wording, promoted out of variant on the owners' yes.
 
@@ -626,8 +632,8 @@ which the third line states rather than smoothing over.
 
 ## 5. `/work/milan/`
 
-**Read before editing this route.** The product is named — `Milan`, item 78, 2026-09-09 — and has
-not shipped. Nothing on this page dates it or describes the collaboration feature or Apple sign-in.
+**Read before editing this route.** The product is named — `Milan`, item 78, 2026-09-09 — and is
+live in the Play Store as `Milan – Wedding Planner` (owner, 2026-09-18). Nothing on this page dates it or describes the collaboration feature or Apple sign-in.
 Account deletion is described on its own route, `/work/milan/delete-account/`, and nowhere on this
 page: it is a thing you request, not a feature of the app. Nothing here mentions a vendor directory, a guest-facing app, in-app payments, or a paid
 tier. There is no gendered language. Tone is plain and warm, never chirpy: the reward this product
@@ -640,14 +646,17 @@ answered no, so there is no email capture here.
 
 ### 5.1 Page header
 
-- **Headline:** `The second one, in build.`
+- **Headline:** `The second one, now in the Play Store.`
 - **Subhead:** `Milan is a wedding planner that works offline, never sells your data, and handles a wedding with more than one function.`
-- **Stage:** `Final touches`
+- **Stage:** `Live`
 - **Product name field:** `Milan`, item 78. Every reference on this page, in its slug, its title,
   its OG fields and its structured data carries it. The internal bundle id is still never
   user-facing, and `qa:no-slop` still blocks the `wedme` fragment from `dist/`.
-- **Store link field:** empty, by decision. The app has not been submitted, so no store link
-  renders and no link label is shown. Do not ship a link to nothing.
+- **Store link field:** `https://play.google.com/store/apps/details?id=com.thegeekdogs.milan`.
+  - **Link label:** `Open Milan in the Play Store`
+  - **Accessible name:** `Open Milan in the Google Play Store. Opens a new tab.`
+  - **Store listing name:** `Milan – Wedding Planner`, the listing's own title, used only in
+    structured data's `alternateName`.
 
 The subhead is the ASO document's own positioning line, used verbatim. Do not paraphrase it.
 
@@ -674,13 +683,18 @@ honest to describe. Nothing is added to this list without checking §5.3.
   - `A Hindi interface.`
   - `No ads. Everything in the first version is free.`
 
-### 5.4 Why it isn't out yet
+### 5.4 How it got out
 
-Honest, and it does more work than a launch date would.
+This section was `Why it isn't out yet` until the app went live (2026-09-18). Its replacement
+closes the promise the old one made rather than deleting it: the list it named got done, and a
+person ended it.
 
-- **Heading:** `Why it isn't out yet`
-- **Body:** `The features are built and verified on real devices. What's left is the short list you'd expect at this stage: the release signing and the launcher icon aren't done. None of it is the kind of thing you rush, and none of it is a reason to put a date on the page.`
-- **Closing line:** `It goes to the store when a person says it's ready, and not before.`
+- **Heading:** `How it got out`
+- **Body:** `The short list that stood here, the release signing and the launcher icon, got done, and then a person said it was ready. It went to the store through the same gates as everything else we ship: a person decided the architecture, read the diffs, tested it on real phones, and checked what the app collects against what the listing says.`
+- **Closing line:** `Nobody put a date on it beforehand, and nobody had to.`
+
+The gates clause rests on item 68 (owner-confirmed, not independently audited), the same footing
+as §2.7's pipeline clause.
 
 Note: item 12 was answered no. The paragraph that used to sit here referred to a fully built,
 fully tested feature that is described nowhere because the button that opens it doesn't open yet.
@@ -723,11 +737,11 @@ is real, but the only capture of it is one of these two, so this page ships no H
 No route, title, description, OG field or structured-data value on this page contains the internal
 bundle-id fragment. The product's name is `Milan` and every one of them may carry it.
 
-- **Meta title:** `Milan, a wedding planner in build | TheGeekDogs`
-- **Meta description:** `Milan, our second app, is in final touches. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.`
+- **Meta title:** `Milan, a wedding planner | TheGeekDogs`
+- **Meta description:** `Milan, our second app, is live in the Play Store. It works offline and handles a wedding with more than one function: a guest list and a headcount for each, on one screen.`
 - **OG title:** `One wedding, several functions, one screen.`
-- **OG description:** `Milan, the second app from TheGeekDogs, in final touches. Offline, no account needed, and built for a wedding that's more than one event.`
-- **OG image text:** `In build` and, under it, `A wedding planner for more than one function.`
+- **OG description:** `Milan, the second app from TheGeekDogs, now in the Play Store. Offline, no account needed, and built for a wedding that's more than one event.`
+- **OG image text:** `Milan` and, under it, `Live. A wedding planner for more than one function.`
 
 ---
 

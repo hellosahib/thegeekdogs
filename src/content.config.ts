@@ -320,6 +320,9 @@ const products = defineCollection({
           lastUpdated: z.string().min(1),
         })
         .nullable(),
+      // schema.org's name for the store's own category, stated only where a store states
+      // one. Null with no listing, so structured data never guesses at it.
+      applicationCategory: z.string().min(1).nullable().default(null),
       privacyClaimEnabled: z.boolean().default(false),
       // Null where the product has no published policy: no route, no link. See above for
       // why this is not the same switch as `privacyClaimEnabled`.
@@ -345,8 +348,8 @@ const products = defineCollection({
       // --- COPY.md §4 / §5, the product page ---
       headline: z.string().min(1),
       subhead: z.string().min(1),
-      // Null where the app has not been submitted: no store link renders and no label
-      // is shown, because a link to nothing is worse than no link (COPY.md §5.1).
+      // Null where an app is not on a store: no store link renders and no label is
+      // shown, because a link to nothing is worse than no link (COPY.md §5.1).
       storeLink: labelledLink.nullable(),
       // The full listing title, quoted only where the page quotes it (COPY.md §4.1).
       storeListingName: z.string().min(1).nullable().default(null),

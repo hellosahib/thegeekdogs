@@ -212,3 +212,8 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
     Answer:
 85. **The deletion page names no vendor product; the privacy policy still names all four.** Owner instruction, 2026-09-09. `/work/milan/privacy/` keeps `Firebase Authentication`, `Cloud Firestore`, `Crashlytics` and `Firebase Analytics`, because a policy's job is to say precisely who holds what. `/work/milan/delete-account/` describes the two services it has to mention by what they do — `the sign-in service that created it`, `the cloud database` — and keeps `Google`, without which a request cannot be matched to an account. No factual claim moved on either page. One thing to watch: Play's Data safety form names the real processors, and nothing on either page may contradict it.
     Answer: Owner instruction, applied 2026-09-09.
+
+## O. Milan goes live · 2026-09-18
+
+86. **Milan is live in the Play Store** (owner, 2026-09-18), listed as `Milan – Wedding Planner` in the Business category. Its stage is `Live`, the store link renders on `/work/milan/` and on the `/work/` card, `COPY.md` §5.4 is rewritten from `Why it isn't out yet` to `How it got out`, and the home page's proof copy speaks of two shipped apps. No rating, review count or download figure is printed for Milan: the listing shows none yet (0+ downloads, no ratings), and `storeStats` stays null until it does. When it has figures worth printing, they are transcribed from the listing the way Pocket Manager's were (item 36), not estimated.
+    Answer: Owner instruction, applied 2026-09-18.
