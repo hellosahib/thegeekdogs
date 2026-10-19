@@ -14,6 +14,75 @@
   },
   "applicationCategory": "FinanceApplication",
   "privacyClaimEnabled": false,
+  "accountDeletion": {
+    "updated": "20 October 2026",
+    "headline": "Delete your account and your data",
+    "intro": [
+      "Pocket Manager works without an account. If you have never signed in, there is no account to delete and nothing about you is on any server. Your records are in the app on your phone, and uninstalling the app removes them.",
+      "Pocket Manager 3 adds an optional Google sign-in, used only for the features that involve other people. This page is for the case where you signed in and want that account removed. Most people should do it inside the app, where it takes effect at once. This page is the second route, by email, for anyone who no longer has the app."
+    ],
+    "sections": [
+      {
+        "heading": "Deleting from inside the app",
+        "body": [
+          "Open Settings and choose Delete my account. The account is removed immediately, with nothing to wait for and no email to send."
+        ]
+      },
+      {
+        "heading": "What gets deleted",
+        "body": [
+          "Your sign-in record: the Google account identifier, and the email address, name and profile picture as Google provided them.",
+          "Your Card Circle profile: your display name, the names of the cards you chose to share (never card numbers, limits or spending), a phone number if you shared one, the emails of the friends you shared with, and your logging-streak count if you chose to share it.",
+          "Your waitlist entry for the Upgraded plan and, if you were an Upgraded member, the cloud backup of your Pocket Manager data.",
+          "Your email address is removed from every shared trip you were a member of.",
+          "Deletion cannot be undone, so ask when you mean it."
+        ]
+      },
+      {
+        "heading": "What deletion does not touch",
+        "body": [
+          "Your phone. Your money data stays on it and keeps working, signed out. To remove it as well, uninstall the app, which deletes the app's private storage along with it.",
+          "Shared trips. The other members keep their copy of a trip you were in until it auto-deletes, which happens 90 days after the trip has ended and is fully settled. Your email no longer appears on it.",
+          "Your Google Drive backup. It lives in the hidden app folder of your own Google Drive, not with us, so remove it there: in Google Drive, go to Settings, then Manage apps, then Pocket Manager, then Delete hidden app data.",
+          "App usage analytics and crash reports. They carry no name, no email and no amounts, and they are tied to a random install identifier, not to your account."
+        ]
+      },
+      {
+        "heading": "How long it takes",
+        "body": [
+          "Deleting in the app is immediate. A request by email is acted on within 30 days, and in practice within a couple of days.",
+          "You get a reply when it is done. If you asked from a different address than the one you signed in with, the reply goes to the address you wrote from."
+        ]
+      },
+      {
+        "heading": "Afterwards",
+        "body": [
+          "The app signs you out and keeps working. Everything outside People works signed out anyway, so nothing in your tracking stops because the account is gone.",
+          "Signing in again later creates a new account, with no connection to the deleted one."
+        ]
+      }
+    ],
+    "request": {
+      "heading": "Ask for deletion",
+      "body": [
+        "The link below opens your own mail app with the message already written. It asks for one thing: the Google address you signed in with, which is what identifies the account. Send it from whichever address you like.",
+        "Nothing on this page is sent anywhere by the page. There is no form here and it posts to no server. The message is assembled in your browser and only your mail app ever sees it. If your device has no mail app set up, write to the address below by hand and say the same thing."
+      ],
+      "subject": "Delete my Pocket Manager account and data",
+      "bodyLines": [
+        "Please delete my Pocket Manager account and the data that goes with it.",
+        "",
+        "The Google account I signed in with:",
+        "",
+        "I understand this removes my sign-in record, my Card Circle profile and my Upgraded waitlist entry or cloud backup, that it cannot be undone, and that anything on my phone or in my Google Drive backup stays where it is until I remove it myself.",
+        ""
+      ]
+    },
+    "meta": {
+      "title": "Delete your Pocket Manager account | TheGeekDogs",
+      "description": "How to have your Pocket Manager account and its data deleted. Immediate in the app, or one email acted on within 30 days, and the app keeps working signed out."
+    }
+  },
   "features": [
     "A simple interface with multiple categories.",
     "A calendar screen showing a chosen day's records, with the daily and monthly balance.",

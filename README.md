@@ -164,6 +164,10 @@ form:
 | Privacy policy | `https://thegeekdogs.com/work/milan/privacy/` |
 | Account deletion | `https://thegeekdogs.com/work/milan/delete-account/` |
 
+Pocket Manager 3's deletion page is `https://thegeekdogs.com/work/pocket-manager/delete-account/`,
+generated the same way from `accountDeletion` in `src/data/products/pocket-manager.json`. It
+describes v3 (optional Google sign-in), so it ships with the v3.0 release (QUESTIONS.md item 87).
+
 Both are generated from `privacyPolicy` and `accountDeletion` on that same entry; a product with
 neither gets no route and no link. `/work/wedding-planner/` and `/work/wedding-planner/privacy/`
 redirect to the renamed routes (`astro.config.mjs`).

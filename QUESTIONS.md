@@ -217,3 +217,10 @@ Items here are filled once `DESIGN.md` Pass 1 is reviewed. They will ask you to 
 
 86. **Milan is live in the Play Store** (owner, 2026-09-18), listed as `Milan – Wedding Planner` in the Business category. Its stage is `Live`, the store link renders on `/work/milan/` and on the `/work/` card, `COPY.md` §5.4 is rewritten from `Why it isn't out yet` to `How it got out`, and the home page's proof copy speaks of two shipped apps. No rating, review count or download figure is printed for Milan: the listing shows none yet (0+ downloads, no ratings), and `storeStats` stays null until it does. When it has figures worth printing, they are transcribed from the listing the way Pocket Manager's were (item 36), not estimated.
     Answer: Owner instruction, applied 2026-09-18.
+
+## P. Pocket Manager's account-deletion route · 2026-10-20
+
+87. **`/work/pocket-manager/delete-account/` describes Pocket Manager 3, which is not released, so the live app has no account for it to delete.** The page is written for v3's optional Google sign-in and says so only by describing what v3 does. Before v3 ships, a reader who follows the link would find a page about a feature the Play Store build does not have. The route is built now so it exists and resolves; it should be published together with the v3.0 release (the owner confirms the timing), and not linked from a store listing before then.
+    Answer:
+88. **The route sits against item 14's rule that the site makes no privacy claim for Pocket Manager.** The page is a legal route linked from the foot of the product page, as Milan's is, and the case study itself still says nothing about privacy (COPY.md §4.6). If item 14 was meant to cover this too, drop `accountDeletion` from `pocket-manager.json` and the route and the link both go.
+    Answer:

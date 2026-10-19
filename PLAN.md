@@ -226,6 +226,10 @@ export const collections = { gates, people, agents: agentsCollection, products }
 > `/work/milan/delete-account/`. The old routes redirect (`astro.config.mjs`). The shape below and
 > the routing table in §3 are kept as the record of what was planned, not as a description of what
 > is on disk.
+>
+> **2026-10-20:** Pocket Manager gained an `accountDeletion` block (v3 adds an optional Google
+> sign-in), so `/work/pocket-manager/delete-account/` exists beside the Milan one, with the same
+> link on its product page.
 
 
 `src/data/products/wedding-planner.json` today:

@@ -1,0 +1,27 @@
+---
+import { getEntry } from 'astro:content';
+import AccountDeletionPage from '../../../components/AccountDeletionPage.astro';
+
+/*
+  `/work/pocket-manager/delete-account/`. The deletion page for Pocket Manager 3, the
+  version that adds an optional Google sign-in for the People features. Google Play's
+  Data safety form asks for a page where a user can request that their account and its
+  data be deleted, and it has to resolve before a submission is accepted.
+
+  Before v3 Pocket Manager had no account and so no `accountDeletion` on its entry. It has
+  one now, which is what generates this route and the link on the product page. The page
+  describes v3, so it is published together with the v3.0 release (QUESTIONS.md item 87):
+  the live app has no account to delete until then.
+
+  The page is the second route. In the app, Settings > Delete my account removes the
+  account immediately; this one is the email route for people who no longer have the app.
+
+  There is no form on this page. QUESTIONS.md items 11 and 69 both answered no form and
+  this site posts to no endpoint, so the request is an email the reader's own mail app
+  composes, prefilled. The address is `STUDIO_EMAIL`, as on Milan's page.
+*/
+const product = await getEntry('products', 'pocket-manager');
+if (!product) throw new Error('src/data/products/pocket-manager.json is missing.');
+---
+
+<AccountDeletionPage product={product} />

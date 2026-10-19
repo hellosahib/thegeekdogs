@@ -1371,9 +1371,8 @@ third-party form service would mean a dependency, an endpoint the studio does no
 paragraph in the privacy policy naming whoever now receives the request. Item 82 puts that trade to
 the owners.
 
-**The strings live in `accountDeletion` on `src/data/products/milan.json`.** Pocket Manager has no
-such entry — it has no account — so no route is generated for it and no link renders on its page.
-The address is not in the JSON: it is `STUDIO_EMAIL`, for the same reason the policy's is.
+**The strings live in `accountDeletion` on `src/data/products/milan.json`.** Pocket Manager's own
+route is §13. A product with no such entry gets no route and no link. The address is not in the JSON: it is `STUDIO_EMAIL`, for the same reason the policy's is.
 
 ### 12.1 Head
 
@@ -1430,6 +1429,48 @@ may lose a brand name; it may not lose a disclosure.
 - **Meta title:** `Delete your Milan account | TheGeekDogs`
 - **Meta description:** `How to have your Milan account and the cloud copy of your wedding data deleted. One email, acted on within 30 days, and the app keeps working signed out.`
 - **OG:** none written, so none renders, for §11.4's reason.
+
+---
+
+## 13. `/work/pocket-manager/delete-account/`
+
+*Added 2026-10-20.* **Read before editing this route.** It describes **Pocket Manager 3**, the
+next major version, which adds an optional Google sign-in used only for the People features. The
+live app (before v3) has no account, so this page is published together with the v3.0 release
+(item 87). §12's rules hold unchanged: no form, the request is a prefilled `mailto:` to
+`STUDIO_EMAIL`, every sentence describes the build that exists, and no vendor product name appears.
+§4.6 (no privacy claim on the case study) is not touched: this is a legal route, linked from the
+foot of the product page the way §12 is.
+
+**The strings live in `accountDeletion` on `src/data/products/pocket-manager.json`.**
+
+### 13.1 What differs from §12
+
+- **The primary route is in the app.** Settings > `Delete my account` removes the account
+  immediately, and the page says so first, in its own section `Deleting from inside the app`. The
+  email route is the second route, for people who no longer have the app.
+- **Intro:** the first paragraph keeps §12's signed-out case (no account, nothing on a server,
+  uninstalling removes the data). The second names the optional Google sign-in and points at the
+  in-app control.
+- **Sections:** `Deleting from inside the app` · `What gets deleted` · `What deletion does not
+  touch` · `How long it takes` · `Afterwards`.
+- **What gets deleted:** the sign-in record (Google account identifier, email address, name and
+  profile picture as Google provided them); the Card Circle profile (display name, names of the
+  cards chosen for sharing, never numbers, limits or spending; an optional shared phone number; the
+  emails of friends shared with; the logging-streak count if shared); the Upgraded-plan waitlist
+  entry; the cloud backup if an Upgraded member; the reader's email from every shared trip.
+- **What it does not touch:** the phone; shared trips, which keep the other members' copy until
+  they auto-delete 90 days after the trip has ended and is fully settled; the Google Drive backup,
+  which lives in the reader's own Drive's hidden app folder (Settings > Manage apps > Pocket
+  Manager > Delete hidden app data); analytics and crash reports, which carry no name, email or
+  amounts and are tied to a random install identifier, not the account.
+- **Timing:** in-app deletion is immediate; an emailed request is acted on within 30 days, usually
+  within a couple of days, with a reply when done.
+- **Date line:** `Last updated 20 October 2026`.
+- **Prefill:** subject `Delete my Pocket Manager account and data`.
+- **Meta title:** `Delete your Pocket Manager account | TheGeekDogs`
+- **Meta description:** `How to have your Pocket Manager account and its data deleted. Immediate in the app, or one email acted on within 30 days, and the app keeps working signed out.`
+- **OG:** none written, so none renders.
 
 ---
 

@@ -79,6 +79,7 @@ const ROUTES = [
   // store reviewer is guaranteed to open, so it is measured rather than assumed.
   '/work/milan/privacy/',
   '/work/milan/delete-account/',
+  '/work/pocket-manager/delete-account/',
   '/sahib/',
   '/tanya/',
   '/contact/',

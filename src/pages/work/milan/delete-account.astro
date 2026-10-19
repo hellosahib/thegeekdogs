@@ -10,8 +10,8 @@ import AccountDeletionPage from '../../../components/AccountDeletionPage.astro';
 
   It sits next to the product rather than in the global footer, for the reason
   QUESTIONS.md item 79 gave the policy: a legal page for one app belongs beside that app.
-  Pocket Manager has no account and therefore no `accountDeletion` on its entry, so no
-  route is generated for it and no link renders on its page.
+  Pocket Manager's own route, `/work/pocket-manager/delete-account/`, exists for the same
+  reason and is generated from its own `accountDeletion` entry.
 
   There is no form on this page. QUESTIONS.md items 11 and 69 both answered no form and
   this site posts to no endpoint, so the request is an email the reader's own mail app
