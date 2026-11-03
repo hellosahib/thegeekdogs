@@ -15,19 +15,42 @@
  * `people.headshot` and `headshotAlt` stay optional on the schema for the same reason:
  * dropping the images in later is content work, not a code change.
  */
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   /** The person's initials. Two characters, set in the mono face. */
   monogram: string;
+  /** The headshot, when there is one. It fills the same frame the reservation drew. */
+  image?: ImageMetadata;
+  alt?: string;
 }
 
-const { monogram } = Astro.props;
+const { monogram, image, alt } = Astro.props;
+if (image && !alt) throw new Error(`The ${monogram} headshot needs headshotAlt.`);
 ---
 
-<div class="portrait glass" aria-hidden="true">
-  <span class="portrait__hatch"></span>
-  <span class="portrait__monogram mono">{monogram}</span>
-  <span class="portrait__label micro">Portrait slot · 366 × 440</span>
-</div>
+{
+  image ? (
+    <div class="portrait portrait--filled glass">
+      <Picture
+        src={image}
+        alt={alt!}
+        formats={['avif', 'webp']}
+        width={366}
+        densities={[1, 2]}
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div class="portrait glass" aria-hidden="true">
+      <span class="portrait__hatch"></span>
+      <span class="portrait__monogram mono">{monogram}</span>
+      <span class="portrait__label micro">Portrait slot · 366 × 440</span>
+    </div>
+  )
+}
 
 <style>
   .portrait {
@@ -82,9 +105,22 @@ const { monogram } = Astro.props;
     color: var(--ink-2);
   }
 
+  .portrait--filled {
+    display: block;
+  }
+
+  .portrait--filled :global(picture),
+  .portrait--filled :global(img) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+
   /* Reserved space is not a thing that belongs on paper. */
   @media print {
-    .portrait {
+    .portrait:not(.portrait--filled) {
       display: none;
     }
   }

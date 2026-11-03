@@ -61,7 +61,11 @@ const schema = await personGraph(person);
         </div>
 
         <div class="person-hero__portrait">
-          <HeadshotSlot monogram="SS" />
+          <HeadshotSlot
+            monogram="SS"
+            image={person.data.headshot}
+            alt={person.data.headshotAlt}
+          />
         </div>
       </div>
     </div>
