@@ -61,9 +61,20 @@ const singleShot = d.screenshots.length === 1;
 const SOLO_SHOT_WIDTH = 603;
 const soloShot = singleShot ? d.screenshots[0] : undefined;
 
-/* At most two screenshots above the fold, and the column count is the screenshot count
-   capped at two, so a page is laid out for the number of shots it actually has. */
-const shotColumns = Math.min(d.screenshots.length, 2);
+/* The listing's own figures, printed only where the listing has them: a new listing
+   has downloads and no ratings, so it prints no rating rather than a zero. */
+const stats = d.storeStats;
+const statsLine = stats
+  ? [
+      stats.rating !== undefined && stats.ratingCount
+        ? `${stats.rating} stars from ${stats.ratingCount} reviews`
+        : undefined,
+      `${stats.downloads} downloads`,
+      `Updated ${new Date(stats.lastUpdated).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}`,
+    ]
+      .filter(Boolean)
+      .join(' · ')
+  : undefined;
 
 const schema = productGraph(product);
 ---
@@ -103,6 +114,7 @@ const schema = productGraph(product);
             </p>
           )
         }
+        {statsLine && <p class="product-head__stats small muted mono">{statsLine}</p>}
       </div>
 
       {/*
@@ -110,25 +122,43 @@ const schema = productGraph(product);
         same capture inside a glass surround with the room's own hairline reads as a
         device standing in the room. It is padding, a radius and a border — no chrome, no
         drawn notch, nothing pretending to be hardware.
+
+        The row is a carousel: native horizontal scroll with snap points, so swipe,
+        trackpad and keyboard (the track is focusable) all work with no script. The two
+        buttons are the only scripted part, and they stay hidden until it runs.
       */}
       {
         d.screenshots.length > 1 && (
-          <ul class="shots" style={`--shot-columns: ${shotColumns}`} data-rv>
-            {d.screenshots.map((shot, index) => (
-              <li class="glass shots__item">
-                <Picture
-                  src={shot.src}
-                  alt={shot.alt}
-                  formats={['avif', 'webp']}
-                  width={SHOT_WIDTH}
-                  densities={[1, 2]}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  fetchpriority={index === 0 ? 'high' : undefined}
-                  decoding="async"
-                />
-              </li>
-            ))}
-          </ul>
+          <div class="carousel" data-carousel data-rv>
+            <ul
+              class="carousel__track"
+              tabindex="0"
+              aria-label={`${d.descriptiveName} screenshots. Scroll sideways for more.`}
+            >
+              {d.screenshots.map((shot, index) => (
+                <li class="glass shots__item">
+                  <Picture
+                    src={shot.src}
+                    alt={shot.alt}
+                    formats={['avif', 'webp']}
+                    width={SHOT_WIDTH}
+                    densities={[1, 2]}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={index === 0 ? 'high' : undefined}
+                    decoding="async"
+                  />
+                </li>
+              ))}
+            </ul>
+            <div class="carousel__controls" hidden>
+              <button type="button" class="pill pill--ghost carousel__btn" data-dir="-1" aria-label="Previous screenshot">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </button>
+              <button type="button" class="pill pill--ghost carousel__btn" data-dir="1" aria-label="Next screenshot">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </button>
+            </div>
+          </div>
         )
       }
 
@@ -206,6 +236,35 @@ const schema = productGraph(product);
   </section>
 </BaseLayout>
 
+<script>
+  // One card's width plus the gap per press; the snap points do the rest.
+  const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const carousel of document.querySelectorAll<HTMLElement>('[data-carousel]')) {
+    const track = carousel.querySelector<HTMLElement>('.carousel__track')!;
+    const controls = carousel.querySelector<HTMLElement>('.carousel__controls')!;
+    const [prev, next] = [...controls.querySelectorAll<HTMLButtonElement>('[data-dir]')] as [
+      HTMLButtonElement,
+      HTMLButtonElement,
+    ];
+    const sync = () => {
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+      // Everything fits: no buttons to press.
+      controls.hidden = prev.disabled && next.disabled;
+    };
+    for (const button of [prev, next]) {
+      button.addEventListener('click', () => {
+        const card = track.firstElementChild as HTMLElement;
+        const step = card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || '0');
+        track.scrollBy({ left: step * Number(button.dataset.dir), behavior: smooth ? 'smooth' : 'auto' });
+      });
+    }
+    track.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync, { passive: true });
+    sync();
+  }
+</script>
+
 <style>
   .page-section {
     flex: 1 0 auto;
@@ -230,33 +289,60 @@ const schema = productGraph(product);
     margin-block-start: var(--space-24);
   }
 
-  .shots {
+  .product-head__stats {
+    margin-block-start: var(--space-16);
+  }
+
+  .carousel {
     margin-block-start: var(--gap-block);
+  }
+
+  .carousel__track {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(var(--shot-columns, 2), minmax(0, max-content));
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
     gap: var(--gap-col);
-    justify-content: start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    padding-block-end: var(--space-12);
+    scrollbar-width: thin;
   }
 
   .shots__item {
+    scroll-snap-align: start;
     padding: var(--space-12);
     border-radius: var(--r-panel);
     line-height: 0;
   }
 
-  .shots :global(img),
+  .carousel__controls {
+    display: flex;
+    gap: var(--space-12);
+    margin-block-start: var(--space-16);
+  }
+
+  .carousel__controls[hidden] {
+    display: none;
+  }
+
+  .carousel__btn {
+    padding-inline: 0;
+    min-inline-size: 52px;
+  }
+
+  .carousel__btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .shots__item :global(img),
   .product-section__shot :global(img) {
     display: block;
     block-size: auto;
     max-inline-size: 100%;
     border-radius: var(--r-cell);
-  }
-
-  @media (max-width: 719px) {
-    .shots {
-      grid-template-columns: minmax(0, max-content);
-    }
   }
 
   .product-body {

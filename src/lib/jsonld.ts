@@ -98,7 +98,7 @@ export function softwareApplication(product: CollectionEntry<'products'>): Softw
 
   /* Brief §12 — the rating is Pocket Manager's alone, and it is the live listing's own
      figures (COPY.md §2.7, item 36), asserted against the entry rather than retyped. */
-  if (d.storeStats) {
+  if (d.storeStats?.rating !== undefined && d.storeStats.ratingCount) {
     app.aggregateRating = {
       '@type': 'AggregateRating',
       ratingValue: d.storeStats.rating,

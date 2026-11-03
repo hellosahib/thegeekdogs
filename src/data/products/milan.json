@@ -6,7 +6,10 @@
   "order": 2,
   "stage": "live",
   "storeUrl": "https://play.google.com/store/apps/details?id=com.thegeekdogs.milan",
-  "storeStats": null,
+  "storeStats": {
+    "downloads": "10+",
+    "lastUpdated": "2026-10-04"
+  },
   "applicationCategory": "BusinessApplication",
   "privacyClaimEnabled": false,
   "features": [
@@ -49,8 +52,24 @@
   ],
   "screenshots": [
     {
-      "src": "../../assets/milan/01-planning-board-functions.png",
-      "alt": "The planning board, with a card for each function of the wedding, each carrying its own date and its own colour."
+      "src": "../../assets/milan/01-home.png",
+      "alt": "The Milan home screen, counting 365 days to the wedding, with one next step at the top, deciding on the venue, and the to-dos coming up under it."
+    },
+    {
+      "src": "../../assets/milan/02-functions.png",
+      "alt": "The functions screen, listing the Mehendi, Sangeet, Wedding, Reception and Haldi Sunset, each with its own date, in an order you drag to change."
+    },
+    {
+      "src": "../../assets/milan/03-household-invites.png",
+      "alt": "One family's page, with a separate invitation for each function: coming to the Reception, not invited to the other four."
+    },
+    {
+      "src": "../../assets/milan/04-money.png",
+      "alt": "The Money screen, showing what is booked so far, what is paid and what is still to pay, above the next payments due to each vendor, one of them overdue."
+    },
+    {
+      "src": "../../assets/milan/05-home-hindi.png",
+      "alt": "The home screen with the interface in Hindi, showing a different wedding 152 days out and its next payment as the step at the top."
     }
   ],
   "privacyPolicy": {

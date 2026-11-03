@@ -314,8 +314,9 @@ const products = defineCollection({
       storeUrl: z.url().nullable(),
       storeStats: z
         .object({
-          rating: z.number().min(0).max(5),
-          ratingCount: z.number().int().nonnegative(),
+          // Absent until the listing has ratings; a new listing shows downloads only.
+          rating: z.number().min(0).max(5).optional(),
+          ratingCount: z.number().int().nonnegative().optional(),
           // Display string, matching the store listing's own rounding. Never invented.
           downloads: z.string().min(1),
           lastUpdated: z.string().min(1),
