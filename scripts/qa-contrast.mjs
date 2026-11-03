@@ -81,7 +81,6 @@ const ROUTES = [
   '/work/milan/delete-account/',
   '/work/pocket-manager/delete-account/',
   '/sahib/',
-  '/tanya/',
   '/contact/',
   '/404.html',
 ];

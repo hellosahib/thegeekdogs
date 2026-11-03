@@ -36,7 +36,7 @@ import { chromium } from 'playwright';
 import { report } from './lib/dist.mjs';
 import { serveDist } from './lib/serve.mjs';
 
-const ROUTES = ['/', '/work/', '/sahib/', '/tanya/', '/contact/', '/work/pocket-manager/'];
+const ROUTES = ['/', '/work/', '/sahib/', '/contact/', '/work/pocket-manager/'];
 
 /*
   The handoff's published hex, with TWO light-scheme exceptions, both recorded in

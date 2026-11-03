@@ -64,7 +64,7 @@ const { person, links, omitEmail = false } = Astro.props;
   <li>
     <a
       class="pill pill--ghost"
-      href={person.data.socials.github}
+      href={person.data.socials?.github}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -75,7 +75,7 @@ const { person, links, omitEmail = false } = Astro.props;
   <li>
     <a
       class="pill pill--ghost"
-      href={person.data.socials.linkedin}
+      href={person.data.socials?.linkedin}
       target="_blank"
       rel="noopener noreferrer"
     >

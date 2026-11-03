@@ -29,9 +29,9 @@ const people = defineCollection({
       name: z.string().min(1),
       // Pronouns are supplied for one founder only; required would force inventing the other's.
       pronouns: z.string().min(1).optional(),
-      city: z.string().min(1),
+      city: z.string().min(1).optional(),
       headlineRole: z.string().min(1),
-      currentEmployer: z.string().min(1),
+      currentEmployer: z.string().min(1).optional(),
       bio: z.string().min(1),
       gatesOwned: z.array(reference('gates')),
       /*
@@ -49,7 +49,8 @@ const people = defineCollection({
         x: z.url().optional(),
         blog: z.url().optional(),
         email: z.email().optional(),
-      }),
+      })
+      .optional(),
       // Item 23 chose headshots from a tool trained on each person's own selfies and
       // the images have not been supplied. COPY.md §10.1's two alt lines are still
       // [CONFIRM]-marked pending those images, so both fields are optional: a card
@@ -125,7 +126,7 @@ const people = defineCollection({
           // on that card and the component renders nothing in its place.
           role: z.string().min(1).optional(),
           productsStack: z.array(z.string().min(1)),
-          // COPY.md §7.2 gives Tanya's Motive card two lines no other card has, and her
+          // COPY.md §7.2 gives one Motive card two lines no other card has, and her
           // Naskay card a project line (item 63). They are optional because they belong
           // to those cards and to no others; the compressed home strip renders none of
           // them, and the person pages are a later step.

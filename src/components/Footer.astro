@@ -9,7 +9,7 @@ import { FOOTER, STUDIO_EMAIL, NAV, BUILT_ROUTES } from '../lib/copy';
  *
  * **`links` gates the `Elsewhere` column.** The four profile links are the two founders',
  * and they belong next to the person rather than under the studio, so the column renders
- * on `/sahib/` and `/tanya/` and nowhere else. It is the one structural difference
+ * on `/sahib/` and nowhere else. It is the one structural difference
  * between the footer on a person page and the footer everywhere else.
  *
  * **`quiet` is `/404`'s cut.** That page is a line and a link home; a nav menu underneath
@@ -33,7 +33,8 @@ const people = await getCollection('people');
 const elsewhere: { label: string; href: string }[] = [];
 for (const entry of FOOTER.elsewhere) {
   const person = people.find((p) => p.data.slug === entry.person);
-  if (person) elsewhere.push({ label: entry.label, href: person.data.socials[entry.social] });
+  const href = person?.data.socials?.[entry.social];
+  if (href) elsewhere.push({ label: entry.label, href });
 }
 
 const navRepeat = NAV.filter((item) => BUILT_ROUTES.has(item.href));

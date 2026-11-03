@@ -27,7 +27,6 @@ const abs = (path: string): string => new URL(path, `${SITE}/`).href;
 /** COPY.md §1's nav table: the two person routes, keyed by the collection's own slug. */
 const PERSON_ROUTE: Record<string, string> = {
   'sahib-singh': 'sahib/',
-  'tanya-jain': 'tanya/',
 };
 
 function personId(slug: string): string {
@@ -36,7 +35,7 @@ function personId(slug: string): string {
 
 /** PLAN.md §2 — `sameAs` is computed from `socials`, never duplicated into the entry. */
 function sameAs(person: CollectionEntry<'people'>): string[] {
-  return Object.values(person.data.socials).filter(
+  return Object.values(person.data.socials ?? {}).filter(
     (value): value is string => typeof value === 'string' && value.startsWith('http'),
   );
 }
@@ -130,7 +129,7 @@ export function graph(nodes: Thing[]): string {
 /** `/` and `/contact/`: who the studio is, and who the two people are. */
 export async function studioGraph(): Promise<string> {
   const people = await getCollection('people');
-  const order = ['sahib-singh', 'tanya-jain'];
+  const order = ['sahib-singh'];
   const founders = order
     .map((slug) => people.find((p) => p.data.slug === slug))
     .filter((p): p is CollectionEntry<'people'> => Boolean(p));
@@ -149,7 +148,7 @@ export async function workIndexGraph(): Promise<string> {
  */
 export async function personGraph(entry: CollectionEntry<'people'>): Promise<string> {
   const people = await getCollection('people');
-  const order = ['sahib-singh', 'tanya-jain'];
+  const order = ['sahib-singh'];
   const founders = order
     .map((slug) => people.find((p) => p.data.slug === slug))
     .filter((p): p is CollectionEntry<'people'> => Boolean(p));

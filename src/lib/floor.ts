@@ -104,6 +104,7 @@ function inSentence(label: string): string {
 function possessive(pronouns: string | undefined, name: string): string {
   if (pronouns?.startsWith('he')) return 'his';
   if (pronouns?.startsWith('she')) return 'her';
+  if (pronouns?.startsWith('they')) return 'their';
   throw new Error(
     `${name} has no pronouns in src/data/people, so COPY.md §10.2's button name cannot be built.`,
   );
@@ -155,7 +156,7 @@ async function assertGateLabels(agents: CollectionEntry<'agents'>[]): Promise<vo
 
 /**
  * DESIGN.md §C.8 — the ten stops, in DOM order at every breakpoint, because the order
- * is the argument: Sahib, Tanya, the seven agents in COPY.md §2.4's pipeline order, and
+ * is the argument: Sahib, the co-founder, the seven agents in COPY.md §2.4's pipeline order, and
  * the chair last.
  */
 export async function roster(): Promise<Station[]> {
@@ -169,7 +170,7 @@ export async function roster(): Promise<Station[]> {
     DESK_SLOTS.indexOf(a.data.deskSlot as (typeof DESK_SLOTS)[number]) -
     DESK_SLOTS.indexOf(b.data.deskSlot as (typeof DESK_SLOTS)[number]);
 
-  const humanOrder = ['sahib-singh', 'tanya-jain'];
+  const humanOrder = ['sahib-singh', 'co-founder'];
   const humans = humanOrder.map((slug) => {
     const person = people.find((p) => p.data.slug === slug);
     if (!person) throw new Error(`The floor needs src/data/people/${slug}.json and it is missing.`);

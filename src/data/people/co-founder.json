@@ -1,0 +1,14 @@
+{
+  "slug": "co-founder",
+  "name": "Co-founder",
+  "pronouns": "they/them",
+  "headlineRole": "Native Android and KMP, and the iOS side too.",
+  "bio": "Owns the product spec, real-device QA, and the security, privacy and ASO review. Shares code review with Sahib.",
+  "gatesOwned": [
+    "code-review",
+    "qa-on-real-devices",
+    "security-and-privacy-review"
+  ],
+  "ownsLine": "Spec, code and design review, device QA, security and privacy, ASO, release cut.",
+  "workHistory": []
+}

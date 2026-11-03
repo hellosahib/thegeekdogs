@@ -1,7 +1,7 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderCard, type CardSpec } from '../../lib/og/card';
-import { CONTACT, SAHIB, TANYA, WORK_INDEX } from '../../lib/copy';
+import { CONTACT, SAHIB, WORK_INDEX } from '../../lib/copy';
 
 /**
  * PLAN.md §1.7 — one OG card per route, generated at build time from the same content
@@ -52,10 +52,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {
       params: { slug: 'sahib' },
       props: { title: SAHIB.meta.ogImageTitle, line: SAHIB.meta.ogImageLine },
-    },
-    {
-      params: { slug: 'tanya' },
-      props: { title: TANYA.meta.ogImageTitle, line: TANYA.meta.ogImageLine },
     },
   ];
 

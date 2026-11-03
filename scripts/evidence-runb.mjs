@@ -17,7 +17,6 @@ import { serveDist } from './lib/serve.mjs';
 const OUT = process.argv[2] ?? 'docs/reviews/runB/engineer';
 const PERSON = [
   { path: '/sahib/', name: 'sahib' },
-  { path: '/tanya/', name: 'tanya' },
 ];
 const FIXED = [
   { path: '/', name: 'home' },

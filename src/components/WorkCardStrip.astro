@@ -22,7 +22,7 @@ import { assertYearsOnly, yearsOnly } from '../lib/person';
  * card looks crooked and large enough that a row of them stops looking printed.
  */
 const people = await getCollection('people');
-const order = ['sahib-singh', 'tanya-jain'];
+const order = ['sahib-singh'];
 
 const rows = order
   .map((slug) => people.find((p) => p.data.slug === slug))
