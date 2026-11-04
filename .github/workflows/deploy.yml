@@ -62,25 +62,6 @@ jobs:
           path: dist
           retention-days: 3
 
-  lighthouse:
-    name: lighthouse ci
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-
-      - run: npm ci
-
-      - uses: actions/download-artifact@v8
-        with:
-          name: dist
-          path: dist
-
       # LHCI's own static server is used deliberately: it installs the
       # `compression` middleware unconditionally, so every resource-summary
       # assertion measures gzip transfer bytes, which is what the brief's
@@ -98,7 +79,7 @@ jobs:
 
   deploy:
     name: deploy to github pages
-    needs: [build, lighthouse]
+    needs: build
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
