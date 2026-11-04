@@ -148,8 +148,11 @@ const FACES = [
  * make every eyebrow, nameplate and figure on the site set in a proportional font for the
  * length of the swap — the numbers would be right and the room would still look wrong. The
  * mono list is system monospace, in the order the platforms actually ship it.
+ *
+ * Liberation Sans is Arial's metric twin and ships with Chrome on Linux, so the CI
+ * Lighthouse runner (no Helvetica, Arial or Roboto) still gets a matched fallback.
  */
-const LOCAL_FALLBACKS = ['Helvetica Neue', 'Arial', 'Helvetica', 'Roboto', 'Segoe UI'];
+const LOCAL_FALLBACKS =['Helvetica Neue', 'Arial', 'Liberation Sans', 'Helvetica', 'Roboto', 'Segoe UI'];
 const LOCAL_FALLBACKS_MONO = ['SF Mono', 'Menlo', 'Monaco', 'Consolas', 'DejaVu Sans Mono', 'Courier New'];
 const localsFor = (face) => (face.mono ? LOCAL_FALLBACKS_MONO : LOCAL_FALLBACKS);
 

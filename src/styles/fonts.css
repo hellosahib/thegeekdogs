@@ -37,7 +37,7 @@
   font-family: 'Schibsted Grotesk fallback';
   font-style: normal;
   font-weight: 400 700;
-  src: local('Helvetica Neue'), local('Arial'), local('Helvetica'), local('Roboto'), local('Segoe UI');
+  src: local('Helvetica Neue'), local('Arial'), local('Liberation Sans'), local('Helvetica'), local('Roboto'), local('Segoe UI');
   ascent-override: 92.1022%;
   descent-override: 24.315%;
   line-gap-override: 0%;
