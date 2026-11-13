@@ -118,13 +118,13 @@ export const WORK_INDEX = {
  * 69 both answered no form, so this page collects nothing and posts nowhere.
  */
 export const CONTACT = {
-  headline: 'Two people, one inbox.',
-  body: "Email is the whole intake. Tell us what you're building, which platforms it has to run on, and roughly when you need it in someone's hands. You'll get a reply from one of us, and a straight answer about whether we're the right fit. If we're not, we'll say so and tell you what we'd look for instead.",
+  headline: 'One human, one inbox.',
+  body: "Email is the whole intake. Tell us what you're building, which platforms it has to run on, and roughly when you need it in someone's hands. You'll get a reply from Sahib, and a straight answer about whether we're the right fit. If we're not, we'll say so and tell you what we'd look for instead.",
   routesHeading: 'Where to send it',
   routes: [
     {
       label: 'The studio',
-      line: 'Everything starts here. Both of us read it.',
+      line: 'Everything starts here. Sahib reads it.',
       address: STUDIO_EMAIL,
     },
     {
@@ -134,14 +134,14 @@ export const CONTACT = {
     },
   ],
   engagementLine:
-    "Fixed-scope projects and retainers, both. It starts with a short written brief rather than a call, a first MVP follows a few days after the go-ahead, and we work in IST. There's no phone number: email is the route, and you'll usually hear back within a couple of days.",
+    "No client builds right now. Sahib is open to advisory and consulting conversations: mobile architecture, building with AI agents, and getting releases out the door. We work in IST. There's no phone number: email is the route, and you'll usually hear back within a couple of days.",
   meta: {
     title: 'Contact | TheGeekDogs',
     description:
-      "Email thegeekdogs@gmail.com. A reply from one of us, and a straight answer about whether we're the right fit for what you're building.",
-    ogTitle: 'Two people, one inbox.',
+      "Email thegeekdogs@gmail.com. A reply from Sahib, and a straight answer about whether we're the right fit for what you're building.",
+    ogTitle: 'One human, one inbox.',
     ogDescription:
-      "Tell us what you're building. You'll get a real reply from one of us, and a straight answer either way.",
+      "Tell us what you're building. You'll get a real reply from Sahib, and a straight answer either way.",
   },
 } as const;
 
@@ -156,18 +156,18 @@ export const NOT_FOUND = {
 
 /** COPY.md §1, footer. */
 export const FOOTER = {
-  studioLine: 'TheGeekDogs. A two-person mobile studio.',
+  studioLine: 'TheGeekDogs. One human and multiple agents.',
   locationLine: 'Bengaluru. We work in IST.',
   emailLabel: STUDIO_EMAIL,
   elsewhereHeading: 'Elsewhere',
-  /** Sahib's two outbound links. The co-founder's are not published. */
+  /** Sahib's two outbound links. */
   elsewhere: [
     { label: 'Sahib on GitHub', person: 'sahib-singh', social: 'github' },
     { label: 'Sahib on LinkedIn', person: 'sahib-singh', social: 'linkedin' },
   ],
   rightsLine: '© 2026 TheGeekDogs',
   employerNote:
-    "Company names on this site are the two founders' employment history. None of them are clients of TheGeekDogs and none endorse it.",
+    "Company names on this site are Sahib's employment history. None of them are clients of TheGeekDogs and none endorse it.",
 } as const;
 
 /**

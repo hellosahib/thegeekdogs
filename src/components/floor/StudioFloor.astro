@@ -70,7 +70,8 @@ const wideDrawn = wideOrder(scene);
  * because it is a statement about the plan — which desk, which cabin — and the plan is
  * what changes when the room does.
  */
-function kindLabel(kind: string, deskNo: number): string {
+function kindLabel(kind: string, deskNo: number, id?: string): string {
+  if (id === 'advisory') return 'Advisory · cabin';
   if (kind === 'human') return 'Human · cabin';
   if (kind === 'chair') return 'The empty chair';
   return `Agent · desk ${deskNo}`;
@@ -369,7 +370,7 @@ const b = BOX;
               data-card={p.station.id}
               hidden={p.station.id === defaultId ? undefined : true}
             >
-              <p class="station-card__kind micro">{kindLabel(p.station.kind, p.deskNo)}</p>
+              <p class="station-card__kind micro">{kindLabel(p.station.kind, p.deskNo, p.station.id)}</p>
               <h3 class="station-card__name">{p.station.label}</h3>
               {p.station.lead && <p class="station-card__lead">{p.station.lead}</p>}
               <p class="station-card__body">{p.station.body}</p>

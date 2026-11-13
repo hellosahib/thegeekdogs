@@ -199,7 +199,6 @@ export const FLOOR_DEFS = `<defs>
     <g transform="rotate(-12 -26 ${D + 50})">${u('ch', -26, D + 50)}</g>
     ${u('dk', 0, D)}
     ${u('mon', 0, D)}
-    ${u('occ', -20, D + 44)}
     <g transform="${SHEAR}">
       <rect class="fl-body" x="52" y="${D + 30}" width="34" height="6"/>
       <rect class="fl-pane" x="56" y="${D + 18}" width="7" height="12"/>

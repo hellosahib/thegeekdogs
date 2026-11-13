@@ -40,11 +40,11 @@ export const ROSTER = { label: 'The full pipeline' } as const;
  * twice. It is used here on `og:image:alt` and nowhere else.
  */
 export const FLOOR_ALT =
-  'An isometric studio floor seen from above: two desks with people working at them, a group of more schematic desks around them where the agents work, and one empty chair with a nameplate reading Ship approval.';
+  'An isometric studio floor seen from above: one desk with a person working at it, a cabin kept for advisory calls, a group of more schematic desks around them where the agents work, and one empty chair with a nameplate reading Ship approval.';
 
 /** COPY.md §2.2 — the lead-in and the instruction line, in that order. */
 export const FLOOR_INTRO = {
-  leadIn: 'Two desks have people at them. The rest are agents.',
+  leadIn: 'One desk has a person at it, and one cabin is kept for advisory calls. The rest are agents.',
   instruction: 'Open any desk to see the job and the human who checks it.',
 } as const;
 
@@ -156,7 +156,7 @@ async function assertGateLabels(agents: CollectionEntry<'agents'>[]): Promise<vo
 
 /**
  * DESIGN.md §C.8 — the ten stops, in DOM order at every breakpoint, because the order
- * is the argument: Sahib, the co-founder, the seven agents in COPY.md §2.4's pipeline order, and
+ * is the argument: Sahib, the advisory cabin, the seven agents in COPY.md §2.4's pipeline order, and
  * the chair last.
  */
 export async function roster(): Promise<Station[]> {
@@ -170,7 +170,7 @@ export async function roster(): Promise<Station[]> {
     DESK_SLOTS.indexOf(a.data.deskSlot as (typeof DESK_SLOTS)[number]) -
     DESK_SLOTS.indexOf(b.data.deskSlot as (typeof DESK_SLOTS)[number]);
 
-  const humanOrder = ['sahib-singh', 'co-founder'];
+  const humanOrder = ['sahib-singh', 'advisory'];
   const humans = humanOrder.map((slug) => {
     const person = people.find((p) => p.data.slug === slug);
     if (!person) throw new Error(`The floor needs src/data/people/${slug}.json and it is missing.`);
@@ -181,7 +181,10 @@ export async function roster(): Promise<Station[]> {
     kind: 'human',
     id: person.data.slug,
     label: person.data.name,
-    accessibleName: `${person.data.name}. Open ${possessive(person.data.pronouns, person.data.name)} card.`,
+    // The advisory cabin is a seat, not a person, so it has no pronouns and gets "the card".
+    accessibleName: person.data.pronouns
+      ? `${person.data.name}. Open ${possessive(person.data.pronouns, person.data.name)} card.`
+      : `${person.data.name}. Open the card.`,
     lead: person.data.headlineRole,
     body: person.data.bio,
     // No `ownsLine` means no sub-block, rather than a labelled empty one.

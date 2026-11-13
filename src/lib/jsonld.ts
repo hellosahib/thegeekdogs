@@ -126,7 +126,7 @@ export function graph(nodes: Thing[]): string {
   return JSON.stringify(doc);
 }
 
-/** `/` and `/contact/`: who the studio is, and who the two people are. */
+/** `/` and `/contact/`: who the studio is, and who the human is. */
 export async function studioGraph(): Promise<string> {
   const people = await getCollection('people');
   const order = ['sahib-singh'];

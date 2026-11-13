@@ -1,3 +1,5 @@
+> **2026-11-13 change (Sahib):** the studio is one human and multiple agents (the co-founder card moved to `bin/`, its cabin is now Advisory), and there is no client work; Sahib is open to advisory and consulting. Strings below were updated to match; older sections may still say "two" in history notes.
+
 # COPY.md, thegeekdogs.com
 
 Pass 1. Every user-facing word on the site. Structured by route in §8 order, and within each route
@@ -107,7 +109,7 @@ The quiet return link on `/sahib/` and `/tanya/`. Not a studio header.
 
 ### Footer
 
-- Studio line: `TheGeekDogs. A two-person mobile studio.`
+- Studio line: `TheGeekDogs. One human and multiple agents.`
 - Location line: `Bengaluru. We work in IST.`
 - Email label: `thegeekdogs@gmail.com`
 - Link group heading: `Elsewhere`
@@ -115,7 +117,7 @@ The quiet return link on `/sahib/` and `/tanya/`. Not a studio header.
 - Nav repeat: `Work`, `Sahib`, `Tanya`, `Contact`
 - Rights line: `© 2026 TheGeekDogs`
 - Employer note, required by §5.4 so employer names cannot be read as endorsement. Print it small
-  but print it: `Company names on this site are the two founders' employment history. None of them are clients of TheGeekDogs and none endorse it.`
+  but print it: `Company names on this site are Sahib's employment history. None of them are clients of TheGeekDogs and none endorse it.`
 
 Four outbound links and no more. Items 17 and 18 closed the question: no personal data beyond
 GitHub and LinkedIn, no X, no blog, no second address. Resume links may be added later, and when
@@ -142,7 +144,7 @@ care about.
 B and C are preserved in Appendix A.
 
 - **Headline:** `AI writes a lot of our code. It doesn't get the last word.`
-- **Body:** `A two-person mobile studio. Agents do the volume work. Then a person reviews the architecture, tests on real phones, and signs off on security.`
+- **Body:** `One human and multiple agents. The agents do the volume work. Then the human reviews the architecture, tests on real phones, and signs off on security.`
 - **Primary button:** `Start a project`
 - **Secondary button:** `Look around the floor`
 
@@ -324,7 +326,7 @@ These are genuinely a sequence, so §9.4 permits numbering them. Nothing else on
 numbers.
 
 1. **`Architecture review.`** `Sahib decides the shape before a line is written: what the data looks like, where the boundaries are, what this has to survive in two years. Agents are good at filling in a structure and bad at choosing one.`
-2. **`Code review.`** `Every change is read by a person before it merges, and both of us are on this one. Not skimmed for style. Read for whether it does what it claims.`
+2. **`Code review.`** `Every change is read by a person before it merges. Sahib reads them all. Not skimmed for style. Read for whether it does what it claims.`
 3. **`QA on real devices.`** `Tanya runs the build on physical phones, not just an emulator. Slow networks, low battery, older Android versions, the states people actually hit.`
 4. **`Security and privacy review.`** `Tanya reads what the app collects, where it goes, what's stored and what's exposed, against what we told your users we'd do.`
 
@@ -446,11 +448,11 @@ anywhere, per item 7.
 
 ### 2.11 Meta
 
-- **Meta title:** `TheGeekDogs, a two-person mobile studio`
-- **Meta description:** `Two-person mobile studio. Agents write most of the build; a person reviews the architecture, tests on real phones, and signs off before anything ships.`
+- **Meta title:** `TheGeekDogs: one human and multiple agents`
+- **Meta description:** `One human and multiple agents. Agents write most of the build; a person reviews the architecture, tests on real phones, and signs off before anything ships.`
 - **OG title:** `AI writes a lot of our code. It doesn't get the last word.`
-- **OG description:** `A two-person mobile studio with four human gates between the code and your users. Pocket Manager and Milan are live in the Play Store.`
-- **OG image text** (the build-time image shows the floor, per §12): `TheGeekDogs` and, under it, `Two people. A floor of agents. One chair kept empty.`
+- **OG description:** `One human and multiple agents, with four human gates between the code and your users. Pocket Manager and Milan are live in the Play Store.`
+- **OG image text** (the build-time image shows the floor, per §12): `TheGeekDogs` and, under it, `One human. A floor of agents. One chair kept empty.`
 - **Alt for the OG image, if it is ever rendered inline:** see §10.2.
 
 ---
@@ -1107,7 +1109,7 @@ The LinkedIn link is the CTA item 40 asked for, labelled plainly. Items 17 and 1
 
 ### 8.1 Header
 
-- **Headline:** `Two people, one inbox.`
+- **Headline:** `One human, one inbox.`
 - **Body:** `Email is the whole intake. Tell us what you're building, which platforms it has to run on, and roughly when you need it in someone's hands. You'll get a reply from Sahib or Tanya, and a straight answer about whether we're the right fit. If we're not, we'll say so and tell you what we'd look for instead.`
 
 ### 8.2 The three routes
@@ -1118,7 +1120,7 @@ The LinkedIn link is the CTA item 40 asked for, labelled plainly. Items 17 and 1
 
 - **Label:** `The studio`
 - **Address:** `thegeekdogs@gmail.com`
-- **Line:** `Everything starts here. Both of us read it.`
+- **Line:** `Everything starts here. Sahib reads it.`
 
 **Route 2: Sahib**
 
@@ -1157,7 +1159,7 @@ line, where item 43 put a number behind it.
 
 - **Meta title:** `Contact | TheGeekDogs`
 - **Meta description:** `Email thegeekdogs@gmail.com. A reply from Sahib or Tanya, and a straight answer about whether we're the right fit for what you're building.`
-- **OG title:** `Two people, one inbox.`
+- **OG title:** `One human, one inbox.`
 - **OG description:** `Tell us what you're building. You'll get a real reply from one of us, and a straight answer either way.`
 
 ---
@@ -1486,7 +1488,7 @@ subhead at three lines at 360. It is kept here in case the Design Lead finds roo
 where the hero body sets to a wider measure. It is the same claim at full length, not a different
 one.
 
-> TheGeekDogs is a two-person mobile studio. An agent fleet does the volume work: the spec, the
+> TheGeekDogs is one human and multiple agents. An agent fleet does the volume work: the spec, the
 > code, the tests, the scans. Then a person reviews the architecture, runs QA on physical phones,
 > and signs off on security before anything reaches you.
 
@@ -1498,7 +1500,7 @@ what "volume work" means.
 
 > **Everyone ships fast now. We ship fast and put our name on it.**
 >
-> Two people, a floor full of agents, and four human checks between the code and your users.
+> One human, a floor full of agents, and four human checks between the code and your users.
 
 Why not chosen: the headline states a posture rather than a mechanism, and "put our name on it" is
 a claim a visitor cannot check or act on. The body is excellent and its "four human checks between

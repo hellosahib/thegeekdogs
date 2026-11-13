@@ -5,12 +5,14 @@
   "city": "Bengaluru",
   "headlineRole": "Mobile across all four stacks: native iOS, native Android, KMP, Flutter.",
   "currentEmployer": "Keenai Global",
-  "bio": "Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns architecture review here, and shares code review with his co-founder.",
+  "bio": "Builder at Keenai Global, shipping features end to end, backend through testing, with AI, in production wealth-tech. He owns every human review here: architecture, code, real-device QA, and security and privacy.",
   "gatesOwned": [
     "architecture-review",
-    "code-review"
+    "code-review",
+    "qa-on-real-devices",
+    "security-and-privacy-review"
   ],
-  "ownsLine": "Architecture review, code review, design review, the release cut.",
+  "ownsLine": "Architecture and code review, device QA, security, the release cut.",
   "socials": {
     "github": "https://github.com/hellosahib",
     "linkedin": "https://www.linkedin.com/in/sahib-singh-876959143/"

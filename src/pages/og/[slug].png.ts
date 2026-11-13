@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       props: {
         // COPY.md §2.11's "OG image text", and brief §12: the home card shows the floor.
         title: 'TheGeekDogs',
-        line: 'Two people. A floor of agents. One chair kept empty.',
+        line: 'One human. A floor of agents. One chair kept empty.',
         showFloor: true,
       },
     },
