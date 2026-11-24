@@ -32,9 +32,11 @@ const here = Astro.url.pathname;
       aria-label={WORDMARK_ACCESSIBLE_NAME}
       aria-current={here === '/' ? 'page' : undefined}
     >
+      {/* The ears carry the social brand's orange (docs/social/DESIGN.md), so the mark
+          matches the favicon and the channels; the rest of the site keeps --accent. */}
       <svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-        <path d="M7 12 2 1 14 6Z" fill="var(--accent)"></path>
-        <path d="M33 12 38 1 26 6Z" fill="var(--accent)"></path>
+        <path d="M7 12 2 1 14 6Z" fill="#FF6B1A"></path>
+        <path d="M33 12 38 1 26 6Z" fill="#FF6B1A"></path>
         <path
           d="M6 13Q6 5 14 5H26Q34 5 34 13V23Q34 33 20 33Q6 33 6 23Z"
           fill="none"

@@ -12,42 +12,45 @@ import { floorSceneSvg, FLOOR_CROP } from './floor-card';
  * needs no fonts of its own) and `@resvg/resvg-js` turns that into the PNG. Both run
  * inside a prerendered endpoint, so this costs nothing at runtime.
  *
- * **The card is DARK ONLY, and the redesign is what flipped it.** A share preview has no
- * way to know the reader's scheme, so it has to pick one, and it should pick the one the
- * site is: this site is dark-first, a visitor with no stored choice lands in the dark
- * room, and a card in the light scheme would be a preview of a page most people never
- * see. The favicon is deliberately not on it: that mark is browser chrome, and putting
- * it here would make it a logo.
+ * **The card wears the social brand, not the site's dark room.** A share preview lands in
+ * feeds next to the Instagram and YouTube channels, so it follows docs/social/DESIGN.md:
+ * off-white paper, one soft orange glow, Inter Tight titles, Inter lines, near-black ink
+ * and orange only on "Dogs". The dog mark sits on it as the brand's logo. The home card
+ * keeps the floor, as a dark inset under the words, because brief §12 puts it there.
  */
 
-/* The dark scheme's own grounds and inks. Four values and no fifth. */
-const GROUND = '#080C18';
-const VOID_BAND = '#04060B';
-const INK = '#EAECF2';
-const MUTED = '#96A0B5';
-const ACCENT = '#DF8FE2';
+/* docs/social/DESIGN.md §2, light palette. */
+const PAPER = '#FBFBFD';
+const INK = '#1D1D1F';
+const GREY = '#6E6E73';
+const ORANGE = '#FF5E1A';
+const AMBER = '#FFA53A';
+const EARS = '#FF6B1A';
+const FLOOR_BAND = '#04060B';
 
 export const CARD = { width: 1200, height: 630 } as const;
 
 const require = createRequire(import.meta.url);
 
 /*
-  The site's two families, as static instances. The site itself ships the variable woff2
-  builds; satori reads woff/ttf/otf and cannot apply a variation axis, so the card loads
-  @fontsource's static 600 and 400 cuts of the same two faces rather than rendering one
-  weight and calling it two. These are build-time devDependencies and nothing about them
-  reaches the browser.
+  Inter Tight (titles) and Inter (lines), the social brand's two families, as @fontsource's
+  static cuts: satori reads woff/ttf/otf and cannot apply a variation axis. Build-time
+  devDependencies; nothing about them reaches the browser.
 */
 function face(pkg: string, file: string): Buffer {
   return readFileSync(require.resolve(`@fontsource/${pkg}/files/${file}`));
 }
 
 const FONTS = [
-  { name: 'Schibsted Grotesk', data: face('schibsted-grotesk', 'schibsted-grotesk-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
-  { name: 'Schibsted Grotesk', data: face('schibsted-grotesk', 'schibsted-grotesk-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Spline Sans Mono', data: face('spline-sans-mono', 'spline-sans-mono-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Spline Sans Mono', data: face('spline-sans-mono', 'spline-sans-mono-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Inter Tight', data: face('inter-tight', 'inter-tight-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
+  { name: 'Inter', data: face('inter', 'inter-latin-400-normal.woff'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Inter', data: face('inter', 'inter-latin-600-normal.woff'), weight: 600 as const, style: 'normal' as const },
 ];
+
+/** The dog mark from public/favicon.svg, without its tile, in the brand's light colours. */
+const MARK = `data:image/svg+xml;base64,${Buffer.from(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 34"><path d="M7 12 2 1 14 6Z" fill="${EARS}"/><path d="M33 12 38 1 26 6Z" fill="${EARS}"/><path d="M6 13Q6 5 14 5H26Q34 5 34 13V23Q34 33 20 33Q6 33 6 23Z" fill="none" stroke="${INK}" stroke-width="2.4"/><rect x="14" y="21" width="12" height="7" rx="3.5" fill="${INK}"/></svg>`,
+).toString('base64')}`;
 
 export interface CardSpec {
   /** The card's own big line. COPY.md's "OG image text", first line. */
@@ -81,74 +84,69 @@ function floorDataUri(): string {
 type Node = { type: string; props: Record<string, unknown> };
 const el = (type: string, props: Record<string, unknown>): Node => ({ type, props });
 
+/** "TheGeek" in ink and "Dogs" in the orange gradient, at any size. */
+function wordmark(fontSize: number): Node {
+  return el('div', {
+    style: { display: 'flex', fontFamily: 'Inter Tight', fontWeight: 600, fontSize, letterSpacing: '-0.025em', color: INK },
+    children: [
+      el('span', { children: 'TheGeek' }),
+      el('span', {
+        style: { backgroundImage: `linear-gradient(90deg, ${ORANGE}, ${AMBER})`, backgroundClip: 'text', color: 'transparent' },
+        children: 'Dogs',
+      }),
+    ],
+  });
+}
+
 function tree(spec: CardSpec): Node {
-  /*
-    Run A item 11 — the four non-home cards ended in a 1200 x 135 strip of --floor with
-    nothing at all in it. It is not the room, because nothing is in it, and it is not a
-    rule, so it read as a crop that lost its picture. The review offered two remedies and
-    §B.12 rules one of them out in terms — the favicon's cone "never appears ... in an OG
-    card", so putting that mark in the band would make it a logo — which leaves the
-    other: the band comes off and the card is the sheet. The home card keeps its floor,
-    because the floor is IN it.
-  */
-  const bandHeight = spec.showFloor ? 372 : 0;
+  const home = Boolean(spec.showFloor);
+  const bandHeight = home ? 300 : 0;
   const floorWidth = Math.round((FLOOR_CROP.w / FLOOR_CROP.h) * (bandHeight || 1));
 
   const words = el('div', {
     style: {
       display: 'flex',
       flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       flexGrow: 1,
-      padding: '60px 60px 0',
+      padding: '0 80px',
+      textAlign: 'center',
     },
     children: [
-      /* COPY.md §1's site name as the card's wordmark — except on the home card,
-         whose own title IS the site name (§2.11) and would otherwise print twice. */
-      el('div', {
-        style: {
-          display: 'flex',
-          height: 30,
-          fontFamily: 'Spline Sans Mono',
-          fontWeight: 400,
-          fontSize: 21,
-          color: ACCENT,
-          letterSpacing: '0.14em',
-        },
-        children: spec.showFloor ? '' : 'THEGEEKDOGS',
-      }),
-      el('div', {
-        style: {
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          flexGrow: 1,
-        },
-        children: [
-          el('div', {
+      el('img', { src: MARK, width: home ? 56 : 64, height: home ? 48 : 54 }),
+      /* The home card's title IS the site name, so it is the wordmark itself. Every other
+         card carries its own title and a small wordmark under the mark. */
+      home
+        ? el('div', { style: { display: 'flex', marginTop: 14 }, children: [wordmark(80)] })
+        : el('div', { style: { display: 'flex', marginTop: 12 }, children: [wordmark(26)] }),
+      ...(home
+        ? []
+        : [el('div', {
             style: {
-              fontFamily: 'Schibsted Grotesk',
+              marginTop: 30,
+              fontFamily: 'Inter Tight',
               fontWeight: 600,
-              fontSize: spec.title.length > 34 ? 56 : 68,
-              lineHeight: 1.04,
-              letterSpacing: '-0.03em',
+              fontSize: spec.title.length > 34 ? 58 : 72,
+              lineHeight: 1.05,
+              letterSpacing: '-0.025em',
               color: INK,
               maxWidth: 1000,
             },
             children: spec.title,
-          }),
-          el('div', {
-            style: {
-              marginTop: 20,
-              fontFamily: 'Schibsted Grotesk',
-              fontWeight: 400,
-              fontSize: 30,
-              lineHeight: 1.45,
-              color: MUTED,
-              maxWidth: 900,
-            },
-            children: spec.line,
-          }),
-        ],
+          })]),
+      el('div', {
+        style: {
+          marginTop: home ? 10 : 18,
+          fontFamily: 'Inter',
+          fontWeight: 400,
+          fontSize: home ? 26 : 30,
+          lineHeight: 1.35,
+          letterSpacing: '-0.01em',
+          color: GREY,
+          maxWidth: 900,
+        },
+        children: spec.line,
       }),
     ],
   });
@@ -156,20 +154,15 @@ function tree(spec: CardSpec): Node {
   const band = el('div', {
     style: {
       display: 'flex',
+      justifyContent: 'center',
       alignItems: 'flex-end',
-      justifyContent: 'flex-end',
       height: bandHeight,
-      backgroundColor: VOID_BAND,
+      margin: '0 60px 60px',
+      borderRadius: 24,
+      backgroundColor: FLOOR_BAND,
       overflow: 'hidden',
     },
-    children: [
-      el('img', {
-        src: floorDataUri(),
-        width: floorWidth,
-        height: bandHeight,
-        style: { marginRight: 40 },
-      }),
-    ],
+    children: [el('img', { src: floorDataUri(), width: floorWidth, height: bandHeight })],
   });
 
   return el('div', {
@@ -178,12 +171,11 @@ function tree(spec: CardSpec): Node {
       flexDirection: 'column',
       width: CARD.width,
       height: CARD.height,
-      backgroundColor: GROUND,
-      /* With no band under them the words take the whole card, so they keep the same
-         60px optical margin at the bottom that they already have at the top. */
-      paddingBottom: spec.showFloor ? 0 : 60,
+      backgroundColor: PAPER,
+      backgroundImage:
+        'radial-gradient(ellipse at center, rgba(255,138,42,0.20), rgba(255,179,71,0.07) 60%, rgba(255,179,71,0) 100%)',
     },
-    children: spec.showFloor ? [words, band] : [words],
+    children: home ? [words, band] : [words],
   });
 }
 

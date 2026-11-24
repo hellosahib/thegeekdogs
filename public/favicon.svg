@@ -1,15 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="TheGeekDogs">
   <title>TheGeekDogs</title>
-  <desc>The navbar wordmark's dog head, dark-first colours hard-coded so the tile reads
-  the same regardless of the visitor's scheme: --void ground, --accent ears, --ink
-  outline and muzzle. scripts/build-icons.mjs exports the PNGs from this file.</desc>
-  <rect width="40" height="40" fill="#04060B"/>
-  <path d="M7 12 2 1 14 6Z" fill="#df8fe2"/>
-  <path d="M33 12 38 1 26 6Z" fill="#df8fe2"/>
+  <desc>The navbar wordmark's dog head in the social brand's colours (docs/social/DESIGN.md):
+  off-white #FBFBFD ground, orange #FF6B1A ears, near-black #1D1D1F outline and muzzle.
+  Hard-coded so the tile reads the same in either scheme. No glow: the PNGs are
+  palette-quantised and a gradient would band. scripts/build-icons.mjs exports the PNGs
+  from this file.</desc>
+  <rect width="40" height="40" fill="#FBFBFD"/>
+  <path d="M7 12 2 1 14 6Z" fill="#FF6B1A"/>
+  <path d="M33 12 38 1 26 6Z" fill="#FF6B1A"/>
   <path
     d="M6 13Q6 5 14 5H26Q34 5 34 13V23Q34 33 20 33Q6 33 6 23Z"
     fill="none"
-    stroke="#eaecf2"
+    stroke="#1D1D1F"
     stroke-width="2.4"/>
-  <rect x="14" y="21" width="12" height="7" rx="3.5" fill="#eaecf2"/>
+  <rect x="14" y="21" width="12" height="7" rx="3.5" fill="#1D1D1F"/>
 </svg>
